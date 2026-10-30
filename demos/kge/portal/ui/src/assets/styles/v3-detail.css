@@ -1,0 +1,287 @@
+/* ============================================================
+   V3 "Settlement tape" theme — scoped to the data product detail page.
+   Everything is namespaced under .v3-detail so it cannot leak into the
+   Home / Search pages, which still use the existing styles.
+   Ported from the reference design.
+   Note: the app runs at root font-size 62.5% (1rem = 10px), so this file
+   uses px throughout to match the reference exactly.
+   ============================================================ */
+/* ---- root wrapper ---- */
+.v3-detail{
+  font-family:var(--v3-body); font-size:15px; line-height:1.5;
+  color:var(--v3-ink); background:var(--v3-paper);
+  -webkit-font-smoothing:antialiased; font-variant-numeric:tabular-nums;
+  font-feature-settings:'cv05' 1,'ss03' 1; text-rendering:optimizeLegibility;
+  max-width:none; margin:0; padding:20px 32px 48px;
+}
+.v3-detail *,.v3-detail *::before,.v3-detail *::after{box-sizing:border-box}
+.v3-detail h1,.v3-detail h2,.v3-detail h3,.v3-detail h4{
+  margin:0; font-family:var(--v3-body); font-weight:600; line-height:1.16; letter-spacing:-.021em;
+}
+.v3-detail p{margin:0}
+.v3-detail button{font:inherit; color:inherit; cursor:pointer}
+.v3-detail a{color:var(--v3-link); text-decoration:none; font-weight:500}
+.v3-detail a:hover{color:var(--v3-link-hover); text-decoration:underline}
+
+.v3-detail .lbl{
+  font-family:var(--v3-mono); font-size:11px; font-weight:500; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--v3-ink-3); margin-bottom:4px;
+  display:flex; align-items:center; gap:5px;
+}
+.v3-detail .val{font-size:15px; font-weight:500; color:var(--v3-ink)}
+.v3-detail .val-mono{font-family:var(--v3-mono); font-size:13px; font-weight:500; word-break:break-word}
+.v3-detail .num{font-family:var(--v3-mono); font-variant-numeric:tabular-nums; font-weight:500}
+.v3-detail .muted{color:var(--v3-ink-3); font-weight:400}
+
+/* ---- breadcrumbs ---- */
+.v3-detail .crumbs{
+  display:flex; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:16px;
+  font-family:var(--v3-mono); font-size:11px; letter-spacing:.04em; color:var(--v3-ink-3);
+}
+.v3-detail .crumbs a{color:var(--v3-ink-2); font-weight:400; text-transform:uppercase}
+.v3-detail .crumbs .sep{color:var(--v3-ink-4)}
+.v3-detail .crumbs .here{color:var(--v3-ink); font-weight:600; text-transform:uppercase}
+
+/* ---- badges / chips ---- */
+.v3-detail .tier{
+  width:20px; height:20px; border-radius:var(--v3-r-xs); display:inline-grid; place-items:center;
+  font-family:var(--v3-mono); font-size:10px; font-weight:600; color:#fff; flex-shrink:0;
+}
+.v3-detail .tier-g{background:var(--v3-azure-600)}
+.v3-detail .tier-s{background:var(--v3-navy-500)}
+.v3-detail .tier-b{background:#8D7A63}
+.v3-detail .tier-n{background:transparent; color:var(--v3-ink-4); box-shadow:inset 0 0 0 1.5px var(--v3-line-2)}
+
+.v3-detail .chip{
+  display:inline-flex; align-items:center; gap:5px; height:21px; padding:0 8px;
+  border-radius:var(--v3-r-xs); font-family:var(--v3-mono); font-size:11px; font-weight:500;
+  letter-spacing:.04em; border:1px solid transparent; white-space:nowrap;
+}
+.v3-detail .chip-aqua{background:var(--v3-chip-bg); color:var(--v3-chip-ink); border-color:var(--v3-accent-line)}
+.v3-detail .chip-rasp{background:var(--v3-bad-soft); color:var(--v3-bad); border-color:color-mix(in srgb,var(--v3-bad) 35%,transparent)}
+.v3-detail .chip-must{background:var(--v3-warn-soft); color:var(--v3-warn); border-color:color-mix(in srgb,var(--v3-warn) 35%,transparent)}
+.v3-detail .chip-plum{background:var(--v3-structure-soft); color:var(--v3-structure); border-color:var(--v3-line)}
+.v3-detail .chip-plain{background:var(--v3-surface); color:var(--v3-ink-2); border-color:var(--v3-line)}
+/* success: certified, approved, a passing score; after chip-aqua so it wins where both are set */
+.v3-detail .chip-ok{background:var(--v3-ok-soft); color:var(--v3-ok); border-color:color-mix(in srgb,var(--v3-ok) 35%,transparent)}
+.v3-detail .dot{width:6px; height:6px; border-radius:50%; flex-shrink:0}
+.v3-detail .dot-aqua{background:var(--v3-accent)}
+.v3-detail .dot-must{background:var(--v3-warn)}
+.v3-detail .dot-rasp{background:var(--v3-bad)}
+/* a status chip's dot takes the chip's own colour */
+.v3-detail .chip-ok .dot,.v3-detail .chip-must .dot,.v3-detail .chip-rasp .dot{background:currentColor}
+
+/* ---- buttons ---- */
+.v3-detail .btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:6px;
+  height:32px; padding:0 13px; border-radius:var(--v3-r-sm);
+  font-size:13px; font-weight:500; letter-spacing:-.005em; border:1px solid var(--v3-line-2);
+  background:var(--v3-surface); color:var(--v3-ink); white-space:nowrap;
+  transition:background .12s, border-color .12s, color .12s;
+}
+.v3-detail .btn:hover{border-color:var(--v3-structure); color:var(--v3-structure)}
+.v3-detail .btn-primary{background:var(--v3-action); border-color:var(--v3-action); color:var(--v3-action-ink)}
+.v3-detail .btn-primary:hover{background:var(--v3-action-hover); border-color:var(--v3-action-hover); color:var(--v3-action-ink)}
+.v3-detail .btn-icon{width:32px; padding:0}
+.v3-detail .btn-sm{height:26px; padding:0 9px; font-size:12px}
+.v3-detail .btn-ghost-light{background:transparent; border-color:var(--v3-navy-600); color:var(--v3-bar-ink)}
+.v3-detail .btn-ghost-light:hover{background:var(--v3-bar-hover); border-color:var(--v3-navy-500); color:var(--v3-bar-ink)}
+.v3-detail .btn-danger{background:var(--v3-surface); border-color:var(--v3-bad); color:var(--v3-bad)}
+.v3-detail .btn-danger:hover{background:var(--v3-bad-soft); border-color:var(--v3-bad); color:var(--v3-bad)}
+.v3-detail .btn:disabled{opacity:.55; cursor:not-allowed}
+.v3-detail button:focus-visible,.v3-detail input:focus-visible,.v3-detail select:focus-visible,.v3-detail a:focus-visible{outline:2px solid var(--v3-focus); outline-offset:2px}
+/* on the navy asset header, focus takes the bar ring (the access chip takes focus after a request) */
+.v3-detail .asset-head button:focus-visible,.v3-detail .asset-head a:focus-visible,
+.v3-detail .chip[tabindex="-1"]:focus-visible{outline:2px solid var(--v3-bar-focus); outline-offset:2px}
+/* the Access Requests table's own scroll box is focusable for keyboard scrolling */
+.v3-detail .request-queue-scroll:focus-visible{outline:2px solid var(--v3-focus); outline-offset:2px}
+.v3-detail .copy-btn{
+  display:inline-grid; place-items:center; width:23px; height:23px; flex-shrink:0;
+  border:none; background:transparent; border-radius:var(--v3-r-xs); color:var(--v3-ink-3);
+}
+.v3-detail .copy-btn:hover{background:var(--v3-paper-2); color:var(--v3-ink)}
+
+/* ---- asset header (dark navy block) ---- */
+.v3-detail .asset-head{background:var(--v3-navy-800); border-radius:var(--v3-r-md) var(--v3-r-md) 0 0; overflow:hidden}
+.v3-detail .asset-top{display:flex; align-items:flex-start; gap:16px; flex-wrap:wrap; padding:20px 24px}
+.v3-detail .asset-title{flex:1; min-width:250px}
+.v3-detail .eyebrow{
+  font-family:var(--v3-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--v3-bar-focus); margin-bottom:8px;
+}
+.v3-detail .asset-title h1{
+  font-size:31px; font-weight:600; color:var(--v3-bar-ink); letter-spacing:-.028em;
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+}
+.v3-detail .tech-name{
+  display:inline-flex; align-items:center; gap:8px; margin-top:12px;
+  font-family:var(--v3-mono); font-size:13px; color:var(--v3-bar-ink-2);
+  background:var(--v3-bar-2); border:1px solid var(--v3-navy-700);
+  border-radius:var(--v3-r-sm); padding:3px 4px 3px 10px; max-width:100%;
+}
+.v3-detail .tech-name > span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.v3-detail .tech-name .copy-btn{color:var(--v3-bar-ink-3)}
+.v3-detail .tech-name .copy-btn:hover{background:var(--v3-bar-hover); color:var(--v3-bar-ink)}
+.v3-detail .asset-actions{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+.v3-detail .fav-btn[aria-pressed="true"]{color:var(--v3-rasp-300); border-color:var(--v3-rasp-300)}
+
+/* ---- the settlement tape ---- */
+.v3-detail .tape{display:flex; overflow-x:auto; background:var(--v3-bar); border-top:1px solid var(--v3-navy-700); scrollbar-width:none; position:relative}
+.v3-detail .tape::-webkit-scrollbar{display:none}
+.v3-detail .tape::before{content:''; position:absolute; inset:0 0 auto 0; height:4px; background:repeating-linear-gradient(90deg,var(--v3-navy-700) 0 1px,transparent 1px 9px); opacity:.7}
+.v3-detail .tape-cell{flex:1 0 auto; min-width:158px; padding:16px 20px 16px 20px; border-left:1px solid var(--v3-navy-700)}
+.v3-detail .tape-cell:first-child{border-left:none; padding-left:24px}
+.v3-detail .tape-cell .lbl{color:var(--v3-bar-ink-3); margin-bottom:5px}
+.v3-detail .tape-val{font-family:var(--v3-mono); font-size:18px; font-weight:600; color:var(--v3-bar-ink); letter-spacing:-.03em; line-height:1.1; display:flex; align-items:center; gap:7px}
+.v3-detail .tape-val.live{color:var(--v3-bar-focus)}
+.v3-detail .tape-val.warn{color:var(--v3-must-300)}
+.v3-detail .tape-sub{font-family:var(--v3-mono); font-size:10px; color:var(--v3-bar-ink-3); margin-top:4px; letter-spacing:.03em}
+.v3-detail .pulse{position:relative; width:7px; height:7px; border-radius:50%; background:var(--v3-bar-accent)}
+.v3-detail .pulse::after{content:''; position:absolute; inset:-3px; border-radius:50%; border:1.5px solid var(--v3-bar-accent); opacity:.6; animation:v3pulse 2.4s ease-out infinite}
+@keyframes v3pulse{0%{transform:scale(.7);opacity:.7}100%{transform:scale(1.6);opacity:0}}
+
+/* ---- tabs ---- */
+.v3-detail .tabs{
+  display:flex; gap:0; overflow-x:auto; background:var(--v3-surface);
+  border:1px solid var(--v3-line); border-top:none; padding:0 24px; scrollbar-width:none;
+}
+.v3-detail .tabs::-webkit-scrollbar{display:none}
+.v3-detail .tab{
+  border:none; background:none; padding:12px 16px; font-family:var(--v3-mono); font-size:12px;
+  font-weight:500; letter-spacing:.09em; text-transform:uppercase; color:var(--v3-ink-3);
+  border-bottom:2px solid transparent; white-space:nowrap; display:flex; align-items:center; gap:6px;
+}
+.v3-detail .tab:hover{color:var(--v3-ink)}
+.v3-detail .tab[aria-selected="true"]{color:var(--v3-structure); border-bottom-color:var(--v3-accent)}
+
+/* ---- panels & cards ---- */
+.v3-detail .panel{background:var(--v3-surface); border:1px solid var(--v3-line); border-top:none; border-radius:0 0 var(--v3-r-md) var(--v3-r-md); padding:24px}
+.v3-detail .two-col{display:grid; grid-template-columns:minmax(0,1fr) 316px; gap:24px; align-items:start}
+@media(max-width:1080px){.v3-detail .two-col{grid-template-columns:minmax(0,1fr)}}
+.v3-detail .card{background:var(--v3-surface); border:1px solid var(--v3-line); border-radius:var(--v3-r-sm); padding:20px; margin-bottom:16px}
+.v3-detail .card:last-child{margin-bottom:0}
+.v3-detail .card-head{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--v3-line)}
+.v3-detail .card-head h3{font-size:15px; font-weight:600}
+.v3-detail .rail .card{background:var(--v3-surface-2)}
+.v3-detail .about-text{font-size:15px; color:var(--v3-ink-2); line-height:1.65; max-width:68ch}
+.v3-detail .tag-row{display:flex; flex-wrap:wrap; gap:6px; margin-top:16px}
+
+.v3-detail .meta-groups{display:grid; grid-template-columns:repeat(auto-fit,minmax(215px,1fr)); gap:22px 20px}
+.v3-detail .meta-group{min-width:0}
+.v3-detail .meta-ghead{display:flex; align-items:center; gap:8px; margin-bottom:12px; padding-bottom:9px; border-bottom:1px solid var(--v3-line)}
+.v3-detail .meta-ghead .gi{width:22px; height:22px; border-radius:6px; display:grid; place-items:center; background:var(--v3-accent-soft); color:var(--v3-accent); flex-shrink:0}
+.v3-detail .meta-ghead .gi svg{display:block}
+.v3-detail .meta-ghead h4{font-family:var(--v3-mono); font-size:10.5px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--v3-structure); margin:0}
+.v3-detail .meta-list{display:flex; flex-direction:column; gap:8px}
+.v3-detail .meta-list > div{min-width:0}
+
+/* metric tiles */
+.v3-detail .mt-tile{
+  background:var(--v3-surface-2); border:1px solid var(--v3-line);
+  border-left:2px solid var(--v3-line-2); border-radius:var(--v3-r-xs, 3px);
+  padding:8px 11px; min-width:0; transition:border-color .12s, background .12s, box-shadow .12s;
+}
+.v3-detail .mt-tile:hover{border-left-color:var(--v3-accent); background:var(--v3-surface); box-shadow:var(--v3-shadow-1, 0 1px 2px rgba(20,13,29,.07))}
+.v3-detail .mt-lbl{font-family:var(--v3-mono); font-size:9px; font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--v3-ink-3); margin-bottom:3px}
+.v3-detail .mt-val{font-family:var(--v3-mono); font-size:13px; font-weight:600; color:var(--v3-ink); word-break:break-word; line-height:1.35; font-variant-numeric:tabular-nums}
+
+/* value chips inside a tile */
+.v3-detail .mt-chip{display:inline-flex; align-items:center; gap:5px; height:20px; padding:0 8px; border-radius:var(--v3-r-xs, 3px); font-family:var(--v3-mono); font-size:10.5px; font-weight:600; letter-spacing:.03em; border:1px solid transparent}
+.v3-detail .mt-chip--aqua{background:var(--v3-chip-bg); color:var(--v3-chip-ink); border-color:var(--v3-accent-line)}
+.v3-detail .mt-chip--plum{background:var(--v3-structure-soft); color:var(--v3-structure); border-color:var(--v3-line)}
+.v3-detail .mt-chip--plain{background:var(--v3-surface); color:var(--v3-ink-2); border-color:var(--v3-line)}
+.v3-detail .mt-chip--good{background:var(--v3-ok-soft); color:var(--v3-ok); border-color:color-mix(in srgb,var(--v3-ok) 35%,transparent)}
+.v3-detail .mt-chip--warn{background:var(--v3-warn-soft); color:var(--v3-warn); border-color:color-mix(in srgb,var(--v3-warn) 35%,transparent)}
+.v3-detail .mt-chip--bad{background:var(--v3-bad-soft); color:var(--v3-bad); border-color:color-mix(in srgb,var(--v3-bad) 35%,transparent)}
+.v3-detail .mt-dot{width:6px; height:6px; border-radius:50%; flex-shrink:0}
+
+.v3-detail .person{display:flex; align-items:center; gap:12px; padding:8px 0}
+.v3-detail .avatar{width:31px; height:31px; border-radius:var(--v3-r-xs); flex-shrink:0; display:grid; place-items:center; background:var(--v3-navy-700); color:#fff; font-family:var(--v3-mono); font-size:11px; font-weight:600}
+.v3-detail .person-meta{min-width:0; flex:1}
+.v3-detail .person-meta b{display:block; font-size:13px; font-weight:600; letter-spacing:-.008em}
+.v3-detail .person-meta span{display:block; font-size:11px; color:var(--v3-ink-3)}
+
+.v3-detail .legend{display:flex; flex-direction:column; gap:12px; font-size:12px; color:var(--v3-ink-3)}
+.v3-detail .legend div{display:flex; align-items:center; gap:8px}
+.v3-detail .legend b{color:var(--v3-ink)}
+
+.v3-detail .empty{text-align:center; padding:48px 20px; color:var(--v3-ink-3)}
+.v3-detail .empty h4{font-size:15px; color:var(--v3-ink); margin-bottom:8px}
+.v3-detail .empty p{font-size:13px; max-width:370px; margin:0 auto 16px}
+
+@media (prefers-reduced-motion:reduce){.v3-detail *,.v3-detail *::before,.v3-detail *::after{animation-duration:.01ms !important; transition-duration:.01ms !important}}
+@media(max-width:640px){
+  .v3-detail{padding:16px 16px 40px}
+  .v3-detail .asset-top{padding:16px}
+  .v3-detail .panel{padding:16px}
+  .v3-detail .tabs{padding-inline:16px}
+  .v3-detail .tape-cell{min-width:142px; padding-left:16px}
+  .v3-detail .tape-cell:first-child{padding-left:16px}
+  .v3-detail .asset-title h1{font-size:23px}
+}
+
+/* The detail page's #DPDRoot previously added a 3rem frame; the v3 shell
+   provides its own padding, so drop the extra gutter here. */
+#DPDRoot{margin:0}
+
+/* ============================================================
+   V3 TAB CONTENT — Fields / Quality / Lineage / Preview
+   Replaces the old ecru #E7E3DF Material-UI blocks so the inner
+   tabs read as part of the same design language as Overview.
+   ============================================================ */
+.v3-detail .v3-tab{display:flex; flex-direction:column; gap:16px}
+.v3-detail .v3-tab-head{
+  display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+}
+.v3-detail .v3-tab-head h3{font-size:13px; font-weight:600; color:var(--v3-ink)}
+.v3-detail .v3-tab-sub{
+  font-family:var(--v3-mono); font-size:11px; letter-spacing:.04em; color:var(--v3-ink-3);
+}
+
+/* lineage canvas */
+.v3-detail .v3-lineage{
+  height:560px; width:100%; background:var(--v3-surface); border:1px solid var(--v3-line);
+  border-radius:var(--v3-r-sm); overflow:hidden;
+}
+.v3-detail .v3-lineage .react-flow__node-default,
+.v3-detail .v3-lineage .react-flow__node-input,
+.v3-detail .v3-lineage .react-flow__node-output{
+  width:220px; word-break:break-word; border-radius:var(--v3-r-sm);
+  border:1px solid var(--v3-line-2); background:var(--v3-surface-2); color:var(--v3-ink);
+  font-family:var(--v3-mono); font-size:12px; padding:8px 10px;
+}
+.v3-detail .v3-lineage .react-flow__controls{box-shadow:var(--v3-shadow-1); border-radius:var(--v3-r-sm); overflow:hidden}
+.v3-detail .v3-lineage .react-flow__controls-button{background:var(--v3-surface-2); border-bottom-color:var(--v3-line); color:var(--v3-ink-2); fill:var(--v3-ink-2)}
+.v3-detail .v3-lineage .react-flow__controls-button:hover{background:var(--v3-paper-2)}
+.v3-detail .v3-lineage .react-flow__edge-path{stroke:var(--v3-ink-4)}
+.v3-detail .v3-lineage .react-flow__background circle{fill:var(--v3-line)}
+.v3-detail .v3-lineage .react-flow__attribution{background:transparent}
+.v3-detail .v3-lineage .react-flow__attribution a{color:var(--v3-ink-4)}
+
+/* empty state (also used app-wide, so defined unscoped below) */
+.v3-empty{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:64px 24px; min-height:280px;
+  border:1px dashed var(--v3-line-2); border-radius:var(--v3-r-sm, 3px);
+  background:var(--v3-surface);
+}
+.v3-empty-msg{
+  font-family:var(--v3-body, 'Inter',sans-serif); font-size:14px; color:var(--v3-ink-3);
+  max-width:420px; line-height:1.55;
+}
+.v3-empty-msg a{color:var(--v3-link); font-weight:500}
+.v3-empty-msg a:hover{color:var(--v3-link-hover)}
+
+/* ---- tab count badge ---- */
+.v3-detail .tab .count{
+  font-family:var(--v3-mono); font-size:10px; font-weight:500; color:var(--v3-ink-3);
+  background:var(--v3-paper-2); border-radius:var(--v3-r-xs); padding:1px 5px; letter-spacing:0;
+}
+.v3-detail .tab[aria-selected="true"] .count{background:var(--v3-accent-soft); color:var(--v3-chip-ink)}
+
+/* ---- medal badge icons ---- */
+.v3-detail .tier-medal{width:27px; height:27px; object-fit:contain; flex-shrink:0}
+.v3-detail .tier-medal-sm{width:20px; height:20px; object-fit:contain; flex-shrink:0}
+
+.v3-detail .asset-head .v3-skel{background:linear-gradient(90deg,var(--v3-navy-700) 25%,var(--v3-navy-600) 50%,var(--v3-navy-700) 75%);background-size:200% 100%}
+.v3-detail .skel-lines{display:flex;flex-direction:column;gap:10px}

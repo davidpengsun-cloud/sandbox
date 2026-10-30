@@ -1,0 +1,41 @@
+# Disclosure guard allowlist — tools/check_disclosure.py
+#
+# One exemption per line, four pipe-separated fields:
+#
+#   path | line | rule | reason
+#
+# The rule field may be left empty to exempt every rule on that line. The
+# reason is mandatory: an entry that does not say why the line is not a
+# disclosure is an unexamined leak with a note attached.
+#
+# Line numbers move when a document is edited. An exemption that no longer
+# matches is silently inert, so re-run the guard after any edit to a file
+# named here.
+#
+# Example:
+#
+#   docs/reference/reference-institution.md | 78 | identifier | published FFIEC index value, not an account number
+demos/kge/clients/meridian/baselines/issue-38.json | 13 | identifier | sha256 hex digest of the demo graph's model (kge/eval/report.py baseline, #38's), not an account number
+demos/kge/clients/meridian/baselines/issue-38.json | 14 | identifier | sha256 hex digest of the demo graph's overlay (kge/eval/report.py baseline, #38's), not an account number
+demos/kge/clients/meridian/baselines/issue-39.json | 13 | identifier | sha256 hex digest of the demo graph's model (kge/eval/report.py baseline), not an account number
+demos/kge/clients/meridian/baselines/issue-39.json | 14 | identifier | sha256 hex digest of the demo graph's legacy model layers (kge/eval/report.py baseline), not an account number
+demos/kge/clients/meridian/baselines/issue-39.json | 15 | identifier | sha256 hex digest of the compiled artifact the demo graph was loaded from, its model_hash (kge/eval/report.py baseline), not an account number
+demos/kge/clients/meridian/baselines/issue-39.json | 16 | identifier | sha256 hex digest of the demo graph's overlay (kge/eval/report.py baseline), not an account number
+demos/kge/clients/meridian/baselines/issue-39.json | 30 | identifier | sha256 hex digest of the golden v2 set file the baseline ran (kge/eval/report.py baseline), not an account number
+demos/kge/clients/meridian/baselines/issue-39.json | 37 | identifier | sha256 hex digest of the golden v1 set file golden v2 declares it changed from (kge/eval/sets.py changes_from), not an account number
+demos/kge/clients/meridian/baselines/issue-39.json | 46 | identifier | sha256 hex digest of the held-out set file the baseline ran (kge/eval/report.py baseline), not an account number
+demos/kge/clients/meridian/baselines/issue-39.json | 53 | identifier | sha256 hex digest of the golden_wealth_v1 set file the baseline ran (kge/eval/report.py baseline), not an account number
+demos/kge/clients/meridian/baselines/issue-40.json | 13 | identifier | sha256 hex digest of the demo graph's model (kge/eval/report.py baseline, #40's), not an account number
+demos/kge/clients/meridian/baselines/issue-40.json | 14 | identifier | sha256 hex digest of the demo graph's legacy model layers (kge/eval/report.py baseline, #40's), not an account number
+demos/kge/clients/meridian/baselines/issue-40.json | 15 | identifier | sha256 hex digest of the compiled artifact the demo graph was loaded from, its model_hash (kge/eval/report.py baseline, #40's), not an account number
+demos/kge/clients/meridian/baselines/issue-40.json | 16 | identifier | sha256 hex digest of the demo graph's overlay (kge/eval/report.py baseline, #40's), not an account number
+demos/kge/clients/meridian/baselines/issue-40.json | 30 | identifier | sha256 hex digest of the golden v2 set file the baseline ran (kge/eval/report.py baseline, #40's), not an account number
+demos/kge/clients/meridian/baselines/issue-40.json | 37 | identifier | sha256 hex digest of the golden v1 set file golden v2 declares it changed from (kge/eval/sets.py changes_from), not an account number
+demos/kge/clients/meridian/baselines/issue-40.json | 46 | identifier | sha256 hex digest of the held-out set file the baseline ran (kge/eval/report.py baseline, #40's), not an account number
+demos/kge/clients/meridian/baselines/issue-40.json | 53 | identifier | sha256 hex digest of the golden_wealth_v1 set file the baseline ran (kge/eval/report.py baseline, #40's), not an account number
+demos/kge/Dockerfile | 22 | identifier | sha256 digest the base image python:3.12.15-bookworm is held to (issue #48 item 5), not an account number
+demos/kge/kge/services/identity/service.py | 59 | credential | the name of the run-state file the session key is kept in (pilot sign-in, issue #48 item 4), not a key
+demos/kge/portal/ui/package-lock.json | 1259 | institution | npm package integrity digest, not an institution reference
+demos/kge/portal/ui/package-lock.json | 9009 | institution | npm package integrity digest, not an institution reference
+demos/kge/portal/ui/package-lock.json | 11809 | email | npm registry metadata for a transitive dependency, not portal content or a client contact
+demos/kge/portal/server/src/kgeauth.js | 1 | hostname | Google Cloud's documented metadata server, the same on every Cloud Run instance (the portal's ID token for a private KGE, #112), not a client's internal host

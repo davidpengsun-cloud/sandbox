@@ -1,0 +1,20 @@
+{
+  "name": "heldout_leasing",
+  "version": "v1",
+  "items": [
+    {
+      "id": "LEASING-H01",
+      "kind": "within",
+      "question": "Total lease rentals in June 2025",
+      "column": "leasing.rental.lease_rentals_usd",
+      "month": "2025-06"
+    },
+    {
+      "id": "LEASING-H02",
+      "kind": "within",
+      "question": "Total lease income in June 2025",
+      "column": "leasing.rental.lease_rentals_usd",
+      "month": "2025-06"
+    }
+  ]
+}

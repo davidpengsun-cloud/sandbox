@@ -1,0 +1,11 @@
+# The Fellmoor deployment's principals, each bound to a role template of the client's pack (clients/fellmoor/pack.yaml,
+# access.roles). The deployment owns identities; the pack never does. Every name is invented.
+client: fellmoor
+# The querying identity a command asks as when it names none (make eval, make agent, make ab, make margin; PRINCIPAL
+# names another): network_analyst, who reads both units.
+asker: network_analyst
+principals:
+  - {principal: network_analyst, role: network_analyst}
+  - {principal: fares_steward, role: fares_steward}
+  - {principal: pipeline_tagger, role: pipeline_tagger}
+  - {principal: knowledge_engineer, role: knowledge_engineer}

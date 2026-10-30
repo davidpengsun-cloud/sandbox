@@ -1,0 +1,175 @@
+{
+ "as_of": "2025-07-01",
+ "client": "fellmoor",
+ "format": 1,
+ "sources": {
+  "fleet": {
+   "tables": [
+    {
+     "columns": [
+      {
+       "description": "The repair order's number",
+       "name": "repair_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "The vehicle repaired",
+       "name": "vehicle_no",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "The day the repair was completed and signed off by the workshop",
+       "name": "completed_on",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Parts and labour charged to the repair, in USD",
+       "name": "cost_usd",
+       "ordinal": 4,
+       "type": "DECIMAL(10,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "vehicle_no"
+       ],
+       "ref_columns": [
+        "vehicle_no"
+       ],
+       "ref_table": "vehicle"
+      }
+     ],
+     "name": "repair",
+     "primary_key": [
+      "repair_id"
+     ],
+     "rows": 16,
+     "storage": 412
+    },
+    {
+     "columns": [
+      {
+       "description": "The vehicle's fleet number in the fleet register",
+       "name": "vehicle_no",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "The depot the vehicle runs from: NORTHGATE or RIVERSIDE",
+       "name": "depot_code",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "The day the vehicle entered service",
+       "name": "entered_service_on",
+       "ordinal": 3,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "vehicle",
+     "primary_key": [
+      "vehicle_no"
+     ],
+     "rows": 8,
+     "storage": 200
+    }
+   ]
+  },
+  "ticketing": {
+   "tables": [
+    {
+     "columns": [
+      {
+       "description": "The smartcard's number in the ticketing system",
+       "name": "card_id",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "The cardholder's contact address: personal data, restricted",
+       "name": "holder_email",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Fare class the card is issued under: ADULT, CONCESSION or STUDENT",
+       "name": "fare_class",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "card",
+     "primary_key": [
+      "card_id"
+     ],
+     "rows": 12,
+     "storage": 444
+    },
+    {
+     "columns": [
+      {
+       "description": "The journey's number",
+       "name": "journey_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "The smartcard the journey was tapped with",
+       "name": "card_id",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "The route the journey was made on",
+       "name": "route_code",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "The vehicle number as the driver keyed it at sign-on, never checked against the fleet register",
+       "name": "vehicle_ref",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "The day the card was tapped on board",
+       "name": "tapped_on",
+       "ordinal": 5,
+       "type": "DATE"
+      },
+      {
+       "description": "Fare charged for the journey, in USD, after any concession",
+       "name": "fare_usd",
+       "ordinal": 6,
+       "type": "DECIMAL(10,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "card_id"
+       ],
+       "ref_columns": [
+        "card_id"
+       ],
+       "ref_table": "card"
+      }
+     ],
+     "name": "journey",
+     "primary_key": [
+      "journey_id"
+     ],
+     "rows": 48,
+     "storage": 1601
+    }
+   ]
+  }
+ }
+}

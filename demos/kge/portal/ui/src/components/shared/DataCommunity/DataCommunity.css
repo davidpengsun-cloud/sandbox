@@ -1,0 +1,55 @@
+#main {
+    margin: 2rem;
+    align-items: flex-end;
+
+    .contentLeft {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        align-items: flex-end;
+        margin-bottom: 1rem;
+
+        .accordian {
+            width: 90%;
+
+            .content {
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                align-content: flex-start;
+                align-items: flex-start;
+
+                .title {
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+
+        .accordianDetails {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-content: flex-start;
+
+            nav {
+                padding: 0;
+            }
+
+            .nested {
+                padding-left: 4rem;
+
+                .subContent {
+                    display: flex;
+                    flex-direction: column;
+                    flex-wrap: wrap;
+                    align-content: center;
+                    align-items: flex-start;
+                    cursor: pointer;
+                    font-size: 2rem;
+                    font-family: Inter;
+                }
+            }
+        }
+    }
+}

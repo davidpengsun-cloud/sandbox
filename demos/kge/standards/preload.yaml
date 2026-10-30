@@ -1,0 +1,298 @@
+# The platform's preloaded reference standards: a fixed, versioned set of external standards' concepts, loaded into
+# every client's graph as reference OntologyConcepts (meta-model 1.3.0), never a client's data. It names no client.
+#
+# Onboarding only maps to these concepts: a drafted mapping names one of them, and the compiler refuses a pack mapping
+# to an IRI that is not here. Widening this set, or adding a standard, is a deliberate platform update (a new version
+# of this file, reviewed for licence and fit), never part of an upload. Nothing is fetched at run time.
+#
+# Researched and verified on 2026-10-19 against each standard's own published files (source, per concept). Each
+# concept's id is <standard>-<its IRI's local name, kebab-cased> (DPV's personal-data extension: dpv-pd-<name>), so
+# two standards' concepts of one local name never collide (fibo-monetary-amount, schemaorg-monetary-amount). Its
+# definition is the standard's own words where its licence allows (definition_text: verbatim) and ours otherwise
+# (own wording: schema.org's, whose definitions are CC BY-SA). The licence notices each standard asks for are in
+# NOTICES.md, beside this file, and ship with it.
+#
+# Left out on purpose: ISO 20022, whose terms do not plainly allow its text to ship under this platform's licence; and
+# any concept no mapping or onboarding rule needs yet. Apache Ossie is a format, not a vocabulary: it is listed
+# as a standard and supplies no concept.
+#
+# defaults: the structural rules onboarding's rule path drafts with, beside lexical matching (kge/estate/draftflow.py).
+#   currency_measure  the concept a drafted measure with an ISO 4217 currency is mapped to: a figure in a currency is
+#                     an amount of money, so the concept is the broader (broadMatch)
+#   personal_data     the concept a candidate restricted-data policy is mapped to, by the privacy family that flagged
+#                     its column (kge/pipeline/privacy.py); `default` for any family not named
+
+format: 1
+version: 1.0.0
+researched: 2026-10-19
+
+defaults:
+  currency_measure: {concept: fibo-monetary-amount, relation: broadMatch}
+  personal_data:
+    default: {concept: dpv-personal-data, relation: broadMatch}
+    payment_card: {concept: dpv-pd-financial, relation: broadMatch}
+
+standards:
+  - id: fibo
+    name: "Financial Industry Business Ontology (FIBO)"
+    publisher: "EDM Council (standardised at OMG)"
+    version: "master_2026Q2 (released 2026-07-14)"
+    licence: "MIT"
+    licence_url: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/LICENSE"
+    namespace: "https://spec.edmcouncil.org/fibo/ontology/"
+  - id: bian
+    name: "BIAN Service Landscape / Semantic APIs"
+    publisher: "Banking Industry Architecture Network (BIAN)"
+    version: "14.0.0"
+    licence: "Apache-2.0"
+    licence_url: "https://github.com/bian-official/public/blob/main/LICENSE"
+    namespace: "none (no RDF namespace; commit-pinned GitHub file URLs used as locators)"
+  - id: schemaorg
+    name: "Schema.org"
+    publisher: "Schema.org (Google, Microsoft, Yahoo, Yandex)"
+    version: "30.1 (2026-09-16)"
+    licence: "CC BY-SA 3.0"
+    licence_url: "https://schema.org/docs/terms.html"
+    namespace: "https://schema.org/"
+  - id: skos
+    name: "SKOS Simple Knowledge Organization System"
+    publisher: "W3C"
+    version: "W3C Recommendation 2009-08-18"
+    licence: "W3C Document License (document use rules)"
+    licence_url: "https://www.w3.org/copyright/document-license-2023/"
+    namespace: "http://www.w3.org/2004/02/skos/core#"
+  - id: dpv
+    name: "Data Privacy Vocabulary (DPV) and Personal Data extension (pd)"
+    publisher: "W3C Data Privacy Vocabularies and Controls Community Group (a Community Group, not a W3C Recommendation)"
+    version: "2.3 (modified 2026-02-25)"
+    licence: "W3C Document License 2023"
+    licence_url: "https://www.w3.org/copyright/document-license-2023/"
+    namespace: "https://w3id.org/dpv# ; https://w3id.org/dpv/pd#"
+  - id: dcterms
+    name: "DCMI Metadata Terms"
+    publisher: "Dublin Core Metadata Initiative (DCMI)"
+    version: "DCMI Recommendation, issued 2020-01-20"
+    licence: "CC BY 4.0"
+    licence_url: "https://www.dublincore.org/about/copyright/"
+    namespace: "http://purl.org/dc/terms/"
+  - id: prov
+    name: "PROV-O: The PROV Ontology"
+    publisher: "W3C"
+    version: "W3C Recommendation 2013-04-30"
+    licence: "W3C Document License (document use rules)"
+    licence_url: "https://www.w3.org/copyright/document-license-2023/"
+    namespace: "http://www.w3.org/ns/prov#"
+  - id: dcat
+    name: "Data Catalog Vocabulary (DCAT) Version 3"
+    publisher: "W3C"
+    version: "W3C Recommendation 2024-08-22"
+    licence: "W3C Software and Document License 2023 (permissive document license)"
+    licence_url: "https://www.w3.org/copyright/software-license-2023/"
+    namespace: "http://www.w3.org/ns/dcat#"
+  - id: ossie
+    name: "Apache Ossie (incubating), formerly Open Semantic Interchange (OSI)"
+    publisher: "Apache Software Foundation (Incubator)"
+    version: "spec 0.2.0.dev0 (draft); only tag osi-0.1.1-rc1; no stable release"
+    licence: "Apache-2.0"
+    licence_url: "https://github.com/apache/ossie/blob/main/LICENSE"
+    namespace: "none (a format, not a vocabulary: its ontology concepts carry an optional iri field)"
+
+concepts:
+  - id: dcat-dataset
+    standard: dcat
+    iri: "http://www.w3.org/ns/dcat#Dataset"
+    label: "Dataset"
+    definition: "A collection of data, published or curated by a single source, and available for access or download in one or more representations."
+    definition_text: verbatim
+    sub_graph: physical
+    source: "https://www.w3.org/ns/dcat.ttl"
+  - id: skos-concept
+    standard: skos
+    iri: "http://www.w3.org/2004/02/skos/core#Concept"
+    label: "Concept"
+    definition: "An idea or notion; a unit of thought."
+    definition_text: verbatim
+    sub_graph: glossary
+    source: "https://www.w3.org/2004/02/skos/core.rdf"
+  - id: fibo-monetary-amount
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/MonetaryAmount"
+    label: "monetary amount"
+    definition: "measure that is an amount of money specified in monetary units"
+    definition_text: verbatim
+    sub_graph: metrics
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/Accounting/CurrencyAmount.rdf"
+    maturity: "Release"
+  - id: fibo-usd
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/ISO4217-CurrencyCodes/USD"
+    label: "USD"
+    definition: "the currency identifier for US Dollar"
+    definition_text: verbatim
+    sub_graph: metrics
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/Accounting/ISO4217-CurrencyCodes.rdf"
+    maturity: "Release"
+  - id: fibo-market-value
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Assessments/MarketValue"
+    label: "market value"
+    definition: "price an asset would sell for in the market"
+    definition_text: verbatim
+    sub_graph: metrics
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/Arrangements/Assessments.rdf"
+    maturity: "Release"
+  - id: fibo-cash-flow
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CashFlows/CashFlow"
+    label: "cash flow"
+    definition: "the movement of money from some source to some sink"
+    definition_text: verbatim
+    sub_graph: metrics
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/Accounting/CashFlows.rdf"
+    maturity: "Provisional"
+  - id: fibo-calendar-quarter
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/DatesAndTimes/FinancialDates/CalendarQuarter"
+    label: "calendar quarter"
+    definition: "time interval of 3 months, starting on January 1, April 1, July 1, or October 1"
+    definition_text: verbatim
+    sub_graph: metrics
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/DatesAndTimes/FinancialDates.rdf"
+    maturity: "Release"
+    note: "An owl:NamedIndividual, not a class. Calendar quarters only: a fiscal year that starts in another month may share its quarter ends, but not its quarter labels."
+  - id: dcterms-period-of-time
+    standard: dcterms
+    iri: "http://purl.org/dc/terms/PeriodOfTime"
+    label: "Period of Time"
+    definition: "An interval of time that is named or defined by its start and end dates."
+    definition_text: verbatim
+    sub_graph: metrics
+    source: "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl"
+  - id: schemaorg-monetary-amount
+    standard: schemaorg
+    iri: "https://schema.org/MonetaryAmount"
+    label: "MonetaryAmount"
+    definition: "An amount of money, or a range of amounts, in a stated currency."
+    definition_text: own wording
+    sub_graph: metrics
+    source: "https://schema.org/version/latest/schemaorg-current-https.ttl"
+  - id: fibo-investment-account
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/InvestmentAccount"
+    label: "investment account"
+    definition: "account that provides a record of deposits of funds and/or securities held at a financial institution"
+    definition_text: verbatim
+    sub_graph: ontology
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FBC/ProductsAndServices/ClientsAndAccounts.rdf"
+    maturity: "Release"
+  - id: fibo-portfolio
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/OwnershipAndControl/Ownership/Portfolio"
+    label: "portfolio"
+    definition: "collection of holdings assembled and maintained as a unit for management purposes to achieve strategic objectives"
+    definition_text: verbatim
+    sub_graph: ontology
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/OwnershipAndControl/Ownership.rdf"
+    maturity: "Release"
+  - id: fibo-holding
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/OwnershipAndControl/Ownership/Holding"
+    label: "holding"
+    definition: "owned financial interest consisting of legal or beneficial ownership of an asset or security that confers economic rights on its owner"
+    definition_text: verbatim
+    sub_graph: ontology
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/OwnershipAndControl/Ownership.rdf"
+    maturity: "Release"
+  - id: schemaorg-money-transfer
+    standard: schemaorg
+    iri: "https://schema.org/MoneyTransfer"
+    label: "MoneyTransfer"
+    definition: "Sending money somewhere else, by any means."
+    definition_text: own wording
+    sub_graph: ontology
+    source: "https://schema.org/version/latest/schemaorg-current-https.ttl"
+  - id: bian-investment-portfolio-management
+    standard: bian
+    iri: "https://github.com/bian-official/public/blob/b58bf4c2c300dd018afc084e9bb24b7adaaa3500/release14.0.0/semantic-apis/oas3%20/yamls/InvestmentPortfolioManagement.yaml"
+    label: "Investment Portfolio Management (service domain)"
+    definition: "Manage an investment portfolio, initiating trading to leverage market opportunities, remaining within portfolio trading policies"
+    definition_text: verbatim
+    sub_graph: ontology
+    source: "https://github.com/bian-official/public/blob/b58bf4c2c300dd018afc084e9bb24b7adaaa3500/release14.0.0/semantic-apis/oas3%20/yamls/InvestmentPortfolioManagement.yaml"
+  - id: fibo-report
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Reporting/Report"
+    label: "report"
+    definition: "document that provides a structured description of something, prepared on ad hoc, periodic, recurring, regular, or as required basis"
+    definition_text: verbatim
+    sub_graph: documents
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/Arrangements/Reporting.rdf"
+    maturity: "Release"
+  - id: fibo-account-statement
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountStatement"
+    label: "account statement"
+    definition: "periodic summary of account activity for a given period of time"
+    definition_text: verbatim
+    sub_graph: documents
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FBC/ProductsAndServices/ClientsAndAccounts.rdf"
+    maturity: "Release"
+  - id: dcterms-policy
+    standard: dcterms
+    iri: "http://purl.org/dc/terms/Policy"
+    label: "Policy"
+    definition: "A plan or course of action by an authority, intended to influence and determine decisions, actions, and other matters."
+    definition_text: verbatim
+    sub_graph: documents
+    source: "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl"
+  - id: fibo-policy
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Law/LegalCapacity/Policy"
+    label: "policy"
+    definition: "system of principles, rules and guidelines, adopted by an organization to guide decision making with respect to particular situations and implemented via procedures or protocols to achieve stated goals"
+    definition_text: verbatim
+    sub_graph: governance
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/Law/LegalCapacity.rdf"
+    maturity: "Release"
+  - id: dpv-personal-data
+    standard: dpv
+    iri: "https://w3id.org/dpv#PersonalData"
+    label: "Personal Data"
+    definition: "Data directly or indirectly associated or related to an individual"
+    definition_text: verbatim
+    sub_graph: governance
+    source: "https://raw.githubusercontent.com/w3c/dpv/master/2.3/dpv/dpv.ttl"
+  - id: dpv-pd-financial
+    standard: dpv
+    iri: "https://w3id.org/dpv/pd#Financial"
+    label: "Financial"
+    definition: "Information about finance including monetary characteristics and transactions"
+    definition_text: verbatim
+    sub_graph: governance
+    source: "https://raw.githubusercontent.com/w3c/dpv/master/2.3/pd/pd.ttl"
+  - id: dcterms-access-rights
+    standard: dcterms
+    iri: "http://purl.org/dc/terms/accessRights"
+    label: "Access Rights"
+    definition: "Information about who access the resource or an indication of its security status."
+    definition_text: verbatim
+    sub_graph: governance
+    source: "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl"
+    note: "A property, not a class: attach to the dataset or column carrying the classification."
+  - id: prov-entity
+    standard: prov
+    iri: "http://www.w3.org/ns/prov#Entity"
+    label: "Entity"
+    definition: "An entity is a physical, digital, conceptual, or other kind of thing with some fixed aspects; entities may be real or imaginary."
+    definition_text: verbatim
+    sub_graph: governance
+    source: "https://www.w3.org/ns/prov-o.ttl"
+  - id: prov-was-derived-from
+    standard: prov
+    iri: "http://www.w3.org/ns/prov#wasDerivedFrom"
+    label: "wasDerivedFrom"
+    definition: "A derivation is a transformation of an entity into another, an update of an entity resulting in a new one, or the construction of a new entity based on a pre-existing entity."
+    definition_text: verbatim
+    sub_graph: governance
+    source: "https://www.w3.org/ns/prov-o.ttl"
+    note: "A property: the provenance of a figure is the figure (prov:Entity) wasDerivedFrom its source rows."

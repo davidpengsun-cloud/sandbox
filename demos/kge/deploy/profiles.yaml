@@ -1,0 +1,36 @@
+# The deployment's profiles: which client a runtime process serves, and where that client's things are
+# (kge/pipeline/profile.py). One process serves one profile, picked at deployment: PROFILE, else default. Pointers
+# only, each relative to this file; a client's own folders sit under clients, artifacts, store and landing, in a
+# folder named for it. The platform reads this file and names no client: the clients are named here. Three clients share
+# the one platform build: Meridian, the demo's own, whose estate is generated; Thornbury, a fixture profile whose estate
+# is built from the files in its folder (clients/thornbury/fixture/, kge/estate/from_files.py); and Fellmoor, a client
+# onboarded from scratch through issue #40's steps 1 to 8, its estate built from its fixture the same way.
+default: meridian
+profiles:
+  meridian:
+    client: meridian
+    clients: ../clients                                    # its pack, lock and baselines: clients/meridian/
+    artifacts: ../build/artifacts                          # its compiled artifacts: build/artifacts/meridian/<model_hash>/
+    store: ../build/stores                                 # its graph store: build/stores/meridian/ (graph, overlay/, run/)
+    landing: ../build/landing                              # what certification landed for it: build/landing/meridian/
+    warehouses: ../build/warehouses                        # its warehouses, read only
+    identities: meridian/identities.yaml                   # its principals, bound to its pack's roles
+    baseline: ../clients/meridian/baselines/issue-40.json  # the A/B baseline make ab and make margin put runs beside
+  thornbury:
+    client: thornbury
+    clients: ../clients                                    # its pack, lock and fixture: clients/thornbury/
+    artifacts: ../build/artifacts                          # build/artifacts/thornbury/<model_hash>/
+    store: ../build/stores                                 # build/stores/thornbury/
+    landing: ../build/landing                              # build/landing/thornbury/
+    warehouses: ../build/thornbury/warehouses              # its fixture estate's warehouses, beside its documents and golden set
+    identities: thornbury/identities.yaml                  # its three principals
+    baseline: null                                         # a fixture profile: no A/B baseline
+  fellmoor:
+    client: fellmoor
+    clients: ../clients                                    # its pack, lock and fixture: clients/fellmoor/
+    artifacts: ../build/artifacts                          # build/artifacts/fellmoor/<model_hash>/
+    store: ../build/stores                                 # build/stores/fellmoor/
+    landing: ../build/landing                              # build/landing/fellmoor/
+    warehouses: ../build/fellmoor/warehouses               # its fixture estate's warehouses, beside its documents and golden set
+    identities: fellmoor/identities.yaml                   # its three principals
+    baseline: null                                         # no A/B baseline: make margin checks its pack's gates alone

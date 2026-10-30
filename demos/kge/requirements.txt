@@ -1,0 +1,37 @@
+duckdb>=2.0.0
+# The graph store, the only one. Ladybug's Mac wheels need macOS 15 (Darwin 24) or later: an older Mac cannot run the
+# local stack, and uses Linux, a container or the kit's Compose. The release goes on the right: pip 24.1 to 25.3 crash
+# reading a Linux kernel string such as 6.12.94+ as a version; this way round they compare it as a string.
+ladybug>=0.21.2,<0.22; sys_platform != "darwin" or "24" <= platform_release
+fastapi>=0.160.0
+uvicorn>=0.30
+numpy>=1.26
+pydantic>=2.7
+pandas>=3.1.0
+PyYAML>=6.0,<7   # the pack and the meta-model; safe_load and safe_dump only
+sqlglot>=30.24.0,<31   # the SQL gate resolves names with sqlglot's optimizer; tested on 30.24
+# The context service (kge/services/ask/engine/context.py, kge/app.py): the context workflow on LangGraph, and the MCP server at /mcp on the
+# official mcp SDK (its 1.x line). Exact pins: langgraph and mcp, MIT licensed, and LangGraph's own packages beside it,
+# moved together by the grouped dependency update of 25 Oct 2026 (.github/dependabot.yml).
+langgraph==1.2.16
+langchain-core==1.7.0
+langgraph-checkpoint==4.3.0
+langgraph-prebuilt==1.1.1
+langgraph-sdk==0.4.8
+orjson==3.13.0   # LangSmith and LangGraph's SDK read and write JSON with it. 3.11.6 fixed CVE-2025-67221 (dumps recursion) and took in MPL-2.0 code, which ships unmodified, with its notice and where to get its source
+mcp==1.30.0   # held on its 1.x line: 2.x renames FastMCP and changes the protocol version clients see, the owner's call
+# What they pull in, pinned so the image and every venv resolve the same, and moved with them.
+langsmith==0.14.12
+ormsgpack==1.13.0
+pydantic-settings==2.16.1
+tenacity==9.2.1
+jsonpatch==1.36
+jsonpointer==3.4
+truststore==0.10.5
+pycparser==3.12
+rpds-py==2026.9.1
+# The model path for Vertex AI (kge/adapters/model/providers.py): Claude on Vertex AI through the official Anthropic SDK (AnthropicVertex),
+# signed in, as Gemini on Vertex AI is, with google-auth's application default credentials. Exact pins: anthropic, MIT
+# licensed, and google-auth, Apache-2.0, moved by the same grouped update.
+anthropic[vertex]==2.1.0
+google-auth==2.62.0

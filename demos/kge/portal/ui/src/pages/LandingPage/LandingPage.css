@@ -1,0 +1,140 @@
+.overviewContainer {
+    margin: 5rem auto 5rem 5rem;
+
+    .overviewContent {
+        margin-top: 2rem;
+    }
+}
+
+.searchContent {
+    background-color: #FFFFFF;
+    padding: 6.4rem 0 4.8rem 0;
+    align-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 2rem 1rem 2.5rem;
+    border-radius: 0.5rem;
+
+    .searchContainer {
+        align-content: center;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+
+        .filterButton {
+            margin-bottom: 6rem;
+        }
+    }
+}
+
+.cardGrid {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.dataCommunity {
+    padding: 3rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-top: 0.8rem solid #00345F;
+    margin-left: 2rem;
+    overflow: auto;
+
+    .title {
+        margin-bottom: 3rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        font-size: 2.9rem;
+    }
+
+    .main-title {
+        margin-bottom: 1rem;
+    }
+
+    .main-sub-title {
+        margin-bottom: 3rem;
+    }
+}
+
+.total-count {
+    font-size: 2.5rem;
+    font-family: Inter;
+    padding: 0.5rem;
+}
+
+/* Media Query for Extra Large screens */
+@media (min-width: 1901px) and (max-width: 1919px) {
+    .dataCommunity {
+        /* max-width: 70rem; */
+        height: 103rem;
+        overflow: auto;
+    }
+    .overviewContainer {
+        margin: 8rem auto 8rem 8rem;
+    
+        .overviewContent {
+            margin-top: 3rem;
+        }
+    }
+}
+
+@media (min-width: 1920px) {
+    .dataCommunity {
+        /* max-width: 70rem; */
+        height: 105rem;
+        overflow: auto;
+    }
+}
+
+/* Media Query for Large screens */
+@media (min-width: 1280px) and (max-width: 1900px) {
+    .dataCommunity {
+        /* max-width: 60rem; */
+        height: 85rem;
+    }
+}
+ 
+/* Media Query for Laptops and Desktops */
+@media (min-width: 1025px) and (max-width: 1279px) {
+    .dataCommunity {
+        max-width: 50rem;
+        height: 83rem;
+    }
+}
+ 
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .overviewContainer {
+        height: max-content;
+    }
+    .dataCommunity {
+        max-width: 50rem;
+        height: 84.5rem;
+    }
+}
+ 
+/* Media Query for low resolution  Tablets, Ipads */
+@media (min-width: 481px) and (max-width: 767px) {
+    .overviewContainer {
+        height: max-content;
+    }
+    .dataCommunity {
+        max-width: 50rem;
+        height: 84rem;
+    }
+}
+ 
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {
+    .overviewContainer {
+        height: auto;
+    }
+    .dataCommunity {
+        max-width: 50rem;
+        height: 84.5rem;
+    }
+}

@@ -1,0 +1,9 @@
+[
+  {"id": "FH01", "kind": "within", "paraphrase_of": "F04", "question": "What was the repair cost at depot RIVERSIDE in June 2025?",
+   "expect": {"figure": "7938.18", "unit": "fleet", "columns": ["repair.cost_usd", "vehicle.depot_code"],
+              "join_path": ["repair.vehicle_no -> vehicle.vehicle_no"]}},
+  {"id": "FH02", "kind": "cross", "paraphrase_of": "F06", "question": "How many journeys join to a fleet vehicle on vehicle_ref?",
+   "expect": {"behaviour": "refuse", "joins_refused": ["ticketing-fleet"]}},
+  {"id": "FH03", "kind": "shelf", "paraphrase_of": "F07", "question": "How is fare revenue defined?",
+   "expect": {"behaviour": "cite_certified", "cite": ["MD-FARE"], "must_not_cite": ["EM-FRR-01"]}}
+]

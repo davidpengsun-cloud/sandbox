@@ -1,0 +1,27 @@
+# The image's build context (Dockerfile): the platform code and the page, the simulated estate's generator, the
+# meta-model, the platform's preloaded standards, the Makefile, the requirements, the entry script and the legal notices, and nothing else. Everything is
+# left out first and each of those let back in; then what no image may hold is left out again, wherever it sits. So no
+# client's pack or deployment (clients/, deploy/), no build (build/: the estate, the graphs, the tokens), no tests,
+# no .env, no key and no Python cache reaches the build.
+*
+!Makefile
+!meta-model.yaml
+!requirements.txt
+!constraints.txt
+!entrypoint.sh
+!pyproject.toml
+!LICENSE
+!THIRD_PARTY_NOTICES.md
+!kge
+!standards
+!ui
+**/__pycache__
+**/*.py[cod]
+**/.env
+**/.env.*
+**/*.pem
+**/*.key
+**/tokens.json
+**/passwords*
+**/credentials.json
+**/secrets.yaml

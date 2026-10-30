@@ -1,0 +1,126 @@
+# The Thornbury pack: Thornbury Mutual Casualty's governance graph, as data (../../../../docs/use-cases/kge/platform/pack-contract.md).
+#
+# Everything here is invented: Thornbury Mutual Casualty is the repository's reference carrier
+# (docs/reference/reference-carrier.md), a commercial property and casualty mutual. This is a fixture profile, the
+# second client the platform serves from one build (issue #39's exit gate): two warehouses, two terms, three documents
+# and five golden questions, as small as shows that a profile reads its own client and no other. Its estate is built
+# from the files under fixture/ (kge/estate/from_files.py), and nothing in the platform names it: the deployment's profiles
+# registry does (deploy/profiles.yaml). It is no onboarding (issue #40's steps): no post-load gate, no sign-off.
+
+manifest:
+  client: thornbury
+  meta_model_version: 1.2.0
+  id: thornbury-governance
+  version: 1.0.0
+  title: Thornbury Mutual Casualty governance graph
+  owners: [underwriting-data-steward, claims-data-steward]
+  platform: {meta_model: "^1.2", compiler: ">=0.3"}
+  compile: {store: kuzu, embedding_dim: 128, id_scheme: v1}
+
+schema: {meta_model: "1.2", extensions: []}
+
+# Two warehouses with no key between them: a claim carries the policy number as the claimant reported it, never checked.
+sources:
+  - id: underwriting
+    label: Commercial Underwriting
+    entity_key: insured_id
+    connection: {dialect: duckdb, ref: warehouses/underwriting.duckdb}
+    harvest: true
+  - id: claims
+    label: Claims
+    entity_key: claimant_ref
+    connection: {dialect: duckdb, ref: warehouses/claims.duckdb}
+    harvest: true
+
+no_join:
+  - between: [underwriting, claims]
+    asserted_by: Claims and Underwriting Data Council
+    asserted_on: "2025-02-03"
+    note: >-
+      claims.claim.policy_ref is the policy number as the claimant reported it, never checked against
+      underwriting.policy. No mapping table exists.
+
+glossary:
+  - id: gross-written-premium
+    name: Gross Written Premium
+    domain: Premium
+    steward: Underwriting Data Steward
+    definition: >-
+      Premium written on policies in a period, before reinsurance and before any return of premium, booked on the day
+      it is written.
+    status: certified
+    defined_by: [MD-GWP]
+  - id: paid-loss
+    name: Paid Loss
+    domain: Loss
+    steward: Claims Data Steward
+    definition: Indemnity paid on claims in a period, in USD, before any recovery; no reserves and no expenses.
+    status: certified
+    defined_by: [DD-CLAIMS]
+
+# The parser's vocabulary: the phrases that name a term, a warehouse or a candidate term; the values and phrases that
+# filter a column; what marks a question's intent; the mailboxes that name a team.
+terminology:
+  aliases:
+    - {phrase: gross written premium, term: gross-written-premium}
+    - {phrase: written premium, term: gross-written-premium}
+    - {phrase: gwp, term: gross-written-premium}
+    - {phrase: paid losses, term: paid-loss}
+    - {phrase: paid loss, term: paid-loss}
+    - {phrase: loss ratio, candidate: Loss Ratio}
+    - {phrase: underwriting, source: underwriting}
+    - {phrase: claims, source: claims}
+  value_vocabularies:
+    - {column: underwriting.policy.line_code, after: [line], values: [PROP, GL, AUTO, WC]}
+    - {column: underwriting.insured.segment_code, after: [segment], values: [SMALL, MIDDLE]}
+  predicates:
+    - {phrases: [open, still open], with: [claim, claims], column: claims.claim.closed_on, op: is_null}
+  intents:
+    - {phrases: [what is, what does, how is, define], intent: definitional}
+    - {phrases: [how many, number of, count], intent: count}
+    - {phrases: [average], intent: avg}
+  functional_mailboxes: [fnol, notices]
+
+calendars:
+  - {id: calendar, year_start_month: 1, quarter_label: "{yyyy}-Q{n}"}
+
+period_bindings:
+  - {table: underwriting.premium, column: booked_on, kind: event_date, calendar: calendar}
+  - {table: underwriting.policy, column: effective_on, kind: event_date, calendar: calendar}
+  - {table: claims.claim, column: reported_on, kind: event_date, calendar: calendar}
+  - {table: claims.payment, column: paid_on, kind: event_date, calendar: calendar}
+
+measures:
+  - {id: gross-written-premium, term: gross-written-premium, column: underwriting.premium.written_premium_usd,
+     expression: sum(premium.written_premium_usd), aggregation: sum, grain: day, currency: USD, calendar: calendar,
+     conversion: none}
+  - {id: paid-loss, term: paid-loss, column: claims.payment.paid_usd, expression: sum(payment.paid_usd), aggregation: sum,
+     grain: day, currency: USD, calendar: calendar, conversion: none}
+
+mappings:
+  - {column: underwriting.premium.written_premium_usd, term: gross-written-premium, certified: true,
+     certified_by: Underwriting Data Steward, certified_on: "2025-01-20"}
+  - {column: claims.payment.paid_usd, term: paid-loss, certified: true, certified_by: Claims Data Steward,
+     certified_on: "2025-03-04"}
+
+policies:
+  restricted_attributes:
+    - id: restricted-claimant-contact
+      action: refuse
+      cite: TMC-PRIV-01
+      version: 1.0.0
+      columns: [claims.claimant.contact_email]
+
+# Four role templates, one for each of the deployment's identities (deploy/thornbury/identities.yaml).
+access:
+  purposes: [analysis, assistant, supervision]
+  roles:
+    - {id: actuary, label: Actuary, reads: all, processes: [querying]}
+    - {id: claims_steward, label: Steward, reads: all, writes: [mappings, terms], processes: [certification, querying]}
+    - {id: pipeline_tagger, label: Pipeline, reads: [], processes: [tagging]}
+    - {id: knowledge_engineer, label: Knowledge engineer, reads: all, processes: [drafting, building, improving, querying]}
+
+# The golden set, by name and version: build/thornbury/golden.json, from fixture/golden.json. No A/B baseline.
+tests:
+  sets:
+    - {name: golden, version: v1}

@@ -1,0 +1,13 @@
+asker: analyst_enterprise
+steward: steward_glossary
+people:
+  - analyst_retail:analyst_retail
+  - analyst_enterprise:analyst_enterprise
+  - finance_reporting:finance_reporting
+  - steward_glossary:steward_glossary
+  - business_team:business_team
+  - knowledge_engineer:knowledge_engineer
+  - advisor_wealth:advisor_wealth
+  - admin:admin
+  - steward:steward
+  - pipeline_tagger:pipeline_tagger

@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=84.2.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kge"
+version = "0.0.0"
+description = "The knowledge graph use case's runnable demo, on invented data."
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+kge = "kge.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["kge*"]

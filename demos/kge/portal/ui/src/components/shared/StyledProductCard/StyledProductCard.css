@@ -1,0 +1,181 @@
+#card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    margin: 0.3rem;
+    min-width: 27rem;
+    /* min-height: 38rem; */
+    height: 45rem;
+    cursor: pointer;
+    border-radius: 1rem;
+
+    .box {
+        position: absolute;
+        top: 1.8rem;
+        /* right: 0.8rem;
+        padding-right: 1rem; */
+        right: 1.5rem;
+
+        .MuiSvgIcon-root {
+            font-size: 4rem;
+            fill: #FFFFFF;
+        }
+    }
+
+    .score-badge {
+        cursor: default;        
+        .score-img {
+            height: auto;
+            width: 5.6rem;
+        }
+    }
+
+    .overlay {
+        position: relative;
+        top: -6rem;
+        left: 2rem;
+        color: white;
+        width: 80%;
+    }
+
+    .header-style {
+        padding: 1rem;
+        background-color: #00345F;
+        color: #FFFFFF;
+        /* border-radius: 1rem; */
+        font-family: Inter;
+        /* display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap; */
+        align-items: center;
+        height: 12rem;
+
+        .productTypeIcon {
+            font-size: 3rem;
+            /* display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            justify-content: flex-start; */
+            margin-right: 1rem;
+            /* height: 100%; */
+        }
+
+        .product-name{
+            padding-left: 10px;
+        }
+
+        .badge {
+            padding-left: 0px;
+            /* text-align: right; */
+        }
+
+        .title {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            max-width: 100%;
+            /* padding-right: 2rem; */
+        }
+    }
+
+    .content {
+        /* margin-top: -5rem; */
+        color: #61646B;
+        background-color: #FFFFFF;
+
+        .description {
+            font-size: 2rem;
+            font-family: Inter;
+            margin-top: 2rem;
+            word-break: auto-phrase;
+        }
+
+        .appname {
+            font-size: 2rem;
+            font-family: Inter;
+
+            span {
+                font-weight: 600
+            }
+        }
+    }
+
+    .footer {
+        font-size: 1.8rem;
+        font-family: 'Inter';
+        text-align: right;
+        /* font-style: italic; */
+    }
+
+    .footer-left {
+        font-size: 1.8rem;
+        font-family: 'Inter';
+        text-align: left;
+    }
+}
+
+/* @media (min-width: 2200px) and (max-width: 2500px)  {
+    .header-style {
+        .product-name{
+            max-width: 72%;
+        }      
+    }
+} */
+/* 
+@media (min-width: 600px) and (max-width: 1100px) {
+    .header-style {
+        .product-name{
+            max-width: 35%;
+        }      
+    }
+} */
+
+@media (max-width: 1100px) {
+    .header-style {
+        .product-name{
+            max-width: 55%;
+        }      
+    }
+}
+
+@media (min-width: 1101px) and (max-width: 1300px) {
+    .header-style {
+        .product-name{
+            max-width: 60%;
+        }      
+    }
+}
+
+@media (min-width: 1301px) and (max-width: 1400px) {
+    .header-style {
+        .product-name{
+            max-width: 65%;
+        }      
+    }
+}
+
+@media (min-width: 1401px) and (max-width: 1700px) {
+    .header-style {
+        .product-name{
+            max-width: 68%;
+        }      
+    }
+} 
+
+@media (min-width: 1701px) and (max-width: 1900px) {
+    .header-style {
+        .product-name{
+            max-width: 73%;
+        }      
+    }
+} 
+
+/* @media (min-width: 1701px) {
+    .header-style {
+        .product-name{
+            max-width: 72%;
+        }      
+    }
+} */

@@ -1,0 +1,584 @@
+# The Meridian pack: Meridian Union Bank's governance graph, as data (../../../../docs/use-cases/kge/platform/pack-contract.md).
+#
+# Everything here is invented: Meridian Union Bank is the repository's reference institution. The pack is the client's
+# own source of truth, plain YAML, read by estate/spec.py and compiled by the platform's compiler (make compile). Each
+# section says what it holds; the platform's meta-model (meta-model.yaml, at the demo's root) says what each becomes in
+# the graph.
+# Ported one for one from estate/spec.py and api/core.py as they were before issue #39.
+
+manifest:
+  client: meridian
+  meta_model_version: 1.0.0
+  id: meridian-governance
+  version: 1.0.0
+  title: Meridian Union Bank governance graph
+  owners: [group-finance-data-steward, customer-data-steward]
+  platform: {meta_model: "^1.0", compiler: ">=0.1"}   # the platform versions this pack is compatible with
+  # store names the DDL dialect, which Ladybug and Kuzu both load; the engine is chosen at deployment (GRAPH_STORE).
+  compile: {store: kuzu, embedding_dim: 128, id_scheme: v1}
+
+schema: {meta_model: "1.0", extensions: []}
+
+# The four business units, each with its own warehouse and no key that joins across them. Their order fixes the pairs'
+# names (retail-sme, and so on). Each unit's customer-like key is its entity_key. They are deliberately different, and
+# the corporate contact table carries a column *named* customer_id that is not the retail one: the trap a key-name join
+# would fall into. Tables and columns are not listed: harvest has them come from each warehouse's own catalogue, as
+# certification landed it, keys declared, so the join paths within a unit are regenerable. pack.lock, beside this file,
+# freezes that catalogue (make lock writes it, and make graph stops if it is stale).
+sources:
+  - id: retail
+    label: Retail Banking
+    entity_key: customer_id
+    connection: {dialect: duckdb, ref: warehouses/retail.duckdb}
+    harvest: true
+  - id: sme
+    label: SME Banking
+    entity_key: client_no
+    connection: {dialect: duckdb, ref: warehouses/sme.duckdb}
+    harvest: true
+  - id: corporate
+    label: Corporate & Institutional
+    entity_key: counterparty_ref
+    connection: {dialect: duckdb, ref: warehouses/corporate.duckdb}
+    harvest: true
+  - id: wealth
+    label: Wealth Management
+    entity_key: household_id
+    connection: {dialect: duckdb, ref: warehouses/wealth.duckdb}
+    harvest: true
+
+# The asserted absence of a join between units, one per pair. Curated once by the people who designed the federation.
+# Its absence from a re-harvest must never be read as its falsity, so it lives here and not in any warehouse.
+no_join:
+  - between: [retail, sme]
+    asserted_by: Data Architecture Board
+    asserted_on: "2024-03-12"
+    note: Separate customer populations and separate key domains by design. No mapping table exists.
+  - between: [retail, corporate]
+    asserted_by: Data Architecture Board
+    asserted_on: "2024-03-12"
+    note: >-
+      corporate.contact.customer_id is a CRM contact number. It shares a name with retail.customer.customer_id and
+      nothing else. No mapping table exists.
+  - between: [retail, wealth]
+    asserted_by: Data Architecture Board
+    asserted_on: "2024-03-12"
+    note: Separate customer populations and separate key domains by design. No mapping table exists.
+  - between: [sme, corporate]
+    asserted_by: Data Architecture Board
+    asserted_on: "2024-03-12"
+    note: Separate customer populations and separate key domains by design. No mapping table exists.
+  - between: [sme, wealth]
+    asserted_by: Data Architecture Board
+    asserted_on: "2024-03-12"
+    note: Separate customer populations and separate key domains by design. No mapping table exists.
+  - between: [corporate, wealth]
+    asserted_by: Data Architecture Board
+    asserted_on: "2024-03-12"
+    note: Separate customer populations and separate key domains by design. No mapping table exists.
+
+# One enterprise glossary, owned by the CDO's stewards. A term is keyed by its name in the graph; id is its stable slug.
+# defined_by names the certified metric definitions that define it.
+glossary:
+  - id: revenue
+    name: Revenue
+    domain: Finance
+    steward: Group Finance Data Steward
+    status: certified
+    definition: >-
+      Income earned from customers in a period, before costs. Each business unit reports it at its own grain,
+      currency and calendar; see the implementation metadata.
+    defined_by: [MD-REVENUE]
+  - id: net-interest-income
+    name: Net Interest Income
+    domain: Finance
+    steward: Group Finance Data Steward
+    status: certified
+    definition: Interest earned less interest paid, in the reporting currency, for the period.
+    defined_by: [MD-NET-INTEREST-INCOME]
+  - id: fee-income
+    name: Fee Income
+    domain: Finance
+    steward: Group Finance Data Steward
+    status: certified
+    definition: Fees and commissions charged to customers in the period.
+    defined_by: [MD-FEE-INCOME]
+  - id: active-customer
+    name: Active Customer
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: >-
+      A customer with at least one customer-initiated transaction in the calendar month. Logins alone do not count.
+      Version 2, effective 1 January 2025.
+    defined_by: [MD-ACTIVE-CUSTOMER, MD-ACTIVE-CUSTOMER-V1]
+  - id: assets-under-advice
+    name: Assets Under Advice
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: Market value of client assets on which the firm gives advice, at quarter end, USD.
+    defined_by: [MD-ASSETS-UNDER-ADVICE]
+  - id: credit-exposure
+    name: Credit Exposure
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: Exposure at default to a counterparty at the measurement date.
+    defined_by: [MD-CREDIT-EXPOSURE]
+  - id: delinquency-rate
+    name: Delinquency Rate
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: Share of scheduled repayments more than 30 days past due in the month.
+    defined_by: [MD-DELINQUENCY-RATE]
+  - id: customer-attrition
+    name: Customer Attrition
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: Customers whose last account closed in the month, as a share of opening customers.
+    defined_by: [MD-CUSTOMER-ATTRITION]
+  - id: average-balance
+    name: Average Balance
+    domain: Finance
+    steward: Group Finance Data Steward
+    status: certified
+    definition: Mean end-of-day ledger balance over the calendar month.
+    defined_by: [MD-AVERAGE-BALANCE]
+  - id: dormant-account
+    name: Dormant Account
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: An open account with no customer-initiated transaction for twelve months.
+  - id: limit-utilisation
+    name: Limit Utilisation
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: Utilised amount as a share of the approved limit at the measurement date.
+  - id: covenant-breach
+    name: Covenant Breach
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: A covenant whose most recent test failed its threshold.
+  - id: suitability-review
+    name: Suitability Review
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: A documented review of whether a household's portfolio remains suitable.
+  - id: complaint
+    name: Complaint
+    domain: Conduct
+    steward: Conduct Data Steward
+    status: certified
+    definition: An expression of dissatisfaction recorded under the complaints handling procedure.
+  - id: notional
+    name: Notional
+    domain: Markets
+    steward: Markets Data Steward
+    status: certified
+    definition: Face value of a derivative or loan deal, in deal currency.
+  - id: probability-of-default
+    name: Probability of Default
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: Twelve-month probability of default, in basis points.
+  - id: loss-given-default
+    name: Loss Given Default
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: Expected loss as a share of exposure if the counterparty defaults.
+  - id: internal-rating
+    name: Internal Rating
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: The bank's own credit grade for a counterparty.
+  - id: household
+    name: Household
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: "The unit of advice in wealth management: one or more related clients advised together."
+  - id: relationship-manager
+    name: Relationship Manager
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: The named individual accountable for an SME client relationship.
+  - id: fiscal-year
+    name: Fiscal Year
+    domain: Finance
+    steward: Group Finance Data Steward
+    status: certified
+    definition: >-
+      The twelve months from 1 April, used by Corporate and Wealth. Retail and SME report on the calendar year.
+    defined_by: [MD-FISCAL-YEAR]
+  - id: period-end-fx-rate
+    name: Period-End FX Rate
+    domain: Finance
+    steward: Group Finance Data Steward
+    status: certified
+    definition: The exchange rate on the last day of the period, used to convert Corporate revenue to USD.
+    defined_by: [MD-PERIOD-END-FX-RATE]
+  - id: product-holding
+    name: Product Holding
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: Count of distinct open products held by a customer.
+  - id: new-to-bank-customer
+    name: New-to-Bank Customer
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: A customer whose first account opened in the month.
+  - id: market-value
+    name: Market Value
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: Value of a holding at the valuation date in portfolio base currency.
+  - id: digital-login
+    name: Digital Login
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: An authenticated session on the mobile or online channel.
+  - id: branch
+    name: Branch
+    domain: Distribution
+    steward: Distribution Data Steward
+    status: certified
+    definition: A physical retail location.
+  - id: segment
+    name: Segment
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: Marketing segment assigned to a retail customer.
+  - id: facility
+    name: Facility
+    domain: Lending
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: A committed or uncommitted lending line to an SME client.
+  - id: drawdown
+    name: Drawdown
+    domain: Lending
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: A utilisation of a facility.
+  - id: counterparty
+    name: Counterparty
+    domain: Markets
+    steward: Markets Data Steward
+    status: certified
+    definition: A legal entity with which the bank transacts in Corporate & Institutional.
+  - id: legal-entity-identifier
+    name: Legal Entity Identifier
+    domain: Markets
+    steward: Markets Data Steward
+    status: certified
+    definition: The 20-character identifier for a counterparty under the global LEI system.
+  - id: risk-profile
+    name: Risk Profile
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: The household's agreed appetite for investment risk.
+  - id: mandate
+    name: Mandate
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: Whether the firm manages a portfolio at its discretion or advises only.
+  - id: channel
+    name: Channel
+    domain: Distribution
+    steward: Distribution Data Steward
+    status: certified
+    definition: The route by which a transaction was initiated.
+  - id: merchant-category
+    name: Merchant Category
+    domain: Payments
+    steward: Payments Data Steward
+    status: certified
+    definition: The card-scheme category of a merchant.
+  - id: resolved-complaint
+    name: Resolved Complaint
+    domain: Conduct
+    steward: Conduct Data Steward
+    status: certified
+    definition: A complaint with a recorded resolution date.
+  - id: open-account
+    name: Open Account
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: An account whose status is OPEN at the reference date.
+  - id: days-past-due
+    name: Days Past Due
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: Days elapsed since a scheduled repayment date without payment.
+  - id: sector
+    name: Sector
+    domain: Markets
+    steward: Markets Data Steward
+    status: certified
+    definition: Industry sector of a counterparty.
+
+# The phrases the question parser reads. A phrase names a term (by id), a source, or a candidate term that is not in
+# the glossary yet and is routed to a steward. The longest phrase found wins; in a tie, the first listed.
+terminology:
+  aliases:
+    - {phrase: revenue, term: revenue}
+    - {phrase: net interest income, term: net-interest-income}
+    - {phrase: fee income, term: fee-income}
+    - {phrase: active customer, term: active-customer}
+    - {phrase: active customers, term: active-customer}
+    - {phrase: active clients, term: active-customer}
+    - {phrase: active in, term: active-customer}
+    - {phrase: assets under advice, term: assets-under-advice}
+    - {phrase: credit exposure, term: credit-exposure}
+    - {phrase: delinquency rate, term: delinquency-rate}
+    - {phrase: attrition, term: customer-attrition}
+    - {phrase: average ledger balance, term: average-balance}
+    - {phrase: average balance, term: average-balance}
+    - {phrase: complaints, term: complaint}
+    - {phrase: covenant breach, term: covenant-breach}
+    - {phrase: past due, term: days-past-due}
+    - {phrase: rated, term: internal-rating}
+    - {phrase: suitability reviews, term: suitability-review}
+    - {phrase: customer active, term: active-customer}
+    - {phrase: converted, term: period-end-fx-rate}
+    - {phrase: calendar does, term: fiscal-year}
+    - {phrase: digital engagement score, candidate: Digital Engagement Score}
+    - {phrase: retail, source: retail}
+    - {phrase: sme, source: sme}
+    - {phrase: corporate, source: corporate}
+    - {phrase: wealth, source: wealth}
+
+# Retail and SME report on the calendar year; Corporate and Wealth on a fiscal year from 1 April (FY26-Q1 is April to
+# June 2025).
+calendars:
+  - {id: calendar, year_start_month: 1, quarter_label: "{yyyy}-Q{n}"}
+  - {id: fiscal_april, year_start_month: 4, quarter_label: "FY{yy}-Q{n}"}
+
+# Which column carries each table's period: a calendar month (month), a fiscal quarter label (fiscal_quarter), a
+# snapshot date (snapshot) or the date something happened (event_date), on which calendar, and the table a month or a
+# quarter rolls up through. Thirty-one of the thirty-five tables have one; product, relationship_manager, contact and
+# advisor have none. A table with several dates takes the first by name (corporate.deal: maturity_on); resolved_on,
+# closed_on and end_on never carry a period.
+period_bindings:
+  - {table: retail.calendar_month, column: month_start, kind: month, calendar: calendar, rollup: {table: retail.calendar_month, column: calendar_quarter}}
+  - {table: retail.branch, column: opened_on, kind: event_date, calendar: calendar}
+  - {table: retail.customer, column: opened_on, kind: event_date, calendar: calendar}
+  - {table: retail.account, column: opened_on, kind: event_date, calendar: calendar}
+  - {table: retail.transaction, column: posted_on, kind: event_date, calendar: calendar}
+  - {table: retail.monthly_revenue, column: month_start, kind: month, calendar: calendar, rollup: {table: retail.calendar_month, column: calendar_quarter}}
+  - {table: retail.daily_balance, column: as_of, kind: snapshot, calendar: calendar}
+  - {table: retail.customer_activity, column: month_start, kind: month, calendar: calendar, rollup: {table: retail.calendar_month, column: calendar_quarter}}
+  - {table: retail.complaint, column: raised_on, kind: event_date, calendar: calendar}
+  - {table: sme.calendar_month, column: month_start, kind: month, calendar: calendar, rollup: {table: sme.calendar_month, column: calendar_quarter}}
+  - {table: sme.client, column: onboarded_on, kind: event_date, calendar: calendar}
+  - {table: sme.facility, column: start_on, kind: event_date, calendar: calendar}
+  - {table: sme.drawdown, column: drawn_on, kind: event_date, calendar: calendar}
+  - {table: sme.repayment, column: paid_on, kind: event_date, calendar: calendar}
+  - {table: sme.monthly_client_revenue, column: month_start, kind: month, calendar: calendar, rollup: {table: sme.calendar_month, column: calendar_quarter}}
+  - {table: sme.client_activity, column: month_start, kind: month, calendar: calendar, rollup: {table: sme.calendar_month, column: calendar_quarter}}
+  - {table: sme.covenant, column: tested_on, kind: event_date, calendar: calendar}
+  - {table: corporate.fiscal_calendar, column: fiscal_quarter, kind: fiscal_quarter, calendar: fiscal_april, rollup: {table: corporate.fiscal_calendar, column: fiscal_year}}
+  - {table: corporate.counterparty, column: onboarded_on, kind: event_date, calendar: calendar}
+  - {table: corporate.deal, column: maturity_on, kind: event_date, calendar: calendar}
+  - {table: corporate.exposure, column: as_of, kind: snapshot, calendar: calendar}
+  - {table: corporate.quarterly_revenue, column: fiscal_quarter, kind: fiscal_quarter, calendar: fiscal_april, rollup: {table: corporate.fiscal_calendar, column: fiscal_year}}
+  - {table: corporate.limit_utilisation, column: as_of, kind: snapshot, calendar: calendar}
+  - {table: corporate.rating, column: rated_on, kind: event_date, calendar: calendar}
+  - {table: wealth.fiscal_calendar, column: fiscal_quarter, kind: fiscal_quarter, calendar: fiscal_april, rollup: {table: wealth.fiscal_calendar, column: fiscal_year}}
+  - {table: wealth.household, column: onboarded_on, kind: event_date, calendar: calendar}
+  - {table: wealth.portfolio, column: inception_on, kind: event_date, calendar: calendar}
+  - {table: wealth.holding, column: as_of, kind: snapshot, calendar: calendar}
+  - {table: wealth.quarterly_fee_revenue, column: fiscal_quarter, kind: fiscal_quarter, calendar: fiscal_april, rollup: {table: wealth.fiscal_calendar, column: fiscal_year}}
+  - {table: wealth.assets_under_advice, column: as_of, kind: snapshot, calendar: calendar}
+  - {table: wealth.suitability_review, column: reviewed_on, kind: event_date, calendar: calendar}
+
+# The certified measures, with their grain, currency, calendar and conversion: commensurability across units is derived
+# from these by rule, never guessed. Each is a sum over a column certified to its term.
+measures:
+  - id: retail.revenue
+    term: revenue
+    column: retail.monthly_revenue.total_revenue_usd
+    expression: sum(monthly_revenue.total_revenue_usd)
+    aggregation: sum
+    grain: month
+    currency: USD
+    calendar: calendar
+    conversion: none
+  - id: sme.revenue
+    term: revenue
+    column: sme.monthly_client_revenue.revenue_usd
+    expression: sum(monthly_client_revenue.revenue_usd)
+    aggregation: sum
+    grain: month
+    currency: USD
+    calendar: calendar
+    conversion: none
+  - id: corporate.revenue
+    term: revenue
+    column: corporate.quarterly_revenue.revenue_usd_converted
+    expression: sum(quarterly_revenue.revenue_usd_converted)
+    aggregation: sum
+    grain: quarter
+    currency: USD
+    calendar: fiscal_april
+    conversion: period_end_rate_from_EUR
+  - id: wealth.revenue
+    term: revenue
+    column: wealth.quarterly_fee_revenue.revenue_usd
+    expression: sum(quarterly_fee_revenue.revenue_usd)
+    aggregation: sum
+    grain: quarter
+    currency: USD
+    calendar: fiscal_april
+    conversion: none
+  - id: retail.net-interest-income
+    term: net-interest-income
+    column: retail.monthly_revenue.interest_income
+    expression: sum(monthly_revenue.interest_income)
+    aggregation: sum
+    grain: month
+    currency: USD
+    calendar: calendar
+    conversion: none
+  - id: sme.net-interest-income
+    term: net-interest-income
+    column: sme.monthly_client_revenue.nii
+    expression: sum(monthly_client_revenue.nii)
+    aggregation: sum
+    grain: month
+    currency: USD
+    calendar: calendar
+    conversion: none
+  - id: retail.fee-income
+    term: fee-income
+    column: retail.monthly_revenue.fee_income
+    expression: sum(monthly_revenue.fee_income)
+    aggregation: sum
+    grain: month
+    currency: USD
+    calendar: calendar
+    conversion: none
+  - id: sme.fee-income
+    term: fee-income
+    column: sme.monthly_client_revenue.fees
+    expression: sum(monthly_client_revenue.fees)
+    aggregation: sum
+    grain: month
+    currency: USD
+    calendar: calendar
+    conversion: none
+  - id: wealth.assets-under-advice
+    term: assets-under-advice
+    column: wealth.assets_under_advice.aua_usd
+    expression: sum(assets_under_advice.aua_usd)
+    aggregation: sum
+    grain: quarter_end
+    currency: USD
+    calendar: fiscal_april
+    conversion: none
+  - id: corporate.credit-exposure
+    term: credit-exposure
+    column: corporate.exposure.ead_eur
+    expression: sum(exposure.ead_eur)
+    aggregation: sum
+    grain: as_of
+    currency: EUR
+    calendar: calendar
+    conversion: none
+
+# Certified column-to-term mappings, roughly one column in nine, as at the reference institution. Everything not listed
+# is uncertified and stays out of the control experiment. Each is certified by its term's steward.
+mappings:
+  - {column: retail.monthly_revenue.total_revenue_usd, term: revenue, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: sme.monthly_client_revenue.revenue_usd, term: revenue, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: corporate.quarterly_revenue.revenue_usd_converted, term: revenue, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: wealth.quarterly_fee_revenue.revenue_usd, term: revenue, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: retail.monthly_revenue.interest_income, term: net-interest-income, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: sme.monthly_client_revenue.nii, term: net-interest-income, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: retail.monthly_revenue.fee_income, term: fee-income, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: sme.monthly_client_revenue.fees, term: fee-income, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: retail.customer_activity.is_active_flag, term: active-customer, certified: true, certified_by: Customer Data Steward, certified_on: "2024-11-15"}
+  - {column: sme.client_activity.active_flag, term: active-customer, certified: true, certified_by: Customer Data Steward, certified_on: "2024-11-15"}
+  - {column: wealth.assets_under_advice.aua_usd, term: assets-under-advice, certified: true, certified_by: Wealth Data Steward, certified_on: "2024-11-15"}
+  - {column: corporate.exposure.ead_eur, term: credit-exposure, certified: true, certified_by: Credit Risk Data Steward, certified_on: "2024-11-15"}
+  - {column: corporate.exposure.pd_bps, term: probability-of-default, certified: true, certified_by: Credit Risk Data Steward, certified_on: "2024-11-15"}
+  - {column: corporate.exposure.lgd_pct, term: loss-given-default, certified: true, certified_by: Credit Risk Data Steward, certified_on: "2024-11-15"}
+  - {column: retail.daily_balance.ledger_balance, term: average-balance, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: sme.repayment.days_past_due, term: days-past-due, certified: true, certified_by: Credit Risk Data Steward, certified_on: "2024-11-15"}
+  - {column: sme.covenant.breached_flag, term: covenant-breach, certified: true, certified_by: Credit Risk Data Steward, certified_on: "2024-11-15"}
+  - {column: corporate.rating.internal_grade, term: internal-rating, certified: true, certified_by: Credit Risk Data Steward, certified_on: "2024-11-15"}
+  - {column: wealth.holding.market_value, term: market-value, certified: true, certified_by: Wealth Data Steward, certified_on: "2024-11-15"}
+  - {column: corporate.deal.notional_eur, term: notional, certified: true, certified_by: Markets Data Steward, certified_on: "2024-11-15"}
+  - {column: corporate.quarterly_revenue.fx_rate_period_end, term: period-end-fx-rate, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: retail.customer_activity.login_count, term: digital-login, certified: true, certified_by: Customer Data Steward, certified_on: "2024-11-15"}
+  - {column: retail.complaint.complaint_id, term: complaint, certified: true, certified_by: Conduct Data Steward, certified_on: "2024-11-15"}
+  - {column: wealth.suitability_review.review_id, term: suitability-review, certified: true, certified_by: Wealth Data Steward, certified_on: "2024-11-15"}
+
+policies:
+  # Personal data of customers is Restricted by default (POL-DATA-CLASS). No query the assistant plans or a model writes
+  # may read these columns, in any arm: the SQL gate refuses them by name.
+  restricted_attributes:
+    - id: restricted-personal-data
+      action: refuse
+      cite: POL-DATA-CLASS
+      columns:
+        - retail.customer.first_name
+        - retail.customer.last_name
+        - retail.customer.date_of_birth
+        - retail.customer.email
+        - corporate.contact.contact_name
+        - corporate.contact.contact_email
+        - wealth.household.household_name
+
+# Who may read which unit, write which curated data, and perform which of the platform's processes, as role templates.
+# The deployment binds its principals to them (deploy/meridian/identities.yaml); enforcement in the real estate is IAM
+# and fine-grained access control, and the graph carries a query-time mirror. reads: all is every source. label is
+# the role's title, which a principal bound to it carries in the graph.
+access:
+  # The purposes a chunk may be retrieved for. The same artefact can be eligible for supervision and prohibited for
+  # the assistant: that is the purpose-bound gate.
+  purposes: [analysis, assistant, supervision]
+  roles:
+    - {id: analyst_retail, label: Analyst, reads: [retail], processes: [querying]}
+    - {id: analyst_enterprise, label: Analyst, reads: all, processes: [querying]}
+    - {id: finance_reporting, label: Finance, reads: all, processes: [querying]}
+    - {id: steward_glossary, label: Steward, reads: all, writes: [mappings, terms], processes: [certification, querying]}
+    - {id: advisor_wealth, label: Advisor, reads: [wealth], processes: [querying]}
+    # The pair for the join-time access rule (Graph.join_access): a cross-warehouse combination proceeds only if the
+    # requester can read every warehouse in it. admin is the baseline: it reads all four and may do all three
+    # processes. steward reads the two personal-customer units only, so it can combine Retail with Wealth but is
+    # blocked from any combination that touches SME or Corporate. It certifies and queries; it does not tag.
+    - {id: admin, label: Admin, reads: all, writes: [mappings, terms], processes: [tagging, certification, querying]}
+    - {id: steward, label: Steward, reads: [retail, wealth], writes: [mappings, terms], processes: [certification, querying]}
+    # The pipeline's own role. It reads documents, not warehouses, and may only tag: it cannot answer questions or
+    # decide anything in the queue.
+    - {id: pipeline_tagger, label: Pipeline, reads: [], processes: [tagging]}
+
+# The question sets the A/B runs are scored on, by name and version. They are generated beside the estate
+# (build/<name>.json) and not restated here, so the baselines stay comparable. Golden v2 is v1 with retail-wealth
+# dropped from G021's and G030's refused joins (the certified client cross-reference, issue #39's Option B), and its
+# file declares that change, so a run on v2 is still put beside the baseline on v1.
+tests:
+  sets:
+    - {name: golden, version: v2}
+    - {name: heldout, version: v1}

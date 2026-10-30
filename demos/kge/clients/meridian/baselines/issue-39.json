@@ -1,0 +1,1575 @@
+{
+ "baseline": "of #39, with the Wealth expansion and golden_wealth_v1",
+ "run_id": "20261015T063229Z-a98e99",
+ "recorded_at": "2026-10-15T06:35:53+00:00",
+ "principal": "analyst_enterprise",
+ "repeats": 3,
+ "profile": "meridian",
+ "estate": {
+  "seed": 7,
+  "generator": "estate/generate.py"
+ },
+ "graph": {
+  "model": "95eb2c50edafbdfc57f3e5aba3f68367fc8d0a4e26265812e936736913123033",
+  "legacy_model": "e4e49a68bd46b0660657e6832f1196d5b9148d774cfc55185e23d5236c4fa59f",
+  "artifact": "8c703942f01e70b53ab34fee2800bda197d1f3d460c830bc3d30794145c71f6a",
+  "overlay": "654848c306e0f999139f7264a9fdd0aa83c4994fca47eeae1863eadab7399744",
+  "store": {
+   "engine": "ladybug",
+   "version": "0.21.2",
+   "storage_version": 47
+  }
+ },
+ "llm": null,
+ "sets": {
+  "golden": {
+   "items": 45,
+   "size": 45,
+   "version": "v2",
+   "file": "golden.json",
+   "sha256": "4262c65184247afac28daa98e6e7c478011834cf689196cd1a5a41078bffb158",
+   "changes_from": {
+    "version": "v1",
+    "items": [
+     "G021",
+     "G030"
+    ],
+    "sha256": "f2d8168cd82af7f75d79986261a67de85ea4fdd691885d538d62d01303c302d5",
+    "why": "Option B, issue #39: Retail and Wealth join through the certified client cross-reference, so retail-wealth is no longer a refused join"
+   }
+  },
+  "heldout": {
+   "items": 16,
+   "size": 16,
+   "version": "v1",
+   "file": "heldout.json",
+   "sha256": "3661dd652f6f39cbb10641c242d7abab0bea35af57166f8f332d74a06a278af0"
+  },
+  "golden_wealth_v1": {
+   "items": 30,
+   "size": 30,
+   "version": "v1",
+   "file": "golden_wealth_v1.json",
+   "sha256": "c5151294ab18e0856ba64979466bede52b203ead4dbfcbe28a0d7dd102e4f2fe"
+  }
+ },
+ "arms": [
+  {
+   "arm": "schema",
+   "side": "preset",
+   "mode": "rules",
+   "config": "schema"
+  },
+  {
+   "arm": "catalog",
+   "side": "preset",
+   "mode": "rules",
+   "config": "catalog"
+  },
+  {
+   "arm": "graph",
+   "side": "preset",
+   "mode": "rules",
+   "config": "graph"
+  },
+  {
+   "arm": "control",
+   "side": "agent, graph off",
+   "mode": "rules",
+   "config": "control"
+  },
+  {
+   "arm": "treatment",
+   "side": "agent, graph on",
+   "mode": "rules",
+   "config": "treatment"
+  }
+ ],
+ "passed": {
+  "golden": {
+   "schema": {
+    "within": 7.0,
+    "cross": 1.0,
+    "shelf": 0.0,
+    "abstain": 2.0,
+    "all": 10.0
+   },
+   "catalog": {
+    "within": 15.0,
+    "cross": 1.0,
+    "shelf": 0.0,
+    "abstain": 3.0,
+    "all": 19.0
+   },
+   "graph": {
+    "within": 20.0,
+    "cross": 10.0,
+    "shelf": 10.0,
+    "abstain": 5.0,
+    "all": 45.0
+   },
+   "control": {
+    "within": 9.0,
+    "cross": 0.0,
+    "shelf": 0.0,
+    "abstain": 2.0,
+    "all": 11.0
+   },
+   "treatment": {
+    "within": 20.0,
+    "cross": 10.0,
+    "shelf": 10.0,
+    "abstain": 5.0,
+    "all": 45.0
+   }
+  },
+  "heldout": {
+   "schema": {
+    "within": 3.0,
+    "cross": 0.0,
+    "shelf": 0.0,
+    "abstain": 1.0,
+    "all": 4.0
+   },
+   "catalog": {
+    "within": 5.0,
+    "cross": 0.0,
+    "shelf": 0.0,
+    "abstain": 2.0,
+    "all": 7.0
+   },
+   "graph": {
+    "within": 5.0,
+    "cross": 2.0,
+    "shelf": 1.0,
+    "abstain": 3.0,
+    "all": 11.0
+   },
+   "control": {
+    "within": 3.0,
+    "cross": 0.0,
+    "shelf": 0.0,
+    "abstain": 1.0,
+    "all": 4.0
+   },
+   "treatment": {
+    "within": 5.0,
+    "cross": 2.0,
+    "shelf": 1.0,
+    "abstain": 3.0,
+    "all": 11.0
+   }
+  },
+  "golden_wealth_v1": {
+   "schema": {
+    "within": 0.0,
+    "cross": 2.0,
+    "abstain": 1.0,
+    "all": 3.0
+   },
+   "catalog": {
+    "within": 0.0,
+    "cross": 2.0,
+    "abstain": 1.0,
+    "all": 3.0
+   },
+   "graph": {
+    "within": 13.0,
+    "cross": 7.0,
+    "abstain": 2.0,
+    "all": 22.0
+   },
+   "control": {
+    "within": 0.0,
+    "cross": 1.0,
+    "abstain": 0.0,
+    "all": 1.0
+   },
+   "treatment": {
+    "within": 13.0,
+    "cross": 7.0,
+    "abstain": 2.0,
+    "all": 22.0
+   }
+  }
+ },
+ "measures": {
+  "golden": {
+   "schema": {
+    "pass_rate": 0.2222222222222222,
+    "figure_correct": 0.3703703703703704,
+    "behaviour_exact": 0.4222222222222222,
+    "behaviour_class": 0.7111111111111111,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 0.5333333333333333,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "catalog": {
+    "pass_rate": 0.4222222222222222,
+    "figure_correct": 0.7407407407407408,
+    "behaviour_exact": 0.4444444444444444,
+    "behaviour_class": 0.7333333333333333,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 0.5333333333333333,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "graph": {
+    "pass_rate": 1.0,
+    "figure_correct": 1.0,
+    "behaviour_exact": 1.0,
+    "behaviour_class": 1.0,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 1.0,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "control": {
+    "pass_rate": 0.24444444444444444,
+    "figure_correct": 0.3703703703703704,
+    "behaviour_exact": 0.4444444444444444,
+    "behaviour_class": 0.7333333333333333,
+    "gate_first_try": 0.9666666666666667,
+    "retries": 0.0,
+    "tier_correct": 0.423728813559322,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "treatment": {
+    "pass_rate": 1.0,
+    "figure_correct": 1.0,
+    "behaviour_exact": 1.0,
+    "behaviour_class": 1.0,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 1.0,
+    "numbers_caught": null,
+    "numbers_shown": null
+   }
+  },
+  "heldout": {
+   "schema": {
+    "pass_rate": 0.25,
+    "figure_correct": 0.375,
+    "behaviour_exact": 0.4375,
+    "behaviour_class": 0.625,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 0.3333333333333333,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "catalog": {
+    "pass_rate": 0.4375,
+    "figure_correct": 0.875,
+    "behaviour_exact": 0.5,
+    "behaviour_class": 0.6875,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 0.3333333333333333,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "graph": {
+    "pass_rate": 0.6875,
+    "figure_correct": 0.875,
+    "behaviour_exact": 0.75,
+    "behaviour_class": 0.75,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 1.0,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "control": {
+    "pass_rate": 0.25,
+    "figure_correct": 0.375,
+    "behaviour_exact": 0.4375,
+    "behaviour_class": 0.6875,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 0.5333333333333333,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "treatment": {
+    "pass_rate": 0.6875,
+    "figure_correct": 0.875,
+    "behaviour_exact": 0.75,
+    "behaviour_class": 0.75,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 1.0,
+    "numbers_caught": null,
+    "numbers_shown": null
+   }
+  },
+  "golden_wealth_v1": {
+   "schema": {
+    "pass_rate": 0.10000000000000002,
+    "figure_correct": 0.0,
+    "behaviour_exact": 0.5666666666666667,
+    "behaviour_class": 0.6333333333333333,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": null,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "catalog": {
+    "pass_rate": 0.10000000000000002,
+    "figure_correct": 0.0,
+    "behaviour_exact": 0.10000000000000002,
+    "behaviour_class": 0.20000000000000004,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": null,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "graph": {
+    "pass_rate": 0.7333333333333333,
+    "figure_correct": 0.6666666666666666,
+    "behaviour_exact": 0.7666666666666667,
+    "behaviour_class": 0.8000000000000002,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": null,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "control": {
+    "pass_rate": 0.03333333333333333,
+    "figure_correct": 0.0,
+    "behaviour_exact": 0.36666666666666664,
+    "behaviour_class": 0.5666666666666667,
+    "gate_first_try": 0.8846153846153846,
+    "retries": 0.0,
+    "tier_correct": 0.3333333333333333,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "treatment": {
+    "pass_rate": 0.7333333333333333,
+    "figure_correct": 0.6666666666666666,
+    "behaviour_exact": 0.7666666666666667,
+    "behaviour_class": 0.8000000000000002,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 1.0,
+    "numbers_caught": null,
+    "numbers_shown": null
+   }
+  }
+ },
+ "margin": {
+  "golden": {
+   "within": {
+    "pass_rate": {
+     "mean": 0.55,
+     "min": 0.55,
+     "max": 0.55,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.15000000000000002,
+     "min": 0.15000000000000002,
+     "max": 0.15000000000000002,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": {
+     "mean": 0.05555555555555558,
+     "min": 0.05555555555555558,
+     "max": 0.05555555555555558,
+     "sd": 0.0,
+     "n": 3
+    },
+    "tier_correct": {
+     "mean": 0.7647058823529411,
+     "min": 0.7647058823529411,
+     "max": 0.7647058823529411,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "cross": {
+    "pass_rate": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.6999999999999998,
+     "min": 0.7,
+     "max": 0.7,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "tier_correct": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "shelf": {
+    "pass_rate": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": null,
+    "behaviour_class": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": null,
+    "tier_correct": {
+     "mean": 0.4666666666666666,
+     "min": 0.4666666666666667,
+     "max": 0.4666666666666667,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "abstain": {
+    "pass_rate": {
+     "mean": 0.6,
+     "min": 0.6,
+     "max": 0.6,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": null,
+    "behaviour_class": {
+     "mean": 0.4000000000000001,
+     "min": 0.4,
+     "max": 0.4,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": null,
+    "tier_correct": null,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "all": {
+    "pass_rate": {
+     "mean": 0.7555555555555555,
+     "min": 0.7555555555555555,
+     "max": 0.7555555555555555,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 0.6296296296296297,
+     "min": 0.6296296296296297,
+     "max": 0.6296296296296297,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.2666666666666667,
+     "min": 0.2666666666666667,
+     "max": 0.2666666666666667,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": {
+     "mean": 0.033333333333333326,
+     "min": 0.033333333333333326,
+     "max": 0.033333333333333326,
+     "sd": 0.0,
+     "n": 3
+    },
+    "tier_correct": {
+     "mean": 0.576271186440678,
+     "min": 0.576271186440678,
+     "max": 0.576271186440678,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   }
+  },
+  "heldout": {
+   "within": {
+    "pass_rate": {
+     "mean": 0.3333333333333333,
+     "min": 0.33333333333333337,
+     "max": 0.33333333333333337,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 0.3333333333333333,
+     "min": 0.33333333333333337,
+     "max": 0.33333333333333337,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "tier_correct": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "cross": {
+    "pass_rate": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.25,
+     "min": 0.25,
+     "max": 0.25,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "tier_correct": {
+     "mean": 0.25,
+     "min": 0.25,
+     "max": 0.25,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "shelf": {
+    "pass_rate": {
+     "mean": 0.3333333333333333,
+     "min": 0.3333333333333333,
+     "max": 0.3333333333333333,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": null,
+    "behaviour_class": {
+     "mean": -0.3333333333333333,
+     "min": -0.3333333333333333,
+     "max": -0.3333333333333333,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": null,
+    "tier_correct": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "abstain": {
+    "pass_rate": {
+     "mean": 0.6666666666666666,
+     "min": 0.6666666666666667,
+     "max": 0.6666666666666667,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": null,
+    "behaviour_class": {
+     "mean": 0.3333333333333333,
+     "min": 0.33333333333333337,
+     "max": 0.33333333333333337,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": null,
+    "tier_correct": null,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "all": {
+    "pass_rate": {
+     "mean": 0.4375,
+     "min": 0.4375,
+     "max": 0.4375,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.0625,
+     "min": 0.0625,
+     "max": 0.0625,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "tier_correct": {
+     "mean": 0.4666666666666666,
+     "min": 0.4666666666666667,
+     "max": 0.4666666666666667,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   }
+  },
+  "golden_wealth_v1": {
+   "within": {
+    "pass_rate": {
+     "mean": 0.8125,
+     "min": 0.8125,
+     "max": 0.8125,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 0.8125,
+     "min": 0.8125,
+     "max": 0.8125,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": null,
+    "tier_correct": {
+     "mean": 0.7142857142857143,
+     "min": 0.7142857142857143,
+     "max": 0.7142857142857143,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "cross": {
+    "pass_rate": {
+     "mean": 0.5454545454545454,
+     "min": 0.5454545454545454,
+     "max": 0.5454545454545454,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 0.20000000000000004,
+     "min": 0.2,
+     "max": 0.2,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.3636363636363636,
+     "min": 0.36363636363636365,
+     "max": 0.36363636363636365,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "tier_correct": {
+     "mean": 0.4285714285714286,
+     "min": 0.4285714285714286,
+     "max": 0.4285714285714286,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "abstain": {
+    "pass_rate": {
+     "mean": 0.6666666666666666,
+     "min": 0.6666666666666666,
+     "max": 0.6666666666666666,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": null,
+    "behaviour_class": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": null,
+    "tier_correct": null,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "all": {
+    "pass_rate": {
+     "mean": 0.6999999999999998,
+     "min": 0.7,
+     "max": 0.7,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 0.6666666666666666,
+     "min": 0.6666666666666666,
+     "max": 0.6666666666666666,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.2333333333333334,
+     "min": 0.2333333333333334,
+     "max": 0.2333333333333334,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": {
+     "mean": 0.11538461538461542,
+     "min": 0.11538461538461542,
+     "max": 0.11538461538461542,
+     "sd": 0.0,
+     "n": 3
+    },
+    "tier_correct": {
+     "mean": 0.6666666666666666,
+     "min": 0.6666666666666667,
+     "max": 0.6666666666666667,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   }
+  }
+ },
+ "items": {
+  "golden": {
+   "G001": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G002": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G003": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G004": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G005": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G006": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G007": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G008": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G009": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G010": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G011": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G012": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G013": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G014": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G015": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G016": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G017": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G018": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G019": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G020": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G021": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G022": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G023": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G024": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G025": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G026": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G027": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G028": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G029": {
+    "kind": "cross",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G030": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G031": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G032": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G033": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G034": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G035": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G036": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G037": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G038": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G039": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G040": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G041": {
+    "kind": "abstain",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G042": {
+    "kind": "abstain",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G043": {
+    "kind": "abstain",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G044": {
+    "kind": "abstain",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G045": {
+    "kind": "abstain",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   }
+  },
+  "heldout": {
+   "H001": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "H002": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "H003": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "H004": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "H005": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "H006": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "H007": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "H008": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "H009": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "H010": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "H011": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "H012": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "H013": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "H014": {
+    "kind": "abstain",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "H015": {
+    "kind": "abstain",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "H016": {
+    "kind": "abstain",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   }
+  },
+  "golden_wealth_v1": {
+   "W01": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W02": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W03": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W04": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W05": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W06": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W07": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W08": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "W09": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W10": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W11": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "W12": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W13": {
+    "kind": "abstain",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W14": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W15": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W16": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "W17": {
+    "kind": "abstain",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "W18": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W19": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W20": {
+    "kind": "abstain",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "XB1": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "XB2": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "XB3": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "XB4": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "XB5": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "XB6": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "XB1-R": {
+    "kind": "cross",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "XB3-W": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "XB-DOB": {
+    "kind": "cross",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "XB-EMAIL": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   }
+  }
+ }
+}

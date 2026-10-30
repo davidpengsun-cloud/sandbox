@@ -1,0 +1,277 @@
+{
+ "as_of": "2025-07-01",
+ "client": "thornbury",
+ "format": 1,
+ "sources": {
+  "claims": {
+   "tables": [
+    {
+     "columns": [
+      {
+       "description": "The claim's number",
+       "name": "claim_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Who made the claim",
+       "name": "claimant_ref",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "The policy number as the claimant reported it, never checked against underwriting",
+       "name": "policy_ref",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Line of business the claim is under: PROP, GL, AUTO or WC",
+       "name": "line_code",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "The day the loss was first reported",
+       "name": "reported_on",
+       "ordinal": 5,
+       "type": "DATE"
+      },
+      {
+       "description": "The day the claim was closed; empty while it is open",
+       "name": "closed_on",
+       "ordinal": 6,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "claimant_ref"
+       ],
+       "ref_columns": [
+        "claimant_ref"
+       ],
+       "ref_table": "claimant"
+      }
+     ],
+     "name": "claim",
+     "primary_key": [
+      "claim_id"
+     ],
+     "rows": 16,
+     "storage": 642
+    },
+    {
+     "columns": [
+      {
+       "description": "The claimant's reference in the claims system",
+       "name": "claimant_ref",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "The claimant's contact address: personal data, restricted",
+       "name": "contact_email",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Two-letter code of the state the claimant is in",
+       "name": "state_code",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "claimant",
+     "primary_key": [
+      "claimant_ref"
+     ],
+     "rows": 12,
+     "storage": 408
+    },
+    {
+     "columns": [
+      {
+       "description": "The payment's number",
+       "name": "payment_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "The claim the payment settles",
+       "name": "claim_id",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "The day the payment was made",
+       "name": "paid_on",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Indemnity paid, in USD, before any recovery",
+       "name": "paid_usd",
+       "ordinal": 4,
+       "type": "DECIMAL(12,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "claim_id"
+       ],
+       "ref_columns": [
+        "claim_id"
+       ],
+       "ref_table": "claim"
+      }
+     ],
+     "name": "payment",
+     "primary_key": [
+      "payment_id"
+     ],
+     "rows": 18,
+     "storage": 401
+    }
+   ]
+  },
+  "underwriting": {
+   "tables": [
+    {
+     "columns": [
+      {
+       "description": "The insured business's number in policy administration",
+       "name": "insured_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "The insured business's registered name",
+       "name": "insured_name",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Two-letter code of the state the risk is written in",
+       "name": "state_code",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Underwriting segment: SMALL (small commercial) or MIDDLE (middle market)",
+       "name": "segment_code",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "insured",
+     "primary_key": [
+      "insured_id"
+     ],
+     "rows": 18,
+     "storage": 524
+    },
+    {
+     "columns": [
+      {
+       "description": "The policy number policy administration issued at binding",
+       "name": "policy_no",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "The insured business the policy covers",
+       "name": "insured_id",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Line of business: PROP, GL, AUTO or WC",
+       "name": "line_code",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "The first day of cover",
+       "name": "effective_on",
+       "ordinal": 4,
+       "type": "DATE"
+      },
+      {
+       "description": "The day cover ends",
+       "name": "expires_on",
+       "ordinal": 5,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "insured_id"
+       ],
+       "ref_columns": [
+        "insured_id"
+       ],
+       "ref_table": "insured"
+      }
+     ],
+     "name": "policy",
+     "primary_key": [
+      "policy_no"
+     ],
+     "rows": 23,
+     "storage": 895
+    },
+    {
+     "columns": [
+      {
+       "description": "The premium transaction's number",
+       "name": "premium_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "The policy the premium is written on",
+       "name": "policy_no",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "The day the premium was written and booked",
+       "name": "booked_on",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Premium written, in USD, before reinsurance",
+       "name": "written_premium_usd",
+       "ordinal": 4,
+       "type": "DECIMAL(12,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "policy_no"
+       ],
+       "ref_columns": [
+        "policy_no"
+       ],
+       "ref_table": "policy"
+      }
+     ],
+     "name": "premium",
+     "primary_key": [
+      "premium_id"
+     ],
+     "rows": 30,
+     "storage": 935
+    }
+   ]
+  }
+ }
+}

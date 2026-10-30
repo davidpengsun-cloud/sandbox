@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      try {
+        var theme = localStorage.getItem("v3-theme");
+        if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+      } catch (e) {}
+    </script>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/brand/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0E2A47" />
+    <meta
+      name="description"
+      content="Data Discovery Portal"
+    />
+    <link rel="apple-touch-icon" href="/brand/logo.png" />
+    <link rel="manifest" href="manifest.json" />
+    <title>Data Discovery Portal</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/index.js"></script>
+  </body>
+</html>

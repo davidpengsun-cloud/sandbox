@@ -1,0 +1,148 @@
+# The Fellmoor pack: Fellmoor Regional Transit's governance graph, as data (../../../../docs/use-cases/kge/platform/pack-contract.md).
+#
+# Everything here is invented: Fellmoor Regional Transit is a small regional bus operator, made up as issue #40's second
+# client from scratch (the Phase 5 exit gate), in a business neither the bank nor the insurer is in. It is onboarded
+# through the onboarding steps 1 to 8 alone: this pack, its fixture estate (fixture/: a schema, CSVs and Markdown, built by
+# kge/estate/from_files.py), its lock, and the deployment's identities and registry entry (deploy/fellmoor/identities.yaml,
+# deploy/profiles.yaml). No Python of its own, and nothing in the platform names it. The sections follow the step-2
+# checklist: sources, glossary, terminology and aliases, calendars, measures, mappings, policies, access roles, and the
+# question sets with the gates they are held to.
+
+manifest:
+  client: fellmoor
+  meta_model_version: 1.2.0
+  id: fellmoor-governance
+  version: 1.0.0
+  title: Fellmoor Regional Transit governance graph
+  owners: [fares-data-steward, fleet-data-steward]
+  platform: {meta_model: "^1.2", compiler: ">=0.3"}
+  compile: {store: kuzu, embedding_dim: 128, id_scheme: v1}
+  # The post-load gates (onboarding step 7, make margin HASH=), the template's: graph on passes every golden question of
+  # each kind, and on cross and shelf questions it passes at least half as many more as graph off does.
+  gates:
+    golden_min_pass: {within: 1.0, cross: 1.0, shelf: 1.0, abstain: 1.0}
+    control_margin: {cross: 0.5, shelf: 0.5}
+
+schema: {meta_model: "1.2", extensions: []}
+
+# Sources. Two warehouses with no key between them: a journey carries the vehicle number as the driver keyed it at
+# sign-on, never checked against the fleet register.
+sources:
+  - id: ticketing
+    label: Fares and Ticketing
+    entity_key: card_id
+    connection: {dialect: duckdb, ref: warehouses/ticketing.duckdb}
+    harvest: true
+  - id: fleet
+    label: Fleet Engineering
+    entity_key: vehicle_no
+    connection: {dialect: duckdb, ref: warehouses/fleet.duckdb}
+    harvest: true
+
+no_join:
+  - between: [ticketing, fleet]
+    asserted_by: Fares and Fleet Data Council
+    asserted_on: "2025-03-24"
+    note: >-
+      ticketing.journey.vehicle_ref is the vehicle number as the driver keyed it at sign-on, with or without its fleet
+      prefix, never checked against fleet.vehicle. No mapping table exists.
+
+# The column whose name invites the join the no-join fact refuses: a question that joins on it is refused on that fact.
+not_joinable:
+  - column: ticketing.journey.vehicle_ref
+    table: fleet.vehicle
+    asserted_by: Fares and Fleet Data Council
+    asserted_on: "2025-03-24"
+    note: >-
+      ticketing.journey.vehicle_ref is keyed by the driver, with or without its prefix, and never checked against
+      fleet.vehicle.
+
+# Glossary: the certified terms, each with its steward and the certified document that defines it.
+glossary:
+  - id: fare-revenue
+    name: Fare Revenue
+    domain: Fares
+    steward: Fares Data Steward
+    definition: >-
+      Fares charged for journeys in a period, after any concession and before any refund, booked on the day the card is
+      tapped on board.
+    status: certified
+    defined_by: [MD-FARE]
+  - id: maintenance-cost
+    name: Maintenance Cost
+    domain: Fleet
+    steward: Fleet Data Steward
+    definition: Parts and labour charged to repairs completed in a period, in USD; no work in progress.
+    status: certified
+    defined_by: [DD-FLEET]
+
+# Terminology: the phrases that name a term, a warehouse or a candidate term; the values that filter a column; what marks
+# a question's intent.
+terminology:
+  aliases:
+    - {phrase: fare revenue, term: fare-revenue}
+    - {phrase: fares, term: fare-revenue}
+    - {phrase: maintenance cost, term: maintenance-cost}
+    - {phrase: maintenance costs, term: maintenance-cost}
+    - {phrase: repair cost, term: maintenance-cost}
+    - {phrase: farebox recovery ratio, candidate: Farebox Recovery Ratio}
+    - {phrase: farebox recovery, candidate: Farebox Recovery Ratio}
+    - {phrase: ticketing, source: ticketing}
+    - {phrase: fleet, source: fleet}
+  value_vocabularies:
+    - {column: ticketing.card.fare_class, after: [fare class], values: [ADULT, CONCESSION, STUDENT]}
+    - {column: fleet.vehicle.depot_code, after: [depot], values: [NORTHGATE, RIVERSIDE]}
+  intents:
+    - {phrases: [what is, what does, how is, can journeys, define], intent: definitional}
+    - {phrases: [how many, number of, count], intent: count}
+    - {phrases: [average], intent: avg}
+
+# Calendars: the calendar year, and the date each table's figures are booked by.
+calendars:
+  - {id: calendar, year_start_month: 1, quarter_label: "{yyyy}-Q{n}"}
+
+period_bindings:
+  - {table: ticketing.journey, column: tapped_on, kind: event_date, calendar: calendar}
+  - {table: fleet.repair, column: completed_on, kind: event_date, calendar: calendar}
+  - {table: fleet.vehicle, column: entered_service_on, kind: event_date, calendar: calendar}
+
+# Measures: expression, aggregation, grain, currency and calendar; neither converts from another currency.
+measures:
+  - {id: fare-revenue, term: fare-revenue, column: ticketing.journey.fare_usd, expression: sum(journey.fare_usd), aggregation: sum,
+     grain: day, currency: USD, calendar: calendar, conversion: none}
+  - {id: maintenance-cost, term: maintenance-cost, column: fleet.repair.cost_usd, expression: sum(repair.cost_usd),
+     aggregation: sum, grain: day, currency: USD, calendar: calendar, conversion: none}
+
+# Mappings: the certified column of each term.
+mappings:
+  - {column: ticketing.journey.fare_usd, term: fare-revenue, certified: true, certified_by: Fares Data Steward,
+     certified_on: "2025-01-14"}
+  - {column: fleet.repair.cost_usd, term: maintenance-cost, certified: true, certified_by: Fleet Data Steward,
+     certified_on: "2025-03-20"}
+
+# Policies: the one restricted column. Tiers are not the pack's: certification grades each document upstream.
+policies:
+  restricted_attributes:
+    - id: restricted-cardholder-contact
+      action: refuse
+      cite: FRT-PRIV-01
+      version: 1.0.0
+      columns: [ticketing.card.holder_email]
+
+# Access roles: one role template for each of the deployment's identities (deploy/fellmoor/identities.yaml). The fares
+# steward signs off a candidate (certification); the analyst asks.
+access:
+  purposes: [analysis, assistant, supervision]
+  roles:
+    - {id: network_analyst, label: Analyst, reads: all, processes: [querying]}
+    - {id: fares_steward, label: Steward, reads: all, writes: [mappings, terms], processes: [certification, querying]}
+    - {id: pipeline_tagger, label: Pipeline, reads: [], processes: [tagging]}
+    - {id: knowledge_engineer, label: Knowledge engineer, reads: all, processes: [drafting, building, improving, querying]}
+
+# The question sets, by name and version: the golden set, build/fellmoor/golden.json, from fixture/golden.json, which the
+# gates above hold a candidate to; and the held-out set, build/fellmoor/heldout.json, from fixture/heldout.json,
+# paraphrases of golden questions, reported and never gated. No A/B baseline: make margin checks the gates alone.
+tests:
+  sets:
+    - {name: golden, version: v1}
+    - {name: heldout, version: v1}

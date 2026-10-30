@@ -1,0 +1,14 @@
+{
+  "short_name": "Data Discovery Portal",
+  "name": "Data Discovery Portal",
+  "icons": [
+    {
+      "src": "/brand/logo.png",
+      "sizes": "any"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0E2A47",
+  "background_color": "#FFFFFF"
+}

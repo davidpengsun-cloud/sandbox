@@ -1,0 +1,13 @@
+eb684f6019557e95f0d5b72e1bd7887d0f55dafa99fa503b5fa42bdf88e39eef  docs/INSTALL.md
+5997f2eba3bde83d23eee952fd26eecc05c81cad4afb951a47f5d6c8924e617c  docs/ONBOARDING.md
+2faa10b67a75339676817361d7a8e6a3f8c247111edd23f872dc099a5d83c3d0  images/fake-gcs-server-1.56.1.digest
+76680c0c2d9914086b97f10351141e048089cd404f1c3cf564733663f3e446c4  images/fake-gcs-server-1.56.1.tar
+a302599cf4ad95c42df3be5516fd4b152c0c46fbe9ec763fe4f90f259533b63d  images/kge-0.9.19.digest
+e93d6a36d87cdfde35d8c09c09bb434ac183a3d30c92cf2223592e37ca403785  images/kge-0.9.19.sbom.cdx.json
+728b09b09b45802487d464bd822fdb58298a14dcdb89ec6c9124a1b50c9f4f8b  images/kge-0.9.19.tar
+e285f44c5c6270731d8c4cd3c68285a1e2cf71ffed1d8296799d4e57a193264c  images/kge-portal-0.9.19.digest
+2aee0a591fbea6614e211e7d8090ccdc465cc1425fa2d45dc947597aa4a5b103  images/kge-portal-0.9.19.sbom.cdx.json
+75b7b6378316c97c723de8d6351e50714bb8e2abe1abb0210c5c9a20825d619e  images/kge-portal-0.9.19.tar
+871d8ed29205d2c5ceb9bf23f18e831675ffa97f3871327852d9e9b98789c0c0  kge-0.9.19.zip
+73ce7a2f3dc8bb8b17dc6369b360e87f512f3efd2dd2d3baf1d8b201ec902e13  notices/KGE_THIRD_PARTY_NOTICES.md
+c41fdc3ccefb4eda90dbca6e45ad4f052f7a3a3f3a9e8f72e2b0ad972b839d32  notices/PORTAL_THIRD_PARTY_NOTICES.md

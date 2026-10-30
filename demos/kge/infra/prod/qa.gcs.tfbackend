@@ -1,0 +1,2 @@
+# QA's state, in its own project's bucket: terraform init -backend-config=qa.gcs.tfbackend -backend-config="bucket=<qa project>-tfstate"
+prefix = "kge/qa"

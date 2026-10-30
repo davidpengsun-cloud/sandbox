@@ -1,0 +1,1 @@
+"""The demo's services, one per capability, each its routes (HTTP alone) and its service logic; one image, one app (kge/app.py) mounts them all. A service imports another only through that service's package, never its modules."""

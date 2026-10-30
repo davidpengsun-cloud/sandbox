@@ -1,0 +1,112 @@
+/* ============================================================
+   V3 design tokens — GLOBAL. One file, two copies: the portal imports it
+   once from index.js; the KGE page carries a byte-equal copy in its first
+   :root block, and tests/unit/test_ui_tokens.py holds the two equal.
+
+   Three layers, so that dark mode is a token swap and not a restyle:
+     1. hue scales  — constants; identical in light and dark. A family's
+                      -50 step is its soft background on light, -900 its
+                      soft background on dark.
+     2. neutrals    — paper, surface, line, ink; switched per mode.
+     3. roles       — what a component asks for (link, focus, action,
+                      chip, th, ok/warn/bad/info); switched per mode.
+                      Wherever a colour carries meaning, components use a
+                      role token, never a hue step.
+   Mode: prefers-color-scheme by default; data-theme="light"|"dark" on
+   <html> is the viewer's remembered choice and wins.
+   ============================================================ */
+:root{
+  /* navy — structure: the bar, table headers, selected tabs, info */
+  --v3-navy-900:#0E2A47; --v3-navy-850:#143253; --v3-navy-800:#1B3B5F; --v3-navy-700:#264A70;
+  --v3-navy-600:#3A5E86; --v3-navy-500:#54789E; --v3-navy-200:#BCC9D8; --v3-navy-100:#D9E2EC; --v3-navy-50:#EEF2F7;
+  /* azure — the signal: focus, markers, actions, links, chips */
+  --v3-azure-900:#13263B; --v3-azure-800:#00405F; --v3-azure-700:#005A87; --v3-azure-600:#006FA6; --v3-azure-500:#00A0DF;
+  --v3-azure-300:#6CC8EE; --v3-azure-100:#DDF2FB;
+  /* states: error, warning, success — each its own hue, none of them azure */
+  --v3-rasp-900:#3B1A1A; --v3-rasp-700:#B42318; --v3-rasp-600:#D92D20; --v3-rasp-300:#F98078; --v3-rasp-50:#FEE4E2;
+  --v3-must-900:#3A2D10; --v3-must-700:#8A5A00; --v3-must-600:#B47D0A; --v3-must-300:#F2BC4E; --v3-must-50:#FEF3DC;
+  --v3-green-900:#12301F; --v3-green-800:#135A33; --v3-green-700:#1B7446; --v3-green-600:#228B52; --v3-green-500:#2FA868;
+  --v3-green-300:#5BD191; --v3-green-100:#DCF4E6;
+  /* neutrals — cool blue-grey, hue 210, light */
+  --v3-paper:#F4F7FA; --v3-paper-2:#E8EDF2; --v3-surface:#FFFFFF; --v3-surface-2:#F9FBFD;
+  --v3-line:#DCE3EA; --v3-line-2:#B7C4D1;
+  --v3-ink:#0F1B2A; --v3-ink-2:#3B4B5E; --v3-ink-3:#5B6B7E; --v3-ink-4:#8795A6;
+  /* roles, light. The bar is navy in both modes, so a client logo needs one version only. */
+  --v3-bar:var(--v3-navy-900); --v3-bar-2:var(--v3-navy-850); --v3-bar-line:var(--v3-navy-800); --v3-bar-hover:var(--v3-navy-700);
+  --v3-bar-ink:#FFFFFF; --v3-bar-ink-2:var(--v3-navy-100); --v3-bar-ink-3:var(--v3-navy-200);
+  --v3-bar-focus:var(--v3-azure-300); --v3-bar-accent:var(--v3-azure-500);
+  --v3-accent:var(--v3-azure-600); --v3-accent-soft:var(--v3-azure-100); --v3-accent-line:var(--v3-azure-300);
+  --v3-focus:var(--v3-azure-600);
+  --v3-link:var(--v3-azure-700); --v3-link-hover:var(--v3-azure-800);
+  --v3-action:var(--v3-azure-600); --v3-action-ink:#FFFFFF; --v3-action-hover:var(--v3-azure-700);
+  --v3-chip-ink:var(--v3-azure-800); --v3-chip-bg:var(--v3-azure-100);
+  --v3-structure:var(--v3-navy-700); --v3-structure-soft:var(--v3-navy-50);
+  --v3-ok:var(--v3-green-700); --v3-ok-soft:var(--v3-green-100);
+  --v3-warn:var(--v3-must-700); --v3-warn-soft:var(--v3-must-50);
+  --v3-bad:var(--v3-rasp-700); --v3-bad-soft:var(--v3-rasp-50);
+  --v3-info:var(--v3-navy-700); --v3-info-soft:var(--v3-navy-50);
+  /* type */
+  --v3-body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --v3-mono:'Geist Mono',ui-monospace,'SF Mono',SFMono-Regular,Menlo,monospace;
+  /* radii */
+  --v3-r-xs:2px; --v3-r-sm:3px; --v3-r-md:4px; --v3-r-full:999px;
+  /* elevation */
+  --v3-shadow-1:0 1px 2px rgba(15,27,42,.07);
+  --v3-shadow-2:0 6px 20px rgba(15,27,42,.11),0 1px 3px rgba(15,27,42,.06);
+  --v3-shadow-3:0 20px 56px rgba(15,27,42,.30);
+  --v3-topbar-h:54px;
+  color-scheme:light;
+}
+
+/* ---- dark: the same names, mode-dependent values only; hue scales do not repeat ---- */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --v3-paper:#0B1624; --v3-paper-2:#070F1A; --v3-surface:#121F31; --v3-surface-2:#182841;
+    --v3-line:#26384F; --v3-line-2:#3B5068;
+    --v3-ink:#E7EEF5; --v3-ink-2:#C3CFDC; --v3-ink-3:#94A6B9; --v3-ink-4:#6A7E95;
+    --v3-accent:var(--v3-azure-500); --v3-accent-soft:var(--v3-azure-900); --v3-accent-line:var(--v3-azure-800);
+    --v3-focus:var(--v3-azure-500);
+    --v3-link:var(--v3-azure-300); --v3-link-hover:var(--v3-azure-100);
+    --v3-action:var(--v3-azure-500); --v3-action-ink:#0B1624; --v3-action-hover:var(--v3-azure-300);
+    --v3-chip-ink:var(--v3-azure-300); --v3-chip-bg:var(--v3-azure-900);
+    --v3-structure:var(--v3-navy-100); --v3-structure-soft:#182841;
+    --v3-ok:var(--v3-green-300); --v3-ok-soft:var(--v3-green-900);
+    --v3-warn:var(--v3-must-300); --v3-warn-soft:var(--v3-must-900);
+    --v3-bad:var(--v3-rasp-300); --v3-bad-soft:var(--v3-rasp-900);
+    --v3-info:var(--v3-navy-200); --v3-info-soft:var(--v3-azure-900);
+    --v3-shadow-1:0 1px 2px rgba(0,0,0,.35);
+    --v3-shadow-2:0 6px 20px rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.3);
+    --v3-shadow-3:0 20px 56px rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --v3-paper:#0B1624; --v3-paper-2:#070F1A; --v3-surface:#121F31; --v3-surface-2:#182841;
+  --v3-line:#26384F; --v3-line-2:#3B5068;
+  --v3-ink:#E7EEF5; --v3-ink-2:#C3CFDC; --v3-ink-3:#94A6B9; --v3-ink-4:#6A7E95;
+  --v3-accent:var(--v3-azure-500); --v3-accent-soft:var(--v3-azure-900); --v3-accent-line:var(--v3-azure-800);
+  --v3-focus:var(--v3-azure-500);
+  --v3-link:var(--v3-azure-300); --v3-link-hover:var(--v3-azure-100);
+  --v3-action:var(--v3-azure-500); --v3-action-ink:#0B1624; --v3-action-hover:var(--v3-azure-300);
+  --v3-chip-ink:var(--v3-azure-300); --v3-chip-bg:var(--v3-azure-900);
+  --v3-structure:var(--v3-navy-100); --v3-structure-soft:#182841;
+  --v3-ok:var(--v3-green-300); --v3-ok-soft:var(--v3-green-900);
+  --v3-warn:var(--v3-must-300); --v3-warn-soft:var(--v3-must-900);
+  --v3-bad:var(--v3-rasp-300); --v3-bad-soft:var(--v3-rasp-900);
+  --v3-info:var(--v3-navy-200); --v3-info-soft:var(--v3-azure-900);
+  --v3-shadow-1:0 1px 2px rgba(0,0,0,.35);
+  --v3-shadow-2:0 6px 20px rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.3);
+  --v3-shadow-3:0 20px 56px rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+
+/* ---- shared skeleton shimmer (Home / Explore / Detail loaders); mode-safe via tokens ---- */
+.v3-skel{
+  display:block;
+  background:linear-gradient(90deg,var(--v3-paper-2) 25%,var(--v3-surface-2) 50%,var(--v3-paper-2) 75%);
+  background-size:200% 100%;
+  animation:v3-shimmer 1.4s infinite;
+  border-radius:var(--v3-r-xs);
+}
+@keyframes v3-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.v3-skel{animation:none}}

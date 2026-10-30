@@ -1,0 +1,132 @@
+/* v3 shell: the navy bar and the notice bar under it. Scoped under .v3-shell so it
+   never touches the remaining Material-UI chrome. Reads role tokens only; the bar is
+   navy in both modes. */
+
+.v3-shell{position:sticky; top:0; z-index:1200; font-family:var(--v3-body)}
+.v3-shell *,.v3-shell *::before,.v3-shell *::after{box-sizing:border-box}
+
+.v3-topbar{
+  height:var(--v3-topbar-h);
+  display:flex; align-items:center; gap:16px; padding:0 20px;
+  background:var(--v3-bar); border-bottom:1px solid var(--v3-bar-line);
+  color:var(--v3-bar-ink); box-sizing:border-box;
+}
+
+.v3-topbar .v3-brand{display:flex; align-items:center; gap:8px; flex-shrink:0; cursor:pointer; background:none; border:none; padding:0; color:var(--v3-bar-ink)}
+.v3-topbar .v3-brand-name{font-size:13px; font-weight:600; color:var(--v3-bar-ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:280px}
+
+/* product switcher: the current product carries the signature underline */
+.v3-topbar .v3-switcher{display:flex; align-items:stretch; align-self:stretch; gap:4px; flex-shrink:0}
+.v3-topbar .v3-switcher a{
+  display:flex; align-items:center; padding:0 10px;
+  color:var(--v3-bar-ink-2); font-size:13px; font-weight:500; text-decoration:none;
+  border-bottom:2px solid transparent; border-top:2px solid transparent;
+}
+.v3-topbar .v3-switcher a:hover{color:var(--v3-bar-ink)}
+.v3-topbar .v3-switcher a[aria-current="page"]{color:var(--v3-bar-ink); border-bottom-color:var(--v3-bar-accent)}
+
+.v3-topbar .v3-search{position:relative; flex:1; max-width:620px; display:flex; align-items:center; min-width:0}
+.v3-topbar .v3-search .v3-search-icon{position:absolute; left:10px; top:50%; transform:translateY(-50%); pointer-events:none; color:var(--v3-bar-ink-3)}
+.v3-topbar .v3-search input{
+  width:100%; height:32px; padding:0 74px 0 32px;
+  background:var(--v3-bar-2); border:1px solid var(--v3-bar-hover);
+  border-radius:var(--v3-r-sm); color:var(--v3-bar-ink); font-size:13px; font-family:var(--v3-body);
+  outline:none;
+}
+.v3-topbar .v3-search input::placeholder{color:var(--v3-bar-ink-3)}
+.v3-topbar .v3-search input:focus{border-color:var(--v3-bar-accent); background:var(--v3-bar-line)}
+.v3-topbar .v3-kbd{
+  position:absolute; right:7px; top:50%; transform:translateY(-50%);
+  font-family:var(--v3-mono); font-size:10px; color:var(--v3-bar-ink-3);
+  border:1px solid var(--v3-bar-hover); border-radius:var(--v3-r-xs); padding:2px 6px; pointer-events:none;
+}
+
+.v3-topbar .v3-top-actions{display:flex; align-items:center; gap:12px; margin-left:auto}
+.v3-topbar .v3-btn-ai{
+  display:inline-flex; align-items:center; gap:6px; height:30px; padding:0 12px;
+  background:var(--v3-action); color:var(--v3-action-ink); border:none; border-radius:var(--v3-r-sm);
+  font-size:11px; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+  font-family:var(--v3-mono); cursor:pointer;
+}
+.v3-topbar .v3-btn-ai:hover{background:var(--v3-action-hover)}
+
+.v3-topbar .v3-theme{
+  display:inline-flex; align-items:center; justify-content:center; width:30px; height:30px; padding:0;
+  background:none; border:1px solid var(--v3-bar-hover); border-radius:var(--v3-r-sm);
+  color:var(--v3-bar-ink-2); cursor:pointer; flex-shrink:0;
+}
+.v3-topbar .v3-theme:hover{color:var(--v3-bar-ink); border-color:var(--v3-bar-ink-3)}
+
+/* identity menu */
+.v3-topbar .v3-identity{position:relative}
+.v3-topbar .v3-id-trigger{
+  display:flex; align-items:center; gap:8px; padding:0; background:none; border:none; cursor:pointer;
+  color:var(--v3-bar-ink); font-family:var(--v3-body);
+}
+.v3-topbar .v3-id-chip{
+  position:relative; display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;
+  width:28px; height:28px; border-radius:var(--v3-r-full);
+  background:var(--v3-bar-2); color:var(--v3-bar-ink); border:1px solid var(--v3-bar-hover);
+  font-size:11px; font-weight:600; letter-spacing:.02em;
+}
+.v3-topbar .v3-id-dot{
+  position:absolute; right:-2px; bottom:-2px; width:10px; height:10px; border-radius:var(--v3-r-full);
+  background:var(--v3-bar-accent); border:2px solid var(--v3-bar);
+}
+.v3-topbar .v3-id-name{font-size:12px; font-weight:600; color:var(--v3-bar-ink); white-space:nowrap; max-width:180px; overflow:hidden; text-overflow:ellipsis}
+.v3-topbar .v3-id-panel{
+  position:absolute; right:0; top:calc(100% + 10px); z-index:1300;
+  min-width:220px; max-width:320px; padding:8px;
+  background:var(--v3-surface); color:var(--v3-ink);
+  border:1px solid var(--v3-line); border-radius:var(--v3-r-md); box-shadow:var(--v3-shadow-2);
+  display:flex; flex-direction:column; gap:4px; outline:none;
+}
+.v3-topbar .v3-id-panel .v3-who{display:flex; flex-direction:column; gap:2px; padding:6px 8px 10px; border-bottom:1px solid var(--v3-line); margin-bottom:4px; line-height:1.3}
+.v3-topbar .v3-id-panel .v3-who b{color:var(--v3-ink); font-size:13px; font-weight:600; overflow-wrap:anywhere}
+.v3-topbar .v3-id-panel .v3-who span{color:var(--v3-ink-3); font-size:11px; font-family:var(--v3-mono); letter-spacing:.06em}
+.v3-topbar .v3-id-item{
+  display:block; width:100%; text-align:left; padding:8px; border:none; border-radius:var(--v3-r-sm);
+  background:none; color:var(--v3-ink); font-size:13px; font-family:var(--v3-body); cursor:pointer;
+}
+.v3-topbar .v3-id-item:hover{background:var(--v3-surface-2); color:var(--v3-link)}
+
+/* ---- typeahead dropdown (on the bar's colours) ---- */
+.v3-topbar .v3-suggest{
+  position:absolute; top:calc(100% + 6px); left:0; right:0;
+  margin:0; padding:4px; list-style:none;
+  background:var(--v3-bar-2); border:1px solid var(--v3-bar-hover);
+  border-radius:var(--v3-r-sm); box-shadow:var(--v3-shadow-3);
+  max-height:320px; overflow-y:auto; z-index:1300;
+}
+.v3-topbar .v3-suggest li{
+  display:flex; align-items:center; gap:8px;
+  padding:8px 10px; border-radius:var(--v3-r-xs);
+  font-size:13px; color:var(--v3-bar-ink-2); cursor:pointer;
+}
+.v3-topbar .v3-suggest li svg{color:var(--v3-bar-ink-3); flex-shrink:0}
+.v3-topbar .v3-suggest li span{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.v3-topbar .v3-suggest li.hi{background:var(--v3-bar-hover); color:var(--v3-bar-ink)}
+.v3-topbar .v3-suggest li.hi svg{color:var(--v3-bar-focus)}
+
+/* focus: the light azure ring on the bar; the surface ring inside the panel */
+.v3-topbar button:focus-visible,.v3-topbar a:focus-visible{outline:2px solid var(--v3-bar-focus); outline-offset:2px}
+.v3-topbar .v3-id-panel button:focus-visible{outline:2px solid var(--v3-focus); outline-offset:2px}
+
+/* notice bar: under the bar, inside the sticky region; colour plus a word */
+.v3-notice{
+  display:flex; align-items:center; gap:8px; min-height:40px; padding:8px 20px;
+  font-family:var(--v3-body); font-size:14px; line-height:1.4;
+}
+.v3-notice-warn{background:var(--v3-warn-soft); color:var(--v3-warn); border-bottom:1px solid var(--v3-warn)}
+.v3-notice .v3-notice-word{font-weight:700; text-transform:uppercase; letter-spacing:.06em; font-size:12px; flex-shrink:0}
+
+@media(max-width:640px){
+  .v3-topbar{gap:8px; padding:0 12px}
+  .v3-topbar .v3-brand-name,.v3-topbar .v3-id-name,.v3-topbar .v3-kbd{display:none}
+  .v3-topbar .v3-switcher{gap:0}
+  .v3-topbar .v3-switcher a{padding:0 6px; font-size:12px}
+  .v3-topbar .v3-search input{padding-right:8px}
+  .v3-topbar .v3-top-actions{gap:6px}
+  .v3-topbar .v3-btn-ai{padding:0 8px}
+  .v3-notice{padding:8px 12px}
+}

@@ -1,0 +1,1557 @@
+{
+ "baseline": "of #40, with assets under management",
+ "run_id": "20261029T212936Z-550b07",
+ "recorded_at": "2026-10-29T21:30:42+00:00",
+ "principal": "analyst_enterprise",
+ "repeats": 3,
+ "profile": "meridian",
+ "estate": {
+  "seed": 7,
+  "generator": "kge/estate/generate.py"
+ },
+ "graph": {
+  "model": "de8afcf8d4723c91049d12a521be8144f2bee59d6ecd5ec944b19481f0cf789e",
+  "legacy_model": "4e861e1bf9603b1598e10855cd3969b2ca8b993556dc45803cdc160624596af0",
+  "artifact": "4e8160a78fc2603ed2c5ceac58a3e1cf95e58494bb7626740dba9ba64dd17438",
+  "overlay": "8f5fc3d31ba6b3c7f4f8c1468d1560fce4cadb97f845619dbff0a28441fd8bfb",
+  "store": {
+   "engine": "ladybug",
+   "version": "0.21.2",
+   "storage_version": 47
+  }
+ },
+ "llm": null,
+ "sets": {
+  "golden": {
+   "items": 45,
+   "size": 45,
+   "version": "v2",
+   "file": "golden.json",
+   "sha256": "4262c65184247afac28daa98e6e7c478011834cf689196cd1a5a41078bffb158",
+   "changes_from": {
+    "version": "v1",
+    "items": [
+     "G021",
+     "G030"
+    ],
+    "sha256": "f2d8168cd82af7f75d79986261a67de85ea4fdd691885d538d62d01303c302d5",
+    "why": "Option B, issue #39: Retail and Wealth join through the certified client cross-reference, so retail-wealth is no longer a refused join"
+   }
+  },
+  "heldout": {
+   "items": 16,
+   "size": 16,
+   "version": "v1",
+   "file": "heldout.json",
+   "sha256": "3661dd652f6f39cbb10641c242d7abab0bea35af57166f8f332d74a06a278af0"
+  },
+  "golden_wealth_v1": {
+   "items": 30,
+   "size": 30,
+   "version": "v1",
+   "file": "golden_wealth_v1.json",
+   "sha256": "5828c2ef372668fb24c3ca0f3789fe0896953c360375cd8dbf0dee8053eef838"
+  }
+ },
+ "arms": [
+  {
+   "arm": "schema",
+   "side": "preset",
+   "mode": "rules",
+   "config": "schema"
+  },
+  {
+   "arm": "catalog",
+   "side": "preset",
+   "mode": "rules",
+   "config": "catalog"
+  },
+  {
+   "arm": "graph",
+   "side": "preset",
+   "mode": "rules",
+   "config": "graph"
+  },
+  {
+   "arm": "control",
+   "side": "agent, graph off",
+   "mode": "rules",
+   "config": "control"
+  },
+  {
+   "arm": "treatment",
+   "side": "agent, graph on",
+   "mode": "rules",
+   "config": "treatment"
+  }
+ ],
+ "passed": {
+  "golden": {
+   "schema": {
+    "within": 5.0,
+    "cross": 1.0,
+    "shelf": 0.0,
+    "abstain": 2.0,
+    "all": 8.0
+   },
+   "catalog": {
+    "within": 13.0,
+    "cross": 1.0,
+    "shelf": 0.0,
+    "abstain": 3.0,
+    "all": 17.0
+   },
+   "graph": {
+    "within": 20.0,
+    "cross": 10.0,
+    "shelf": 10.0,
+    "abstain": 5.0,
+    "all": 45.0
+   },
+   "control": {
+    "within": 7.0,
+    "cross": 0.0,
+    "shelf": 0.0,
+    "abstain": 2.0,
+    "all": 9.0
+   },
+   "treatment": {
+    "within": 20.0,
+    "cross": 10.0,
+    "shelf": 10.0,
+    "abstain": 5.0,
+    "all": 45.0
+   }
+  },
+  "heldout": {
+   "schema": {
+    "within": 2.0,
+    "cross": 0.0,
+    "shelf": 0.0,
+    "abstain": 1.0,
+    "all": 3.0
+   },
+   "catalog": {
+    "within": 4.0,
+    "cross": 0.0,
+    "shelf": 0.0,
+    "abstain": 2.0,
+    "all": 6.0
+   },
+   "graph": {
+    "within": 5.0,
+    "cross": 2.0,
+    "shelf": 1.0,
+    "abstain": 3.0,
+    "all": 11.0
+   },
+   "control": {
+    "within": 2.0,
+    "cross": 0.0,
+    "shelf": 0.0,
+    "abstain": 1.0,
+    "all": 3.0
+   },
+   "treatment": {
+    "within": 5.0,
+    "cross": 2.0,
+    "shelf": 1.0,
+    "abstain": 3.0,
+    "all": 11.0
+   }
+  },
+  "golden_wealth_v1": {
+   "schema": {
+    "within": 0.0,
+    "cross": 1.0,
+    "abstain": 1.0,
+    "all": 2.0
+   },
+   "catalog": {
+    "within": 0.0,
+    "cross": 1.0,
+    "abstain": 2.0,
+    "all": 3.0
+   },
+   "graph": {
+    "within": 14.0,
+    "cross": 7.0,
+    "abstain": 3.0,
+    "all": 24.0
+   },
+   "control": {
+    "within": 0.0,
+    "cross": 1.0,
+    "abstain": 0.0,
+    "all": 1.0
+   },
+   "treatment": {
+    "within": 14.0,
+    "cross": 7.0,
+    "abstain": 3.0,
+    "all": 24.0
+   }
+  }
+ },
+ "measures": {
+  "golden": {
+   "schema": {
+    "pass_rate": 0.17777777777777778,
+    "figure_correct": 0.2962962962962963,
+    "behaviour_exact": 0.35555555555555557,
+    "behaviour_class": 0.6444444444444445,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 0.5333333333333333,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "catalog": {
+    "pass_rate": 0.37777777777777777,
+    "figure_correct": 0.6296296296296297,
+    "behaviour_exact": 0.4444444444444444,
+    "behaviour_class": 0.7333333333333333,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 0.5333333333333333,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "graph": {
+    "pass_rate": 1.0,
+    "figure_correct": 1.0,
+    "behaviour_exact": 1.0,
+    "behaviour_class": 1.0,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 1.0,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "control": {
+    "pass_rate": 0.20000000000000004,
+    "figure_correct": 0.2962962962962963,
+    "behaviour_exact": 0.37777777777777777,
+    "behaviour_class": 0.6666666666666666,
+    "gate_first_try": 0.8928571428571429,
+    "retries": 0.0,
+    "tier_correct": 0.44642857142857145,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "treatment": {
+    "pass_rate": 1.0,
+    "figure_correct": 1.0,
+    "behaviour_exact": 1.0,
+    "behaviour_class": 1.0,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 1.0,
+    "numbers_caught": null,
+    "numbers_shown": null
+   }
+  },
+  "heldout": {
+   "schema": {
+    "pass_rate": 0.1875,
+    "figure_correct": 0.25,
+    "behaviour_exact": 0.375,
+    "behaviour_class": 0.5625,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 0.3333333333333333,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "catalog": {
+    "pass_rate": 0.375,
+    "figure_correct": 0.625,
+    "behaviour_exact": 0.5,
+    "behaviour_class": 0.6875,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 0.3333333333333333,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "graph": {
+    "pass_rate": 0.6875,
+    "figure_correct": 0.875,
+    "behaviour_exact": 0.75,
+    "behaviour_class": 0.75,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 1.0,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "control": {
+    "pass_rate": 0.1875,
+    "figure_correct": 0.25,
+    "behaviour_exact": 0.375,
+    "behaviour_class": 0.5625,
+    "gate_first_try": 0.75,
+    "retries": 0.0,
+    "tier_correct": 0.4615384615384615,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "treatment": {
+    "pass_rate": 0.6875,
+    "figure_correct": 0.875,
+    "behaviour_exact": 0.75,
+    "behaviour_class": 0.75,
+    "gate_first_try": 1.0,
+    "retries": 0.0,
+    "tier_correct": 1.0,
+    "numbers_caught": null,
+    "numbers_shown": null
+   }
+  },
+  "golden_wealth_v1": {
+   "schema": {
+    "pass_rate": 0.06666666666666667,
+    "figure_correct": 0.0,
+    "behaviour_exact": 0.13333333333333333,
+    "behaviour_class": 0.20000000000000004,
+    "gate_first_try": 0.1875,
+    "retries": 0.0,
+    "tier_correct": null,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "catalog": {
+    "pass_rate": 0.10000000000000002,
+    "figure_correct": 0.0,
+    "behaviour_exact": 0.10000000000000002,
+    "behaviour_class": 0.13333333333333333,
+    "gate_first_try": null,
+    "retries": null,
+    "tier_correct": null,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "graph": {
+    "pass_rate": 0.8000000000000002,
+    "figure_correct": 0.7142857142857143,
+    "behaviour_exact": 0.8000000000000002,
+    "behaviour_class": 0.8000000000000002,
+    "gate_first_try": null,
+    "retries": null,
+    "tier_correct": null,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "control": {
+    "pass_rate": 0.03333333333333333,
+    "figure_correct": 0.0,
+    "behaviour_exact": 0.16666666666666666,
+    "behaviour_class": 0.36666666666666664,
+    "gate_first_try": 0.36000000000000004,
+    "retries": 0.0,
+    "tier_correct": 0.35714285714285715,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "treatment": {
+    "pass_rate": 0.8000000000000002,
+    "figure_correct": 0.7142857142857143,
+    "behaviour_exact": 0.8000000000000002,
+    "behaviour_class": 0.8000000000000002,
+    "gate_first_try": null,
+    "retries": null,
+    "tier_correct": 1.0,
+    "numbers_caught": null,
+    "numbers_shown": null
+   }
+  }
+ },
+ "margin": {
+  "golden": {
+   "within": {
+    "pass_rate": {
+     "mean": 0.65,
+     "min": 0.65,
+     "max": 0.65,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 0.6,
+     "min": 0.6,
+     "max": 0.6,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.30000000000000004,
+     "min": 0.30000000000000004,
+     "max": 0.30000000000000004,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": {
+     "mean": 0.125,
+     "min": 0.125,
+     "max": 0.125,
+     "sd": 0.0,
+     "n": 3
+    },
+    "tier_correct": {
+     "mean": 0.7142857142857143,
+     "min": 0.7142857142857143,
+     "max": 0.7142857142857143,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "cross": {
+    "pass_rate": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.6999999999999998,
+     "min": 0.7,
+     "max": 0.7,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": {
+     "mean": 0.09999999999999998,
+     "min": 0.09999999999999998,
+     "max": 0.09999999999999998,
+     "sd": 0.0,
+     "n": 3
+    },
+    "tier_correct": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "shelf": {
+    "pass_rate": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": null,
+    "behaviour_class": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": null,
+    "tier_correct": {
+     "mean": 0.4666666666666666,
+     "min": 0.4666666666666667,
+     "max": 0.4666666666666667,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "abstain": {
+    "pass_rate": {
+     "mean": 0.6,
+     "min": 0.6,
+     "max": 0.6,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": null,
+    "behaviour_class": {
+     "mean": 0.4000000000000001,
+     "min": 0.4,
+     "max": 0.4,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": null,
+    "tier_correct": null,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "all": {
+    "pass_rate": {
+     "mean": 0.8000000000000002,
+     "min": 0.8,
+     "max": 0.8,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 0.7037037037037037,
+     "min": 0.7037037037037037,
+     "max": 0.7037037037037037,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.3333333333333333,
+     "min": 0.33333333333333337,
+     "max": 0.33333333333333337,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": {
+     "mean": 0.1071428571428571,
+     "min": 0.1071428571428571,
+     "max": 0.1071428571428571,
+     "sd": 0.0,
+     "n": 3
+    },
+    "tier_correct": {
+     "mean": 0.5535714285714286,
+     "min": 0.5535714285714286,
+     "max": 0.5535714285714286,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   }
+  },
+  "heldout": {
+   "within": {
+    "pass_rate": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.16666666666666663,
+     "min": 0.16666666666666663,
+     "max": 0.16666666666666663,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "tier_correct": {
+     "mean": 0.6,
+     "min": 0.6,
+     "max": 0.6,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "cross": {
+    "pass_rate": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.25,
+     "min": 0.25,
+     "max": 0.25,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": {
+     "mean": 0.25,
+     "min": 0.25,
+     "max": 0.25,
+     "sd": 0.0,
+     "n": 3
+    },
+    "tier_correct": {
+     "mean": 0.25,
+     "min": 0.25,
+     "max": 0.25,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "shelf": {
+    "pass_rate": {
+     "mean": 0.3333333333333333,
+     "min": 0.3333333333333333,
+     "max": 0.3333333333333333,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": null,
+    "behaviour_class": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": null,
+    "tier_correct": {
+     "mean": 0.6666666666666666,
+     "min": 0.6666666666666667,
+     "max": 0.6666666666666667,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "abstain": {
+    "pass_rate": {
+     "mean": 0.6666666666666666,
+     "min": 0.6666666666666667,
+     "max": 0.6666666666666667,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": null,
+    "behaviour_class": {
+     "mean": 0.3333333333333333,
+     "min": 0.33333333333333337,
+     "max": 0.33333333333333337,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": null,
+    "tier_correct": null,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "all": {
+    "pass_rate": {
+     "mean": 0.5,
+     "min": 0.5,
+     "max": 0.5,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 0.625,
+     "min": 0.625,
+     "max": 0.625,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.1875,
+     "min": 0.1875,
+     "max": 0.1875,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": {
+     "mean": 0.25,
+     "min": 0.25,
+     "max": 0.25,
+     "sd": 0.0,
+     "n": 3
+    },
+    "tier_correct": {
+     "mean": 0.5384615384615384,
+     "min": 0.5384615384615384,
+     "max": 0.5384615384615384,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   }
+  },
+  "golden_wealth_v1": {
+   "within": {
+    "pass_rate": {
+     "mean": 0.875,
+     "min": 0.875,
+     "max": 0.875,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 0.875,
+     "min": 0.875,
+     "max": 0.875,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.625,
+     "min": 0.625,
+     "max": 0.625,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": null,
+    "tier_correct": {
+     "mean": 0.8333333333333334,
+     "min": 0.8333333333333334,
+     "max": 0.8333333333333334,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "cross": {
+    "pass_rate": {
+     "mean": 0.5454545454545454,
+     "min": 0.5454545454545454,
+     "max": 0.5454545454545454,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 0.20000000000000004,
+     "min": 0.2,
+     "max": 0.2,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.1818181818181818,
+     "min": 0.18181818181818182,
+     "max": 0.18181818181818182,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": null,
+    "tier_correct": null,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "abstain": {
+    "pass_rate": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": null,
+    "behaviour_class": {
+     "mean": 0.3333333333333333,
+     "min": 0.33333333333333337,
+     "max": 0.33333333333333337,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": null,
+    "tier_correct": null,
+    "numbers_caught": null,
+    "numbers_shown": null
+   },
+   "all": {
+    "pass_rate": {
+     "mean": 0.7666666666666667,
+     "min": 0.7666666666666667,
+     "max": 0.7666666666666667,
+     "sd": 0.0,
+     "n": 3
+    },
+    "figure_correct": {
+     "mean": 0.7142857142857143,
+     "min": 0.7142857142857143,
+     "max": 0.7142857142857143,
+     "sd": 0.0,
+     "n": 3
+    },
+    "behaviour_class": {
+     "mean": 0.4333333333333334,
+     "min": 0.4333333333333334,
+     "max": 0.4333333333333334,
+     "sd": 0.0,
+     "n": 3
+    },
+    "gate_first_try": null,
+    "tier_correct": {
+     "mean": 0.6428571428571428,
+     "min": 0.6428571428571428,
+     "max": 0.6428571428571428,
+     "sd": 0.0,
+     "n": 3
+    },
+    "numbers_caught": null,
+    "numbers_shown": null
+   }
+  }
+ },
+ "items": {
+  "golden": {
+   "G001": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G002": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G003": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G004": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G005": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G006": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G007": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G008": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G009": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G010": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G011": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G012": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G013": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G014": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G015": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G016": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G017": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G018": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G019": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G020": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G021": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G022": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G023": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G024": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G025": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G026": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G027": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G028": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G029": {
+    "kind": "cross",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G030": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G031": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G032": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G033": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G034": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G035": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G036": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G037": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G038": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G039": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G040": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G041": {
+    "kind": "abstain",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G042": {
+    "kind": "abstain",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G043": {
+    "kind": "abstain",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "G044": {
+    "kind": "abstain",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "G045": {
+    "kind": "abstain",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   }
+  },
+  "heldout": {
+   "H001": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "H002": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "H003": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "H004": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "H005": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "H006": {
+    "kind": "within",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "H007": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "H008": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "H009": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "H010": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "H011": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "H012": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "H013": {
+    "kind": "shelf",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "H014": {
+    "kind": "abstain",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "H015": {
+    "kind": "abstain",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "H016": {
+    "kind": "abstain",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   }
+  },
+  "golden_wealth_v1": {
+   "W01": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W02": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W03": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W04": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W05": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W06": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W07": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W08": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "W09": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W10": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W11": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "W12": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W13": {
+    "kind": "abstain",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W14": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W15": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W16": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W17": {
+    "kind": "abstain",
+    "schema": 0.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W18": {
+    "kind": "within",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W19": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "W20": {
+    "kind": "abstain",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "XB1": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "XB2": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "XB3": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "XB4": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "XB5": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 0.0,
+    "control": 0.0,
+    "treatment": 0.0
+   },
+   "XB6": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "XB1-R": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "XB3-W": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   },
+   "XB-DOB": {
+    "kind": "cross",
+    "schema": 1.0,
+    "catalog": 1.0,
+    "graph": 1.0,
+    "control": 1.0,
+    "treatment": 1.0
+   },
+   "XB-EMAIL": {
+    "kind": "cross",
+    "schema": 0.0,
+    "catalog": 0.0,
+    "graph": 1.0,
+    "control": 0.0,
+    "treatment": 1.0
+   }
+  }
+ }
+}

@@ -1,0 +1,109 @@
+# pack.example.yaml — draft v0.4
+# A small compilable pack populated with invented entries from the Meridian demo.
+# It lives in clients/meridian/ and compiles to artifacts/meridian/<model_hash>/.
+
+manifest:
+  client: meridian
+  meta_model_version: 1.3.0
+  id: meridian-governance
+  version: 1.4.0
+  title: Meridian Union Bank governance graph
+  owners: [group-finance-data-steward]
+  platform: {meta_model: "^1.3", compiler: ">=0.4"}
+  compile: {store: kuzu, embedding_dim: 128, id_scheme: v1}
+  gates:
+    golden_min_pass: {within: 1.0, cross: 1.0, shelf: 1.0, abstain: 1.0}
+    control_margin: {cross: 0.5, shelf: 0.5}
+
+schema: {meta_model: "1.3", extensions: []}
+
+sources:
+  - id: retail
+    label: Retail Banking
+    entity_key: customer_id
+    connection: {dialect: duckdb, ref: warehouses/retail.duckdb}
+    harvest: true
+
+glossary:
+  - id: revenue
+    name: Revenue
+    domain: Finance
+    steward: Group Finance Data Steward
+    status: certified
+    definition: Income earned from customers in a period, before costs.
+    defined_by: [MD-REVENUE]
+
+terminology:
+  aliases:
+    - {phrase: revenue, term: revenue}
+    - {phrase: retail, source: retail}
+    - {phrase: enterprise revenue, candidate: Enterprise Revenue}
+    - {phrase: by product, group_by: retail.product.product_name}
+    - {phrase: latest, period: latest}
+  value_vocabularies:
+    - column: retail.product.product_name
+      values: [Everyday Current, Premier Current, Instant Saver]
+    - column: retail.branch.region_code
+      pattern: upper_2_3
+      after: [region]
+  predicates:
+    - {phrases: [unresolved, open complaints], column: retail.complaint.resolved_on, op: is_null}
+  intents:
+    - {phrases: [what is, define], intent: definitional}
+    - {phrases: [how many, count], intent: count}
+  functional_mailboxes: [records, privacy, compliance]
+
+calendars:
+  - {id: calendar, year_start_month: 1, quarter_label: "{year}-Q{n}"}
+
+period_bindings:
+  - table: retail.monthly_revenue
+    column: month_start
+    kind: month
+    calendar: calendar
+    rollup: {table: retail.calendar_month, column: calendar_quarter}
+
+measures:
+  - id: retail.revenue
+    term: revenue
+    column: retail.monthly_revenue.total_revenue_usd
+    expression: sum(monthly_revenue.total_revenue_usd)
+    aggregation: sum
+    grain: month
+    currency: USD
+    calendar: calendar
+    conversion: none
+
+mappings:
+  - column: retail.monthly_revenue.total_revenue_usd
+    term: revenue
+    certified: true
+    certified_by: Group Finance Data Steward
+    certified_on: "2024-11-15"
+
+policies:
+  restricted_attributes:
+    - id: restricted-personal-data
+      action: refuse
+      cite: POL-DATA-CLASS
+      columns: [retail.customer.email, retail.customer.date_of_birth]
+      phrases:
+        - {column: retail.customer.email, phrases: [e-mail]}
+
+access:
+  purposes: [analysis, assistant]
+  roles:
+    - id: analyst_retail
+      label: Retail analyst
+      reads: [retail]
+      processes: [querying]
+    - id: finance_steward
+      label: Finance steward
+      reads: all
+      writes: [terms, mappings]
+      processes: [certification, querying]
+
+tests:
+  sets:
+    - {name: golden, version: v2}
+    - {name: heldout, version: v1}

@@ -1,0 +1,17 @@
+# The Meridian deployment's principals, each bound to a role template of the client's pack (clients/meridian/pack.yaml,
+# access.roles). The deployment owns identities; the pack never does (pack-contract.md §4.10). Every name is invented.
+client: meridian
+# The querying identity a command asks as when it names none (make eval, make agent, make ab; PRINCIPAL names another):
+# analyst_enterprise, who reads all four units, as the golden answers assume.
+asker: analyst_enterprise
+principals:
+  - {principal: analyst_retail, role: analyst_retail}
+  - {principal: analyst_enterprise, role: analyst_enterprise}
+  - {principal: finance_reporting, role: finance_reporting}
+  - {principal: steward_glossary, role: steward_glossary}
+  - {principal: business_team, role: business_team}
+  - {principal: advisor_wealth, role: advisor_wealth}
+  - {principal: admin, role: admin}
+  - {principal: steward, role: steward}
+  - {principal: pipeline_tagger, role: pipeline_tagger}
+  - {principal: knowledge_engineer, role: knowledge_engineer}

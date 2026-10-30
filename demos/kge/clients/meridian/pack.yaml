@@ -1,0 +1,1238 @@
+# The Meridian pack: Meridian Union Bank's governance graph, as data (../../../../docs/use-cases/kge/platform/pack-contract.md).
+#
+# Everything here is invented: Meridian Union Bank is the repository's reference institution. The pack is the client's
+# own source of truth, plain YAML, read by kge/estate/spec.py and compiled by the platform's compiler (make compile). Each
+# section says what it holds; the platform's meta-model (meta-model.yaml, at the demo's root) says what each becomes in
+# the graph.
+# Ported one for one from estate/spec.py and api/core.py as they were before issue #39 (1.0.0). 1.1.0 adds the Wealth
+# expansion's semantics, for meta-model 1.1.0's query-semantics layer: the client cross-reference as a curated source, the
+# Wealth terms, acronyms, contexts, filters, row selectors, declared joins, entities, lineage and time policies, and
+# Option B's certified join between Retail and Wealth. 1.2.0, for meta-model 1.2.0, adds the rest of the question
+# parser's vocabulary from api/core.py and pipeline/privacy.py, so no platform file names the client: its filter phrases
+# and values, the openings and words that mark an intent, and the role mailboxes. Issue #40 adds the post-load gates to
+# the manifest, at the same version: they reach no graph table, only the artifact's gates.json. 1.3.0 adds assets under
+# management (AUM), issue #40's pack-only onboarding test (the plan's Phase 3): its term, aliases and acronym, its period
+# binding, measure, joins and context, and deposits as a Retail word, through onboarding's steps 4 to 8 with no platform
+# change. 1.4.0, for meta-model 1.3.0, maps net new assets, assets under management and the other Wealth terms, the Wealth
+# account and the restricted personal data to the industry standards the platform preloads (ontology_mappings), each
+# mapping certified by its steward. 1.5.0 takes in the SAGE wealth data (kge/estate/sage.py): SAGE keeps its physical
+# names, and Meridian's names are business names. Wealth's warehouse holds SAGE's seventeen tables as SAGE has them
+# (ACCT_DIM2_1, TRAN_FACT_1, MONTH_DIM_1, BRCH_DIM_1, SRCE_SYS_1 and twelve more), every column as SAGE spells it;
+# Meridian's account, flow, month end, office and source system tables are dropped, and its fifteen other Wealth tables
+# take physical names in SAGE's style (HSHLD_DIM_1, AUM_MNTH_END_FACT_1, ...: kge/estate/names.py). Every Wealth table's
+# name and every Meridian column name are business names in the curated layer: an entity each table represents and an
+# alias of each column. The Wealth terms, measures, contexts, filters, row selectors, joins, acronyms and policies read the
+# physical columns, and the pack gains the account's client code and office joins and the restricted columns of the SAGE
+# tables' personal data.
+manifest:
+  client: meridian
+  meta_model_version: 1.3.0
+  id: meridian-governance
+  version: 1.5.0
+  title: Meridian Union Bank governance graph
+  owners: [group-finance-data-steward, customer-data-steward]
+  platform: {meta_model: "^1.3", compiler: ">=0.4"}   # the platform versions this pack is compatible with
+  # store names the DDL dialect, kuzu's, which Ladybug loads; Ladybug is the only graph store.
+  compile: {store: kuzu, embedding_dim: 128, id_scheme: v1}
+  # The post-load gates (onboarding step 7): the share of golden questions graph on must pass, per kind, and how far
+  # ahead of graph off it must be, per kind; make margin checks a loaded graph against them, a candidate before it is
+  # released. The template's values (../../../../docs/use-cases/kge/platform/pack.example.yaml).
+  gates:
+    golden_min_pass: {within: 1.0, cross: 1.0, shelf: 1.0, abstain: 1.0}
+    control_margin: {cross: 0.5, shelf: 0.5}
+
+schema: {meta_model: "1.3", extensions: []}
+
+# The four business units, each with its own warehouse and no key that joins across them. Their order fixes the pairs'
+# names (retail-sme, and so on). Each unit's customer-like key is its entity_key. They are deliberately different, and
+# the corporate contact table carries a column *named* customer_id that is not the retail one: the trap a key-name join
+# would fall into. Tables and columns are not listed: harvest has them come from each warehouse's own catalogue, as
+# certification landed it, keys declared, so the join paths within a unit are regenerable. pack.lock, beside this file,
+# freezes that catalogue (make lock writes it, and make graph stops if it is stale).
+sources:
+  - id: retail
+    label: Retail Banking
+    entity_key: customer_id
+    connection: {dialect: duckdb, ref: warehouses/retail.duckdb}
+    harvest: true
+  - id: sme
+    label: SME Banking
+    entity_key: client_no
+    connection: {dialect: duckdb, ref: warehouses/sme.duckdb}
+    harvest: true
+  - id: corporate
+    label: Corporate & Institutional
+    entity_key: counterparty_ref
+    connection: {dialect: duckdb, ref: warehouses/corporate.duckdb}
+    harvest: true
+  - id: wealth
+    label: Wealth Management
+    entity_key: HSHLD_DK
+    connection: {dialect: duckdb, ref: warehouses/wealth.duckdb}
+    harvest: true
+
+# The curated layer's own sources, beside the units and none of them: the certified client cross-reference, which links
+# a Retail customer to the Wealth household member who is the same client. It lives with the curated layer, not inside
+# either unit's harvest: no principal reads it on its own, and it is joined only through the certified join below.
+# Matching happens upstream and offline, on whatever personal data it takes; the table holds ids, never that data.
+curated_sources:
+  - id: xref
+    label: Certified client cross-reference
+    connection: {dialect: duckdb, ref: warehouses/xref.duckdb}
+    harvest: true
+
+# The asserted absence of a join between units, one per pair. Curated once by the people who designed the federation.
+# Its absence from a re-harvest must never be read as its falsity, so it lives here and not in any warehouse.
+no_join:
+  - between: [retail, sme]
+    asserted_by: Data Architecture Board
+    asserted_on: "2024-03-12"
+    note: Separate customer populations and separate key domains by design. No mapping table exists.
+  - between: [retail, corporate]
+    asserted_by: Data Architecture Board
+    asserted_on: "2024-03-12"
+    note: >-
+      corporate.contact.customer_id is a CRM contact number. It shares a name with retail.customer.customer_id and
+      nothing else. No mapping table exists.
+  - between: [sme, corporate]
+    asserted_by: Data Architecture Board
+    asserted_on: "2024-03-12"
+    note: Separate customer populations and separate key domains by design. No mapping table exists.
+  - between: [sme, wealth]
+    asserted_by: Data Architecture Board
+    asserted_on: "2024-03-12"
+    note: Separate customer populations and separate key domains by design. No mapping table exists.
+  - between: [corporate, wealth]
+    asserted_by: Data Architecture Board
+    asserted_on: "2024-03-12"
+    note: Separate customer populations and separate key domains by design. No mapping table exists.
+
+# The asserted presence of a join between two units, through a declared cross-reference (joins, below). Since 1.1.0
+# (issue #39's Option B) Retail and Wealth join through the certified client cross-reference: this fact replaces the
+# no-join fact the Data Architecture Board asserted for retail-wealth on 2024-03-12 ("Separate customer populations and
+# separate key domains by design. No mapping table exists."). Every other pair keeps its no-join fact.
+certified_joins:
+  - between: [retail, wealth]
+    join: client_xref
+    asserted_by: Data Architecture Board
+    asserted_on: "2026-10-10"
+    note: certified client cross-reference
+
+# A no-join fact refined to the column it is about: corporate.contact.customer_id is a CRM contact number, and never
+# joins to the Retail customer it shares a name with. The runtime still reads the no-join facts above.
+not_joinable:
+  - column: corporate.contact.customer_id
+    table: retail.customer
+    asserted_by: Data Architecture Board
+    asserted_on: "2024-03-12"
+    note: >-
+      corporate.contact.customer_id is a CRM contact number. It shares a name with retail.customer.customer_id and
+      nothing else. No mapping table exists.
+
+# One enterprise glossary, owned by the CDO's stewards. A term is keyed by its name in the graph; id is its stable slug.
+# defined_by names the certified metric definitions that define it.
+glossary:
+  - id: revenue
+    name: Revenue
+    domain: Finance
+    steward: Group Finance Data Steward
+    status: certified
+    definition: >-
+      Income earned from customers in a period, before costs. Each business unit reports it at its own grain,
+      currency and calendar; see the implementation metadata.
+    defined_by: [MD-REVENUE]
+  - id: net-interest-income
+    name: Net Interest Income
+    domain: Finance
+    steward: Group Finance Data Steward
+    status: certified
+    definition: Interest earned less interest paid, in the reporting currency, for the period.
+    defined_by: [MD-NET-INTEREST-INCOME]
+  - id: fee-income
+    name: Fee Income
+    domain: Finance
+    steward: Group Finance Data Steward
+    status: certified
+    definition: Fees and commissions charged to customers in the period.
+    defined_by: [MD-FEE-INCOME]
+  - id: active-customer
+    name: Active Customer
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: >-
+      A customer with at least one customer-initiated transaction in the calendar month. Logins alone do not count.
+      Version 2, effective 1 January 2025.
+    defined_by: [MD-ACTIVE-CUSTOMER, MD-ACTIVE-CUSTOMER-V1]
+  - id: assets-under-advice
+    name: Assets Under Advice
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: Market value of client assets on which the firm gives advice, at quarter end, USD.
+    defined_by: [MD-ASSETS-UNDER-ADVICE]
+  - id: credit-exposure
+    name: Credit Exposure
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: Exposure at default to a counterparty at the measurement date.
+    defined_by: [MD-CREDIT-EXPOSURE]
+  - id: delinquency-rate
+    name: Delinquency Rate
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: Share of scheduled repayments more than 30 days past due in the month.
+    defined_by: [MD-DELINQUENCY-RATE]
+  - id: customer-attrition
+    name: Customer Attrition
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: Customers whose last account closed in the month, as a share of opening customers.
+    defined_by: [MD-CUSTOMER-ATTRITION]
+  - id: average-balance
+    name: Average Balance
+    domain: Finance
+    steward: Group Finance Data Steward
+    status: certified
+    definition: Mean end-of-day ledger balance over the calendar month.
+    defined_by: [MD-AVERAGE-BALANCE]
+  - id: dormant-account
+    name: Dormant Account
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: An open account with no customer-initiated transaction for twelve months.
+  - id: limit-utilisation
+    name: Limit Utilisation
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: Utilised amount as a share of the approved limit at the measurement date.
+  - id: covenant-breach
+    name: Covenant Breach
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: A covenant whose most recent test failed its threshold.
+  - id: suitability-review
+    name: Suitability Review
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: A documented review of whether a household's portfolio remains suitable.
+  - id: complaint
+    name: Complaint
+    domain: Conduct
+    steward: Conduct Data Steward
+    status: certified
+    definition: An expression of dissatisfaction recorded under the complaints handling procedure.
+  - id: notional
+    name: Notional
+    domain: Markets
+    steward: Markets Data Steward
+    status: certified
+    definition: Face value of a derivative or loan deal, in deal currency.
+  - id: probability-of-default
+    name: Probability of Default
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: Twelve-month probability of default, in basis points.
+  - id: loss-given-default
+    name: Loss Given Default
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: Expected loss as a share of exposure if the counterparty defaults.
+  - id: internal-rating
+    name: Internal Rating
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: The bank's own credit grade for a counterparty.
+  - id: household
+    name: Household
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: "The unit of advice in wealth management: one or more related clients advised together."
+  - id: relationship-manager
+    name: Relationship Manager
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: The named individual accountable for an SME client relationship.
+  - id: fiscal-year
+    name: Fiscal Year
+    domain: Finance
+    steward: Group Finance Data Steward
+    status: certified
+    definition: >-
+      The twelve months from 1 April, used by Corporate and Wealth. Retail and SME report on the calendar year.
+    defined_by: [MD-FISCAL-YEAR]
+  - id: period-end-fx-rate
+    name: Period-End FX Rate
+    domain: Finance
+    steward: Group Finance Data Steward
+    status: certified
+    definition: The exchange rate on the last day of the period, used to convert Corporate revenue to USD.
+    defined_by: [MD-PERIOD-END-FX-RATE]
+  - id: product-holding
+    name: Product Holding
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: Count of distinct open products held by a customer.
+  - id: new-to-bank-customer
+    name: New-to-Bank Customer
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: A customer whose first account opened in the month.
+  - id: market-value
+    name: Market Value
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: Value of a holding at the valuation date in portfolio base currency.
+  - id: digital-login
+    name: Digital Login
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: An authenticated session on the mobile or online channel.
+  - id: branch
+    name: Branch
+    domain: Distribution
+    steward: Distribution Data Steward
+    status: certified
+    definition: A physical retail location.
+  - id: segment
+    name: Segment
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: Marketing segment assigned to a retail customer.
+  - id: facility
+    name: Facility
+    domain: Lending
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: A committed or uncommitted lending line to an SME client.
+  - id: drawdown
+    name: Drawdown
+    domain: Lending
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: A utilisation of a facility.
+  - id: counterparty
+    name: Counterparty
+    domain: Markets
+    steward: Markets Data Steward
+    status: certified
+    definition: A legal entity with which the bank transacts in Corporate & Institutional.
+  - id: legal-entity-identifier
+    name: Legal Entity Identifier
+    domain: Markets
+    steward: Markets Data Steward
+    status: certified
+    definition: The 20-character identifier for a counterparty under the global LEI system.
+  - id: risk-profile
+    name: Risk Profile
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: The household's agreed appetite for investment risk.
+  - id: mandate
+    name: Mandate
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: Whether the firm manages a portfolio at its discretion or advises only.
+  - id: channel
+    name: Channel
+    domain: Distribution
+    steward: Distribution Data Steward
+    status: certified
+    definition: The route by which a transaction was initiated.
+  - id: merchant-category
+    name: Merchant Category
+    domain: Payments
+    steward: Payments Data Steward
+    status: certified
+    definition: The card-scheme category of a merchant.
+  - id: resolved-complaint
+    name: Resolved Complaint
+    domain: Conduct
+    steward: Conduct Data Steward
+    status: certified
+    definition: A complaint with a recorded resolution date.
+  - id: open-account
+    name: Open Account
+    domain: Customer
+    steward: Customer Data Steward
+    status: certified
+    definition: An account whose status is OPEN at the reference date.
+  - id: days-past-due
+    name: Days Past Due
+    domain: Risk
+    steward: Credit Risk Data Steward
+    status: certified
+    definition: Days elapsed since a scheduled repayment date without payment.
+  - id: sector
+    name: Sector
+    domain: Markets
+    steward: Markets Data Steward
+    status: certified
+    definition: Industry sector of a counterparty.
+  # The Wealth expansion's terms (1.1.0).
+  - id: net-new-assets
+    name: Net New Assets
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: >-
+      Money clients bring to the firm less money they take away, in USD, over released months: eligible flows only, with
+      test accounts and excluded accounts left out. A move between a client's own accounts is not new money.
+  - id: client-directed-nna
+    name: Client-Directed NNA
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: Net new assets from the flows a client instructed, not from those the firm books itself.
+  - id: test-account
+    name: Test Account
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: An account opened to test the firm's systems, never a client's holding. Its flows count towards no figure.
+  - id: nna-eligibility
+    name: NNA Eligibility
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: Whether a flow counts towards net new assets, as its flow type and the eligibility rules decide.
+  - id: exclusion
+    name: Exclusion
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: >-
+      An account left out of net new assets for a stated reason, from an effective date until it ends; while it is in
+      force it overrides the eligibility of the account's flows.
+  - id: month-end-release-freeze
+    name: Month-End Release / Freeze
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: >-
+      A month's figures are frozen on its freeze date and released on its release date. Only released months are
+      reported; a month as reported is its figures as they stood at the freeze, and as restated, as they stand now.
+  - id: source-system
+    name: Source System
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: The platform an account is booked on, BANK or BROKERAGE. An account number is unique only within its source system.
+  - id: division
+    name: Division
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: The top of the advisory office hierarchy. Offices roll up to regions, and regions to divisions.
+  # Assets under management (1.3.0, issue #40): a pack edit alone, onboarding's step 9. No document defines it, so a
+  # question on what it means is answered from this definition.
+  - id: assets-under-management
+    name: Assets Under Management
+    domain: Wealth
+    steward: Wealth Data Steward
+    status: certified
+    definition: >-
+      The market value of a household's holdings with the firm, at each quarter end, in USD. Not assets under advice:
+      the two are different measures and are never added.
+
+# The phrases the question parser reads. A phrase names a term (by id), a source, or a candidate term that is not in
+# the glossary yet and is routed to a steward. The longest phrase found wins; in a tie, the first listed.
+terminology:
+  aliases:
+    - {phrase: revenue, term: revenue}
+    - {phrase: net interest income, term: net-interest-income}
+    - {phrase: fee income, term: fee-income}
+    - {phrase: active customer, term: active-customer}
+    - {phrase: active customers, term: active-customer}
+    - {phrase: active clients, term: active-customer}
+    - {phrase: active in, term: active-customer}
+    - {phrase: assets under advice, term: assets-under-advice}
+    - {phrase: credit exposure, term: credit-exposure}
+    - {phrase: delinquency rate, term: delinquency-rate}
+    - {phrase: attrition, term: customer-attrition}
+    - {phrase: average ledger balance, term: average-balance}
+    - {phrase: average balance, term: average-balance}
+    - {phrase: complaints, term: complaint}
+    - {phrase: covenant breach, term: covenant-breach}
+    - {phrase: past due, term: days-past-due}
+    - {phrase: rated, term: internal-rating}
+    - {phrase: suitability reviews, term: suitability-review}
+    - {phrase: customer active, term: active-customer}
+    - {phrase: converted, term: period-end-fx-rate}
+    - {phrase: calendar does, term: fiscal-year}
+    - {phrase: digital engagement score, candidate: Digital Engagement Score}
+    - {phrase: retail, source: retail}
+    - {phrase: sme, source: sme}
+    - {phrase: corporate, source: corporate}
+    - {phrase: wealth, source: wealth}
+    # 1.1.0: metric variants, the time modes a figure is asked in, the latest month, the dimensions a figure is grouped
+    # by (a column) and the entities a question names by id ("household 5001").
+    - {phrase: nna, term: net-new-assets}
+    - {phrase: client directed nna, term: client-directed-nna}
+    - {phrase: aum, term: assets-under-management}
+    - {phrase: assets under management, term: assets-under-management}
+    - {phrase: as reported, time_mode: as_reported}
+    - {phrase: restated, time_mode: restated}
+    - {phrase: latest month, period: latest}
+    - {phrase: by division, group_by: wealth.DIVSN_DIM_1.DIVSN_CD}
+    - {phrase: by region, group_by: wealth.RGN_DIM_1.RGN_CD}
+    - {phrase: by office, group_by: wealth.BRCH_DIM_1.BRCH_CD}
+    - {phrase: by advisor office, group_by: wealth.BRCH_DIM_1.BRCH_CD}
+    - {phrase: by parent segment, group_by: wealth.CLNT_SEGMT_DIM_1.PARNT_SEGMT_CD}
+    - {phrase: by source system, group_by: wealth.TRAN_FACT_1.ACCT_SRCE_SYS_ID}
+    - {phrase: household, entity: wealth_household}
+    - {phrase: customer, entity: retail_customer}
+    # The advisory business is Wealth's: a question about advisory assets or inflows names the unit (the owner's
+    # cross-unit questions), so one that pairs it with Retail needs both, through the certified join.
+    - {phrase: advisory, source: wealth}
+    # Deposits are Retail's (1.3.0): a question that pairs them with advisory assets names both units, through the
+    # certified join, as the owner's cross-unit questions do.
+    - {phrase: deposits, source: retail}
+    # A Wealth account is an entity a question counts ("how many accounts"), by its whole key; and a question about the
+    # accounts excluded names the exclusion, which net new assets leaves out, so its figure is not that question's.
+    - {phrase: account, entity: wealth_account}
+    - {phrase: excluded, term: exclusion}
+    # A term whose name no question says whole, Month-End Release / Freeze, is named by either half of it: so a question
+    # on what it means is answered from its definition here, which no document gives.
+    - {phrase: month-end release, term: month-end-release-freeze}
+    - {phrase: month-end freeze, term: month-end-release-freeze}
+    - {phrase: month end release, term: month-end-release-freeze}
+    - {phrase: month end freeze, term: month-end-release-freeze}
+    # The business names of Wealth's columns (1.5.0, kge/estate/names.py): each column a Meridian table has, and each SAGE
+    # column a dropped Meridian table held under a name of its own, as <business table>.<business column>, names the
+    # physical column that holds it. The parser reads none of them for a condition; they let a business name resolve to
+    # the column the SQL reads, in an answer, a plan's check of what it applies and a restricted column's name.
+    - {phrase: fiscal_calendar.fiscal_quarter, column: wealth.FISCAL_QTR_DIM_1.FISCAL_QTR_CD}
+    - {phrase: fiscal_calendar.fiscal_year, column: wealth.FISCAL_QTR_DIM_1.FISCAL_YEAR_NR}
+    - {phrase: fiscal_calendar.quarter_start, column: wealth.FISCAL_QTR_DIM_1.QRTR_START_CLDR_DT}
+    - {phrase: fiscal_calendar.quarter_end, column: wealth.FISCAL_QTR_DIM_1.QRTR_END_CLDR_DT}
+    - {phrase: advisor.advisor_id, column: wealth.ADV_DIM_1.ADV_ID}
+    - {phrase: advisor.advisor_name, column: wealth.ADV_DIM_1.ADV_NM}
+    - {phrase: advisor.office_code, column: wealth.ADV_DIM_1.BRCH_CD}
+    - {phrase: advisor.licence_class, column: wealth.ADV_DIM_1.LICNS_CLS_CD}
+    - {phrase: household.household_id, column: wealth.HSHLD_DIM_1.HSHLD_DK}
+    - {phrase: household.household_name, column: wealth.HSHLD_DIM_1.HSHLD_NM}
+    - {phrase: household.primary_advisor_id, column: wealth.HSHLD_DIM_1.PRIM_ADV_ID}
+    - {phrase: household.risk_profile, column: wealth.HSHLD_DIM_1.RISK_PRFL_CD}
+    - {phrase: household.onboarded_on, column: wealth.HSHLD_DIM_1.HSHLD_ONBRD_DT}
+    - {phrase: portfolio.portfolio_id, column: wealth.PRTFL_DIM_1.PRTFL_ID}
+    - {phrase: portfolio.household_id, column: wealth.PRTFL_DIM_1.HSHLD_DK}
+    - {phrase: portfolio.mandate_type, column: wealth.PRTFL_DIM_1.MNDT_TYPE_CD}
+    - {phrase: portfolio.base_currency, column: wealth.PRTFL_DIM_1.BASE_CRNCY_CD}
+    - {phrase: portfolio.inception_on, column: wealth.PRTFL_DIM_1.PRTFL_INCPTN_DT}
+    - {phrase: holding.holding_id, column: wealth.HLDG_FACT_1.HLDG_ID}
+    - {phrase: holding.portfolio_id, column: wealth.HLDG_FACT_1.PRTFL_ID}
+    - {phrase: holding.as_of, column: wealth.HLDG_FACT_1.AS_OF_DT}
+    - {phrase: holding.instrument_id, column: wealth.HLDG_FACT_1.INSTR_ID}
+    - {phrase: holding.quantity, column: wealth.HLDG_FACT_1.HLDG_QY}
+    - {phrase: holding.market_value, column: wealth.HLDG_FACT_1.MKT_VAL_AM}
+    - {phrase: quarterly_fee_revenue.fee_id, column: wealth.QTR_FEE_REV_FACT_1.FEE_ID}
+    - {phrase: quarterly_fee_revenue.household_id, column: wealth.QTR_FEE_REV_FACT_1.HSHLD_DK}
+    - {phrase: quarterly_fee_revenue.fiscal_quarter, column: wealth.QTR_FEE_REV_FACT_1.FISCAL_QTR_CD}
+    - {phrase: quarterly_fee_revenue.advisory_fee_usd, column: wealth.QTR_FEE_REV_FACT_1.ADV_FEE_AM}
+    - {phrase: quarterly_fee_revenue.product_fee_usd, column: wealth.QTR_FEE_REV_FACT_1.PROD_FEE_AM}
+    - {phrase: quarterly_fee_revenue.revenue_usd, column: wealth.QTR_FEE_REV_FACT_1.REV_AM}
+    - {phrase: assets_under_advice.aua_id, column: wealth.AUA_FACT_1.AUA_ID}
+    - {phrase: assets_under_advice.household_id, column: wealth.AUA_FACT_1.HSHLD_DK}
+    - {phrase: assets_under_advice.as_of, column: wealth.AUA_FACT_1.AS_OF_DT}
+    - {phrase: assets_under_advice.aua_usd, column: wealth.AUA_FACT_1.AUA_AM}
+    - {phrase: suitability_review.review_id, column: wealth.SUIT_RVW_FACT_1.RVW_ID}
+    - {phrase: suitability_review.household_id, column: wealth.SUIT_RVW_FACT_1.HSHLD_DK}
+    - {phrase: suitability_review.reviewed_on, column: wealth.SUIT_RVW_FACT_1.RVW_DT}
+    - {phrase: suitability_review.outcome_code, column: wealth.SUIT_RVW_FACT_1.RVW_OUTCM_CD}
+    - {phrase: suitability_review.reviewer_id, column: wealth.SUIT_RVW_FACT_1.RVWR_ADV_ID}
+    - {phrase: division.division_code, column: wealth.DIVSN_DIM_1.DIVSN_CD}
+    - {phrase: division.division_name, column: wealth.DIVSN_DIM_1.DIVSN_NM}
+    - {phrase: division.valid_from, column: wealth.DIVSN_DIM_1.DW_EFF_DT}
+    - {phrase: division.valid_to, column: wealth.DIVSN_DIM_1.DW_EXPR_DT}
+    - {phrase: division.is_current, column: wealth.DIVSN_DIM_1.CURR_IN}
+    - {phrase: region.region_code, column: wealth.RGN_DIM_1.RGN_CD}
+    - {phrase: region.region_name, column: wealth.RGN_DIM_1.RGN_NM}
+    - {phrase: region.division_code, column: wealth.RGN_DIM_1.DIVSN_CD}
+    - {phrase: region.valid_from, column: wealth.RGN_DIM_1.DW_EFF_DT}
+    - {phrase: region.valid_to, column: wealth.RGN_DIM_1.DW_EXPR_DT}
+    - {phrase: region.is_current, column: wealth.RGN_DIM_1.CURR_IN}
+    - {phrase: client_segment.segment_code, column: wealth.CLNT_SEGMT_DIM_1.SEGMT_CD}
+    - {phrase: client_segment.segment_name, column: wealth.CLNT_SEGMT_DIM_1.SEGMT_NM}
+    - {phrase: client_segment.parent_segment_code, column: wealth.CLNT_SEGMT_DIM_1.PARNT_SEGMT_CD}
+    - {phrase: client_segment.level, column: wealth.CLNT_SEGMT_DIM_1.SEGMT_LVL_NR}
+    - {phrase: ref_flow_type.flow_type_code, column: wealth.TRAN_TYPE_1.DW_TRAN_TYPE_CD}
+    - {phrase: ref_flow_type.description, column: wealth.TRAN_TYPE_1.TRAN_TYPE_DESC_TX}
+    - {phrase: ref_flow_type.direction, column: wealth.TRAN_TYPE_1.DIRCTN_CD}
+    - {phrase: ref_flow_type.nna_counts, column: wealth.TRAN_TYPE_1.NNA_CNT_IN}
+    - {phrase: household_member.household_id, column: wealth.HSHLD_MBR_1.HSHLD_DK}
+    - {phrase: household_member.member_id, column: wealth.HSHLD_MBR_1.MBR_ID}
+    - {phrase: household_member.member_role, column: wealth.HSHLD_MBR_1.MBR_ROLE_CD}
+    - {phrase: nna_exclusion.exclusion_id, column: wealth.NNA_EXCL_1.EXCL_ID}
+    - {phrase: nna_exclusion.account_id, column: wealth.NNA_EXCL_1.DW_ACCT_ID}
+    - {phrase: nna_exclusion.source_system, column: wealth.NNA_EXCL_1.SRCE_SYS_CD}
+    - {phrase: nna_exclusion.reason_code, column: wealth.NNA_EXCL_1.EXCL_RSN_CD}
+    - {phrase: nna_exclusion.effective_from, column: wealth.NNA_EXCL_1.EXCL_EFF_DT}
+    - {phrase: nna_exclusion.effective_to, column: wealth.NNA_EXCL_1.EXCL_EXPR_DT}
+    - {phrase: aum_month_end.household_id, column: wealth.AUM_MNTH_END_FACT_1.HSHLD_DK}
+    - {phrase: aum_month_end.month_end_date, column: wealth.AUM_MNTH_END_FACT_1.CLDR_EOM_DT}
+    - {phrase: aum_month_end.aum_usd, column: wealth.AUM_MNTH_END_FACT_1.AUM_AM}
+    - {phrase: account.account_id, column: wealth.ACCT_DIM2_1.DW_ACCT_ID}
+    - {phrase: account.source_system, column: wealth.ACCT_DIM2_1.SRCE_SYS_ID}
+    - {phrase: account.household_id, column: wealth.ACCT_DIM2_1.HSHLD_DK}
+    - {phrase: account.is_test_account, column: wealth.ACCT_DIM2_1.TEST_ACCT_IN}
+    - {phrase: account.valid_from, column: wealth.ACCT_DIM2_1.DW_EFF_DT}
+    - {phrase: account.valid_to, column: wealth.ACCT_DIM2_1.DW_EXPR_DT}
+    - {phrase: account.is_current, column: wealth.ACCT_DIM2_1.CURR_IN}
+    - {phrase: flow.flow_id, column: wealth.TRAN_FACT_1.DW_TRAN_ID}
+    - {phrase: flow.account_id, column: wealth.TRAN_FACT_1.DW_ACCT_ID}
+    - {phrase: flow.source_system, column: wealth.TRAN_FACT_1.ACCT_SRCE_SYS_ID}
+    - {phrase: flow.flow_date, column: wealth.TRAN_FACT_1.DW_TRAN_DT}
+    - {phrase: flow.flow_type_code, column: wealth.TRAN_FACT_1.DW_TRAN_TYPE_CD}
+    - {phrase: flow.amount_usd, column: wealth.TRAN_FACT_1.TRAN_AM}
+    - {phrase: flow.nna_eligible_flag, column: wealth.TRAN_FACT_1.NNA_IN}
+    - {phrase: flow.counterparty_account, column: wealth.TRAN_FACT_1.OFSET_ACCT_ID}
+    - {phrase: flow.valid_from, column: wealth.TRAN_FACT_1.DW_EFF_DT}
+    - {phrase: flow.valid_to, column: wealth.TRAN_FACT_1.DW_EXPR_DT}
+    - {phrase: flow.is_current, column: wealth.TRAN_FACT_1.CURR_IN}
+    - {phrase: month_end.month_end_date, column: wealth.MONTH_DIM_1.CLDR_EOM_DT}
+    - {phrase: month_end.release_date, column: wealth.MONTH_DIM_1.FIN_MTRC_RLSE_DT}
+    - {phrase: office.office_code, column: wealth.BRCH_DIM_1.BRCH_CD}
+    - {phrase: office.office_name, column: wealth.BRCH_DIM_1.BRCH_NM}
+    - {phrase: office.region_code, column: wealth.BRCH_DIM_1.RGN_CD}
+    - {phrase: office.valid_from, column: wealth.BRCH_DIM_1.DW_EFF_DT}
+    - {phrase: office.valid_to, column: wealth.BRCH_DIM_1.DW_EXPR_DT}
+    - {phrase: office.is_current, column: wealth.BRCH_DIM_1.CURR_IN}
+    - {phrase: ref_source_system.system_name, column: wealth.SRCE_SYS_1.SRCE_SYS_NM}
+  # 1.2.0: the rest of the parser's vocabulary, ported one for one from api/core.py as it was before (its filter
+  # phrases and values, the openings that mark a definitional question and the words that mark a count or an average)
+  # and from pipeline/privacy.py (the role mailboxes). The parser reads each the same way, on every arm, as it read the
+  # code: a filter names a column, and the runtime filters on the column of that name in the unit it plans.
+  # A column's values a question filters on: one of the values listed, as written, or a code of a pattern the platform
+  # knows (upper_2, two capitals; upper_2_3, two or three; upper_4_plus, four or more; upper_letter, one), after a
+  # prefix the value begins with; after one of the phrases given ("region NW") or before one ("GROWTH risk profile").
+  value_vocabularies:
+    - {column: retail.branch.region_code, after: [region, region is], pattern: upper_2_3}
+    - {column: sme.relationship_manager.team_code, prefix: TEAM-, pattern: upper_letter}
+    - {column: corporate.counterparty.country_code, after: [incorporated in], pattern: upper_2}
+    - {column: wealth.HSHLD_DIM_1.RISK_PRFL_CD, before: [risk profile], pattern: upper_4_plus}
+    - column: retail.product.product_name
+      values: [Everyday Current, Premier Current, Instant Saver, Fixed Saver, Personal Loan, Rewards Card]
+    - {column: corporate.rating.internal_grade, after: [rated], values: [A1, A2, B1, B2, C1, C2]}
+  # A condition a phrase sets on a column, whatever the case: with "with", only where one of those words is in the
+  # question too, before or after the phrase ("unresolved complaints", "complaints still open").
+  predicates:
+    - {phrases: [open, unresolved], with: [complaint, complaints], column: retail.complaint.resolved_on, op: is_null}
+    - {phrases: [escalated], column: wealth.SUIT_RVW_FACT_1.RVW_OUTCM_CD, op: eq, value: ESCALATED}
+    - {phrases: [more than 30 days past due], column: sme.repayment.days_past_due, op: gt, value: 30}
+    - {phrases: [in covenant breach], column: sme.covenant.breached_flag, op: is_true}
+    # The source system a Wealth flow is booked on, by Meridian's code for it ("NNA from BROKERAGE"), as SAGE's id
+    # (100 BROKERAGE, 200 BANK): a bank only as "from BANK" or "on BANK", so the word bank alone is never one.
+    - {phrases: [BROKERAGE], column: wealth.TRAN_FACT_1.ACCT_SRCE_SYS_ID, op: eq, value: 100}
+    - {phrases: [from BANK, on BANK], column: wealth.TRAN_FACT_1.ACCT_SRCE_SYS_ID, op: eq, value: 200}
+  # What marks a question's intent, whatever the case: a definitional question opens with one of its phrases; a count
+  # or an average says one anywhere.
+  intents:
+    - phrases: [what is, what makes, what does, does a, is total, which calendar, how is, where is, may restricted,
+                which version, can retail, define]
+      intent: definitional
+    - {phrases: [how many, number of, count], intent: count}
+    - {phrases: [average], intent: avg}
+  # Mailboxes that name a function, not a person: an address at one is not personal data, so certification leaves it in
+  # clear and the steward queue shows it as likely functional.
+  functional_mailboxes: [records, info, support, privacy, helpdesk, noreply, no-reply, admin, enquiries, complaints, retention,
+                         dpo, compliance, service, contact]
+
+# Retail and SME report on the calendar year; Corporate and Wealth on a fiscal year from 1 April (FY26-Q1 is April to
+# June 2025).
+calendars:
+  - {id: calendar, year_start_month: 1, quarter_label: "{yyyy}-Q{n}"}
+  - {id: fiscal_april, year_start_month: 4, quarter_label: "FY{yy}-Q{n}"}
+
+# Which column carries each table's period: a calendar month (month), a fiscal quarter label (fiscal_quarter), a
+# snapshot date (snapshot) or the date something happened (event_date), on which calendar, and the table a month or a
+# quarter rolls up through. Thirty-one of the thirty-five tables have one; product, relationship_manager, contact and
+# advisor have none. A table with several dates takes the first by name (corporate.deal: maturity_on); resolved_on,
+# closed_on and end_on never carry a period. Since 1.1.0, wealth.flow, the net new assets measure's fact, on the date a
+# flow was booked; its month and its release go through the declared calendar rollup (joins: flow_month_end). Since 1.5.0
+# the flows are SAGE's TRAN_FACT_1, booked on DW_TRAN_DT.
+period_bindings:
+  - {table: retail.calendar_month, column: month_start, kind: month, calendar: calendar, rollup: {table: retail.calendar_month, column: calendar_quarter}}
+  - {table: retail.branch, column: opened_on, kind: event_date, calendar: calendar}
+  - {table: retail.customer, column: opened_on, kind: event_date, calendar: calendar}
+  - {table: retail.account, column: opened_on, kind: event_date, calendar: calendar}
+  - {table: retail.transaction, column: posted_on, kind: event_date, calendar: calendar}
+  - {table: retail.monthly_revenue, column: month_start, kind: month, calendar: calendar, rollup: {table: retail.calendar_month, column: calendar_quarter}}
+  - {table: retail.daily_balance, column: as_of, kind: snapshot, calendar: calendar}
+  - {table: retail.customer_activity, column: month_start, kind: month, calendar: calendar, rollup: {table: retail.calendar_month, column: calendar_quarter}}
+  - {table: retail.complaint, column: raised_on, kind: event_date, calendar: calendar}
+  - {table: sme.calendar_month, column: month_start, kind: month, calendar: calendar, rollup: {table: sme.calendar_month, column: calendar_quarter}}
+  - {table: sme.client, column: onboarded_on, kind: event_date, calendar: calendar}
+  - {table: sme.facility, column: start_on, kind: event_date, calendar: calendar}
+  - {table: sme.drawdown, column: drawn_on, kind: event_date, calendar: calendar}
+  - {table: sme.repayment, column: paid_on, kind: event_date, calendar: calendar}
+  - {table: sme.monthly_client_revenue, column: month_start, kind: month, calendar: calendar, rollup: {table: sme.calendar_month, column: calendar_quarter}}
+  - {table: sme.client_activity, column: month_start, kind: month, calendar: calendar, rollup: {table: sme.calendar_month, column: calendar_quarter}}
+  - {table: sme.covenant, column: tested_on, kind: event_date, calendar: calendar}
+  - {table: corporate.fiscal_calendar, column: fiscal_quarter, kind: fiscal_quarter, calendar: fiscal_april, rollup: {table: corporate.fiscal_calendar, column: fiscal_year}}
+  - {table: corporate.counterparty, column: onboarded_on, kind: event_date, calendar: calendar}
+  - {table: corporate.deal, column: maturity_on, kind: event_date, calendar: calendar}
+  - {table: corporate.exposure, column: as_of, kind: snapshot, calendar: calendar}
+  - {table: corporate.quarterly_revenue, column: fiscal_quarter, kind: fiscal_quarter, calendar: fiscal_april, rollup: {table: corporate.fiscal_calendar, column: fiscal_year}}
+  - {table: corporate.limit_utilisation, column: as_of, kind: snapshot, calendar: calendar}
+  - {table: corporate.rating, column: rated_on, kind: event_date, calendar: calendar}
+  - {table: wealth.FISCAL_QTR_DIM_1, column: FISCAL_QTR_CD, kind: fiscal_quarter, calendar: fiscal_april, rollup: {table: wealth.FISCAL_QTR_DIM_1, column: FISCAL_YEAR_NR}}
+  - {table: wealth.HSHLD_DIM_1, column: HSHLD_ONBRD_DT, kind: event_date, calendar: calendar}
+  - {table: wealth.PRTFL_DIM_1, column: PRTFL_INCPTN_DT, kind: event_date, calendar: calendar}
+  - {table: wealth.HLDG_FACT_1, column: AS_OF_DT, kind: snapshot, calendar: calendar}
+  - {table: wealth.QTR_FEE_REV_FACT_1, column: FISCAL_QTR_CD, kind: fiscal_quarter, calendar: fiscal_april, rollup: {table: wealth.FISCAL_QTR_DIM_1, column: FISCAL_YEAR_NR}}
+  - {table: wealth.AUA_FACT_1, column: AS_OF_DT, kind: snapshot, calendar: calendar}
+  - {table: wealth.SUIT_RVW_FACT_1, column: RVW_DT, kind: event_date, calendar: calendar}
+  - {table: wealth.TRAN_FACT_1, column: DW_TRAN_DT, kind: event_date, calendar: calendar}
+  - {table: wealth.AUM_MNTH_END_FACT_1, column: CLDR_EOM_DT, kind: snapshot, calendar: calendar}
+
+# The certified measures, with their grain, currency, calendar and conversion: commensurability across units is derived
+# from these by rule, never guessed. The ten ported from before issue #39 are each a sum over a column certified to its
+# term. Net new assets (1.1.0) is certified through its contexts and their golden questions instead, since its figure
+# is the flows' amount only once its contexts' filters, row selectors and joins have applied: its column maps to no term.
+measures:
+  - id: retail.revenue
+    term: revenue
+    column: retail.monthly_revenue.total_revenue_usd
+    expression: sum(monthly_revenue.total_revenue_usd)
+    aggregation: sum
+    grain: month
+    currency: USD
+    calendar: calendar
+    conversion: none
+  - id: sme.revenue
+    term: revenue
+    column: sme.monthly_client_revenue.revenue_usd
+    expression: sum(monthly_client_revenue.revenue_usd)
+    aggregation: sum
+    grain: month
+    currency: USD
+    calendar: calendar
+    conversion: none
+  - id: corporate.revenue
+    term: revenue
+    column: corporate.quarterly_revenue.revenue_usd_converted
+    expression: sum(quarterly_revenue.revenue_usd_converted)
+    aggregation: sum
+    grain: quarter
+    currency: USD
+    calendar: fiscal_april
+    conversion: period_end_rate_from_EUR
+  - id: wealth.revenue
+    term: revenue
+    column: wealth.QTR_FEE_REV_FACT_1.REV_AM
+    expression: sum(QTR_FEE_REV_FACT_1.REV_AM)
+    aggregation: sum
+    grain: quarter
+    currency: USD
+    calendar: fiscal_april
+    conversion: none
+  - id: retail.net-interest-income
+    term: net-interest-income
+    column: retail.monthly_revenue.interest_income
+    expression: sum(monthly_revenue.interest_income)
+    aggregation: sum
+    grain: month
+    currency: USD
+    calendar: calendar
+    conversion: none
+  - id: sme.net-interest-income
+    term: net-interest-income
+    column: sme.monthly_client_revenue.nii
+    expression: sum(monthly_client_revenue.nii)
+    aggregation: sum
+    grain: month
+    currency: USD
+    calendar: calendar
+    conversion: none
+  - id: retail.fee-income
+    term: fee-income
+    column: retail.monthly_revenue.fee_income
+    expression: sum(monthly_revenue.fee_income)
+    aggregation: sum
+    grain: month
+    currency: USD
+    calendar: calendar
+    conversion: none
+  - id: sme.fee-income
+    term: fee-income
+    column: sme.monthly_client_revenue.fees
+    expression: sum(monthly_client_revenue.fees)
+    aggregation: sum
+    grain: month
+    currency: USD
+    calendar: calendar
+    conversion: none
+  - id: wealth.assets-under-advice
+    term: assets-under-advice
+    column: wealth.AUA_FACT_1.AUA_AM
+    expression: sum(AUA_FACT_1.AUA_AM)
+    aggregation: sum
+    grain: quarter_end
+    currency: USD
+    calendar: fiscal_april
+    conversion: none
+  - id: corporate.credit-exposure
+    term: credit-exposure
+    column: corporate.exposure.ead_eur
+    expression: sum(exposure.ead_eur)
+    aggregation: sum
+    grain: as_of
+    currency: EUR
+    calendar: calendar
+    conversion: none
+  - id: wealth.net-new-assets
+    term: net-new-assets
+    column: wealth.TRAN_FACT_1.TRAN_AM
+    expression: >-
+      sum(CASE WHEN TRAN_FACT_1.DW_TRAN_DIRCTN_CD = 'O' THEN -TRAN_FACT_1.TRAN_AM ELSE TRAN_FACT_1.TRAN_AM END)
+    aggregation: sum
+    grain: day
+    currency: USD
+    calendar: fiscal_april
+    conversion: none
+  # Assets under management (1.3.0), certified through its context and its golden question, as net new assets is.
+  - id: wealth.assets-under-management
+    term: assets-under-management
+    column: wealth.AUM_MNTH_END_FACT_1.AUM_AM
+    expression: sum(AUM_MNTH_END_FACT_1.AUM_AM)
+    aggregation: sum
+    grain: quarter_end
+    currency: USD
+    calendar: fiscal_april
+    conversion: none
+
+# Certified column-to-term mappings, roughly one column in nine, as at the reference institution. Everything not listed
+# is uncertified and stays out of the control experiment. Each is certified by its term's steward.
+mappings:
+  - {column: retail.monthly_revenue.total_revenue_usd, term: revenue, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: sme.monthly_client_revenue.revenue_usd, term: revenue, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: corporate.quarterly_revenue.revenue_usd_converted, term: revenue, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: wealth.QTR_FEE_REV_FACT_1.REV_AM, term: revenue, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: retail.monthly_revenue.interest_income, term: net-interest-income, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: sme.monthly_client_revenue.nii, term: net-interest-income, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: retail.monthly_revenue.fee_income, term: fee-income, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: sme.monthly_client_revenue.fees, term: fee-income, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: retail.customer_activity.is_active_flag, term: active-customer, certified: true, certified_by: Customer Data Steward, certified_on: "2024-11-15"}
+  - {column: sme.client_activity.active_flag, term: active-customer, certified: true, certified_by: Customer Data Steward, certified_on: "2024-11-15"}
+  - {column: wealth.AUA_FACT_1.AUA_AM, term: assets-under-advice, certified: true, certified_by: Wealth Data Steward, certified_on: "2024-11-15"}
+  - {column: corporate.exposure.ead_eur, term: credit-exposure, certified: true, certified_by: Credit Risk Data Steward, certified_on: "2024-11-15"}
+  - {column: corporate.exposure.pd_bps, term: probability-of-default, certified: true, certified_by: Credit Risk Data Steward, certified_on: "2024-11-15"}
+  - {column: corporate.exposure.lgd_pct, term: loss-given-default, certified: true, certified_by: Credit Risk Data Steward, certified_on: "2024-11-15"}
+  - {column: retail.daily_balance.ledger_balance, term: average-balance, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: sme.repayment.days_past_due, term: days-past-due, certified: true, certified_by: Credit Risk Data Steward, certified_on: "2024-11-15"}
+  - {column: sme.covenant.breached_flag, term: covenant-breach, certified: true, certified_by: Credit Risk Data Steward, certified_on: "2024-11-15"}
+  - {column: corporate.rating.internal_grade, term: internal-rating, certified: true, certified_by: Credit Risk Data Steward, certified_on: "2024-11-15"}
+  - {column: wealth.HLDG_FACT_1.MKT_VAL_AM, term: market-value, certified: true, certified_by: Wealth Data Steward, certified_on: "2024-11-15"}
+  - {column: corporate.deal.notional_eur, term: notional, certified: true, certified_by: Markets Data Steward, certified_on: "2024-11-15"}
+  - {column: corporate.quarterly_revenue.fx_rate_period_end, term: period-end-fx-rate, certified: true, certified_by: Group Finance Data Steward, certified_on: "2024-11-15"}
+  - {column: retail.customer_activity.login_count, term: digital-login, certified: true, certified_by: Customer Data Steward, certified_on: "2024-11-15"}
+  - {column: retail.complaint.complaint_id, term: complaint, certified: true, certified_by: Conduct Data Steward, certified_on: "2024-11-15"}
+  - {column: wealth.SUIT_RVW_FACT_1.RVW_ID, term: suitability-review, certified: true, certified_by: Wealth Data Steward, certified_on: "2024-11-15"}
+
+# -- 1.1.0: the query semantics of the Wealth expansion (meta-model 1.1.0) -------------------------------------------------
+# What a figure the Wealth terms name is built of, as data: a term resolves to its contexts; a context names its measure
+# and fact table, the filters and row selectors it always applies, and the declared joins it renders, always or to reach a
+# dimension. A runtime builds the query from these, not from the question's words.
+
+# Short forms: of a term, or as the physical columns' names would spell them (the cryptic spellings a question may use).
+acronyms:
+  - {id: NNA, expansion: Net New Assets, terms: [net-new-assets]}
+  - {id: AUA, expansion: Assets Under Advice, terms: [assets-under-advice]}
+  - {id: AUM, expansion: Assets Under Management, terms: [assets-under-management]}
+  - {id: NNA_ELIG_FLG, expansion: NNA eligible flag, terms: [nna-eligibility], columns: [wealth.TRAN_FACT_1.NNA_IN]}
+  - id: SRC_SYS_CD
+    expansion: source system code
+    terms: [source-system]
+    columns: [wealth.TRAN_FACT_1.ACCT_SRCE_SYS_ID, wealth.ACCT_DIM2_1.SRCE_SYS_ID, wealth.NNA_EXCL_1.SRCE_SYS_CD,
+              xref.client_xref.source_system]
+  - {id: CLNT_DIR_IND, expansion: client-directed indicator, columns: [wealth.F_NNA_FIN.CLIENT_DIRECTED_NNA_IN]}
+  # SAGE's physical column names, as the columns spell them (1.5.0): an acronym the column's name is.
+  - {id: ACCT_SRCE_SYS_ID, expansion: Account source system id, columns: [wealth.TRAN_FACT_1.ACCT_SRCE_SYS_ID]}
+  - {id: BRCH_CD, expansion: Branch code, columns: [wealth.BRCH_DIM_1.BRCH_CD]}
+  - {id: BRCH_NM, expansion: Branch name, columns: [wealth.BRCH_DIM_1.BRCH_NM]}
+  - {id: CLDR_EOM_DT, expansion: Calendar eom date, columns: [wealth.MONTH_DIM_1.CLDR_EOM_DT]}
+  - {id: CURR_IN, expansion: Current indicator, columns: [wealth.ACCT_DIM2_1.CURR_IN, wealth.TRAN_FACT_1.CURR_IN, wealth.BRCH_DIM_1.CURR_IN]}
+  - {id: DW_ACCT_ID, expansion: DW account id, columns: [wealth.ACCT_DIM2_1.DW_ACCT_ID, wealth.TRAN_FACT_1.DW_ACCT_ID]}
+  - {id: DW_EFF_DT, expansion: DW effective date, columns: [wealth.ACCT_DIM2_1.DW_EFF_DT, wealth.TRAN_FACT_1.DW_EFF_DT, wealth.BRCH_DIM_1.DW_EFF_DT]}
+  - {id: DW_EXPR_DT, expansion: DW expiry date, columns: [wealth.ACCT_DIM2_1.DW_EXPR_DT, wealth.TRAN_FACT_1.DW_EXPR_DT, wealth.BRCH_DIM_1.DW_EXPR_DT]}
+  - {id: DW_TRAN_DT, expansion: DW transaction date, columns: [wealth.TRAN_FACT_1.DW_TRAN_DT]}
+  - {id: DW_TRAN_ID, expansion: DW transaction id, columns: [wealth.TRAN_FACT_1.DW_TRAN_ID]}
+  - {id: DW_TRAN_TYPE_CD, expansion: DW transaction type code, columns: [wealth.TRAN_FACT_1.DW_TRAN_TYPE_CD]}
+  - {id: FIN_MTRC_RLSE_DT, expansion: Financial metric release date, columns: [wealth.MONTH_DIM_1.FIN_MTRC_RLSE_DT]}
+  - {id: HSHLD_DK, expansion: Household key, columns: [wealth.ACCT_DIM2_1.HSHLD_DK]}
+  - {id: NNA_IN, expansion: Net new assets indicator, columns: [wealth.TRAN_FACT_1.NNA_IN]}
+  - {id: OFSET_ACCT_ID, expansion: Offset account id, columns: [wealth.TRAN_FACT_1.OFSET_ACCT_ID]}
+  - {id: RGN_CD, expansion: Region code, columns: [wealth.BRCH_DIM_1.RGN_CD]}
+  - {id: SRCE_SYS_ID, expansion: Source system id, columns: [wealth.ACCT_DIM2_1.SRCE_SYS_ID, wealth.SRCE_SYS_1.SRCE_SYS_ID]}
+  - {id: SRCE_SYS_NM, expansion: Source system name, columns: [wealth.SRCE_SYS_1.SRCE_SYS_NM]}
+  - {id: TEST_ACCT_IN, expansion: Test account indicator, columns: [wealth.ACCT_DIM2_1.TEST_ACCT_IN]}
+  - {id: TRAN_AM, expansion: Transaction amount, columns: [wealth.TRAN_FACT_1.TRAN_AM]}
+
+# Business entities and the key a table identifies each by: each unit's customer, by its customer-like key, and the
+# Wealth account, by its composite key (an account number is unique only within its source system), SAGE's ACCT_DIM2_1
+# since 1.5.0. Since 1.5.0 every Wealth table represents the entity its business name names (kge/estate/names.py): the
+# Wealth household and account as before, the rest labelled with the name, so a person or an agent reads the table by it.
+entities:
+  - {id: retail_customer, label: Retail customer, table: retail.customer, key: [customer_id]}
+  - {id: sme_client, label: SME client, table: sme.client, key: [client_no]}
+  - {id: corporate_counterparty, label: Corporate counterparty, table: corporate.counterparty, key: [counterparty_ref]}
+  - {id: wealth_household, label: Wealth household, table: wealth.HSHLD_DIM_1, key: [HSHLD_DK]}
+  - {id: wealth_account, label: Wealth account, table: wealth.ACCT_DIM2_1, key: [DW_ACCT_ID, SRCE_SYS_ID]}
+  # Each other Wealth table, by its business name (1.5.0): its label is the name, the table its physical one.
+  - {id: wealth_fiscal_calendar, label: fiscal_calendar, table: wealth.FISCAL_QTR_DIM_1, key: [FISCAL_QTR_CD]}
+  - {id: wealth_advisor, label: advisor, table: wealth.ADV_DIM_1, key: [ADV_ID]}
+  - {id: wealth_portfolio, label: portfolio, table: wealth.PRTFL_DIM_1, key: [PRTFL_ID]}
+  - {id: wealth_holding, label: holding, table: wealth.HLDG_FACT_1, key: [HLDG_ID]}
+  - {id: wealth_quarterly_fee_revenue, label: quarterly_fee_revenue, table: wealth.QTR_FEE_REV_FACT_1, key: [FEE_ID]}
+  - {id: wealth_assets_under_advice, label: assets_under_advice, table: wealth.AUA_FACT_1, key: [AUA_ID]}
+  - {id: wealth_suitability_review, label: suitability_review, table: wealth.SUIT_RVW_FACT_1, key: [RVW_ID]}
+  - {id: wealth_division, label: division, table: wealth.DIVSN_DIM_1, key: [DIVSN_CD]}
+  - {id: wealth_region, label: region, table: wealth.RGN_DIM_1, key: [RGN_CD]}
+  - {id: wealth_client_segment, label: client_segment, table: wealth.CLNT_SEGMT_DIM_1, key: [SEGMT_CD]}
+  - {id: wealth_ref_flow_type, label: ref_flow_type, table: wealth.TRAN_TYPE_1, key: [DW_TRAN_TYPE_CD]}
+  - {id: wealth_household_member, label: household_member, table: wealth.HSHLD_MBR_1, key: [HSHLD_DK, MBR_ID]}
+  - {id: wealth_nna_exclusion, label: nna_exclusion, table: wealth.NNA_EXCL_1, key: [EXCL_ID]}
+  - {id: wealth_aum_month_end, label: aum_month_end, table: wealth.AUM_MNTH_END_FACT_1, key: [HSHLD_DK, CLDR_EOM_DT]}
+  - {id: wealth_flow, label: flow, table: wealth.TRAN_FACT_1, key: [DW_TRAN_ID]}
+  - {id: wealth_month_end, label: month_end, table: wealth.MONTH_DIM_1, key: [CLDR_EOM_DT]}
+  - {id: wealth_office, label: office, table: wealth.BRCH_DIM_1, key: [BRCH_CD]}
+  - {id: wealth_ref_source_system, label: ref_source_system, table: wealth.SRCE_SYS_1, key: [SRCE_SYS_ID]}
+  - {id: wealth_client_code_rollup, label: client_code_rollup, table: wealth.CLIENT_CD_ROLLUP_1, key: [CLNT_CD]}
+  - {id: wealth_calendar_date, label: calendar_date, table: wealth.DATE_DIM_1, key: [CALENDAR_DATE]}
+  - {id: wealth_flow_excl_mf_clearing, label: flow_excl_mf_clearing, table: wealth.TRAN_FACT_EXCL_MFCLR_G, key: [DW_TRAN_ID]}
+  - {id: wealth_nna_reference, label: nna_reference, table: wealth.F_NNA_FIN, key: [DW_TRAN_ID]}
+  - {id: wealth_bank_deposit_account, label: bank_deposit_account, table: wealth.BANK_DEP_ACCT_ADDR_1, key: [DW_BANK_ACCT_ID]}
+  - {id: wealth_brokerage_account_detail, label: brokerage_account_detail, table: wealth.LGCY_ACCT_1, key: [ACCT_ID]}
+  - {id: wealth_account_segment, label: account_segment, table: wealth.D_ACCT_SEGMT, key: [DW_ACCT_SEGMT_ID]}
+  - {id: wealth_account_segment_enrollment, label: account_segment_enrollment, table: wealth.F_ACCT_SEGMT_ENRLMT, key: [DW_ACCT_ID, SRCE_SYS_ID, DW_ACCT_SEGMT_ID, ACCT_ENRLMT_EFF_DT]}
+  - {id: wealth_core_offer, label: core_offer, table: wealth.D_CORE_OFFER, key: [CORE_OFFER_DK]}
+  - {id: wealth_core_offer_enrollment, label: core_offer_enrollment, table: wealth.CORE_OFFER_ENRLMT_1, key: [OFFER_ORDER_ID]}
+  - {id: wealth_insurance_contract, label: insurance_contract, table: wealth.INS_CONTR_1, key: [CONTR_ID]}
+  - {id: wealth_insurance_product, label: insurance_product, table: wealth.INS_SEC_PROD_CD_1, key: [CUSIP_ID]}
+
+# The relation the certified cross-reference implements (joins: client_xref).
+relations:
+  - {id: same_client, label: Same client, from: retail_customer, to: wealth_household}
+
+# Lineage: assets under management at each quarter end is the households' holdings at market value, summed.
+lineage:
+  - table: wealth.AUM_MNTH_END_FACT_1
+    derived_from: [wealth.HLDG_FACT_1]
+    note: the market value of each household's holdings, summed at each quarter end
+
+# Standing conditions on one table's rows. eligible conflicts with not_excluded: a flow can be eligible and its account
+# excluded on the day, and then the exclusion wins. SAGE's indicators are Y or N. A month is released once it is no longer
+# SAGE's open brokerage month (DW_BRKRG_MNTH_FRM_TODAY_CT, 0 for the open month). Whether a client directed a flow is
+# SAGE's net new assets extract's (F_NNA_FIN.CLIENT_DIRECTED_NNA_IN), by the flow's id.
+filters:
+  - {id: eligible, label: Eligible for net new assets, table: wealth.TRAN_FACT_1, predicate: TRAN_FACT_1.NNA_IN = 'Y',
+     conflicts_with: [not_excluded]}
+  - {id: released, label: Released months only, table: wealth.MONTH_DIM_1, predicate: MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0}
+  - {id: client_directed, label: Flows the client instructed, table: wealth.F_NNA_FIN, predicate: F_NNA_FIN.CLIENT_DIRECTED_NNA_IN = 'Y'}
+
+# A fact row is left out when a row of the selector's table matches it (NOT EXISTS): a test account's flows, and the flows
+# of an account excluded on the flow's date (the exclusion is effective-dated; an open one has no end). One on another
+# unit's table selects that unit's side of the certified join instead, only when a question reaches it. An exclusion
+# names an account by Meridian's source system code, BANK or BROKERAGE, which the selector decodes from SAGE's id, 200 or 100.
+row_selectors:
+  - id: not_test_account
+    label: Not on a test account
+    table: wealth.ACCT_DIM2_1
+    mode: exclude
+    predicate: >-
+      ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND
+      ACCT_DIM2_1.TEST_ACCT_IN = 'Y'
+  - id: not_excluded
+    label: Not on an account excluded on the day
+    table: wealth.NNA_EXCL_1
+    mode: exclude
+    predicate: >-
+      NNA_EXCL_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND NNA_EXCL_1.SRCE_SYS_CD = CASE TRAN_FACT_1.ACCT_SRCE_SYS_ID
+      WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND TRAN_FACT_1.DW_TRAN_DT BETWEEN NNA_EXCL_1.EXCL_EFF_DT AND
+      coalesce(NNA_EXCL_1.EXCL_EXPR_DT, DATE '9999-12-31')
+    conflicts_with: [eligible]
+  # On Retail's side of the certified client cross-reference: a client who banks with Retail holds an open Retail account
+  # (the owner's XB3). A row selector on another source's table applies only across the certified join, to its far side,
+  # so a question within Wealth reads no Retail table; include keeps a match only where one of its rows matches.
+  - id: banks_with_retail
+    label: "Banks with Retail: an open Retail account"
+    table: retail.account
+    mode: include
+    predicate: account.customer_id = customer.customer_id AND account.status_code = 'OPEN'
+
+# Typed, declared joins: what the context path joins through, and nothing else. A table that keeps its history (policies:
+# scd2) is joined as its version current now, or valid on the date the question's time mode gives (as reported: the
+# month's freeze date); that rendering is the runtime's, from the policy. A foreign key harvested from a catalogue is only
+# a candidate for one (the compiler lists those no join here covers).
+joins:
+  - {id: flow_month_end, kind: calendar_rollup, from: wealth.TRAN_FACT_1, to: wealth.MONTH_DIM_1,
+     condition: last_day(TRAN_FACT_1.DW_TRAN_DT) = MONTH_DIM_1.CLDR_EOM_DT}
+  # SAGE's month-end key (TRAN_FACT_1.MNTH_END_DT) is also a physical FK. Keep one release join for a flow: two
+  # parallel calendar rollups would apply the same release rule twice to a governed preview.
+  - {id: sage_account_client_code, kind: hierarchy, from: wealth.ACCT_DIM2_1, to: wealth.CLIENT_CD_ROLLUP_1,
+     condition: ACCT_DIM2_1.EFF_CLNT_CD = CLIENT_CD_ROLLUP_1.CLNT_CD}
+  - {id: sage_account_office, kind: hierarchy, from: wealth.ACCT_DIM2_1, to: wealth.BRCH_DIM_1,
+     condition: ACCT_DIM2_1.ACCT_DOMCL_BRCH_CD = BRCH_DIM_1.BRCH_CD}
+  - {id: flow_account, kind: key, from: wealth.TRAN_FACT_1, to: wealth.ACCT_DIM2_1,
+     condition: TRAN_FACT_1.DW_ACCT_ID = ACCT_DIM2_1.DW_ACCT_ID AND TRAN_FACT_1.ACCT_SRCE_SYS_ID = ACCT_DIM2_1.SRCE_SYS_ID}
+  - {id: account_household, kind: key, from: wealth.ACCT_DIM2_1, to: wealth.HSHLD_DIM_1, condition: ACCT_DIM2_1.HSHLD_DK = HSHLD_DIM_1.HSHLD_DK}
+  - {id: household_advisor, kind: key, from: wealth.HSHLD_DIM_1, to: wealth.ADV_DIM_1,
+     condition: HSHLD_DIM_1.PRIM_ADV_ID = ADV_DIM_1.ADV_ID}
+  - {id: advisor_office, kind: hierarchy, from: wealth.ADV_DIM_1, to: wealth.BRCH_DIM_1, condition: ADV_DIM_1.BRCH_CD = BRCH_DIM_1.BRCH_CD}
+  - {id: office_region, kind: hierarchy, from: wealth.BRCH_DIM_1, to: wealth.RGN_DIM_1, condition: BRCH_DIM_1.RGN_CD = RGN_DIM_1.RGN_CD}
+  - {id: region_division, kind: hierarchy, from: wealth.RGN_DIM_1, to: wealth.DIVSN_DIM_1, condition: RGN_DIM_1.DIVSN_CD = DIVSN_DIM_1.DIVSN_CD}
+  # Assets under management (1.3.0): a month end's holdings roll up to the release driver's month, and are a household's.
+  - {id: aum_month_end_rollup, kind: calendar_rollup, from: wealth.AUM_MNTH_END_FACT_1, to: wealth.MONTH_DIM_1,
+     condition: AUM_MNTH_END_FACT_1.CLDR_EOM_DT = MONTH_DIM_1.CLDR_EOM_DT}
+  - {id: aum_household, kind: key, from: wealth.AUM_MNTH_END_FACT_1, to: wealth.HSHLD_DIM_1,
+     condition: AUM_MNTH_END_FACT_1.HSHLD_DK = HSHLD_DIM_1.HSHLD_DK}
+  # An account's segment is its effective client code's level 6 in SAGE's client code rollup (1.5.0).
+  - {id: client_code_segment, kind: hierarchy, from: wealth.CLIENT_CD_ROLLUP_1, to: wealth.CLNT_SEGMT_DIM_1,
+     condition: CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID6 = CLNT_SEGMT_DIM_1.SEGMT_CD}
+  - {id: segment_parent, kind: hierarchy, from: wealth.CLNT_SEGMT_DIM_1, to: wealth.CLNT_SEGMT_DIM_1, alias: parent_segment,
+     condition: CLNT_SEGMT_DIM_1.PARNT_SEGMT_CD = parent_segment.SEGMT_CD}
+  # Whether the client directed a flow, in SAGE's net new assets extract (1.5.0).
+  - {id: flow_nna_reference, kind: key, from: wealth.TRAN_FACT_1, to: wealth.F_NNA_FIN,
+     condition: TRAN_FACT_1.DW_TRAN_ID = F_NNA_FIN.DW_TRAN_ID}
+  # The certified client cross-reference (Option B): a Retail customer to the Wealth household of the member who is the
+  # same client, through certified matches only. Never on a date of birth or an email: matching is upstream and offline.
+  - id: client_xref
+    kind: cross_reference
+    from: retail.customer
+    to: wealth.HSHLD_DIM_1
+    through: xref.client_xref
+    implements: same_client
+    condition: >-
+      retail.customer.customer_id = xref.client_xref.retail_customer_id AND xref.client_xref.household_id =
+      wealth.HSHLD_DIM_1.HSHLD_DK AND xref.client_xref.certification_status = 'CERTIFIED'
+
+# The metric variants the Wealth terms resolve to. joins are always rendered; reaches are rendered only to group by a
+# dimension or filter on an entity they lead to. golden names the golden questions that certify each, by id.
+contexts:
+  - id: nna
+    label: Net new assets
+    description: >-
+      The amounts of eligible flows in released months, summed in USD, test accounts and accounts excluded on the
+      flow's date left out.
+    term: net-new-assets
+    measure: wealth.net-new-assets
+    fact: wealth.TRAN_FACT_1
+    filters: [eligible, released]
+    row_selectors: [not_test_account, not_excluded, banks_with_retail]
+    joins: [flow_month_end]
+    reaches: [flow_account, account_household, household_advisor, advisor_office, office_region, region_division,
+              sage_account_client_code, client_code_segment, segment_parent, client_xref]
+    golden:
+      set: golden_wealth
+      items: [W01, W03, W04, W05, W06, W07, W09, W10, W12, W13, W14, W15, W18, XB3, XB4]
+  - id: nna_client_directed
+    label: Client-directed net new assets
+    description: Net new assets from the flows the client instructed.
+    term: client-directed-nna
+    measure: wealth.net-new-assets
+    fact: wealth.TRAN_FACT_1
+    filters: [eligible, released, client_directed]
+    row_selectors: [not_test_account, not_excluded, banks_with_retail]
+    joins: [flow_month_end, flow_nna_reference]
+    reaches: [flow_account, account_household, household_advisor, advisor_office, office_region, region_division,
+              sage_account_client_code, client_code_segment, segment_parent, client_xref]
+    golden:
+      set: golden_wealth
+      items: [W02]
+  - id: aum
+    label: Assets under management
+    description: The market value of each household's holdings at a quarter end, in released months, summed in USD.
+    term: assets-under-management
+    measure: wealth.assets-under-management
+    fact: wealth.AUM_MNTH_END_FACT_1
+    filters: [released]
+    joins: [aum_month_end_rollup]
+    reaches: [aum_household, household_advisor, advisor_office, office_region, region_division, client_xref]
+    golden:
+      set: golden_wealth
+      items: [W16]
+
+policies:
+  # Personal data of customers is Restricted by default (POL-DATA-CLASS). No query the assistant plans or a model writes
+  # may read these columns, in any arm: the SQL gate refuses them by name.
+  restricted_attributes:
+    - id: restricted-personal-data
+      action: refuse
+      cite: POL-DATA-CLASS
+      version: 1.2.0   # 1.1.0 added the phrases people use for its columns, 1.2.0 an age and a name; the columns are 1.0.0's
+      columns:
+        - retail.customer.first_name
+        - retail.customer.last_name
+        - retail.customer.date_of_birth
+        - retail.customer.email
+        - corporate.contact.contact_name
+        - corporate.contact.contact_email
+        - wealth.HSHLD_DIM_1.HSHLD_NM
+        - wealth.ACCT_DIM2_1.PRIM_TXPYR_ID
+        - wealth.ACCT_DIM2_1.TXPYR_CUST_ID
+        - wealth.ACCT_DIM2_1.TXPYR_CORP_CUST_ID
+        - wealth.ACCT_DIM2_1.ACCT_NM
+        - wealth.ACCT_DIM2_1.POSTL_CD
+        - wealth.BRCH_DIM_1.EMAIL_ADDR_TX
+        - wealth.BRCH_DIM_1.ADDR_LINE1_TX
+        - wealth.BRCH_DIM_1.ADDR_LINE2_TX
+        - wealth.BANK_DEP_ACCT_ADDR_1.MAIL_ADDR_LINE_1_TX
+        - wealth.BANK_DEP_ACCT_ADDR_1.MAIL_ADDR_LINE_2_TX
+        - wealth.BANK_DEP_ACCT_ADDR_1.MAIL_ADDR_LINE_3_TX
+        - wealth.BANK_DEP_ACCT_ADDR_1.MAIL_ADDR_LINE_4_TX
+        - wealth.BANK_DEP_ACCT_ADDR_1.MAIL_CITY_NM
+        - wealth.BANK_DEP_ACCT_ADDR_1.MAIL_POSTL_CD
+        - wealth.LGCY_ACCT_1.TXPYR_ID
+        - wealth.LGCY_ACCT_1.TXPYR_BIRTH_DATE_TX
+        - wealth.LGCY_ACCT_1.POSTL_CD
+        - wealth.LGCY_ACCT_1.POSTL_PLUS_4_CD
+      # What people call a column besides its name: a question that says one asks for the column, as one that names it
+      # does (the parser also reads each column's own words, its initials and the acronyms that spell it). Across the
+      # certified join such a question is refused, as the owner's "any cross-BU question asking for email or
+      # date_of_birth" has it, however it words them. A condition on a column asks for it too (born before 1970, aged
+      # over 60). A phrase asks for one column: their names are the customer's first and last name, cited by the first.
+      phrases:
+        - {column: retail.customer.date_of_birth, phrases: [birth, birthdate, birthday, born, age, aged, older than, younger than]}
+        - {column: retail.customer.email, phrases: [e-mail]}
+        - {column: retail.customer.first_name, phrases: [customer name, client name, their name]}
+  # Time semantics (1.1.0). A table that keeps its history: each version holds from valid_from to valid_to, the last
+  # day it holds (null, or SAGE's 9999-12-31, while it is current), and is_current marks the version that holds now
+  # (SAGE's CURR_IN, 1 for the version current).
+  scd2:
+    - {id: scd2-wealth-account, table: wealth.ACCT_DIM2_1, valid_from: DW_EFF_DT, valid_to: DW_EXPR_DT, is_current: CURR_IN, valid_to_inclusive: true}
+    - {id: scd2-wealth-flow, table: wealth.TRAN_FACT_1, valid_from: DW_EFF_DT, valid_to: DW_EXPR_DT, is_current: CURR_IN, valid_to_inclusive: true}
+    - {id: scd2-wealth-office, table: wealth.BRCH_DIM_1, valid_from: DW_EFF_DT, valid_to: DW_EXPR_DT, is_current: CURR_IN, valid_to_inclusive: true}
+    - {id: scd2-wealth-region, table: wealth.RGN_DIM_1, valid_from: DW_EFF_DT, valid_to: DW_EXPR_DT, is_current: CURR_IN, valid_to_inclusive: true}
+    - {id: scd2-wealth-division, table: wealth.DIVSN_DIM_1, valid_from: DW_EFF_DT, valid_to: DW_EXPR_DT, is_current: CURR_IN,
+       valid_to_inclusive: true}
+    - {id: scd2-xref-client-xref, table: xref.client_xref, valid_from: valid_from, valid_to: valid_to, is_current: is_current,
+       valid_to_inclusive: true}
+  # When each month was frozen and released: only a released month is reported, and the latest month is the latest
+  # released; a month as reported is its rows valid on its freeze date. SAGE's MONTH_DIM_1 since 1.5.0: it records no
+  # freeze date, so a month as reported is read as it stood on its release date (FIN_MTRC_RLSE_DT), and a month is
+  # released once it is no longer SAGE's open brokerage month (DW_BRKRG_MNTH_FRM_TODAY_CT, a flag: 0 for the open month).
+  release_driver:
+    - {id: wealth-month-end-release, table: wealth.MONTH_DIM_1, period: CLDR_EOM_DT, release_date: FIN_MTRC_RLSE_DT,
+       freeze_date: FIN_MTRC_RLSE_DT, released: DW_BRKRG_MNTH_FRM_TODAY_CT}
+
+# -- 1.4.0: mappings to the industry standards the platform preloads (meta-model 1.3.0) ------------------------------------
+# The platform preloads a fixed, versioned set of external standards' concepts (standards/preload.yaml at the demo's root:
+# FIBO, BIAN, schema.org, SKOS, PROV-O, DCAT, DPV and DCMI Terms) into every client's graph; a pack only maps to them, by
+# IRI, and the compiler refuses an IRI the preload does not hold (S30). Each mapping is a SKOS relation read with the
+# concept as its object: broadMatch says the standard's concept is the broader. No standard defines net new assets, AUM
+# or AUA, so none is mapped exactMatch; AUM and AUA share no exact or close match, since they are never added. The
+# Wealth Data Steward certifies the Wealth terms and the account, the Customer Data Steward the personal data.
+ontology_mappings:
+  - term: net-new-assets
+    iri: https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CashFlows/CashFlow
+    relation: broadMatch
+    note: >-
+      No standard defines net new assets. It nets client money flowing in and out, so FIBO's cash flow is the nearest
+      broader concept (of Provisional maturity in FIBO); NNA leaves out market movement, income, excluded accounts and moves
+      between a client's own accounts, which a cash flow does not.
+    certified_by: Wealth Data Steward
+    certified_on: "2026-10-19"
+  - {term: net-new-assets, iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/MonetaryAmount", relation: broadMatch,
+     note: "The figure is an amount of money, in USD.", certified_by: Wealth Data Steward, certified_on: "2026-10-19"}
+  - {term: net-new-assets, iri: "https://schema.org/MoneyTransfer", relation: relatedMatch,
+     note: "NNA nets client money transfers in and out: one transfer is related, not the measure.", certified_by: Wealth Data Steward,
+     certified_on: "2026-10-19"}
+  - {term: client-directed-nna, iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CashFlows/CashFlow", relation: broadMatch,
+     note: "Narrower than net new assets, with the same nearest broader concept.", certified_by: Wealth Data Steward,
+     certified_on: "2026-10-19"}
+  - term: assets-under-management
+    iri: https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Assessments/MarketValue
+    relation: broadMatch
+    note: >-
+      No standard defines assets under management. AUM is a market value (of a household's holdings, at quarter end, in
+      USD), so FIBO's market value is the broader. AUM and AUA are given no shared exact or close match: they are never
+      added.
+    certified_by: Wealth Data Steward
+    certified_on: "2026-10-19"
+  - {term: assets-under-management, iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/MonetaryAmount", relation: broadMatch,
+     note: "The figure is an amount of money, in USD.", certified_by: Wealth Data Steward, certified_on: "2026-10-19"}
+  - {term: assets-under-management, iri: "https://spec.edmcouncil.org/fibo/ontology/FND/OwnershipAndControl/Ownership/Holding", relation: relatedMatch,
+     note: "AUM sums holdings at market value: a holding is a component, not the measure.", certified_by: Wealth Data Steward,
+     certified_on: "2026-10-19"}
+  - {term: assets-under-advice, iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Assessments/MarketValue", relation: broadMatch,
+     note: "No standard defines AUA. Its broader concept is AUM's too, which is no equivalence: AUA and AUM stay apart.",
+     certified_by: Wealth Data Steward, certified_on: "2026-10-19"}
+  - {term: market-value, iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Assessments/MarketValue", relation: closeMatch,
+     note: "Close, not exact: the pack's term is a holding's value at the valuation date, in base currency.",
+     certified_by: Wealth Data Steward, certified_on: "2026-10-19"}
+  - {term: product-holding, iri: "https://spec.edmcouncil.org/fibo/ontology/FND/OwnershipAndControl/Ownership/Holding", relation: relatedMatch,
+     note: "The pack's term counts open products held; it is not a holding, so related only.", certified_by: Wealth Data Steward,
+     certified_on: "2026-10-19"}
+  - {term: fiscal-year, iri: "http://purl.org/dc/terms/PeriodOfTime", relation: broadMatch,
+     note: "A fiscal year is a named period of time; not FIBO's calendar quarter, whose labels Wealth's fiscal quarters do not share.",
+     certified_by: Wealth Data Steward, certified_on: "2026-10-19"}
+  - {entity: wealth_account, iri: "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/InvestmentAccount", relation: closeMatch,
+     note: "The Wealth account holds client assets; FIBO's investment account records deposits of funds and securities.",
+     certified_by: Wealth Data Steward, certified_on: "2026-10-19"}
+  - {policy: restricted-personal-data, iri: "https://w3id.org/dpv#PersonalData", relation: broadMatch,
+     note: "The pack's restricted columns are a narrower set than DPV's personal data.", certified_by: Customer Data Steward,
+     certified_on: "2026-10-19"}
+
+# Who may read which unit, write which curated data, and perform which of the platform's processes, as role templates.
+# The deployment binds its principals to them (deploy/meridian/identities.yaml); enforcement in the real estate is IAM
+# and fine-grained access control, and the graph carries a query-time mirror. reads: all is every source. label is
+# the role's title, which a principal bound to it carries in the graph.
+access:
+  # The purposes a chunk may be retrieved for. The same artefact can be eligible for supervision and prohibited for
+  # the assistant: that is the purpose-bound gate.
+  purposes: [analysis, assistant, supervision]
+  roles:
+    - {id: analyst_retail, label: Analyst, reads: [retail], processes: [querying]}
+    - {id: analyst_enterprise, label: Analyst, reads: all, processes: [querying]}
+    - {id: finance_reporting, label: Finance, reads: all, processes: [querying]}
+    - {id: steward_glossary, label: Steward, reads: all, writes: [mappings, terms], processes: [certification, querying]}
+    # Issue #52 adds the business team at 1.3.0, as #40 added the onboarding gates at the same version.
+    - {id: business_team, label: Business team, reads: all, writes: [mappings, terms], processes: [querying]}
+    - {id: advisor_wealth, label: Advisor, reads: [wealth], processes: [querying]}
+    # The pair for the join-time access rule (Graph.join_access): a cross-warehouse combination proceeds only if the
+    # requester can read every warehouse in it. admin is the baseline: it reads all four and may do all three
+    # processes. steward reads the two personal-customer units only, so it can combine Retail with Wealth but is
+    # blocked from any combination that touches SME or Corporate. It certifies and queries; it does not tag.
+    - {id: admin, label: Admin, reads: all, writes: [mappings, terms], processes: [tagging, certification, querying]}
+    - {id: steward, label: Steward, reads: [retail, wealth], writes: [mappings, terms], processes: [certification, querying]}
+    # The pipeline's own role. It reads documents, not warehouses, and may only tag: it cannot answer questions or
+    # decide anything in the queue.
+    - {id: pipeline_tagger, label: Pipeline, reads: [], processes: [tagging]}
+    - {id: knowledge_engineer, label: Knowledge engineer, reads: all, processes: [drafting, building, improving, querying]}
+
+# The question sets the A/B runs are scored on, by name and version. They are generated beside the estate
+# (build/<name>.json) and not restated here, so the baselines stay comparable. Golden v2 is v1 with retail-wealth
+# dropped from G021's and G030's refused joins (the certified client cross-reference, issue #39's Option B), and its
+# file declares that change, so a run on v2 is still put beside the baseline on v1. golden_wealth v1, the owner's Wealth
+# and cross-unit questions, is named by its items' ids alone, which the contexts' golden questions are among: its file,
+# build/golden_wealth_v1.json, comes with the estate (kge/estate/golden_wealth.py). Beside XB1 to XB6 it holds the refusals the
+# owner names with them: XB1 asked as analyst_retail and XB3 as advisor_wealth, a match on a date of birth, and a
+# question across the units that asks for an email.
+tests:
+  sets:
+    - {name: golden, version: v2}
+    - {name: heldout, version: v1}
+    - name: golden_wealth
+      version: v1
+      items: [W01, W02, W03, W04, W05, W06, W07, W08, W09, W10, W11, W12, W13, W14, W15, W16, W17, W18, W19, W20,
+              XB1, XB2, XB3, XB4, XB5, XB6, XB1-R, XB3-W, XB-DOB, XB-EMAIL]

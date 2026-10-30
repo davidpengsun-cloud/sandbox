@@ -1,0 +1,21 @@
+.admin-root {
+    margin: 3rem;
+    background-color: #FFFFFF;
+    border-radius: 1rem;
+
+    .admin-header h3 {
+        font-family: 'Inter';
+        margin: 2rem;
+        font-weight: bold;
+    }
+
+    .tabs {
+        margin: 0 5rem 0 2rem;
+        border: none;
+        border-radius: 0;
+        width: auto;
+        height: auto;
+        box-shadow: none;
+    }
+
+}

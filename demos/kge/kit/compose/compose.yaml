@@ -1,0 +1,74 @@
+# The local pilot, as the pilot's Terraform lays it out on Google Cloud: app is the Cloud Run service (the page and the
+# API), job is the Cloud Run job (one command per run: docker compose run --rm job <command> [NAME=value ...]), and gcs
+# is a Cloud Storage emulator standing in for the two buckets, named as Terraform names them, less the project: the
+# store, kge-store, and the client's landing bucket, kge-<client>-landing, each made on its first write. Nothing of the
+# host is mounted but the kit's examples, read only, for the job's put-example. Settings come from .env beside this file
+# (.env.example says which).
+name: kge
+
+services:
+  gcs:
+    image: fsouza/fake-gcs-server:1.56.1@sha256:797ce226d62f947c009dc40246b30cfb456b8473d8241407f9d6f2c04e4d69ef
+    command: [-scheme, http, -port, "4443", -backend, filesystem, -filesystem-root, /storage]
+    volumes:
+      - gcs-data:/storage
+    ports:
+      - "127.0.0.1:${GCS_PORT:-4443}:4443"
+
+  app:
+    image: kge:@VERSION@
+    restart: "no"
+    depends_on: [gcs]
+    ports:
+      - "127.0.0.1:${KGE_PORT:-8000}:8000"
+    environment:
+      PROFILE: ${CLIENT:-meridian}
+      STORE_URL: gs://kge-store
+      STORAGE_EMULATOR_HOST: http://gcs:4443
+      SIGNIN: passwords
+      SESSION_SECRET: ${SESSION_SECRET:-}
+      PORTAL_SYNC_TOKEN: ${PORTAL_SYNC_TOKEN:-}
+      API_URL: http://127.0.0.1:${KGE_PORT:-8000}
+      LADYBUG_MAX_DB_MB: ${LADYBUG_MAX_DB_MB:-128}
+      PORTAL_URL: http://127.0.0.1:${PORTAL_PORT:-8090}
+
+  portal:
+    image: kge-portal:@VERSION@
+    restart: "no"
+    ports:
+      - "127.0.0.1:${PORTAL_PORT:-8090}:8080"
+    environment:
+      PORT: "8080"
+      PROFILE: ${CLIENT:-meridian}
+      PORTAL_BACKEND: sqlite
+      PORTAL_SQLITE_PATH: /data/portal.db
+      KGE_URL: ${KGE_URL-http://app:8000}
+      KGE_PUBLIC_URL: http://127.0.0.1:${KGE_PORT:-8000}
+      PORTAL_CATALOGUE_FILE: ${PORTAL_CATALOGUE_FILE:-}
+      PORTAL_IDENTITIES_FILE: ${PORTAL_IDENTITIES_FILE:-}
+      PORTAL_PASSWORDS_FILE: ${PORTAL_PASSWORDS_FILE:-}
+      PORTAL_SESSION_SECRET: ${PORTAL_SESSION_SECRET:-}
+      PORTAL_COOKIE_SECURE: ${PORTAL_COOKIE_SECURE:-false}
+      PORTAL_SYNC_TOKEN: ${PORTAL_SYNC_TOKEN:-}
+      PORTAL_ASK: ${PORTAL_ASK:-on}
+    volumes:
+      - portal-data:/data
+      - ${PORTAL_IDENTITY_DIR_HOST:-../identity}:/identity:ro
+      - ${PORTAL_CATALOGUE_FILE_HOST:-../examples/meridian-portal/catalogue.yaml}:/catalogue/catalogue.yaml:ro
+
+  job:
+    image: kge:@VERSION@
+    profiles: [job]
+    depends_on: [gcs]
+    environment:
+      PROFILE: ${CLIENT:-meridian}
+      STORE_URL: gs://kge-store
+      LANDING_URL: gs://kge-${CLIENT:-meridian}-landing
+      STORAGE_EMULATOR_HOST: http://gcs:4443
+      LADYBUG_MAX_DB_MB: ${LADYBUG_MAX_DB_MB:-128}
+    volumes:
+      - ../examples:/kit/examples:ro
+
+volumes:
+  gcs-data:
+  portal-data:

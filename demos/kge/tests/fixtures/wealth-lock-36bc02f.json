@@ -1,0 +1,1029 @@
+{
+ "about": "Wealth's catalogue as pack.lock held it at 36bc02f (develop before #176): Meridian's twenty Wealth tables under the names they had before SAGE kept its physical names (pack 1.5.0). What a pack written before 1.5.0 names, frozen for the tests that compile one against today's meta-model. Never edited.",
+ "wealth": {
+  "tables": [
+   {
+    "columns": [
+     {
+      "description": "Account number on its source system; the same number can stand on both",
+      "name": "account_id",
+      "ordinal": 1,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Source system the account is held on, BANK or BROKERAGE",
+      "name": "source_system",
+      "ordinal": 2,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Owning household",
+      "name": "household_id",
+      "ordinal": 3,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Segment the account is managed in",
+      "name": "segment_code",
+      "ordinal": 4,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "True for a test account, never a real holding",
+      "name": "is_test_account",
+      "ordinal": 5,
+      "type": "BOOLEAN"
+     },
+     {
+      "description": "First day this version of the row holds",
+      "name": "valid_from",
+      "ordinal": 6,
+      "type": "DATE"
+     },
+     {
+      "description": "Last day this version of the row holds, null while it is current",
+      "name": "valid_to",
+      "ordinal": 7,
+      "type": "DATE"
+     },
+     {
+      "description": "True for the version that holds today",
+      "name": "is_current",
+      "ordinal": 8,
+      "type": "BOOLEAN"
+     }
+    ],
+    "foreign_keys": [
+     {
+      "columns": [
+       "household_id"
+      ],
+      "ref_columns": [
+       "household_id"
+      ],
+      "ref_table": "household"
+     },
+     {
+      "columns": [
+       "segment_code"
+      ],
+      "ref_columns": [
+       "segment_code"
+      ],
+      "ref_table": "client_segment"
+     },
+     {
+      "columns": [
+       "source_system"
+      ],
+      "ref_columns": [
+       "source_system"
+      ],
+      "ref_table": "ref_source_system"
+     }
+    ],
+    "name": "account",
+    "primary_key": [
+     "account_id",
+     "source_system",
+     "valid_from"
+    ],
+    "rows": 317,
+    "storage": 12823
+   },
+   {
+    "columns": [
+     {
+      "description": "Advisor identifier",
+      "name": "advisor_id",
+      "ordinal": 1,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Advisor name",
+      "name": "advisor_name",
+      "ordinal": 2,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Office",
+      "name": "office_code",
+      "ordinal": 3,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Licence class held",
+      "name": "licence_class",
+      "ordinal": 4,
+      "type": "VARCHAR"
+     }
+    ],
+    "foreign_keys": [],
+    "name": "advisor",
+    "primary_key": [
+     "advisor_id"
+    ],
+    "rows": 30,
+    "storage": 564
+   },
+   {
+    "columns": [
+     {
+      "description": "Row identifier",
+      "name": "aua_id",
+      "ordinal": 1,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Household",
+      "name": "household_id",
+      "ordinal": 2,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Valuation date, quarter end",
+      "name": "as_of",
+      "ordinal": 3,
+      "type": "DATE"
+     },
+     {
+      "description": "Assets under advice, USD",
+      "name": "aua_usd",
+      "ordinal": 4,
+      "type": "DECIMAL(16,2)"
+     }
+    ],
+    "foreign_keys": [
+     {
+      "columns": [
+       "household_id"
+      ],
+      "ref_columns": [
+       "household_id"
+      ],
+      "ref_table": "household"
+     }
+    ],
+    "name": "assets_under_advice",
+    "primary_key": [
+     "aua_id"
+    ],
+    "rows": 600,
+    "storage": 16433
+   },
+   {
+    "columns": [
+     {
+      "description": "Household",
+      "name": "household_id",
+      "ordinal": 1,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Month end; a quarter end, when holdings are valued",
+      "name": "month_end_date",
+      "ordinal": 2,
+      "type": "DATE"
+     },
+     {
+      "description": "Assets under management, USD: the market value of the household's holdings on the date",
+      "name": "aum_usd",
+      "ordinal": 3,
+      "type": "DECIMAL(18,2)"
+     }
+    ],
+    "foreign_keys": [
+     {
+      "columns": [
+       "household_id"
+      ],
+      "ref_columns": [
+       "household_id"
+      ],
+      "ref_table": "household"
+     },
+     {
+      "columns": [
+       "month_end_date"
+      ],
+      "ref_columns": [
+       "month_end_date"
+      ],
+      "ref_table": "month_end"
+     }
+    ],
+    "name": "aum_month_end",
+    "primary_key": [
+     "household_id",
+     "month_end_date"
+    ],
+    "rows": 600,
+    "storage": 14391
+   },
+   {
+    "columns": [
+     {
+      "description": "Segment code",
+      "name": "segment_code",
+      "ordinal": 1,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Segment name",
+      "name": "segment_name",
+      "ordinal": 2,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Parent segment, null at the top level",
+      "name": "parent_segment_code",
+      "ordinal": 3,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Level in the segment hierarchy, 1 at the top",
+      "name": "level",
+      "ordinal": 4,
+      "type": "INTEGER"
+     }
+    ],
+    "foreign_keys": [],
+    "name": "client_segment",
+    "primary_key": [
+     "segment_code"
+    ],
+    "rows": 6,
+    "storage": 157
+   },
+   {
+    "columns": [
+     {
+      "description": "Division code",
+      "name": "division_code",
+      "ordinal": 1,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Division name",
+      "name": "division_name",
+      "ordinal": 2,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "First day this version of the row holds",
+      "name": "valid_from",
+      "ordinal": 3,
+      "type": "DATE"
+     },
+     {
+      "description": "Last day this version of the row holds, null while it is current",
+      "name": "valid_to",
+      "ordinal": 4,
+      "type": "DATE"
+     },
+     {
+      "description": "True for the version that holds today",
+      "name": "is_current",
+      "ordinal": 5,
+      "type": "BOOLEAN"
+     }
+    ],
+    "foreign_keys": [],
+    "name": "division",
+    "primary_key": [
+     "division_code",
+     "valid_from"
+    ],
+    "rows": 2,
+    "storage": 74
+   },
+   {
+    "columns": [
+     {
+      "description": "Fiscal quarter label, e.g. FY25-Q1",
+      "name": "fiscal_quarter",
+      "ordinal": 1,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Fiscal year, starting 1 April",
+      "name": "fiscal_year",
+      "ordinal": 2,
+      "type": "INTEGER"
+     },
+     {
+      "description": "First day of the fiscal quarter",
+      "name": "quarter_start",
+      "ordinal": 3,
+      "type": "DATE"
+     },
+     {
+      "description": "Last day of the fiscal quarter",
+      "name": "quarter_end",
+      "ordinal": 4,
+      "type": "DATE"
+     }
+    ],
+    "foreign_keys": [],
+    "name": "fiscal_calendar",
+    "primary_key": [
+     "fiscal_quarter"
+    ],
+    "rows": 4,
+    "storage": 124
+   },
+   {
+    "columns": [
+     {
+      "description": "Flow identifier",
+      "name": "flow_id",
+      "ordinal": 1,
+      "type": "BIGINT"
+     },
+     {
+      "description": "Account the flow is booked to, on its source system",
+      "name": "account_id",
+      "ordinal": 2,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Source system of the account",
+      "name": "source_system",
+      "ordinal": 3,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Date the flow settled",
+      "name": "flow_date",
+      "ordinal": 4,
+      "type": "DATE"
+     },
+     {
+      "description": "Flow type",
+      "name": "flow_type_code",
+      "ordinal": 5,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Signed amount in USD: an inflow positive, an outflow negative",
+      "name": "amount_usd",
+      "ordinal": 6,
+      "type": "DECIMAL(16,2)"
+     },
+     {
+      "description": "True where the household directed the flow",
+      "name": "is_client_directed",
+      "ordinal": 7,
+      "type": "BOOLEAN"
+     },
+     {
+      "description": "True where the flow is eligible for net new assets",
+      "name": "nna_eligible_flag",
+      "ordinal": 8,
+      "type": "BOOLEAN"
+     },
+     {
+      "description": "Institution on the other side of the flow; MERIDIAN for an account held here",
+      "name": "counterparty_bank",
+      "ordinal": 9,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Account number on the other side of the flow, at that institution",
+      "name": "counterparty_account",
+      "ordinal": 10,
+      "type": "BIGINT"
+     },
+     {
+      "description": "First day this version of the flow holds",
+      "name": "valid_from",
+      "ordinal": 11,
+      "type": "DATE"
+     },
+     {
+      "description": "Last day this version of the flow holds, null while it is current",
+      "name": "valid_to",
+      "ordinal": 12,
+      "type": "DATE"
+     },
+     {
+      "description": "True for the version that holds today",
+      "name": "is_current",
+      "ordinal": 13,
+      "type": "BOOLEAN"
+     }
+    ],
+    "foreign_keys": [
+     {
+      "columns": [
+       "flow_type_code"
+      ],
+      "ref_columns": [
+       "flow_type_code"
+      ],
+      "ref_table": "ref_flow_type"
+     },
+     {
+      "columns": [
+       "source_system"
+      ],
+      "ref_columns": [
+       "source_system"
+      ],
+      "ref_table": "ref_source_system"
+     }
+    ],
+    "name": "flow",
+    "primary_key": [
+     "flow_id",
+     "valid_from"
+    ],
+    "rows": 4543,
+    "storage": 323724
+   },
+   {
+    "columns": [
+     {
+      "description": "Row identifier",
+      "name": "holding_id",
+      "ordinal": 1,
+      "type": "BIGINT"
+     },
+     {
+      "description": "Portfolio",
+      "name": "portfolio_id",
+      "ordinal": 2,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Valuation date",
+      "name": "as_of",
+      "ordinal": 3,
+      "type": "DATE"
+     },
+     {
+      "description": "Instrument identifier",
+      "name": "instrument_id",
+      "ordinal": 4,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Units held",
+      "name": "quantity",
+      "ordinal": 5,
+      "type": "DECIMAL(18,4)"
+     },
+     {
+      "description": "Market value in base currency",
+      "name": "market_value",
+      "ordinal": 6,
+      "type": "DECIMAL(16,2)"
+     }
+    ],
+    "foreign_keys": [
+     {
+      "columns": [
+       "portfolio_id"
+      ],
+      "ref_columns": [
+       "portfolio_id"
+      ],
+      "ref_table": "portfolio"
+     }
+    ],
+    "name": "holding",
+    "primary_key": [
+     "holding_id"
+    ],
+    "rows": 3760,
+    "storage": 153770
+   },
+   {
+    "columns": [
+     {
+      "description": "Household identifier",
+      "name": "household_id",
+      "ordinal": 1,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Household display name",
+      "name": "household_name",
+      "ordinal": 2,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Primary advisor",
+      "name": "primary_advisor_id",
+      "ordinal": 3,
+      "type": "INTEGER"
+     },
+     {
+      "description": "CAUTIOUS, BALANCED, GROWTH",
+      "name": "risk_profile",
+      "ordinal": 4,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Onboarding date",
+      "name": "onboarded_on",
+      "ordinal": 5,
+      "type": "DATE"
+     }
+    ],
+    "foreign_keys": [
+     {
+      "columns": [
+       "primary_advisor_id"
+      ],
+      "ref_columns": [
+       "advisor_id"
+      ],
+      "ref_table": "advisor"
+     }
+    ],
+    "name": "household",
+    "primary_key": [
+     "household_id"
+    ],
+    "rows": 150,
+    "storage": 5846
+   },
+   {
+    "columns": [
+     {
+      "description": "Household",
+      "name": "household_id",
+      "ordinal": 1,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Member of the household",
+      "name": "member_id",
+      "ordinal": 2,
+      "type": "INTEGER"
+     },
+     {
+      "description": "PRIMARY, JOINT or DEPENDENT",
+      "name": "member_role",
+      "ordinal": 3,
+      "type": "VARCHAR"
+     }
+    ],
+    "foreign_keys": [
+     {
+      "columns": [
+       "household_id"
+      ],
+      "ref_columns": [
+       "household_id"
+      ],
+      "ref_table": "household"
+     }
+    ],
+    "name": "household_member",
+    "primary_key": [
+     "household_id",
+     "member_id"
+    ],
+    "rows": 262,
+    "storage": 4108
+   },
+   {
+    "columns": [
+     {
+      "description": "Last day of the month",
+      "name": "month_end_date",
+      "ordinal": 1,
+      "type": "DATE"
+     },
+     {
+      "description": "Fiscal quarter the month falls in, e.g. FY26-Q1",
+      "name": "fiscal_quarter",
+      "ordinal": 2,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Date the month's figures are released",
+      "name": "release_date",
+      "ordinal": 3,
+      "type": "DATE"
+     },
+     {
+      "description": "Date the month's figures were frozen: the month as first published is its rows valid on this date",
+      "name": "freeze_date",
+      "ordinal": 4,
+      "type": "DATE"
+     },
+     {
+      "description": "True once the month's figures are released; a month not yet released is not final",
+      "name": "is_released",
+      "ordinal": 5,
+      "type": "BOOLEAN"
+     }
+    ],
+    "foreign_keys": [],
+    "name": "month_end",
+    "primary_key": [
+     "month_end_date"
+    ],
+    "rows": 13,
+    "storage": 534
+   },
+   {
+    "columns": [
+     {
+      "description": "Exclusion identifier",
+      "name": "exclusion_id",
+      "ordinal": 1,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Account excluded, on its source system",
+      "name": "account_id",
+      "ordinal": 2,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Source system of the account",
+      "name": "source_system",
+      "ordinal": 3,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Why the account is excluded",
+      "name": "reason_code",
+      "ordinal": 4,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "First day the exclusion applies",
+      "name": "effective_from",
+      "ordinal": 5,
+      "type": "DATE"
+     },
+     {
+      "description": "Last day the exclusion applies, null while it is open",
+      "name": "effective_to",
+      "ordinal": 6,
+      "type": "DATE"
+     }
+    ],
+    "foreign_keys": [
+     {
+      "columns": [
+       "source_system"
+      ],
+      "ref_columns": [
+       "source_system"
+      ],
+      "ref_table": "ref_source_system"
+     }
+    ],
+    "name": "nna_exclusion",
+    "primary_key": [
+     "exclusion_id"
+    ],
+    "rows": 12,
+    "storage": 420
+   },
+   {
+    "columns": [
+     {
+      "description": "Office code, as advisor.office_code holds it",
+      "name": "office_code",
+      "ordinal": 1,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Office name",
+      "name": "office_name",
+      "ordinal": 2,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Region the office rolls up to",
+      "name": "region_code",
+      "ordinal": 3,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "First day this version of the row holds",
+      "name": "valid_from",
+      "ordinal": 4,
+      "type": "DATE"
+     },
+     {
+      "description": "Last day this version of the row holds, null while it is current",
+      "name": "valid_to",
+      "ordinal": 5,
+      "type": "DATE"
+     },
+     {
+      "description": "True for the version that holds today",
+      "name": "is_current",
+      "ordinal": 6,
+      "type": "BOOLEAN"
+     }
+    ],
+    "foreign_keys": [],
+    "name": "office",
+    "primary_key": [
+     "office_code",
+     "valid_from"
+    ],
+    "rows": 5,
+    "storage": 240
+   },
+   {
+    "columns": [
+     {
+      "description": "Portfolio identifier",
+      "name": "portfolio_id",
+      "ordinal": 1,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Owning household",
+      "name": "household_id",
+      "ordinal": 2,
+      "type": "INTEGER"
+     },
+     {
+      "description": "DISCRETIONARY or ADVISORY",
+      "name": "mandate_type",
+      "ordinal": 3,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Portfolio base currency, USD",
+      "name": "base_currency",
+      "ordinal": 4,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Inception date",
+      "name": "inception_on",
+      "ordinal": 5,
+      "type": "DATE"
+     }
+    ],
+    "foreign_keys": [
+     {
+      "columns": [
+       "household_id"
+      ],
+      "ref_columns": [
+       "household_id"
+      ],
+      "ref_table": "household"
+     }
+    ],
+    "name": "portfolio",
+    "primary_key": [
+     "portfolio_id"
+    ],
+    "rows": 188,
+    "storage": 5671
+   },
+   {
+    "columns": [
+     {
+      "description": "Row identifier",
+      "name": "fee_id",
+      "ordinal": 1,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Household",
+      "name": "household_id",
+      "ordinal": 2,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Fiscal quarter",
+      "name": "fiscal_quarter",
+      "ordinal": 3,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Advisory fees, USD",
+      "name": "advisory_fee_usd",
+      "ordinal": 4,
+      "type": "DECIMAL(14,2)"
+     },
+     {
+      "description": "Product fees, USD",
+      "name": "product_fee_usd",
+      "ordinal": 5,
+      "type": "DECIMAL(14,2)"
+     },
+     {
+      "description": "Advisory plus product fees, USD, fiscal quarter",
+      "name": "revenue_usd",
+      "ordinal": 6,
+      "type": "DECIMAL(14,2)"
+     }
+    ],
+    "foreign_keys": [
+     {
+      "columns": [
+       "household_id"
+      ],
+      "ref_columns": [
+       "household_id"
+      ],
+      "ref_table": "household"
+     },
+     {
+      "columns": [
+       "fiscal_quarter"
+      ],
+      "ref_columns": [
+       "fiscal_quarter"
+      ],
+      "ref_table": "fiscal_calendar"
+     }
+    ],
+    "name": "quarterly_fee_revenue",
+    "primary_key": [
+     "fee_id"
+    ],
+    "rows": 600,
+    "storage": 21608
+   },
+   {
+    "columns": [
+     {
+      "description": "Flow type code",
+      "name": "flow_type_code",
+      "ordinal": 1,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "What the flow type covers",
+      "name": "description",
+      "ordinal": 2,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "IN or OUT",
+      "name": "direction",
+      "ordinal": 3,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "True where flows of this type count towards net new assets",
+      "name": "nna_counts",
+      "ordinal": 4,
+      "type": "BOOLEAN"
+     }
+    ],
+    "foreign_keys": [],
+    "name": "ref_flow_type",
+    "primary_key": [
+     "flow_type_code"
+    ],
+    "rows": 7,
+    "storage": 382
+   },
+   {
+    "columns": [
+     {
+      "description": "Source system code",
+      "name": "source_system",
+      "ordinal": 1,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Source system name",
+      "name": "system_name",
+      "ordinal": 2,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "What the source system holds",
+      "name": "description",
+      "ordinal": 3,
+      "type": "VARCHAR"
+     }
+    ],
+    "foreign_keys": [],
+    "name": "ref_source_system",
+    "primary_key": [
+     "source_system"
+    ],
+    "rows": 2,
+    "storage": 110
+   },
+   {
+    "columns": [
+     {
+      "description": "Region code",
+      "name": "region_code",
+      "ordinal": 1,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Region name",
+      "name": "region_name",
+      "ordinal": 2,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Division the region rolls up to",
+      "name": "division_code",
+      "ordinal": 3,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "First day this version of the row holds",
+      "name": "valid_from",
+      "ordinal": 4,
+      "type": "DATE"
+     },
+     {
+      "description": "Last day this version of the row holds, null while it is current",
+      "name": "valid_to",
+      "ordinal": 5,
+      "type": "DATE"
+     },
+     {
+      "description": "True for the version that holds today",
+      "name": "is_current",
+      "ordinal": 6,
+      "type": "BOOLEAN"
+     }
+    ],
+    "foreign_keys": [],
+    "name": "region",
+    "primary_key": [
+     "region_code",
+     "valid_from"
+    ],
+    "rows": 3,
+    "storage": 100
+   },
+   {
+    "columns": [
+     {
+      "description": "Review identifier",
+      "name": "review_id",
+      "ordinal": 1,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Household reviewed",
+      "name": "household_id",
+      "ordinal": 2,
+      "type": "INTEGER"
+     },
+     {
+      "description": "Review date",
+      "name": "reviewed_on",
+      "ordinal": 3,
+      "type": "DATE"
+     },
+     {
+      "description": "SUITABLE, ACTION_REQUIRED, ESCALATED",
+      "name": "outcome_code",
+      "ordinal": 4,
+      "type": "VARCHAR"
+     },
+     {
+      "description": "Reviewing advisor",
+      "name": "reviewer_id",
+      "ordinal": 5,
+      "type": "INTEGER"
+     }
+    ],
+    "foreign_keys": [
+     {
+      "columns": [
+       "household_id"
+      ],
+      "ref_columns": [
+       "household_id"
+      ],
+      "ref_table": "household"
+     },
+     {
+      "columns": [
+       "reviewer_id"
+      ],
+      "ref_columns": [
+       "advisor_id"
+      ],
+      "ref_table": "advisor"
+     }
+    ],
+    "name": "suitability_review",
+    "primary_key": [
+     "review_id"
+    ],
+    "rows": 150,
+    "storage": 4052
+   }
+  ]
+ }
+}

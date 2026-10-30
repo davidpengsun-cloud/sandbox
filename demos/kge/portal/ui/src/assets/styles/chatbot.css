@@ -1,0 +1,346 @@
+/* ============================================================
+   Ask the portal — chat drawer.
+   Redesigned to a modern, world-class chat surface in the v3
+   "settlement tape" language (Inter body, Geist Mono for labels
+   and figures, navy structure, azure live-signal). Sizing is in px
+   for an unambiguous 100% scale.
+   Fonts (Inter / Geist Mono) come from v3-tokens.css, imported
+   globally in index.js. Material Symbols supply the glyph icons.
+   ============================================================ */
+/* Base font for everything inside the drawer. Previously a global
+   `* { font-family: Poppins }` here forced Poppins onto the whole app,
+   overriding the v3 Inter typography — now scoped to the drawer only. */
+.chatbot, .chatbot input, .chatbot textarea, .chatbot button, .chatbot-toggler {
+  font-family: var(--v3-body, 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+}
+
+/* ---- toggler (unused entry point, kept for compatibility) ---- */
+.chatbot-toggler {
+  outline: none; border: none; height: 50px; width: 50px;
+  display: flex; cursor: pointer; align-items: center; justify-content: center;
+  border-radius: 50%; background: var(--v3-bar-hover);
+  transition: all 0.2s ease; margin-top: 15px; margin-left: 10px;
+}
+div.show-chatbot .chatbot-toggler { transform: rotate(90deg); }
+.chatbot-toggler span { color: var(--v3-bar-ink); position: absolute; }
+.chatbot-toggler span:last-child,
+div.show-chatbot .chatbot-toggler span:first-child { opacity: 0; }
+div.show-chatbot .chatbot-toggler span:last-child { opacity: 1; }
+
+/* ============================================================ DOCKED PANEL */
+.chatbot {
+  position: fixed; z-index: 1300; top: 0; right: 0; bottom: 0;
+  width: 46rem; max-width: 100vw;
+  display: flex; flex-direction: column;
+  background: var(--v3-surface);
+  border-left: 1px solid var(--v3-line);
+  overflow: hidden; opacity: 0; pointer-events: none;
+  /* visibility (delayed until the slide-out ends) keeps the closed panel out of
+     the tab order and away from screen readers; the markup adds inert too. */
+  visibility: hidden;
+  transform: translateX(100%);
+  box-shadow: -24px 0 60px -30px rgba(15, 27, 42, 0.35);
+  transition: transform 0.24s cubic-bezier(.32, .72, 0, 1), opacity 0.2s ease, visibility 0s linear 0.24s;
+  color: var(--v3-ink);
+  font-size: 13px; line-height: 1.5;
+}
+div.show-chatbot .chatbot { opacity: 1; pointer-events: auto; visibility: visible; transform: translateX(0); transition-delay: 0s; }
+
+/* icon buttons: real <button>s so they take focus and the keyboard, drawn as glyphs */
+.chatbot .icon-btn {
+  background: none; border: none; padding: 4px; margin: 0; cursor: pointer;
+  display: inline-grid; place-items: center; border-radius: 3px; color: inherit; line-height: 1;
+}
+.chatbot .icon-btn .material-symbols-outlined { display: block; font-size: 18px; }
+.chatbot button:focus-visible, .chatbot textarea:focus-visible {
+  outline: 2px solid var(--v3-focus); outline-offset: 2px;
+}
+
+/* drag handle on the docked edge */
+.chatbot-resizer {
+  position: absolute; top: 0; left: 0; bottom: 0; width: 6px;
+  cursor: col-resize; background: transparent;
+  transition: background 0.15s ease; z-index: 1400;
+}
+.chatbot-resizer:hover, .chatbot-resizer:active { background: var(--v3-accent); }
+
+/* ============================================================ HEADER */
+.chatbot header {
+  flex: 0 0 auto; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  height: 52px; padding: 0 16px;
+  color: var(--v3-bar-ink); background: var(--v3-bar);
+  border-bottom: 1px solid var(--v3-bar-line);
+}
+.chatbot header h2 {
+  margin: 0; font-family: var(--v3-mono, 'Geist Mono', monospace);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+}
+.chatbot header .close-btn,
+.chatbot header .new-chat-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  cursor: pointer; color: var(--v3-bar-ink); opacity: 0.7;
+  transition: opacity 0.12s, background 0.12s;
+}
+.chatbot header .close-btn { right: 12px; }
+.chatbot header .new-chat-btn { right: 40px; }
+.chatbot header .new-chat-btn .material-symbols-outlined { font-size: 17px; }
+.chatbot header button:focus-visible { outline-color: var(--v3-bar-focus); }
+.chatbot header .close-btn:hover,
+.chatbot header .new-chat-btn:hover { opacity: 1; background: var(--v3-bar-hover); }
+
+/* ---- context chip: which product the assistant is scoped to ---- */
+.ask-ctx {
+  flex: 0 0 auto; display: flex; align-items: center; gap: 6px;
+  margin: 12px 16px 0; padding: 6px 10px;
+  background: var(--v3-chip-bg); border: 1px solid var(--v3-accent-line); border-radius: 3px;
+  font-family: var(--v3-mono, 'Geist Mono', monospace); font-size: 10px;
+  color: var(--v3-chip-ink); letter-spacing: 0.06em; text-transform: uppercase;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.ask-ctx svg { flex-shrink: 0; }
+
+/* ============================================================ MESSAGE LIST */
+.chatbot .chatbox {
+  overflow-y: auto; flex: 1 1 auto; min-height: 0;
+  padding: 18px 16px; display: flex; flex-direction: column; gap: 14px;
+}
+.chatbot .chatbox::-webkit-scrollbar { width: 8px; }
+.chatbot .chatbox::-webkit-scrollbar-track { background: transparent; }
+.chatbot .chatbox::-webkit-scrollbar-thumb { background: var(--v3-line-2); border-radius: 8px; border: 2px solid var(--v3-surface); }
+.chatbot .chatbox:hover::-webkit-scrollbar-thumb { background: var(--v3-ink-4); }
+
+.chatbox .chat {
+  display: flex; align-items: flex-end; gap: 9px; list-style: none;
+  margin: 0; animation: v3msg 0.32s ease forwards;
+}
+@keyframes v3msg { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* assistant avatar */
+.chatbox .incoming .botclass {
+  flex-shrink: 0; width: 28px; height: 28px; line-height: 28px;
+  color: var(--v3-bar-ink); text-align: center; cursor: default; align-self: flex-end;
+  background: var(--v3-bar-hover); border-radius: 50%;
+  font-size: 15px; border: none;
+}
+.chatbox .incoming .botfeedback { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+
+/* bubbles */
+.chatbox .outgoing { justify-content: flex-end; }
+.chatbox .chat .chatmsg {
+  white-space: pre-wrap; word-wrap: break-word; max-width: 86%;
+  padding: 8px 12px; font-size: 12.5px; line-height: 1.5;
+  border-radius: 14px;
+}
+.chatbox .outgoing .chatmsg {
+  background: var(--v3-bar-hover); color: var(--v3-bar-ink);
+  border-bottom-right-radius: 4px;
+}
+.chatbox .incoming .chatmsg {
+  background: var(--v3-surface-2); color: var(--v3-ink);
+  border: 1px solid var(--v3-line); border-bottom-left-radius: 4px;
+}
+.chatbox .chat .chatmsg.error {
+  background: var(--v3-bad-soft); color: var(--v3-bad);
+  border-color: color-mix(in srgb, var(--v3-bad) 35%, transparent);
+}
+/* a refusal or an abstention is KGE declining on purpose, not a failure: a
+   neutral card that names the kind, gives KGE's reason and one way forward */
+.chatbox .chat .chatmsg.notice {
+  background: var(--v3-info-soft); color: var(--v3-ink-2);
+  border: 1px solid var(--v3-line-2); border-left: 3px solid var(--v3-info);
+  border-radius: 4px 14px 14px 4px;
+}
+.chatbox .chatmsg.notice .notice-kind {
+  display: block; margin-bottom: 6px;
+  font-family: var(--v3-mono, 'Geist Mono', monospace); font-size: 10px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--v3-info);
+}
+.chatbox .chatmsg.notice .notice-hint {
+  display: block; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--v3-line-2);
+  font-size: 11.5px; color: var(--v3-ink-3);
+}
+/* a table answer spans the full drawer width (no avatar, no bubble cap) so wide
+   result grids have maximum room and need far less horizontal scrolling */
+.with-table { margin-left: 0; max-width: 100%; }
+.chatbox .with-table .chatmsg { max-width: 100%; width: 100%; padding: 6px 8px; }
+
+/* feedback thumbs (optional; the next question never waits for them) */
+.chatbox .incoming .botfeedback .feedback { display: flex; flex-direction: column; gap: 4px; color: var(--v3-ink-4); font-size: 13px; }
+.chatbox .incoming .botfeedback .thumb {
+  background: none; border: none; padding: 3px; margin: 0; cursor: pointer; color: inherit;
+  display: inline-grid; place-items: center; border-radius: 3px; line-height: 1;
+}
+.chatbox .incoming .botfeedback .thumb:hover,
+.chatbox .incoming .botfeedback .thumb[aria-pressed="true"] { color: var(--v3-accent); }
+
+/* copy / stop affordance next to answers */
+.chatbox .chat .copy-answer,
+.chatbox .chat .stop-answer { align-self: flex-end; margin-bottom: 2px; color: var(--v3-ink-4); transition: color 0.12s; }
+.chatbox .chat .copy-answer .material-symbols-outlined { font-size: 16px; }
+.chatbox .chat .stop-answer { color: var(--v3-structure); }
+.chatbox .chat .stop-answer .material-symbols-outlined { font-size: 22px; }
+.chatbox .chat .copy-answer:hover { color: var(--v3-link); }
+
+/* ---- guidelines (antd collapse inside the first message) ---- */
+.guideline-list { margin: 8px 0 0; padding-left: 18px; }
+.guideline-list li { font-size: 12px; line-height: 1.5; color: var(--v3-ink-2); margin-bottom: 6px; }
+/* antd's own light-mode colours give way to the role tokens inside the drawer */
+.chatbot .ant-typography { color: inherit; }
+.chatbot .cot-collapse { margin-top: 10px; background: transparent; border: none; }
+.chatbot .cot-collapse > .ant-collapse-item { border-bottom-color: var(--v3-line); }
+.chatbot .cot-collapse .ant-collapse-content { background: transparent; color: var(--v3-ink-2); border-top-color: var(--v3-line); }
+.chatbot .cot-collapse .ant-collapse-header { color: var(--v3-ink-2) !important; padding: 7px 10px !important; font-family: var(--v3-mono, 'Geist Mono', monospace); font-size: 11px; letter-spacing: 0.04em; }
+/* the Guidelines toggle takes the panel's focus ring, not antd's blue */
+.chatbot .cot-collapse .ant-collapse-header:focus-visible { outline: 2px solid var(--v3-focus) !important; outline-offset: 2px; box-shadow: none !important; }
+
+/* ---- rendered Markdown in assistant answers ---- */
+.chatbox .chatmsg .md { display: flex; flex-direction: column; gap: 7px; }
+.chatbox .chatmsg .md-p { margin: 0; line-height: 1.5; }
+.chatbox .chatmsg .md-h { font-weight: 600; line-height: 1.35; color: var(--v3-ink); }
+.chatbox .chatmsg .md-h1 { font-size: 14px; }
+.chatbox .chatmsg .md-h2 { font-size: 13px; }
+.chatbox .chatmsg .md-h3 { font-size: 12.5px; letter-spacing: 0.01em; }
+.chatbox .chatmsg .md-list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; }
+.chatbox .chatmsg .md-list li { line-height: 1.45; }
+.chatbox .chatmsg .md ul.md-list { list-style: disc; }
+.chatbox .chatmsg .md ol.md-list { list-style: decimal; }
+.chatbox .chatmsg .md strong { font-weight: 600; color: var(--v3-ink); }
+.chatbox .chatmsg .md-code {
+  font-family: var(--v3-mono, 'Geist Mono', monospace); font-size: 0.92em;
+  background: var(--v3-paper-2); color: var(--v3-structure);
+  padding: 1px 5px; border-radius: 3px; word-break: break-word;
+}
+/* the navy question bubble already sets colour; keep strong/headers legible there too */
+.chatbox .outgoing .chatmsg .md strong,
+.chatbox .outgoing .chatmsg .md-h { color: inherit; }
+
+/* ---- SQL "Database Query" block ---- */
+.chatbox .chatmsg pre, .chatbox .chatmsg code { font-family: var(--v3-mono, 'Geist Mono', monospace) !important; font-size: 11px !important; }
+.chatbox .chatmsg span[class*="language-"], .chatbox .chatmsg .linenumber { font-size: 11px !important; }
+
+/* ============================================================ SUGGESTED PROMPTS */
+.ask-prompts { display: flex; flex-direction: column; gap: 8px; list-style: none; margin: 4px 0 0; padding: 0; }
+.ask-prompts-lbl {
+  font-family: var(--v3-mono, 'Geist Mono', monospace); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--v3-ink-3); margin-bottom: 2px;
+}
+.ask-prompt {
+  text-align: left; width: 100%; padding: 10px 12px; cursor: pointer;
+  border: 1px solid var(--v3-line); border-left: 2px solid var(--v3-line-2);
+  border-radius: 3px; background: var(--v3-surface);
+  color: var(--v3-ink-2); font-size: 12.5px; line-height: 1.4;
+  transition: border-color 0.12s, background 0.12s, color 0.12s;
+}
+.ask-prompt:hover { border-color: var(--v3-accent-line); border-left-color: var(--v3-accent); background: var(--v3-chip-bg); color: var(--v3-chip-ink); }
+
+/* ============================================================ INPUT ROW */
+/* Unified rounded input card (CoCo-style): the textarea fills the top, a circular
+   up-arrow send button sits at the bottom-right, and the whole card glows on focus. */
+.chatbot .chat-input {
+  flex: 0 0 auto; display: flex; flex-direction: column; gap: 4px;
+  margin: 8px 12px 12px; padding: 10px 10px 8px 14px;
+  background: var(--v3-surface);
+  border: 1px solid var(--v3-line-2); border-radius: 22px;
+  box-shadow: 0 6px 20px -14px rgba(15, 27, 42, 0.28);
+  transition: border-color 0.12s, box-shadow 0.12s;
+}
+.chatbot .chat-input:focus-within {
+  border-color: var(--v3-accent);
+  box-shadow: 0 6px 22px -12px color-mix(in srgb, var(--v3-accent) 30%, transparent);
+}
+.chat-input textarea {
+  flex: 1; min-height: 26px; max-height: 150px; width: 100%;
+  padding: 2px; resize: none; outline: none;
+  border: none; border-radius: 0; background: transparent;
+  font-size: 13px; line-height: 1.45; color: var(--v3-ink);
+}
+.chat-input textarea::placeholder { color: var(--v3-ink-4); }
+.chat-input textarea:disabled { background: transparent; color: var(--v3-ink-3); cursor: not-allowed; }
+.chat-input #send-btn {
+  align-self: flex-end; flex-shrink: 0; width: 34px; height: 34px;
+  display: grid; place-items: center; border: none; padding: 0;
+  color: var(--v3-action-ink); background: var(--v3-action); border-radius: 50%;
+  cursor: pointer; visibility: hidden;
+  transition: background 0.12s, transform 0.12s;
+}
+.chat-input #send-btn .material-symbols-rounded { font-size: 19px; display: block; }
+.chat-input #send-btn:hover { background: var(--v3-action-hover); transform: translateY(-1px); }
+.chat-input textarea:valid ~ #send-btn { visibility: visible; }
+
+/* ============================================================ ANTD / GRID OVERRIDES (drawer scope) */
+.chatbot .ant-spin-dot-item { background-color: var(--v3-accent) !important; }
+/* the page-size selector was disabled anyway — hide it so it stops eating a row */
+.chatbot .ant-pagination-options { display: none !important; }
+/* compact table footer: pagination + download must not dwarf the data */
+.chatbox .with-table .ant-table-pagination.ant-pagination { margin: 8px 0 0 !important; }
+.chatbox .with-table .ant-pagination { font-size: 11px; }
+.chatbox .with-table .ant-pagination .ant-pagination-total-text { height: 26px; line-height: 26px; margin-inline-end: 8px; }
+.chatbox .with-table .ant-pagination .ant-pagination-item,
+.chatbox .with-table .ant-pagination .ant-pagination-prev,
+.chatbox .with-table .ant-pagination .ant-pagination-next,
+.chatbox .with-table .ant-pagination .ant-pagination-jump-prev,
+.chatbox .with-table .ant-pagination .ant-pagination-jump-next {
+  min-width: 24px; height: 24px; line-height: 22px; margin-inline-end: 4px; font-size: 11px;
+}
+/* download button: small, tucked up close under the grid */
+.chatbox .with-table .chatmsg > div:last-child { margin-top: 4px !important; }
+.chatbox .with-table .ant-btn { height: 26px; min-width: 26px; padding: 0 8px; font-size: 12px; background: var(--v3-surface); color: var(--v3-ink-2); border-color: var(--v3-line-2); }
+.chatbox .with-table .ant-btn:hover { color: var(--v3-link) !important; border-color: var(--v3-accent) !important; }
+.chatbox .with-table .ant-pagination,
+.chatbox .with-table .ant-pagination .ant-pagination-item a,
+.chatbox .with-table .ant-pagination .ant-pagination-item-link { color: var(--v3-ink-2); }
+.chatbox .with-table .ant-pagination .ant-pagination-item-active { background: var(--v3-surface); border-color: var(--v3-accent); }
+.chatbox .with-table .ant-pagination .ant-pagination-item-active a { color: var(--v3-accent); }
+.chatbox .with-table .ant-pagination .ant-pagination-disabled .ant-pagination-item-link { color: var(--v3-ink-4); }
+/* result grid (ProTable) inside an answer */
+.chatbox .with-table .ant-pro-table, .chatbox .with-table .ant-table { font-size: 11px; }
+.chatbox .with-table .ant-table { background: var(--v3-surface); color: var(--v3-ink); }
+.chatbox .with-table .ant-table-thead > tr > th {
+  background: var(--v3-structure-soft) !important; border-bottom-color: var(--v3-line) !important;
+  font-family: var(--v3-mono, 'Geist Mono', monospace); font-size: 9.5px; font-weight: 600;
+  letter-spacing: 0.03em; text-transform: uppercase; color: var(--v3-structure);
+}
+.chatbox .with-table .ant-table-tbody > tr > td { font-family: var(--v3-mono, 'Geist Mono', monospace); font-size: 10.5px; border-bottom-color: var(--v3-line); }
+.chatbox .with-table .ant-table-tbody > tr.ant-table-row:hover > td { background: var(--v3-surface-2); }
+.chatbox .with-table .ant-table-placeholder, .chatbox .with-table .ant-table-placeholder:hover > td { background: var(--v3-surface) !important; color: var(--v3-ink-3); }
+/* compact cells: less horizontal padding lets more columns fit before scroll */
+.chatbox .with-table .ant-table-thead > tr > th,
+.chatbox .with-table .ant-table-tbody > tr > td { padding: 6px 9px !important; }
+
+/* dropdowns that portal to <body> keep the azure accent */
+.ant-select-dropdown .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: var(--v3-chip-bg) !important; color: var(--v3-chip-ink) !important;
+}
+
+/* ============================================================ RESPONSIVE WIDTH */
+@media (max-width: 490px) {
+  .chatbot { width: 100%; border-left: none; }
+}
+@media (min-width: 1281px) { .chatbot { width: 48rem; } }
+@media (min-width: 1025px) and (max-width: 1280px) { .chatbot { width: 46rem; } }
+@media (min-width: 768px) and (max-width: 1024px) { .chatbot { width: 42rem; } }
+
+.material-symbols-rounded {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+
+/* ============================================================ FEEDBACK MODAL + NOTICES
+   antd portals these to <body>, outside the drawer, so they are styled by
+   their own class; antd's :where() rules have zero specificity. */
+.v3-feedback-modal .ant-modal-content,
+.v3-feedback-modal .ant-modal-header { background: var(--v3-surface); }
+.v3-feedback-modal .ant-modal-title { color: var(--v3-ink); }
+.v3-feedback-modal .ant-modal-close { color: var(--v3-ink-3); }
+.v3-feedback-modal .ant-modal-close:hover { color: var(--v3-ink); background: var(--v3-paper-2); }
+.v3-feedback-modal .ant-form-item-label > label { color: var(--v3-ink-2); }
+.v3-feedback-modal textarea.ant-input { background: var(--v3-surface-2); color: var(--v3-ink); border-color: var(--v3-line-2); }
+.v3-feedback-modal textarea.ant-input:focus { border-color: var(--v3-accent); }
+.v3-feedback-modal .ant-btn-default { background: var(--v3-surface); color: var(--v3-ink-2); border-color: var(--v3-line-2); }
+.v3-feedback-modal .ant-btn-default:hover { color: var(--v3-link) !important; border-color: var(--v3-accent) !important; }
+.v3-feedback-modal .ant-form-item-explain-error { color: var(--v3-bad); }
+.ant-notification .ant-notification-notice { background: var(--v3-surface); box-shadow: var(--v3-shadow-2); }
+.ant-notification .ant-notification-notice-message { color: var(--v3-ink) !important; }
+.ant-notification .ant-notification-notice-description { color: var(--v3-ink-2); }
+.ant-notification .ant-notification-notice-close { color: var(--v3-ink-3); }
+.ant-notification .ant-notification-notice-icon-error { color: var(--v3-bad); }

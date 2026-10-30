@@ -1,0 +1,6 @@
+-r requirements.txt
+pytest>=8
+pyflakes>=4.0.3
+httpx>=0.27
+pytest-cov>=7   # make test-unit's coverage report
+ruff>=0.17.1,<0.18   # make lint, under ruff.toml; a new minor can add rules to the selection, so it moves by hand

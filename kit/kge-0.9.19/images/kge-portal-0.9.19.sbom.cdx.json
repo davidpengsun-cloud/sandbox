@@ -1,0 +1,1446 @@
+{
+ "bomFormat": "CycloneDX",
+ "specVersion": "1.5",
+ "serialNumber": "urn:uuid:b750fcbe9cd68a1abbc3e149061e8535",
+ "version": 1,
+ "metadata": {
+  "tools": {
+   "components": [
+    {
+     "type": "application",
+     "name": "kit/sbom_node.mjs",
+     "description": "npm ls and rpm, read from the image"
+    }
+   ]
+  },
+  "component": {
+   "type": "container",
+   "bom-ref": "kge-portal:0.9.19",
+   "name": "kge-portal",
+   "version": "0.9.19",
+   "hashes": [
+    {
+     "alg": "SHA-256",
+     "content": "8dc996880cea80e5a070866e612978d72ec2f49e29640f4c5572216843024c51"
+    }
+   ],
+   "properties": [
+    {
+     "name": "kge:image:id",
+     "value": "sha256:8dc996880cea80e5a070866e612978d72ec2f49e29640f4c5572216843024c51"
+    }
+   ]
+  }
+ },
+ "components": [
+  {
+   "type": "library",
+   "name": "@google-cloud/bigquery",
+   "version": "8.3.1",
+   "purl": "pkg:npm/%40google-cloud%2Fbigquery@8.3.1"
+  },
+  {
+   "type": "library",
+   "name": "@google-cloud/common",
+   "version": "6.1.0",
+   "purl": "pkg:npm/%40google-cloud%2Fcommon@6.1.0"
+  },
+  {
+   "type": "library",
+   "name": "@google-cloud/paginator",
+   "version": "6.1.0",
+   "purl": "pkg:npm/%40google-cloud%2Fpaginator@6.1.0"
+  },
+  {
+   "type": "library",
+   "name": "@google-cloud/precise-date",
+   "version": "5.2.0",
+   "purl": "pkg:npm/%40google-cloud%2Fprecise-date@5.2.0"
+  },
+  {
+   "type": "library",
+   "name": "@google-cloud/projectify",
+   "version": "4.0.0",
+   "purl": "pkg:npm/%40google-cloud%2Fprojectify@4.0.0"
+  },
+  {
+   "type": "library",
+   "name": "@google-cloud/promisify",
+   "version": "4.1.0",
+   "purl": "pkg:npm/%40google-cloud%2Fpromisify@4.1.0"
+  },
+  {
+   "type": "library",
+   "name": "@google-cloud/promisify",
+   "version": "5.1.0",
+   "purl": "pkg:npm/%40google-cloud%2Fpromisify@5.1.0"
+  },
+  {
+   "type": "library",
+   "name": "accepts",
+   "version": "2.0.0",
+   "purl": "pkg:npm/accepts@2.0.0"
+  },
+  {
+   "type": "library",
+   "name": "agent-base",
+   "version": "7.1.4",
+   "purl": "pkg:npm/agent-base@7.1.4"
+  },
+  {
+   "type": "library",
+   "name": "ajv",
+   "version": "8.18.0",
+   "purl": "pkg:npm/ajv@8.18.0"
+  },
+  {
+   "type": "library",
+   "name": "arrify",
+   "version": "2.0.1",
+   "purl": "pkg:npm/arrify@2.0.1"
+  },
+  {
+   "type": "library",
+   "name": "arrify",
+   "version": "3.0.0",
+   "purl": "pkg:npm/arrify@3.0.0"
+  },
+  {
+   "type": "library",
+   "name": "base64-js",
+   "version": "1.5.1",
+   "purl": "pkg:npm/base64-js@1.5.1"
+  },
+  {
+   "type": "library",
+   "name": "big.js",
+   "version": "7.0.1",
+   "purl": "pkg:npm/big.js@7.0.1"
+  },
+  {
+   "type": "library",
+   "name": "bignumber.js",
+   "version": "9.3.1",
+   "purl": "pkg:npm/bignumber.js@9.3.1"
+  },
+  {
+   "type": "library",
+   "name": "body-parser",
+   "version": "2.4.0",
+   "purl": "pkg:npm/body-parser@2.4.0"
+  },
+  {
+   "type": "library",
+   "name": "buffer-equal-constant-time",
+   "version": "1.0.1",
+   "purl": "pkg:npm/buffer-equal-constant-time@1.0.1"
+  },
+  {
+   "type": "library",
+   "name": "bytes",
+   "version": "3.1.2",
+   "purl": "pkg:npm/bytes@3.1.2"
+  },
+  {
+   "type": "library",
+   "name": "call-bind-apply-helpers",
+   "version": "1.0.2",
+   "purl": "pkg:npm/call-bind-apply-helpers@1.0.2"
+  },
+  {
+   "type": "library",
+   "name": "call-bound",
+   "version": "1.0.4",
+   "purl": "pkg:npm/call-bound@1.0.4"
+  },
+  {
+   "type": "library",
+   "name": "content-disposition",
+   "version": "2.0.1",
+   "purl": "pkg:npm/content-disposition@2.0.1"
+  },
+  {
+   "type": "library",
+   "name": "content-type",
+   "version": "2.1.0",
+   "purl": "pkg:npm/content-type@2.1.0"
+  },
+  {
+   "type": "library",
+   "name": "cookie-parser",
+   "version": "1.4.7",
+   "purl": "pkg:npm/cookie-parser@1.4.7"
+  },
+  {
+   "type": "library",
+   "name": "cookie-signature",
+   "version": "1.0.6",
+   "purl": "pkg:npm/cookie-signature@1.0.6"
+  },
+  {
+   "type": "library",
+   "name": "cookie-signature",
+   "version": "1.2.2",
+   "purl": "pkg:npm/cookie-signature@1.2.2"
+  },
+  {
+   "type": "library",
+   "name": "cookie",
+   "version": "0.7.2",
+   "purl": "pkg:npm/cookie@0.7.2"
+  },
+  {
+   "type": "library",
+   "name": "data-uri-to-buffer",
+   "version": "4.0.1",
+   "purl": "pkg:npm/data-uri-to-buffer@4.0.1"
+  },
+  {
+   "type": "library",
+   "name": "debug",
+   "version": "4.4.3",
+   "purl": "pkg:npm/debug@4.4.3"
+  },
+  {
+   "type": "library",
+   "name": "depd",
+   "version": "2.0.0",
+   "purl": "pkg:npm/depd@2.0.0"
+  },
+  {
+   "type": "library",
+   "name": "dunder-proto",
+   "version": "1.0.1",
+   "purl": "pkg:npm/dunder-proto@1.0.1"
+  },
+  {
+   "type": "library",
+   "name": "duplexify",
+   "version": "4.1.3",
+   "purl": "pkg:npm/duplexify@4.1.3"
+  },
+  {
+   "type": "library",
+   "name": "ecdsa-sig-formatter",
+   "version": "1.0.11",
+   "purl": "pkg:npm/ecdsa-sig-formatter@1.0.11"
+  },
+  {
+   "type": "library",
+   "name": "ee-first",
+   "version": "1.1.1",
+   "purl": "pkg:npm/ee-first@1.1.1"
+  },
+  {
+   "type": "library",
+   "name": "encodeurl",
+   "version": "2.0.0",
+   "purl": "pkg:npm/encodeurl@2.0.0"
+  },
+  {
+   "type": "library",
+   "name": "end-of-stream",
+   "version": "1.4.5",
+   "purl": "pkg:npm/end-of-stream@1.4.5"
+  },
+  {
+   "type": "library",
+   "name": "es-define-property",
+   "version": "1.0.1",
+   "purl": "pkg:npm/es-define-property@1.0.1"
+  },
+  {
+   "type": "library",
+   "name": "es-errors",
+   "version": "1.3.0",
+   "purl": "pkg:npm/es-errors@1.3.0"
+  },
+  {
+   "type": "library",
+   "name": "es-object-atoms",
+   "version": "1.1.2",
+   "purl": "pkg:npm/es-object-atoms@1.1.2"
+  },
+  {
+   "type": "library",
+   "name": "escape-html",
+   "version": "1.0.3",
+   "purl": "pkg:npm/escape-html@1.0.3"
+  },
+  {
+   "type": "library",
+   "name": "etag",
+   "version": "1.8.1",
+   "purl": "pkg:npm/etag@1.8.1"
+  },
+  {
+   "type": "library",
+   "name": "express",
+   "version": "5.3.0",
+   "purl": "pkg:npm/express@5.3.0"
+  },
+  {
+   "type": "library",
+   "name": "extend",
+   "version": "3.0.2",
+   "purl": "pkg:npm/extend@3.0.2"
+  },
+  {
+   "type": "library",
+   "name": "fast-deep-equal",
+   "version": "3.1.3",
+   "purl": "pkg:npm/fast-deep-equal@3.1.3"
+  },
+  {
+   "type": "library",
+   "name": "fast-uri",
+   "version": "3.1.9",
+   "purl": "pkg:npm/fast-uri@3.1.9"
+  },
+  {
+   "type": "library",
+   "name": "fetch-blob",
+   "version": "3.2.0",
+   "purl": "pkg:npm/fetch-blob@3.2.0"
+  },
+  {
+   "type": "library",
+   "name": "finalhandler",
+   "version": "2.1.1",
+   "purl": "pkg:npm/finalhandler@2.1.1"
+  },
+  {
+   "type": "library",
+   "name": "formdata-polyfill",
+   "version": "4.0.10",
+   "purl": "pkg:npm/formdata-polyfill@4.0.10"
+  },
+  {
+   "type": "library",
+   "name": "forwarded",
+   "version": "0.2.0",
+   "purl": "pkg:npm/forwarded@0.2.0"
+  },
+  {
+   "type": "library",
+   "name": "fresh",
+   "version": "2.0.0",
+   "purl": "pkg:npm/fresh@2.0.0"
+  },
+  {
+   "type": "library",
+   "name": "function-bind",
+   "version": "1.1.2",
+   "purl": "pkg:npm/function-bind@1.1.2"
+  },
+  {
+   "type": "library",
+   "name": "gaxios",
+   "version": "7.3.1",
+   "purl": "pkg:npm/gaxios@7.3.1"
+  },
+  {
+   "type": "library",
+   "name": "gcp-metadata",
+   "version": "8.1.2",
+   "purl": "pkg:npm/gcp-metadata@8.1.2"
+  },
+  {
+   "type": "library",
+   "name": "get-intrinsic",
+   "version": "1.3.0",
+   "purl": "pkg:npm/get-intrinsic@1.3.0"
+  },
+  {
+   "type": "library",
+   "name": "get-proto",
+   "version": "1.0.1",
+   "purl": "pkg:npm/get-proto@1.0.1"
+  },
+  {
+   "type": "library",
+   "name": "google-auth-library",
+   "version": "10.9.1",
+   "purl": "pkg:npm/google-auth-library@10.9.1"
+  },
+  {
+   "type": "library",
+   "name": "google-logging-utils",
+   "version": "1.1.3",
+   "purl": "pkg:npm/google-logging-utils@1.1.3"
+  },
+  {
+   "type": "library",
+   "name": "gopd",
+   "version": "1.2.0",
+   "purl": "pkg:npm/gopd@1.2.0"
+  },
+  {
+   "type": "library",
+   "name": "has-symbols",
+   "version": "1.1.0",
+   "purl": "pkg:npm/has-symbols@1.1.0"
+  },
+  {
+   "type": "library",
+   "name": "hasown",
+   "version": "2.0.4",
+   "purl": "pkg:npm/hasown@2.0.4"
+  },
+  {
+   "type": "library",
+   "name": "html-entities",
+   "version": "2.6.0",
+   "purl": "pkg:npm/html-entities@2.6.0"
+  },
+  {
+   "type": "library",
+   "name": "http-errors",
+   "version": "2.0.1",
+   "purl": "pkg:npm/http-errors@2.0.1"
+  },
+  {
+   "type": "library",
+   "name": "http-proxy-agent",
+   "version": "7.0.2",
+   "purl": "pkg:npm/http-proxy-agent@7.0.2"
+  },
+  {
+   "type": "library",
+   "name": "https-proxy-agent",
+   "version": "7.0.6",
+   "purl": "pkg:npm/https-proxy-agent@7.0.6"
+  },
+  {
+   "type": "library",
+   "name": "iconv-lite",
+   "version": "0.7.3",
+   "purl": "pkg:npm/iconv-lite@0.7.3"
+  },
+  {
+   "type": "library",
+   "name": "inherits",
+   "version": "2.0.4",
+   "purl": "pkg:npm/inherits@2.0.4"
+  },
+  {
+   "type": "library",
+   "name": "ipaddr.js",
+   "version": "1.9.1",
+   "purl": "pkg:npm/ipaddr.js@1.9.1"
+  },
+  {
+   "type": "library",
+   "name": "is-promise",
+   "version": "4.0.0",
+   "purl": "pkg:npm/is-promise@4.0.0"
+  },
+  {
+   "type": "library",
+   "name": "json-bigint",
+   "version": "1.0.0",
+   "purl": "pkg:npm/json-bigint@1.0.0"
+  },
+  {
+   "type": "library",
+   "name": "json-schema-traverse",
+   "version": "1.0.0",
+   "purl": "pkg:npm/json-schema-traverse@1.0.0"
+  },
+  {
+   "type": "library",
+   "name": "jwa",
+   "version": "2.0.1",
+   "purl": "pkg:npm/jwa@2.0.1"
+  },
+  {
+   "type": "library",
+   "name": "jws",
+   "version": "4.0.1",
+   "purl": "pkg:npm/jws@4.0.1"
+  },
+  {
+   "type": "library",
+   "name": "math-intrinsics",
+   "version": "1.1.0",
+   "purl": "pkg:npm/math-intrinsics@1.1.0"
+  },
+  {
+   "type": "library",
+   "name": "media-typer",
+   "version": "1.1.1",
+   "purl": "pkg:npm/media-typer@1.1.1"
+  },
+  {
+   "type": "library",
+   "name": "merge-descriptors",
+   "version": "2.0.0",
+   "purl": "pkg:npm/merge-descriptors@2.0.0"
+  },
+  {
+   "type": "library",
+   "name": "mime-db",
+   "version": "1.54.0",
+   "purl": "pkg:npm/mime-db@1.54.0"
+  },
+  {
+   "type": "library",
+   "name": "mime-types",
+   "version": "3.0.2",
+   "purl": "pkg:npm/mime-types@3.0.2"
+  },
+  {
+   "type": "library",
+   "name": "ms",
+   "version": "2.1.3",
+   "purl": "pkg:npm/ms@2.1.3"
+  },
+  {
+   "type": "library",
+   "name": "negotiator",
+   "version": "1.1.0",
+   "purl": "pkg:npm/negotiator@1.1.0"
+  },
+  {
+   "type": "library",
+   "name": "node-domexception",
+   "version": "1.0.0",
+   "purl": "pkg:npm/node-domexception@1.0.0"
+  },
+  {
+   "type": "library",
+   "name": "node-fetch",
+   "version": "3.3.2",
+   "purl": "pkg:npm/node-fetch@3.3.2"
+  },
+  {
+   "type": "library",
+   "name": "object-inspect",
+   "version": "1.13.4",
+   "purl": "pkg:npm/object-inspect@1.13.4"
+  },
+  {
+   "type": "library",
+   "name": "on-finished",
+   "version": "2.4.2",
+   "purl": "pkg:npm/on-finished@2.4.2"
+  },
+  {
+   "type": "library",
+   "name": "once",
+   "version": "1.4.0",
+   "purl": "pkg:npm/once@1.4.0"
+  },
+  {
+   "type": "library",
+   "name": "parseurl",
+   "version": "1.3.3",
+   "purl": "pkg:npm/parseurl@1.3.3"
+  },
+  {
+   "type": "library",
+   "name": "path-to-regexp",
+   "version": "8.4.2",
+   "purl": "pkg:npm/path-to-regexp@8.4.2"
+  },
+  {
+   "type": "library",
+   "name": "proxy-addr",
+   "version": "2.0.8",
+   "purl": "pkg:npm/proxy-addr@2.0.8"
+  },
+  {
+   "type": "library",
+   "name": "qs",
+   "version": "6.16.1",
+   "purl": "pkg:npm/qs@6.16.1"
+  },
+  {
+   "type": "library",
+   "name": "range-parser",
+   "version": "1.3.0",
+   "purl": "pkg:npm/range-parser@1.3.0"
+  },
+  {
+   "type": "library",
+   "name": "raw-body",
+   "version": "3.0.2",
+   "purl": "pkg:npm/raw-body@3.0.2"
+  },
+  {
+   "type": "library",
+   "name": "readable-stream",
+   "version": "3.6.2",
+   "purl": "pkg:npm/readable-stream@3.6.2"
+  },
+  {
+   "type": "library",
+   "name": "require-from-string",
+   "version": "2.0.2",
+   "purl": "pkg:npm/require-from-string@2.0.2"
+  },
+  {
+   "type": "library",
+   "name": "retry-request",
+   "version": "8.0.4",
+   "purl": "pkg:npm/retry-request@8.0.4"
+  },
+  {
+   "type": "library",
+   "name": "router",
+   "version": "2.2.0",
+   "purl": "pkg:npm/router@2.2.0"
+  },
+  {
+   "type": "library",
+   "name": "safe-buffer",
+   "version": "5.2.1",
+   "purl": "pkg:npm/safe-buffer@5.2.1"
+  },
+  {
+   "type": "library",
+   "name": "safer-buffer",
+   "version": "2.1.2",
+   "purl": "pkg:npm/safer-buffer@2.1.2"
+  },
+  {
+   "type": "library",
+   "name": "send",
+   "version": "1.2.1",
+   "purl": "pkg:npm/send@1.2.1"
+  },
+  {
+   "type": "library",
+   "name": "serve-static",
+   "version": "2.2.1",
+   "purl": "pkg:npm/serve-static@2.2.1"
+  },
+  {
+   "type": "library",
+   "name": "setprototypeof",
+   "version": "1.2.0",
+   "purl": "pkg:npm/setprototypeof@1.2.0"
+  },
+  {
+   "type": "library",
+   "name": "side-channel-list",
+   "version": "1.0.1",
+   "purl": "pkg:npm/side-channel-list@1.0.1"
+  },
+  {
+   "type": "library",
+   "name": "side-channel-map",
+   "version": "1.0.1",
+   "purl": "pkg:npm/side-channel-map@1.0.1"
+  },
+  {
+   "type": "library",
+   "name": "side-channel-weakmap",
+   "version": "1.0.2",
+   "purl": "pkg:npm/side-channel-weakmap@1.0.2"
+  },
+  {
+   "type": "library",
+   "name": "side-channel",
+   "version": "1.1.1",
+   "purl": "pkg:npm/side-channel@1.1.1"
+  },
+  {
+   "type": "library",
+   "name": "statuses",
+   "version": "2.0.2",
+   "purl": "pkg:npm/statuses@2.0.2"
+  },
+  {
+   "type": "library",
+   "name": "stream-events",
+   "version": "1.0.5",
+   "purl": "pkg:npm/stream-events@1.0.5"
+  },
+  {
+   "type": "library",
+   "name": "stream-shift",
+   "version": "1.0.3",
+   "purl": "pkg:npm/stream-shift@1.0.3"
+  },
+  {
+   "type": "library",
+   "name": "string_decoder",
+   "version": "1.3.0",
+   "purl": "pkg:npm/string_decoder@1.3.0"
+  },
+  {
+   "type": "library",
+   "name": "stubs",
+   "version": "3.0.0",
+   "purl": "pkg:npm/stubs@3.0.0"
+  },
+  {
+   "type": "library",
+   "name": "teeny-request",
+   "version": "10.1.4",
+   "purl": "pkg:npm/teeny-request@10.1.4"
+  },
+  {
+   "type": "library",
+   "name": "toidentifier",
+   "version": "1.0.1",
+   "purl": "pkg:npm/toidentifier@1.0.1"
+  },
+  {
+   "type": "library",
+   "name": "type-is",
+   "version": "2.1.0",
+   "purl": "pkg:npm/type-is@2.1.0"
+  },
+  {
+   "type": "library",
+   "name": "unpipe",
+   "version": "1.0.0",
+   "purl": "pkg:npm/unpipe@1.0.0"
+  },
+  {
+   "type": "library",
+   "name": "util-deprecate",
+   "version": "1.0.2",
+   "purl": "pkg:npm/util-deprecate@1.0.2"
+  },
+  {
+   "type": "library",
+   "name": "vary",
+   "version": "1.1.2",
+   "purl": "pkg:npm/vary@1.1.2"
+  },
+  {
+   "type": "library",
+   "name": "web-streams-polyfill",
+   "version": "3.3.3",
+   "purl": "pkg:npm/web-streams-polyfill@3.3.3"
+  },
+  {
+   "type": "library",
+   "name": "wrappy",
+   "version": "1.0.2",
+   "purl": "pkg:npm/wrappy@1.0.2"
+  },
+  {
+   "type": "library",
+   "name": "yaml",
+   "version": "2.8.3",
+   "purl": "pkg:npm/yaml@2.8.3"
+  },
+  {
+   "type": "library",
+   "name": "alternatives",
+   "version": "1.24-2.el9",
+   "purl": "pkg:rpm/rhel/alternatives@1.24-2.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "audit-libs",
+   "version": "3.1.5-8.el9",
+   "purl": "pkg:rpm/rhel/audit-libs@3.1.5-8.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "basesystem",
+   "version": "11-13.el9",
+   "purl": "pkg:rpm/rhel/basesystem@11-13.el9?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "bash",
+   "version": "5.1.8-9.el9",
+   "purl": "pkg:rpm/rhel/bash@5.1.8-9.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "bzip2-libs",
+   "version": "1.0.8-11.el9",
+   "purl": "pkg:rpm/rhel/bzip2-libs@1.0.8-11.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "ca-certificates",
+   "version": "2026.2.92_v9.0.319-90.3.el9_8",
+   "purl": "pkg:rpm/rhel/ca-certificates@2026.2.92_v9.0.319-90.3.el9_8?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "coreutils-single",
+   "version": "8.32-41.el9_8.1",
+   "purl": "pkg:rpm/rhel/coreutils-single@8.32-41.el9_8.1?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "crypto-policies",
+   "version": "20260224-1.gitea0f072.el9_8",
+   "purl": "pkg:rpm/rhel/crypto-policies@20260224-1.gitea0f072.el9_8?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "curl-minimal",
+   "version": "7.76.1-40.el9_8.8",
+   "purl": "pkg:rpm/rhel/curl-minimal@7.76.1-40.el9_8.8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "cyrus-sasl-lib",
+   "version": "2.1.27-22.el9",
+   "purl": "pkg:rpm/rhel/cyrus-sasl-lib@2.1.27-22.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "dejavu-sans-fonts",
+   "version": "2.37-18.el9",
+   "purl": "pkg:rpm/rhel/dejavu-sans-fonts@2.37-18.el9?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "dnf-data",
+   "version": "4.14.0-34.el9_8",
+   "purl": "pkg:rpm/rhel/dnf-data@4.14.0-34.el9_8?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "file-libs",
+   "version": "5.39-17.el9",
+   "purl": "pkg:rpm/rhel/file-libs@5.39-17.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "filesystem",
+   "version": "3.16-5.el9",
+   "purl": "pkg:rpm/rhel/filesystem@3.16-5.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "findutils",
+   "version": "1:4.8.0-7.el9",
+   "purl": "pkg:rpm/rhel/findutils@4.8.0-7.el9?arch=x86_64&epoch=1&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "fonts-filesystem",
+   "version": "1:2.0.5-7.el9.1",
+   "purl": "pkg:rpm/rhel/fonts-filesystem@2.0.5-7.el9.1?arch=noarch&epoch=1&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "gawk",
+   "version": "5.1.0-6.el9_8.1",
+   "purl": "pkg:rpm/rhel/gawk@5.1.0-6.el9_8.1?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "gdbm-libs",
+   "version": "1:1.23-1.el9",
+   "purl": "pkg:rpm/rhel/gdbm-libs@1.23-1.el9?arch=x86_64&epoch=1&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "glib2",
+   "version": "2.68.4-19.el9_8.10",
+   "purl": "pkg:rpm/rhel/glib2@2.68.4-19.el9_8.10?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "glibc-common",
+   "version": "2.34-283.el9_8",
+   "purl": "pkg:rpm/rhel/glibc-common@2.34-283.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "glibc-minimal-langpack",
+   "version": "2.34-283.el9_8",
+   "purl": "pkg:rpm/rhel/glibc-minimal-langpack@2.34-283.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "glibc",
+   "version": "2.34-283.el9_8",
+   "purl": "pkg:rpm/rhel/glibc@2.34-283.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "gmp",
+   "version": "1:6.2.0-13.el9",
+   "purl": "pkg:rpm/rhel/gmp@6.2.0-13.el9?arch=x86_64&epoch=1&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "gnupg2",
+   "version": "2.3.3-5.el9_7",
+   "purl": "pkg:rpm/rhel/gnupg2@2.3.3-5.el9_7?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "gnutls",
+   "version": "3.8.10-9.el9_8",
+   "purl": "pkg:rpm/rhel/gnutls@3.8.10-9.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "gobject-introspection",
+   "version": "1.68.0-11.el9",
+   "purl": "pkg:rpm/rhel/gobject-introspection@1.68.0-11.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "gpgme",
+   "version": "1.15.1-6.el9",
+   "purl": "pkg:rpm/rhel/gpgme@1.15.1-6.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "grep",
+   "version": "3.6-5.el9",
+   "purl": "pkg:rpm/rhel/grep@3.6-5.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "json-c",
+   "version": "0.14-11.el9",
+   "purl": "pkg:rpm/rhel/json-c@0.14-11.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "json-glib",
+   "version": "1.6.6-1.el9",
+   "purl": "pkg:rpm/rhel/json-glib@1.6.6-1.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "keyutils-libs",
+   "version": "1.6.3-1.el9",
+   "purl": "pkg:rpm/rhel/keyutils-libs@1.6.3-1.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "krb5-libs",
+   "version": "1.21.1-10.el9_8",
+   "purl": "pkg:rpm/rhel/krb5-libs@1.21.1-10.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "langpacks-core-en",
+   "version": "3.0-16.el9",
+   "purl": "pkg:rpm/rhel/langpacks-core-en@3.0-16.el9?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "langpacks-core-font-en",
+   "version": "3.0-16.el9",
+   "purl": "pkg:rpm/rhel/langpacks-core-font-en@3.0-16.el9?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "langpacks-en",
+   "version": "3.0-16.el9",
+   "purl": "pkg:rpm/rhel/langpacks-en@3.0-16.el9?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libacl",
+   "version": "2.4.0-1.el9_8",
+   "purl": "pkg:rpm/rhel/libacl@2.4.0-1.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libarchive",
+   "version": "3.5.3-11.el9_8",
+   "purl": "pkg:rpm/rhel/libarchive@3.5.3-11.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libassuan",
+   "version": "2.5.5-3.el9",
+   "purl": "pkg:rpm/rhel/libassuan@2.5.5-3.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libattr",
+   "version": "2.6.0-1.el9_8",
+   "purl": "pkg:rpm/rhel/libattr@2.6.0-1.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libblkid",
+   "version": "2.37.4-25.el9",
+   "purl": "pkg:rpm/rhel/libblkid@2.37.4-25.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libbrotli",
+   "version": "1.0.9-10.el9_8.1",
+   "purl": "pkg:rpm/rhel/libbrotli@1.0.9-10.el9_8.1?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libcap-ng",
+   "version": "0.8.2-7.el9",
+   "purl": "pkg:rpm/rhel/libcap-ng@0.8.2-7.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libcap",
+   "version": "2.48-10.el9_8.1",
+   "purl": "pkg:rpm/rhel/libcap@2.48-10.el9_8.1?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libcom_err",
+   "version": "1.46.5-8.el9",
+   "purl": "pkg:rpm/rhel/libcom_err@1.46.5-8.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libcurl-minimal",
+   "version": "7.76.1-40.el9_8.8",
+   "purl": "pkg:rpm/rhel/libcurl-minimal@7.76.1-40.el9_8.8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libdnf",
+   "version": "0.69.0-18.el9",
+   "purl": "pkg:rpm/rhel/libdnf@0.69.0-18.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libevent",
+   "version": "2.1.13-1.el9_8",
+   "purl": "pkg:rpm/rhel/libevent@2.1.13-1.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libffi",
+   "version": "3.4.2-8.el9",
+   "purl": "pkg:rpm/rhel/libffi@3.4.2-8.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libgcc",
+   "version": "11.5.0-14.el9",
+   "purl": "pkg:rpm/rhel/libgcc@11.5.0-14.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libgcrypt",
+   "version": "1.10.0-13.el9_8",
+   "purl": "pkg:rpm/rhel/libgcrypt@1.10.0-13.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libgpg-error",
+   "version": "1.42-5.el9",
+   "purl": "pkg:rpm/rhel/libgpg-error@1.42-5.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libidn2",
+   "version": "2.3.0-7.el9",
+   "purl": "pkg:rpm/rhel/libidn2@2.3.0-7.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libksba",
+   "version": "1.5.1-7.el9",
+   "purl": "pkg:rpm/rhel/libksba@1.5.1-7.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libmodulemd",
+   "version": "2.13.0-2.el9",
+   "purl": "pkg:rpm/rhel/libmodulemd@2.13.0-2.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libmount",
+   "version": "2.37.4-25.el9",
+   "purl": "pkg:rpm/rhel/libmount@2.37.4-25.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libnghttp2",
+   "version": "1.43.0-6.el9_8.2",
+   "purl": "pkg:rpm/rhel/libnghttp2@1.43.0-6.el9_8.2?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libpeas",
+   "version": "1.30.0-4.el9",
+   "purl": "pkg:rpm/rhel/libpeas@1.30.0-4.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "librepo",
+   "version": "1.19.0-1.el9",
+   "purl": "pkg:rpm/rhel/librepo@1.19.0-1.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libreport-filesystem",
+   "version": "2.15.2-6.el9",
+   "purl": "pkg:rpm/rhel/libreport-filesystem@2.15.2-6.el9?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "librhsm",
+   "version": "0.0.3-9.el9",
+   "purl": "pkg:rpm/rhel/librhsm@0.0.3-9.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libselinux",
+   "version": "3.6-3.el9",
+   "purl": "pkg:rpm/rhel/libselinux@3.6-3.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libsemanage",
+   "version": "3.6-5.el9_6",
+   "purl": "pkg:rpm/rhel/libsemanage@3.6-5.el9_6?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libsepol",
+   "version": "3.6-3.el9",
+   "purl": "pkg:rpm/rhel/libsepol@3.6-3.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libsigsegv",
+   "version": "2.13-4.el9",
+   "purl": "pkg:rpm/rhel/libsigsegv@2.13-4.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libsmartcols",
+   "version": "2.37.4-25.el9",
+   "purl": "pkg:rpm/rhel/libsmartcols@2.37.4-25.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libsolv",
+   "version": "0.7.24-6.el9_8",
+   "purl": "pkg:rpm/rhel/libsolv@0.7.24-6.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libstdc++",
+   "version": "11.5.0-14.el9",
+   "purl": "pkg:rpm/rhel/libstdc++@11.5.0-14.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libtasn1",
+   "version": "4.16.0-10.el9_8",
+   "purl": "pkg:rpm/rhel/libtasn1@4.16.0-10.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libtool-ltdl",
+   "version": "2.4.6-46.el9",
+   "purl": "pkg:rpm/rhel/libtool-ltdl@2.4.6-46.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libunistring",
+   "version": "0.9.10-15.el9",
+   "purl": "pkg:rpm/rhel/libunistring@0.9.10-15.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libusbx",
+   "version": "1.0.30-1.el9_8",
+   "purl": "pkg:rpm/rhel/libusbx@1.0.30-1.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libuuid",
+   "version": "2.37.4-25.el9",
+   "purl": "pkg:rpm/rhel/libuuid@2.37.4-25.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libverto",
+   "version": "0.3.2-3.el9",
+   "purl": "pkg:rpm/rhel/libverto@0.3.2-3.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libxcrypt",
+   "version": "4.4.18-3.el9",
+   "purl": "pkg:rpm/rhel/libxcrypt@4.4.18-3.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libxml2",
+   "version": "2.9.13-14.el9_8.5",
+   "purl": "pkg:rpm/rhel/libxml2@2.9.13-14.el9_8.5?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libyaml",
+   "version": "0.2.5-7.el9",
+   "purl": "pkg:rpm/rhel/libyaml@0.2.5-7.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "libzstd",
+   "version": "1.5.5-1.el9",
+   "purl": "pkg:rpm/rhel/libzstd@1.5.5-1.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "lua-libs",
+   "version": "5.4.4-4.el9",
+   "purl": "pkg:rpm/rhel/lua-libs@5.4.4-4.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "lz4-libs",
+   "version": "1.9.3-5.el9",
+   "purl": "pkg:rpm/rhel/lz4-libs@1.9.3-5.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "microdnf",
+   "version": "3.9.1-3.el9",
+   "purl": "pkg:rpm/rhel/microdnf@3.9.1-3.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "mpfr",
+   "version": "4.1.0-10.el9",
+   "purl": "pkg:rpm/rhel/mpfr@4.1.0-10.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "ncurses-base",
+   "version": "6.2-12.20210508.el9",
+   "purl": "pkg:rpm/rhel/ncurses-base@6.2-12.20210508.el9?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "ncurses-libs",
+   "version": "6.2-12.20210508.el9",
+   "purl": "pkg:rpm/rhel/ncurses-libs@6.2-12.20210508.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "nettle",
+   "version": "3.10.1-1.el9",
+   "purl": "pkg:rpm/rhel/nettle@3.10.1-1.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "nodejs-full-i18n",
+   "version": "1:22.23.2-2.module+el9.8.0+24958+80b2ac6e",
+   "purl": "pkg:rpm/rhel/nodejs-full-i18n@22.23.2-2.module%2Bel9.8.0%2B24958%2B80b2ac6e?arch=x86_64&epoch=1&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "nodejs-libs",
+   "version": "1:22.23.2-2.module+el9.8.0+24958+80b2ac6e",
+   "purl": "pkg:rpm/rhel/nodejs-libs@22.23.2-2.module%2Bel9.8.0%2B24958%2B80b2ac6e?arch=x86_64&epoch=1&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "nodejs-nodemon",
+   "version": "3.1.14-2.module+el9.8.0+24709+804d6b5b",
+   "purl": "pkg:rpm/rhel/nodejs-nodemon@3.1.14-2.module%2Bel9.8.0%2B24709%2B804d6b5b?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "nodejs",
+   "version": "1:22.23.2-2.module+el9.8.0+24958+80b2ac6e",
+   "purl": "pkg:rpm/rhel/nodejs@22.23.2-2.module%2Bel9.8.0%2B24958%2B80b2ac6e?arch=x86_64&epoch=1&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "npm",
+   "version": "1:10.9.8-1.22.23.2.2.module+el9.8.0+24958+80b2ac6e",
+   "purl": "pkg:rpm/rhel/npm@10.9.8-1.22.23.2.2.module%2Bel9.8.0%2B24958%2B80b2ac6e?arch=x86_64&epoch=1&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "npth",
+   "version": "1.6-8.el9",
+   "purl": "pkg:rpm/rhel/npth@1.6-8.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "openldap",
+   "version": "2.6.8-4.el9",
+   "purl": "pkg:rpm/rhel/openldap@2.6.8-4.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "openssl-fips-provider-so",
+   "version": "3.0.7-11.el9_8",
+   "purl": "pkg:rpm/rhel/openssl-fips-provider-so@3.0.7-11.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "openssl-fips-provider",
+   "version": "3.0.7-11.el9_8",
+   "purl": "pkg:rpm/rhel/openssl-fips-provider@3.0.7-11.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "openssl-libs",
+   "version": "1:3.5.8-2.el9_8",
+   "purl": "pkg:rpm/rhel/openssl-libs@3.5.8-2.el9_8?arch=x86_64&epoch=1&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "openssl",
+   "version": "1:3.5.8-2.el9_8",
+   "purl": "pkg:rpm/rhel/openssl@3.5.8-2.el9_8?arch=x86_64&epoch=1&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "p11-kit-trust",
+   "version": "0.26.4-1.el9_8",
+   "purl": "pkg:rpm/rhel/p11-kit-trust@0.26.4-1.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "p11-kit",
+   "version": "0.26.4-1.el9_8",
+   "purl": "pkg:rpm/rhel/p11-kit@0.26.4-1.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "pcre",
+   "version": "8.44-4.el9",
+   "purl": "pkg:rpm/rhel/pcre@8.44-4.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "pcre2-syntax",
+   "version": "10.40-7.el9_8",
+   "purl": "pkg:rpm/rhel/pcre2-syntax@10.40-7.el9_8?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "pcre2",
+   "version": "10.40-7.el9_8",
+   "purl": "pkg:rpm/rhel/pcre2@10.40-7.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "popt",
+   "version": "1.18-8.el9",
+   "purl": "pkg:rpm/rhel/popt@1.18-8.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "readline",
+   "version": "8.1-4.el9",
+   "purl": "pkg:rpm/rhel/readline@8.1-4.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "redhat-release",
+   "version": "9.8-1.0.el9",
+   "purl": "pkg:rpm/rhel/redhat-release@9.8-1.0.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "rootfiles",
+   "version": "8.1-35.el9",
+   "purl": "pkg:rpm/rhel/rootfiles@8.1-35.el9?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "rpm-libs",
+   "version": "4.16.1.3-40.el9",
+   "purl": "pkg:rpm/rhel/rpm-libs@4.16.1.3-40.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "rpm",
+   "version": "4.16.1.3-40.el9",
+   "purl": "pkg:rpm/rhel/rpm@4.16.1.3-40.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "sed",
+   "version": "4.8-10.el9",
+   "purl": "pkg:rpm/rhel/sed@4.8-10.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "setup",
+   "version": "2.13.7-10.el9",
+   "purl": "pkg:rpm/rhel/setup@2.13.7-10.el9?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "shadow-utils",
+   "version": "2:4.9-16.el9",
+   "purl": "pkg:rpm/rhel/shadow-utils@4.9-16.el9?arch=x86_64&epoch=2&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "sqlite-libs",
+   "version": "3.34.1-11.el9_8",
+   "purl": "pkg:rpm/rhel/sqlite-libs@3.34.1-11.el9_8?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "systemd-libs",
+   "version": "252-67.el9_8.6",
+   "purl": "pkg:rpm/rhel/systemd-libs@252-67.el9_8.6?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "tar",
+   "version": "2:1.34-13.el9_8",
+   "purl": "pkg:rpm/rhel/tar@1.34-13.el9_8?arch=x86_64&epoch=2&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "tzdata",
+   "version": "2026e-1.el9_8",
+   "purl": "pkg:rpm/rhel/tzdata@2026e-1.el9_8?arch=noarch&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "which",
+   "version": "2.21-30.el9_6",
+   "purl": "pkg:rpm/rhel/which@2.21-30.el9_6?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "xz-libs",
+   "version": "5.2.5-8.el9_8.1",
+   "purl": "pkg:rpm/rhel/xz-libs@5.2.5-8.el9_8.1?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "library",
+   "name": "zlib",
+   "version": "1.2.11-40.el9",
+   "purl": "pkg:rpm/rhel/zlib@1.2.11-40.el9?arch=x86_64&distro=rhel-9.8"
+  },
+  {
+   "type": "container",
+   "name": "registry.access.redhat.com/ubi9/nodejs-22-minimal",
+   "version": "9.8",
+   "properties": [
+    {
+     "name": "kge:dockerfile:stage",
+     "value": "final"
+    }
+   ],
+   "hashes": [
+    {
+     "alg": "SHA-256",
+     "content": "dcbe5b45a3e7591a52fe4ae0092a39910924092feee749c040424a7a4519ffd2"
+    }
+   ]
+  }
+ ]
+}

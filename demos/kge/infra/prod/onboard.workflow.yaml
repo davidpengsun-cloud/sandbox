@@ -1,0 +1,29 @@
+# A client's onboarding, started by Eventarc with each object its landing bucket's Pub/Sub topic announces (events.tf).
+# A release's manifest.json, written last, starts the client's Cloud Run job, JOB, overriding its page-request default
+# with onboard for the whole release; any other object is left alone. It starts the job and returns:
+# the job's own execution says how onboarding went.
+main:
+  params: [event]
+  steps:
+    - read:
+        assign:
+          - object: ${event.data.message.attributes.objectId}
+    - landed:
+        switch:
+          - condition: ${text.match_regex(object, "^releases/[0-9a-f]{16}/manifest[.]json$")}
+            next: onboard
+        next: ignore
+    - onboard:
+        call: googleapis.run.v2.projects.locations.jobs.run
+        args:
+          name: ${sys.get_env("JOB")}
+          body:
+            overrides:
+              containerOverrides:
+                - args: ["onboard"]
+          connector_params:
+            skip_polling: true
+    - started:
+        return: ${"onboarding " + object}
+    - ignore:
+        return: ${"not a release manifest: " + object}

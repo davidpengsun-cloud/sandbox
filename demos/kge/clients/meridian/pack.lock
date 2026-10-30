@@ -1,0 +1,6602 @@
+{
+ "as_of": "2025-07-01",
+ "client": "meridian",
+ "format": 1,
+ "sources": {
+  "corporate": {
+   "tables": [
+    {
+     "columns": [
+      {
+       "description": "Contact identifier",
+       "name": "contact_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Counterparty the contact belongs to",
+       "name": "counterparty_ref",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "CRM contact number. Not the retail customer identifier, despite the name",
+       "name": "customer_id",
+       "ordinal": 3,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Contact name",
+       "name": "contact_name",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Contact email",
+       "name": "contact_email",
+       "ordinal": 5,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "TREASURER, CFO, OPERATIONS",
+       "name": "role_code",
+       "ordinal": 6,
+       "type": "VARCHAR"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "counterparty_ref"
+       ],
+       "ref_columns": [
+        "counterparty_ref"
+       ],
+       "ref_table": "counterparty"
+      }
+     ],
+     "name": "contact",
+     "primary_key": [
+      "contact_id"
+     ],
+     "rows": 80,
+     "storage": 4054
+    },
+    {
+     "columns": [
+      {
+       "description": "Counterparty reference",
+       "name": "counterparty_ref",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Legal entity name",
+       "name": "counterparty_name",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Legal entity identifier",
+       "name": "lei_code",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Country of incorporation",
+       "name": "country_code",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Sector classification",
+       "name": "sector_code",
+       "ordinal": 5,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Onboarding date",
+       "name": "onboarded_on",
+       "ordinal": 6,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "counterparty",
+     "primary_key": [
+      "counterparty_ref"
+     ],
+     "rows": 40,
+     "storage": 2494
+    },
+    {
+     "columns": [
+      {
+       "description": "Deal identifier",
+       "name": "deal_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Counterparty",
+       "name": "counterparty_ref",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "FX_FWD, IRS, LOAN, BOND",
+       "name": "product_code",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Notional in EUR",
+       "name": "notional_eur",
+       "ordinal": 4,
+       "type": "DECIMAL(16,2)"
+      },
+      {
+       "description": "Trade date",
+       "name": "trade_on",
+       "ordinal": 5,
+       "type": "DATE"
+      },
+      {
+       "description": "Maturity date",
+       "name": "maturity_on",
+       "ordinal": 6,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "counterparty_ref"
+       ],
+       "ref_columns": [
+        "counterparty_ref"
+       ],
+       "ref_table": "counterparty"
+      }
+     ],
+     "name": "deal",
+     "primary_key": [
+      "deal_id"
+     ],
+     "rows": 120,
+     "storage": 5282
+    },
+    {
+     "columns": [
+      {
+       "description": "Row identifier",
+       "name": "exposure_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Counterparty",
+       "name": "counterparty_ref",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Measurement date",
+       "name": "as_of",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Exposure at default, EUR",
+       "name": "ead_eur",
+       "ordinal": 4,
+       "type": "DECIMAL(16,2)"
+      },
+      {
+       "description": "Probability of default, basis points",
+       "name": "pd_bps",
+       "ordinal": 5,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Loss given default, per cent",
+       "name": "lgd_pct",
+       "ordinal": 6,
+       "type": "DECIMAL(5,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "counterparty_ref"
+       ],
+       "ref_columns": [
+        "counterparty_ref"
+       ],
+       "ref_table": "counterparty"
+      }
+     ],
+     "name": "exposure",
+     "primary_key": [
+      "exposure_id"
+     ],
+     "rows": 160,
+     "storage": 6038
+    },
+    {
+     "columns": [
+      {
+       "description": "Fiscal quarter label, e.g. FY25-Q1",
+       "name": "fiscal_quarter",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Fiscal year, starting 1 April",
+       "name": "fiscal_year",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "First day of the fiscal quarter",
+       "name": "quarter_start",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Last day of the fiscal quarter",
+       "name": "quarter_end",
+       "ordinal": 4,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "fiscal_calendar",
+     "primary_key": [
+      "fiscal_quarter"
+     ],
+     "rows": 4,
+     "storage": 124
+    },
+    {
+     "columns": [
+      {
+       "description": "Row identifier",
+       "name": "util_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Counterparty",
+       "name": "counterparty_ref",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Measurement date",
+       "name": "as_of",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Approved limit, EUR",
+       "name": "limit_eur",
+       "ordinal": 4,
+       "type": "DECIMAL(16,2)"
+      },
+      {
+       "description": "Utilised amount, EUR",
+       "name": "utilised_eur",
+       "ordinal": 5,
+       "type": "DECIMAL(16,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "counterparty_ref"
+       ],
+       "ref_columns": [
+        "counterparty_ref"
+       ],
+       "ref_table": "counterparty"
+      }
+     ],
+     "name": "limit_utilisation",
+     "primary_key": [
+      "util_id"
+     ],
+     "rows": 160,
+     "storage": 6444
+    },
+    {
+     "columns": [
+      {
+       "description": "Row identifier",
+       "name": "qrev_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Counterparty",
+       "name": "counterparty_ref",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Fiscal quarter",
+       "name": "fiscal_quarter",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Revenue in EUR for the fiscal quarter",
+       "name": "revenue_eur",
+       "ordinal": 4,
+       "type": "DECIMAL(16,2)"
+      },
+      {
+       "description": "EUR to USD rate at quarter end",
+       "name": "fx_rate_period_end",
+       "ordinal": 5,
+       "type": "DECIMAL(10,6)"
+      },
+      {
+       "description": "Revenue converted to USD at the period-end rate",
+       "name": "revenue_usd_converted",
+       "ordinal": 6,
+       "type": "DECIMAL(16,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "counterparty_ref"
+       ],
+       "ref_columns": [
+        "counterparty_ref"
+       ],
+       "ref_table": "counterparty"
+      },
+      {
+       "columns": [
+        "fiscal_quarter"
+       ],
+       "ref_columns": [
+        "fiscal_quarter"
+       ],
+       "ref_table": "fiscal_calendar"
+      }
+     ],
+     "name": "quarterly_revenue",
+     "primary_key": [
+      "qrev_id"
+     ],
+     "rows": 160,
+     "storage": 6764
+    },
+    {
+     "columns": [
+      {
+       "description": "Row identifier",
+       "name": "rating_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Counterparty",
+       "name": "counterparty_ref",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Rating date",
+       "name": "rated_on",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Internal rating grade",
+       "name": "internal_grade",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "External agency grade where available",
+       "name": "agency_grade",
+       "ordinal": 5,
+       "type": "VARCHAR"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "counterparty_ref"
+       ],
+       "ref_columns": [
+        "counterparty_ref"
+       ],
+       "ref_table": "counterparty"
+      }
+     ],
+     "name": "rating",
+     "primary_key": [
+      "rating_id"
+     ],
+     "rows": 40,
+     "storage": 894
+    }
+   ]
+  },
+  "retail": {
+   "tables": [
+    {
+     "columns": [
+      {
+       "description": "Account identifier",
+       "name": "account_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Owning customer",
+       "name": "customer_id",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Product held",
+       "name": "product_id",
+       "ordinal": 3,
+       "type": "INTEGER"
+      },
+      {
+       "description": "OPEN, DORMANT or CLOSED",
+       "name": "status_code",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Date opened",
+       "name": "opened_on",
+       "ordinal": 5,
+       "type": "DATE"
+      },
+      {
+       "description": "Date closed, null while open",
+       "name": "closed_on",
+       "ordinal": 6,
+       "type": "DATE"
+      },
+      {
+       "description": "Account currency, always USD in retail",
+       "name": "currency_code",
+       "ordinal": 7,
+       "type": "VARCHAR"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "customer_id"
+       ],
+       "ref_columns": [
+        "customer_id"
+       ],
+       "ref_table": "customer"
+      },
+      {
+       "columns": [
+        "product_id"
+       ],
+       "ref_columns": [
+        "product_id"
+       ],
+       "ref_table": "product"
+      }
+     ],
+     "name": "account",
+     "primary_key": [
+      "account_id"
+     ],
+     "rows": 350,
+     "storage": 8443
+    },
+    {
+     "columns": [
+      {
+       "description": "Branch identifier",
+       "name": "branch_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Branch trading name",
+       "name": "branch_name",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Sales region code",
+       "name": "region_code",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Date the branch opened",
+       "name": "opened_on",
+       "ordinal": 4,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "branch",
+     "primary_key": [
+      "branch_id"
+     ],
+     "rows": 12,
+     "storage": 358
+    },
+    {
+     "columns": [
+      {
+       "description": "First day of the calendar month",
+       "name": "month_start",
+       "ordinal": 1,
+       "type": "DATE"
+      },
+      {
+       "description": "Calendar year",
+       "name": "calendar_year",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Calendar quarter, e.g. 2025-Q2",
+       "name": "calendar_quarter",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "calendar_month",
+     "primary_key": [
+      "month_start"
+     ],
+     "rows": 12,
+     "storage": 252
+    },
+    {
+     "columns": [
+      {
+       "description": "Complaint identifier",
+       "name": "complaint_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Complainant",
+       "name": "customer_id",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Date raised",
+       "name": "raised_on",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Complaint category",
+       "name": "category",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Date resolved, null while open",
+       "name": "resolved_on",
+       "ordinal": 5,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "customer_id"
+       ],
+       "ref_columns": [
+        "customer_id"
+       ],
+       "ref_table": "customer"
+      }
+     ],
+     "name": "complaint",
+     "primary_key": [
+      "complaint_id"
+     ],
+     "rows": 40,
+     "storage": 1039
+    },
+    {
+     "columns": [
+      {
+       "description": "Retail customer identifier",
+       "name": "customer_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Customer first name",
+       "name": "first_name",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Customer last name",
+       "name": "last_name",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Customer date of birth",
+       "name": "date_of_birth",
+       "ordinal": 4,
+       "type": "DATE"
+      },
+      {
+       "description": "Customer email address",
+       "name": "email",
+       "ordinal": 5,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Marketing segment code",
+       "name": "segment_code",
+       "ordinal": 6,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Home branch",
+       "name": "branch_id",
+       "ordinal": 7,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Date the relationship opened",
+       "name": "opened_on",
+       "ordinal": 8,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "branch_id"
+       ],
+       "ref_columns": [
+        "branch_id"
+       ],
+       "ref_table": "branch"
+      }
+     ],
+     "name": "customer",
+     "primary_key": [
+      "customer_id"
+     ],
+     "rows": 200,
+     "storage": 12586
+    },
+    {
+     "columns": [
+      {
+       "description": "Row identifier",
+       "name": "activity_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Customer",
+       "name": "customer_id",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Calendar month",
+       "name": "month_start",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Digital logins in the month",
+       "name": "login_count",
+       "ordinal": 4,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Customer-initiated transactions in the month",
+       "name": "txn_count",
+       "ordinal": 5,
+       "type": "INTEGER"
+      },
+      {
+       "description": "True where txn_count is at least one in the month",
+       "name": "is_active_flag",
+       "ordinal": 6,
+       "type": "BOOLEAN"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "customer_id"
+       ],
+       "ref_columns": [
+        "customer_id"
+       ],
+       "ref_table": "customer"
+      },
+      {
+       "columns": [
+        "month_start"
+       ],
+       "ref_columns": [
+        "month_start"
+       ],
+       "ref_table": "calendar_month"
+      }
+     ],
+     "name": "customer_activity",
+     "primary_key": [
+      "activity_id"
+     ],
+     "rows": 2400,
+     "storage": 55087
+    },
+    {
+     "columns": [
+      {
+       "description": "Row identifier",
+       "name": "balance_id",
+       "ordinal": 1,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Account",
+       "name": "account_id",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Balance date",
+       "name": "as_of",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "End-of-day ledger balance",
+       "name": "ledger_balance",
+       "ordinal": 4,
+       "type": "DECIMAL(14,2)"
+      },
+      {
+       "description": "End-of-day available balance",
+       "name": "available_balance",
+       "ordinal": 5,
+       "type": "DECIMAL(14,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "account_id"
+       ],
+       "ref_columns": [
+        "account_id"
+       ],
+       "ref_table": "account"
+      }
+     ],
+     "name": "daily_balance",
+     "primary_key": [
+      "balance_id"
+     ],
+     "rows": 12468,
+     "storage": 385640
+    },
+    {
+     "columns": [
+      {
+       "description": "Row identifier",
+       "name": "revenue_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Account the revenue accrues to",
+       "name": "account_id",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Calendar month",
+       "name": "month_start",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Net interest income for the month, USD",
+       "name": "interest_income",
+       "ordinal": 4,
+       "type": "DECIMAL(14,2)"
+      },
+      {
+       "description": "Fee income for the month, USD",
+       "name": "fee_income",
+       "ordinal": 5,
+       "type": "DECIMAL(14,2)"
+      },
+      {
+       "description": "Interest plus fees, USD, calendar month",
+       "name": "total_revenue_usd",
+       "ordinal": 6,
+       "type": "DECIMAL(14,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "account_id"
+       ],
+       "ref_columns": [
+        "account_id"
+       ],
+       "ref_table": "account"
+      },
+      {
+       "columns": [
+        "month_start"
+       ],
+       "ref_columns": [
+        "month_start"
+       ],
+       "ref_table": "calendar_month"
+      }
+     ],
+     "name": "monthly_revenue",
+     "primary_key": [
+      "revenue_id"
+     ],
+     "rows": 4156,
+     "storage": 127139
+    },
+    {
+     "columns": [
+      {
+       "description": "Product identifier",
+       "name": "product_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Product marketing name",
+       "name": "product_name",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Current account, savings, lending, card",
+       "name": "product_family",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Headline rate in basis points",
+       "name": "rate_bps",
+       "ordinal": 4,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Monthly account fee in USD",
+       "name": "fee_monthly",
+       "ordinal": 5,
+       "type": "DECIMAL(10,2)"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "product",
+     "primary_key": [
+      "product_id"
+     ],
+     "rows": 6,
+     "storage": 166
+    },
+    {
+     "columns": [
+      {
+       "description": "Transaction identifier",
+       "name": "txn_id",
+       "ordinal": 1,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Account posted to",
+       "name": "account_id",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Posting date",
+       "name": "posted_on",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Signed amount in account currency",
+       "name": "amount",
+       "ordinal": 4,
+       "type": "DECIMAL(14,2)"
+      },
+      {
+       "description": "DEBIT or CREDIT",
+       "name": "txn_type",
+       "ordinal": 5,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "BRANCH, ATM, ONLINE, MOBILE",
+       "name": "channel_code",
+       "ordinal": 6,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Merchant category code where applicable",
+       "name": "merchant_category",
+       "ordinal": 7,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Institution on the other side of a transfer; MERIDIAN for an account held here",
+       "name": "counterparty_bank",
+       "ordinal": 8,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account number on the other side of a transfer, at that institution",
+       "name": "counterparty_account",
+       "ordinal": 9,
+       "type": "BIGINT"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "account_id"
+       ],
+       "ref_columns": [
+        "account_id"
+       ],
+       "ref_table": "account"
+      }
+     ],
+     "name": "transaction",
+     "primary_key": [
+      "txn_id"
+     ],
+     "rows": 11107,
+     "storage": 410955
+    }
+   ]
+  },
+  "sme": {
+   "tables": [
+    {
+     "columns": [
+      {
+       "description": "First day of the calendar month",
+       "name": "month_start",
+       "ordinal": 1,
+       "type": "DATE"
+      },
+      {
+       "description": "Calendar year",
+       "name": "calendar_year",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Calendar quarter",
+       "name": "calendar_quarter",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "calendar_month",
+     "primary_key": [
+      "month_start"
+     ],
+     "rows": 12,
+     "storage": 252
+    },
+    {
+     "columns": [
+      {
+       "description": "SME client number",
+       "name": "client_no",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Registered legal name",
+       "name": "legal_name",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Company registration number",
+       "name": "registration_no",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Industry classification code",
+       "name": "industry_code",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Covering relationship manager",
+       "name": "rm_id",
+       "ordinal": 5,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Onboarding date",
+       "name": "onboarded_on",
+       "ordinal": 6,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "rm_id"
+       ],
+       "ref_columns": [
+        "rm_id"
+       ],
+       "ref_table": "relationship_manager"
+      }
+     ],
+     "name": "client",
+     "primary_key": [
+      "client_no"
+     ],
+     "rows": 60,
+     "storage": 2923
+    },
+    {
+     "columns": [
+      {
+       "description": "Row identifier",
+       "name": "activity_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Client",
+       "name": "client_no",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Calendar month",
+       "name": "month_start",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Outbound payments in the month",
+       "name": "payments_count",
+       "ordinal": 4,
+       "type": "INTEGER"
+      },
+      {
+       "description": "True where payments_count is at least one",
+       "name": "active_flag",
+       "ordinal": 5,
+       "type": "BOOLEAN"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "client_no"
+       ],
+       "ref_columns": [
+        "client_no"
+       ],
+       "ref_table": "client"
+      },
+      {
+       "columns": [
+        "month_start"
+       ],
+       "ref_columns": [
+        "month_start"
+       ],
+       "ref_table": "calendar_month"
+      }
+     ],
+     "name": "client_activity",
+     "primary_key": [
+      "activity_id"
+     ],
+     "rows": 720,
+     "storage": 16195
+    },
+    {
+     "columns": [
+      {
+       "description": "Covenant identifier",
+       "name": "covenant_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Facility the covenant attaches to",
+       "name": "facility_id",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "LEVERAGE, INTEREST_COVER, MIN_LIQUIDITY",
+       "name": "covenant_type",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Covenant threshold",
+       "name": "threshold",
+       "ordinal": 4,
+       "type": "DECIMAL(10,4)"
+      },
+      {
+       "description": "Last test date",
+       "name": "tested_on",
+       "ordinal": 5,
+       "type": "DATE"
+      },
+      {
+       "description": "True where the last test breached",
+       "name": "breached_flag",
+       "ordinal": 6,
+       "type": "BOOLEAN"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "facility_id"
+       ],
+       "ref_columns": [
+        "facility_id"
+       ],
+       "ref_table": "facility"
+      }
+     ],
+     "name": "covenant",
+     "primary_key": [
+      "covenant_id"
+     ],
+     "rows": 79,
+     "storage": 2890
+    },
+    {
+     "columns": [
+      {
+       "description": "Drawdown identifier",
+       "name": "drawdown_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Facility drawn",
+       "name": "facility_id",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Drawdown date",
+       "name": "drawn_on",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Amount drawn",
+       "name": "amount",
+       "ordinal": 4,
+       "type": "DECIMAL(14,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "facility_id"
+       ],
+       "ref_columns": [
+        "facility_id"
+       ],
+       "ref_table": "facility"
+      }
+     ],
+     "name": "drawdown",
+     "primary_key": [
+      "drawdown_id"
+     ],
+     "rows": 200,
+     "storage": 4614
+    },
+    {
+     "columns": [
+      {
+       "description": "Facility identifier",
+       "name": "facility_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Borrowing client",
+       "name": "client_no",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "TERM_LOAN, OVERDRAFT, INVOICE_FINANCE",
+       "name": "facility_type",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Approved limit",
+       "name": "limit_amount",
+       "ordinal": 4,
+       "type": "DECIMAL(14,2)"
+      },
+      {
+       "description": "Facility currency, USD",
+       "name": "currency_code",
+       "ordinal": 5,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Facility start",
+       "name": "start_on",
+       "ordinal": 6,
+       "type": "DATE"
+      },
+      {
+       "description": "Facility maturity",
+       "name": "end_on",
+       "ordinal": 7,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "client_no"
+       ],
+       "ref_columns": [
+        "client_no"
+       ],
+       "ref_table": "client"
+      }
+     ],
+     "name": "facility",
+     "primary_key": [
+      "facility_id"
+     ],
+     "rows": 79,
+     "storage": 3886
+    },
+    {
+     "columns": [
+      {
+       "description": "Row identifier",
+       "name": "rev_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Client",
+       "name": "client_no",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Calendar month",
+       "name": "month_start",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Net interest income, USD",
+       "name": "nii",
+       "ordinal": 4,
+       "type": "DECIMAL(14,2)"
+      },
+      {
+       "description": "Fee income, USD",
+       "name": "fees",
+       "ordinal": 5,
+       "type": "DECIMAL(14,2)"
+      },
+      {
+       "description": "NII plus fees, USD, calendar month",
+       "name": "revenue_usd",
+       "ordinal": 6,
+       "type": "DECIMAL(14,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "client_no"
+       ],
+       "ref_columns": [
+        "client_no"
+       ],
+       "ref_table": "client"
+      },
+      {
+       "columns": [
+        "month_start"
+       ],
+       "ref_columns": [
+        "month_start"
+       ],
+       "ref_table": "calendar_month"
+      }
+     ],
+     "name": "monthly_client_revenue",
+     "primary_key": [
+      "rev_id"
+     ],
+     "rows": 720,
+     "storage": 26705
+    },
+    {
+     "columns": [
+      {
+       "description": "Relationship manager identifier",
+       "name": "rm_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Relationship manager name",
+       "name": "rm_name",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Coverage team",
+       "name": "team_code",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "relationship_manager",
+     "primary_key": [
+      "rm_id"
+     ],
+     "rows": 8,
+     "storage": 145
+    },
+    {
+     "columns": [
+      {
+       "description": "Repayment identifier",
+       "name": "repayment_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Facility repaid",
+       "name": "facility_id",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Payment date",
+       "name": "paid_on",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Amount paid",
+       "name": "amount",
+       "ordinal": 4,
+       "type": "DECIMAL(14,2)"
+      },
+      {
+       "description": "Days past the scheduled date, zero when on time",
+       "name": "days_past_due",
+       "ordinal": 5,
+       "type": "INTEGER"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "facility_id"
+       ],
+       "ref_columns": [
+        "facility_id"
+       ],
+       "ref_table": "facility"
+      }
+     ],
+     "name": "repayment",
+     "primary_key": [
+      "repayment_id"
+     ],
+     "rows": 600,
+     "storage": 14332
+    }
+   ]
+  },
+  "wealth": {
+   "tables": [
+    {
+     "columns": [
+      {
+       "description": "DW account id",
+       "name": "DW_ACCT_ID",
+       "ordinal": 1,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Source system id",
+       "name": "SRCE_SYS_ID",
+       "ordinal": 2,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW effective date",
+       "name": "DW_EFF_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "DW expiry date",
+       "name": "DW_EXPR_DT",
+       "ordinal": 4,
+       "type": "DATE"
+      },
+      {
+       "description": "Current indicator",
+       "name": "CURR_IN",
+       "ordinal": 5,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Receive indicator",
+       "name": "RCV_IN",
+       "ordinal": 6,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Source account id",
+       "name": "SRCE_ACCT_ID",
+       "ordinal": 7,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Taxpayer corporate customer id",
+       "name": "TXPYR_CORP_CUST_ID",
+       "ordinal": 8,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Household key",
+       "name": "HSHLD_DK",
+       "ordinal": 9,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Last receive household key",
+       "name": "LAST_RCV_HSHLD_DK",
+       "ordinal": 10,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Customer group id",
+       "name": "CUST_GRP_ID",
+       "ordinal": 11,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Last receive customer group id",
+       "name": "LAST_RCV_CUST_GRP_ID",
+       "ordinal": 12,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Account domicile branch code",
+       "name": "ACCT_DOMCL_BRCH_CD",
+       "ordinal": 13,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Client code",
+       "name": "CLNT_CD",
+       "ordinal": 14,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Effective client code",
+       "name": "EFF_CLNT_CD",
+       "ordinal": 15,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account detail product code",
+       "name": "ACCT_DETL_PROD_CD",
+       "ordinal": 16,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Activity code",
+       "name": "ACTIV_CD",
+       "ordinal": 17,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account activity code",
+       "name": "ACCT_ACTIV_CD",
+       "ordinal": 18,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account status code",
+       "name": "ACCT_STAT_CD",
+       "ordinal": 19,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account ct",
+       "name": "ACCT_CT",
+       "ordinal": 20,
+       "type": "BIGINT"
+      },
+      {
+       "description": "State code",
+       "name": "STATE_CD",
+       "ordinal": 21,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Postal code",
+       "name": "POSTL_CD",
+       "ordinal": 22,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account open date",
+       "name": "ACCT_OPEN_DT",
+       "ordinal": 23,
+       "type": "DATE"
+      },
+      {
+       "description": "Account open time",
+       "name": "ACCT_OPEN_TM",
+       "ordinal": 24,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account open timestamp",
+       "name": "ACCT_OPEN_TS",
+       "ordinal": 25,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Account close date",
+       "name": "ACCT_CLOS_DT",
+       "ordinal": 26,
+       "type": "DATE"
+      },
+      {
+       "description": "Primary taxpayer id",
+       "name": "PRIM_TXPYR_ID",
+       "ordinal": 27,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Household open date",
+       "name": "HSHLD_OPEN_DT",
+       "ordinal": 28,
+       "type": "DATE"
+      },
+      {
+       "description": "Firm household open date",
+       "name": "FIRM_HSHLD_OPEN_DT",
+       "ordinal": 29,
+       "type": "DATE"
+      },
+      {
+       "description": "Account name",
+       "name": "ACCT_NM",
+       "ordinal": 30,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Test account indicator",
+       "name": "TEST_ACCT_IN",
+       "ordinal": 31,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Internal account indicator",
+       "name": "INTRN_ACCT_IN",
+       "ordinal": 32,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Internal account sub type code",
+       "name": "INTRN_ACCT_SUB_TYPE_CD",
+       "ordinal": 33,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Smry account indicator",
+       "name": "SMRY_ACCT_IN",
+       "ordinal": 34,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Master account indicator",
+       "name": "MSTR_ACCT_IN",
+       "ordinal": 35,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Sub account indicator",
+       "name": "SUB_ACCT_IN",
+       "ordinal": 36,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Dum account indicator",
+       "name": "DUM_ACCT_IN",
+       "ordinal": 37,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "New account fraud indicator",
+       "name": "NEW_ACCT_FRAUD_IN",
+       "ordinal": 38,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Taxpayer customer id",
+       "name": "TXPYR_CUST_ID",
+       "ordinal": 39,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Account lob code",
+       "name": "ACCT_LOB_CD",
+       "ordinal": 40,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Fa master account id",
+       "name": "FA_MSTR_ACCT_ID",
+       "ordinal": 41,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Effective fa master account id",
+       "name": "EFF_FA_MSTR_ACCT_ID",
+       "ordinal": 42,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Effective fa master account date",
+       "name": "EFF_FA_MSTR_ACCT_DT",
+       "ordinal": 43,
+       "type": "DATE"
+      },
+      {
+       "description": "Bt master account id",
+       "name": "BT_MSTR_ACCT_ID",
+       "ordinal": 44,
+       "type": "BIGINT"
+      },
+      {
+       "description": "K4 master account id",
+       "name": "K4_MSTR_ACCT_ID",
+       "ordinal": 45,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Advisor id",
+       "name": "ADV_ID",
+       "ordinal": 46,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Firm id",
+       "name": "FIRM_ID",
+       "ordinal": 47,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Source account registration type code",
+       "name": "SRCE_ACCT_RGSTR_TYPE_CD",
+       "ordinal": 48,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash proceeds custody code",
+       "name": "CASH_PRCDS_CSTDY_CD",
+       "ordinal": 49,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash proceeds custody description tax",
+       "name": "CASH_PRCDS_CSTDY_DESC_TX",
+       "ordinal": 50,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash distribution custody code",
+       "name": "CASH_DIST_CSTDY_CD",
+       "ordinal": 51,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash distribution custody description tax",
+       "name": "CASH_DIST_CSTDY_DESC_TX",
+       "ordinal": 52,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash distribution mail schedule code",
+       "name": "CASH_DIST_MAIL_SCHED_CD",
+       "ordinal": 53,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash distribution mail schedule description tax",
+       "name": "CASH_DIST_MAIL_SCHED_DESC_TX",
+       "ordinal": 54,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash account fund instruction code",
+       "name": "CASH_ACCT_FUND_INSTR_CD",
+       "ordinal": 55,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash stock custody code",
+       "name": "CASH_STK_CSTDY_CD",
+       "ordinal": 56,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash stock custody description tax",
+       "name": "CASH_STK_CSTDY_DESC_TX",
+       "ordinal": 57,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash account security instruction code",
+       "name": "CASH_ACCT_SEC_INSTR_CD",
+       "ordinal": 58,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash account security instruction description tax",
+       "name": "CASH_ACCT_SEC_INSTR_DESC_TX",
+       "ordinal": 59,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash account proceeds instruction description tax",
+       "name": "CASH_ACCT_PRCDS_INSTR_DESC_TX",
+       "ordinal": 60,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash account dividend instruction description tax",
+       "name": "CASH_ACCT_DIV_INSTR_DESC_TX",
+       "ordinal": 61,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Legacy camp code",
+       "name": "LGCY_CAMP_CD",
+       "ordinal": 62,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Vip code",
+       "name": "VIP_CD",
+       "ordinal": 63,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Approval option level code",
+       "name": "APPR_OPTN_LVL_CD",
+       "ordinal": 64,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Approval option level description tax",
+       "name": "APPR_OPTN_LVL_DESC_TX",
+       "ordinal": 65,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Broker dealr account id",
+       "name": "BRKR_DEALR_ACCT_ID",
+       "ordinal": 66,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Cross system primary account indicator",
+       "name": "CROSS_SYS_PRIM_ACCT_IN",
+       "ordinal": 67,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account relationship dbs indicator",
+       "name": "ACCT_RELT_DBS_IN",
+       "ordinal": 68,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account relationship stkpln indicator",
+       "name": "ACCT_RELT_STKPLN_IN",
+       "ordinal": 69,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cs internal indicator",
+       "name": "CS_INTRN_IN",
+       "ordinal": 70,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cs stkpln category code",
+       "name": "CS_STKPLN_CATG_CD",
+       "ordinal": 71,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account open 30 day expiry date",
+       "name": "ACCT_OPEN_30_DAY_EXPR_DT",
+       "ordinal": 72,
+       "type": "DATE"
+      },
+      {
+       "description": "Account open 90 day expiry date",
+       "name": "ACCT_OPEN_90_DAY_EXPR_DT",
+       "ordinal": 73,
+       "type": "DATE"
+      },
+      {
+       "description": "Account open 180 day expiry date",
+       "name": "ACCT_OPEN_180_DAY_EXPR_DT",
+       "ordinal": 74,
+       "type": "DATE"
+      },
+      {
+       "description": "Account open 365 day expiry date",
+       "name": "ACCT_OPEN_365_DAY_EXPR_DT",
+       "ordinal": 75,
+       "type": "DATE"
+      },
+      {
+       "description": "Account open 1 month expiry date",
+       "name": "ACCT_OPEN_1_MNTH_EXPR_DT",
+       "ordinal": 76,
+       "type": "DATE"
+      },
+      {
+       "description": "Account open 3 month expiry date",
+       "name": "ACCT_OPEN_3_MNTH_EXPR_DT",
+       "ordinal": 77,
+       "type": "DATE"
+      },
+      {
+       "description": "Account open 6 month expiry date",
+       "name": "ACCT_OPEN_6_MNTH_EXPR_DT",
+       "ordinal": 78,
+       "type": "DATE"
+      },
+      {
+       "description": "Account open 12 month expiry date",
+       "name": "ACCT_OPEN_12_MNTH_EXPR_DT",
+       "ordinal": 79,
+       "type": "DATE"
+      },
+      {
+       "description": "Mub service organization id",
+       "name": "MUB_SRVC_ORG_ID",
+       "ordinal": 80,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Stock plan account primary company id",
+       "name": "STKPLN_ACCT_PRIM_CMPY_ID",
+       "ordinal": 81,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Stock plan account primary company name",
+       "name": "STKPLN_ACCT_PRIM_CMPY_NM",
+       "ordinal": 82,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Stock plan account primary company ticker code",
+       "name": "STKPLN_ACCT_PRIM_CMPY_TICKER_CD",
+       "ordinal": 83,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cs account primary master account id",
+       "name": "CS_ACCT_PRIM_MSTR_ACCT_ID",
+       "ordinal": 84,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Cs account primary firm id",
+       "name": "CS_ACCT_PRIM_FIRM_ID",
+       "ordinal": 85,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Cs account primary firm name",
+       "name": "CS_ACCT_PRIM_FIRM_NM",
+       "ordinal": 86,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Advisor service segment name",
+       "name": "ADV_SRVC_SEGMT_NM",
+       "ordinal": 87,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Advisor service sub segment name",
+       "name": "ADV_SRVC_SUB_SEGMT_NM",
+       "ordinal": 88,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Advisor service indicator",
+       "name": "ADV_SRVC_IN",
+       "ordinal": 89,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Top level segment name",
+       "name": "TOP_LVL_SEGMT_NM",
+       "ordinal": 90,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Product segment name",
+       "name": "PROD_SEGMT_NM",
+       "ordinal": 91,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account original code",
+       "name": "ACCT_ORIG_CD",
+       "ordinal": 92,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account original detail code",
+       "name": "ACCT_ORIG_DETL_CD",
+       "ordinal": 93,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Legacy asset movement code",
+       "name": "LGCY_ASSET_MVMNT_CD",
+       "ordinal": 94,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Legacy shared customer role type code",
+       "name": "LGCY_SHARED_CUST_ROLE_TYPE_CD",
+       "ordinal": 95,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Effective account open date",
+       "name": "EFF_ACCT_OPEN_DT",
+       "ordinal": 96,
+       "type": "DATE"
+      },
+      {
+       "description": "Effective household open date",
+       "name": "EFF_HSHLD_OPEN_DT",
+       "ordinal": 97,
+       "type": "DATE"
+      },
+      {
+       "description": "Jurisdiction customer id",
+       "name": "JRSDCTN_CUST_ID",
+       "ordinal": 98,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Jurisdiction country code",
+       "name": "JRSDCTN_CNTRY_CD",
+       "ordinal": 99,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Jurisdiction state code",
+       "name": "JRSDCTN_STATE_CD",
+       "ordinal": 100,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account oms type name",
+       "name": "ACCT_OMS_TYPE_NM",
+       "ordinal": 101,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account oms sw date",
+       "name": "ACCT_OMS_SW_DT",
+       "ordinal": 102,
+       "type": "DATE"
+      },
+      {
+       "description": "Account trader segment name",
+       "name": "ACCT_TRADR_SEGMT_NM",
+       "ordinal": 103,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account retail segment name",
+       "name": "ACCT_RETL_SEGMT_NM",
+       "ordinal": 104,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Tax advtgd indicator",
+       "name": "TAX_ADVTGD_IN",
+       "ordinal": 105,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Asset tier segment name",
+       "name": "ASSET_TIER_SEGMT_NM",
+       "ordinal": 106,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW account key",
+       "name": "DW_ACCT_DK",
+       "ordinal": 107,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Taxpayer customer key",
+       "name": "TXPYR_CUST_DK",
+       "ordinal": 108,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Fa master account key",
+       "name": "FA_MSTR_ACCT_DK",
+       "ordinal": 109,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Effective fa master account key",
+       "name": "EFF_FA_MSTR_ACCT_DK",
+       "ordinal": 110,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Bt master account key",
+       "name": "BT_MSTR_ACCT_DK",
+       "ordinal": 111,
+       "type": "BIGINT"
+      },
+      {
+       "description": "K4 master account key",
+       "name": "K4_MSTR_ACCT_DK",
+       "ordinal": 112,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Advisor key",
+       "name": "ADV_DK",
+       "ordinal": 113,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Broker dealr account key",
+       "name": "BRKR_DEALR_ACCT_DK",
+       "ordinal": 114,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Cs account primary master account key",
+       "name": "CS_ACCT_PRIM_MSTR_ACCT_DK",
+       "ordinal": 115,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Jurisdiction customer key",
+       "name": "JRSDCTN_CUST_DK",
+       "ordinal": 116,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW create timestamp",
+       "name": "DW_CREAT_TS",
+       "ordinal": 117,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "DW load timestamp",
+       "name": "DW_LOAD_TS",
+       "ordinal": 118,
+       "type": "TIMESTAMP"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "SRCE_SYS_ID"
+       ],
+       "ref_columns": [
+        "SRCE_SYS_ID"
+       ],
+       "ref_table": "SRCE_SYS_1"
+      }
+     ],
+     "name": "ACCT_DIM2_1",
+     "primary_key": [
+      "DW_ACCT_ID",
+      "SRCE_SYS_ID",
+      "DW_EFF_DT"
+     ],
+     "rows": 317,
+     "storage": 233101
+    },
+    {
+     "columns": [
+      {
+       "description": "Advisor identifier",
+       "name": "ADV_ID",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Advisor name",
+       "name": "ADV_NM",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Office",
+       "name": "BRCH_CD",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Licence class held",
+       "name": "LICNS_CLS_CD",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "ADV_DIM_1",
+     "primary_key": [
+      "ADV_ID"
+     ],
+     "rows": 30,
+     "storage": 564
+    },
+    {
+     "columns": [
+      {
+       "description": "Row identifier",
+       "name": "AUA_ID",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Household",
+       "name": "HSHLD_DK",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Valuation date, quarter end",
+       "name": "AS_OF_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Assets under advice, USD",
+       "name": "AUA_AM",
+       "ordinal": 4,
+       "type": "DECIMAL(16,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "HSHLD_DK"
+       ],
+       "ref_columns": [
+        "HSHLD_DK"
+       ],
+       "ref_table": "HSHLD_DIM_1"
+      }
+     ],
+     "name": "AUA_FACT_1",
+     "primary_key": [
+      "AUA_ID"
+     ],
+     "rows": 600,
+     "storage": 16433
+    },
+    {
+     "columns": [
+      {
+       "description": "Household",
+       "name": "HSHLD_DK",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Month end; a quarter end, when holdings are valued",
+       "name": "CLDR_EOM_DT",
+       "ordinal": 2,
+       "type": "DATE"
+      },
+      {
+       "description": "Assets under management, USD: the market value of the household's holdings on the date",
+       "name": "AUM_AM",
+       "ordinal": 3,
+       "type": "DECIMAL(18,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "HSHLD_DK"
+       ],
+       "ref_columns": [
+        "HSHLD_DK"
+       ],
+       "ref_table": "HSHLD_DIM_1"
+      },
+      {
+       "columns": [
+        "CLDR_EOM_DT"
+       ],
+       "ref_columns": [
+        "CLDR_EOM_DT"
+       ],
+       "ref_table": "MONTH_DIM_1"
+      }
+     ],
+     "name": "AUM_MNTH_END_FACT_1",
+     "primary_key": [
+      "HSHLD_DK",
+      "CLDR_EOM_DT"
+     ],
+     "rows": 600,
+     "storage": 14391
+    },
+    {
+     "columns": [
+      {
+       "description": "DW bank account id",
+       "name": "DW_BANK_ACCT_ID",
+       "ordinal": 1,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW effective date",
+       "name": "DW_EFF_DT",
+       "ordinal": 2,
+       "type": "DATE"
+      },
+      {
+       "description": "DW expiry date",
+       "name": "DW_EXPR_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Current indicator",
+       "name": "CURR_IN",
+       "ordinal": 4,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Receive indicator",
+       "name": "RCV_IN",
+       "ordinal": 5,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Deposit account number",
+       "name": "DEP_ACCT_NR",
+       "ordinal": 6,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Deposit account number key",
+       "name": "DEP_ACCT_NR_DK",
+       "ordinal": 7,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Mail address line 1 tax",
+       "name": "MAIL_ADDR_LINE_1_TX",
+       "ordinal": 8,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mail address line 2 tax",
+       "name": "MAIL_ADDR_LINE_2_TX",
+       "ordinal": 9,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mail address line 3 tax",
+       "name": "MAIL_ADDR_LINE_3_TX",
+       "ordinal": 10,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mail address line 4 tax",
+       "name": "MAIL_ADDR_LINE_4_TX",
+       "ordinal": 11,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mail city name",
+       "name": "MAIL_CITY_NM",
+       "ordinal": 12,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mail state code",
+       "name": "MAIL_STATE_CD",
+       "ordinal": 13,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mail postal code",
+       "name": "MAIL_POSTL_CD",
+       "ordinal": 14,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mail country code",
+       "name": "MAIL_CNTRY_CD",
+       "ordinal": 15,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW load timestamp",
+       "name": "DW_LOAD_TS",
+       "ordinal": 16,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "DW create timestamp",
+       "name": "DW_CREAT_TS",
+       "ordinal": 17,
+       "type": "TIMESTAMP"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "BANK_DEP_ACCT_ADDR_1",
+     "primary_key": [
+      "DW_BANK_ACCT_ID"
+     ],
+     "rows": 144,
+     "storage": 21891
+    },
+    {
+     "columns": [
+      {
+       "description": "Branch code",
+       "name": "BRCH_CD",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW effective date",
+       "name": "DW_EFF_DT",
+       "ordinal": 2,
+       "type": "DATE"
+      },
+      {
+       "description": "DW expiry date",
+       "name": "DW_EXPR_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Current indicator",
+       "name": "CURR_IN",
+       "ordinal": 4,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Receive indicator",
+       "name": "RCV_IN",
+       "ordinal": 5,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Branch name",
+       "name": "BRCH_NM",
+       "ordinal": 6,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Branch open date",
+       "name": "BRCH_OPEN_DT",
+       "ordinal": 7,
+       "type": "DATE"
+      },
+      {
+       "description": "Branch close date",
+       "name": "BRCH_CLOS_DT",
+       "ordinal": 8,
+       "type": "DATE"
+      },
+      {
+       "description": "Branch type code",
+       "name": "BRCH_TYPE_CD",
+       "ordinal": 9,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Branch status code",
+       "name": "BRCH_STAT_CD",
+       "ordinal": 10,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Branch organization id",
+       "name": "BRCH_ORG_ID",
+       "ordinal": 11,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cost center code",
+       "name": "COST_CENTR_CD",
+       "ordinal": 12,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Parent branch code",
+       "name": "PARNT_BRCH_CD",
+       "ordinal": 13,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Parent branch name",
+       "name": "PARNT_BRCH_NM",
+       "ordinal": 14,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Parent branch organization id",
+       "name": "PARNT_BRCH_ORG_ID",
+       "ordinal": 15,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Region code",
+       "name": "RGN_CD",
+       "ordinal": 16,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Region name",
+       "name": "RGN_NM",
+       "ordinal": 17,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Region branch executive name",
+       "name": "RGN_BRCH_EXCTV_NM",
+       "ordinal": 18,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Region branch executive mub person id",
+       "name": "RGN_BRCH_EXCTV_MUB_PRSN_ID",
+       "ordinal": 19,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Branch manager mub person id",
+       "name": "BRCH_MGR_MUB_PRSN_ID",
+       "ordinal": 20,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Branch manager name",
+       "name": "BRCH_MGR_NM",
+       "ordinal": 21,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Market leader mub person id",
+       "name": "MKT_LEADER_MUB_PRSN_ID",
+       "ordinal": 22,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Market leader name",
+       "name": "MKT_LEADER_NM",
+       "ordinal": 23,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Franchise business director mub person id",
+       "name": "FRNCHS_BUSN_DIRTR_MUB_PRSN_ID",
+       "ordinal": 24,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Franchise business director name",
+       "name": "FRNCHS_BUSN_DIRTR_NM",
+       "ordinal": 25,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Nearest company managed branch code",
+       "name": "NEAREST_CMPY_MNGD_BRCH_CD",
+       "ordinal": 26,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Area code",
+       "name": "AREA_CD",
+       "ordinal": 27,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Area name",
+       "name": "AREA_NM",
+       "ordinal": 28,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Branch division code",
+       "name": "BRCH_DIVSN_CD",
+       "ordinal": 29,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Branch division name",
+       "name": "BRCH_DIVSN_NM",
+       "ordinal": 30,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Phone id",
+       "name": "PHON_ID",
+       "ordinal": 31,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Email address tax",
+       "name": "EMAIL_ADDR_TX",
+       "ordinal": 32,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Address line1 tax",
+       "name": "ADDR_LINE1_TX",
+       "ordinal": 33,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Address line2 tax",
+       "name": "ADDR_LINE2_TX",
+       "ordinal": 34,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "City name",
+       "name": "CITY_NM",
+       "ordinal": 35,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "State code",
+       "name": "STATE_CD",
+       "ordinal": 36,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Postal code",
+       "name": "POSTL_CD",
+       "ordinal": 37,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Branch source system name",
+       "name": "BRCH_SRCE_SYS_NM",
+       "ordinal": 38,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Source system id",
+       "name": "SRCE_SYS_ID",
+       "ordinal": 39,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Insert timestamp",
+       "name": "INSERT_TS",
+       "ordinal": 40,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Insert user name",
+       "name": "INSERT_USER_NM",
+       "ordinal": 41,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Modify timestamp",
+       "name": "MODIFY_TS",
+       "ordinal": 42,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Modify user name",
+       "name": "MODIFY_USER_NM",
+       "ordinal": 43,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW auto signup indicator",
+       "name": "DW_AUTO_SIGNUP_IN",
+       "ordinal": 44,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Branch original code",
+       "name": "BRCH_ORIG_CD",
+       "ordinal": 45,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW create timestamp",
+       "name": "DW_CREAT_TS",
+       "ordinal": 46,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "DW load timestamp",
+       "name": "DW_LOAD_TS",
+       "ordinal": 47,
+       "type": "TIMESTAMP"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "BRCH_DIM_1",
+     "primary_key": [
+      "BRCH_CD",
+      "DW_EFF_DT"
+     ],
+     "rows": 5,
+     "storage": 2084
+    },
+    {
+     "columns": [
+      {
+       "description": "Client code",
+       "name": "CLNT_CD",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW effective date",
+       "name": "DW_EFF_DT",
+       "ordinal": 2,
+       "type": "DATE"
+      },
+      {
+       "description": "DW expiry date",
+       "name": "DW_EXPR_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Current indicator",
+       "name": "CURR_IN",
+       "ordinal": 4,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Receive indicator",
+       "name": "RCV_IN",
+       "ordinal": 5,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Fill parent hierarchy level number",
+       "name": "FILL_PARNT_HIER_LVL_NR",
+       "ordinal": 6,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id1 inode indicator",
+       "name": "SEGMT_LVL_ID1_INODE_IN",
+       "ordinal": 7,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id1 fill indicator",
+       "name": "SEGMT_LVL_ID1_FILL_IN",
+       "ordinal": 8,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id1",
+       "name": "SEGMT_LVL_ID1",
+       "ordinal": 9,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level nm1",
+       "name": "SEGMT_LVL_NM1",
+       "ordinal": 10,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level short nm1",
+       "name": "SEGMT_LVL_SHRT_NM1",
+       "ordinal": 11,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level ultra short nm1",
+       "name": "SEGMT_LVL_ULTRA_SHRT_NM1",
+       "ordinal": 12,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level sort sequence nr1",
+       "name": "SEGMT_LVL_SORT_SEQ_NR1",
+       "ordinal": 13,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id2 inode indicator",
+       "name": "SEGMT_LVL_ID2_INODE_IN",
+       "ordinal": 14,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id2 fill indicator",
+       "name": "SEGMT_LVL_ID2_FILL_IN",
+       "ordinal": 15,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id2",
+       "name": "SEGMT_LVL_ID2",
+       "ordinal": 16,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level nm2",
+       "name": "SEGMT_LVL_NM2",
+       "ordinal": 17,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level short nm2",
+       "name": "SEGMT_LVL_SHRT_NM2",
+       "ordinal": 18,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level ultra short nm2",
+       "name": "SEGMT_LVL_ULTRA_SHRT_NM2",
+       "ordinal": 19,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level sort sequence nr2",
+       "name": "SEGMT_LVL_SORT_SEQ_NR2",
+       "ordinal": 20,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id3 inode indicator",
+       "name": "SEGMT_LVL_ID3_INODE_IN",
+       "ordinal": 21,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id3 fill indicator",
+       "name": "SEGMT_LVL_ID3_FILL_IN",
+       "ordinal": 22,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id3",
+       "name": "SEGMT_LVL_ID3",
+       "ordinal": 23,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level nm3",
+       "name": "SEGMT_LVL_NM3",
+       "ordinal": 24,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level short nm3",
+       "name": "SEGMT_LVL_SHRT_NM3",
+       "ordinal": 25,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level ultra short nm3",
+       "name": "SEGMT_LVL_ULTRA_SHRT_NM3",
+       "ordinal": 26,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level sort sequence nr3",
+       "name": "SEGMT_LVL_SORT_SEQ_NR3",
+       "ordinal": 27,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id4 inode indicator",
+       "name": "SEGMT_LVL_ID4_INODE_IN",
+       "ordinal": 28,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id4 fill indicator",
+       "name": "SEGMT_LVL_ID4_FILL_IN",
+       "ordinal": 29,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id4",
+       "name": "SEGMT_LVL_ID4",
+       "ordinal": 30,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level nm4",
+       "name": "SEGMT_LVL_NM4",
+       "ordinal": 31,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level short nm4",
+       "name": "SEGMT_LVL_SHRT_NM4",
+       "ordinal": 32,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level ultra short nm4",
+       "name": "SEGMT_LVL_ULTRA_SHRT_NM4",
+       "ordinal": 33,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level sort sequence nr4",
+       "name": "SEGMT_LVL_SORT_SEQ_NR4",
+       "ordinal": 34,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id5 inode indicator",
+       "name": "SEGMT_LVL_ID5_INODE_IN",
+       "ordinal": 35,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id5 fill indicator",
+       "name": "SEGMT_LVL_ID5_FILL_IN",
+       "ordinal": 36,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id5",
+       "name": "SEGMT_LVL_ID5",
+       "ordinal": 37,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level nm5",
+       "name": "SEGMT_LVL_NM5",
+       "ordinal": 38,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level ultra short nm5",
+       "name": "SEGMT_LVL_ULTRA_SHRT_NM5",
+       "ordinal": 39,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level short nm5",
+       "name": "SEGMT_LVL_SHRT_NM5",
+       "ordinal": 40,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level sort sequence nr5",
+       "name": "SEGMT_LVL_SORT_SEQ_NR5",
+       "ordinal": 41,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id6 inode indicator",
+       "name": "SEGMT_LVL_ID6_INODE_IN",
+       "ordinal": 42,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id6 fill indicator",
+       "name": "SEGMT_LVL_ID6_FILL_IN",
+       "ordinal": 43,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id6",
+       "name": "SEGMT_LVL_ID6",
+       "ordinal": 44,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level nm6",
+       "name": "SEGMT_LVL_NM6",
+       "ordinal": 45,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level short nm6",
+       "name": "SEGMT_LVL_SHRT_NM6",
+       "ordinal": 46,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level ultra short nm6",
+       "name": "SEGMT_LVL_ULTRA_SHRT_NM6",
+       "ordinal": 47,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level sort sequence nr6",
+       "name": "SEGMT_LVL_SORT_SEQ_NR6",
+       "ordinal": 48,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id7 inode indicator",
+       "name": "SEGMT_LVL_ID7_INODE_IN",
+       "ordinal": 49,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id7 fill indicator",
+       "name": "SEGMT_LVL_ID7_FILL_IN",
+       "ordinal": 50,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment level id7",
+       "name": "SEGMT_LVL_ID7",
+       "ordinal": 51,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level nm7",
+       "name": "SEGMT_LVL_NM7",
+       "ordinal": 52,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level short nm7",
+       "name": "SEGMT_LVL_SHRT_NM7",
+       "ordinal": 53,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level ultra short nm7",
+       "name": "SEGMT_LVL_ULTRA_SHRT_NM7",
+       "ordinal": 54,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level sort sequence nr7",
+       "name": "SEGMT_LVL_SORT_SEQ_NR7",
+       "ordinal": 55,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW load timestamp",
+       "name": "DW_LOAD_TS",
+       "ordinal": 56,
+       "type": "TIMESTAMP"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "CLIENT_CD_ROLLUP_1",
+     "primary_key": [
+      "CLNT_CD",
+      "DW_EFF_DT"
+     ],
+     "rows": 12,
+     "storage": 4212
+    },
+    {
+     "columns": [
+      {
+       "description": "Segment code",
+       "name": "SEGMT_CD",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment name",
+       "name": "SEGMT_NM",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Parent segment, null at the top level",
+       "name": "PARNT_SEGMT_CD",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Level in the segment hierarchy, 1 at the top",
+       "name": "SEGMT_LVL_NR",
+       "ordinal": 4,
+       "type": "INTEGER"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "CLNT_SEGMT_DIM_1",
+     "primary_key": [
+      "SEGMT_CD"
+     ],
+     "rows": 6,
+     "storage": 157
+    },
+    {
+     "columns": [
+      {
+       "description": "Account id",
+       "name": "ACCT_ID",
+       "ordinal": 1,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Account key",
+       "name": "ACCT_DK",
+       "ordinal": 2,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Offer order id",
+       "name": "OFFER_ORDER_ID",
+       "ordinal": 3,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW effective date",
+       "name": "DW_EFF_DT",
+       "ordinal": 4,
+       "type": "DATE"
+      },
+      {
+       "description": "Offer enrlmt date",
+       "name": "OFFER_ENRLMT_DT",
+       "ordinal": 5,
+       "type": "DATE"
+      },
+      {
+       "description": "Offer enrlmt expiry date",
+       "name": "OFFER_ENRLMT_EXPR_DT",
+       "ordinal": 6,
+       "type": "DATE"
+      },
+      {
+       "description": "Customer group id",
+       "name": "CUST_GRP_ID",
+       "ordinal": 7,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Offer id",
+       "name": "OFFER_ID",
+       "ordinal": 8,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Core offer key",
+       "name": "CORE_OFFER_DK",
+       "ordinal": 9,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Offer name",
+       "name": "OFFER_NM",
+       "ordinal": 10,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Offer enrlmt status code",
+       "name": "OFFER_ENRLMT_STAT_CD",
+       "ordinal": 11,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Offer enrlmt balance amount",
+       "name": "OFFER_ENRLMT_BAL_AM",
+       "ordinal": 12,
+       "type": "DECIMAL(16,2)"
+      },
+      {
+       "description": "DW create timestamp",
+       "name": "DW_CREAT_TS",
+       "ordinal": 13,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "DW load timestamp",
+       "name": "DW_LOAD_TS",
+       "ordinal": 14,
+       "type": "TIMESTAMP"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "CORE_OFFER_DK"
+       ],
+       "ref_columns": [
+        "CORE_OFFER_DK"
+       ],
+       "ref_table": "D_CORE_OFFER"
+      }
+     ],
+     "name": "CORE_OFFER_ENRLMT_1",
+     "primary_key": [
+      "OFFER_ORDER_ID"
+     ],
+     "rows": 124,
+     "storage": 16397
+    },
+    {
+     "columns": [
+      {
+       "description": "Calendar date",
+       "name": "CALENDAR_DATE",
+       "ordinal": 1,
+       "type": "DATE"
+      },
+      {
+       "description": "Calendar eod date timestamp",
+       "name": "CALENDAR_EOD_DATE_TS",
+       "ordinal": 2,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Calendar date timestamp",
+       "name": "CALENDAR_DATE_TS",
+       "ordinal": 3,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Year month",
+       "name": "YEAR_MONTH",
+       "ordinal": 4,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Year value",
+       "name": "YEAR_VAL",
+       "ordinal": 5,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Day of year",
+       "name": "DAY_OF_YEAR",
+       "ordinal": 6,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Day of week",
+       "name": "DAY_OF_WEEK",
+       "ordinal": 7,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Day of week number",
+       "name": "DAY_OF_WEEK_NUMBER",
+       "ordinal": 8,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Week number",
+       "name": "WEEK_NUMBER",
+       "ordinal": 9,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Month day number",
+       "name": "MONTH_DAY_NUMBER",
+       "ordinal": 10,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Month name",
+       "name": "MONTH_NAME",
+       "ordinal": 11,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Month number",
+       "name": "MONTH_NUMBER",
+       "ordinal": 12,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Calendar month end day",
+       "name": "CALENDAR_MONTH_END_DAY",
+       "ordinal": 13,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Quarter number",
+       "name": "QUARTER_NUMBER",
+       "ordinal": 14,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Calendar quarter end day",
+       "name": "CALENDAR_QRTR_END_DAY",
+       "ordinal": 15,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Fiscal week end day",
+       "name": "FISCAL_WEEK_END_DAY",
+       "ordinal": 16,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Fiscal month end day",
+       "name": "FISCAL_MONTH_END_DAY",
+       "ordinal": 17,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Fiscal quarter end day",
+       "name": "FISCAL_QRTR_END_DAY",
+       "ordinal": 18,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Fiscal year end day",
+       "name": "FISCAL_YEAR_END_DAY",
+       "ordinal": 19,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Business week end day",
+       "name": "BUSINESS_WEEK_END_DAY",
+       "ordinal": 20,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Business month end day",
+       "name": "BUSINESS_MONTH_END_DAY",
+       "ordinal": 21,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Business quarter end day",
+       "name": "BUSINESS_QRTR_END_DAY",
+       "ordinal": 22,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Business year end day",
+       "name": "BUSINESS_YEAR_END_DAY",
+       "ordinal": 23,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Hr pay period end day",
+       "name": "HR_PAY_PERIOD_END_DAY",
+       "ordinal": 24,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Hr month end day",
+       "name": "HR_MONTH_END_DAY",
+       "ordinal": 25,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Hr quarter end day",
+       "name": "HR_QRTR_END_DAY",
+       "ordinal": 26,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Hr year end day",
+       "name": "HR_YEAR_END_DAY",
+       "ordinal": 27,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Holiday",
+       "name": "HOLIDAY",
+       "ordinal": 28,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Week of month number",
+       "name": "WEEK_OF_MONTH_NUMBER",
+       "ordinal": 29,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Exchange open indicator",
+       "name": "EXCH_OPEN_IN",
+       "ordinal": 30,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Settlement day indicator",
+       "name": "SETTL_DAY_IN",
+       "ordinal": 31,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Fed reserve bank open indicator",
+       "name": "FED_RSRV_BANK_OPEN_IN",
+       "ordinal": 32,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Time period grain code",
+       "name": "TIME_PRD_GRAIN_CD",
+       "ordinal": 33,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Previous exchange open date",
+       "name": "PREV_EXCH_OPEN_DT",
+       "ordinal": 34,
+       "type": "DATE"
+      },
+      {
+       "description": "Next exchange open date",
+       "name": "NXT_EXCH_OPEN_DT",
+       "ordinal": 35,
+       "type": "DATE"
+      },
+      {
+       "description": "Reporting exchange open date",
+       "name": "RPTG_EXCH_OPEN_DT",
+       "ordinal": 36,
+       "type": "DATE"
+      },
+      {
+       "description": "Previous mub work date",
+       "name": "PREV_MUB_WRK_DT",
+       "ordinal": 37,
+       "type": "DATE"
+      },
+      {
+       "description": "Next mub work date",
+       "name": "NEXT_MUB_WRK_DT",
+       "ordinal": 38,
+       "type": "DATE"
+      },
+      {
+       "description": "Previous mub work fri date",
+       "name": "PREV_MUB_WRK_FRI_DT",
+       "ordinal": 39,
+       "type": "DATE"
+      },
+      {
+       "description": "Next mub work fri date",
+       "name": "NEXT_MUB_WRK_FRI_DT",
+       "ordinal": 40,
+       "type": "DATE"
+      },
+      {
+       "description": "Mub work mtd ct",
+       "name": "MUB_WRK_MTD_CT",
+       "ordinal": 41,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Mub work qtd ct",
+       "name": "MUB_WRK_QTD_CT",
+       "ordinal": 42,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Mub work ytd ct",
+       "name": "MUB_WRK_YTD_CT",
+       "ordinal": 43,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Month start calendar date",
+       "name": "MNTH_START_CLDR_DT",
+       "ordinal": 44,
+       "type": "DATE"
+      },
+      {
+       "description": "Month time period grain code",
+       "name": "MNTH_TIME_PRD_GRAIN_CD",
+       "ordinal": 45,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Quarter start calendar date",
+       "name": "QRTR_START_CLDR_DT",
+       "ordinal": 46,
+       "type": "DATE"
+      },
+      {
+       "description": "Quarter time period grain code",
+       "name": "QRTR_TIME_PRD_GRAIN_CD",
+       "ordinal": 47,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Year start calendar date",
+       "name": "YEAR_START_CLDR_DT",
+       "ordinal": 48,
+       "type": "DATE"
+      },
+      {
+       "description": "Year time period grain code",
+       "name": "YEAR_TIME_PRD_GRAIN_CD",
+       "ordinal": 49,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Exchange day ct",
+       "name": "EXCH_DAY_CT",
+       "ordinal": 50,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Month end calendar date",
+       "name": "MNTH_END_CLDR_DT",
+       "ordinal": 51,
+       "type": "DATE"
+      },
+      {
+       "description": "Calendar 1 most recent date",
+       "name": "CLDR_1_MOST_RCNT_DT",
+       "ordinal": 52,
+       "type": "DATE"
+      },
+      {
+       "description": "Calendar 2 most recent date",
+       "name": "CLDR_2_MOST_RCNT_DT",
+       "ordinal": 53,
+       "type": "DATE"
+      },
+      {
+       "description": "Special holiday name",
+       "name": "SPCL_HLDY_NM",
+       "ordinal": 54,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Financial metric publishing date indicator",
+       "name": "FIN_MTRC_PBLSHNG_DT_IN",
+       "ordinal": 55,
+       "type": "VARCHAR"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "DATE_DIM_1",
+     "primary_key": [
+      "CALENDAR_DATE"
+     ],
+     "rows": 1826,
+     "storage": 449390
+    },
+    {
+     "columns": [
+      {
+       "description": "Division code",
+       "name": "DIVSN_CD",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Division name",
+       "name": "DIVSN_NM",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "First day this version of the row holds",
+       "name": "DW_EFF_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Last day this version of the row holds, null while it is current",
+       "name": "DW_EXPR_DT",
+       "ordinal": 4,
+       "type": "DATE"
+      },
+      {
+       "description": "True for the version that holds today",
+       "name": "CURR_IN",
+       "ordinal": 5,
+       "type": "BOOLEAN"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "DIVSN_DIM_1",
+     "primary_key": [
+      "DIVSN_CD",
+      "DW_EFF_DT"
+     ],
+     "rows": 2,
+     "storage": 74
+    },
+    {
+     "columns": [
+      {
+       "description": "DW account segment id",
+       "name": "DW_ACCT_SEGMT_ID",
+       "ordinal": 1,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW effective date",
+       "name": "DW_EFF_DT",
+       "ordinal": 2,
+       "type": "DATE"
+      },
+      {
+       "description": "DW expiry date",
+       "name": "DW_EXPR_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Current indicator",
+       "name": "CURR_IN",
+       "ordinal": 4,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Receive indicator",
+       "name": "RCV_IN",
+       "ordinal": 5,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW segment group id",
+       "name": "DW_SEGMT_GRP_ID",
+       "ordinal": 6,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Elt id",
+       "name": "ELT_ID",
+       "ordinal": 7,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Segment name",
+       "name": "SEGMT_NM",
+       "ordinal": 8,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment description tax",
+       "name": "SEGMT_DESC_TX",
+       "ordinal": 9,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment level tax",
+       "name": "SEGMT_LVL_TX",
+       "ordinal": 10,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment start date",
+       "name": "SEGMT_START_DT",
+       "ordinal": 11,
+       "type": "DATE"
+      },
+      {
+       "description": "Segment end date",
+       "name": "SEGMT_END_DT",
+       "ordinal": 12,
+       "type": "DATE"
+      },
+      {
+       "description": "Segment activity indicator",
+       "name": "SEGMT_ACTIV_IN",
+       "ordinal": 13,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Include indicator data load indicator",
+       "name": "INCL_IN_DATA_LOAD_IN",
+       "ordinal": 14,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Managed invstg indicator",
+       "name": "MNGD_INVSTG_IN",
+       "ordinal": 15,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Report segment name",
+       "name": "RPT_SEGMT_NM",
+       "ordinal": 16,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Insert timestamp",
+       "name": "INSERT_TS",
+       "ordinal": 17,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Insert user name",
+       "name": "INSERT_USER_NM",
+       "ordinal": 18,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Modify timestamp",
+       "name": "MODIFY_TS",
+       "ordinal": 19,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Modify user name",
+       "name": "MODIFY_USER_NM",
+       "ordinal": 20,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Approval user timestamp",
+       "name": "APPR_USER_TS",
+       "ordinal": 21,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Approval user name",
+       "name": "APPR_USER_NM",
+       "ordinal": 22,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW load timestamp",
+       "name": "DW_LOAD_TS",
+       "ordinal": 23,
+       "type": "TIMESTAMP"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "D_ACCT_SEGMT",
+     "primary_key": [
+      "DW_ACCT_SEGMT_ID"
+     ],
+     "rows": 18,
+     "storage": 3854
+    },
+    {
+     "columns": [
+      {
+       "description": "Core offer key",
+       "name": "CORE_OFFER_DK",
+       "ordinal": 1,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Offer start date",
+       "name": "OFFER_START_DT",
+       "ordinal": 2,
+       "type": "DATE"
+      },
+      {
+       "description": "Offer end date",
+       "name": "OFFER_END_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Offer available for new enrlmt indicator",
+       "name": "OFFER_AVAL_FOR_NEW_ENRLMT_IN",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Offer type code",
+       "name": "OFFER_TYPE_CD",
+       "ordinal": 5,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Offer name",
+       "name": "OFFER_NM",
+       "ordinal": 6,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Offer description tax",
+       "name": "OFFER_DESC_TX",
+       "ordinal": 7,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Service offer key",
+       "name": "SRVC_OFFER_DK",
+       "ordinal": 8,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Offer service code",
+       "name": "OFFER_SRVC_CD",
+       "ordinal": 9,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Offer service name",
+       "name": "OFFER_SRVC_NM",
+       "ordinal": 10,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Managed invstg service code",
+       "name": "MNGD_INVSTG_SRVC_CD",
+       "ordinal": 11,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Managed invstg service name",
+       "name": "MNGD_INVSTG_SRVC_NM",
+       "ordinal": 12,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Service group name",
+       "name": "SRVC_GRP_NM",
+       "ordinal": 13,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Service offer financial code",
+       "name": "SRVC_OFFER_FIN_CD",
+       "ordinal": 14,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Service code",
+       "name": "SRVC_CD",
+       "ordinal": 15,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Service name",
+       "name": "SRVC_NM",
+       "ordinal": 16,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Service type code",
+       "name": "SRVC_TYPE_CD",
+       "ordinal": 17,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Service type name",
+       "name": "SRVC_TYPE_NM",
+       "ordinal": 18,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "All service code",
+       "name": "ALL_SRVC_CD",
+       "ordinal": 19,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "All service name",
+       "name": "ALL_SRVC_NM",
+       "ordinal": 20,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Managed invstg indicator",
+       "name": "MNGD_INVSTG_IN",
+       "ordinal": 21,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Retail independent indicator",
+       "name": "RETL_INDPNDNT_IN",
+       "ordinal": 22,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Trade service indicator",
+       "name": "TRADE_SRVC_IN",
+       "ordinal": 23,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Ent code",
+       "name": "ENT_CD",
+       "ordinal": 24,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Spc indicator",
+       "name": "SPC_IN",
+       "ordinal": 25,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mas indicator",
+       "name": "MAS_IN",
+       "ordinal": 26,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Smp indicator",
+       "name": "SMP_IN",
+       "ordinal": 27,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Personal trust indicator",
+       "name": "PRSNL_TRUST_IN",
+       "ordinal": 28,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Automated portfolio type code",
+       "name": "AUTO_PORT_TYPE_CD",
+       "ordinal": 29,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Smp type code",
+       "name": "SMP_TYPE_CD",
+       "ordinal": 30,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Trade service type code",
+       "name": "TRADE_SRVC_TYPE_CD",
+       "ordinal": 31,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mub chrmn crcl type code",
+       "name": "MUB_CHRMN_CRCL_TYPE_CD",
+       "ordinal": 32,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Amount type code",
+       "name": "AMM_TYPE_CD",
+       "ordinal": 33,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "San type code",
+       "name": "SAN_TYPE_CD",
+       "ordinal": 34,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Offer id",
+       "name": "OFFER_ID",
+       "ordinal": 35,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Sgp indicator",
+       "name": "SGP_IN",
+       "ordinal": 36,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mwa indicator",
+       "name": "MWA_IN",
+       "ordinal": 37,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Sp indicator",
+       "name": "SP_IN",
+       "ordinal": 38,
+       "type": "VARCHAR"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "D_CORE_OFFER",
+     "primary_key": [
+      "CORE_OFFER_DK"
+     ],
+     "rows": 14,
+     "storage": 3173
+    },
+    {
+     "columns": [
+      {
+       "description": "Fiscal quarter label, e.g. FY25-Q1",
+       "name": "FISCAL_QTR_CD",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Fiscal year, starting 1 April",
+       "name": "FISCAL_YEAR_NR",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "First day of the fiscal quarter",
+       "name": "QRTR_START_CLDR_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Last day of the fiscal quarter",
+       "name": "QRTR_END_CLDR_DT",
+       "ordinal": 4,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "FISCAL_QTR_DIM_1",
+     "primary_key": [
+      "FISCAL_QTR_CD"
+     ],
+     "rows": 4,
+     "storage": 124
+    },
+    {
+     "columns": [
+      {
+       "description": "DW account id",
+       "name": "DW_ACCT_ID",
+       "ordinal": 1,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Source system id",
+       "name": "SRCE_SYS_ID",
+       "ordinal": 2,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW segment group id",
+       "name": "DW_SEGMT_GRP_ID",
+       "ordinal": 3,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW account segment id",
+       "name": "DW_ACCT_SEGMT_ID",
+       "ordinal": 4,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Account enrlmt effective date",
+       "name": "ACCT_ENRLMT_EFF_DT",
+       "ordinal": 5,
+       "type": "DATE"
+      },
+      {
+       "description": "Account enrlmt expiry date",
+       "name": "ACCT_ENRLMT_EXPR_DT",
+       "ordinal": 6,
+       "type": "DATE"
+      },
+      {
+       "description": "Account enrlmt activity indicator",
+       "name": "ACCT_ENRLMT_ACTIV_IN",
+       "ordinal": 7,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment name",
+       "name": "SEGMT_NM",
+       "ordinal": 8,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment group name",
+       "name": "SEGMT_GRP_NM",
+       "ordinal": 9,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW source table name",
+       "name": "DW_SRCE_TBL_NM",
+       "ordinal": 10,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW create timestamp",
+       "name": "DW_CREAT_TS",
+       "ordinal": 11,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "DW update timestamp",
+       "name": "DW_UPDT_TS",
+       "ordinal": 12,
+       "type": "TIMESTAMP"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "DW_ACCT_SEGMT_ID"
+       ],
+       "ref_columns": [
+        "DW_ACCT_SEGMT_ID"
+       ],
+       "ref_table": "D_ACCT_SEGMT"
+      }
+     ],
+     "name": "F_ACCT_SEGMT_ENRLMT",
+     "primary_key": [
+      "DW_ACCT_ID",
+      "SRCE_SYS_ID",
+      "DW_ACCT_SEGMT_ID",
+      "ACCT_ENRLMT_EFF_DT"
+     ],
+     "rows": 750,
+     "storage": 90256
+    },
+    {
+     "columns": [
+      {
+       "description": "DW transaction id",
+       "name": "DW_TRAN_ID",
+       "ordinal": 1,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Account source system id",
+       "name": "ACCT_SRCE_SYS_ID",
+       "ordinal": 2,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Transaction source system id",
+       "name": "TRANS_SRCE_SYS_ID",
+       "ordinal": 3,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW account id",
+       "name": "DW_ACCT_ID",
+       "ordinal": 4,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW account key",
+       "name": "DW_ACCT_DK",
+       "ordinal": 5,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW transaction date",
+       "name": "DW_TRAN_DT",
+       "ordinal": 6,
+       "type": "DATE"
+      },
+      {
+       "description": "DW transaction month end date",
+       "name": "DW_TRAN_MNTH_END_DT",
+       "ordinal": 7,
+       "type": "DATE"
+      },
+      {
+       "description": "Transaction execution date",
+       "name": "TRAN_EXEC_DT",
+       "ordinal": 8,
+       "type": "DATE"
+      },
+      {
+       "description": "Transaction execution timestamp",
+       "name": "TRAN_EXEC_TS",
+       "ordinal": 9,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Transaction settlement date",
+       "name": "TRAN_SETTL_DT",
+       "ordinal": 10,
+       "type": "DATE"
+      },
+      {
+       "description": "Transaction effective date",
+       "name": "TRAN_EFF_DT",
+       "ordinal": 11,
+       "type": "DATE"
+      },
+      {
+       "description": "DW transaction type code",
+       "name": "DW_TRAN_TYPE_CD",
+       "ordinal": 12,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Client directed net new assets indicator",
+       "name": "CLIENT_DIRECTED_NNA_IN",
+       "ordinal": 13,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW transaction direction code",
+       "name": "DW_TRAN_DIRCTN_CD",
+       "ordinal": 14,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mub security id",
+       "name": "MUB_SEC_ID",
+       "ordinal": 15,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Item issue id",
+       "name": "ITEM_ISS_ID",
+       "ordinal": 16,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Rule set suffix id",
+       "name": "RULE_SET_SUFF_ID",
+       "ordinal": 17,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Net new assets share qy",
+       "name": "NNA_SHR_QY",
+       "ordinal": 18,
+       "type": "DECIMAL(18,4)"
+      },
+      {
+       "description": "Net new assets execution price per share amount",
+       "name": "NNA_EXEC_PRICE_PER_SHR_AM",
+       "ordinal": 19,
+       "type": "DECIMAL(16,2)"
+      },
+      {
+       "description": "Net new assets amount",
+       "name": "NNA_AM",
+       "ordinal": 20,
+       "type": "DECIMAL(16,2)"
+      },
+      {
+       "description": "Frozen indicator",
+       "name": "FRZN_IN",
+       "ordinal": 21,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Taxpayer customer key",
+       "name": "TXPYR_CUST_DK",
+       "ordinal": 22,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Household key",
+       "name": "HSHLD_DK",
+       "ordinal": 23,
+       "type": "BIGINT"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "F_NNA_FIN",
+     "primary_key": [
+      "DW_TRAN_ID"
+     ],
+     "rows": 2495,
+     "storage": 341499
+    },
+    {
+     "columns": [
+      {
+       "description": "Row identifier",
+       "name": "HLDG_ID",
+       "ordinal": 1,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Portfolio",
+       "name": "PRTFL_ID",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Valuation date",
+       "name": "AS_OF_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Instrument identifier",
+       "name": "INSTR_ID",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Units held",
+       "name": "HLDG_QY",
+       "ordinal": 5,
+       "type": "DECIMAL(18,4)"
+      },
+      {
+       "description": "Market value in base currency",
+       "name": "MKT_VAL_AM",
+       "ordinal": 6,
+       "type": "DECIMAL(16,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "PRTFL_ID"
+       ],
+       "ref_columns": [
+        "PRTFL_ID"
+       ],
+       "ref_table": "PRTFL_DIM_1"
+      }
+     ],
+     "name": "HLDG_FACT_1",
+     "primary_key": [
+      "HLDG_ID"
+     ],
+     "rows": 3760,
+     "storage": 153770
+    },
+    {
+     "columns": [
+      {
+       "description": "Household identifier",
+       "name": "HSHLD_DK",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Household display name",
+       "name": "HSHLD_NM",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Primary advisor",
+       "name": "PRIM_ADV_ID",
+       "ordinal": 3,
+       "type": "INTEGER"
+      },
+      {
+       "description": "CAUTIOUS, BALANCED, GROWTH",
+       "name": "RISK_PRFL_CD",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Onboarding date",
+       "name": "HSHLD_ONBRD_DT",
+       "ordinal": 5,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "PRIM_ADV_ID"
+       ],
+       "ref_columns": [
+        "ADV_ID"
+       ],
+       "ref_table": "ADV_DIM_1"
+      }
+     ],
+     "name": "HSHLD_DIM_1",
+     "primary_key": [
+      "HSHLD_DK"
+     ],
+     "rows": 150,
+     "storage": 5846
+    },
+    {
+     "columns": [
+      {
+       "description": "Household",
+       "name": "HSHLD_DK",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Member of the household",
+       "name": "MBR_ID",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "PRIMARY, JOINT or DEPENDENT",
+       "name": "MBR_ROLE_CD",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "HSHLD_DK"
+       ],
+       "ref_columns": [
+        "HSHLD_DK"
+       ],
+       "ref_table": "HSHLD_DIM_1"
+      }
+     ],
+     "name": "HSHLD_MBR_1",
+     "primary_key": [
+      "HSHLD_DK",
+      "MBR_ID"
+     ],
+     "rows": 262,
+     "storage": 4108
+    },
+    {
+     "columns": [
+      {
+       "description": "Contract id",
+       "name": "CONTR_ID",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Nscc id",
+       "name": "NSCC_ID",
+       "ordinal": 2,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW effective date",
+       "name": "DW_EFF_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "DW expiry date",
+       "name": "DW_EXPR_DT",
+       "ordinal": 4,
+       "type": "DATE"
+      },
+      {
+       "description": "Current indicator",
+       "name": "CURR_IN",
+       "ordinal": 5,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Receive indicator",
+       "name": "RCV_IN",
+       "ordinal": 6,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Product cusip id",
+       "name": "PROD_CUSIP_ID",
+       "ordinal": 7,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Contract status code",
+       "name": "CONTR_STAT_CD",
+       "ordinal": 8,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "End receive company id",
+       "name": "END_RCV_CMPY_ID",
+       "ordinal": 9,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "End receive company type code",
+       "name": "END_RCV_CMPY_TYPE_CD",
+       "ordinal": 10,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Contract group number",
+       "name": "CONTR_GRP_NR",
+       "ordinal": 11,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Original contract id",
+       "name": "ORIG_CONTR_ID",
+       "ordinal": 12,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Contract distribution account id",
+       "name": "CONTR_DIST_ACCT_ID",
+       "ordinal": 13,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Irs qualify code",
+       "name": "IRS_QLFY_CD",
+       "ordinal": 14,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Contract commission option code",
+       "name": "CONTR_COMM_OPTN_CD",
+       "ordinal": 15,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Contract commission ext code",
+       "name": "CONTR_COMM_EXT_CD",
+       "ordinal": 16,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Contract state code",
+       "name": "CONTR_STATE_CD",
+       "ordinal": 17,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Fund transfer restriction indicator",
+       "name": "FUND_TRF_RSTR_IN",
+       "ordinal": 18,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Fund transfer restriction reason code",
+       "name": "FUND_TRF_RSTR_REAS_CD",
+       "ordinal": 19,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Contract non assigned endrsmt indicator",
+       "name": "CONTR_NON_ASSGN_ENDRSMT_IN",
+       "ordinal": 20,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Contract product type code",
+       "name": "CONTR_PROD_TYPE_CD",
+       "ordinal": 21,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mva indicator",
+       "name": "MVA_IN",
+       "ordinal": 22,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Product share class code",
+       "name": "PROD_SHR_CLS_CD",
+       "ordinal": 23,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Commission schedule id",
+       "name": "COMM_SCHED_ID",
+       "ordinal": 24,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Contract fees indicator",
+       "name": "CONTR_FEES_IN",
+       "ordinal": 25,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Original contact number",
+       "name": "ORIG_CNTCT_NR",
+       "ordinal": 26,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW load timestamp",
+       "name": "DW_LOAD_TS",
+       "ordinal": 27,
+       "type": "TIMESTAMP"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "PROD_CUSIP_ID"
+       ],
+       "ref_columns": [
+        "CUSIP_ID"
+       ],
+       "ref_table": "INS_SEC_PROD_CD_1"
+      }
+     ],
+     "name": "INS_CONTR_1",
+     "primary_key": [
+      "CONTR_ID"
+     ],
+     "rows": 53,
+     "storage": 7084
+    },
+    {
+     "columns": [
+      {
+       "description": "Cusip id",
+       "name": "CUSIP_ID",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Nscc id",
+       "name": "NSCC_ID",
+       "ordinal": 2,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW effective date",
+       "name": "DW_EFF_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "DW expiry date",
+       "name": "DW_EXPR_DT",
+       "ordinal": 4,
+       "type": "DATE"
+      },
+      {
+       "description": "Current indicator",
+       "name": "CURR_IN",
+       "ordinal": 5,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Receive indicator",
+       "name": "RCV_IN",
+       "ordinal": 6,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Nscc name",
+       "name": "NSCC_NM",
+       "ordinal": 7,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Product name",
+       "name": "PROD_NM",
+       "ordinal": 8,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Crier pptry product 1 code",
+       "name": "CRIER_PPTRY_PROD_1_CD",
+       "ordinal": 9,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Crier pptry product 2 code",
+       "name": "CRIER_PPTRY_PROD_2_CD",
+       "ordinal": 10,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Third party product id",
+       "name": "THRD_PRTY_PROD_ID",
+       "ordinal": 11,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Product type name",
+       "name": "PROD_TYPE_NM",
+       "ordinal": 12,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Product type code",
+       "name": "PROD_TYPE_CD",
+       "ordinal": 13,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Third party id",
+       "name": "THRD_PRTY_ID",
+       "ordinal": 14,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Service only indicator",
+       "name": "SRVC_ONLY_IN",
+       "ordinal": 15,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Effective start date",
+       "name": "EFF_START_DT",
+       "ordinal": 16,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Effective end date",
+       "name": "EFF_END_DT",
+       "ordinal": 17,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Insert timestamp",
+       "name": "INSERT_TS",
+       "ordinal": 18,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Insert user name",
+       "name": "INSERT_USER_NM",
+       "ordinal": 19,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Modify timestamp",
+       "name": "MODIFY_TS",
+       "ordinal": 20,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Modify user name",
+       "name": "MODIFY_USER_NM",
+       "ordinal": 21,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW load timestamp",
+       "name": "DW_LOAD_TS",
+       "ordinal": 22,
+       "type": "TIMESTAMP"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "INS_SEC_PROD_CD_1",
+     "primary_key": [
+      "CUSIP_ID"
+     ],
+     "rows": 40,
+     "storage": 10147
+    },
+    {
+     "columns": [
+      {
+       "description": "Account id",
+       "name": "ACCT_ID",
+       "ordinal": 1,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Account key",
+       "name": "ACCT_DK",
+       "ordinal": 2,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW effective date",
+       "name": "DW_EFF_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "DW effective timestamp",
+       "name": "DW_EFF_TS",
+       "ordinal": 4,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "DW expiry date",
+       "name": "DW_EXPR_DT",
+       "ordinal": 5,
+       "type": "DATE"
+      },
+      {
+       "description": "DW expiry timestamp",
+       "name": "DW_EXPR_TS",
+       "ordinal": 6,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Current indicator",
+       "name": "CURR_IN",
+       "ordinal": 7,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Receive indicator",
+       "name": "RCV_IN",
+       "ordinal": 8,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Legacy account branch code",
+       "name": "LGCY_ACCT_BRCH_CD",
+       "ordinal": 9,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account activity code",
+       "name": "ACCT_ACTIV_CD",
+       "ordinal": 10,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Client code",
+       "name": "CLNT_CD",
+       "ordinal": 11,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Legacy account type code",
+       "name": "LGCY_ACCT_TYPE_CD",
+       "ordinal": 12,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account registration type code",
+       "name": "ACCT_RGSTR_TYPE_CD",
+       "ordinal": 13,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash margin ira keo type code",
+       "name": "CASH_MRGN_IRA_KEO_TYPE_CD",
+       "ordinal": 14,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Alt account id",
+       "name": "ALT_ACCT_ID",
+       "ordinal": 15,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Alt account key",
+       "name": "ALT_ACCT_DK",
+       "ordinal": 16,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Special account code",
+       "name": "SPCL_ACCT_CD",
+       "ordinal": 17,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Postal code",
+       "name": "POSTL_CD",
+       "ordinal": 18,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Postal plus 4 code",
+       "name": "POSTL_PLUS_4_CD",
+       "ordinal": 19,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Taxpayer id",
+       "name": "TXPYR_ID",
+       "ordinal": 20,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Tax id format indicator",
+       "name": "TAX_ID_FRMT_IN",
+       "ordinal": 21,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash account security instruction code",
+       "name": "CASH_ACCT_SCTY_INSTR_CD",
+       "ordinal": 22,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cash account fund instruction code",
+       "name": "CASH_ACCT_FUND_INSTR_CD",
+       "ordinal": 23,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Margin account security instruction code",
+       "name": "MRGN_ACCT_SCTY_INSTR_CD",
+       "ordinal": 24,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Margin account fund instruction code",
+       "name": "MRGN_ACCT_FUND_INSTR_CD",
+       "ordinal": 25,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account open date",
+       "name": "ACCT_OPEN_DT",
+       "ordinal": 26,
+       "type": "DATE"
+      },
+      {
+       "description": "Nscc clearing id",
+       "name": "NSCC_CLR_ID",
+       "ordinal": 27,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Nscc clearing location code",
+       "name": "NSCC_CLR_LOC_CD",
+       "ordinal": 28,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Ext check history indicator",
+       "name": "EXT_CHECK_HIST_IN",
+       "ordinal": 29,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Market camp code inactive code",
+       "name": "MRKT_CAMP_CD_INACT_CD",
+       "ordinal": 30,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account institution class code",
+       "name": "ACCT_INSTN_CLS_CD",
+       "ordinal": 31,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mmf request code",
+       "name": "MMF_RQST_CD",
+       "ordinal": 32,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mmf tax exempt state fund code",
+       "name": "MMF_TAX_XMPT_STATE_FUND_CD",
+       "ordinal": 33,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mmf investment code",
+       "name": "MMF_INVST_CD",
+       "ordinal": 34,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mmf min request code",
+       "name": "MMF_MIN_REQ_CD",
+       "ordinal": 35,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mmf dividend distribution indicator",
+       "name": "MMF_DIV_DIST_IN",
+       "ordinal": 36,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mmf account type indicator",
+       "name": "MMF_ACCT_TYPE_IN",
+       "ordinal": 37,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Primary code",
+       "name": "PRIM_CD",
+       "ordinal": 38,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mmf pending status code",
+       "name": "MMF_PEND_STAT_CD",
+       "ordinal": 39,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Mub mutual fund product code",
+       "name": "MUB_MUTL_FUND_PROD_CD",
+       "ordinal": 40,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Cef original mmf code",
+       "name": "CEF_ORIG_MMF_CD",
+       "ordinal": 41,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account original mmf code",
+       "name": "ACCT_ORIG_MMF_CD",
+       "ordinal": 42,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "First mutual fund date",
+       "name": "FIRST_MUTL_FUND_DT",
+       "ordinal": 43,
+       "type": "DATE"
+      },
+      {
+       "description": "Account tax report code",
+       "name": "ACCT_TAX_RPT_CD",
+       "ordinal": 44,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Tax id available indicator",
+       "name": "TAX_ID_AVAL_IN",
+       "ordinal": 45,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Dup cfn code",
+       "name": "DUP_CFN_CD",
+       "ordinal": 46,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Dup statement code",
+       "name": "DUP_STMT_CD",
+       "ordinal": 47,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account option margin limit number",
+       "name": "ACCT_OPTN_MRGN_LIMIT_NR",
+       "ordinal": 48,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Margin debit interest code",
+       "name": "MRGN_DR_INT_CD",
+       "ordinal": 49,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Stock loan rebat rate",
+       "name": "STOCK_LOAN_REBAT_RT",
+       "ordinal": 50,
+       "type": "DECIMAL(18,4)"
+      },
+      {
+       "description": "Stock borrow rebat rate",
+       "name": "STOCK_BRROW_REBAT_RT",
+       "ordinal": 51,
+       "type": "DECIMAL(18,4)"
+      },
+      {
+       "description": "Credit interest rate indicator",
+       "name": "CR_INT_RATE_IN",
+       "ordinal": 52,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Credit interest rost code",
+       "name": "CR_INT_ROST_CD",
+       "ordinal": 53,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Margin maintenance request indicator",
+       "name": "MRGN_MAINT_REQ_IN",
+       "ordinal": 54,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Margin limit code",
+       "name": "MRGN_LMT_CD",
+       "ordinal": 55,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Option approval level code",
+       "name": "OPTN_APPR_LVL_CD",
+       "ordinal": 56,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Option pending request code",
+       "name": "OPTN_PEND_RQST_CD",
+       "ordinal": 57,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Option level enter date",
+       "name": "OPTN_LVL_ENTER_DT",
+       "ordinal": 58,
+       "type": "DATE"
+      },
+      {
+       "description": "Registration option representative id",
+       "name": "RGSTR_OPTN_REP_ID",
+       "ordinal": 59,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Registration option mub person id",
+       "name": "RGSTR_OPTN_MUB_PRSN_ID",
+       "ordinal": 60,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Registration option mub person key",
+       "name": "RGSTR_OPTN_MUB_PRSN_DK",
+       "ordinal": 61,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Registration option representative approval date",
+       "name": "RGSR_OPTN_REP_APPR_DT",
+       "ordinal": 62,
+       "type": "DATE"
+      },
+      {
+       "description": "Option disclosure sent date",
+       "name": "OPTN_DSCLSR_SENT_DT",
+       "ordinal": 63,
+       "type": "DATE"
+      },
+      {
+       "description": "Option maintenance request code",
+       "name": "OPTN_MAINT_REQ_CD",
+       "ordinal": 64,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Option limit code",
+       "name": "OPTN_LMT_CD",
+       "ordinal": 65,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account business ext id",
+       "name": "ACCT_BUSN_EXT_ID",
+       "ordinal": 66,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Account master backup tax",
+       "name": "ACCT_MSTR_BKUP_TX",
+       "ordinal": 67,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Vip code",
+       "name": "VIP_CD",
+       "ordinal": 68,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Legacy account restriction 1 code",
+       "name": "LGCY_ACCT_RSTR_1_CD",
+       "ordinal": 69,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Legacy account restriction 2 code",
+       "name": "LGCY_ACCT_RSTR_2_CD",
+       "ordinal": 70,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Legacy account restriction 3 code",
+       "name": "LGCY_ACCT_RSTR_3_CD",
+       "ordinal": 71,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Legacy account restriction 4 code",
+       "name": "LGCY_ACCT_RSTR_4_CD",
+       "ordinal": 72,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Legacy account restriction 5 code",
+       "name": "LGCY_ACCT_RSTR_5_CD",
+       "ordinal": 73,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "S1 account indicator",
+       "name": "S1_ACCT_IN",
+       "ordinal": 74,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "S2 account product code",
+       "name": "S2_ACCT_PROD_CD",
+       "ordinal": 75,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Blocked account indicator",
+       "name": "BLKD_ACCT_IN",
+       "ordinal": 76,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Ira keo trust sign date",
+       "name": "IRA_KEO_TRUST_SIGN_DT",
+       "ordinal": 77,
+       "type": "DATE"
+      },
+      {
+       "description": "Keo plan tax id",
+       "name": "KEO_PLAN_TAX_ID",
+       "ordinal": 78,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Dividend reinvest indicator",
+       "name": "DIV_RNVST_IN",
+       "ordinal": 79,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Option financial service indicator",
+       "name": "OPTN_FIN_SRVC_IN",
+       "ordinal": 80,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account open code",
+       "name": "ACCT_OPEN_CD",
+       "ordinal": 81,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Commission discount rate",
+       "name": "COMM_DISCT_RT",
+       "ordinal": 82,
+       "type": "DECIMAL(18,4)"
+      },
+      {
+       "description": "Commission schedule table tax",
+       "name": "COMM_SCHED_TBL_TX",
+       "ordinal": 83,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account investment obj code",
+       "name": "ACCT_INVST_OBJ_CD",
+       "ordinal": 84,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account eft code",
+       "name": "ACCT_EFT_CD",
+       "ordinal": 85,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Auto journal code",
+       "name": "AUTO_JRNL_CD",
+       "ordinal": 86,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Call back phone code",
+       "name": "CALL_BACK_PHON_CD",
+       "ordinal": 87,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Institutional account indicator",
+       "name": "INST_ACCT_IN",
+       "ordinal": 88,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Market camp indicator",
+       "name": "MRKT_CAMP_IN",
+       "ordinal": 89,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "New account form id",
+       "name": "NEW_ACCT_FORM_ID",
+       "ordinal": 90,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Special hand instruction id",
+       "name": "SPCL_HAND_INSTR_ID",
+       "ordinal": 91,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Lead source code",
+       "name": "LEAD_SRCE_CD",
+       "ordinal": 92,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account open trml id",
+       "name": "ACCT_OPEN_TRML_ID",
+       "ordinal": 93,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Lead qualified code",
+       "name": "LEAD_QUAL_CD",
+       "ordinal": 94,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account open user id",
+       "name": "ACCT_OPEN_USER_ID",
+       "ordinal": 95,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account open mub person id",
+       "name": "ACCT_OPEN_MUB_PRSN_ID",
+       "ordinal": 96,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account open mub person key",
+       "name": "ACCT_OPEN_MUB_PRSN_DK",
+       "ordinal": 97,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Promo code",
+       "name": "PROMO_CD",
+       "ordinal": 98,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Nal package nodef code",
+       "name": "NAL_PKG_NODEF_CD",
+       "ordinal": 99,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Fee disbursement indicator",
+       "name": "FEE_DISB_IN",
+       "ordinal": 100,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Investment trader indicator",
+       "name": "INVST_TRADR_IN",
+       "ordinal": 101,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Dtc institution auto input code",
+       "name": "DTC_INSTN_AUTO_INPUT_CD",
+       "ordinal": 102,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Dtc clear id",
+       "name": "DTC_CLEAR_ID",
+       "ordinal": 103,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Dtc institution agent bank code",
+       "name": "DTC_INSTN_AGENT_BANK_CD",
+       "ordinal": 104,
+       "type": "BIGINT"
+      },
+      {
+       "description": "New account lead date nodef date",
+       "name": "NEW_ACCT_LEAD_DATE_NODEF_DT",
+       "ordinal": 105,
+       "type": "DATE"
+      },
+      {
+       "description": "Week account lead inactive date",
+       "name": "WEEK_ACCT_LEAD_INACT_DT",
+       "ordinal": 106,
+       "type": "DATE"
+      },
+      {
+       "description": "Previous conv account id",
+       "name": "PREV_CONV_ACCT_ID",
+       "ordinal": 107,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Previous conv account key",
+       "name": "PREV_CONV_ACCT_DK",
+       "ordinal": 108,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Napotcsym nodef tax",
+       "name": "NAPOTCSYM_NODEF_TX",
+       "ordinal": 109,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Taxpayer birth date tax",
+       "name": "TXPYR_BIRTH_DATE_TX",
+       "ordinal": 110,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account occupation code",
+       "name": "ACCT_OCCUP_CD",
+       "ordinal": 111,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "New account cw nodef date",
+       "name": "NEW_ACCT_CW_NODEF_DT",
+       "ordinal": 112,
+       "type": "DATE"
+      },
+      {
+       "description": "Proxy mail indicator",
+       "name": "PROXY_MAIL_IN",
+       "ordinal": 113,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account history indicator",
+       "name": "ACCT_HIST_IN",
+       "ordinal": 114,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Unsecured mail indicator",
+       "name": "UNSECR_MAIL_IN",
+       "ordinal": 115,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Dup account type indicator",
+       "name": "DUP_ACCT_TYPE_IN",
+       "ordinal": 116,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Customer info chg date",
+       "name": "CUST_INFO_CHG_DT",
+       "ordinal": 117,
+       "type": "DATE"
+      },
+      {
+       "description": "Minor transfer state code",
+       "name": "MINOR_TRF_STATE_CD",
+       "ordinal": 118,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Minor age number",
+       "name": "MINOR_AGE_NR",
+       "ordinal": 119,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Second nscc code",
+       "name": "SCND_NSCC_CD",
+       "ordinal": 120,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Account conv date",
+       "name": "ACCT_CONV_DT",
+       "ordinal": 121,
+       "type": "DATE"
+      },
+      {
+       "description": "New scrn chg indicator",
+       "name": "NEW_SCRN_CHG_IN",
+       "ordinal": 122,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Segment id",
+       "name": "SEGMT_ID",
+       "ordinal": 123,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Household account id",
+       "name": "HSHLD_ACCT_ID",
+       "ordinal": 124,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Household account key",
+       "name": "HSHLD_ACCT_DK",
+       "ordinal": 125,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW load timestamp",
+       "name": "DW_LOAD_TS",
+       "ordinal": 126,
+       "type": "TIMESTAMP"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "LGCY_ACCT_1",
+     "primary_key": [
+      "ACCT_ID"
+     ],
+     "rows": 153,
+     "storage": 87145
+    },
+    {
+     "columns": [
+      {
+       "description": "Calendar eom date",
+       "name": "CLDR_EOM_DT",
+       "ordinal": 1,
+       "type": "DATE"
+      },
+      {
+       "description": "Calendar eom timestamp",
+       "name": "CLDR_EOM_TS",
+       "ordinal": 2,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Year month",
+       "name": "YEAR_MONTH",
+       "ordinal": 3,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Year quarter",
+       "name": "YEAR_QTR",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Business eom timestamp",
+       "name": "BUSN_EOM_TS",
+       "ordinal": 5,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Business eom date",
+       "name": "BUSN_EOM_DT",
+       "ordinal": 6,
+       "type": "DATE"
+      },
+      {
+       "description": "Month start calendar date",
+       "name": "MNTH_START_CLDR_DT",
+       "ordinal": 7,
+       "type": "DATE"
+      },
+      {
+       "description": "Time period grain code",
+       "name": "TIME_PRD_GRAIN_CD",
+       "ordinal": 8,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "First mub work day of month date",
+       "name": "FIRST_MUB_WRK_DAY_OF_MNTH_DT",
+       "ordinal": 9,
+       "type": "DATE"
+      },
+      {
+       "description": "Month name",
+       "name": "MNTH_NM",
+       "ordinal": 10,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Month code",
+       "name": "MNTH_CD",
+       "ordinal": 11,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Month yyyy tax",
+       "name": "MNTH_YYYY_TX",
+       "ordinal": 12,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Month of year ct",
+       "name": "MNTH_OF_YEAR_CT",
+       "ordinal": 13,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW brokerage month form today ct",
+       "name": "DW_BRKRG_MNTH_FRM_TODAY_CT",
+       "ordinal": 14,
+       "type": "BIGINT"
+      },
+      {
+       "description": "First exchange open day of month date",
+       "name": "FIRST_EXCH_OPEN_DAY_OF_MNTH_DT",
+       "ordinal": 15,
+       "type": "DATE"
+      },
+      {
+       "description": "Last exchange open day of month date",
+       "name": "LAST_EXCH_OPEN_DAY_OF_MNTH_DT",
+       "ordinal": 16,
+       "type": "DATE"
+      },
+      {
+       "description": "Total calendar day of month number",
+       "name": "TOT_CLDR_DAY_OF_MNTH_NR",
+       "ordinal": 17,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Total exchange open day of month number",
+       "name": "TOT_EXCH_OPEN_DAY_OF_MNTH_NR",
+       "ordinal": 18,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Total bank open day of month number",
+       "name": "TOT_BANK_OPEN_DAY_OF_MNTH_NR",
+       "ordinal": 19,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Total mub work day of month number",
+       "name": "TOT_MUB_WRK_DAY_OF_MNTH_NR",
+       "ordinal": 20,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Total mub non work day of month number",
+       "name": "TOT_MUB_NON_WRK_DAY_OF_MNTH_NR",
+       "ordinal": 21,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Quarter start calendar date",
+       "name": "QRTR_START_CLDR_DT",
+       "ordinal": 22,
+       "type": "DATE"
+      },
+      {
+       "description": "Quarter time period grain code",
+       "name": "QRTR_TIME_PRD_GRAIN_CD",
+       "ordinal": 23,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Year start calendar date",
+       "name": "YEAR_START_CLDR_DT",
+       "ordinal": 24,
+       "type": "DATE"
+      },
+      {
+       "description": "Year time period grain code",
+       "name": "YEAR_TIME_PRD_GRAIN_CD",
+       "ordinal": 25,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Total month exchange open day ct",
+       "name": "TOT_MNTH_EXCH_OPEN_DAY_CT",
+       "ordinal": 26,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Financial metric release date",
+       "name": "FIN_MTRC_RLSE_DT",
+       "ordinal": 27,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "MONTH_DIM_1",
+     "primary_key": [
+      "CLDR_EOM_DT"
+     ],
+     "rows": 13,
+     "storage": 2274
+    },
+    {
+     "columns": [
+      {
+       "description": "Exclusion identifier",
+       "name": "EXCL_ID",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Account excluded, on its source system",
+       "name": "DW_ACCT_ID",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Source system of the account",
+       "name": "SRCE_SYS_CD",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Why the account is excluded",
+       "name": "EXCL_RSN_CD",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "First day the exclusion applies",
+       "name": "EXCL_EFF_DT",
+       "ordinal": 5,
+       "type": "DATE"
+      },
+      {
+       "description": "Last day the exclusion applies, null while it is open",
+       "name": "EXCL_EXPR_DT",
+       "ordinal": 6,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "NNA_EXCL_1",
+     "primary_key": [
+      "EXCL_ID"
+     ],
+     "rows": 12,
+     "storage": 420
+    },
+    {
+     "columns": [
+      {
+       "description": "Portfolio identifier",
+       "name": "PRTFL_ID",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Owning household",
+       "name": "HSHLD_DK",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "DISCRETIONARY or ADVISORY",
+       "name": "MNDT_TYPE_CD",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Portfolio base currency, USD",
+       "name": "BASE_CRNCY_CD",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Inception date",
+       "name": "PRTFL_INCPTN_DT",
+       "ordinal": 5,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "HSHLD_DK"
+       ],
+       "ref_columns": [
+        "HSHLD_DK"
+       ],
+       "ref_table": "HSHLD_DIM_1"
+      }
+     ],
+     "name": "PRTFL_DIM_1",
+     "primary_key": [
+      "PRTFL_ID"
+     ],
+     "rows": 188,
+     "storage": 5671
+    },
+    {
+     "columns": [
+      {
+       "description": "Row identifier",
+       "name": "FEE_ID",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Household",
+       "name": "HSHLD_DK",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Fiscal quarter",
+       "name": "FISCAL_QTR_CD",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Advisory fees, USD",
+       "name": "ADV_FEE_AM",
+       "ordinal": 4,
+       "type": "DECIMAL(14,2)"
+      },
+      {
+       "description": "Product fees, USD",
+       "name": "PROD_FEE_AM",
+       "ordinal": 5,
+       "type": "DECIMAL(14,2)"
+      },
+      {
+       "description": "Advisory plus product fees, USD, fiscal quarter",
+       "name": "REV_AM",
+       "ordinal": 6,
+       "type": "DECIMAL(14,2)"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "HSHLD_DK"
+       ],
+       "ref_columns": [
+        "HSHLD_DK"
+       ],
+       "ref_table": "HSHLD_DIM_1"
+      },
+      {
+       "columns": [
+        "FISCAL_QTR_CD"
+       ],
+       "ref_columns": [
+        "FISCAL_QTR_CD"
+       ],
+       "ref_table": "FISCAL_QTR_DIM_1"
+      }
+     ],
+     "name": "QTR_FEE_REV_FACT_1",
+     "primary_key": [
+      "FEE_ID"
+     ],
+     "rows": 600,
+     "storage": 21608
+    },
+    {
+     "columns": [
+      {
+       "description": "Region code",
+       "name": "RGN_CD",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Region name",
+       "name": "RGN_NM",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Division the region rolls up to",
+       "name": "DIVSN_CD",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "First day this version of the row holds",
+       "name": "DW_EFF_DT",
+       "ordinal": 4,
+       "type": "DATE"
+      },
+      {
+       "description": "Last day this version of the row holds, null while it is current",
+       "name": "DW_EXPR_DT",
+       "ordinal": 5,
+       "type": "DATE"
+      },
+      {
+       "description": "True for the version that holds today",
+       "name": "CURR_IN",
+       "ordinal": 6,
+       "type": "BOOLEAN"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "RGN_DIM_1",
+     "primary_key": [
+      "RGN_CD",
+      "DW_EFF_DT"
+     ],
+     "rows": 3,
+     "storage": 100
+    },
+    {
+     "columns": [
+      {
+       "description": "Source system id",
+       "name": "SRCE_SYS_ID",
+       "ordinal": 1,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW effective date",
+       "name": "DW_EFF_DT",
+       "ordinal": 2,
+       "type": "DATE"
+      },
+      {
+       "description": "DW expiry date",
+       "name": "DW_EXPR_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "Current indicator",
+       "name": "CURR_IN",
+       "ordinal": 4,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Receive indicator",
+       "name": "RCV_IN",
+       "ordinal": 5,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Source system name",
+       "name": "SRCE_SYS_NM",
+       "ordinal": 6,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Insert timestamp",
+       "name": "INSERT_TS",
+       "ordinal": 7,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Affiliate account company code",
+       "name": "AFLT_ACCT_CMPY_CD",
+       "ordinal": 8,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Insert user name",
+       "name": "INSERT_USER_NM",
+       "ordinal": 9,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Modify timestamp",
+       "name": "MODIFY_TS",
+       "ordinal": 10,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Modify user name",
+       "name": "MODIFY_USER_NM",
+       "ordinal": 11,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW load timestamp",
+       "name": "DW_LOAD_TS",
+       "ordinal": 12,
+       "type": "TIMESTAMP"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "SRCE_SYS_1",
+     "primary_key": [
+      "SRCE_SYS_ID"
+     ],
+     "rows": 7,
+     "storage": 807
+    },
+    {
+     "columns": [
+      {
+       "description": "Review identifier",
+       "name": "RVW_ID",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Household reviewed",
+       "name": "HSHLD_DK",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Review date",
+       "name": "RVW_DT",
+       "ordinal": 3,
+       "type": "DATE"
+      },
+      {
+       "description": "SUITABLE, ACTION_REQUIRED, ESCALATED",
+       "name": "RVW_OUTCM_CD",
+       "ordinal": 4,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Reviewing advisor",
+       "name": "RVWR_ADV_ID",
+       "ordinal": 5,
+       "type": "INTEGER"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "HSHLD_DK"
+       ],
+       "ref_columns": [
+        "HSHLD_DK"
+       ],
+       "ref_table": "HSHLD_DIM_1"
+      },
+      {
+       "columns": [
+        "RVWR_ADV_ID"
+       ],
+       "ref_columns": [
+        "ADV_ID"
+       ],
+       "ref_table": "ADV_DIM_1"
+      }
+     ],
+     "name": "SUIT_RVW_FACT_1",
+     "primary_key": [
+      "RVW_ID"
+     ],
+     "rows": 150,
+     "storage": 4052
+    },
+    {
+     "columns": [
+      {
+       "description": "DW transaction id",
+       "name": "DW_TRAN_ID",
+       "ordinal": 1,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Account source system id",
+       "name": "ACCT_SRCE_SYS_ID",
+       "ordinal": 2,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW account id",
+       "name": "DW_ACCT_ID",
+       "ordinal": 3,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW account key",
+       "name": "DW_ACCT_DK",
+       "ordinal": 4,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW transaction date",
+       "name": "DW_TRAN_DT",
+       "ordinal": 5,
+       "type": "DATE"
+      },
+      {
+       "description": "DW effective date",
+       "name": "DW_EFF_DT",
+       "ordinal": 6,
+       "type": "DATE"
+      },
+      {
+       "description": "DW expiry date",
+       "name": "DW_EXPR_DT",
+       "ordinal": 7,
+       "type": "DATE"
+      },
+      {
+       "description": "Current indicator",
+       "name": "CURR_IN",
+       "ordinal": 8,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Receive indicator",
+       "name": "RCV_IN",
+       "ordinal": 9,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Month end date",
+       "name": "MNTH_END_DT",
+       "ordinal": 10,
+       "type": "DATE"
+      },
+      {
+       "description": "DW transaction type code",
+       "name": "DW_TRAN_TYPE_CD",
+       "ordinal": 11,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW transaction direction code",
+       "name": "DW_TRAN_DIRCTN_CD",
+       "ordinal": 12,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Transaction source system id",
+       "name": "TRANS_SRCE_SYS_ID",
+       "ordinal": 13,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Item issue id",
+       "name": "ITEM_ISS_ID",
+       "ordinal": 14,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Rule set suffix id",
+       "name": "RULE_SET_SUFF_ID",
+       "ordinal": 15,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Transaction execution date",
+       "name": "TRAN_EXEC_DT",
+       "ordinal": 16,
+       "type": "DATE"
+      },
+      {
+       "description": "Transaction settlement date",
+       "name": "TRAN_SETTL_DT",
+       "ordinal": 17,
+       "type": "DATE"
+      },
+      {
+       "description": "Transaction share qy",
+       "name": "TRAN_SHR_QY",
+       "ordinal": 18,
+       "type": "DECIMAL(18,4)"
+      },
+      {
+       "description": "Transaction execution price per share amount",
+       "name": "TRAN_EXEC_PRICE_PER_SHR_AM",
+       "ordinal": 19,
+       "type": "DECIMAL(16,2)"
+      },
+      {
+       "description": "Transaction amount",
+       "name": "TRAN_AM",
+       "ordinal": 20,
+       "type": "DECIMAL(16,2)"
+      },
+      {
+       "description": "Transaction rost type code",
+       "name": "TRAN_ROST_TYPE_CD",
+       "ordinal": 21,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Transaction rost id",
+       "name": "TRAN_ROST_ID",
+       "ordinal": 22,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Transaction add timestamp",
+       "name": "TRAN_ADD_TS",
+       "ordinal": 23,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Transaction process timestamp",
+       "name": "TRAN_PROC_TS",
+       "ordinal": 24,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Offset account id",
+       "name": "OFSET_ACCT_ID",
+       "ordinal": 25,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Transaction effective date",
+       "name": "TRAN_EFF_DT",
+       "ordinal": 26,
+       "type": "DATE"
+      },
+      {
+       "description": "Transaction execution timestamp",
+       "name": "TRAN_EXEC_TS",
+       "ordinal": 27,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Offset source system id",
+       "name": "OFSET_SRCE_SYS_ID",
+       "ordinal": 28,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Net new assets indicator",
+       "name": "NNA_IN",
+       "ordinal": 29,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Naf indicator",
+       "name": "NAF_IN",
+       "ordinal": 30,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Financial metric release frozen indicator",
+       "name": "FIN_MTRC_RLSE_FRZN_IN",
+       "ordinal": 31,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Taxpayer customer key",
+       "name": "TXPYR_CUST_DK",
+       "ordinal": 32,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Household key",
+       "name": "HSHLD_DK",
+       "ordinal": 33,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW load timestamp",
+       "name": "DW_LOAD_TS",
+       "ordinal": 34,
+       "type": "TIMESTAMP"
+      }
+     ],
+     "foreign_keys": [
+      {
+       "columns": [
+        "DW_TRAN_TYPE_CD"
+       ],
+       "ref_columns": [
+        "DW_TRAN_TYPE_CD"
+       ],
+       "ref_table": "TRAN_TYPE_1"
+      },
+      {
+       "columns": [
+        "ACCT_SRCE_SYS_ID"
+       ],
+       "ref_columns": [
+        "SRCE_SYS_ID"
+       ],
+       "ref_table": "SRCE_SYS_1"
+      },
+      {
+       "columns": [
+        "MNTH_END_DT"
+       ],
+       "ref_columns": [
+        "CLDR_EOM_DT"
+       ],
+       "ref_table": "MONTH_DIM_1"
+      }
+     ],
+     "name": "TRAN_FACT_1",
+     "primary_key": [
+      "DW_TRAN_ID",
+      "DW_EFF_DT"
+     ],
+     "rows": 4543,
+     "storage": 1044543
+    },
+    {
+     "columns": [
+      {
+       "description": "DW transaction id",
+       "name": "DW_TRAN_ID",
+       "ordinal": 1,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Account source system id",
+       "name": "ACCT_SRCE_SYS_ID",
+       "ordinal": 2,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW account id",
+       "name": "DW_ACCT_ID",
+       "ordinal": 3,
+       "type": "BIGINT"
+      },
+      {
+       "description": "DW transaction date",
+       "name": "DW_TRAN_DT",
+       "ordinal": 4,
+       "type": "DATE"
+      },
+      {
+       "description": "DW effective date",
+       "name": "DW_EFF_DT",
+       "ordinal": 5,
+       "type": "DATE"
+      },
+      {
+       "description": "DW expiry date",
+       "name": "DW_EXPR_DT",
+       "ordinal": 6,
+       "type": "DATE"
+      },
+      {
+       "description": "Current indicator",
+       "name": "CURR_IN",
+       "ordinal": 7,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Receive indicator",
+       "name": "RCV_IN",
+       "ordinal": 8,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Month end date",
+       "name": "MNTH_END_DT",
+       "ordinal": 9,
+       "type": "DATE"
+      },
+      {
+       "description": "DW transaction type code",
+       "name": "DW_TRAN_TYPE_CD",
+       "ordinal": 10,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW transaction direction code",
+       "name": "DW_TRAN_DIRCTN_CD",
+       "ordinal": 11,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Transaction source system id",
+       "name": "TRAN_SRCE_SYS_ID",
+       "ordinal": 12,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Item issue id",
+       "name": "ITEM_ISS_ID",
+       "ordinal": 13,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Rule set suffix id",
+       "name": "RULE_SET_SUFF_ID",
+       "ordinal": 14,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Transaction execution date",
+       "name": "TRAN_EXEC_DT",
+       "ordinal": 15,
+       "type": "DATE"
+      },
+      {
+       "description": "Transaction settlement date",
+       "name": "TRAN_SETTL_DT",
+       "ordinal": 16,
+       "type": "DATE"
+      },
+      {
+       "description": "Transaction share qy",
+       "name": "TRAN_SHR_QY",
+       "ordinal": 17,
+       "type": "DECIMAL(18,4)"
+      },
+      {
+       "description": "Transaction execution price per share amount",
+       "name": "TRAN_EXEC_PRICE_PER_SHR_AM",
+       "ordinal": 18,
+       "type": "DECIMAL(16,2)"
+      },
+      {
+       "description": "Transaction amount",
+       "name": "TRAN_AM",
+       "ordinal": 19,
+       "type": "DECIMAL(16,2)"
+      },
+      {
+       "description": "Transaction rost type code",
+       "name": "TRAN_ROST_TYPE_CD",
+       "ordinal": 20,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Transaction rost id",
+       "name": "TRAN_ROST_ID",
+       "ordinal": 21,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Transaction add timestamp",
+       "name": "TRAN_ADD_TS",
+       "ordinal": 22,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Transaction process timestamp",
+       "name": "TRAN_PROC_TS",
+       "ordinal": 23,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Offset account id",
+       "name": "OFSET_ACCT_ID",
+       "ordinal": 24,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Transaction effective date",
+       "name": "TRAN_EFF_DT",
+       "ordinal": 25,
+       "type": "DATE"
+      },
+      {
+       "description": "Transaction execution timestamp",
+       "name": "TRAN_EXEC_TS",
+       "ordinal": 26,
+       "type": "TIMESTAMP"
+      },
+      {
+       "description": "Offset source system id",
+       "name": "OFSET_SRCE_SYS_ID",
+       "ordinal": 27,
+       "type": "BIGINT"
+      },
+      {
+       "description": "Net new assets indicator",
+       "name": "NNA_IN",
+       "ordinal": 28,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Naf indicator",
+       "name": "NAF_IN",
+       "ordinal": 29,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Financial metric release frozen indicator",
+       "name": "FIN_MTRC_RLSE_FRZN_IN",
+       "ordinal": 30,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "DW load timestamp",
+       "name": "DW_LOAD_TS",
+       "ordinal": 31,
+       "type": "TIMESTAMP"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "TRAN_FACT_EXCL_MFCLR_G",
+     "primary_key": [
+      "DW_TRAN_ID",
+      "DW_EFF_DT"
+     ],
+     "rows": 4543,
+     "storage": 971855
+    },
+    {
+     "columns": [
+      {
+       "description": "Flow type code",
+       "name": "DW_TRAN_TYPE_CD",
+       "ordinal": 1,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "What the flow type covers",
+       "name": "TRAN_TYPE_DESC_TX",
+       "ordinal": 2,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "IN or OUT",
+       "name": "DIRCTN_CD",
+       "ordinal": 3,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "True where flows of this type count towards net new assets",
+       "name": "NNA_CNT_IN",
+       "ordinal": 4,
+       "type": "BOOLEAN"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "TRAN_TYPE_1",
+     "primary_key": [
+      "DW_TRAN_TYPE_CD"
+     ],
+     "rows": 7,
+     "storage": 382
+    }
+   ]
+  },
+  "xref": {
+   "tables": [
+    {
+     "columns": [
+      {
+       "description": "Cross-reference identifier",
+       "name": "xref_id",
+       "ordinal": 1,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Retail customer, as retail.customer.customer_id",
+       "name": "retail_customer_id",
+       "ordinal": 2,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Wealth household, as wealth.HSHLD_DIM_1.HSHLD_DK",
+       "name": "household_id",
+       "ordinal": 3,
+       "type": "INTEGER"
+      },
+      {
+       "description": "The household member the customer is, as wealth.HSHLD_MBR_1.MBR_ID",
+       "name": "member_id",
+       "ordinal": 4,
+       "type": "INTEGER"
+      },
+      {
+       "description": "Wealth source system the match was made against",
+       "name": "source_system",
+       "ordinal": 5,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "First day this version of the match holds",
+       "name": "valid_from",
+       "ordinal": 6,
+       "type": "DATE"
+      },
+      {
+       "description": "Last day this version of the match holds, null while it is current",
+       "name": "valid_to",
+       "ordinal": 7,
+       "type": "DATE"
+      },
+      {
+       "description": "True for the version that holds today",
+       "name": "is_current",
+       "ordinal": 8,
+       "type": "BOOLEAN"
+      },
+      {
+       "description": "DETERMINISTIC, PROBABILISTIC or MANUAL",
+       "name": "match_method",
+       "ordinal": 9,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Confidence in the match, from 0 to 1",
+       "name": "match_confidence",
+       "ordinal": 10,
+       "type": "DECIMAL(4,3)"
+      },
+      {
+       "description": "CERTIFIED, PROPOSED or REJECTED: only a CERTIFIED match may be joined on",
+       "name": "certification_status",
+       "ordinal": 11,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Steward who certified the match",
+       "name": "certified_by",
+       "ordinal": 12,
+       "type": "VARCHAR"
+      },
+      {
+       "description": "Date the match was certified",
+       "name": "certified_on",
+       "ordinal": 13,
+       "type": "DATE"
+      }
+     ],
+     "foreign_keys": [],
+     "name": "client_xref",
+     "primary_key": [
+      "xref_id",
+      "valid_from"
+     ],
+     "rows": 46,
+     "storage": 4145
+    }
+   ]
+  }
+ }
+}
