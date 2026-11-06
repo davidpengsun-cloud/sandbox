@@ -1,0 +1,67 @@
+/* Sign-in page on the v3 "settlement tape" tokens (v3-tokens.css is global).
+   Scoped under .v3-signin so nothing here reaches the rest of the app. */
+.v3-signin{
+  min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:32px 16px; position:relative; overflow:hidden;
+  background:var(--v3-bar); color:var(--v3-ink);
+  font-family:var(--v3-body); -webkit-font-smoothing:antialiased;
+}
+.v3-signin::before{
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(closest-side, rgba(108,200,238,.14), transparent 72%) right -200px top -120px / 720px 720px no-repeat,
+    radial-gradient(closest-side, rgba(84,120,158,.38), transparent 70%) left -160px bottom -260px / 640px 640px no-repeat,
+    repeating-linear-gradient(90deg, rgba(188,201,216,.05) 0 1px, transparent 1px 14px);
+}
+.v3-signin *,.v3-signin *::before,.v3-signin *::after{box-sizing:border-box}
+
+.v3-signin .signin-card{
+  position:relative; width:100%; max-width:400px; padding:32px 32px 28px;
+  background:var(--v3-surface); border:1px solid var(--v3-line); border-radius:var(--v3-r-md);
+  box-shadow:var(--v3-shadow-3);
+}
+.v3-signin .signin-card::before{
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--v3-azure-500), var(--v3-navy-500));
+  border-radius:var(--v3-r-md) var(--v3-r-md) 0 0;
+}
+.v3-signin .signin-mark{width:36px; height:36px; object-fit:contain; display:block; margin-bottom:18px}
+.v3-signin .signin-eyebrow{
+  font-family:var(--v3-mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--v3-link); margin-bottom:6px;
+}
+.v3-signin h1{margin:0; font-family:var(--v3-body); font-size:26px; font-weight:600; letter-spacing:-.025em; line-height:1.15}
+.v3-signin .signin-sub{margin:8px 0 22px; font-size:13.5px; line-height:1.5; color:var(--v3-ink-3)}
+
+.v3-signin .signin-form{display:flex; flex-direction:column; gap:14px}
+.v3-signin .signin-field{display:flex; flex-direction:column; gap:6px}
+.v3-signin .signin-field label{
+  font-family:var(--v3-mono); font-size:11px; font-weight:500; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--v3-ink-3);
+}
+.v3-signin .signin-field input{
+  height:40px; padding:0 12px; font:inherit; font-size:14px; color:var(--v3-ink);
+  background:var(--v3-surface-2); border:1px solid var(--v3-line-2); border-radius:var(--v3-r-sm);
+  outline:none; transition:border-color .12s, box-shadow .12s, background .12s;
+}
+.v3-signin .signin-field input:focus{border-color:var(--v3-accent); box-shadow:0 0 0 3px var(--v3-accent-soft); background:var(--v3-surface)}
+.v3-signin .signin-field input[aria-invalid="true"]{border-color:var(--v3-bad)}
+
+/* the server's reason, verbatim: wrong username or password, too many sign-in attempts…, KGE is unavailable. */
+.v3-signin .signin-error{
+  margin:0; padding:10px 12px; font-size:13px; line-height:1.45;
+  color:var(--v3-bad); background:var(--v3-bad-soft);
+  border:1px solid color-mix(in srgb,var(--v3-bad) 35%,transparent); border-left:3px solid var(--v3-bad); border-radius:var(--v3-r-sm);
+}
+
+.v3-signin .signin-btn{
+  margin-top:6px; height:40px; border:1px solid var(--v3-action); border-radius:var(--v3-r-sm);
+  background:var(--v3-action); color:var(--v3-action-ink); font:inherit; font-size:14px; font-weight:600; cursor:pointer;
+  transition:background .12s, border-color .12s;
+}
+.v3-signin .signin-btn:hover{background:var(--v3-action-hover); border-color:var(--v3-action-hover)}
+.v3-signin .signin-btn:disabled{opacity:.6; cursor:progress}
+.v3-signin button:focus-visible,.v3-signin input:focus-visible{outline:2px solid var(--v3-focus); outline-offset:2px}
+
+@media(max-width:480px){.v3-signin .signin-card{padding:24px 20px}}
+@media(prefers-reduced-motion:reduce){.v3-signin *{transition-duration:.01ms !important}}

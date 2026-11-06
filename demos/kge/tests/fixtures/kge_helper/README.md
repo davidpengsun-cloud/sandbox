@@ -1,0 +1,10 @@
+# Helper replay fixtures
+
+Synthetic public shapes, never captured credentials or live project output. The tests replay these through a stand-in gcloud; no cloud access is used.
+
+- `v1.json`: `gcloud run services list --format=json`, services describe, jobs list and jobs describe. List output is an array of resources, with v1 metadata, nested templates and the secret alias annotation. Sources: [Service](https://docs.cloud.google.com/run/docs/reference/rest/v1/namespaces.services), [Job](https://docs.cloud.google.com/run/docs/reference/rest/v1/namespaces.jobs), [services list](https://docs.cloud.google.com/sdk/gcloud/reference/run/services/list), [jobs list](https://docs.cloud.google.com/sdk/gcloud/reference/run/jobs/list).
+- `v2.json`: equivalent REST resource shapes with full names, nested task templates, URI and valueSource secret references. Sources: [Service](https://docs.cloud.google.com/run/docs/reference/rest/v2/projects.locations.services), [Job](https://docs.cloud.google.com/run/docs/reference/rest/v2/projects.locations.jobs). These test the helper's existing v2 compatibility as well as the CLI's v1 output.
+- `execution-*.json`: [Execution](https://docs.cloud.google.com/run/docs/reference/rest/v1/namespaces.executions) returned by [jobs execute](https://docs.cloud.google.com/sdk/gcloud/reference/run/jobs/execute). The helper delegates waiting and failure detection to `--wait` and propagates gcloud's exit status; it does not parse status text. Replay maps Completed to the corresponding process exit code and verifies both outcomes.
+- `proxy-*.json`: a transcript envelope for [services proxy](https://docs.cloud.google.com/sdk/gcloud/reference/run/services/proxy), which runs a local server, not a JSON resource. Log wording is illustrative, not a parsing contract. Replay checks process survival and HTTP readiness; neither helper nor test parses a success phrase.
+
+No fixture claims to prove live IAM, routing, Cloud Run execution, or Secret Manager access. Run the owner checklist separately.

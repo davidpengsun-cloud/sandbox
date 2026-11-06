@@ -1,0 +1,44 @@
+.admin-root {
+    margin: 3rem;
+    background-color: #FFFFFF;
+    border-radius: 1rem;
+
+    .admin-header h3 {
+        font-family: 'Inter';
+        margin: 2rem;
+        font-weight: bold;
+    }
+
+    .tabs {
+        margin: 0 5rem 0 2rem;
+        border: none;
+        border-radius: 0;
+        width: auto;
+        height: auto;
+        box-shadow: none;
+    }
+
+}
+
+.portal-users form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.5rem 0;
+}
+
+.portal-users input, .portal-users select {
+    padding: 0.55rem;
+    border: 1px solid var(--v3-line-2);
+    background: var(--v3-surface);
+    color: var(--v3-ink);
+    font: inherit;
+}
+
+.portal-users input { flex: 1; min-width: 12rem; }
+.portal-users-table { overflow-x: auto; margin-top: 1.5rem; }
+.portal-users table { width: 100%; border-collapse: collapse; text-align: left; }
+.portal-users caption { text-align: left; font-weight: 600; padding: 0.75rem 0; }
+.portal-users th, .portal-users td { padding: 0.75rem; border-bottom: 1px solid var(--v3-line-2); overflow-wrap: anywhere; }
+.portal-role-grant { display: inline-flex; align-items: center; gap: 0.5rem; margin: 0.25rem 1rem 0.25rem 0; }

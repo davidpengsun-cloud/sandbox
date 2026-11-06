@@ -1,0 +1,87 @@
+/* NOTE: this id is also styled in DataOverview.css. Both files are global, so
+   the two blocks override each other - keep the box-sizing rules below in sync
+   with that file or the Overview tab silently regains a fixed height. */
+#overviewRoot {
+    margin: 0 5rem 2rem 2rem;
+    width: auto;
+    height: auto;
+    min-height: 90rem;
+    container-type: inline-size;
+    border-radius: 1rem;
+    background-color: #E7E3DF;
+
+    .overviewMain {
+        margin: 0 1rem 0 1rem;
+        padding-top: 1.5rem;
+
+        .overviewPaper {
+            margin: 0.2rem 6rem auto 2rem;
+            padding: 3rem;
+            border-radius: 1.5rem;
+
+            .title {
+                margin-bottom: 1rem;
+            }
+
+            .overviewGrid {
+                padding-right: 2rem;
+
+                .subTitle {
+                    margin-top: 1rem;
+                    margin-bottom: 1rem;
+                }
+
+                .content {
+                    padding-bottom: 2.5rem;
+                    overflow-wrap: anywhere;
+                }
+
+                .contentPath {
+                    margin-bottom: 1rem;
+                    overflow-x: auto;
+                }
+
+                .info-icon {
+                  height: 1.3em;
+                  width: 1.3em;
+                }
+
+                .link-icons-class {
+                  height: 2em;
+                  width: 2em;}
+            }
+        }
+    }
+}
+
+/* Media Query for Large screens */
+@media (min-width: 1281px) {
+    #overviewRoot {
+      min-height: 90rem;
+    }
+  }
+  
+  /* Media Query for Laptops and Desktops */
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    #overviewRoot {
+      min-height: 90rem;
+    }
+  }
+  
+  /* Media Query for Tablets Ipads portrait mode */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    #overviewRoot {
+      min-height: 110rem;
+    }
+  }
+  
+  /* Media Query for low resolution  Tablets, Ipads */
+  @media (min-width: 481px) and (max-width: 767px) {
+    #overviewRoot {
+      min-height: 110rem;
+    }
+  }
+  
+  /* Media Query for Mobile Devices */
+  @media (max-width: 480px) {
+  }

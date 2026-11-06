@@ -1,0 +1,66 @@
+/* The Knowledge docs: the docs' own navigation, the page, and "On this page". From the docs drawings; every colour is a
+   --v3-* token, and every class is kd-, so nothing here reaches another page. */
+.kd-wrap{box-sizing:border-box;display:grid;grid-template-columns:232px minmax(0,1fr) 200px;gap:48px;max-width:1360px;margin:0 auto;
+  padding:36px 32px 72px;font-family:var(--v3-body);color:var(--v3-ink);background:var(--v3-surface)}
+.kd-wrap *,.kd-wrap *::before,.kd-wrap *::after{box-sizing:border-box}
+.kd-wrap a:focus-visible,.kd-wrap [tabindex]:focus-visible{outline:2px solid var(--v3-focus);outline-offset:2px;border-radius:var(--v3-r-md)}
+.kd-side .kd-grp{margin:0 0 10px;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:var(--v3-ink-3)}
+.kd-side ul{list-style:none;margin:0 0 26px;padding:0;display:flex;flex-direction:column;gap:2px}
+.kd-side a,.kd-soon{display:block;padding:7px 10px;border-radius:6px;font-size:13.5px;line-height:1.35;text-decoration:none;color:var(--v3-ink-2)}
+.kd-side a:hover{background:var(--v3-paper)}
+.kd-side a[aria-current="page"]{background:var(--v3-accent-soft);color:var(--v3-chip-ink);font-weight:600}
+.kd-soon{color:var(--v3-ink-3)}
+.kd-soon em{font-style:normal;font-size:11.5px;margin-left:6px;color:var(--v3-ink-3)}
+
+.kd-doc{min-width:0;max-width:780px;color:var(--v3-ink-2);font-size:15.5px;line-height:1.65}
+.kd-crumb{margin:0 0 14px;font-size:12.5px;color:var(--v3-ink-3)}
+.kd-doc h1{margin:0;font-size:34px;line-height:1.15;font-weight:600;letter-spacing:-.02em;color:var(--v3-ink);overflow-wrap:anywhere}
+.kd-lead{margin:14px 0 8px;font-size:17.5px;line-height:1.55;color:var(--v3-ink-2)}
+.kd-doc h2{margin:44px 0 12px;padding-top:4px;font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.01em;color:var(--v3-ink);scroll-margin-top:calc(var(--v3-topbar-h) + 16px)}
+.kd-doc h2:focus{outline:none}
+.kd-doc h2:focus-visible{outline:2px solid var(--v3-focus);outline-offset:2px}
+.kd-doc p{margin:0 0 14px}
+.kd-doc strong{font-weight:600;color:var(--v3-ink)}
+.kd-doc ul,.kd-doc ol{margin:0 0 16px;padding-left:22px}
+.kd-doc li{margin:0 0 6px}
+.kd-doc li::marker{color:var(--v3-ink-3)}
+.kd-doc a{color:var(--v3-link);text-underline-offset:3px}
+.kd-doc a:hover{color:var(--v3-link-hover)}
+.kd-tbl{overflow-x:auto;margin:6px 0 20px;border:1px solid var(--v3-line);border-radius:8px}
+.kd-doc table{width:100%;border-collapse:collapse;font-size:14px;line-height:1.5}
+.kd-doc th{text-align:left;font-weight:600;font-size:12.5px;letter-spacing:.02em;color:var(--v3-ink-2);background:var(--v3-paper);padding:10px 14px;border-bottom:1px solid var(--v3-line)}
+.kd-doc td{vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--v3-line)}
+.kd-doc tr:last-child td{border-bottom:0}
+.kd-doc td:first-child{color:var(--v3-ink);font-weight:500}
+
+.kd-figure{margin:10px 0 26px;padding:18px 18px 12px;border:1px solid var(--v3-line);border-radius:10px;background:var(--v3-surface);margin-right:-248px}
+.kd-figure-scroll{overflow-x:auto}
+.kd-figure svg{display:block;width:100%;min-width:720px;height:auto;font-family:var(--v3-body)}
+.kd-figure figcaption{margin-top:10px;font-size:12.5px;line-height:1.5;color:var(--v3-ink-3)}
+.kd-f-lane{fill:var(--v3-surface-2)}
+.kd-f-box{fill:var(--v3-surface);stroke:var(--v3-line)}
+.kd-f-accent{fill:var(--v3-accent-soft);stroke:var(--v3-accent-line)}
+.kd-f-quiet{stroke:var(--v3-line-2)}
+.kd-f-strong{stroke:var(--v3-structure);stroke-width:1.5}
+.kd-f-text text,.kd-figure text{font-size:11px;fill:var(--v3-ink-2)}
+.kd-figure .kd-f-title{font-size:12.5px;font-weight:600;fill:var(--v3-ink)}
+.kd-figure .kd-f-big{font-size:13px}
+.kd-figure .kd-f-small{font-size:10.5px;fill:var(--v3-ink-3)}
+.kd-figure .kd-f-who{font-weight:600;fill:var(--v3-chip-ink)}
+.kd-f-arrow path{stroke:var(--v3-ink-3);stroke-width:1.5;fill:none}
+.kd-f-arrowhead{fill:var(--v3-ink-3)}
+.kd-f-loop{stroke:var(--v3-ink-3);stroke-width:1.3;stroke-dasharray:5 4;fill:none}
+
+.kd-toc{align-self:start;font-size:13px}
+.kd-toc p{margin:0 0 10px;font-size:11.5px;font-weight:600;letter-spacing:.04em;color:var(--v3-ink-3)}
+.kd-toc ol{list-style:none;margin:0;padding:0 0 0 12px;border-left:1px solid var(--v3-line);display:flex;flex-direction:column;gap:9px}
+.kd-toc a{color:var(--v3-ink-2);text-decoration:none;line-height:1.35}
+.kd-toc a:hover{color:var(--v3-link)}
+
+@media (max-width:1180px){.kd-wrap{grid-template-columns:200px minmax(0,1fr)}.kd-toc{display:none}.kd-figure{margin-right:0}}
+@media (max-width:760px){
+  .kd-wrap{grid-template-columns:minmax(0,1fr);gap:20px;padding:20px 16px 48px}
+  .kd-side ul{flex-direction:row;flex-wrap:wrap}
+  .kd-side .kd-later{display:none}
+  .kd-doc h1{font-size:28px}
+}

@@ -1,0 +1,17 @@
+{
+  "name": "kge-portal-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-sqlite src/index.js",
+    "test": "node --experimental-sqlite --test --experimental-test-coverage --test-coverage-exclude='test/**' --test-coverage-lines=93 --test-coverage-branches=85 test/*.test.js"
+  },
+  "dependencies": {
+    "@google-cloud/bigquery": "^8.1.1",
+    "ajv": "8.18.0",
+    "cookie-parser": "^1.4.7",
+    "express": "^5.1.0",
+    "yaml": "2.8.3"
+  }
+}

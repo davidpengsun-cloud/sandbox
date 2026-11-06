@@ -1,0 +1,30 @@
+.main {
+    margin: 2rem;
+    align-items: center;
+}
+
+.contentLeft {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    cursor: pointer;
+    text-align: left;
+
+    .subTitle:hover {
+        text-decoration: underline;
+    }
+
+    .card-subTitle {
+        /* margin-bottom: 1rem; */
+    }
+
+    .newLine {
+        white-space: break-spaces;
+    }
+
+    .subContent {
+        margin-top: 0.5rem;
+    }
+}

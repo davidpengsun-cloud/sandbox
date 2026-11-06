@@ -1,0 +1,215 @@
+[
+  {
+    "id": "H001",
+    "kind": "within",
+    "question": "How much revenue did SME make in June 2025?",
+    "expect": {
+      "figure": "321130.65",
+      "unit": "sme",
+      "columns": [
+        "monthly_client_revenue.revenue_usd"
+      ],
+      "join_path": []
+    },
+    "paraphrase_of": "Total SME revenue for June 2025"
+  },
+  {
+    "id": "H002",
+    "kind": "within",
+    "question": "What did retail bring in as revenue during June 2025?",
+    "expect": {
+      "figure": "13287.67",
+      "unit": "retail",
+      "columns": [
+        "monthly_revenue.total_revenue_usd"
+      ],
+      "join_path": []
+    },
+    "paraphrase_of": "Total retail revenue for June 2025"
+  },
+  {
+    "id": "H003",
+    "kind": "within",
+    "question": "Count the SME clients that were active during June 2025",
+    "expect": {
+      "figure": 59,
+      "unit": "sme",
+      "columns": [
+        "client_activity.active_flag"
+      ],
+      "join_path": []
+    },
+    "paraphrase_of": "How many SME clients were active in June 2025?"
+  },
+  {
+    "id": "H004",
+    "kind": "within",
+    "question": "Corporate credit exposure in total as at 30 June 2025",
+    "expect": {
+      "figure": "440185374.74",
+      "unit": "corporate",
+      "columns": [
+        "exposure.ead_eur"
+      ],
+      "join_path": []
+    },
+    "paraphrase_of": "Total corporate credit exposure at 30 June 2025"
+  },
+  {
+    "id": "H005",
+    "kind": "within",
+    "question": "Revenue booked by Wealth Management in FY26-Q1",
+    "expect": {
+      "figure": "2506757.26",
+      "unit": "wealth",
+      "columns": [
+        "quarterly_fee_revenue.revenue_usd"
+      ],
+      "join_path": []
+    },
+    "paraphrase_of": "Wealth revenue for fiscal quarter FY26-Q1"
+  },
+  {
+    "id": "H006",
+    "kind": "within",
+    "question": "How many retail complaints were still unresolved at 30 June 2025?",
+    "expect": {
+      "figure": 14,
+      "unit": "retail",
+      "columns": [
+        "complaint.complaint_id",
+        "complaint.resolved_on"
+      ],
+      "join_path": []
+    },
+    "paraphrase_of": "Number of open retail complaints as at 30 June 2025"
+  },
+  {
+    "id": "H007",
+    "kind": "cross",
+    "question": "Add up Retail and SME revenue for June 2025",
+    "expect": {
+      "behaviour": "sum_with_verdict",
+      "figure": "334418.32",
+      "commensurable": true,
+      "joins_refused": [
+        "retail-sme"
+      ]
+    },
+    "paraphrase_of": "Combined Retail and SME revenue for June 2025"
+  },
+  {
+    "id": "H008",
+    "kind": "cross",
+    "question": "Sum Corporate and Wealth revenue for FY26-Q1",
+    "expect": {
+      "behaviour": "parts_with_reason",
+      "parts": {
+        "corporate": "20190379.43",
+        "wealth": "2506757.26"
+      },
+      "commensurable": false,
+      "joins_refused": [
+        "corporate-wealth"
+      ]
+    },
+    "paraphrase_of": "Combined Corporate and Wealth revenue for FY26-Q1"
+  },
+  {
+    "id": "H009",
+    "kind": "cross",
+    "question": "Can you match SME clients with wealth households?",
+    "expect": {
+      "behaviour": "refuse",
+      "joins_refused": [
+        "sme-wealth"
+      ]
+    },
+    "paraphrase_of": "Which SME clients are also wealth households?"
+  },
+  {
+    "id": "H010",
+    "kind": "cross",
+    "question": "Put retail customer_id next to corporate contacts and tell me how many line up",
+    "expect": {
+      "behaviour": "refuse",
+      "joins_refused": [
+        "retail-corporate"
+      ]
+    },
+    "paraphrase_of": "Join retail customers to corporate contacts on customer_id and count the matches"
+  },
+  {
+    "id": "H011",
+    "kind": "shelf",
+    "question": "How is an active customer defined?",
+    "expect": {
+      "behaviour": "cite_certified",
+      "cite": [
+        "MD-ACTIVE-CUSTOMER"
+      ],
+      "must_not_cite": [
+        "MD-ACTIVE-CUSTOMER-V1",
+        "EM-001",
+        "DRAFT-002",
+        "WIKI-003"
+      ]
+    },
+    "paraphrase_of": "What is the definition of an active customer?"
+  },
+  {
+    "id": "H012",
+    "kind": "shelf",
+    "question": "Explain which fiscal calendar Wealth Management uses",
+    "expect": {
+      "behaviour": "cite_certified",
+      "cite": [
+        "STD-FISCAL-CAL"
+      ],
+      "must_not_cite": [
+        "WIKI-002",
+        "EM-005"
+      ]
+    },
+    "paraphrase_of": "Which calendar does Wealth Management report on?"
+  },
+  {
+    "id": "H013",
+    "kind": "shelf",
+    "question": "Is it acceptable to embed restricted personal data for the assistant?",
+    "expect": {
+      "behaviour": "cite_certified",
+      "cite": [
+        "POL-DATA-CLASS"
+      ]
+    },
+    "paraphrase_of": "May restricted personal data be embedded for the assistant?"
+  },
+  {
+    "id": "H014",
+    "kind": "abstain",
+    "question": "Give me the Digital Engagement Score for June 2025",
+    "expect": {
+      "behaviour": "abstain_route_steward"
+    },
+    "paraphrase_of": "What was the Digital Engagement Score for June 2025?"
+  },
+  {
+    "id": "H015",
+    "kind": "abstain",
+    "question": "Show me the date of birth of customer 118",
+    "expect": {
+      "behaviour": "refuse"
+    },
+    "paraphrase_of": "What is the email address of customer 118?"
+  },
+  {
+    "id": "H016",
+    "kind": "abstain",
+    "question": "Delinquency rate for retail in June 2025",
+    "expect": {
+      "behaviour": "abstain"
+    },
+    "paraphrase_of": "Delinquency rate for retail lending in June 2025"
+  }
+]

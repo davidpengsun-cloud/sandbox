@@ -1,0 +1,296 @@
+{
+ "about": "The owner's stated changes to the 183 preset results (eval/parity.py --stated): each names the result, the field, the value it moves to and why. Any other move fails make parity.",
+ "changes": [
+  {
+   "field": "joins_refused",
+   "result": "golden:G021:graph",
+   "to": [
+    "retail-corporate",
+    "sme-corporate",
+    "corporate-wealth",
+    "retail-sme",
+    "sme-wealth"
+   ],
+   "why": "the #39 Option B update: Retail and Wealth join through the certified client cross-reference, so retail-wealth is no refused join; the graph preset refuses the other five pairs it refused before, as G021 expects"
+  },
+  {
+   "field": "joins_refused",
+   "result": "golden:G030:graph",
+   "to": [
+    "retail-corporate",
+    "sme-corporate",
+    "corporate-wealth",
+    "retail-sme",
+    "sme-wealth"
+   ],
+   "why": "the #39 Option B update: Retail and Wealth join through the certified client cross-reference, so retail-wealth is no refused join; the graph preset refuses the other five pairs it refused before, so G030's expected retail-corporate, sme-corporate and sme-wealth still hold"
+  },
+  {
+   "field": "ok",
+   "result": "golden:G017:catalog",
+   "to": false,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "golden:G017:catalog",
+   "to": 9746866.62,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "ok",
+   "result": "golden:G017:schema",
+   "to": false,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "behaviour",
+   "result": "golden:G017:schema",
+   "to": "abstain",
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "golden:G017:schema",
+   "to": null,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "ok",
+   "result": "golden:G018:catalog",
+   "to": false,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "golden:G018:catalog",
+   "to": 7445459891.43,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "behaviour",
+   "result": "golden:G018:schema",
+   "to": "abstain",
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "golden:G018:schema",
+   "to": null,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "ok",
+   "result": "golden:G020:schema",
+   "to": false,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "behaviour",
+   "result": "golden:G020:schema",
+   "to": "abstain",
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "golden:G020:schema",
+   "to": null,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "golden:G021:catalog",
+   "to": 32219131.27,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "parts",
+   "result": "golden:G021:catalog",
+   "to": {
+    "corporate": 21478456.31,
+    "retail": 39983.72,
+    "sme": 953824.62,
+    "wealth": 9746866.62
+   },
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "golden:G021:schema",
+   "to": 20957708.61,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "parts",
+   "result": "golden:G021:schema",
+   "to": {
+    "corporate": 20002867.99,
+    "retail": 1016.0,
+    "sme": 953824.62
+   },
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "golden:G025:catalog",
+   "to": 29937246.05,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "parts",
+   "result": "golden:G025:catalog",
+   "to": {
+    "corporate": 20190379.43,
+    "wealth": 9746866.62
+   },
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "behaviour",
+   "result": "golden:G025:schema",
+   "to": "figure",
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "golden:G025:schema",
+   "to": 18669131.39,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "parts",
+   "result": "golden:G025:schema",
+   "to": null,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "joins_refused",
+   "result": "golden:G025:schema",
+   "to": null,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "parts",
+   "result": "golden:G030:catalog",
+   "to": {
+    "corporate": null,
+    "retail": 40483.98,
+    "sme": 899746.55,
+    "wealth": 9746866.62
+   },
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "parts",
+   "result": "golden:G030:schema",
+   "to": {
+    "corporate": null,
+    "retail": 1040.0,
+    "sme": 899746.55
+   },
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "golden:G042:catalog",
+   "to": 32219131.27,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "parts",
+   "result": "golden:G042:catalog",
+   "to": {
+    "corporate": 21478456.31,
+    "retail": 39983.72,
+    "sme": 953824.62,
+    "wealth": 9746866.62
+   },
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "golden:G042:schema",
+   "to": 20957708.61,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "parts",
+   "result": "golden:G042:schema",
+   "to": {
+    "corporate": 20002867.99,
+    "retail": 1016.0,
+    "sme": 953824.62
+   },
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "ok",
+   "result": "heldout:H005:catalog",
+   "to": false,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "heldout:H005:catalog",
+   "to": 9746866.62,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "ok",
+   "result": "heldout:H005:schema",
+   "to": false,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "behaviour",
+   "result": "heldout:H005:schema",
+   "to": "abstain",
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "heldout:H005:schema",
+   "to": null,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "heldout:H008:catalog",
+   "to": 29937246.05,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "parts",
+   "result": "heldout:H008:catalog",
+   "to": {
+    "corporate": 20190379.43,
+    "wealth": 9746866.62
+   },
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "behaviour",
+   "result": "heldout:H008:schema",
+   "to": "figure",
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "figure",
+   "result": "heldout:H008:schema",
+   "to": 18669131.39,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "parts",
+   "result": "heldout:H008:schema",
+   "to": null,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  },
+  {
+   "field": "joins_refused",
+   "result": "heldout:H008:schema",
+   "to": null,
+   "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+  }
+ ]
+}

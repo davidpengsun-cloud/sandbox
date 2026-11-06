@@ -1,0 +1,14 @@
+{
+  "MODEL_PROVIDER": "vertex-gemini",
+  "MODEL_NAME": "gemini-3.8-flash",
+  "MODEL_HIGH_PROVIDER": "vertex-gemini",
+  "MODEL_HIGH_NAME": "gemini-3.1-pro-preview",
+  "MODEL_MEDIUM_PROVIDER": "vertex-gemini",
+  "MODEL_MEDIUM_NAME": "gemini-3.8-flash",
+  "MODEL_LOW_PROVIDER": "vertex-gemini",
+  "MODEL_LOW_NAME": "gemini-3.5-flash-lite",
+  "TAGGER_PROVIDER": "model",
+  "TAGGER_MODEL_TIER": "medium",
+  "ANSWER_MODEL_TIER": "medium",
+  "CONTEXT_MODEL_TIER": "low"
+}

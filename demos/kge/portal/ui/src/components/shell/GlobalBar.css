@@ -1,0 +1,104 @@
+/* The global bar's own parts, on the v3 role tokens: the app switcher, Docs, the phone menu,
+   the app strip under the bar, the shared status views and the full-height app frame. */
+
+.v3-shell{container-type:inline-size}
+.v3-topbar.gb-bar .gb-home{text-decoration:none; min-width:0; flex-shrink:1}
+.v3-topbar.gb-bar .gb-name{display:inline; min-width:0; white-space:normal; overflow:visible; text-overflow:clip; overflow-wrap:anywhere; max-width:none}
+.v3-topbar.gb-bar .v3-brand-logo{height:36px; width:auto; min-width:0; max-width:min(180px, 100%); object-fit:contain; flex-shrink:1}
+.v3-topbar.gb-bar{height:auto; min-height:var(--v3-topbar-h); padding-top:8px; padding-bottom:8px}
+.v3-topbar.gb-bar .v3-top-actions{flex-shrink:0}
+
+.gb-pop{position:relative; flex-shrink:0}
+.v3-topbar .gb-trigger{
+  display:inline-flex; align-items:center; gap:6px; height:30px; padding:0 10px;
+  background:none; border:1px solid var(--v3-bar-hover); border-radius:var(--v3-r-sm);
+  color:var(--v3-bar-ink); font-size:13px; font-weight:500; font-family:var(--v3-body); cursor:pointer;
+}
+.v3-topbar .gb-trigger:hover{border-color:var(--v3-bar-ink-3)}
+.v3-topbar .gb-trigger[aria-expanded="true"] .gb-caret{transform:rotate(180deg)}
+
+.v3-topbar .gb-panel{
+  position:absolute; left:0; top:calc(100% + 10px); z-index:1300;
+  min-width:240px; max-width:min(320px, calc(100vw - 24px)); padding:8px;
+  background:var(--v3-surface); color:var(--v3-ink);
+  border:1px solid var(--v3-line); border-radius:var(--v3-r-md); box-shadow:var(--v3-shadow-2);
+  outline:none;
+}
+.gb-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px}
+.gb-group + .gb-group{margin-top:6px; padding-top:6px; border-top:1px solid var(--v3-line)}
+.gb-group-title{margin:0; padding:6px 8px 4px; color:var(--v3-ink-3); font:600 11px var(--v3-mono); letter-spacing:.06em; text-transform:uppercase}
+.v3-topbar .gb-item{
+  display:flex; align-items:center; gap:8px; padding:8px; border-radius:var(--v3-r-sm);
+  color:var(--v3-ink); font-size:13px; text-decoration:none; overflow-wrap:anywhere;
+}
+.v3-topbar a.gb-item:hover{background:var(--v3-surface-2); color:var(--v3-link)}
+.v3-topbar .gb-item[aria-current="page"]{font-weight:600}
+.v3-topbar .gb-item[aria-current="page"] .gb-check{color:var(--v3-accent)}
+.v3-topbar .gb-tick{display:inline-flex; width:14px; flex-shrink:0}
+.v3-topbar .gb-label{flex:0 1 auto}
+.v3-topbar .gb-note{margin-left:auto; color:var(--v3-ink-3); font-size:12px}
+.v3-topbar .gb-off{color:var(--v3-ink-3); cursor:not-allowed}
+.v3-topbar .gb-out{color:var(--v3-ink-3); flex-shrink:0}
+.v3-topbar .gb-panel a:focus-visible{outline:2px solid var(--v3-focus); outline-offset:-2px}
+.gb-sr{position:absolute; width:1px; height:1px; margin:-1px; padding:0; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0}
+.v3-topbar .v3-id-panel .v3-who .gb-who-label{font-family:var(--v3-body); letter-spacing:0; color:var(--v3-ink-3)}
+
+/* App navigation shares the global row; only search wraps on a phone. */
+.gb-appnav{display:flex; align-items:center; gap:12px; flex-shrink:0}
+.v3-topbar.gb-bar .gb-applink{
+  display:flex; align-items:center; align-self:stretch; padding:4px 0;
+  color:var(--v3-bar-ink-2); font-size:13px; font-weight:600; text-decoration:none;
+  border-bottom:2px solid transparent; border-top:2px solid transparent;
+}
+.v3-topbar.gb-bar .gb-applink[aria-current="page"]{color:var(--v3-bar-ink); border-bottom-color:var(--v3-bar-accent)}
+.v3-topbar.gb-bar .gb-admin{font-size:12px; font-weight:500}
+.v3-topbar.gb-bar .v3-search{max-width:none}
+.v3-topbar.gb-bar .gb-switcher .gb-panel{left:auto; right:0}
+
+/* The Ask panel can narrow the page without changing the viewport. */
+@container (max-width:800px){
+  .v3-topbar.gb-bar{flex-wrap:wrap; gap:8px; padding-left:12px; padding-right:12px}
+  .v3-topbar.gb-bar .gb-home{flex:0 1 auto; max-width:40%}
+  .v3-topbar.gb-bar .gb-name{flex:0 1 100px; min-width:min(80px, 100%); max-width:100px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; overflow-wrap:normal}
+  .v3-topbar.gb-bar .v3-search{order:1; flex:1 0 100%}
+  .v3-topbar.gb-bar .v3-top-actions{flex-wrap:wrap; max-width:100%; gap:6px}
+  .v3-topbar.gb-bar .v3-id-name,.v3-topbar.gb-bar .v3-kbd{display:none}
+  .v3-topbar.gb-bar .v3-search input{padding-right:8px}
+}
+
+@container (max-width:640px){
+  .v3-topbar.gb-bar .gb-home{flex:0 1 auto; min-width:0}
+  .v3-topbar.gb-bar .gb-name{display:block}
+  .v3-topbar .gb-phone{position:static}
+  .v3-topbar .gb-panel{position:absolute; left:12px; right:12px; top:calc(100% + 4px); max-width:none}
+  .v3-topbar.gb-bar .v3-top-actions{gap:4px}
+  .gb-appnav{gap:8px}
+  .v3-topbar.gb-bar .gb-trigger{padding:0 6px}
+  .v3-topbar.gb-bar .v3-btn-ai{padding:0 8px}
+}
+
+/* a page under the bar: the bar on top, the page filling the rest */
+.gb-page{display:flex; flex-direction:column; min-height:100vh; min-height:100dvh; background:var(--v3-paper); color:var(--v3-ink); font-family:var(--v3-body)}
+.gb-page > .gb-body{flex:1; min-height:0; display:flex; flex-direction:column}
+.gb-body > main{flex:1; min-height:0; display:flex; flex-direction:column}
+.gb-page.gb-fill{height:100vh; height:100dvh}
+.gb-frame{flex:1; min-height:0; width:100%; border:0; display:block; background:var(--v3-paper)}
+
+/* the shared no-permission and not-set-up views, and the Certify page */
+.gb-status{max-width:640px; margin:48px auto; padding:0 16px}
+.gb-status h1{margin:0 0 12px; font-size:24px; line-height:1.3; color:var(--v3-ink); overflow-wrap:anywhere}
+.gb-status p{margin:0 0 12px; font-size:15px; line-height:1.55; color:var(--v3-ink-2)}
+.gb-status ul{margin:0 0 16px; padding-left:20px; color:var(--v3-ink-2); font-size:15px; line-height:1.55}
+.gb-status a{color:var(--v3-link)}
+.gb-status a:hover{color:var(--v3-link-hover)}
+.gb-status a:focus-visible{outline:2px solid var(--v3-focus); outline-offset:2px}
+.gb-status .gb-eyebrow{margin:0 0 6px; font:600 11px var(--v3-mono); letter-spacing:.08em; text-transform:uppercase; color:var(--v3-ink-3)}
+.gb-status .gb-placeholder-text{font-family:var(--v3-mono); color:var(--v3-ink-2)}
+
+@media(max-width:640px){
+  .gb-status{margin:32px auto}
+}
+
+.gb-context-rights{display:grid; grid-template-columns:auto 1fr; gap:4px 12px; margin:12px; font-size:13px; line-height:1.5}
+.gb-context-rights dt{color:var(--v3-ink-3)}
+.gb-context-rights dd{margin:0; overflow-wrap:anywhere}

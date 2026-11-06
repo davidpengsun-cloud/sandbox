@@ -1,0 +1,93 @@
+improve: no proposal kept.
+job: done (20261101T013655Z-5fc871)
+{"writable":true,"why":"","can":{"read":true,"create":true,"draft":true,"accept":false,"certify":false,"run":true,"improve":true,"participant":true,"sign_off":false,"release":false,"rollback":false},"units":[],"proposal":null,"proposal_errors":[],"job":{"unit":"retail","id":"20261101T013655Z-5fc871","step":"improve","by":"knowledge_engineer.meridian@example.com","state":"done","started_at":"2026-11-01T01:36:55Z","finished_at":"2026-11-01T01:37:05Z","hash":null,"checked_hash":null,"checks_id":null,"message":"job execution completed"},"changes":null,"change_lines":[],"candidate":null,"current":"5942e10d13081d0cd13902326d2730eb3fb9b980743aac6cd942dc786bd381cc","serving":"5942e10d13081d0cd13902326d2730eb3fb9b980743aac6cd942dc786bd381cc","eval_pre":null,"eval_post":{"at":"2026-11-01T01:28:49+00:00","compared":true,"differences":[],"identity":{"chunks":null,"graph":null,"hash":"5942e10d13081d0cd13902326d2730eb3fb9b980743aac6cd942dc786bd381cc","release":"20261101T012739Z-7cb18d","warehouses":{}},"message":"eval post passed: deterministic results unchanged","model_graded":{"status":"not applicable"},"must_pass":["[\"golden\", \"G001\", \"analyst_enterprise\"]","[\"golden\", \"G002\", \"analyst_enterprise\"]","[\"golden\", \"G003\", \"analyst_enterprise\"]","[\"golden\", \"G004\", \"analyst_enterprise\"]","[\"golden\", \"G005\", \"analyst_enterprise\"]","[\"golden\", \"G006\", \"analyst_enterprise\"]","[\"golden\", \"G007\", \"analyst_enterprise\"]","[\"golden\", \"G008\", \"analyst_enterprise\"]","[\"golden\", \"G009\", \"analyst_enterprise\"]","[\"golden\", \"G010\", \"analyst_enterprise\"]","[\"golden\", \"G011\", \"analyst_enterprise\"]","[\"golden\", \"G012\", \"analyst_enterprise\"]","[\"golden\", \"G013\", \"analyst_enterprise\"]","[\"golden\", \"G014\", \"analyst_enterprise\"]","[\"golden\", \"G015\", \"analyst_enterprise\"]","[\"golden\", \"G016\", \"analyst_enterprise\"]","[\"golden\", \"G017\", \"analyst_enterprise\"]","[\"golden\", \"G018\", \"analyst_enterprise\"]","[\"golden\", \"G019\", \"analyst_enterprise\"]","[\"golden\", \"G020\", \"analyst_enterprise\"]","[\"golden\", \"G021\", \"analyst_enterprise\"]","[\"golden\", \"G022\", \"analyst_enterprise\"]","[\"golden\", \"G023\", \"analyst_enterprise\"]","[\"golden\", \"G024\", \"analyst_enterprise\"]","[\"golden\", \"G025\", \"analyst_enterprise\"]","[\"golden\", \"G026\", \"analyst_enterprise\"]","[\"golden\", \"G027\", \"analyst_enterprise\"]","[\"golden\", \"G028\", \"analyst_enterprise\"]","[\"golden\", \"G029\", \"analyst_enterprise\"]","[\"golden\", \"G030\", \"analyst_enterprise\"]","[\"golden\", \"G031\", \"analyst_enterprise\"]","[\"golden\", \"G032\", \"analyst_enterprise\"]","[\"golden\", \"G033\", \"analyst_enterprise\"]","[\"golden\", \"G034\", \"analyst_enterprise\"]","[\"golden\", \"G035\", \"analyst_enterprise\"]","[\"golden\", \"G036\", \"analyst_enterprise\"]","[\"golden\", \"G037\", \"analyst_enterprise\"]","[\"golden\", \"G038\", \"analyst_enterprise\"]","[\"golden\", \"G039\", \"analyst_enterprise\"]","[\"golden\", \"G040\", \"analyst_enterprise\"]","[\"golden\", \"G041\", \"analyst_enterprise\"]","[\"golden\", \"G042\", \"analyst_enterprise\"]","[\"golden\", \"G043\", \"analyst_enterprise\"]","[\"golden\", \"G044\", \"analyst_enterprise\"]","[\"golden\", \"G045\", \"analyst_enterprise\"]"],"passed":true,"pre_run_id":"20261101T012543Z-55d6d0","questions":576},"notes":[],"requests":[],"versions":[{"audit":{},"kept_pack":false,"model_hash":"5942e10d13081d0cd13902326d2730eb3fb9b980743aac6cd942dc786bd381cc","note":"signed off by steward_glossary.meridian@example.com","pack_hash":"2ed5d420d2944e06fa804fae582a4cac16fcaa45b167e5de8f9c8db2bfa4b166","release":"20261101T012739Z-7cb18d","released_at":"2026-11-01T01:27:41Z","rollback_of":null,"run_id":"20261101T012543Z-55d6d0","scores":{"heldout":{"passed":11,"total":16},"label":"learnable 74/80, held-out 11/16","learnable":{"passed":74,"total":80},"scored":true,"sets":{"golden":{"passed":45,"total":45},"golden_wealth_v1":{"passed":24,"total":30},"heldout":{"passed":11,"total":16},"sage_v1":{"passed":5,"total":5}}},"signed_off_by":"steward_glossary.meridian@example.com","version":"1.5.0","current":true}]}
+---
+kge: API POST /onboard/accept refused (HTTP 404)
+{"detail":"unit leasing not found","changed":[],"unchanged":[],"people":[],"admins":[],"entries":[]}
+---
+{"proposal":{},"units":[],"people":[],"admins":[],"entries":[],"changed_outside":null,"changed":[],"unchanged":[],"gate":{},"report":"","serving":"","eval_pre":null}
+---
+kge: API GET /onboard refused (HTTP 403)
+{"detail":"not permitted"}
+---
+INT8: failed-gate
+job: done (checks)
+{"candidate": {"hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb", "gate": {"passed": false}, "eval_pre": {"passed": true}}, "eval_pre": {"passed": true}}
+---
+INT8: connect-operator
+connected: compose/meridian as operator.meridian@example.com (None)
+---
+INT8: connect-access-admin
+connected: compose/meridian as access_admin.meridian@example.com (None)
+---
+INT8: connect-knowledge-engineer
+connected: compose/meridian as knowledge_engineer.meridian@example.com (None)
+---
+INT8: connect-business
+connected: compose/meridian as business_team.meridian@example.com (None)
+---
+INT8: connect-steward
+connected: compose/meridian as steward_glossary.meridian@example.com (None)
+---
+INT8: teardown-usage
+usage: kge teardown CONFIRM=client PREVIEW=yes
+---
+INT8: restart-dry
+job: done (release)
+restart: dry run, nothing restarted
+served: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+{"eval_post":{"passed":true,"identity":{"hash":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}}}
+---
+INT8: publish-unchanged
+job: done (release)
+restart: compose app ready
+served: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+{"eval_post": {"passed": true, "identity": {"hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}}}
+---
+INT8: publish-wrong-hash
+job: done (release)
+restart: compose app ready
+served: cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+{"eval_post": {"passed": true, "identity": {"hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}}}
+---
+INT8: rollback-wrong-hash
+job: done (release)
+restart: compose app ready
+served: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+{"eval_post": {"passed": true, "identity": {"hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}}}
+---
+INT8: publish-missing-post
+job: done (release)
+restart: compose app ready
+served: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+
+---
+INT8: publish-failed-post
+job: done (release)
+restart: compose app ready
+served: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+{"eval_post": {"passed": false, "nested": {"passed": true}, "identity": {"hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}}}
+---
+INT8: publish-wrong-post-hash
+job: done (release)
+restart: compose app ready
+served: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+{"eval_post": {"passed": true, "identity": {"hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}}}
+---
+INT8: rollback-missing-post
+job: done (release)
+restart: compose app ready
+served: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+---
+INT8: rollback-failed-post
+job: done (release)
+restart: compose app ready
+served: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+{"eval_post": {"passed": false, "nested": {"passed": true}, "identity": {"hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}}}
+---
+INT8: rollback-wrong-post-hash
+job: done (release)
+restart: compose app ready
+served: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+{"eval_post": {"passed": true, "identity": {"hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"}}}

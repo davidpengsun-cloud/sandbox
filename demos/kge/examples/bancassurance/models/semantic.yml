@@ -1,0 +1,29 @@
+semantic_models:
+  - name: premium
+    defaults: {agg_time_dimension: written_on}
+    measures:
+      - {name: written_premium_measure, agg: sum, expr: premium_amount}
+  - name: premium_snapshot
+    defaults: {agg_time_dimension: snapshot_on}
+    measures:
+      - name: in_force_premium_measure
+        agg: sum
+        expr: in_force_premium
+        non_additive_dimension: {name: snapshot_on, window_choice: max}
+metrics:
+  - name: written_premium
+    label: Written premium
+    description: Premium written through the bancassurance channel.
+    type: simple
+    type_params: {measure: written_premium_measure}
+    filter: "policy.status = 'active'"
+    meta: {currency: GBP}
+  - name: in_force_premium
+    label: In-force premium
+    description: Premium in force at month end.
+    type: simple
+    type_params: {measure: in_force_premium_measure}
+    meta: {currency: GBP}
+  - name: loss_ratio
+    label: Loss ratio
+    type: ratio

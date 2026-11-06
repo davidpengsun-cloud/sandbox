@@ -1,0 +1,39 @@
+{
+  "apiVersion": "run.googleapis.com/v1",
+  "kind": "Execution",
+  "metadata": {
+    "name": "kge-meridian-job-sample",
+    "namespace": "your-project",
+    "labels": {
+      "run.googleapis.com/job": "kge-meridian-job",
+      "cloud.googleapis.com/location": "us-central1"
+    }
+  },
+  "spec": {
+    "taskCount": 1,
+    "template": {
+      "spec": {
+        "containers": [
+          {
+            "image": "example.com/kge:sample",
+            "args": [
+              "releases"
+            ]
+          }
+        ],
+        "maxRetries": 0
+      }
+    }
+  },
+  "status": {
+    "conditions": [
+      {
+        "type": "Completed",
+        "status": "True",
+        "message": "Execution completed successfully."
+      }
+    ],
+    "succeededCount": 1,
+    "failedCount": 0
+  }
+}

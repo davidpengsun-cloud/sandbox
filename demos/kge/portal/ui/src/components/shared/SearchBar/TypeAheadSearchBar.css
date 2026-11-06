@@ -1,0 +1,73 @@
+#searchBar {
+    border: 0.05rem solid #000000;
+    height: 5rem;
+    border-radius: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+ 
+    #searchBarInput {
+        font-size: 2.5rem;
+        font-family: 'Inter';
+    }
+
+    div div span {
+        font-size: 2.5rem;
+        font-family: 'Inter';
+    }
+
+    div div  {
+        border-radius: 0px;
+        border-color: #000000;
+    }
+
+    div {
+        height: 100%;
+    }
+
+    .ant-select-clear {
+        top: 35%;
+        right: 2.5%;
+    }
+ 
+    input:focus {
+        outline-width: 0;
+    }
+ 
+    .MuiSvgIcon-root {
+        height: auto;
+        background-color: #55585A;
+        color: #FFFFFF;
+        cursor: pointer;
+        width: 7rem;
+    }
+}
+
+.ant-select-dropdown {
+    z-index: 2000 !important;
+}
+
+.ant-select-item-option-content {
+    font-size: 1.9rem !important;
+    font-family: 'Inter';
+}
+ 
+/* Media Query for Large screens */
+@media (min-width: 1281px) {
+}
+ 
+/* Media Query for Laptops and Desktops */
+@media (min-width: 1025px) and (max-width: 1280px) {
+}
+ 
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 768px) and (max-width: 1024px) {
+}
+ 
+/* Media Query for low resolution  Tablets, Ipads */
+@media (min-width: 481px) and (max-width: 767px) {
+}
+ 
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {
+}

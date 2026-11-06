@@ -1,0 +1,21 @@
+# The demo's line coverage (README, Tests). Child processes count: the scripts
+# the tests and make targets run, through patch = subprocess under pytest-cov,
+# and through COVERAGE_PROCESS_START (the .pth coverage installs) for make
+# test-e2e, whose parent is Node. Each process writes its own data file
+# (parallel), the servers' on SIGTERM too, and make coverage-check combines
+# them. The Makefile exports KGE_COVERAGE_SOURCE, this folder's absolute path,
+# and COVERAGE_FILE, so a child whose working folder is a test's temporary one
+# still measures the demo's own files and writes beside the rest.
+[run]
+source = ${KGE_COVERAGE_SOURCE-.}
+parallel = true
+sigterm = true
+patch = subprocess
+omit =
+    */tests/*
+    */.venv/*
+    */build/*
+
+[report]
+skip_empty = true
+precision = 1

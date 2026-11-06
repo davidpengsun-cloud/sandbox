@@ -1,0 +1,129 @@
+.logoSection {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+ 
+.popOver {
+    width: auto;
+}
+ 
+.filterList {
+    /* width: 100%;
+    max-width: 360;
+    display: contents; */
+    padding: 2rem;
+}
+ 
+.listItemText {
+    padding-left: 0px;
+}
+ 
+.iconSection {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+ 
+    .MuiSvgIcon-root {
+        margin: 2rem;
+        cursor: pointer;
+    }
+}
+ 
+.searchBar {
+    margin-top: 1.5rem !important;
+    margin-left: 3rem;
+}
+ 
+.askPortalButton {
+    /* display: none !important; */
+    /* width: 170px;  */
+    margin-top: 0.5rem;
+    margin-left: 20px;
+    height: 50px; 
+    font-size: 15px; 
+    /* background-color: #d3d3d3;
+    color: #808080; */
+    background: #55585A; 
+    color: #FFFFFF; 
+    display: flex;     
+    align-items: center; 
+    justify-content: center;
+}
+
+.askPortalText {
+    margin-left: 8px;
+    font-size: 2rem; 
+    font-family: Inter;
+}
+ 
+/* Media Query for Large screens */
+@media (min-width: 1281px) {
+    .iconSection {
+        .MuiSvgIcon-root {
+            font-size: 4rem;
+        }
+    }
+}
+ 
+/* Media Query for Laptops and Desktops */
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+ 
+    .iconSection {
+        h4 {
+            font-size: 2rem;
+            font-family: Inter;
+            font-weight: 500;
+        }
+        .MuiSvgIcon-root {
+            font-size: 3.5rem;
+            margin-left: 1rem;
+        }
+    }
+}
+ 
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+
+    .iconSection {
+        h4 {
+            font-size: 1.5rem;
+            font-family: Inter;
+            font-weight: 500;
+        }
+        .MuiSvgIcon-root {
+            font-size: 2.5rem;
+            margin-left: 1rem;
+        }
+    }
+}
+ 
+/* Media Query for low resolution  Tablets; Ipads */
+@media (min-width: 481px) and (max-width: 767px) {
+
+ 
+    .portalLogo {
+        height: 2rem;
+    }
+    .iconSection {
+        h4 {
+            font-size: 1.5rem;
+            font-family: Inter;
+            font-weight: 500;
+        }
+        .MuiSvgIcon-root {
+            font-size: 2.5rem;
+            margin-left: 1rem;
+        }
+    }
+}
+ 
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {
+}

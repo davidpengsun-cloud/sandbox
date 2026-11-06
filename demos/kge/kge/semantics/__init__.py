@@ -1,0 +1,1 @@
+"""The shared model every service reads: the query semantics (query.py), the SQL gate (sqlguard.py) and the vocabulary (vocabulary.py); the pack compiler (kge/compiler/) and the graph (kge/graph/) are its other parts."""

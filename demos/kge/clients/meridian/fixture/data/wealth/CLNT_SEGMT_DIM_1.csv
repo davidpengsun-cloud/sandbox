@@ -1,0 +1,7 @@
+SEGMT_CD,SEGMT_NM,PARNT_SEGMT_CD,SEGMT_LVL_NR
+AFFLUENT,Affluent,,1
+CORE,Core Affluent,AFFLUENT,2
+EMERGING,Emerging Affluent,AFFLUENT,2
+HNW,High Net Worth,PRIVATE,2
+PRIVATE,Private Clients,,1
+UHNW,Ultra High Net Worth,PRIVATE,2

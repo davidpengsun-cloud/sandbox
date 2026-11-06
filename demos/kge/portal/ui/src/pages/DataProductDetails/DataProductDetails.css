@@ -1,0 +1,335 @@
+#DPDRoot {
+  margin: 3rem;
+
+  .dataSection {
+    background-color: #FFFFFF;
+    border: none;
+    padding-bottom: 1rem;
+
+    .subDataSection {
+      margin: 3rem;
+
+      .titleSectionLeft {
+        margin: auto auto auto 0;
+
+        .hierarchy {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: flex-end;
+        }
+
+        .tree {
+          padding-top: 1rem;
+          padding-left: 1rem;
+          color: #00345F;
+          text-decoration: underline;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          align-items: center;
+        }
+
+        .nextIcon {
+          font-size: 1.8rem;
+        }
+      }
+    }
+
+    .DPDMain {
+      margin: 3rem;
+      height: auto;
+
+      .dataSectionLeft {
+        display: block;
+
+        .dataSectionLeftGridItem {
+          margin-top: 5.5rem;
+
+          .cardDescription {
+            border-radius: 1rem;
+            background-color: #E7E3DF;
+            padding: 2rem;
+            overflow: auto;
+
+            .descriptionTitle {
+              padding-top: 2rem;
+              padding-bottom: 1rem;
+            }
+
+            .description-newLine {
+              white-space: break-spaces;
+              padding-bottom: 2rem;
+              text-align: justify;
+            }
+
+            .description {
+              padding-bottom: 2rem;
+              text-align: left;
+              word-break: auto-phrase;
+            }
+          }
+        }
+      }
+
+      .tabs {
+        margin: 0 5rem 0 2rem;
+        border: none;
+        border-radius: 0;
+        width: auto;
+        height: auto;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.badge-grid {
+
+  .badge-legend-title {
+      font-weight: bold;
+      padding-right: 1rem;
+      margin-left: 5rem;
+      margin-top: 1rem;
+  }
+
+  .score-img-wrapper {
+    margin-left: 4.5rem;  
+  }
+ 
+  .score-img {
+      height: auto;
+      width: auto;          
+  }
+
+  .score-text {                       
+      font-size: 1.8rem;
+  }
+}
+
+.search-badge-grid {
+  padding-top: 1.5rem;
+}
+
+.productHeader {
+  padding-top: 4rem;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: small;
+}
+
+.product-title {
+  padding-top: .5rem;
+}
+
+.score-badge {
+  .score-overview-img {
+      height: auto;
+      width: 6.3rem;
+      margin-left: 10px;
+      /* margin: 1rem 0.5rem .7rem 1.5rem; */
+  }
+}
+
+.productType {
+  padding-right: 1rem;
+  font-size: 3rem;
+  color: #00345F;
+  cursor: pointer;
+}
+
+.favorite {
+  padding-left: 1rem;
+
+  .MuiSvgIcon-root {
+    font-size: 3.7rem;
+    fill: #00345F;
+    cursor: pointer;
+  }
+}
+
+.disclaimer {
+  font-family: 'Inter';
+  font-size: large;
+  padding-top: 2rem;
+  font-weight: bold;
+  display: none;
+}
+
+.disclaimer-top {
+  font-family: 'Inter';
+  font-size: larger;
+  font-weight: bold;
+  display: flex;
+  justify-content: end;
+  padding-right: 1rem;
+}
+
+.ant-tooltip-arrow { 
+  left: 340px !important;
+}
+
+/* Media Query for Extra Large screens */
+@media (min-width: 1901px) {
+  .cardDescription {
+    height: 90rem;
+  }
+
+  .productType {
+    font-size: 4rem;
+  }
+
+  .favorite {
+    .MuiSvgIcon-root {
+      font-size: 5rem;
+      margin-top: 0.7rem;
+    }
+  }
+}
+
+.productHeader {
+  padding-top: 4rem;
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: small;
+}
+
+.productType {
+  padding-right: 1rem;
+  font-size: 3rem;
+  color: #00345F;
+  cursor: pointer;
+}
+
+.favorite {
+  padding-left: 1rem;
+
+  .MuiSvgIcon-root {
+    font-size: 3.7rem;
+    fill: #00345F;
+    cursor: pointer;
+  }
+}
+
+/* Media Query for Extra Large screens */
+@media (min-width: 1901px) {
+  .cardDescription {
+    height: 90rem;
+  }
+
+  .productType {
+    font-size: 4rem;
+  }
+
+  .favorite {
+    .MuiSvgIcon-root {
+      font-size: 5rem;
+      margin-top: 0.7rem;
+    }
+  }
+}
+
+/* Media Query for Large screens */
+@media (min-width: 1280px) and (max-width: 1900px) {
+  .cardDescription {
+    height: 90rem;
+  }
+
+  .productType {
+    font-size: 3.5rem;
+  }
+
+  .favorite {
+    .MuiSvgIcon-root {
+      font-size: 4.2rem;
+      margin-top: 0.7rem;
+    }
+  }
+
+  .productType {
+    font-size: 3.5rem;
+  }
+
+  .favorite {
+    .MuiSvgIcon-root {
+      font-size: 4.2rem;
+      margin-top: 0.7rem;
+    }
+  }
+}
+
+/* Media Query for Laptops and Desktops */
+@media (min-width: 1025px) and (max-width: 1279px) {
+  .cardDescription {
+    height: 90rem;
+  }
+
+  .productType {
+    font-size: 3rem;
+  }
+
+  .favorite {
+    .MuiSvgIcon-root {
+      font-size: 3.7rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .productType {
+    font-size: 3rem;
+  }
+
+  .favorite {
+    .MuiSvgIcon-root {
+      font-size: 3.7rem;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .cardDescription {
+    height: 110rem;
+  }
+
+  .productType {
+    font-size: 3rem;
+  }
+
+  .favorite {
+    .MuiSvgIcon-root {
+      font-size: 3.7rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .productType {
+    font-size: 3rem;
+  }
+
+  .favorite {
+    .MuiSvgIcon-root {
+      font-size: 3.7rem;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+/* Media Query for low resolution  Tablets, Ipads */
+@media (min-width: 481px) and (max-width: 767px) {
+  .cardDescription {
+    height: 110rem;
+  }
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {}

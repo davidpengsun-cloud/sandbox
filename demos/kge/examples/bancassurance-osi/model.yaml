@@ -1,0 +1,61 @@
+version: 0.2.0.dev0
+name: bancassurance
+description: Bancassurance policies and written premiums.
+datasets:
+  - name: policyholder
+    source: insurance.policyholder
+    primary_key: [policyholder_id]
+    fields:
+      - {name: policyholder_id, datatype: Integer, expression: {dialects: [{dialect: ANSI_SQL, expression: policyholder_id}]}}
+      - {name: name, datatype: String, expression: {dialects: [{dialect: ANSI_SQL, expression: name}]}}
+  - name: policy
+    source: insurance.policy
+    primary_key: [policy_id]
+    fields:
+      - {name: policy_id, datatype: Integer, expression: {dialects: [{dialect: ANSI_SQL, expression: policy_id}]}}
+      - {name: policyholder_id, datatype: Integer, expression: {dialects: [{dialect: ANSI_SQL, expression: policyholder_id}]}}
+      - {name: status, datatype: String, expression: {dialects: [{dialect: ANSI_SQL, expression: status}]}}
+  - name: premium
+    source: insurance.premium
+    primary_key: [premium_id]
+    fields:
+      - {name: premium_id, datatype: Integer, expression: {dialects: [{dialect: ANSI_SQL, expression: premium_id}]}}
+      - {name: policy_id, datatype: Integer, expression: {dialects: [{dialect: ANSI_SQL, expression: policy_id}]}}
+      - name: written_on
+        datatype: Date
+        dimension: {is_time: true}
+        expression: {dialects: [{dialect: ANSI_SQL, expression: written_on}]}
+      - name: premium_amount
+        datatype: Decimal
+        description: Premium written before cancellations.
+        expression: {dialects: [{dialect: ANSI_SQL, expression: premium_amount}]}
+  - name: premium_snapshot
+    source: insurance.premium_snapshot
+    primary_key: [snapshot_id]
+    fields:
+      - {name: snapshot_id, datatype: Integer, expression: {dialects: [{dialect: ANSI_SQL, expression: snapshot_id}]}}
+      - {name: policy_id, datatype: Integer, expression: {dialects: [{dialect: ANSI_SQL, expression: policy_id}]}}
+      - {name: snapshot_on, datatype: Date, dimension: {is_time: true}, expression: {dialects: [{dialect: ANSI_SQL, expression: snapshot_on}]}}
+      - {name: in_force_premium, datatype: Decimal, expression: {dialects: [{dialect: ANSI_SQL, expression: in_force_premium}]}}
+relationships:
+  - {name: policy_to_policyholder, from: policy, to: policyholder, from_columns: [policyholder_id], to_columns: [policyholder_id]}
+  - {name: premium_to_policy, from: premium, to: policy, from_columns: [policy_id], to_columns: [policy_id]}
+  - {name: snapshot_to_policy, from: premium_snapshot, to: policy, from_columns: [policy_id], to_columns: [policy_id]}
+metrics:
+  - name: written_premium
+    description: Premium written through the bancassurance channel.
+    datatype: Decimal
+    ai_context: {currency: GBP, period_column: written_on, synonyms: [gross written premium]}
+    expression: {dialects: [{dialect: ANSI_SQL, expression: "SUM(premium.premium_amount) FILTER (WHERE policy.status = 'active')"}]}
+  - name: in_force_premium
+    description: Premium in force at month end.
+    datatype: Decimal
+    ai_context: {currency: GBP, period_column: snapshot_on, grain: month_end}
+    expression: {dialects: [{dialect: ANSI_SQL, expression: SUM(premium_snapshot.in_force_premium)}]}
+  - name: ambiguous_premium
+    datatype: Decimal
+    ai_context: {currency: GBP, period_column: written_on}
+    expression: {dialects: [{dialect: ANSI_SQL, expression: "SUM(premium.premium_amount) FILTER (WHERE policy.status = 'active' OR premium.premium_amount > 0)"}]}
+  - name: loss_ratio
+    datatype: Decimal
+    expression: {dialects: [{dialect: ANSI_SQL, expression: SUM(premium.premium_amount) / 2}]}

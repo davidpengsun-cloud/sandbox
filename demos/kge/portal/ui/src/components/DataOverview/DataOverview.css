@@ -1,0 +1,117 @@
+#overviewRoot {
+    margin: 0 5rem 2rem 2rem;
+    width: auto;
+    /* Was a fixed height, which clipped the card once the content wrapped
+       taller - e.g. when the Ask the portal panel narrows the page. */
+    height: auto;
+    min-height: 90rem;
+    /* Lets the metadata columns below react to this box's real width.
+       Media queries cannot: the panel pads <body>, so the viewport width
+       never changes even though the content area shrinks. */
+    container-type: inline-size;
+    border-radius: 1rem;
+    background-color: #E7E3DF;
+
+    .overviewMain {
+        margin: 0 1rem 0 1rem;
+        padding-top: 1.5rem;
+
+        .overviewPaper {
+            margin: 0.2rem 6rem auto 2rem;
+            padding: 3rem;
+            border-radius: 1.5rem;
+
+            .title {
+                margin-bottom: 1rem;
+            }
+
+            .overviewGrid {
+                padding-right: 2rem;
+
+                .subTitle {
+                    margin-top: 1rem;
+                    margin-bottom: 1rem;
+                }
+
+                .content {
+                    padding-bottom: 2.5rem;
+                    overflow-wrap: anywhere;
+                }
+
+                .contentPath {
+                    margin-bottom: 1rem;
+                    overflow-x: auto;
+                }
+
+                .info-icon {
+                  height: 1.3em;
+                  width: 1.3em;
+                }
+            }
+        }
+    }
+}
+
+/* The metadata columns are declared as MUI `xs` widths, which apply at every
+   breakpoint and so never reflow on their own. These container queries let them
+   fold down as the card itself gets narrower - whether that is a small screen or
+   a wide Ask the portal panel. */
+@container (max-width: 78rem) {
+  #overviewRoot .overviewGrid {
+    flex-basis: 50% !important;
+    max-width: 50% !important;
+  }
+  /* Reclaim the generous fixed gutters once space is tight. */
+  #overviewRoot .overviewPaper {
+    margin: 0.2rem 1.5rem auto 1.5rem;
+    padding: 2rem;
+  }
+}
+
+@container (max-width: 46rem) {
+  #overviewRoot .overviewGrid {
+    flex-basis: 100% !important;
+    max-width: 100% !important;
+    padding-right: 0;
+  }
+  #overviewRoot .overviewPaper {
+    margin: 0.2rem 1rem auto 1rem;
+    padding: 1.5rem;
+  }
+  /* Stop the deep bottom padding stacking up in single-column mode. */
+  #overviewRoot .overviewGrid .content {
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* Media Query for Large screens */
+@media (min-width: 1281px) {
+    #overviewRoot {
+      min-height: 90rem;
+    }
+  }
+
+  /* Media Query for Laptops and Desktops */
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    #overviewRoot {
+      min-height: 90rem;
+    }
+  }
+
+  /* Media Query for Tablets Ipads portrait mode */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    #overviewRoot {
+      min-height: 110rem;
+    }
+  }
+
+  /* Media Query for low resolution  Tablets, Ipads */
+  @media (min-width: 481px) and (max-width: 767px) {
+    #overviewRoot {
+      min-height: 110rem;
+    }
+  }
+  
+  /* Media Query for Mobile Devices */
+  @media (max-width: 480px) {
+  }

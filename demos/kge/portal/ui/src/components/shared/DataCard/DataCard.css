@@ -1,0 +1,63 @@
+#dataCard {
+    overflow: auto;
+
+    .dataCardHeader {
+        position: sticky;
+        top: 0rem;
+
+        .header {
+            border-radius: none;
+            text-align: center;
+            padding: 2rem 3rem 2rem 3rem;
+            border-top: 0.8rem solid #00345F;
+        }
+    }
+
+    .dataCardBody {
+            border-radius: none;
+            text-align: center;
+            padding: 3rem;
+    }
+}
+
+/* Media Query for Extra Large screens */
+@media (min-width: 1901px) {
+    #dataCard {
+        height: 68rem;
+    }
+}
+
+/* Media Query for Large screens */
+@media (min-width: 1281px) and (max-width: 1900px) {
+    #dataCard {
+        height: 50rem;
+    }
+}
+
+/* Media Query for Laptops and Desktops */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    #dataCard {
+        height: 50rem;
+    }
+}
+
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 768px) and (max-width: 1024px) {
+    #dataCard {
+        height: 50rem;
+    }
+}
+
+/* Media Query for low resolution  Tablets, Ipads */
+@media (min-width: 481px) and (max-width: 767px) {
+    #dataCard {
+        height: 50rem;
+    }
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 480px) {
+    #dataCard {
+        height: 50rem;
+    }
+}

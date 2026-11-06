@@ -1,0 +1,16 @@
+tables:
+  - name: premium
+    description: Written policy premiums.
+    columns:
+      - {name: premium_id, type: integer, description: Premium identifier., key: primary}
+      - {name: written_on, type: date, description: Date the premium was written.}
+      - {name: status, type: string, description: Policy status.}
+      - name: premium_amount
+        type: number
+        description: Premium written through the bancassurance channel.
+        measure:
+          term: written_premium
+          label: Written premium
+          currency: GBP
+          period_column: written_on
+          filters: [{column: premium.status, op: "=", value: active}]

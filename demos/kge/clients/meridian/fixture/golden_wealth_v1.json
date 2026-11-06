@@ -1,0 +1,412 @@
+[
+  {
+    "id": "W01",
+    "kind": "within",
+    "category": "NNA overall / client-directed",
+    "question": "NNA for FY26-Q1 by division",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "rows": {
+        "EAST": 12371673.22,
+        "WEST": 8831519.54
+      }
+    },
+    "reference_sql": "SELECT d.DIVSN_CD, round(sum(CASE WHEN f.DW_TRAN_DIRCTN_CD = 'O' THEN -f.TRAN_AM ELSE f.TRAN_AM END), 2) FROM TRAN_FACT_1 f JOIN MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) JOIN ACCT_DIM2_1 a ON a.DW_ACCT_ID = f.DW_ACCT_ID AND a.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND a.CURR_IN = 1 JOIN HSHLD_DIM_1 h ON h.HSHLD_DK = a.HSHLD_DK JOIN ADV_DIM_1 ad ON ad.ADV_ID = h.PRIM_ADV_ID JOIN BRCH_DIM_1 o ON o.BRCH_CD = ad.BRCH_CD AND o.CURR_IN = 1 JOIN RGN_DIM_1 r ON r.RGN_CD = o.RGN_CD AND r.CURR_IN JOIN DIVSN_DIM_1 d ON d.DIVSN_CD = r.DIVSN_CD AND d.CURR_IN WHERE f.CURR_IN = 1 AND m.CLDR_EOM_DT BETWEEN DATE '2025-04-30' AND DATE '2025-06-30' AND f.NNA_IN = 'Y' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS (SELECT 1 FROM ACCT_DIM2_1 t WHERE t.DW_ACCT_ID = f.DW_ACCT_ID AND t.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND t.TEST_ACCT_IN = 'Y') AND NOT EXISTS (SELECT 1 FROM NNA_EXCL_1 x WHERE x.DW_ACCT_ID = f.DW_ACCT_ID AND x.SRCE_SYS_CD = CASE f.ACCT_SRCE_SYS_ID WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND f.DW_TRAN_DT BETWEEN x.EXCL_EFF_DT AND coalesce(x.EXCL_EXPR_DT, DATE '9999-12-31')) GROUP BY 1 ORDER BY 1"
+  },
+  {
+    "id": "W02",
+    "kind": "within",
+    "category": "NNA overall / client-directed",
+    "question": "Client-directed NNA for June 2025",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "figure": 4753885.36
+    },
+    "reference_sql": "SELECT round(sum(CASE WHEN f.DW_TRAN_DIRCTN_CD = 'O' THEN -f.TRAN_AM ELSE f.TRAN_AM END), 2) FROM TRAN_FACT_1 f JOIN MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) WHERE f.CURR_IN = 1 AND m.CLDR_EOM_DT = DATE '2025-06-30' AND f.NNA_IN = 'Y' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS (SELECT 1 FROM ACCT_DIM2_1 t WHERE t.DW_ACCT_ID = f.DW_ACCT_ID AND t.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND t.TEST_ACCT_IN = 'Y') AND NOT EXISTS (SELECT 1 FROM NNA_EXCL_1 x WHERE x.DW_ACCT_ID = f.DW_ACCT_ID AND x.SRCE_SYS_CD = CASE f.ACCT_SRCE_SYS_ID WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND f.DW_TRAN_DT BETWEEN x.EXCL_EFF_DT AND coalesce(x.EXCL_EXPR_DT, DATE '9999-12-31')) AND EXISTS (SELECT 1 FROM F_NNA_FIN n WHERE n.DW_TRAN_ID = f.DW_TRAN_ID AND n.CLIENT_DIRECTED_NNA_IN = 'Y')"
+  },
+  {
+    "id": "W03",
+    "kind": "within",
+    "category": "NNA overall / client-directed",
+    "question": "NNA for June 2025",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "figure": 6069905.64
+    },
+    "reference_sql": "SELECT round(sum(CASE WHEN f.DW_TRAN_DIRCTN_CD = 'O' THEN -f.TRAN_AM ELSE f.TRAN_AM END), 2) FROM TRAN_FACT_1 f JOIN MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) WHERE f.CURR_IN = 1 AND m.CLDR_EOM_DT = DATE '2025-06-30' AND f.NNA_IN = 'Y' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS (SELECT 1 FROM ACCT_DIM2_1 t WHERE t.DW_ACCT_ID = f.DW_ACCT_ID AND t.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND t.TEST_ACCT_IN = 'Y') AND NOT EXISTS (SELECT 1 FROM NNA_EXCL_1 x WHERE x.DW_ACCT_ID = f.DW_ACCT_ID AND x.SRCE_SYS_CD = CASE f.ACCT_SRCE_SYS_ID WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND f.DW_TRAN_DT BETWEEN x.EXCL_EFF_DT AND coalesce(x.EXCL_EXPR_DT, DATE '9999-12-31'))"
+  },
+  {
+    "id": "W04",
+    "kind": "within",
+    "category": "Eligibility + test-account filtering",
+    "question": "NNA for April 2025",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "figure": 7396101.83
+    },
+    "reference_sql": "SELECT round(sum(CASE WHEN f.DW_TRAN_DIRCTN_CD = 'O' THEN -f.TRAN_AM ELSE f.TRAN_AM END), 2) FROM TRAN_FACT_1 f JOIN MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) WHERE f.CURR_IN = 1 AND m.CLDR_EOM_DT = DATE '2025-04-30' AND f.NNA_IN = 'Y' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS (SELECT 1 FROM ACCT_DIM2_1 t WHERE t.DW_ACCT_ID = f.DW_ACCT_ID AND t.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND t.TEST_ACCT_IN = 'Y') AND NOT EXISTS (SELECT 1 FROM NNA_EXCL_1 x WHERE x.DW_ACCT_ID = f.DW_ACCT_ID AND x.SRCE_SYS_CD = CASE f.ACCT_SRCE_SYS_ID WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND f.DW_TRAN_DT BETWEEN x.EXCL_EFF_DT AND coalesce(x.EXCL_EXPR_DT, DATE '9999-12-31'))"
+  },
+  {
+    "id": "W05",
+    "kind": "within",
+    "category": "Eligibility + test-account filtering",
+    "question": "How many accounts had NNA in FY26-Q1?",
+    "expect": {
+      "unit": "wealth",
+      "figure": 241.0
+    },
+    "reference_sql": "SELECT count(DISTINCT (f.DW_ACCT_ID, f.ACCT_SRCE_SYS_ID)) FROM TRAN_FACT_1 f JOIN MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) WHERE f.CURR_IN = 1 AND m.CLDR_EOM_DT BETWEEN DATE '2025-04-30' AND DATE '2025-06-30' AND f.NNA_IN = 'Y' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS (SELECT 1 FROM ACCT_DIM2_1 t WHERE t.DW_ACCT_ID = f.DW_ACCT_ID AND t.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND t.TEST_ACCT_IN = 'Y') AND NOT EXISTS (SELECT 1 FROM NNA_EXCL_1 x WHERE x.DW_ACCT_ID = f.DW_ACCT_ID AND x.SRCE_SYS_CD = CASE f.ACCT_SRCE_SYS_ID WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND f.DW_TRAN_DT BETWEEN x.EXCL_EFF_DT AND coalesce(x.EXCL_EXPR_DT, DATE '9999-12-31'))"
+  },
+  {
+    "id": "W06",
+    "kind": "within",
+    "category": "Eligibility + test-account filtering",
+    "question": "NNA from BROKERAGE in FY26-Q1",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "figure": 16910957.72
+    },
+    "reference_sql": "SELECT round(sum(CASE WHEN f.DW_TRAN_DIRCTN_CD = 'O' THEN -f.TRAN_AM ELSE f.TRAN_AM END), 2) FROM TRAN_FACT_1 f JOIN MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) WHERE f.CURR_IN = 1 AND m.CLDR_EOM_DT BETWEEN DATE '2025-04-30' AND DATE '2025-06-30' AND f.NNA_IN = 'Y' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS (SELECT 1 FROM ACCT_DIM2_1 t WHERE t.DW_ACCT_ID = f.DW_ACCT_ID AND t.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND t.TEST_ACCT_IN = 'Y') AND NOT EXISTS (SELECT 1 FROM NNA_EXCL_1 x WHERE x.DW_ACCT_ID = f.DW_ACCT_ID AND x.SRCE_SYS_CD = CASE f.ACCT_SRCE_SYS_ID WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND f.DW_TRAN_DT BETWEEN x.EXCL_EFF_DT AND coalesce(x.EXCL_EXPR_DT, DATE '9999-12-31')) AND f.ACCT_SRCE_SYS_ID = 100"
+  },
+  {
+    "id": "W07",
+    "kind": "within",
+    "category": "Exclusions",
+    "question": "NNA for FY25-Q4",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "figure": 17080976.76
+    },
+    "reference_sql": "SELECT round(sum(CASE WHEN f.DW_TRAN_DIRCTN_CD = 'O' THEN -f.TRAN_AM ELSE f.TRAN_AM END), 2) FROM TRAN_FACT_1 f JOIN MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) WHERE f.CURR_IN = 1 AND m.CLDR_EOM_DT BETWEEN DATE '2025-01-31' AND DATE '2025-03-31' AND f.NNA_IN = 'Y' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS (SELECT 1 FROM ACCT_DIM2_1 t WHERE t.DW_ACCT_ID = f.DW_ACCT_ID AND t.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND t.TEST_ACCT_IN = 'Y') AND NOT EXISTS (SELECT 1 FROM NNA_EXCL_1 x WHERE x.DW_ACCT_ID = f.DW_ACCT_ID AND x.SRCE_SYS_CD = CASE f.ACCT_SRCE_SYS_ID WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND f.DW_TRAN_DT BETWEEN x.EXCL_EFF_DT AND coalesce(x.EXCL_EXPR_DT, DATE '9999-12-31'))"
+  },
+  {
+    "id": "W08",
+    "kind": "within",
+    "category": "Exclusions",
+    "question": "How many accounts were excluded from NNA at 31 Mar 2025?",
+    "expect": {
+      "unit": "wealth",
+      "figure": 6.0
+    },
+    "reference_sql": "SELECT count(DISTINCT (DW_ACCT_ID, SRCE_SYS_CD)) FROM NNA_EXCL_1 WHERE EXCL_EFF_DT <= DATE '2025-03-31' AND (EXCL_EXPR_DT IS NULL OR EXCL_EXPR_DT >= DATE '2025-03-31')"
+  },
+  {
+    "id": "W09",
+    "kind": "within",
+    "category": "As-of vs current (SCD2)",
+    "question": "NNA for March 2025 as reported",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "figure": 5868354.54
+    },
+    "reference_sql": "SELECT round(sum(CASE WHEN f.DW_TRAN_DIRCTN_CD = 'O' THEN -f.TRAN_AM ELSE f.TRAN_AM END), 2) FROM TRAN_FACT_1 f JOIN MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) WHERE f.DW_EFF_DT <= m.FIN_MTRC_RLSE_DT AND (f.DW_EXPR_DT IS NULL OR f.DW_EXPR_DT > m.FIN_MTRC_RLSE_DT) AND m.CLDR_EOM_DT = DATE '2025-03-31' AND f.NNA_IN = 'Y' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS (SELECT 1 FROM ACCT_DIM2_1 t WHERE t.DW_ACCT_ID = f.DW_ACCT_ID AND t.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND t.TEST_ACCT_IN = 'Y') AND NOT EXISTS (SELECT 1 FROM NNA_EXCL_1 x WHERE x.DW_ACCT_ID = f.DW_ACCT_ID AND x.SRCE_SYS_CD = CASE f.ACCT_SRCE_SYS_ID WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND f.DW_TRAN_DT BETWEEN x.EXCL_EFF_DT AND coalesce(x.EXCL_EXPR_DT, DATE '9999-12-31'))"
+  },
+  {
+    "id": "W10",
+    "kind": "within",
+    "category": "As-of vs current (SCD2)",
+    "question": "NNA for March 2025 restated",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "figure": 5920237.28
+    },
+    "reference_sql": "SELECT round(sum(CASE WHEN f.DW_TRAN_DIRCTN_CD = 'O' THEN -f.TRAN_AM ELSE f.TRAN_AM END), 2) FROM TRAN_FACT_1 f JOIN MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) WHERE f.CURR_IN = 1 AND m.CLDR_EOM_DT = DATE '2025-03-31' AND f.NNA_IN = 'Y' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS (SELECT 1 FROM ACCT_DIM2_1 t WHERE t.DW_ACCT_ID = f.DW_ACCT_ID AND t.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND t.TEST_ACCT_IN = 'Y') AND NOT EXISTS (SELECT 1 FROM NNA_EXCL_1 x WHERE x.DW_ACCT_ID = f.DW_ACCT_ID AND x.SRCE_SYS_CD = CASE f.ACCT_SRCE_SYS_ID WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND f.DW_TRAN_DT BETWEEN x.EXCL_EFF_DT AND coalesce(x.EXCL_EXPR_DT, DATE '9999-12-31'))"
+  },
+  {
+    "id": "W11",
+    "kind": "within",
+    "category": "As-of vs current (SCD2)",
+    "question": "How many accounts did household 5001 hold at 31 Dec 2024?",
+    "expect": {
+      "unit": "wealth",
+      "figure": 3.0
+    },
+    "reference_sql": "SELECT count(DISTINCT (DW_ACCT_ID, SRCE_SYS_ID)) FROM ACCT_DIM2_1 WHERE HSHLD_DK = 5001 AND DW_EFF_DT <= DATE '2024-12-31' AND (DW_EXPR_DT IS NULL OR DW_EXPR_DT >= DATE '2024-12-31')"
+  },
+  {
+    "id": "W12",
+    "kind": "within",
+    "category": "Month-end freeze / release",
+    "question": "NNA for the latest month",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "reason": "The latest month released is June 2025: July 2025 is booked and not yet released.",
+      "figure": 6069905.64
+    },
+    "reference_sql": "SELECT round(sum(CASE WHEN f.DW_TRAN_DIRCTN_CD = 'O' THEN -f.TRAN_AM ELSE f.TRAN_AM END), 2) FROM TRAN_FACT_1 f JOIN MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) WHERE f.CURR_IN = 1 AND m.CLDR_EOM_DT = (SELECT max(CLDR_EOM_DT) FROM MONTH_DIM_1 WHERE DW_BRKRG_MNTH_FRM_TODAY_CT <> 0) AND f.NNA_IN = 'Y' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS (SELECT 1 FROM ACCT_DIM2_1 t WHERE t.DW_ACCT_ID = f.DW_ACCT_ID AND t.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND t.TEST_ACCT_IN = 'Y') AND NOT EXISTS (SELECT 1 FROM NNA_EXCL_1 x WHERE x.DW_ACCT_ID = f.DW_ACCT_ID AND x.SRCE_SYS_CD = CASE f.ACCT_SRCE_SYS_ID WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND f.DW_TRAN_DT BETWEEN x.EXCL_EFF_DT AND coalesce(x.EXCL_EXPR_DT, DATE '9999-12-31'))"
+  },
+  {
+    "id": "W13",
+    "kind": "abstain",
+    "category": "Month-end freeze / release",
+    "question": "NNA for July 2025",
+    "expect": {
+      "behaviour": "abstain_with_reason",
+      "reason": "July 2025 is not yet released: only released months are reported."
+    },
+    "reference_sql": "SELECT DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 FROM MONTH_DIM_1 WHERE CLDR_EOM_DT = DATE '2025-07-31'"
+  },
+  {
+    "id": "W14",
+    "kind": "within",
+    "category": "Hierarchy roll-ups",
+    "question": "NNA for FY26-Q1 by region",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "rows": {
+        "MIDWEST": 3755170.97,
+        "NORTHEAST": 12371673.22,
+        "PACIFIC": 5076348.57
+      }
+    },
+    "reference_sql": "SELECT r.RGN_CD, round(sum(CASE WHEN f.DW_TRAN_DIRCTN_CD = 'O' THEN -f.TRAN_AM ELSE f.TRAN_AM END), 2) FROM TRAN_FACT_1 f JOIN MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) JOIN ACCT_DIM2_1 a ON a.DW_ACCT_ID = f.DW_ACCT_ID AND a.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND a.CURR_IN = 1 JOIN HSHLD_DIM_1 h ON h.HSHLD_DK = a.HSHLD_DK JOIN ADV_DIM_1 ad ON ad.ADV_ID = h.PRIM_ADV_ID JOIN BRCH_DIM_1 o ON o.BRCH_CD = ad.BRCH_CD AND o.CURR_IN = 1 JOIN RGN_DIM_1 r ON r.RGN_CD = o.RGN_CD AND r.CURR_IN WHERE f.CURR_IN = 1 AND m.CLDR_EOM_DT BETWEEN DATE '2025-04-30' AND DATE '2025-06-30' AND f.NNA_IN = 'Y' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS (SELECT 1 FROM ACCT_DIM2_1 t WHERE t.DW_ACCT_ID = f.DW_ACCT_ID AND t.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND t.TEST_ACCT_IN = 'Y') AND NOT EXISTS (SELECT 1 FROM NNA_EXCL_1 x WHERE x.DW_ACCT_ID = f.DW_ACCT_ID AND x.SRCE_SYS_CD = CASE f.ACCT_SRCE_SYS_ID WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND f.DW_TRAN_DT BETWEEN x.EXCL_EFF_DT AND coalesce(x.EXCL_EXPR_DT, DATE '9999-12-31')) GROUP BY 1 ORDER BY 1"
+  },
+  {
+    "id": "W15",
+    "kind": "within",
+    "category": "Hierarchy roll-ups",
+    "question": "NNA for FY26-Q1 by parent segment",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "rows": {
+        "AFFLUENT": 14178114.93,
+        "PRIVATE": 7025077.83
+      }
+    },
+    "reference_sql": "SELECT s.PARNT_SEGMT_CD, round(sum(CASE WHEN f.DW_TRAN_DIRCTN_CD = 'O' THEN -f.TRAN_AM ELSE f.TRAN_AM END), 2) FROM TRAN_FACT_1 f JOIN MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) JOIN ACCT_DIM2_1 a ON a.DW_ACCT_ID = f.DW_ACCT_ID AND a.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND a.CURR_IN = 1 JOIN CLIENT_CD_ROLLUP_1 cr ON cr.CLNT_CD = a.EFF_CLNT_CD JOIN CLNT_SEGMT_DIM_1 s ON s.SEGMT_CD = cr.SEGMT_LVL_ID6 WHERE f.CURR_IN = 1 AND m.CLDR_EOM_DT BETWEEN DATE '2025-04-30' AND DATE '2025-06-30' AND f.NNA_IN = 'Y' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS (SELECT 1 FROM ACCT_DIM2_1 t WHERE t.DW_ACCT_ID = f.DW_ACCT_ID AND t.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND t.TEST_ACCT_IN = 'Y') AND NOT EXISTS (SELECT 1 FROM NNA_EXCL_1 x WHERE x.DW_ACCT_ID = f.DW_ACCT_ID AND x.SRCE_SYS_CD = CASE f.ACCT_SRCE_SYS_ID WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND f.DW_TRAN_DT BETWEEN x.EXCL_EFF_DT AND coalesce(x.EXCL_EXPR_DT, DATE '9999-12-31')) GROUP BY 1 ORDER BY 1"
+  },
+  {
+    "id": "W16",
+    "kind": "within",
+    "category": "AUM vs AUA disambiguation",
+    "question": "AUM for household 5001 at 31 Mar 2025",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "aum_month_end.aum_usd"
+      ],
+      "figure": 7641422.24
+    },
+    "reference_sql": "SELECT round(AUM_AM, 2) FROM AUM_MNTH_END_FACT_1 WHERE HSHLD_DK = 5001 AND CLDR_EOM_DT = DATE '2025-03-31'"
+  },
+  {
+    "id": "W17",
+    "kind": "abstain",
+    "category": "AUM vs AUA disambiguation",
+    "question": "AUM plus AUA for household 5001 at 31 Mar 2025",
+    "expect": {
+      "behaviour": "refuse",
+      "reason": "Assets under management and assets under advice are different measures: they are not added."
+    },
+    "reference_sql": null
+  },
+  {
+    "id": "W18",
+    "kind": "within",
+    "category": "Acronym resolution",
+    "question": "Sum of NNA_ELIG_FLG flows by SRC_SYS_CD in FY26-Q1",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "rows": {
+        "100": 16910957.72,
+        "200": 4292235.04
+      }
+    },
+    "reference_sql": "SELECT f.ACCT_SRCE_SYS_ID, round(sum(CASE WHEN f.DW_TRAN_DIRCTN_CD = 'O' THEN -f.TRAN_AM ELSE f.TRAN_AM END), 2) FROM TRAN_FACT_1 f JOIN MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) WHERE f.CURR_IN = 1 AND m.CLDR_EOM_DT BETWEEN DATE '2025-04-30' AND DATE '2025-06-30' AND f.NNA_IN = 'Y' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS (SELECT 1 FROM ACCT_DIM2_1 t WHERE t.DW_ACCT_ID = f.DW_ACCT_ID AND t.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND t.TEST_ACCT_IN = 'Y') AND NOT EXISTS (SELECT 1 FROM NNA_EXCL_1 x WHERE x.DW_ACCT_ID = f.DW_ACCT_ID AND x.SRCE_SYS_CD = CASE f.ACCT_SRCE_SYS_ID WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND f.DW_TRAN_DT BETWEEN x.EXCL_EFF_DT AND coalesce(x.EXCL_EXPR_DT, DATE '9999-12-31')) GROUP BY 1 ORDER BY 1"
+  },
+  {
+    "id": "W19",
+    "kind": "cross",
+    "category": "Refusal / abstain",
+    "question": "NNA for SME clients who are also wealth households",
+    "expect": {
+      "behaviour": "refuse",
+      "reason": "No join path between SME and Wealth.",
+      "joins_refused": [
+        "sme-wealth"
+      ],
+      "no_figure": true
+    },
+    "reference_sql": null
+  },
+  {
+    "id": "W20",
+    "kind": "abstain",
+    "category": "Refusal / abstain",
+    "question": "NNA plus wealth revenue for FY26-Q1",
+    "expect": {
+      "behaviour": "refuse",
+      "reason": "Net new assets and revenue are different measures: they are not added."
+    },
+    "reference_sql": null
+  },
+  {
+    "id": "XB1",
+    "kind": "cross",
+    "category": "Cross-BU (Retail\u2194Wealth)",
+    "question": "How many clients hold both retail deposits and advisory AUM at 31 Mar 2025?",
+    "expect": {
+      "behaviour": "figure",
+      "figure": 24.0
+    },
+    "reference_sql": "SELECT count(DISTINCT x.household_id) FROM xref.client_xref x JOIN retail.account ra ON ra.customer_id = x.retail_customer_id JOIN retail.product p ON p.product_id = ra.product_id AND ra.status_code = 'OPEN' AND p.product_family IN ('current', 'savings') JOIN wealth.AUM_MNTH_END_FACT_1 w ON w.HSHLD_DK = x.household_id AND w.CLDR_EOM_DT = DATE '2025-03-31' AND w.AUM_AM > 0 WHERE x.certification_status = 'CERTIFIED' AND DATE '2025-03-31' BETWEEN x.valid_from AND coalesce(x.valid_to, DATE '9999-12-31')"
+  },
+  {
+    "id": "XB2",
+    "kind": "cross",
+    "category": "Cross-BU (Retail\u2194Wealth)",
+    "question": "For dual clients, deposits vs AUM and AUM share of total, 31 Mar 2025",
+    "expect": {
+      "behaviour": "parts_with_reason",
+      "commensurable": false,
+      "reason": "Deposits (retail) and AUM (wealth) are different measures: the parts and the AUM share, not a total.",
+      "parts": {
+        "retail": 252002.68,
+        "wealth": 101566960.12
+      },
+      "ratio": 0.9975
+    },
+    "reference_sql": "WITH x AS (SELECT * FROM xref.client_xref x WHERE x.certification_status = 'CERTIFIED' AND DATE '2025-03-31' BETWEEN x.valid_from AND coalesce(x.valid_to, DATE '9999-12-31')), dep AS (SELECT x.household_id, sum(b.ledger_balance) AS d FROM x JOIN retail.account a ON a.customer_id = x.retail_customer_id JOIN retail.product p ON p.product_id = a.product_id AND p.product_family IN ('current', 'savings') JOIN retail.daily_balance b ON b.account_id = a.account_id AND b.as_of = DATE '2025-03-31' GROUP BY 1), aum AS (SELECT HSHLD_DK AS household_id, AUM_AM AS m FROM wealth.AUM_MNTH_END_FACT_1 WHERE CLDR_EOM_DT = DATE '2025-03-31') SELECT round(sum(d), 2) AS retail, round(sum(m), 2) AS wealth, round(sum(m) / nullif(sum(d) + sum(m), 0), 4) AS ratio FROM dep JOIN aum USING (household_id)"
+  },
+  {
+    "id": "XB3",
+    "kind": "cross",
+    "category": "Cross-BU (Retail\u2194Wealth)",
+    "question": "NNA in FY26-Q1 from clients who also bank with Retail",
+    "expect": {
+      "behaviour": "figure",
+      "figure": 4985720.27
+    },
+    "reference_sql": "SELECT round(sum(CASE WHEN f.DW_TRAN_DIRCTN_CD = 'O' THEN -f.TRAN_AM ELSE f.TRAN_AM END), 2) FROM wealth.TRAN_FACT_1 f JOIN wealth.MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) JOIN wealth.ACCT_DIM2_1 a ON a.DW_ACCT_ID = f.DW_ACCT_ID AND a.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND a.CURR_IN = 1 WHERE f.CURR_IN = 1 AND m.CLDR_EOM_DT BETWEEN DATE '2025-04-30' AND DATE '2025-06-30' AND f.NNA_IN = 'Y' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS (SELECT 1 FROM wealth.ACCT_DIM2_1 t WHERE t.DW_ACCT_ID = f.DW_ACCT_ID AND t.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND t.TEST_ACCT_IN = 'Y') AND NOT EXISTS (SELECT 1 FROM wealth.NNA_EXCL_1 x WHERE x.DW_ACCT_ID = f.DW_ACCT_ID AND x.SRCE_SYS_CD = CASE f.ACCT_SRCE_SYS_ID WHEN 100 THEN 'BROKERAGE' WHEN 200 THEN 'BANK' END AND f.DW_TRAN_DT BETWEEN x.EXCL_EFF_DT AND coalesce(x.EXCL_EXPR_DT, DATE '9999-12-31')) AND a.HSHLD_DK IN (SELECT x.household_id FROM xref.client_xref x JOIN retail.account ra ON ra.customer_id = x.retail_customer_id AND ra.status_code = 'OPEN' WHERE x.certification_status = 'CERTIFIED' AND f.DW_TRAN_DT BETWEEN x.valid_from AND coalesce(x.valid_to, DATE '9999-12-31'))"
+  },
+  {
+    "id": "XB4",
+    "kind": "cross",
+    "category": "Cross-BU (Retail\u2194Wealth)",
+    "question": "Of FY26-Q1 advisory inflows, how much came from the client's own retail accounts?",
+    "expect": {
+      "behaviour": "parts_with_reason",
+      "reason": "INTERNAL_FROM_RETAIL: the inflow is a transfer from the household's own Retail account, through a certified match; EXTERNAL: every other inflow. Internal transfers are not new money.",
+      "parts": {
+        "EXTERNAL": 40539392.68,
+        "INTERNAL_FROM_RETAIL": 6177.94
+      }
+    },
+    "reference_sql": "SELECT CASE WHEN EXISTS (SELECT 1 FROM xref.client_xref x JOIN retail.account ra ON ra.customer_id = x.retail_customer_id WHERE x.household_id = a.HSHLD_DK AND x.certification_status = 'CERTIFIED' AND f.DW_TRAN_DT BETWEEN x.valid_from AND coalesce(x.valid_to, DATE '9999-12-31') AND f.OFSET_SRCE_SYS_ID <> -1 AND ra.account_id = f.OFSET_ACCT_ID) THEN 'INTERNAL_FROM_RETAIL' ELSE 'EXTERNAL' END AS flow_class, round(sum(CASE WHEN f.DW_TRAN_DIRCTN_CD = 'O' THEN -f.TRAN_AM ELSE f.TRAN_AM END), 2) FROM wealth.TRAN_FACT_1 f JOIN wealth.MONTH_DIM_1 m ON m.CLDR_EOM_DT = last_day(f.DW_TRAN_DT) JOIN wealth.ACCT_DIM2_1 a ON a.DW_ACCT_ID = f.DW_ACCT_ID AND a.SRCE_SYS_ID = f.ACCT_SRCE_SYS_ID AND a.CURR_IN = 1 WHERE f.CURR_IN = 1 AND f.DW_TRAN_DIRCTN_CD = 'I' AND f.TRAN_AM > 0 AND a.TEST_ACCT_IN = 'N' AND m.CLDR_EOM_DT BETWEEN DATE '2025-04-30' AND DATE '2025-06-30' AND m.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 GROUP BY 1 ORDER BY 1"
+  },
+  {
+    "id": "XB5",
+    "kind": "cross",
+    "category": "Cross-BU (Retail\u2194Wealth)",
+    "question": "Retail customers with average balance above $8,000 in June 2025: how many are covered by a wealth advisor, by advisor office?",
+    "expect": {
+      "behaviour": "figure",
+      "rows": {
+        "NYC": 4.0,
+        "UNCOVERED": 16.0
+      }
+    },
+    "reference_sql": "WITH hi AS (SELECT a.customer_id FROM retail.daily_balance b JOIN retail.account a ON a.account_id = b.account_id WHERE b.as_of BETWEEN DATE '2025-06-01' AND DATE '2025-06-30' GROUP BY 1 HAVING avg(b.ledger_balance) > 8000), x AS (SELECT * FROM xref.client_xref x WHERE x.certification_status = 'CERTIFIED' AND DATE '2025-06-30' BETWEEN x.valid_from AND coalesce(x.valid_to, DATE '9999-12-31')) SELECT coalesce(ad.BRCH_CD, 'UNCOVERED') AS office, count(DISTINCT hi.customer_id) FROM hi LEFT JOIN x ON x.retail_customer_id = hi.customer_id LEFT JOIN wealth.HSHLD_DIM_1 h ON h.HSHLD_DK = x.household_id LEFT JOIN wealth.ADV_DIM_1 ad ON ad.ADV_ID = h.PRIM_ADV_ID GROUP BY 1 ORDER BY 1"
+  },
+  {
+    "id": "XB6",
+    "kind": "cross",
+    "category": "Cross-BU (Retail\u2194Wealth)",
+    "question": "Which corporate counterparty contacts are also wealth households?",
+    "expect": {
+      "behaviour": "refuse",
+      "reason": "No certified path between Corporate and Wealth: the cross-reference covers Retail and Wealth only.",
+      "joins_refused": [
+        "corporate-wealth"
+      ],
+      "no_figure": true
+    },
+    "reference_sql": null
+  },
+  {
+    "id": "XB1-R",
+    "kind": "cross",
+    "category": "Cross-BU (Retail\u2194Wealth)",
+    "question": "How many clients hold both retail deposits and advisory AUM at 31 Mar 2025?",
+    "expect": {
+      "behaviour": "blocked_access",
+      "reason": "analyst_retail reads Retail only: a Retail and Wealth result needs both, and no partial figure is given.",
+      "no_figure": true
+    },
+    "reference_sql": null,
+    "principal": "analyst_retail"
+  },
+  {
+    "id": "XB3-W",
+    "kind": "cross",
+    "category": "Cross-BU (Retail\u2194Wealth)",
+    "question": "NNA in FY26-Q1 from clients who also bank with Retail",
+    "expect": {
+      "behaviour": "blocked_access",
+      "reason": "advisor_wealth reads Wealth only: a Retail and Wealth result needs both, and no partial figure is given.",
+      "no_figure": true
+    },
+    "reference_sql": null,
+    "principal": "advisor_wealth"
+  },
+  {
+    "id": "XB-DOB",
+    "kind": "cross",
+    "category": "Cross-BU (Retail\u2194Wealth)",
+    "question": "Match retail customers to wealth household members on date of birth: how many match?",
+    "expect": {
+      "behaviour": "refuse",
+      "reason": "A date of birth is restricted personal data and never a match key (POL-DATA-CLASS).",
+      "no_figure": true
+    },
+    "reference_sql": null
+  },
+  {
+    "id": "XB-EMAIL",
+    "kind": "cross",
+    "category": "Cross-BU (Retail\u2194Wealth)",
+    "question": "Which retail customers are also wealth households? List their email addresses",
+    "expect": {
+      "behaviour": "refuse",
+      "reason": "An email address is restricted personal data (POL-DATA-CLASS).",
+      "no_figure": true
+    },
+    "reference_sql": null
+  }
+]

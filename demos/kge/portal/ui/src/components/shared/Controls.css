@@ -1,0 +1,33 @@
+/* Shared native controls, panels and tab lists, using the portal token roles. */
+:where(.v3-controls) {
+  font-family:var(--v3-body); font-size:15px;
+  .panel { background:var(--v3-surface); border:1px solid var(--v3-line); border-radius:var(--v3-r-md); padding:20px; min-width:0; box-shadow:var(--v3-shadow-1) }
+  .panel h2 { font-size:15px; font-weight:600; margin:0 0 16px; padding-bottom:12px; border-bottom:1px solid var(--v3-line); color:var(--v3-ink); letter-spacing:-.01em }
+  .panel h3 { font-size:14px; margin:18px 0 8px }
+
+  .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px }
+  input[type=text], input[type=password], select, textarea {
+    font:inherit; height:40px; padding:0 12px; border:1px solid var(--v3-ink-3); border-radius:var(--v3-r-sm);
+    background:var(--v3-surface-2); color:var(--v3-ink); min-width:0; transition:border-color .15s, box-shadow .15s }
+  input:focus-visible, select:focus-visible, textarea:focus-visible { outline-offset:0; border-color:var(--v3-accent) }
+  select { max-width:100%; flex:1 1 200px }
+  input[type=text] { flex:1 1 260px }
+  input[readonly] { color:var(--v3-ink-3) }
+  textarea { width:100%; min-height:92px; padding:10px 12px; resize:vertical }
+  .field { display:flex; gap:8px; align-items:center; flex:1 1 220px; min-width:0 }
+  .field label, .lbl { font-size:13px; font-weight:500; color:var(--v3-ink-3); white-space:nowrap; min-width:62px }
+  .lbl { display:block; margin:0 0 6px; white-space:normal }
+  .hint { flex-basis:100%; margin:-6px 0 4px; font-size:13px; color:var(--v3-ink-3) }
+
+  button { font:inherit; font-weight:500; height:40px; padding:0 16px; border:1px solid var(--v3-line-2); border-radius:var(--v3-r-sm);
+    background:var(--v3-surface); color:var(--v3-ink); cursor:pointer; transition:background .15s, border-color .15s }
+  button:hover { border-color:var(--v3-ink-3) }
+  button.primary { background:var(--v3-action); border-color:var(--v3-action); color:var(--v3-action-ink) }
+  button.primary:hover { background:var(--v3-action-hover); border-color:var(--v3-action-hover) }
+  button.quiet { background:none; border-color:transparent; color:var(--v3-ink-3) }
+  button.quiet:hover { color:var(--v3-bad); border-color:var(--v3-line-2) }
+  button:disabled, button[aria-busy="true"] { cursor:default; opacity:.6; filter:none }
+  button.copy { height:28px; padding:0 10px; font-size:12px }
+
+
+}

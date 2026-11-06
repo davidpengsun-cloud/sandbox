@@ -1,0 +1,51 @@
+/* ag-grid re-themed to the v3 "settlement tape" look. DataGridTable is used
+   only inside the data product detail tabs (Fields, Quality, Preview), so the
+   theme override is safe to apply to ag-theme-quartz app-wide. */
+
+.v3-grid-wrap{
+  width:100%;
+  border:1px solid var(--v3-line);
+  border-radius:var(--v3-r-sm, 3px);
+  overflow:hidden;
+  background:var(--v3-surface);
+}
+
+.ag-theme-quartz{
+  /* --ag-grid-size is Quartz's master density unit (default 8px). Halving it
+     tightens the vertical padding on every (auto-height) row without clipping. */
+  --ag-grid-size:4px;
+  --ag-font-size:12px;
+  --ag-font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --ag-foreground-color:var(--v3-ink);
+  --ag-background-color:var(--v3-surface);
+  --ag-header-background-color:var(--v3-structure-soft);
+  --ag-header-foreground-color:var(--v3-structure);
+  --ag-border-color:var(--v3-line);
+  --ag-row-border-color:var(--v3-line);
+  --ag-row-hover-color:var(--v3-surface-2);
+  --ag-odd-row-background-color:var(--v3-surface);
+  --ag-secondary-foreground-color:var(--v3-ink-3);
+  --ag-data-color:var(--v3-ink);
+  --ag-header-text-color:var(--v3-structure);
+  --ag-input-focus-border-color:var(--v3-focus);
+  --ag-range-selection-border-color:var(--v3-focus);
+  --ag-selected-row-background-color:var(--v3-accent-soft);
+  --ag-modal-overlay-background-color:color-mix(in srgb, var(--v3-surface) 66%, transparent);
+  --ag-header-column-separator-display:none;
+  --ag-wrapper-border-radius:0;
+  --ag-borders:none;
+  --ag-header-height:34px;
+  --ag-row-height:32px;
+  --ag-cell-horizontal-padding:12px;
+}
+
+/* mono, uppercase, tracked header labels to echo the reference tables */
+.ag-theme-quartz .ag-header-cell-text{
+  font-family:'Geist Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  font-size:10px; font-weight:600; letter-spacing:.07em; text-transform:uppercase;
+}
+.ag-theme-quartz .ag-header{border-bottom:1px solid var(--v3-line)}
+.ag-theme-quartz .ag-icon{color:var(--v3-ink-3)}
+
+.mktplce-grid .ag-ltr .ag-cell{align-content:center}
+.mktplce-grid .ag-cell{color:var(--v3-ink-2)}
