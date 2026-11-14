@@ -1,0 +1,38 @@
+{
+  "id": "bq_teller",
+  "label": "BigQuery Teller Mart",
+  "dialect": "bigquery",
+  "location": "",
+  "tables": [
+    {
+      "unit": "teller",
+      "name": "teller_ledger_mart",
+      "derived_from": "teller.ledger",
+      "columns": [
+        {
+          "name": "entry_id",
+          "type": "INT64"
+        },
+        {
+          "name": "amount_minor",
+          "type": "INT64",
+          "derived_from": "teller.ledger.amount"
+        },
+        {
+          "name": "etl_loaded_at",
+          "type": "TIMESTAMP"
+        }
+      ]
+    },
+    {
+      "unit": "teller",
+      "name": "teller_audit_log",
+      "columns": [
+        {
+          "name": "log_id",
+          "type": "STRING"
+        }
+      ]
+    }
+  ]
+}

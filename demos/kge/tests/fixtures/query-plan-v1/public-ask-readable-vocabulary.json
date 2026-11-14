@@ -1,0 +1,338 @@
+[
+  {
+    "key": "[\"query-plan-v1\",\"total retail revenue for june 2025\",\"a2df3ea6d2288c5210b225632ba601be235429f2eea6526f13a356eebe8f1f77\",\"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945\"]",
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m0",
+            "measure": {
+              "id": "retail.revenue",
+              "evidence": []
+            },
+            "context": {
+              "id": "retail_revenue",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [],
+        "time": {
+          "kind": "single",
+          "period": {
+            "kind": "month",
+            "value": "2025-06",
+            "calendar": {
+              "id": "calendar",
+              "evidence": []
+            }
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 6,
+                "end": 12
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m0"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o1",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 13,
+                "end": 20
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m0"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o2",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 25,
+                "end": 34
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "time"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "key": "[\"query-plan-v1\",\"of the engaged retail shoppers in june 2025, how many lodged a grievance that month, and what were their mean balances and fees?\",\"97153561fe7b3bda9614e07f2bfa96511b685cf71157d74b111aa426d060346f\",\"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945\"]",
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "distinct_count",
+            "id": "c1",
+            "entity": {
+              "id": "retail_customer",
+              "evidence": []
+            },
+            "context": {
+              "id": "cohort:context:mapped:retail.customer_activity.is_active_flag:count",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          },
+          {
+            "kind": "distinct_count",
+            "id": "c2",
+            "entity": {
+              "id": "retail_customer",
+              "evidence": []
+            },
+            "context": {
+              "id": "cohort:retail_complaints",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          },
+          {
+            "kind": "measure",
+            "id": "m1",
+            "measure": {
+              "id": "retail.average-balance",
+              "evidence": []
+            },
+            "context": {
+              "id": "cohort:retail_balance",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          },
+          {
+            "kind": "measure",
+            "id": "m2",
+            "measure": {
+              "id": "retail.fee-income",
+              "evidence": []
+            },
+            "context": {
+              "id": "cohort:retail_fees",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [],
+        "time": {
+          "kind": "single",
+          "period": {
+            "kind": "month",
+            "value": "2025-06",
+            "calendar": {
+              "id": "calendar",
+              "evidence": []
+            }
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 7,
+                "end": 14
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "c1"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o1",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 15,
+                "end": 21
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "c1",
+              "c2",
+              "m1",
+              "m2"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o2",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 22,
+                "end": 30
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "c1",
+              "c2"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o3",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 34,
+                "end": 43
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "time"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o4",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 45,
+                "end": 53
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "c1",
+              "c2"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o5",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 54,
+                "end": 72
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "c2"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o6",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 78,
+                "end": 83
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "time"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o7",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 99,
+                "end": 104
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "c2",
+              "m1",
+              "m2"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o8",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 105,
+                "end": 118
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m1"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o9",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 123,
+                "end": 127
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m2"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  }
+]

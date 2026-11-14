@@ -1,0 +1,1637 @@
+{
+ "about": "Preset parity (eval/parity.py): the three rule presets on the golden and held-out items, figures and ids only. Frozen: recorded once, never edited.",
+ "arms": [
+  "schema",
+  "catalog",
+  "graph"
+ ],
+ "fields": [
+  "ok",
+  "behaviour",
+  "figure",
+  "parts",
+  "joins_refused"
+ ],
+ "principal": "analyst_enterprise",
+ "results": {
+  "golden:G001:catalog": {
+   "behaviour": "figure",
+   "figure": 13287.67,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G001:graph": {
+   "behaviour": "figure",
+   "figure": 13287.67,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G001:schema": {
+   "behaviour": "figure",
+   "figure": 336.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G002:catalog": {
+   "behaviour": "figure",
+   "figure": 32721.92,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G002:graph": {
+   "behaviour": "figure",
+   "figure": 32721.92,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G002:schema": {
+   "behaviour": "figure",
+   "figure": 32721.92,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G003:catalog": {
+   "behaviour": "figure",
+   "figure": 176.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G003:graph": {
+   "behaviour": "figure",
+   "figure": 176.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G003:schema": {
+   "behaviour": "figure",
+   "figure": 0.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G004:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G004:graph": {
+   "behaviour": "figure",
+   "figure": 3615.55,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G004:schema": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G005:catalog": {
+   "behaviour": "figure",
+   "figure": 5889.23,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G005:graph": {
+   "behaviour": "figure",
+   "figure": 5889.23,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G005:schema": {
+   "behaviour": "figure",
+   "figure": 1008.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G006:catalog": {
+   "behaviour": "figure",
+   "figure": 14.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G006:graph": {
+   "behaviour": "figure",
+   "figure": 14.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G006:schema": {
+   "behaviour": "figure",
+   "figure": 14.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G007:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G007:graph": {
+   "behaviour": "figure",
+   "figure": 428.32,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G007:schema": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G008:catalog": {
+   "behaviour": "figure",
+   "figure": 321130.65,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G008:graph": {
+   "behaviour": "figure",
+   "figure": 321130.65,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G008:schema": {
+   "behaviour": "figure",
+   "figure": 321130.65,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G009:catalog": {
+   "behaviour": "figure",
+   "figure": 59.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G009:graph": {
+   "behaviour": "figure",
+   "figure": 59.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G009:schema": {
+   "behaviour": "figure",
+   "figure": 59.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G010:catalog": {
+   "behaviour": "figure",
+   "figure": 60.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G010:graph": {
+   "behaviour": "figure",
+   "figure": 60.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G010:schema": {
+   "behaviour": "figure",
+   "figure": 60.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G011:catalog": {
+   "behaviour": "figure",
+   "figure": 8.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G011:graph": {
+   "behaviour": "figure",
+   "figure": 8.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G011:schema": {
+   "behaviour": "figure",
+   "figure": 8.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G012:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G012:graph": {
+   "behaviour": "figure",
+   "figure": 114998.84,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G012:schema": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G013:catalog": {
+   "behaviour": "figure",
+   "figure": 20190379.43,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G013:graph": {
+   "behaviour": "figure",
+   "figure": 20190379.43,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G013:schema": {
+   "behaviour": "figure",
+   "figure": 18669131.39,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G014:catalog": {
+   "behaviour": "figure",
+   "figure": 440185374.74,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G014:graph": {
+   "behaviour": "figure",
+   "figure": 440185374.74,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G014:schema": {
+   "behaviour": "figure",
+   "figure": 40.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G015:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G015:graph": {
+   "behaviour": "figure",
+   "figure": 3073419.79,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G015:schema": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G016:catalog": {
+   "behaviour": "figure",
+   "figure": 8.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G016:graph": {
+   "behaviour": "figure",
+   "figure": 8.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G016:schema": {
+   "behaviour": "figure",
+   "figure": 8.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G017:catalog": {
+   "behaviour": "figure",
+   "figure": 2506757.26,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G017:graph": {
+   "behaviour": "figure",
+   "figure": 2506757.26,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G017:schema": {
+   "behaviour": "figure",
+   "figure": 2506757.26,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G018:catalog": {
+   "behaviour": "figure",
+   "figure": 1830296649.93,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G018:graph": {
+   "behaviour": "figure",
+   "figure": 1830296649.93,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G018:schema": {
+   "behaviour": "figure",
+   "figure": 150.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G019:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G019:graph": {
+   "behaviour": "figure",
+   "figure": 751247.99,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G019:schema": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G020:catalog": {
+   "behaviour": "figure",
+   "figure": 14.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G020:graph": {
+   "behaviour": "figure",
+   "figure": 14.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G020:schema": {
+   "behaviour": "figure",
+   "figure": 14.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G021:catalog": {
+   "behaviour": "sum_without_verdict",
+   "figure": 24902512.7,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "corporate": 21478456.31,
+    "retail": 39983.72,
+    "sme": 953824.62,
+    "wealth": 2430248.05
+   }
+  },
+  "golden:G021:graph": {
+   "behaviour": "parts_with_reason",
+   "figure": null,
+   "joins_refused": [
+    "retail-corporate",
+    "sme-corporate",
+    "corporate-wealth",
+    "retail-sme",
+    "retail-wealth",
+    "sme-wealth"
+   ],
+   "kind": "cross",
+   "ok": true,
+   "parts": {
+    "corporate": 20190379.43,
+    "retail": 39983.72,
+    "sme": 953824.62,
+    "wealth": 2506757.26
+   }
+  },
+  "golden:G021:schema": {
+   "behaviour": "sum_without_verdict",
+   "figure": 23387956.66,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "corporate": 20002867.99,
+    "retail": 1016.0,
+    "sme": 953824.62,
+    "wealth": 2430248.05
+   }
+  },
+  "golden:G022:catalog": {
+   "behaviour": "sum_without_verdict",
+   "figure": 334418.32,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "retail": 13287.67,
+    "sme": 321130.65
+   }
+  },
+  "golden:G022:graph": {
+   "behaviour": "sum_with_verdict",
+   "figure": 334418.32,
+   "joins_refused": [
+    "retail-sme"
+   ],
+   "kind": "cross",
+   "ok": true,
+   "parts": {
+    "retail": 13287.67,
+    "sme": 321130.65
+   }
+  },
+  "golden:G022:schema": {
+   "behaviour": "sum_without_verdict",
+   "figure": 321466.65,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "retail": 336.0,
+    "sme": 321130.65
+   }
+  },
+  "golden:G023:catalog": {
+   "behaviour": "sum_without_verdict",
+   "figure": 240.0,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "corporate": 40.0,
+    "retail": 200.0
+   }
+  },
+  "golden:G023:graph": {
+   "behaviour": "parts_with_reason",
+   "figure": null,
+   "joins_refused": [
+    "retail-corporate"
+   ],
+   "kind": "cross",
+   "ok": true,
+   "parts": {
+    "corporate": 40.0,
+    "retail": 200.0
+   }
+  },
+  "golden:G023:schema": {
+   "behaviour": "sum_without_verdict",
+   "figure": 240.0,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "corporate": 40.0,
+    "retail": 200.0
+   }
+  },
+  "golden:G024:catalog": {
+   "behaviour": "sum_without_verdict",
+   "figure": 240.0,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "corporate": 40.0,
+    "retail": 200.0
+   }
+  },
+  "golden:G024:graph": {
+   "behaviour": "refuse",
+   "figure": null,
+   "joins_refused": [
+    "retail-corporate"
+   ],
+   "kind": "cross",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G024:schema": {
+   "behaviour": "sum_without_verdict",
+   "figure": 240.0,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "corporate": 40.0,
+    "retail": 200.0
+   }
+  },
+  "golden:G025:catalog": {
+   "behaviour": "sum_without_verdict",
+   "figure": 22697136.69,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "corporate": 20190379.43,
+    "wealth": 2506757.26
+   }
+  },
+  "golden:G025:graph": {
+   "behaviour": "parts_with_reason",
+   "figure": null,
+   "joins_refused": [
+    "corporate-wealth"
+   ],
+   "kind": "cross",
+   "ok": true,
+   "parts": {
+    "corporate": 20190379.43,
+    "wealth": 2506757.26
+   }
+  },
+  "golden:G025:schema": {
+   "behaviour": "sum_without_verdict",
+   "figure": 21175888.65,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "corporate": 18669131.39,
+    "wealth": 2506757.26
+   }
+  },
+  "golden:G026:catalog": {
+   "behaviour": "sum_without_verdict",
+   "figure": 235.0,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "retail": 176.0,
+    "sme": 59.0
+   }
+  },
+  "golden:G026:graph": {
+   "behaviour": "parts_with_reason",
+   "figure": null,
+   "joins_refused": [
+    "retail-sme"
+   ],
+   "kind": "cross",
+   "ok": true,
+   "parts": {
+    "retail": 176.0,
+    "sme": 59.0
+   }
+  },
+  "golden:G026:schema": {
+   "behaviour": "sum_without_verdict",
+   "figure": 59.0,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "retail": 0.0,
+    "sme": 59.0
+   }
+  },
+  "golden:G027:catalog": {
+   "behaviour": "sum_without_verdict",
+   "figure": 841146.67,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "retail": 32290.55,
+    "sme": 808856.12
+   }
+  },
+  "golden:G027:graph": {
+   "behaviour": "sum_with_verdict",
+   "figure": 841146.67,
+   "joins_refused": [
+    "retail-sme"
+   ],
+   "kind": "cross",
+   "ok": true,
+   "parts": {
+    "retail": 32290.55,
+    "sme": 808856.12
+   }
+  },
+  "golden:G027:schema": {
+   "behaviour": "figure",
+   "figure": 32290.55,
+   "joins_refused": null,
+   "kind": "cross",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G028:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "cross",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G028:graph": {
+   "behaviour": "refuse",
+   "figure": null,
+   "joins_refused": [
+    "sme-wealth"
+   ],
+   "kind": "cross",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G028:schema": {
+   "behaviour": "sum_without_verdict",
+   "figure": 210.0,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "sme": 60.0,
+    "wealth": 150.0
+   }
+  },
+  "golden:G029:catalog": {
+   "behaviour": "refuse",
+   "figure": null,
+   "joins_refused": [
+    "corporate-wealth"
+   ],
+   "kind": "cross",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G029:graph": {
+   "behaviour": "refuse",
+   "figure": null,
+   "joins_refused": [
+    "corporate-wealth"
+   ],
+   "kind": "cross",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G029:schema": {
+   "behaviour": "refuse",
+   "figure": null,
+   "joins_refused": [
+    "corporate-wealth"
+   ],
+   "kind": "cross",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G030:catalog": {
+   "behaviour": "parts_with_reason",
+   "figure": null,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "corporate": null,
+    "retail": 40483.98,
+    "sme": 899746.55,
+    "wealth": null
+   }
+  },
+  "golden:G030:graph": {
+   "behaviour": "parts_with_reason",
+   "figure": null,
+   "joins_refused": [
+    "retail-corporate",
+    "sme-corporate",
+    "corporate-wealth",
+    "retail-sme",
+    "retail-wealth",
+    "sme-wealth"
+   ],
+   "kind": "cross",
+   "ok": true,
+   "parts": {
+    "corporate": 20046400.76,
+    "retail": 40483.98,
+    "sme": 899746.55,
+    "wealth": 2404440.18
+   }
+  },
+  "golden:G030:schema": {
+   "behaviour": "parts_with_reason",
+   "figure": null,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "corporate": null,
+    "retail": 1040.0,
+    "sme": 899746.55,
+    "wealth": null
+   }
+  },
+  "golden:G031:catalog": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G031:graph": {
+   "behaviour": "cite_certified",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G031:schema": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G032:catalog": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G032:graph": {
+   "behaviour": "cite_certified",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G032:schema": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G033:catalog": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G033:graph": {
+   "behaviour": "cite_certified",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G033:schema": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G034:catalog": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G034:graph": {
+   "behaviour": "cite_certified",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G034:schema": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G035:catalog": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G035:graph": {
+   "behaviour": "cite_certified",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G035:schema": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G036:catalog": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G036:graph": {
+   "behaviour": "cite_certified",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G036:schema": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G037:catalog": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G037:graph": {
+   "behaviour": "cite_certified",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G037:schema": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G038:catalog": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G038:graph": {
+   "behaviour": "cite_certified",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G038:schema": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G039:catalog": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G039:graph": {
+   "behaviour": "cite_certified",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G039:schema": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G040:catalog": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G040:graph": {
+   "behaviour": "cite_certified",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G040:schema": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G041:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G041:graph": {
+   "behaviour": "abstain_route_steward",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G041:schema": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G042:catalog": {
+   "behaviour": "sum_without_verdict",
+   "figure": 24902512.7,
+   "joins_refused": [],
+   "kind": "abstain",
+   "ok": false,
+   "parts": {
+    "corporate": 21478456.31,
+    "retail": 39983.72,
+    "sme": 953824.62,
+    "wealth": 2430248.05
+   }
+  },
+  "golden:G042:graph": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G042:schema": {
+   "behaviour": "sum_without_verdict",
+   "figure": 23387956.66,
+   "joins_refused": [],
+   "kind": "abstain",
+   "ok": false,
+   "parts": {
+    "corporate": 20002867.99,
+    "retail": 1016.0,
+    "sme": 953824.62,
+    "wealth": 2430248.05
+   }
+  },
+  "golden:G043:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G043:graph": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G043:schema": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G044:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G044:graph": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G044:schema": {
+   "behaviour": "figure",
+   "figure": 3840.0,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": false,
+   "parts": null
+  },
+  "golden:G045:catalog": {
+   "behaviour": "refuse",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G045:graph": {
+   "behaviour": "refuse",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "golden:G045:schema": {
+   "behaviour": "refuse",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H001:catalog": {
+   "behaviour": "figure",
+   "figure": 321130.65,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H001:graph": {
+   "behaviour": "figure",
+   "figure": 321130.65,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H001:schema": {
+   "behaviour": "figure",
+   "figure": 321130.65,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H002:catalog": {
+   "behaviour": "figure",
+   "figure": 13287.67,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H002:graph": {
+   "behaviour": "figure",
+   "figure": 13287.67,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H002:schema": {
+   "behaviour": "figure",
+   "figure": 336.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H003:catalog": {
+   "behaviour": "figure",
+   "figure": 0.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H003:graph": {
+   "behaviour": "figure",
+   "figure": 0.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H003:schema": {
+   "behaviour": "figure",
+   "figure": 0.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H004:catalog": {
+   "behaviour": "figure",
+   "figure": 440185374.74,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H004:graph": {
+   "behaviour": "figure",
+   "figure": 440185374.74,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H004:schema": {
+   "behaviour": "figure",
+   "figure": 40.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H005:catalog": {
+   "behaviour": "figure",
+   "figure": 2506757.26,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H005:graph": {
+   "behaviour": "figure",
+   "figure": 2506757.26,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H005:schema": {
+   "behaviour": "figure",
+   "figure": 2506757.26,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H006:catalog": {
+   "behaviour": "figure",
+   "figure": 14.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H006:graph": {
+   "behaviour": "figure",
+   "figure": 14.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H006:schema": {
+   "behaviour": "figure",
+   "figure": 14.0,
+   "joins_refused": null,
+   "kind": "within",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H007:catalog": {
+   "behaviour": "sum_without_verdict",
+   "figure": 334418.32,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "retail": 13287.67,
+    "sme": 321130.65
+   }
+  },
+  "heldout:H007:graph": {
+   "behaviour": "sum_with_verdict",
+   "figure": 334418.32,
+   "joins_refused": [
+    "retail-sme"
+   ],
+   "kind": "cross",
+   "ok": true,
+   "parts": {
+    "retail": 13287.67,
+    "sme": 321130.65
+   }
+  },
+  "heldout:H007:schema": {
+   "behaviour": "sum_without_verdict",
+   "figure": 321466.65,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "retail": 336.0,
+    "sme": 321130.65
+   }
+  },
+  "heldout:H008:catalog": {
+   "behaviour": "sum_without_verdict",
+   "figure": 22697136.69,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "corporate": 20190379.43,
+    "wealth": 2506757.26
+   }
+  },
+  "heldout:H008:graph": {
+   "behaviour": "parts_with_reason",
+   "figure": null,
+   "joins_refused": [
+    "corporate-wealth"
+   ],
+   "kind": "cross",
+   "ok": true,
+   "parts": {
+    "corporate": 20190379.43,
+    "wealth": 2506757.26
+   }
+  },
+  "heldout:H008:schema": {
+   "behaviour": "sum_without_verdict",
+   "figure": 21175888.65,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "corporate": 18669131.39,
+    "wealth": 2506757.26
+   }
+  },
+  "heldout:H009:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "cross",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H009:graph": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "cross",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H009:schema": {
+   "behaviour": "sum_without_verdict",
+   "figure": 210.0,
+   "joins_refused": [],
+   "kind": "cross",
+   "ok": false,
+   "parts": {
+    "sme": 60.0,
+    "wealth": 150.0
+   }
+  },
+  "heldout:H010:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "cross",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H010:graph": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "cross",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H010:schema": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "cross",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H011:catalog": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H011:graph": {
+   "behaviour": "cite_certified",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H011:schema": {
+   "behaviour": "cite",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H012:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H012:graph": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H012:schema": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H013:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H013:graph": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H013:schema": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "shelf",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H014:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H014:graph": {
+   "behaviour": "abstain_route_steward",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H014:schema": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": false,
+   "parts": null
+  },
+  "heldout:H015:catalog": {
+   "behaviour": "refuse",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H015:graph": {
+   "behaviour": "refuse",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H015:schema": {
+   "behaviour": "refuse",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H016:catalog": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H016:graph": {
+   "behaviour": "abstain",
+   "figure": null,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": true,
+   "parts": null
+  },
+  "heldout:H016:schema": {
+   "behaviour": "figure",
+   "figure": 3840.0,
+   "joins_refused": null,
+   "kind": "abstain",
+   "ok": false,
+   "parts": null
+  }
+ },
+ "sets": {
+  "golden": 45,
+  "heldout": 16
+ },
+ "taken_on": "Kuzu 0.11.3 at 4d9d5c9, develop after #38"
+}

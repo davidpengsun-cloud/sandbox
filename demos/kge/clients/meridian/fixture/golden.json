@@ -1,0 +1,856 @@
+{
+  "version": "v3",
+  "changes_from": {
+    "version": "v2",
+    "sha256": "4262c65184247afac28daa98e6e7c478011834cf689196cd1a5a41078bffb158",
+    "items": [
+      "G023",
+      "G029"
+    ],
+    "why": "Issue #316 owner decisions: G023 clarifies the undeclared Corporate customer population; G029 abstains on unsupported addition."
+  },
+  "items": [
+    {
+      "id": "G001",
+      "kind": "within",
+      "question": "Total retail revenue for June 2025",
+      "expect": {
+        "figure": "13287.67",
+        "unit": "retail",
+        "columns": [
+          "monthly_revenue.total_revenue_usd"
+        ],
+        "join_path": []
+      }
+    },
+    {
+      "id": "G002",
+      "kind": "within",
+      "question": "Retail net interest income for calendar Q1 2025",
+      "expect": {
+        "figure": "32721.92",
+        "unit": "retail",
+        "columns": [
+          "monthly_revenue.interest_income"
+        ],
+        "join_path": [
+          "monthly_revenue.month_start -> calendar_month.month_start"
+        ]
+      }
+    },
+    {
+      "id": "G003",
+      "kind": "within",
+      "question": "How many retail customers were active in June 2025?",
+      "expect": {
+        "figure": 176,
+        "unit": "retail",
+        "columns": [
+          "customer_activity.is_active_flag"
+        ],
+        "join_path": [],
+        "note": "Active Customer v2: transactions, not logins"
+      }
+    },
+    {
+      "id": "G004",
+      "kind": "within",
+      "question": "Retail revenue for June 2025 from customers whose home branch is in region NW",
+      "expect": {
+        "figure": "3615.55",
+        "unit": "retail",
+        "columns": [
+          "monthly_revenue.total_revenue_usd",
+          "branch.region_code"
+        ],
+        "join_path": [
+          "monthly_revenue.account_id -> account.account_id",
+          "account.customer_id -> customer.customer_id",
+          "customer.branch_id -> branch.branch_id"
+        ]
+      }
+    },
+    {
+      "id": "G005",
+      "kind": "within",
+      "question": "Average ledger balance across retail accounts in June 2025",
+      "expect": {
+        "figure": 5889.23,
+        "unit": "retail",
+        "columns": [
+          "daily_balance.ledger_balance"
+        ],
+        "join_path": []
+      }
+    },
+    {
+      "id": "G006",
+      "kind": "within",
+      "question": "Number of open retail complaints as at 30 June 2025",
+      "expect": {
+        "figure": 14,
+        "unit": "retail",
+        "columns": [
+          "complaint.complaint_id",
+          "complaint.resolved_on"
+        ],
+        "join_path": []
+      }
+    },
+    {
+      "id": "G007",
+      "kind": "within",
+      "question": "Retail fee income by product family for June 2025, Everyday Current only",
+      "expect": {
+        "figure": "428.32",
+        "unit": "retail",
+        "columns": [
+          "monthly_revenue.fee_income",
+          "product.product_name"
+        ],
+        "join_path": [
+          "monthly_revenue.account_id -> account.account_id",
+          "account.product_id -> product.product_id"
+        ]
+      }
+    },
+    {
+      "id": "G008",
+      "kind": "within",
+      "question": "Total SME revenue for June 2025",
+      "expect": {
+        "figure": "321130.65",
+        "unit": "sme",
+        "columns": [
+          "monthly_client_revenue.revenue_usd"
+        ],
+        "join_path": []
+      }
+    },
+    {
+      "id": "G009",
+      "kind": "within",
+      "question": "How many SME clients were active in June 2025?",
+      "expect": {
+        "figure": 59,
+        "unit": "sme",
+        "columns": [
+          "client_activity.active_flag"
+        ],
+        "join_path": []
+      }
+    },
+    {
+      "id": "G010",
+      "kind": "within",
+      "question": "SME repayments more than 30 days past due in 2025",
+      "expect": {
+        "figure": 60,
+        "unit": "sme",
+        "columns": [
+          "repayment.days_past_due"
+        ],
+        "join_path": []
+      }
+    },
+    {
+      "id": "G011",
+      "kind": "within",
+      "question": "Number of SME facilities in covenant breach",
+      "expect": {
+        "figure": 8,
+        "unit": "sme",
+        "columns": [
+          "covenant.breached_flag"
+        ],
+        "join_path": []
+      }
+    },
+    {
+      "id": "G012",
+      "kind": "within",
+      "question": "SME revenue in June 2025 for clients covered by TEAM-A",
+      "expect": {
+        "figure": "114998.84",
+        "unit": "sme",
+        "columns": [
+          "monthly_client_revenue.revenue_usd",
+          "relationship_manager.team_code"
+        ],
+        "join_path": [
+          "monthly_client_revenue.client_no -> client.client_no",
+          "client.rm_id -> relationship_manager.rm_id"
+        ]
+      }
+    },
+    {
+      "id": "G013",
+      "kind": "within",
+      "question": "Corporate revenue in USD for fiscal quarter FY26-Q1",
+      "expect": {
+        "figure": "20190379.43",
+        "unit": "corporate",
+        "columns": [
+          "quarterly_revenue.revenue_usd_converted"
+        ],
+        "join_path": [],
+        "note": "Converted at the period-end rate; say so"
+      }
+    },
+    {
+      "id": "G014",
+      "kind": "within",
+      "question": "Total corporate credit exposure at 30 June 2025",
+      "expect": {
+        "figure": "440185374.74",
+        "unit": "corporate",
+        "columns": [
+          "exposure.ead_eur"
+        ],
+        "join_path": [],
+        "note": "EUR, not converted"
+      }
+    },
+    {
+      "id": "G015",
+      "kind": "within",
+      "question": "Corporate revenue FY26-Q1 from counterparties incorporated in DE",
+      "expect": {
+        "figure": "3073419.79",
+        "unit": "corporate",
+        "columns": [
+          "quarterly_revenue.revenue_usd_converted",
+          "counterparty.country_code"
+        ],
+        "join_path": [
+          "quarterly_revenue.counterparty_ref -> counterparty.counterparty_ref"
+        ]
+      }
+    },
+    {
+      "id": "G016",
+      "kind": "within",
+      "question": "Number of corporate counterparties rated C1",
+      "expect": {
+        "figure": 8,
+        "unit": "corporate",
+        "columns": [
+          "rating.internal_grade"
+        ],
+        "join_path": []
+      }
+    },
+    {
+      "id": "G017",
+      "kind": "within",
+      "question": "Wealth revenue for fiscal quarter FY26-Q1",
+      "expect": {
+        "figure": "2506757.26",
+        "unit": "wealth",
+        "columns": [
+          "quarterly_fee_revenue.revenue_usd"
+        ],
+        "join_path": []
+      }
+    },
+    {
+      "id": "G018",
+      "kind": "within",
+      "question": "Assets under advice at 30 June 2025",
+      "expect": {
+        "figure": "1830296649.93",
+        "unit": "wealth",
+        "columns": [
+          "assets_under_advice.aua_usd"
+        ],
+        "join_path": []
+      }
+    },
+    {
+      "id": "G019",
+      "kind": "within",
+      "question": "Wealth revenue FY26-Q1 for households with a GROWTH risk profile",
+      "expect": {
+        "figure": "751247.99",
+        "unit": "wealth",
+        "columns": [
+          "quarterly_fee_revenue.revenue_usd",
+          "household.risk_profile"
+        ],
+        "join_path": [
+          "quarterly_fee_revenue.household_id -> household.household_id"
+        ]
+      }
+    },
+    {
+      "id": "G020",
+      "kind": "within",
+      "question": "Number of suitability reviews escalated in 2025",
+      "expect": {
+        "figure": 14,
+        "unit": "wealth",
+        "columns": [
+          "suitability_review.review_id",
+          "suitability_review.outcome_code"
+        ],
+        "join_path": []
+      }
+    },
+    {
+      "id": "G021",
+      "kind": "cross",
+      "question": "Total revenue across the bank for the quarter to 30 June 2025",
+      "expect": {
+        "behaviour": "parts_with_reason",
+        "parts": {
+          "retail": "39983.72",
+          "sme": "953824.62",
+          "corporate": "20190379.43",
+          "wealth": "2506757.26"
+        },
+        "commensurable": false,
+        "reason": "Four certified implementations at different grain, currency basis and calendar. Enterprise revenue is Finance's reconciled figure.",
+        "joins_refused": [
+          "retail-corporate",
+          "sme-corporate",
+          "sme-wealth",
+          "retail-sme",
+          "corporate-wealth"
+        ]
+      }
+    },
+    {
+      "id": "G022",
+      "kind": "cross",
+      "question": "Combined Retail and SME revenue for June 2025",
+      "expect": {
+        "behaviour": "sum_with_verdict",
+        "figure": "334418.32",
+        "commensurable": true,
+        "reason": "Both monthly, USD, calendar. No join needed; a sum of two certified measures.",
+        "joins_refused": [
+          "retail-sme"
+        ]
+      }
+    },
+    {
+      "id": "G023",
+      "kind": "cross",
+      "question": "How many customers does the bank have across Retail and Corporate?",
+      "expect": {
+        "behaviour": "clarify",
+        "no_figure": true,
+        "reason": "Corporate customers is unresolved: customer names only the declared Retail entity."
+      }
+    },
+    {
+      "id": "G024",
+      "kind": "cross",
+      "question": "Join retail customers to corporate contacts on customer_id and count the matches",
+      "expect": {
+        "behaviour": "refuse",
+        "reason": "No certified join path exists between Retail and Corporate. The column names match; the keys do not.",
+        "joins_refused": [
+          "retail-corporate"
+        ]
+      }
+    },
+    {
+      "id": "G025",
+      "kind": "cross",
+      "question": "Combined Corporate and Wealth revenue for FY26-Q1",
+      "expect": {
+        "behaviour": "parts_with_reason",
+        "parts": {
+          "corporate": "20190379.43",
+          "wealth": "2506757.26"
+        },
+        "commensurable": false,
+        "reason": "Same fiscal quarter and both USD, but Corporate is converted from EUR at a period-end rate. State the parts.",
+        "joins_refused": [
+          "corporate-wealth"
+        ]
+      }
+    },
+    {
+      "id": "G026",
+      "kind": "cross",
+      "question": "Active customers across Retail and SME in June 2025",
+      "expect": {
+        "behaviour": "parts_with_reason",
+        "parts": {
+          "retail": 176,
+          "sme": 59
+        },
+        "commensurable": false,
+        "reason": "Same term, same month, but different populations under one definition. Report the parts.",
+        "joins_refused": [
+          "retail-sme"
+        ]
+      }
+    },
+    {
+      "id": "G027",
+      "kind": "cross",
+      "question": "Net interest income across Retail and SME for calendar Q2 2025",
+      "expect": {
+        "behaviour": "sum_with_verdict",
+        "figure": "841146.67",
+        "commensurable": true,
+        "reason": "Both monthly, USD, calendar.",
+        "joins_refused": [
+          "retail-sme"
+        ]
+      }
+    },
+    {
+      "id": "G028",
+      "kind": "cross",
+      "question": "Which SME clients are also wealth households?",
+      "expect": {
+        "behaviour": "refuse",
+        "reason": "No join path between SME and Wealth. No mapping table exists.",
+        "joins_refused": [
+          "sme-wealth"
+        ]
+      }
+    },
+    {
+      "id": "G029",
+      "kind": "cross",
+      "question": "Total assets under advice plus corporate credit exposure",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "The checked plan has no general addition operation for different measures; no operand is returned alone."
+      }
+    },
+    {
+      "id": "G030",
+      "kind": "cross",
+      "question": "Bank revenue for calendar Q1 2025",
+      "expect": {
+        "behaviour": "parts_with_reason",
+        "parts": {
+          "retail": "40483.98",
+          "sme": "899746.55",
+          "corporate": "20046400.76",
+          "wealth": "2404440.18"
+        },
+        "commensurable": false,
+        "reason": "Calendar Q1 2025 is FY25-Q4 for Corporate and Wealth. Grain and basis still differ.",
+        "joins_refused": [
+          "retail-corporate",
+          "sme-corporate",
+          "sme-wealth"
+        ]
+      }
+    },
+    {
+      "id": "G031",
+      "kind": "shelf",
+      "question": "What is the definition of an active customer?",
+      "expect": {
+        "behaviour": "cite_certified",
+        "cite": [
+          "MD-ACTIVE-CUSTOMER"
+        ],
+        "mention_conflict": [
+          "EM-001",
+          "DRAFT-002",
+          "WIKI-003"
+        ],
+        "must_not_cite": [
+          "MD-ACTIVE-CUSTOMER-V1",
+          "EM-001",
+          "DRAFT-002",
+          "WIKI-003"
+        ]
+      }
+    },
+    {
+      "id": "G032",
+      "kind": "shelf",
+      "question": "Can retail customers be joined to corporate contacts on customer_id?",
+      "expect": {
+        "behaviour": "cite_certified",
+        "cite": [
+          "DD-CORPORATE"
+        ],
+        "answer": "no",
+        "mention_conflict": [
+          "WIKI-001"
+        ],
+        "must_not_cite": [
+          "WIKI-001"
+        ]
+      }
+    },
+    {
+      "id": "G033",
+      "kind": "shelf",
+      "question": "Which calendar does Wealth Management report on?",
+      "expect": {
+        "behaviour": "cite_certified",
+        "cite": [
+          "STD-FISCAL-CAL"
+        ],
+        "answer": "fiscal year from 1 April",
+        "must_not_cite": [
+          "WIKI-002",
+          "EM-005"
+        ]
+      }
+    },
+    {
+      "id": "G034",
+      "kind": "shelf",
+      "question": "How is corporate revenue converted to USD?",
+      "expect": {
+        "behaviour": "cite_certified",
+        "cite": [
+          "STD-FX",
+          "MD-PERIOD-END-FX-RATE"
+        ],
+        "answer": "period-end rate"
+      }
+    },
+    {
+      "id": "G035",
+      "kind": "shelf",
+      "question": "Is total bank revenue the sum of the four revenue columns?",
+      "expect": {
+        "behaviour": "cite_certified",
+        "cite": [
+          "PROC-RECON",
+          "MD-REVENUE"
+        ],
+        "answer": "no",
+        "mention_conflict": [
+          "DRAFT-001",
+          "EM-002"
+        ],
+        "must_not_cite": [
+          "DRAFT-001"
+        ]
+      }
+    },
+    {
+      "id": "G036",
+      "kind": "shelf",
+      "question": "Does a login make a customer active?",
+      "expect": {
+        "behaviour": "cite_certified",
+        "cite": [
+          "MD-ACTIVE-CUSTOMER"
+        ],
+        "answer": "no",
+        "must_not_cite": [
+          "MD-ACTIVE-CUSTOMER-V1",
+          "WIKI-003"
+        ]
+      }
+    },
+    {
+      "id": "G037",
+      "kind": "shelf",
+      "question": "What makes a column certified?",
+      "expect": {
+        "behaviour": "cite_certified",
+        "cite": [
+          "POL-METRIC-CERT"
+        ],
+        "answer": "steward-signed mapping"
+      }
+    },
+    {
+      "id": "G038",
+      "kind": "shelf",
+      "question": "Where is client health information recorded?",
+      "expect": {
+        "behaviour": "cite_certified",
+        "cite": [
+          "STD-SUITABILITY"
+        ],
+        "answer": "compliance system only"
+      }
+    },
+    {
+      "id": "G039",
+      "kind": "shelf",
+      "question": "May restricted personal data be embedded for the assistant?",
+      "expect": {
+        "behaviour": "cite_certified",
+        "cite": [
+          "POL-DATA-CLASS"
+        ],
+        "answer": "no"
+      }
+    },
+    {
+      "id": "G040",
+      "kind": "shelf",
+      "question": "Which version of the active customer definition applies to 2024 reporting?",
+      "expect": {
+        "behaviour": "cite_certified",
+        "cite": [
+          "MD-ACTIVE-CUSTOMER-V1",
+          "MD-ACTIVE-CUSTOMER"
+        ],
+        "answer": "version 1 for 2024, withdrawn 31 December 2024",
+        "note": "The superseded document is the right citation for a historical question"
+      }
+    },
+    {
+      "id": "G041",
+      "kind": "abstain",
+      "question": "What was the Digital Engagement Score for June 2025?",
+      "expect": {
+        "behaviour": "abstain_route_steward",
+        "reason": "Not a glossary term. A definition exists only on the uncertified shelf.",
+        "candidate_sources": [
+          "EM-004",
+          "NOTE-001"
+        ]
+      }
+    },
+    {
+      "id": "G042",
+      "kind": "abstain",
+      "question": "Total bank revenue in GBP for Q2 2025",
+      "expect": {
+        "behaviour": "abstain",
+        "reason": "No GBP conversion standard exists, and enterprise revenue is not a retrieval."
+      }
+    },
+    {
+      "id": "G043",
+      "kind": "abstain",
+      "question": "Customer attrition for SME in June 2025",
+      "expect": {
+        "behaviour": "abstain",
+        "reason": "Customer Attrition is certified for Retail only."
+      }
+    },
+    {
+      "id": "G044",
+      "kind": "abstain",
+      "question": "Delinquency rate for retail lending in June 2025",
+      "expect": {
+        "behaviour": "abstain",
+        "reason": "Delinquency Rate is certified for SME only."
+      }
+    },
+    {
+      "id": "G045",
+      "kind": "abstain",
+      "question": "What is the email address of customer 118?",
+      "expect": {
+        "behaviour": "refuse",
+        "reason": "Restricted personal data. Not retrievable by the assistant under any purpose."
+      }
+    }
+  ],
+  "catalogue": [
+    {
+      "id": "C01",
+      "kind": "abstain",
+      "question": "Who owns the Monthly Revenue product?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C02",
+      "kind": "abstain",
+      "question": "What fields does the retail Customer product have?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C03",
+      "kind": "abstain",
+      "question": "Which products hold customer email addresses?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C04",
+      "kind": "abstain",
+      "question": "What products are in Retail Banking?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C05",
+      "kind": "abstain",
+      "question": "Describe the Net New Assets product.",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C06",
+      "kind": "abstain",
+      "question": "Which table has net interest income?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C07",
+      "kind": "abstain",
+      "question": "Where can I find complaints data?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C08",
+      "kind": "abstain",
+      "question": "How often is the corporate Contact product refreshed?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C09",
+      "kind": "abstain",
+      "question": "What is the data quality score of the retail Account product?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C10",
+      "kind": "abstain",
+      "question": "Which products contain a balance column?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C11",
+      "kind": "abstain",
+      "question": "Is the retail Customer product certified?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C12",
+      "kind": "abstain",
+      "question": "What does the corporate Exposure table contain?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C13",
+      "kind": "abstain",
+      "question": "Who is the business owner of Quarterly Fee Revenue?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C14",
+      "kind": "abstain",
+      "question": "What data do we have about wealth households?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C15",
+      "kind": "abstain",
+      "question": "Which product should I use for retail revenue?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C16",
+      "kind": "abstain",
+      "question": "How do I join retail Account to Customer?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C17",
+      "kind": "abstain",
+      "question": "When was Daily Balance last refreshed?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C18",
+      "kind": "abstain",
+      "question": "List the data products in the catalogue.",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C19",
+      "kind": "abstain",
+      "question": "What does the column total_revenue_usd mean?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    },
+    {
+      "id": "C20",
+      "kind": "abstain",
+      "question": "Who is the steward for SME Facility?",
+      "expect": {
+        "behaviour": "abstain",
+        "no_figure": true,
+        "reason": "Ask answers governed figures and definitions. Use the product page or Search in the catalogue."
+      }
+    }
+  ]
+}

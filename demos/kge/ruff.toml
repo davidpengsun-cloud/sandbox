@@ -1,0 +1,12 @@
+# The demo's lint (make lint): ruff's classic pyflakes and pycodestyle error set. Three style rules are ignored, each
+# for a reason; the code is not mass-reformatted, since later commits restructure it.
+target-version = "py312"
+extend-exclude = ["build"]
+
+[lint]
+select = ["E4", "E7", "E9", "F"]
+ignore = [
+    "E741",   # `l` is a short loop name in 217 places; renaming every one is churn, not a fix
+    "E701",   # a guard and its one-statement body share a line by design; the restructure commits split them
+    "E702",   # short assignments are joined by semicolons by design; the restructure commits split them
+]

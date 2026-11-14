@@ -1,0 +1,800 @@
+[
+  {
+    "id": "a_phrase",
+    "question": "certified NNA for March 2025",
+    "kind": "figure",
+    "expect": {
+      "figure": 5637481.28
+    },
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m",
+            "measure": {
+              "id": "wealth.certified-nna",
+              "evidence": []
+            },
+            "context": {
+              "id": "nna_certified",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [],
+        "time": {
+          "kind": "single",
+          "period": {
+            "kind": "month",
+            "value": "2025-03",
+            "calendar": {
+              "id": "calendar",
+              "evidence": []
+            }
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 0,
+                "end": 13
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o1",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 18,
+                "end": 28
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "time"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "b_split",
+    "question": "certified NNA for March 2025",
+    "kind": "figure",
+    "expect": {
+      "figure": 5637481.28
+    },
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m",
+            "measure": {
+              "id": "wealth.certified-nna",
+              "evidence": []
+            },
+            "context": {
+              "id": "nna_certified",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [],
+        "time": {
+          "kind": "single",
+          "period": {
+            "kind": "month",
+            "value": "2025-03",
+            "calendar": {
+              "id": "calendar",
+              "evidence": []
+            }
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 0,
+                "end": 9
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o1",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 10,
+                "end": 13
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o2",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 18,
+                "end": 28
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "time"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "c_split_frozen",
+    "question": "certified NNA for March 2025",
+    "kind": "figure",
+    "expect": {
+      "figure": 5637481.28
+    },
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m",
+            "measure": {
+              "id": "wealth.certified-nna",
+              "evidence": []
+            },
+            "context": {
+              "id": "nna_certified",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [
+          {
+            "kind": "compare",
+            "id": "frozen",
+            "left": {
+              "kind": "column",
+              "name": {
+                "id": "wealth.F_NNA_FIN.FRZN_IN",
+                "evidence": []
+              },
+              "path": []
+            },
+            "op": "eq",
+            "value": {
+              "kind": "text",
+              "value": "Y"
+            },
+            "evidence": []
+          }
+        ],
+        "time": {
+          "kind": "single",
+          "period": {
+            "kind": "month",
+            "value": "2025-03",
+            "calendar": {
+              "id": "calendar",
+              "evidence": []
+            }
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 0,
+                "end": 9
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "frozen"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o1",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 10,
+                "end": 13
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o2",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 18,
+                "end": 28
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "time"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "d_plain_frozen",
+    "question": "certified NNA for March 2025",
+    "kind": "figure",
+    "expect": {
+      "figure": 5637481.28
+    },
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m",
+            "measure": {
+              "id": "wealth.net-new-assets",
+              "evidence": []
+            },
+            "context": {
+              "id": "nna",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [
+          {
+            "kind": "compare",
+            "id": "frozen",
+            "left": {
+              "kind": "column",
+              "name": {
+                "id": "wealth.F_NNA_FIN.FRZN_IN",
+                "evidence": []
+              },
+              "path": []
+            },
+            "op": "eq",
+            "value": {
+              "kind": "text",
+              "value": "Y"
+            },
+            "evidence": []
+          }
+        ],
+        "time": {
+          "kind": "single",
+          "period": {
+            "kind": "month",
+            "value": "2025-03",
+            "calendar": {
+              "id": "calendar",
+              "evidence": []
+            }
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 0,
+                "end": 9
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "frozen"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o1",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 10,
+                "end": 13
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o2",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 18,
+                "end": 28
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "time"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "e_rules",
+    "question": "certified NNA for March 2025",
+    "kind": "figure",
+    "expect": {
+      "figure": 5637481.28
+    },
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m0",
+            "measure": {
+              "id": "wealth.certified-nna",
+              "evidence": []
+            },
+            "context": {
+              "id": "nna_certified",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [],
+        "time": {
+          "kind": "single",
+          "period": {
+            "kind": "month",
+            "value": "2025-03",
+            "calendar": {
+              "id": "calendar",
+              "evidence": []
+            }
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 0,
+                "end": 13
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m0"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o1",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 18,
+                "end": 28
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "time"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "b2_split_name_evidence",
+    "question": "certified NNA for March 2025",
+    "kind": "figure",
+    "expect": {
+      "figure": 5637481.28
+    },
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m",
+            "measure": {
+              "id": "wealth.certified-nna",
+              "evidence": [
+                {
+                  "turn": "turn",
+                  "start": 10,
+                  "end": 13
+                }
+              ]
+            },
+            "context": {
+              "id": "nna_certified",
+              "evidence": [
+                {
+                  "turn": "turn",
+                  "start": 0,
+                  "end": 9
+                }
+              ]
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [],
+        "time": {
+          "kind": "single",
+          "period": {
+            "kind": "month",
+            "value": "2025-03",
+            "calendar": {
+              "id": "calendar",
+              "evidence": []
+            }
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 0,
+                "end": 13
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o1",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 18,
+                "end": 28
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "time"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "c2_phrase_plus_frozen",
+    "question": "certified NNA for March 2025",
+    "kind": "figure",
+    "expect": {
+      "figure": 5637481.28
+    },
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m",
+            "measure": {
+              "id": "wealth.certified-nna",
+              "evidence": []
+            },
+            "context": {
+              "id": "nna_certified",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [
+          {
+            "kind": "compare",
+            "id": "frozen",
+            "left": {
+              "kind": "column",
+              "name": {
+                "id": "wealth.F_NNA_FIN.FRZN_IN",
+                "evidence": []
+              },
+              "path": []
+            },
+            "op": "eq",
+            "value": {
+              "kind": "text",
+              "value": "Y"
+            },
+            "evidence": []
+          }
+        ],
+        "time": {
+          "kind": "single",
+          "period": {
+            "kind": "month",
+            "value": "2025-03",
+            "calendar": {
+              "id": "calendar",
+              "evidence": []
+            }
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 0,
+                "end": 13
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o1",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 0,
+                "end": 9
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "frozen"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o2",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 18,
+                "end": 28
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "time"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "b3_split_obligations_phrase_name",
+    "question": "certified NNA for March 2025",
+    "kind": "figure",
+    "expect": {
+      "figure": 5637481.28
+    },
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m",
+            "measure": {
+              "id": "wealth.certified-nna",
+              "evidence": []
+            },
+            "context": {
+              "id": "nna_certified",
+              "evidence": [
+                {
+                  "turn": "turn",
+                  "start": 0,
+                  "end": 13
+                }
+              ]
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [],
+        "time": {
+          "kind": "single",
+          "period": {
+            "kind": "month",
+            "value": "2025-03",
+            "calendar": {
+              "id": "calendar",
+              "evidence": []
+            }
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 0,
+                "end": 9
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o1",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 10,
+                "end": 13
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o2",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 18,
+                "end": 28
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "time"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  }
+]

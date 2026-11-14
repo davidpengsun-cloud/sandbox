@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Meridian catalogue workbook</title></head>
+<body>
+<h1>Meridian catalogue workbook</h1>
+<p>Invented sheets for the worked example. Empty cells are blank on purpose.</p>
+<h2>Sources</h2>
+<table>
+<tr><th>source_id</th><th>label</th><th>apm_id</th></tr>
+<tr><td>teller</td><td>Teller</td><td></td></tr>
+</table>
+<h2>Tables</h2>
+<table>
+<tr><th>source_id</th><th>table</th><th>description</th></tr>
+<tr><td>teller</td><td>ledger</td><td>Invented ledger rows for the worked example.</td></tr>
+</table>
+<h2>Columns</h2>
+<table>
+<tr><th>source_id</th><th>table</th><th>column</th><th>type</th><th>description</th><th>classification</th><th>pii</th><th>business_name</th></tr>
+<tr><td>teller</td><td>ledger</td><td>entry_id</td><td>INTEGER</td><td>One invented ledger row.</td><td>Internal</td><td>no</td><td>Entry identifier</td></tr>
+<tr><td>teller</td><td>ledger</td><td>amount</td><td>INTEGER</td><td>Amount in minor units.</td><td>Internal</td><td>no</td><td>Amount</td></tr>
+<tr><td>teller</td><td>ledger</td><td>valid_from</td><td>DATE</td><td>First day this version holds.</td><td>Internal</td><td>no</td><td>Valid from</td></tr>
+<tr><td>teller</td><td>ledger</td><td>valid_to</td><td>DATE</td><td>Last day this version holds, inclusive.</td><td>Internal</td><td>no</td><td>Valid to</td></tr>
+<tr><td>teller</td><td>ledger</td><td>is_current</td><td>BOOLEAN</td><td>Whether this version holds now.</td><td>Internal</td><td>no</td><td>Is current</td></tr>
+<tr><td>teller</td><td>ledger</td><td>branch_code</td><td>VARCHAR</td><td></td><td>Internal</td><td>no</td><td>Branch code</td></tr>
+</table>
+<h2>DQ rules</h2>
+<table>
+<tr><th>source_id</th><th>table</th><th>column</th><th>dimension</th><th>rule</th><th>rule_type</th><th>fail_percent</th><th>description</th></tr>
+<tr><td>teller</td><td>ledger</td><td>entry_id</td><td>Uniqueness</td><td>entry_id is populated and unique</td><td>Anomaly_Checks</td><td></td><td>Stated in the workbook.</td></tr>
+<tr><td>teller</td><td>ledger</td><td>amount</td><td>Completeness</td><td>amount is populated</td><td>Anomaly_Checks</td><td>0</td><td>The workbook states a zero fail share.</td></tr>
+</table>
+<h2>Assets</h2>
+<table>
+<tr><th>name</th><th>kind</th><th>unit</th></tr>
+<tr><td>Rates API</td><td>API</td><td>teller</td></tr>
+</table>
+<h2>Notes</h2>
+<table>
+<tr><th>key</th><th>value</th></tr>
+<tr><td>product_owner</td><td>Retail desk</td></tr>
+<tr><td>business_owner</td><td>Retail desk</td></tr>
+<tr><td>steward</td><td>steward</td></tr>
+<tr><td>product_type</td><td>Table</td></tr>
+<tr><td>asset_type</td><td>Structured</td></tr>
+<tr><td>usage_purpose</td><td>Analytical</td></tr>
+<tr><td>refresh_cadence</td><td>daily</td></tr>
+<tr><td>badges</td><td>EXAMPLE</td></tr>
+<tr><td>data_format</td><td>csv</td></tr>
+<tr><td>policy_shelf</td><td>certified</td></tr>
+<tr><td>rates_shelf</td><td>certified</td></tr>
+<tr><td>note_shelf</td><td>uncertified</td></tr>
+</table>
+</body>
+</html>

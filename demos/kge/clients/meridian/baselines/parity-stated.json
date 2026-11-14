@@ -1,0 +1,928 @@
+{
+  "about": "Owner-stated changes beside the unchanged historical 183-result parity snapshot. #316 coverage/check movements were approved on 2026-11-06: \"This fixes bugs, so I am good\".",
+  "changes": [
+    {
+      "result": "golden:G021:graph",
+      "field": "joins_refused",
+      "to": [
+        "retail-corporate",
+        "sme-corporate",
+        "corporate-wealth",
+        "retail-sme",
+        "sme-wealth"
+      ],
+      "why": "the #39 Option B update: Retail and Wealth join through the certified client cross-reference, so retail-wealth is no refused join; the graph preset refuses the other five pairs it refused before, as G021 expects"
+    },
+    {
+      "result": "golden:G030:graph",
+      "field": "joins_refused",
+      "to": [
+        "retail-corporate",
+        "sme-corporate",
+        "corporate-wealth",
+        "retail-sme",
+        "sme-wealth"
+      ],
+      "why": "the #39 Option B update: Retail and Wealth join through the certified client cross-reference, so retail-wealth is no refused join; the graph preset refuses the other five pairs it refused before, so G030's expected retail-corporate, sme-corporate and sme-wealth still hold"
+    },
+    {
+      "result": "golden:G017:catalog",
+      "field": "ok",
+      "to": false,
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "golden:G017:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "golden:G017:schema",
+      "field": "figure",
+      "to": null,
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "golden:G017:schema",
+      "field": "ok",
+      "to": false,
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "golden:G018:catalog",
+      "field": "ok",
+      "to": false,
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "golden:G018:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "golden:G018:schema",
+      "field": "figure",
+      "to": null,
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "golden:G020:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "golden:G020:schema",
+      "field": "figure",
+      "to": null,
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "golden:G020:schema",
+      "field": "ok",
+      "to": false,
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "golden:G025:schema",
+      "field": "joins_refused",
+      "to": null,
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "golden:G025:schema",
+      "field": "parts",
+      "to": null,
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "heldout:H005:catalog",
+      "field": "ok",
+      "to": false,
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "heldout:H005:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "heldout:H005:schema",
+      "field": "figure",
+      "to": null,
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "heldout:H005:schema",
+      "field": "ok",
+      "to": false,
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "heldout:H008:schema",
+      "field": "joins_refused",
+      "to": null,
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "heldout:H008:schema",
+      "field": "parts",
+      "to": null,
+      "why": "pack 1.5.0 (#176): Wealth's tables hold physical names in SAGE's style (quarterly_fee_revenue is QTR_FEE_REV_FACT_1, its revenue_usd REV_AM; household is HSHLD_DIM_1), and the graph-off presets, which are handed no curated metadata and find a column by its name's words, no longer find Wealth's revenue, assets under advice or review columns by those words; the graph preset reads the business names from the pack and keeps every figure"
+    },
+    {
+      "result": "golden:G001:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Total retail revenue for June 2025': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "golden:G001:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Total retail revenue for June 2025': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "golden:G003:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. were active. No figure is given."
+    },
+    {
+      "result": "golden:G003:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. were active. No figure is given."
+    },
+    {
+      "result": "golden:G005:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Average ledger balance across retail accounts in June 2025': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "golden:G005:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Average ledger balance across retail accounts in June 2025': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "golden:G011:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. A predicate on sme.covenant.breached_flag has no declared role for every selected context. No figure is given."
+    },
+    {
+      "result": "golden:G011:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. A predicate on sme.covenant.breached_flag has no declared role for every selected context. No figure is given."
+    },
+    {
+      "result": "golden:G013:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Corporate revenue in USD for fiscal quarter FY26-Q1': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "golden:G013:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Corporate revenue in USD for fiscal quarter FY26-Q1': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "golden:G014:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Total corporate credit exposure at 30 June 2025': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "golden:G014:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Total corporate credit exposure at 30 June 2025': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "golden:G016:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. A predicate on corporate.rating.internal_grade has no declared role for every selected context. No figure is given."
+    },
+    {
+      "result": "golden:G016:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. A predicate on corporate.rating.internal_grade has no declared role for every selected context. No figure is given."
+    },
+    {
+      "result": "golden:G017:catalog",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "golden:G017:catalog",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "golden:G018:catalog",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "golden:G018:catalog",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "golden:G020:catalog",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "golden:G020:catalog",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "golden:G020:catalog",
+      "field": "ok",
+      "to": false,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "golden:G021:catalog",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The schema calendar heuristic does not establish the requested quarter. No figure is given."
+    },
+    {
+      "result": "golden:G021:catalog",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The schema calendar heuristic does not establish the requested quarter. No figure is given."
+    },
+    {
+      "result": "golden:G021:catalog",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The schema calendar heuristic does not establish the requested quarter. No figure is given."
+    },
+    {
+      "result": "golden:G021:catalog",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The schema calendar heuristic does not establish the requested quarter. No figure is given."
+    },
+    {
+      "result": "golden:G021:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G021:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G021:schema",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G021:schema",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G022:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G022:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G022:schema",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G022:schema",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G023:catalog",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decisions, 2026-11-06: the undeclared Corporate customer population requires clarification on governed arms; smaller baseline vocabularies may abstain."
+    },
+    {
+      "result": "golden:G023:catalog",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decisions, 2026-11-06: the undeclared Corporate customer population requires clarification on governed arms; smaller baseline vocabularies may abstain."
+    },
+    {
+      "result": "golden:G023:catalog",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decisions, 2026-11-06: the undeclared Corporate customer population requires clarification on governed arms; smaller baseline vocabularies may abstain."
+    },
+    {
+      "result": "golden:G023:catalog",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decisions, 2026-11-06: the undeclared Corporate customer population requires clarification on governed arms; smaller baseline vocabularies may abstain."
+    },
+    {
+      "result": "golden:G023:graph",
+      "field": "behaviour",
+      "to": "clarify",
+      "why": "#316 owner decisions, 2026-11-06: the undeclared Corporate customer population requires clarification on governed arms; smaller baseline vocabularies may abstain."
+    },
+    {
+      "result": "golden:G023:graph",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decisions, 2026-11-06: the undeclared Corporate customer population requires clarification on governed arms; smaller baseline vocabularies may abstain."
+    },
+    {
+      "result": "golden:G023:graph",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decisions, 2026-11-06: the undeclared Corporate customer population requires clarification on governed arms; smaller baseline vocabularies may abstain."
+    },
+    {
+      "result": "golden:G023:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decisions, 2026-11-06: the undeclared Corporate customer population requires clarification on governed arms; smaller baseline vocabularies may abstain."
+    },
+    {
+      "result": "golden:G023:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decisions, 2026-11-06: the undeclared Corporate customer population requires clarification on governed arms; smaller baseline vocabularies may abstain."
+    },
+    {
+      "result": "golden:G023:schema",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decisions, 2026-11-06: the undeclared Corporate customer population requires clarification on governed arms; smaller baseline vocabularies may abstain."
+    },
+    {
+      "result": "golden:G023:schema",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decisions, 2026-11-06: the undeclared Corporate customer population requires clarification on governed arms; smaller baseline vocabularies may abstain."
+    },
+    {
+      "result": "golden:G024:catalog",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. No column resolves the requested term in this arm. No figure is given."
+    },
+    {
+      "result": "golden:G024:catalog",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. No column resolves the requested term in this arm. No figure is given."
+    },
+    {
+      "result": "golden:G024:catalog",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. No column resolves the requested term in this arm. No figure is given."
+    },
+    {
+      "result": "golden:G024:catalog",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. No column resolves the requested term in this arm. No figure is given."
+    },
+    {
+      "result": "golden:G024:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. No column resolves the requested term in this arm. No figure is given."
+    },
+    {
+      "result": "golden:G024:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. No column resolves the requested term in this arm. No figure is given."
+    },
+    {
+      "result": "golden:G024:schema",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. No column resolves the requested term in this arm. No figure is given."
+    },
+    {
+      "result": "golden:G024:schema",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. No column resolves the requested term in this arm. No figure is given."
+    },
+    {
+      "result": "golden:G025:catalog",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "golden:G025:catalog",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "golden:G025:catalog",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "golden:G025:catalog",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "golden:G025:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Combined Corporate and Wealth revenue for FY26-Q1': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "golden:G025:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Combined Corporate and Wealth revenue for FY26-Q1': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "golden:G026:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G026:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G026:schema",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G026:schema",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G027:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G027:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G028:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. No column resolves the requested term in this arm. No figure is given."
+    },
+    {
+      "result": "golden:G028:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. No column resolves the requested term in this arm. No figure is given."
+    },
+    {
+      "result": "golden:G028:schema",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. No column resolves the requested term in this arm. No figure is given."
+    },
+    {
+      "result": "golden:G028:schema",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. No column resolves the requested term in this arm. No figure is given."
+    },
+    {
+      "result": "golden:G029:catalog",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decisions, 2026-11-06: unsupported addition abstains."
+    },
+    {
+      "result": "golden:G029:catalog",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decisions, 2026-11-06: unsupported addition abstains."
+    },
+    {
+      "result": "golden:G029:graph",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decisions, 2026-11-06: unsupported addition abstains."
+    },
+    {
+      "result": "golden:G029:graph",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decisions, 2026-11-06: unsupported addition abstains."
+    },
+    {
+      "result": "golden:G029:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decisions, 2026-11-06: unsupported addition abstains."
+    },
+    {
+      "result": "golden:G029:schema",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decisions, 2026-11-06: unsupported addition abstains."
+    },
+    {
+      "result": "golden:G030:catalog",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The schema calendar heuristic does not establish the requested quarter. No figure is given."
+    },
+    {
+      "result": "golden:G030:catalog",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The schema calendar heuristic does not establish the requested quarter. No figure is given."
+    },
+    {
+      "result": "golden:G030:catalog",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The schema calendar heuristic does not establish the requested quarter. No figure is given."
+    },
+    {
+      "result": "golden:G030:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G030:schema",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G030:schema",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G042:catalog",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The schema calendar heuristic does not establish the requested quarter. No figure is given."
+    },
+    {
+      "result": "golden:G042:catalog",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The schema calendar heuristic does not establish the requested quarter. No figure is given."
+    },
+    {
+      "result": "golden:G042:catalog",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The schema calendar heuristic does not establish the requested quarter. No figure is given."
+    },
+    {
+      "result": "golden:G042:catalog",
+      "field": "ok",
+      "to": true,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The schema calendar heuristic does not establish the requested quarter. No figure is given."
+    },
+    {
+      "result": "golden:G042:catalog",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The schema calendar heuristic does not establish the requested quarter. No figure is given."
+    },
+    {
+      "result": "golden:G042:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G042:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G042:schema",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G042:schema",
+      "field": "ok",
+      "to": true,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G042:schema",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "golden:G044:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Delinquency rate for retail lending in June 2025': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "golden:G044:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Delinquency rate for retail lending in June 2025': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "golden:G044:schema",
+      "field": "ok",
+      "to": true,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Delinquency rate for retail lending in June 2025': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "heldout:H002:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'What did retail bring in as revenue during June 2025?': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "heldout:H002:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'What did retail bring in as revenue during June 2025?': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "heldout:H003:catalog",
+      "field": "figure",
+      "to": 59,
+      "why": "#316 owner decisions, 2026-11-06: the declared active-client phrase resolves to 59 SME clients."
+    },
+    {
+      "result": "heldout:H003:catalog",
+      "field": "ok",
+      "to": true,
+      "why": "#316 owner decisions, 2026-11-06: the declared active-client phrase resolves to 59 SME clients."
+    },
+    {
+      "result": "heldout:H003:graph",
+      "field": "figure",
+      "to": 59,
+      "why": "#316 owner decisions, 2026-11-06: the declared active-client phrase resolves to 59 SME clients."
+    },
+    {
+      "result": "heldout:H003:graph",
+      "field": "ok",
+      "to": true,
+      "why": "#316 owner decisions, 2026-11-06: the declared active-client phrase resolves to 59 SME clients."
+    },
+    {
+      "result": "heldout:H003:schema",
+      "field": "figure",
+      "to": 59,
+      "why": "#316 owner decisions, 2026-11-06: the declared active-client phrase resolves to 59 SME clients."
+    },
+    {
+      "result": "heldout:H003:schema",
+      "field": "ok",
+      "to": true,
+      "why": "#316 owner decisions, 2026-11-06: the declared active-client phrase resolves to 59 SME clients."
+    },
+    {
+      "result": "heldout:H004:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Corporate credit exposure in total as at 30 June 2025': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "heldout:H004:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Corporate credit exposure in total as at 30 June 2025': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "heldout:H005:catalog",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "heldout:H005:catalog",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "heldout:H007:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "heldout:H007:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "heldout:H007:schema",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "heldout:H007:schema",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. The requested measure is not certified for every named source. No figure is given."
+    },
+    {
+      "result": "heldout:H008:catalog",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "heldout:H008:catalog",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "heldout:H008:catalog",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "heldout:H008:catalog",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. missing compatible period binding. No figure is given."
+    },
+    {
+      "result": "heldout:H008:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Sum Corporate and Wealth revenue for FY26-Q1': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "heldout:H008:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Sum Corporate and Wealth revenue for FY26-Q1': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "heldout:H009:graph",
+      "field": "behaviour",
+      "to": "refuse",
+      "why": "#316 owner decisions, 2026-11-06: the no-join relationship is refused; a baseline without its required entity interpretation abstains."
+    },
+    {
+      "result": "heldout:H009:graph",
+      "field": "joins_refused",
+      "to": [
+        "sme-wealth"
+      ],
+      "why": "#316 owner decisions, 2026-11-06: the no-join relationship is refused; a baseline without its required entity interpretation abstains."
+    },
+    {
+      "result": "heldout:H009:graph",
+      "field": "ok",
+      "to": true,
+      "why": "#316 owner decisions, 2026-11-06: the no-join relationship is refused; a baseline without its required entity interpretation abstains."
+    },
+    {
+      "result": "heldout:H009:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decisions, 2026-11-06: the no-join relationship is refused; a baseline without its required entity interpretation abstains."
+    },
+    {
+      "result": "heldout:H009:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decisions, 2026-11-06: the no-join relationship is refused; a baseline without its required entity interpretation abstains."
+    },
+    {
+      "result": "heldout:H009:schema",
+      "field": "joins_refused",
+      "to": null,
+      "why": "#316 owner decisions, 2026-11-06: the no-join relationship is refused; a baseline without its required entity interpretation abstains."
+    },
+    {
+      "result": "heldout:H009:schema",
+      "field": "parts",
+      "to": null,
+      "why": "#316 owner decisions, 2026-11-06: the no-join relationship is refused; a baseline without its required entity interpretation abstains."
+    },
+    {
+      "result": "heldout:H010:graph",
+      "field": "behaviour",
+      "to": "refuse",
+      "why": "#316 owner decisions, 2026-11-06: the no-join relationship is refused."
+    },
+    {
+      "result": "heldout:H010:graph",
+      "field": "joins_refused",
+      "to": [
+        "retail-corporate"
+      ],
+      "why": "#316 owner decisions, 2026-11-06: the no-join relationship is refused."
+    },
+    {
+      "result": "heldout:H010:graph",
+      "field": "ok",
+      "to": true,
+      "why": "#316 owner decisions, 2026-11-06: the no-join relationship is refused."
+    },
+    {
+      "result": "heldout:H016:schema",
+      "field": "behaviour",
+      "to": "abstain",
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Delinquency rate for retail in June 2025': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "heldout:H016:schema",
+      "field": "figure",
+      "to": null,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Delinquency rate for retail in June 2025': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "heldout:H016:schema",
+      "field": "ok",
+      "to": true,
+      "why": "#316 owner decision 2026-11-06 (\"This fixes bugs, so I am good\"): coverage/check blocks the previous numeric interpretation. I cannot apply 'Delinquency rate for retail in June 2025': no certified measure or declared entity resolves the complete request. No figure is given."
+    },
+    {
+      "result": "heldout:H012:graph",
+      "field": "ok",
+      "to": true,
+      "why": "#316 step 7b requires governed definition paraphrases to cite certified documents again through the same definition path as public Ask; control baselines are retained. H012 now passes; H013 still misses the expected policy citation."
+    },
+    {
+      "result": "heldout:H012:graph",
+      "field": "behaviour",
+      "to": "cite_certified",
+      "why": "#316 step 7b requires governed definition paraphrases to cite certified documents again through the same definition path as public Ask; control baselines are retained. H012 now passes; H013 still misses the expected policy citation."
+    },
+    {
+      "result": "heldout:H013:graph",
+      "field": "behaviour",
+      "to": "cite_certified",
+      "why": "#316 step 7b requires governed definition paraphrases to cite certified documents again through the same definition path as public Ask; control baselines are retained. H012 now passes; H013 still misses the expected policy citation."
+    }
+  ],
+  "provenance": "#316; owner decision 2026-11-06: \"This fixes bugs, so I am good\". The approved interpretation decisions and coverage/check corrections to baseline numeric answers are restated, together with step 7b's required H012/H013 governed definition fixes. The historical snapshot is unchanged."
+}

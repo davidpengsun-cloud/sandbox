@@ -1,0 +1,63 @@
+# Thornbury Mutual Casualty's fixture estate: two warehouses, as their own catalogues hold them. Everything here is
+# invented (docs/reference/reference-carrier.md). kge/estate/from_files.py builds the warehouses from this file and the rows
+# under data/; each column's description is the comment its catalogue carries, which certification lands and the lock
+# freezes.
+warehouses:
+  underwriting:
+    label: Commercial Underwriting
+    tables:
+      - name: insured
+        columns:
+          - {name: insured_id, type: INTEGER, description: The insured business's number in policy administration}
+          - {name: insured_name, type: VARCHAR, description: The insured business's registered name}
+          - {name: state_code, type: VARCHAR, description: Two-letter code of the state the risk is written in}
+          - {name: segment_code, type: VARCHAR, description: "Underwriting segment: SMALL (small commercial) or MIDDLE (middle market)"}
+        primary_key: [insured_id]
+      - name: policy
+        columns:
+          - {name: policy_no, type: VARCHAR, description: The policy number policy administration issued at binding}
+          - {name: insured_id, type: INTEGER, description: The insured business the policy covers}
+          - {name: line_code, type: VARCHAR, description: "Line of business: PROP, GL, AUTO or WC"}
+          - {name: effective_on, type: DATE, description: The first day of cover}
+          - {name: expires_on, type: DATE, description: The day cover ends}
+        primary_key: [policy_no]
+        foreign_keys:
+          - {columns: [insured_id], ref_table: insured, ref_columns: [insured_id]}
+      - name: premium
+        columns:
+          - {name: premium_id, type: INTEGER, description: The premium transaction's number}
+          - {name: policy_no, type: VARCHAR, description: The policy the premium is written on}
+          - {name: booked_on, type: DATE, description: The day the premium was written and booked}
+          - {name: written_premium_usd, type: "DECIMAL(12,2)", description: "Premium written, in USD, before reinsurance"}
+        primary_key: [premium_id]
+        foreign_keys:
+          - {columns: [policy_no], ref_table: policy, ref_columns: [policy_no]}
+  claims:
+    label: Claims
+    tables:
+      - name: claimant
+        columns:
+          - {name: claimant_ref, type: VARCHAR, description: The claimant's reference in the claims system}
+          - {name: contact_email, type: VARCHAR, description: "The claimant's contact address: personal data, restricted"}
+          - {name: state_code, type: VARCHAR, description: Two-letter code of the state the claimant is in}
+        primary_key: [claimant_ref]
+      - name: claim
+        columns:
+          - {name: claim_id, type: INTEGER, description: The claim's number}
+          - {name: claimant_ref, type: VARCHAR, description: Who made the claim}
+          - {name: policy_ref, type: VARCHAR, description: "The policy number as the claimant reported it, never checked against underwriting"}
+          - {name: line_code, type: VARCHAR, description: "Line of business the claim is under: PROP, GL, AUTO or WC"}
+          - {name: reported_on, type: DATE, description: The day the loss was first reported}
+          - {name: closed_on, type: DATE, description: The day the claim was closed; empty while it is open}
+        primary_key: [claim_id]
+        foreign_keys:
+          - {columns: [claimant_ref], ref_table: claimant, ref_columns: [claimant_ref]}
+      - name: payment
+        columns:
+          - {name: payment_id, type: INTEGER, description: The payment's number}
+          - {name: claim_id, type: INTEGER, description: The claim the payment settles}
+          - {name: paid_on, type: DATE, description: The day the payment was made}
+          - {name: paid_usd, type: "DECIMAL(12,2)", description: "Indemnity paid, in USD, before any recovery"}
+        primary_key: [payment_id]
+        foreign_keys:
+          - {columns: [claim_id], ref_table: claim, ref_columns: [claim_id]}

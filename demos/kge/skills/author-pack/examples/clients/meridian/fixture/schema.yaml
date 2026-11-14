@@ -1,0 +1,16 @@
+warehouses:
+  teller:
+    label: Teller
+    tables:
+      - name: ledger
+        columns:
+          - name: entry_id
+            type: INTEGER
+            description: One invented ledger row.
+          - name: amount
+            type: INTEGER
+            description: Amount in minor units.
+          - {name: valid_from, type: DATE, description: "First day this version holds."}
+          - {name: valid_to, type: DATE, description: "Last day this version holds, inclusive."}
+          - {name: is_current, type: BOOLEAN, description: "Whether this version holds now."}
+        primary_key: [entry_id]

@@ -1,0 +1,16 @@
+# Terraform's working files and state, never committed: the state names real projects and can hold what a provider
+# returns. The lock files (.terraform.lock.hcl) are committed.
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+# A tfvars file holding an account's own values, should one be written down rather than given on the command line.
+*.local.tfvars

@@ -1,0 +1,3 @@
+{
+  "tests.integration.test_role_playbooks_acceptance::test_every_role_guide_runs_against_the_local_demo": "The steward playbook exercises a complete sequence of dependent onboarding and release steps."
+}

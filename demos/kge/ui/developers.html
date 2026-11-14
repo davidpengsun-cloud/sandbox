@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>[APP_NAME] for developers</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+[BUNDLED_FONTS]
+</head>
+<body>
+
+
+
+
+<style>
+body{margin:0;background:#EEF2F7}
+*{box-sizing:border-box}body{overflow-wrap:anywhere}button{cursor:pointer}a:focus-visible,button:focus-visible{outline:3px solid #006FA6;outline-offset:3px}
+@media(max-width:600px){header{padding:16px!important}header>div{flex-wrap:wrap}main{padding:32px 16px!important}h1{font-size:32px!important}nav{gap:0!important}#api-address{overflow-wrap:anywhere;min-width:0}#mcp>div{flex-basis:100%!important}footer{padding:20px 16px!important}}
+a{color:#006FA6}a:hover{color:#0E2A47}
+</style>
+
+<div style="min-height: 100vh; background: #EEF2F7; color: #0F1B2A; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; display: flex; flex-direction: column">
+
+<header style="background: #0E2A47; color: #FFFFFF; padding: 0 32px; min-height: 64px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<div style="display: flex; align-items: center; gap: 14px">
+<div style="min-height: 32px; max-width: 160px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #C3CFDC; letter-spacing: 0.04em">[CLIENT_LOGO]</div>
+<span style="font-weight: 700; font-size: 18px; letter-spacing: 0.02em">[APP_NAME]</span>
+<span style="width: 1px; height: 22px; background: #1B3B5F"></span>
+<span style="font-size: 15px; color: #C3CFDC">Developers</span>
+</div>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+<a href="#reference" style="color: #FFFFFF; text-decoration: none; font-size: 14px; padding: 12px 14px; border-radius: 8px">API reference</a>
+<a href="#mcp" style="color: #FFFFFF; text-decoration: none; font-size: 14px; padding: 12px 14px; border-radius: 8px">MCP</a>
+<a href="#token" style="color: #FFFFFF; text-decoration: none; font-size: 14px; padding: 12px 14px; border-radius: 8px">Get a token</a>
+<a href="[PORTAL_URL]" style="color: #0B1624; background: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 600; padding: 12px 16px; border-radius: 8px">Open [DISCOVERY_NAME]</a>
+</nav>
+</header>
+
+<main style="width: 100%; max-width: 1120px; margin: 0 auto; box-sizing: border-box; padding: 48px 24px 64px; display: flex; flex-direction: column; gap: 40px">
+
+<section style="display: flex; flex-direction: column; gap: 16px">
+<h1 style="margin: 0; font-size: 40px; line-height: 1.15; font-weight: 700; letter-spacing: -0.01em">Build on [APP_NAME]</h1>
+<p style="margin: 0; max-width: 720px; font-size: 18px; line-height: 1.55; color: #3B4B5E">Connect apps and AI agents to certified definitions, governed figures and search. Every call runs as the person who signed in, and returns only what they may read.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px">
+<div style="display: flex; align-items: center; gap: 8px; background: #FFFFFF; border: 1px solid #DCE3EA; border-radius: 999px; padding: 8px 14px; font-size: 14px"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 50%; background: #1B7446"></span><span>[HEALTH]</span></div>
+<div style="display: flex; align-items: center; gap: 8px; background: #FFFFFF; border: 1px solid #DCE3EA; border-radius: 999px; padding: 8px 14px; font-size: 14px; color: #3B4B5E"><span>Version</span><span style="font-family: 'Geist Mono', ui-monospace, monospace; color: #0F1B2A">[VERSION]</span></div>
+<div style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border: 1px solid #DCE3EA; border-radius: 999px; padding: 4px 4px 4px 14px; font-size: 14px; color: #3B4B5E"><span>API</span><code id="api-address" style="font-family: 'Geist Mono', ui-monospace, monospace; color: #0F1B2A">[API_URL]</code><button type="button" aria-label="Copy the API address" data-copy="api-address" style="min-height: 36px; border: 1px solid #DCE3EA; background: #EEF2F7; color: #0F1B2A; border-radius: 999px; padding: 0 12px; font-size: 13px; font-family: inherit">Copy</button></div>
+</div>
+</section>
+
+<section id="reference" style="display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 600">API reference</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 16px">
+<a href="/docs" style="text-decoration: none; color: #0F1B2A; background: #FFFFFF; border: 1px solid #DCE3EA; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #006FA6">Interactive</span>
+<span style="font-size: 18px; font-weight: 600">Swagger</span>
+<span style="font-size: 15px; line-height: 1.5; color: #3B4B5E">Browse every endpoint and try requests with your own token.</span>
+<span style="font-size: 14px; color: #006FA6; font-weight: 600; margin-top: auto">Open /docs →</span>
+</a>
+<a href="/redoc" style="text-decoration: none; color: #0F1B2A; background: #FFFFFF; border: 1px solid #DCE3EA; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #006FA6">Read</span>
+<span style="font-size: 18px; font-weight: 600">ReDoc</span>
+<span style="font-size: 15px; line-height: 1.5; color: #3B4B5E">The same reference as one readable page, with every schema laid out.</span>
+<span style="font-size: 14px; color: #006FA6; font-weight: 600; margin-top: auto">Open /redoc →</span>
+</a>
+<a href="/openapi.json" style="text-decoration: none; color: #0F1B2A; background: #FFFFFF; border: 1px solid #DCE3EA; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 10px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #006FA6">Import</span>
+<span style="font-size: 18px; font-weight: 600">OpenAPI document</span>
+<span style="font-size: 15px; line-height: 1.5; color: #3B4B5E">Import it into an agent builder or generate a client.</span>
+<span style="font-size: 14px; color: #006FA6; font-weight: 600; margin-top: auto">Download openapi.json →</span>
+</a>
+</div>
+</section>
+
+<section id="mcp" style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+<div style="flex: 999 1 480px; min-width: 0; background: #FFFFFF; border: 1px solid #DCE3EA; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 600">MCP for AI agents</h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3B4B5E">Streamable HTTP endpoints. Point an agent at the one it needs.</p>
+<div style="display: grid; grid-template-columns: minmax(130px, auto) minmax(0, 1fr); gap: 0; font-size: 14px; border-top: 1px solid #DCE3EA">
+<code style="font-family: 'Geist Mono', ui-monospace, monospace; padding: 12px 0; border-bottom: 1px solid #DCE3EA">/mcp</code><span style="padding: 12px 0; border-bottom: 1px solid #DCE3EA; color: #3B4B5E">Context, search, definitions and terms</span>
+<code style="font-family: 'Geist Mono', ui-monospace, monospace; padding: 12px 0; border-bottom: 1px solid #DCE3EA">/mcp/answer</code><span style="padding: 12px 0; border-bottom: 1px solid #DCE3EA; color: #3B4B5E">Governed answers to questions</span>
+<code style="font-family: 'Geist Mono', ui-monospace, monospace; padding: 12px 0; border-bottom: 1px solid #DCE3EA">/mcp/assist</code><span style="padding: 12px 0; border-bottom: 1px solid #DCE3EA; color: #3B4B5E">Catalogue, search and figures, routed for you</span>
+<code style="font-family: 'Geist Mono', ui-monospace, monospace; padding: 12px 0; border-bottom: 1px solid #DCE3EA">/mcp/search</code><span style="padding: 12px 0; border-bottom: 1px solid #DCE3EA; color: #3B4B5E">Search and term mapping</span>
+<code style="font-family: 'Geist Mono', ui-monospace, monospace; padding: 12px 0; border-bottom: 1px solid #DCE3EA">/mcp/data</code><span style="padding: 12px 0; border-bottom: 1px solid #DCE3EA; color: #3B4B5E">Tables you may read, and checked queries</span>
+<code style="font-family: 'Geist Mono', ui-monospace, monospace; padding: 12px 0; border-bottom: 1px solid #DCE3EA">/mcp/catalogue</code><span style="padding: 12px 0; border-bottom: 1px solid #DCE3EA; color: #3B4B5E">Governed products you may discover</span>
+<code style="font-family: 'Geist Mono', ui-monospace, monospace; padding: 12px 0; border-bottom: 1px solid #DCE3EA">/mcp/identity</code><span style="padding: 12px 0; border-bottom: 1px solid #DCE3EA; color: #3B4B5E">The units you may read</span>
+<code style="font-family: 'Geist Mono', ui-monospace, monospace; padding: 12px 0; border-bottom: 1px solid #DCE3EA">/mcp/onboard</code><span style="padding: 12px 0; border-bottom: 1px solid #DCE3EA; color: #3B4B5E">Onboarding status, tables and drafts, for stewards</span>
+<code style="font-family: 'Geist Mono', ui-monospace, monospace; padding: 12px 0; border-bottom: 1px solid #DCE3EA">/mcp/access</code><span style="padding: 12px 0; border-bottom: 1px solid #DCE3EA; color: #3B4B5E">Access administration, for administrators</span>
+</div>
+</div>
+<div style="flex: 1 1 380px; min-width: 0; background: #0E2A47; color: #E7EEF5; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<span style="font-size: 14px; font-weight: 600">Client config</span>
+<button type="button" aria-label="Copy the client config" data-copy="client-config" style="min-height: 36px; border: 1px solid #264A70; background: #1B3B5F; color: #FFFFFF; border-radius: 8px; padding: 0 12px; font-size: 13px; font-family: inherit">Copy</button>
+</div>
+<pre id="client-config" style="margin: 0; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 13px; line-height: 1.6; white-space: pre; overflow-x: auto; color: #E7EEF5">[CLIENT_CONFIG]</pre>
+</div>
+</section>
+
+<section id="token" style="background: #FFFFFF; border: 1px solid #DCE3EA; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 600">Get a token</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="width: 32px; height: 32px; border-radius: 50%; background: #DDF2FB; color: #006FA6; font-weight: 700; display: flex; align-items: center; justify-content: center">1</span><span style="font-weight: 600">Sign in</span><span style="font-size: 15px; line-height: 1.5; color: #3B4B5E">Send <code style="font-family: 'Geist Mono', ui-monospace, monospace">{"username": "…", "password": "…"}</code> to <code style="font-family: 'Geist Mono', ui-monospace, monospace">POST /session/token</code>.</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="width: 32px; height: 32px; border-radius: 50%; background: #DDF2FB; color: #006FA6; font-weight: 700; display: flex; align-items: center; justify-content: center">2</span><span style="font-weight: 600">Use the token</span><span style="font-size: 15px; line-height: 1.5; color: #3B4B5E">Send the response’s <code style="font-family: 'Geist Mono', ui-monospace, monospace">access_token</code> as <code style="font-family: 'Geist Mono', ui-monospace, monospace">Authorization: Bearer &lt;access_token&gt;</code> on every call.</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px"><span style="width: 32px; height: 32px; border-radius: 50%; background: #DDF2FB; color: #006FA6; font-weight: 700; display: flex; align-items: center; justify-content: center">3</span><span style="font-weight: 600">Your access, nothing more</span><span style="font-size: 15px; line-height: 1.5; color: #3B4B5E">The token reads only what you may read, and expires after [TOKEN_LIFETIME].</span></div>
+</div>
+</section>
+
+</main>
+
+<footer style="border-top: 1px solid #DCE3EA; background: #FFFFFF; padding: 20px 32px; display: flex; flex-wrap: wrap; gap: 24px; font-size: 14px; color: #3B4B5E">
+<span>© [CLIENT_NAME]</span>
+<a href="/health">Health</a>
+<a href="/versions">Versions</a>
+<a href="[CONTEXT_DOCS_URL]">Context Docs</a>
+</footer>
+
+</div>
+
+<script>
+document.addEventListener('click', async event => {
+  const button = event.target.closest('button[data-copy]');
+  if (!button) return;
+  const text = document.getElementById(button.dataset.copy).textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+    button.textContent = 'Copied';
+  } catch {
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(document.getElementById(button.dataset.copy));
+    selection.removeAllRanges();
+    selection.addRange(range);
+    button.textContent = 'Select and copy';
+  }
+});
+</script>
+</body>
+</html>

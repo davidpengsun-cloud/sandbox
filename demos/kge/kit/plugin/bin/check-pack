@@ -1,0 +1,8 @@
+#!/bin/sh
+# The pack check from a Claude or Copilot session. It does not build a graph.
+set -eu
+if python3 -c 'import kge.estate.check_pack' >/dev/null 2>&1; then
+    exec python3 -m kge.estate.check_pack "$@"
+fi
+echo "check-pack: this machine has no kge package. On an installation, run the job command check-pack. It does not build a graph." >&2
+exit 2

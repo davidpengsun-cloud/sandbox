@@ -1,0 +1,601 @@
+{
+  "nodes": [
+    {
+      "id": "Words:division",
+      "type": "Words",
+      "name": "division",
+      "label": "",
+      "group": "words",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Said in the question: division"
+    },
+    {
+      "id": "Words:NNA",
+      "type": "Words",
+      "name": "NNA",
+      "label": "",
+      "group": "words",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Said in the question: NNA"
+    },
+    {
+      "id": "Words:FY26-Q1",
+      "type": "Words",
+      "name": "FY26-Q1",
+      "label": "",
+      "group": "words",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Said in the question: FY26-Q1"
+    },
+    {
+      "id": "Context:nna",
+      "type": "Context",
+      "name": "nna",
+      "label": "Net new assets",
+      "group": "meaning",
+      "used": true,
+      "state": "done",
+      "certified": true,
+      "badges": [],
+      "detail": "Context: nna (Net new assets)\nReached from: Term:net-new-assets (Net New Assets)\nMeasure: wealth.net-new-assets\nFact: wealth.TRAN_FACT_1\nThe signed amounts of current transactions with RCV_IN=1 and NNA_IN=Y, over released months, with test accounts left out, summed in USD. Division roll-ups use the current branch division: BR for Northeast retail branches and WEST for the other branches.\nCertified by: Golden:golden_wealth_v3:W01\nFilter used: eligible, released\nFilter not used: none\nRowSelector used: not_test_account\nRowSelector not used: none\nJoinRule used: flow_month_end, flow_account, account_current_office\nJoinRule not used: account_client_code, flow_date, flow_source_system\nPolicies applied (SCD2): scd2-wealth-flow, scd2-wealth-account, scd2-wealth-office"
+    },
+    {
+      "id": "Measure:wealth.net-new-assets",
+      "type": "Measure",
+      "name": "wealth.net-new-assets",
+      "label": "Net New Assets",
+      "group": "meaning",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Measure: wealth.net-new-assets\nExpression: sum(CASE WHEN TRAN_FACT_1.DW_TRAN_DIRCTN_CD = 'O' THEN -TRAN_FACT_1.TRAN_AM ELSE TRAN_FACT_1.TRAN_AM END)\nAggregation: sum"
+    },
+    {
+      "id": "Table:wealth.TRAN_FACT_1",
+      "type": "Table",
+      "name": "wealth.TRAN_FACT_1",
+      "label": "",
+      "group": "tables",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [
+        {
+          "kind": "SCD2",
+          "id": "scd2-wealth-flow"
+        }
+      ],
+      "detail": "Table: wealth.TRAN_FACT_1\nUnit: wealth\nPolicy: scd2-wealth-flow (SCD2; current rows by CURR_IN; valid DW_EFF_DT to DW_EXPR_DT)\nJoinRule: flow_month_end (used)\nJoinRule: flow_account (used)\nJoinRule: flow_date (not used)\nJoinRule: flow_source_system (not used)"
+    },
+    {
+      "id": "Term:net-new-assets",
+      "type": "Term",
+      "name": "net-new-assets",
+      "label": "Net New Assets",
+      "group": "vocabulary",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Term: Net New Assets\nId: net-new-assets"
+    },
+    {
+      "id": "Golden:golden_wealth_v3:W01",
+      "type": "Golden",
+      "name": "golden_wealth_v3:W01",
+      "label": "NNA for FY26-Q1 by division",
+      "group": "meaning",
+      "used": true,
+      "state": "done",
+      "certified": true,
+      "badges": [],
+      "detail": "Golden item: golden_wealth_v3:W01\nSet: golden_wealth v3\nQuestion: NNA for FY26-Q1 by division\nCertifies: nna"
+    },
+    {
+      "id": "Filter:eligible",
+      "type": "Filter",
+      "name": "eligible",
+      "label": "Eligible for net new assets",
+      "group": "rules",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Filter: eligible (Eligible for net new assets)\nPredicate: TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1\nTable: wealth.TRAN_FACT_1"
+    },
+    {
+      "id": "Filter:released",
+      "type": "Filter",
+      "name": "released",
+      "label": "Released months only",
+      "group": "rules",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Filter: released (Released months only)\nPredicate: MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0\nTable: wealth.MONTH_DIM_1"
+    },
+    {
+      "id": "Table:wealth.MONTH_DIM_1",
+      "type": "Table",
+      "name": "wealth.MONTH_DIM_1",
+      "label": "",
+      "group": "tables",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Table: wealth.MONTH_DIM_1\nUnit: wealth\nJoinRule: flow_month_end (used)"
+    },
+    {
+      "id": "RowSelector:not_test_account",
+      "type": "RowSelector",
+      "name": "not_test_account",
+      "label": "Not on a test account",
+      "group": "rules",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "RowSelector: not_test_account (Not on a test account)\nPredicate: ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND ACCT_DIM2_1.TEST_ACCT_IN = 'Y'\nTable: wealth.ACCT_DIM2_1"
+    },
+    {
+      "id": "Table:wealth.ACCT_DIM2_1",
+      "type": "Table",
+      "name": "wealth.ACCT_DIM2_1",
+      "label": "",
+      "group": "tables",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [
+        {
+          "kind": "SCD2",
+          "id": "scd2-wealth-account"
+        }
+      ],
+      "detail": "Table: wealth.ACCT_DIM2_1\nUnit: wealth\nPolicy: scd2-wealth-account (SCD2; current rows by CURR_IN; valid DW_EFF_DT to DW_EXPR_DT)\nJoinRule: flow_account (used)\nJoinRule: account_client_code (not used)\nJoinRule: account_current_office (used)"
+    },
+    {
+      "id": "Table:wealth.CLIENT_CD_ROLLUP_1",
+      "type": "Table",
+      "name": "wealth.CLIENT_CD_ROLLUP_1",
+      "label": "",
+      "group": "tables",
+      "used": false,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Table: wealth.CLIENT_CD_ROLLUP_1\nUnit: wealth\nJoinRule: account_client_code (not used)"
+    },
+    {
+      "id": "Table:wealth.BRCH_DIM_1",
+      "type": "Table",
+      "name": "wealth.BRCH_DIM_1",
+      "label": "",
+      "group": "tables",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [
+        {
+          "kind": "SCD2",
+          "id": "scd2-wealth-office"
+        }
+      ],
+      "detail": "Table: wealth.BRCH_DIM_1\nUnit: wealth\nPolicy: scd2-wealth-office (SCD2; current rows by CURR_IN; valid DW_EFF_DT to DW_EXPR_DT)\nJoinRule: account_current_office (used)"
+    },
+    {
+      "id": "Table:wealth.DATE_DIM_1",
+      "type": "Table",
+      "name": "wealth.DATE_DIM_1",
+      "label": "",
+      "group": "tables",
+      "used": false,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Table: wealth.DATE_DIM_1\nUnit: wealth\nJoinRule: flow_date (not used)"
+    },
+    {
+      "id": "Table:wealth.SRCE_SYS_1",
+      "type": "Table",
+      "name": "wealth.SRCE_SYS_1",
+      "label": "",
+      "group": "tables",
+      "used": false,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Table: wealth.SRCE_SYS_1\nUnit: wealth\nJoinRule: flow_source_system (not used)"
+    },
+    {
+      "id": "Principal:analyst_enterprise",
+      "type": "Principal",
+      "name": "analyst_enterprise",
+      "label": "Analyst",
+      "group": "access",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Principal: analyst_enterprise\nAsker: analyst_enterprise\nReads: corporate, retail, sme, wealth"
+    },
+    {
+      "id": "Unit:wealth",
+      "type": "Unit",
+      "name": "wealth",
+      "label": "Wealth Management",
+      "group": "access",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Unit: wealth"
+    },
+    {
+      "id": "Acronym:NNA",
+      "type": "Acronym",
+      "name": "NNA",
+      "label": "",
+      "group": "vocabulary",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Acronym: NNA\nTerm: Net New Assets"
+    },
+    {
+      "id": "Calendar:fiscal_april",
+      "type": "Calendar",
+      "name": "fiscal_april",
+      "label": "",
+      "group": "vocabulary",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Calendar: fiscal_april\nYear starts in month 4"
+    },
+    {
+      "id": "Term:division",
+      "type": "Term",
+      "name": "division",
+      "label": "Division",
+      "group": "vocabulary",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Term: Division\nId: division"
+    },
+    {
+      "id": "Entity:wealth_branch_division",
+      "type": "Entity",
+      "name": "wealth_branch_division",
+      "label": "branch division",
+      "group": "meaning",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Entity: wealth_branch_division\nTable: wealth.BRCH_DIM_1\nKey: BRCH_DIVSN_CD\nRows grouped by: wealth.BRCH_DIM_1.BRCH_DIVSN_CD"
+    },
+    {
+      "id": "Runtime:reference",
+      "type": "Runtime",
+      "name": "reference",
+      "label": "Reference warehouse",
+      "group": "runtime",
+      "used": true,
+      "state": "done",
+      "certified": false,
+      "badges": [],
+      "detail": "Runtime: reference\nKind: reference \u00b7 Dialect: duckdb\nCertified: no",
+      "sql": "WITH b0 AS (SELECT 1 AS \"k0\", CAST(TO_JSON({'code': \"BRCH_DIM_1\".\"BRCH_DIVSN_CD\", 'name': \"BRCH_DIM_1\".\"BRCH_DIVSN_NM\"}) AS TEXT) AS \"d0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(CASE WHEN TRAN_FACT_1.DW_TRAN_DIRCTN_CD = 'O' THEN -TRAN_FACT_1.TRAN_AM ELSE TRAN_FACT_1.TRAN_AM END) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT JOIN ACCT_DIM2_1 ON TRAN_FACT_1.DW_ACCT_ID = ACCT_DIM2_1.DW_ACCT_ID AND TRAN_FACT_1.ACCT_SRCE_SYS_ID = ACCT_DIM2_1.SRCE_SYS_ID AND ACCT_DIM2_1.CURR_IN <> 0 JOIN BRCH_DIM_1 ON ACCT_DIM2_1.ACCT_DOMCL_BRCH_CD = BRCH_DIM_1.BRCH_CD AND BRCH_DIM_1.CURR_IN <> 0 WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS(SELECT 1 FROM ACCT_DIM2_1 WHERE ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND ACCT_DIM2_1.TEST_ACCT_IN = 'Y') AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-04-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-07-01' AS DATE)) GROUP BY 2), spine AS (SELECT \"k0\", \"d0\" FROM b0), aligned AS (SELECT \"s\".\"k0\", \"s\".\"d0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\" AND \"s\".\"d0\" IS NOT DISTINCT FROM \"b0\".\"d0\") SELECT \"d0\" AS \"d0\", \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned ORDER BY CAST(\"d0\" ->> '$.code' AS TEXT)"
+    }
+  ],
+  "edges": [
+    {
+      "from": "Context:nna",
+      "to": "Table:wealth.TRAN_FACT_1",
+      "type": "USES_FACT",
+      "label": "USES_FACT",
+      "planner": false,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Measure:wealth.net-new-assets",
+      "to": "Table:wealth.TRAN_FACT_1",
+      "type": "COMPUTED_FROM",
+      "label": "COMPUTED_FROM",
+      "planner": false,
+      "used": true,
+      "state": "done",
+      "detail": "Columns: wealth.TRAN_FACT_1.TRAN_AM"
+    },
+    {
+      "from": "Context:nna",
+      "to": "Measure:wealth.net-new-assets",
+      "type": "SPECIALIZES",
+      "label": "SPECIALIZES",
+      "planner": false,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Term:net-new-assets",
+      "to": "Context:nna",
+      "type": "RESOLVES_TO",
+      "label": "RESOLVES_TO",
+      "planner": false,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Context:nna",
+      "to": "Golden:golden_wealth_v3:W01",
+      "type": "CERTIFIED_BY",
+      "label": "CERTIFIED_BY",
+      "planner": false,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Context:nna",
+      "to": "Filter:eligible",
+      "type": "REQUIRES_FILTER",
+      "label": "REQUIRES_FILTER",
+      "planner": false,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Filter:eligible",
+      "to": "Table:wealth.TRAN_FACT_1",
+      "type": "TARGETS",
+      "label": "TARGETS",
+      "planner": false,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Context:nna",
+      "to": "Filter:released",
+      "type": "REQUIRES_FILTER",
+      "label": "REQUIRES_FILTER",
+      "planner": false,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Filter:released",
+      "to": "Table:wealth.MONTH_DIM_1",
+      "type": "TARGETS",
+      "label": "TARGETS",
+      "planner": false,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Context:nna",
+      "to": "RowSelector:not_test_account",
+      "type": "SELECTS_ROWS_WITH",
+      "label": "SELECTS_ROWS_WITH",
+      "planner": false,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "RowSelector:not_test_account",
+      "to": "Table:wealth.ACCT_DIM2_1",
+      "type": "TARGETS",
+      "label": "TARGETS",
+      "planner": false,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Table:wealth.TRAN_FACT_1",
+      "to": "Table:wealth.MONTH_DIM_1",
+      "type": "JoinRule",
+      "label": "flow_month_end",
+      "planner": false,
+      "used": true,
+      "state": "done",
+      "detail": "Join: flow_month_end (calendar_rollup)\nCondition: TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT"
+    },
+    {
+      "from": "Table:wealth.TRAN_FACT_1",
+      "to": "Table:wealth.ACCT_DIM2_1",
+      "type": "JoinRule",
+      "label": "flow_account",
+      "planner": false,
+      "used": true,
+      "state": "done",
+      "detail": "Join: flow_account (key)\nCondition: TRAN_FACT_1.DW_ACCT_ID = ACCT_DIM2_1.DW_ACCT_ID AND TRAN_FACT_1.ACCT_SRCE_SYS_ID = ACCT_DIM2_1.SRCE_SYS_ID"
+    },
+    {
+      "from": "Table:wealth.ACCT_DIM2_1",
+      "to": "Table:wealth.CLIENT_CD_ROLLUP_1",
+      "type": "JoinRule",
+      "label": "account_client_code",
+      "planner": false,
+      "used": false,
+      "state": "done",
+      "detail": "Join: account_client_code (hierarchy)\nCondition: ACCT_DIM2_1.CLNT_CD = CLIENT_CD_ROLLUP_1.CLNT_CD"
+    },
+    {
+      "from": "Table:wealth.ACCT_DIM2_1",
+      "to": "Table:wealth.BRCH_DIM_1",
+      "type": "JoinRule",
+      "label": "account_current_office",
+      "planner": false,
+      "used": true,
+      "state": "done",
+      "detail": "Join: account_current_office (hierarchy)\nCondition: ACCT_DIM2_1.ACCT_DOMCL_BRCH_CD = BRCH_DIM_1.BRCH_CD AND BRCH_DIM_1.CURR_IN <> 0"
+    },
+    {
+      "from": "Table:wealth.TRAN_FACT_1",
+      "to": "Table:wealth.DATE_DIM_1",
+      "type": "JoinRule",
+      "label": "flow_date",
+      "planner": false,
+      "used": false,
+      "state": "done",
+      "detail": "Join: flow_date (key)\nCondition: TRAN_FACT_1.DW_TRAN_DT = DATE_DIM_1.CALENDAR_DATE"
+    },
+    {
+      "from": "Table:wealth.TRAN_FACT_1",
+      "to": "Table:wealth.SRCE_SYS_1",
+      "type": "JoinRule",
+      "label": "flow_source_system",
+      "planner": false,
+      "used": false,
+      "state": "done",
+      "detail": "Join: flow_source_system (key)\nCondition: TRAN_FACT_1.ACCT_SRCE_SYS_ID = SRCE_SYS_1.SRCE_SYS_ID AND SRCE_SYS_1.CURR_IN <> 0 AND SRCE_SYS_1.RCV_IN = 1"
+    },
+    {
+      "from": "Principal:analyst_enterprise",
+      "to": "Unit:wealth",
+      "type": "CAN_READ",
+      "label": "CAN_READ",
+      "planner": false,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Words:NNA",
+      "to": "Context:nna",
+      "type": "matches",
+      "label": "matches",
+      "planner": true,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Term:net-new-assets",
+      "to": "Acronym:NNA",
+      "type": "ABBREVIATED_AS",
+      "label": "ABBREVIATED_AS",
+      "planner": false,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Words:NNA",
+      "to": "Acronym:NNA",
+      "type": "matches",
+      "label": "matches",
+      "planner": true,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Words:FY26-Q1",
+      "to": "Calendar:fiscal_april",
+      "type": "matches",
+      "label": "matches",
+      "planner": true,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Words:division",
+      "to": "Term:division",
+      "type": "matches",
+      "label": "matches",
+      "planner": true,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Measure:wealth.net-new-assets",
+      "to": "Calendar:fiscal_april",
+      "type": "IN_CALENDAR",
+      "label": "IN_CALENDAR",
+      "planner": false,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Table:wealth.BRCH_DIM_1",
+      "to": "Entity:wealth_branch_division",
+      "type": "REPRESENTS",
+      "label": "REPRESENTS",
+      "planner": false,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Term:division",
+      "to": "Entity:wealth_branch_division",
+      "type": "matches",
+      "label": "matches",
+      "planner": true,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Term:net-new-assets",
+      "to": "Entity:wealth_branch_division",
+      "type": "matches",
+      "label": "matches",
+      "planner": true,
+      "used": true,
+      "state": "done"
+    },
+    {
+      "from": "Runtime:reference",
+      "to": "Table:wealth.ACCT_DIM2_1",
+      "type": "IMPLEMENTS",
+      "label": "HOLDS \u00b7 IMPLEMENTS",
+      "planner": false,
+      "used": true,
+      "state": "done",
+      "detail": "reference.wealth.ACCT_DIM2_1"
+    },
+    {
+      "from": "Runtime:reference",
+      "to": "Table:wealth.BRCH_DIM_1",
+      "type": "IMPLEMENTS",
+      "label": "HOLDS \u00b7 IMPLEMENTS",
+      "planner": false,
+      "used": true,
+      "state": "done",
+      "detail": "reference.wealth.BRCH_DIM_1"
+    },
+    {
+      "from": "Runtime:reference",
+      "to": "Table:wealth.MONTH_DIM_1",
+      "type": "IMPLEMENTS",
+      "label": "HOLDS \u00b7 IMPLEMENTS",
+      "planner": false,
+      "used": true,
+      "state": "done",
+      "detail": "reference.wealth.MONTH_DIM_1"
+    },
+    {
+      "from": "Runtime:reference",
+      "to": "Table:wealth.TRAN_FACT_1",
+      "type": "IMPLEMENTS",
+      "label": "HOLDS \u00b7 IMPLEMENTS",
+      "planner": false,
+      "used": true,
+      "state": "done",
+      "detail": "reference.wealth.TRAN_FACT_1"
+    }
+  ],
+  "unused": 3
+}

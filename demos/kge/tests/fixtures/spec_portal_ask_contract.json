@@ -1,0 +1,22 @@
+[
+  {"id":"owner-name-scoped","question":"Who owns Account?","products":["retail.account"],"decision":"answer-owner","expected_products":["retail.account"]},
+  {"id":"owner-id-scoped","question":"Who owns retail.account?","products":["retail.account"],"decision":"answer-owner","expected_products":["retail.account"]},
+  {"id":"owner-name-unscoped","question":"Who owns Account?","decision":"answer-owner","expected_products":["retail.account"]},
+  {"id":"owner-case","question":"WHO OWNS ACCOUNT?","products":["retail.account"],"decision":"answer-owner","expected_products":["retail.account"]},
+  {"id":"owner-other-product","question":"Who owns Customer?","products":["retail.customer"],"decision":"answer-owner","expected_products":["retail.customer"]},
+  {"id":"fields-name-scoped","question":"Which fields does Account hold?","products":["retail.account"],"decision":"answer-fields","expected_products":["retail.account"]},
+  {"id":"fields-id-scoped","question":"What fields does retail.account hold?","products":["retail.account"],"decision":"answer-fields","expected_products":["retail.account"]},
+  {"id":"fields-unscoped","question":"What fields does Account hold?","decision":"answer-fields","expected_products":["retail.account"]},
+  {"id":"fields-case","question":"WHAT FIELDS DOES ACCOUNT HOLD?","products":["retail.account"],"decision":"answer-fields","expected_products":["retail.account"]},
+  {"id":"fields-other-product","question":"What fields does Customer hold?","products":["retail.customer"],"decision":"answer-fields","expected_products":["retail.customer"]},
+  {"id":"outside-owner","question":"Who owns Facility?","products":["retail.account"],"decision":"abstain","expected_products":[],"governed":{"decision":"answer-owner","expected_products":["sme.facility"]}},
+  {"id":"outside-fields","question":"What fields does Customer hold?","products":["retail.account"],"decision":"abstain","expected_products":[],"governed":{"decision":"answer-fields","expected_products":["retail.customer"]}},
+  {"id":"outside-sme-subject","question":"Who owns SME Lending?","products":["retail.account"],"decision":"abstain","expected_products":[]},
+  {"id":"outside-wealth-subject","question":"Describe wealth data.","products":["retail.account"],"decision":"abstain","expected_products":[]},
+  {"id":"outside-wealth-fields","question":"What fields does wealth accounts table hold?","products":["retail.account"],"decision":"abstain","expected_products":[]},
+  {"id":"unknown-owner","question":"Who owns Unicorn?","products":["retail.account"],"decision":"abstain","expected_products":[]},
+  {"id":"empty-scope-owner","question":"Who owns Account?","products":[],"decision":"abstain","expected_products":[],"governed":{"decision":"answer-owner","expected_products":["retail.account"]}},
+  {"id":"empty-scope-fields","question":"What fields does Account hold?","products":[],"decision":"abstain","expected_products":[],"governed":{"decision":"answer-fields","expected_products":["retail.account"]}},
+  {"id":"credit-risk-unscoped","question":"Which fields relate to credit risk?","decision":"abstain","expected_products":[]},
+  {"id":"credit-risk-scoped","question":"Which fields relate to credit risk?","products":["retail.account"],"decision":"abstain","expected_products":[]}
+]

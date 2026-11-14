@@ -1,0 +1,1188 @@
+[
+  {
+    "id": "W01",
+    "kind": "within",
+    "category": "NNA overall / client-directed",
+    "question": "NNA for FY26-Q1 by division",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "rows": {
+        "BR": 12790595.59,
+        "WEST": 9217390.49
+      }
+    },
+    "reference_sql": "SELECT d0, round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", \"BRCH_DIM_1\".\"BRCH_DIVSN_CD\" AS \"d0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(CASE WHEN TRAN_FACT_1.DW_TRAN_DIRCTN_CD = 'O' THEN -TRAN_FACT_1.TRAN_AM ELSE TRAN_FACT_1.TRAN_AM END) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT JOIN ACCT_DIM2_1 ON TRAN_FACT_1.DW_ACCT_ID = ACCT_DIM2_1.DW_ACCT_ID AND TRAN_FACT_1.ACCT_SRCE_SYS_ID = ACCT_DIM2_1.SRCE_SYS_ID AND ACCT_DIM2_1.CURR_IN <> 0 JOIN BRCH_DIM_1 ON ACCT_DIM2_1.ACCT_DOMCL_BRCH_CD = BRCH_DIM_1.BRCH_CD AND BRCH_DIM_1.CURR_IN <> 0 WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS(SELECT 1 FROM ACCT_DIM2_1 WHERE ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND ACCT_DIM2_1.TEST_ACCT_IN = 'Y') AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-04-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-07-01' AS DATE)) GROUP BY \"BRCH_DIM_1\".\"BRCH_DIVSN_CD\"), spine AS (SELECT \"k0\", \"d0\" FROM b0), aligned AS (SELECT \"s\".\"k0\", \"s\".\"d0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\" AND \"s\".\"d0\" IS NOT DISTINCT FROM \"b0\".\"d0\") SELECT \"d0\" AS \"d0\", \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned ORDER BY \"d0\") recorded",
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "correct"
+    ],
+    "reply": {
+      "kind": "abstain",
+      "missing": [
+        "The recorded interpretation has no complete checked proposal."
+      ],
+      "spans": []
+    }
+  },
+  {
+    "id": "W02",
+    "kind": "within",
+    "category": "NNA overall / client-directed",
+    "question": "Client-directed NNA for June 2025",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "F_NNA_FIN.NNA_AM"
+      ],
+      "figure": 5232475.35
+    },
+    "reference_sql": "SELECT round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(F_NNA_FIN.NNA_AM) END AS \"value\" FROM F_NNA_FIN JOIN MONTH_DIM_1 ON F_NNA_FIN.DW_TRAN_MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT WHERE F_NNA_FIN.CLIENT_DIRECTED_NNA_IN = 'Y' AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND (\"F_NNA_FIN\".\"DW_TRAN_MNTH_END_DT\" >= CAST('2025-06-01' AS DATE) AND \"F_NNA_FIN\".\"DW_TRAN_MNTH_END_DT\" < CAST('2025-07-01' AS DATE))), spine AS (SELECT 1 AS \"k0\"), aligned AS (SELECT \"s\".\"k0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\") SELECT \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned) recorded",
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "correct"
+    ],
+    "reply": {
+      "base_turn": null,
+      "kind": "propose",
+      "plan": {
+        "comparisons": [],
+        "derived": [],
+        "dimensions": [],
+        "filters": [],
+        "layout": "aligned",
+        "limit": null,
+        "measures": [
+          {
+            "context": {
+              "evidence": [],
+              "id": "nna_client_directed"
+            },
+            "filters": [],
+            "id": "m0",
+            "kind": "measure",
+            "measure": {
+              "evidence": [],
+              "id": "wealth.net-new-assets"
+            },
+            "mode": "current"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "o0",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 19,
+                "start": 0,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "m0"
+            ]
+          },
+          {
+            "id": "o1",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 33,
+                "start": 24,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "time"
+            ]
+          }
+        ],
+        "order": [],
+        "schema": "query-plan/v1",
+        "time": {
+          "kind": "single",
+          "period": {
+            "calendar": {
+              "evidence": [],
+              "id": "calendar"
+            },
+            "kind": "month",
+            "value": "2025-06"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "W03",
+    "kind": "within",
+    "category": "NNA overall / client-directed",
+    "question": "NNA for June 2025",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "figure": 6647562.78
+    },
+    "reference_sql": "SELECT round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(CASE WHEN TRAN_FACT_1.DW_TRAN_DIRCTN_CD = 'O' THEN -TRAN_FACT_1.TRAN_AM ELSE TRAN_FACT_1.TRAN_AM END) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS(SELECT 1 FROM ACCT_DIM2_1 WHERE ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND ACCT_DIM2_1.TEST_ACCT_IN = 'Y') AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-06-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-07-01' AS DATE))), spine AS (SELECT 1 AS \"k0\"), aligned AS (SELECT \"s\".\"k0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\") SELECT \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned) recorded",
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "correct"
+    ],
+    "reply": {
+      "base_turn": null,
+      "kind": "propose",
+      "plan": {
+        "comparisons": [],
+        "derived": [],
+        "dimensions": [],
+        "filters": [],
+        "layout": "aligned",
+        "limit": null,
+        "measures": [
+          {
+            "context": {
+              "evidence": [],
+              "id": "nna"
+            },
+            "filters": [],
+            "id": "m0",
+            "kind": "measure",
+            "measure": {
+              "evidence": [],
+              "id": "wealth.net-new-assets"
+            },
+            "mode": "current"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "o0",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 3,
+                "start": 0,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "m0"
+            ]
+          },
+          {
+            "id": "o1",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 17,
+                "start": 8,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "time"
+            ]
+          }
+        ],
+        "order": [],
+        "schema": "query-plan/v1",
+        "time": {
+          "kind": "single",
+          "period": {
+            "calendar": {
+              "evidence": [],
+              "id": "calendar"
+            },
+            "kind": "month",
+            "value": "2025-06"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "W04",
+    "kind": "within",
+    "category": "Eligibility + test-account filtering",
+    "question": "NNA for April 2025",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "figure": 7384872.28
+    },
+    "reference_sql": "SELECT round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(CASE WHEN TRAN_FACT_1.DW_TRAN_DIRCTN_CD = 'O' THEN -TRAN_FACT_1.TRAN_AM ELSE TRAN_FACT_1.TRAN_AM END) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS(SELECT 1 FROM ACCT_DIM2_1 WHERE ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND ACCT_DIM2_1.TEST_ACCT_IN = 'Y') AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-04-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-05-01' AS DATE))), spine AS (SELECT 1 AS \"k0\"), aligned AS (SELECT \"s\".\"k0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\") SELECT \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned) recorded",
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "correct"
+    ],
+    "reply": {
+      "base_turn": null,
+      "kind": "propose",
+      "plan": {
+        "comparisons": [],
+        "derived": [],
+        "dimensions": [],
+        "filters": [],
+        "layout": "aligned",
+        "limit": null,
+        "measures": [
+          {
+            "context": {
+              "evidence": [],
+              "id": "nna"
+            },
+            "filters": [],
+            "id": "m0",
+            "kind": "measure",
+            "measure": {
+              "evidence": [],
+              "id": "wealth.net-new-assets"
+            },
+            "mode": "current"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "o0",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 3,
+                "start": 0,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "m0"
+            ]
+          },
+          {
+            "id": "o1",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 18,
+                "start": 8,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "time"
+            ]
+          }
+        ],
+        "order": [],
+        "schema": "query-plan/v1",
+        "time": {
+          "kind": "single",
+          "period": {
+            "calendar": {
+              "evidence": [],
+              "id": "calendar"
+            },
+            "kind": "month",
+            "value": "2025-04"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "W05",
+    "kind": "within",
+    "category": "Eligibility + test-account filtering",
+    "question": "How many accounts had NNA in FY26-Q1?",
+    "expect": {
+      "unit": "wealth",
+      "figure": 249
+    },
+    "reference_sql": "SELECT round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", CASE WHEN COUNT(*) = 0 THEN NULL ELSE COUNT(DISTINCT CASE WHEN NOT TRAN_FACT_1.DW_ACCT_ID IS NULL AND NOT TRAN_FACT_1.ACCT_SRCE_SYS_ID IS NULL THEN (TRAN_FACT_1.DW_ACCT_ID, TRAN_FACT_1.ACCT_SRCE_SYS_ID) ELSE NULL END) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS(SELECT 1 FROM ACCT_DIM2_1 WHERE ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND ACCT_DIM2_1.TEST_ACCT_IN = 'Y') AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-04-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-07-01' AS DATE))), spine AS (SELECT 1 AS \"k0\"), aligned AS (SELECT \"s\".\"k0\", \"b0\".\"value\" AS \"x0\", CASE WHEN \"b0\".\"value\" IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\") SELECT \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned) recorded",
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "correct"
+    ],
+    "reply": {
+      "kind": "abstain",
+      "missing": [
+        "The recorded interpretation has no complete checked proposal."
+      ],
+      "spans": []
+    }
+  },
+  {
+    "id": "W06",
+    "kind": "within",
+    "category": "Eligibility + test-account filtering",
+    "question": "NNA from BROKERAGE in FY26-Q1",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "figure": 17264316.78
+    },
+    "reference_sql": "SELECT round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(CASE WHEN TRAN_FACT_1.DW_TRAN_DIRCTN_CD = 'O' THEN -TRAN_FACT_1.TRAN_AM ELSE TRAN_FACT_1.TRAN_AM END) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS(SELECT 1 FROM ACCT_DIM2_1 WHERE ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND ACCT_DIM2_1.TEST_ACCT_IN = 'Y') AND \"TRAN_FACT_1\".\"ACCT_SRCE_SYS_ID\" = 100 AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-04-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-07-01' AS DATE))), spine AS (SELECT 1 AS \"k0\"), aligned AS (SELECT \"s\".\"k0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\") SELECT \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned) recorded",
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "correct"
+    ],
+    "reply": {
+      "base_turn": null,
+      "kind": "propose",
+      "plan": {
+        "comparisons": [],
+        "derived": [],
+        "dimensions": [],
+        "filters": [
+          {
+            "evidence": [],
+            "id": "f0",
+            "kind": "compare",
+            "left": {
+              "kind": "column",
+              "name": {
+                "evidence": [],
+                "id": "wealth.TRAN_FACT_1.ACCT_SRCE_SYS_ID"
+              },
+              "path": []
+            },
+            "op": "eq",
+            "value": {
+              "kind": "integer",
+              "value": 100
+            }
+          }
+        ],
+        "layout": "aligned",
+        "limit": null,
+        "measures": [
+          {
+            "context": {
+              "evidence": [],
+              "id": "nna"
+            },
+            "filters": [],
+            "id": "m0",
+            "kind": "measure",
+            "measure": {
+              "evidence": [],
+              "id": "wealth.net-new-assets"
+            },
+            "mode": "current"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "o0",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 3,
+                "start": 0,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "m0"
+            ]
+          },
+          {
+            "id": "o1",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 18,
+                "start": 9,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "f0"
+            ]
+          },
+          {
+            "id": "o2",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 29,
+                "start": 22,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "time"
+            ]
+          }
+        ],
+        "order": [],
+        "schema": "query-plan/v1",
+        "time": {
+          "kind": "single",
+          "period": {
+            "calendar": {
+              "evidence": [],
+              "id": "fiscal_april"
+            },
+            "kind": "fiscal_quarter",
+            "value": "FY26-Q1"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "W07",
+    "kind": "within",
+    "category": "Exclusions",
+    "question": "NNA for FY25-Q4",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "figure": 18359512.13
+    },
+    "reference_sql": "SELECT round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(CASE WHEN TRAN_FACT_1.DW_TRAN_DIRCTN_CD = 'O' THEN -TRAN_FACT_1.TRAN_AM ELSE TRAN_FACT_1.TRAN_AM END) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS(SELECT 1 FROM ACCT_DIM2_1 WHERE ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND ACCT_DIM2_1.TEST_ACCT_IN = 'Y') AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-01-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-04-01' AS DATE))), spine AS (SELECT 1 AS \"k0\"), aligned AS (SELECT \"s\".\"k0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\") SELECT \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned) recorded",
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "correct"
+    ],
+    "reply": {
+      "base_turn": null,
+      "kind": "propose",
+      "plan": {
+        "comparisons": [],
+        "derived": [],
+        "dimensions": [],
+        "filters": [],
+        "layout": "aligned",
+        "limit": null,
+        "measures": [
+          {
+            "context": {
+              "evidence": [],
+              "id": "nna"
+            },
+            "filters": [],
+            "id": "m0",
+            "kind": "measure",
+            "measure": {
+              "evidence": [],
+              "id": "wealth.net-new-assets"
+            },
+            "mode": "current"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "o0",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 3,
+                "start": 0,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "m0"
+            ]
+          },
+          {
+            "id": "o1",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 15,
+                "start": 8,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "time"
+            ]
+          }
+        ],
+        "order": [],
+        "schema": "query-plan/v1",
+        "time": {
+          "kind": "single",
+          "period": {
+            "calendar": {
+              "evidence": [],
+              "id": "fiscal_april"
+            },
+            "kind": "fiscal_quarter",
+            "value": "FY25-Q4"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "W09",
+    "kind": "within",
+    "category": "As-of vs current (SCD2)",
+    "question": "NNA for March 2025 as reported",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "figure": 5637481.28
+    },
+    "reference_sql": "SELECT round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(CASE WHEN TRAN_FACT_1.DW_TRAN_DIRCTN_CD = 'O' THEN -TRAN_FACT_1.TRAN_AM ELSE TRAN_FACT_1.TRAN_AM END) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT WHERE (TRAN_FACT_1.DW_EFF_DT <= MONTH_DIM_1.FIN_MTRC_RLSE_DT AND (TRAN_FACT_1.DW_EXPR_DT IS NULL OR TRAN_FACT_1.DW_EXPR_DT >= MONTH_DIM_1.FIN_MTRC_RLSE_DT)) AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS(SELECT 1 FROM ACCT_DIM2_1 WHERE ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND ACCT_DIM2_1.TEST_ACCT_IN = 'Y') AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-03-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-04-01' AS DATE))), spine AS (SELECT 1 AS \"k0\"), aligned AS (SELECT \"s\".\"k0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\") SELECT \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned) recorded",
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "correct"
+    ],
+    "reply": {
+      "base_turn": null,
+      "kind": "propose",
+      "plan": {
+        "comparisons": [],
+        "derived": [],
+        "dimensions": [],
+        "filters": [],
+        "layout": "aligned",
+        "limit": null,
+        "measures": [
+          {
+            "context": {
+              "evidence": [],
+              "id": "nna"
+            },
+            "filters": [],
+            "id": "m0",
+            "kind": "measure",
+            "measure": {
+              "evidence": [],
+              "id": "wealth.net-new-assets"
+            },
+            "mode": "as_reported"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "o0",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 3,
+                "start": 0,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "m0"
+            ]
+          },
+          {
+            "id": "o1",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 18,
+                "start": 8,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "time"
+            ]
+          },
+          {
+            "id": "o2",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 30,
+                "start": 19,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "m0"
+            ]
+          }
+        ],
+        "order": [],
+        "schema": "query-plan/v1",
+        "time": {
+          "kind": "single",
+          "period": {
+            "calendar": {
+              "evidence": [],
+              "id": "calendar"
+            },
+            "kind": "month",
+            "value": "2025-03"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "W10",
+    "kind": "within",
+    "category": "As-of vs current (SCD2)",
+    "question": "NNA for March 2025 restated",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "figure": 5929714.83
+    },
+    "reference_sql": "SELECT round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(CASE WHEN TRAN_FACT_1.DW_TRAN_DIRCTN_CD = 'O' THEN -TRAN_FACT_1.TRAN_AM ELSE TRAN_FACT_1.TRAN_AM END) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS(SELECT 1 FROM ACCT_DIM2_1 WHERE ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND ACCT_DIM2_1.TEST_ACCT_IN = 'Y') AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-03-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-04-01' AS DATE))), spine AS (SELECT 1 AS \"k0\"), aligned AS (SELECT \"s\".\"k0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\") SELECT \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned) recorded",
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "correct"
+    ],
+    "reply": {
+      "base_turn": null,
+      "kind": "propose",
+      "plan": {
+        "comparisons": [],
+        "derived": [],
+        "dimensions": [],
+        "filters": [],
+        "layout": "aligned",
+        "limit": null,
+        "measures": [
+          {
+            "context": {
+              "evidence": [],
+              "id": "nna"
+            },
+            "filters": [],
+            "id": "m0",
+            "kind": "measure",
+            "measure": {
+              "evidence": [],
+              "id": "wealth.net-new-assets"
+            },
+            "mode": "current"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "o0",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 3,
+                "start": 0,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "m0"
+            ]
+          },
+          {
+            "id": "o1",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 18,
+                "start": 8,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "time"
+            ]
+          },
+          {
+            "id": "o2",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 27,
+                "start": 19,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "m0"
+            ]
+          }
+        ],
+        "order": [],
+        "schema": "query-plan/v1",
+        "time": {
+          "kind": "single",
+          "period": {
+            "calendar": {
+              "evidence": [],
+              "id": "calendar"
+            },
+            "kind": "month",
+            "value": "2025-03"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "W12",
+    "kind": "within",
+    "category": "Month-end freeze / release",
+    "question": "NNA for the latest month",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "reason": "The latest month released is June 2025: July 2025 is booked and not yet released.",
+      "figure": 6647562.78
+    },
+    "reference_sql": "SELECT round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(CASE WHEN TRAN_FACT_1.DW_TRAN_DIRCTN_CD = 'O' THEN -TRAN_FACT_1.TRAN_AM ELSE TRAN_FACT_1.TRAN_AM END) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS(SELECT 1 FROM ACCT_DIM2_1 WHERE ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND ACCT_DIM2_1.TEST_ACCT_IN = 'Y') AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-06-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-07-01' AS DATE))), spine AS (SELECT 1 AS \"k0\"), aligned AS (SELECT \"s\".\"k0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\") SELECT \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned) recorded",
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "correct"
+    ],
+    "reply": {
+      "base_turn": null,
+      "kind": "propose",
+      "plan": {
+        "comparisons": [],
+        "derived": [],
+        "dimensions": [],
+        "filters": [],
+        "layout": "aligned",
+        "limit": null,
+        "measures": [
+          {
+            "context": {
+              "evidence": [],
+              "id": "nna"
+            },
+            "filters": [],
+            "id": "m0",
+            "kind": "measure",
+            "measure": {
+              "evidence": [],
+              "id": "wealth.net-new-assets"
+            },
+            "mode": "current"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "o0",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 3,
+                "start": 0,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "m0"
+            ]
+          },
+          {
+            "id": "o1",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 24,
+                "start": 12,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "time"
+            ]
+          }
+        ],
+        "order": [],
+        "schema": "query-plan/v1",
+        "time": {
+          "calendar": {
+            "evidence": [],
+            "id": "calendar"
+          },
+          "kind": "latest_released"
+        }
+      }
+    }
+  },
+  {
+    "id": "W13",
+    "unit": "wealth",
+    "kind": "abstain",
+    "category": "Month-end freeze / release",
+    "question": "NNA for July 2025",
+    "expect": {
+      "behaviour": "abstain_with_reason",
+      "reason": "July 2025 is not yet released: only released months are reported."
+    },
+    "reference_sql": "SELECT DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 FROM MONTH_DIM_1 WHERE CLDR_EOM_DT = DATE '2025-07-31'",
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "declined"
+    ],
+    "reply": {
+      "base_turn": null,
+      "kind": "propose",
+      "plan": {
+        "comparisons": [],
+        "derived": [],
+        "dimensions": [],
+        "filters": [],
+        "layout": "aligned",
+        "limit": null,
+        "measures": [
+          {
+            "context": {
+              "evidence": [],
+              "id": "nna"
+            },
+            "filters": [],
+            "id": "m0",
+            "kind": "measure",
+            "measure": {
+              "evidence": [],
+              "id": "wealth.net-new-assets"
+            },
+            "mode": "current"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "o0",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 3,
+                "start": 0,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "m0"
+            ]
+          },
+          {
+            "id": "o1",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 17,
+                "start": 8,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "time"
+            ]
+          }
+        ],
+        "order": [],
+        "schema": "query-plan/v1",
+        "time": {
+          "kind": "single",
+          "period": {
+            "calendar": {
+              "evidence": [],
+              "id": "calendar"
+            },
+            "kind": "month",
+            "value": "2025-07"
+          }
+        }
+      }
+    }
+  },
+  {
+    "id": "W14",
+    "kind": "within",
+    "category": "Hierarchy roll-ups",
+    "question": "NNA for FY26-Q1 by region",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "rows": {
+        "MIDWEST": 3939576.32,
+        "NORTHEAST": 12790595.59,
+        "PACIFIC": 5277814.17
+      }
+    },
+    "reference_sql": "SELECT d0, round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", \"BRCH_DIM_1\".\"RGN_CD\" AS \"d0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(CASE WHEN TRAN_FACT_1.DW_TRAN_DIRCTN_CD = 'O' THEN -TRAN_FACT_1.TRAN_AM ELSE TRAN_FACT_1.TRAN_AM END) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT JOIN ACCT_DIM2_1 ON TRAN_FACT_1.DW_ACCT_ID = ACCT_DIM2_1.DW_ACCT_ID AND TRAN_FACT_1.ACCT_SRCE_SYS_ID = ACCT_DIM2_1.SRCE_SYS_ID AND ACCT_DIM2_1.CURR_IN <> 0 JOIN BRCH_DIM_1 ON ACCT_DIM2_1.ACCT_DOMCL_BRCH_CD = BRCH_DIM_1.BRCH_CD AND BRCH_DIM_1.CURR_IN <> 0 WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS(SELECT 1 FROM ACCT_DIM2_1 WHERE ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND ACCT_DIM2_1.TEST_ACCT_IN = 'Y') AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-04-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-07-01' AS DATE)) GROUP BY \"BRCH_DIM_1\".\"RGN_CD\"), spine AS (SELECT \"k0\", \"d0\" FROM b0), aligned AS (SELECT \"s\".\"k0\", \"s\".\"d0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\" AND \"s\".\"d0\" IS NOT DISTINCT FROM \"b0\".\"d0\") SELECT \"d0\" AS \"d0\", \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned ORDER BY \"d0\") recorded",
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "correct"
+    ],
+    "reply": {
+      "kind": "abstain",
+      "missing": [
+        "The recorded interpretation has no complete checked proposal."
+      ],
+      "spans": []
+    }
+  },
+  {
+    "id": "W15",
+    "kind": "within",
+    "category": "Hierarchy roll-ups",
+    "question": "NNA for FY26-Q1 by parent segment",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "rows": {
+        "AFFLUENT": 14894355.01,
+        "PRIVATE": 7113631.07
+      }
+    },
+    "reference_sql": "SELECT d0, round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", \"CLIENT_CD_ROLLUP_1\".\"SEGMT_LVL_ID5\" AS \"d0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(CASE WHEN TRAN_FACT_1.DW_TRAN_DIRCTN_CD = 'O' THEN -TRAN_FACT_1.TRAN_AM ELSE TRAN_FACT_1.TRAN_AM END) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT JOIN ACCT_DIM2_1 ON TRAN_FACT_1.DW_ACCT_ID = ACCT_DIM2_1.DW_ACCT_ID AND TRAN_FACT_1.ACCT_SRCE_SYS_ID = ACCT_DIM2_1.SRCE_SYS_ID AND ACCT_DIM2_1.CURR_IN <> 0 JOIN CLIENT_CD_ROLLUP_1 ON ACCT_DIM2_1.CLNT_CD = CLIENT_CD_ROLLUP_1.CLNT_CD AND CLIENT_CD_ROLLUP_1.CURR_IN <> 0 WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS(SELECT 1 FROM ACCT_DIM2_1 WHERE ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND ACCT_DIM2_1.TEST_ACCT_IN = 'Y') AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-04-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-07-01' AS DATE)) GROUP BY \"CLIENT_CD_ROLLUP_1\".\"SEGMT_LVL_ID5\"), spine AS (SELECT \"k0\", \"d0\" FROM b0), aligned AS (SELECT \"s\".\"k0\", \"s\".\"d0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\" AND \"s\".\"d0\" IS NOT DISTINCT FROM \"b0\".\"d0\") SELECT \"d0\" AS \"d0\", \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned ORDER BY \"d0\") recorded",
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "correct"
+    ],
+    "reply": {
+      "kind": "abstain",
+      "missing": [
+        "The recorded interpretation has no complete checked proposal."
+      ],
+      "spans": []
+    }
+  },
+  {
+    "id": "W18",
+    "kind": "within",
+    "category": "Acronym resolution",
+    "question": "Sum of NNA_ELIG_FLG flows by SRC_SYS_CD in FY26-Q1",
+    "expect": {
+      "unit": "wealth",
+      "columns": [
+        "flow.amount_usd"
+      ],
+      "rows": {
+        "100": 17264316.78,
+        "200": 4743669.3
+      }
+    },
+    "reference_sql": "SELECT d0, round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", \"TRAN_FACT_1\".\"ACCT_SRCE_SYS_ID\" AS \"d0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(CASE WHEN TRAN_FACT_1.DW_TRAN_DIRCTN_CD = 'O' THEN -TRAN_FACT_1.TRAN_AM ELSE TRAN_FACT_1.TRAN_AM END) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND NOT EXISTS(SELECT 1 FROM ACCT_DIM2_1 WHERE ACCT_DIM2_1.DW_ACCT_ID = TRAN_FACT_1.DW_ACCT_ID AND ACCT_DIM2_1.SRCE_SYS_ID = TRAN_FACT_1.ACCT_SRCE_SYS_ID AND ACCT_DIM2_1.TEST_ACCT_IN = 'Y') AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-04-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-07-01' AS DATE)) GROUP BY \"TRAN_FACT_1\".\"ACCT_SRCE_SYS_ID\"), spine AS (SELECT \"k0\", \"d0\" FROM b0), aligned AS (SELECT \"s\".\"k0\", \"s\".\"d0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\" AND \"s\".\"d0\" IS NOT DISTINCT FROM \"b0\".\"d0\") SELECT \"d0\" AS \"d0\", \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned ORDER BY \"d0\") recorded",
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "correct"
+    ],
+    "reply": {
+      "kind": "abstain",
+      "missing": [
+        "The recorded interpretation has no complete checked proposal."
+      ],
+      "spans": []
+    }
+  },
+  {
+    "id": "W19",
+    "kind": "cross",
+    "category": "Refusal / abstain",
+    "question": "NNA for SME clients who are also wealth households",
+    "expect": {
+      "behaviour": "refuse",
+      "reason": "No join path between SME and Wealth.",
+      "joins_refused": [
+        "sme-wealth"
+      ],
+      "no_figure": true
+    },
+    "reference_sql": null,
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "declined"
+    ],
+    "reply": {
+      "kind": "abstain",
+      "missing": [
+        "The requested measure is not certified for every named source."
+      ],
+      "spans": []
+    }
+  },
+  {
+    "id": "W20",
+    "kind": "abstain",
+    "category": "Refusal / abstain",
+    "question": "NNA plus wealth revenue for FY26-Q1",
+    "expect": {
+      "behaviour": "abstain",
+      "no_figure": true,
+      "reason": "The checked plan has no general addition operation for different measures; no operand is returned alone."
+    },
+    "reference_sql": null,
+    "principal": "analyst_enterprise",
+    "expected_outcome": [
+      "declined"
+    ],
+    "reply": {
+      "base_turn": null,
+      "kind": "propose",
+      "plan": {
+        "comparisons": [],
+        "derived": [],
+        "dimensions": [],
+        "filters": [],
+        "layout": "aligned",
+        "limit": null,
+        "measures": [
+          {
+            "context": {
+              "evidence": [],
+              "id": "wealth_revenue"
+            },
+            "filters": [],
+            "id": "m0",
+            "kind": "measure",
+            "measure": {
+              "evidence": [],
+              "id": "wealth.revenue"
+            },
+            "mode": "current"
+          },
+          {
+            "context": {
+              "evidence": [],
+              "id": "nna"
+            },
+            "filters": [],
+            "id": "m1",
+            "kind": "measure",
+            "measure": {
+              "evidence": [],
+              "id": "wealth.net-new-assets"
+            },
+            "mode": "current"
+          }
+        ],
+        "obligations": [
+          {
+            "id": "o0",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 3,
+                "start": 0,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "m1"
+            ]
+          },
+          {
+            "id": "o1",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 8,
+                "start": 4,
+                "turn": "turn"
+              }
+            ],
+            "state": "unresolved",
+            "targets": []
+          },
+          {
+            "id": "o2",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 15,
+                "start": 9,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "m0",
+              "m1"
+            ]
+          },
+          {
+            "id": "o3",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 23,
+                "start": 16,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "m0"
+            ]
+          },
+          {
+            "id": "o4",
+            "kind": "name",
+            "spans": [
+              {
+                "end": 35,
+                "start": 28,
+                "turn": "turn"
+              }
+            ],
+            "state": "applied",
+            "targets": [
+              "time"
+            ]
+          }
+        ],
+        "order": [],
+        "schema": "query-plan/v1",
+        "time": {
+          "kind": "single",
+          "period": {
+            "calendar": {
+              "evidence": [],
+              "id": "fiscal_april"
+            },
+            "kind": "fiscal_quarter",
+            "value": "FY26-Q1"
+          }
+        }
+      }
+    }
+  }
+]

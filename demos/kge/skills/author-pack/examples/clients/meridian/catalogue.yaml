@@ -1,0 +1,56 @@
+format: 1
+units:
+  - teller
+sources:
+  - id: teller
+    APM_ID: APM-PLACEHOLDER
+products:
+  - id: teller.ledger
+    unit: teller
+    table: ledger
+    description: Invented ledger rows for the worked example.
+    product_owner: Retail desk
+    business_owner: Retail desk
+    product_owner_email: ""
+    business_owner_email: ""
+    steward: steward
+    badges:
+      - EXAMPLE
+    product_type: Table
+    asset_type: Structured
+    usage_purpose: Analytical
+    refresh_cadence: daily
+    path: placeholder
+    data_format: csv
+    APM_ID: APM-PLACEHOLDER
+    schema: placeholder
+    fields:
+      - name: entry_id
+        business_name: Entry identifier
+        description: One invented ledger row.
+        classification: Internal
+        pii: false
+        quality:
+          dimension: Uniqueness
+          rule: entry_id is populated and unique
+          rule_type: Anomaly_Checks
+          description: Stated in the workbook.
+      - name: amount
+        business_name: Amount
+        description: Amount in minor units.
+        classification: Internal
+        pii: false
+        quality:
+          dimension: Completeness
+          rule: amount is populated
+          rule_type: Anomaly_Checks
+          fail_percent: 0
+          description: The workbook states a zero fail share.
+      - {name: valid_from, business_name: Valid from, description: "First day this version holds.", classification: Internal, pii: false}
+      - {name: valid_to, business_name: Valid to, description: "Last day this version holds, inclusive.", classification: Internal, pii: false}
+      - {name: is_current, business_name: Is current, description: "Whether this version holds now.", classification: Internal, pii: false}
+  - id: teller.rates_api
+    unit: teller
+    table: rates_api
+    name: Rates API
+    product_type: API/MCP

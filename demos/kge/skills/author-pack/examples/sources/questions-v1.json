@@ -1,0 +1,4 @@
+[
+  {"id": "T01", "question": "How many ledger rows are there?", "kind": "within", "expect": {"answer": "2"}},
+  {"id": "T02", "question": "What is the opening amount?", "kind": "within", "expect": {"answer": "100"}}
+]

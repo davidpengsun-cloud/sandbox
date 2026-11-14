@@ -1,0 +1,1065 @@
+#!/usr/bin/env bash
+# Run from Cloud Shell or an operator's laptop. Requires Bash, curl and Python 3.
+set -euo pipefail
+umask 077
+
+fail() { printf '%s\n' "kge: $*" >&2; exit 2; }
+
+# The pack check runs before the Bash 4.4 gate. The rest of this helper needs Bash 4.4
+# (associative arrays). This command does not, so Bash 3.2 can author a pack.
+# An empty "${args[@]}" under set -u aborts on Bash before 4.4, so that case stays separate.
+check_pack_command() {
+    if ! python3 -c 'import kge.estate.check_pack' >/dev/null 2>&1; then
+        fail 'check-pack needs the kge package on this machine, or the installation job command check-pack. It does not build a graph.'
+    fi
+    args=()
+    take=
+    for arg in "$@"; do
+        if [[ -n $take ]]; then args+=("$arg"); take=; continue; fi
+        case $arg in
+            PACK=*) args+=(--pack "${arg#PACK=}") ;;
+            PROFILE=*) args+=(--profile "${arg#PROFILE=}") ;;
+            --pack|--profile|--json) args+=("$arg"); take=$arg ;;
+            *) fail "unknown argument: $arg" ;;
+        esac
+    done
+    [[ -z $take ]] || fail "missing value after $take"
+    if [[ ${#args[@]} -gt 0 ]]; then
+        exec python3 -m kge.estate.check_pack "${args[@]}"
+    fi
+    exec python3 -m kge.estate.check_pack
+}
+
+if [[ ${1:-} == check-pack ]]; then
+    shift
+    check_pack_command "$@"
+fi
+
+((BASH_VERSINFO[0] > 4 || (BASH_VERSINFO[0] == 4 && BASH_VERSINFO[1] >= 4))) || { printf '%s\n' "kge: needs Bash 4.4 or later (this is $BASH_VERSION)" >&2; exit 2; }
+STATE=${KGE_STATE:-$HOME/.config/kge/state}
+STATE_DIR=$(dirname "$STATE")
+ACCESS_PATH=/access
+AUDIT_PATH=/access/audit
+DRY_RUN=${DRY_RUN:-no}
+RUN_PATH=/onboard/run
+
+show() { printf '+' >&2; printf ' %q' "$@" >&2; printf '\n' >&2; }
+run() {
+    show "$@"
+    [[ $DRY_RUN != yes ]] || return 0
+    if [[ ${QUIET_RUN:-0} == 1 ]]; then "$@" > "$scratch/job-output" 2>&1; else "$@"; fi
+}
+
+# JSON and INI are data, never shell code. Only the standard library is used.
+p() {
+    python3 -c '
+import configparser, json, os, re, sys, tempfile, urllib.parse
+from pathlib import Path
+mode, *args = sys.argv[1:]
+def config(path):
+    c = configparser.ConfigParser(interpolation=None)
+    c.optionxform = str
+    if Path(path).exists():
+        c.read(path)
+    return c
+def write(c, path):
+    if os.environ.get("DRY_RUN") == "yes":
+        print("dry-run: would save " + path + " (state unchanged)", file=sys.stderr)
+        return
+    dest = Path(path)
+    dest.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+    fd, tmp = tempfile.mkstemp(dir=dest.parent)
+    try:
+        with os.fdopen(fd, "w") as out:
+            c.write(out, space_around_delimiters=False)
+        os.replace(tmp, dest)
+    finally:
+        if os.path.exists(tmp):
+            os.unlink(tmp)
+def safe(value):
+    if any(ord(x) < 32 for x in value):
+        raise ValueError("control characters are not allowed")
+    return value
+def walk(value):
+    if isinstance(value, dict):
+        yield value
+        for v in value.values():
+            yield from walk(v)
+    elif isinstance(value, list):
+        for v in value:
+            yield from walk(v)
+def location(row):
+    return (row.get("metadata", {}).get("labels", {}).get("cloud.googleapis.com/location")
+            or row.get("region") or row.get("location")
+            or (row.get("name", "").split("/locations/")[-1].split("/")[0]
+                if "/locations/" in row.get("name", "") else ""))
+try:
+    if mode == "get":
+        path, section, key = args
+        print(config(path).get(section, key, fallback=""))
+    elif mode == "snapshot":
+        path, section = args
+        c = config(path)
+        pairs = list(c.items(section)) if c.has_section(section) else []
+        if any("\0" in key or "\0" in value for key, value in pairs):
+            raise ValueError("NUL is not allowed in settings")
+        for key, value in pairs:
+            print(key, value, sep="\0", end="\0")
+        print("", end="\0")
+    elif mode == "set":
+        path, section, *pairs = args
+        c = config(path)
+        if not c.has_section(section):
+            c.add_section(section)
+        for pair in pairs:
+            key, value = pair.split("=", 1)
+            c.set(section, key, safe(value))
+        write(c, path)
+    elif mode == "show":
+        path, section = args
+        c = config(path)
+        if c.has_section(section):
+            for key, value in c.items(section):
+                print(f"{key}={value}")
+    elif mode == "port":
+        path, section, preferred = args
+        c = config(path)
+        used = {c.get(s, "PORT", fallback="") for s in c.sections() if s != section}
+        if preferred and preferred in used:
+            raise ValueError("proxy PORT is assigned to another environment; choose another PORT")
+        port = int(preferred or 8085)
+        while str(port) in used:
+            port += 1
+        if port > 65535:
+            raise ValueError("no unused proxy port in state")
+        print(port)
+    elif mode == "quote":
+        print(urllib.parse.quote(args[0], safe=""))
+    elif mode == "body":
+        step, *pairs = args
+        body = {"step": step}
+        for pair in pairs:
+            key, value = pair.split("=", 1)
+            if key not in ("UNIT", "HASH"):
+                raise ValueError("API steps accept UNIT= and HASH= only; identity comes from the token")
+            body[key.lower()] = value
+        print(json.dumps(body))
+    elif mode == "job-state":
+        record = json.load(sys.stdin).get("job") or {}
+        if not record.get("id") or not record.get("state"):
+            raise ValueError("no job to wait for")
+        print(record["id"], record["state"])
+    elif mode == "transition":
+        body = {"items": "all"}
+        for pair in args:
+            key, value = pair.split("=", 1)
+            if key not in ("UNIT", "PROPOSAL", "ITEMS"):
+                raise ValueError("review decisions accept UNIT=, PROPOSAL=, ITEMS= only")
+            body[key.lower()] = value
+        if bool(body.get("unit")) == bool(body.get("proposal")):
+            raise ValueError("name exactly one UNIT= or PROPOSAL=")
+        print(json.dumps(body))
+    elif mode in ("source", "draft"):
+        allowed = {"UNIT"} if mode == "draft" else {"UNIT", "LABEL", "DDL", "ROWS", "CSV", "QUESTIONS", "HELDOUT"}
+        fields = {}
+        for pair in args:
+            key, value = pair.split("=", 1)
+            if key not in allowed:
+                raise ValueError(mode + " accepts " + ", ".join(sorted(allowed)) + " only; identity comes from the token")
+            fields[key] = value
+        if not fields.get("UNIT"):
+            raise ValueError(mode + " needs UNIT=")
+        body = {"unit": fields["UNIT"]}
+        if mode == "source":
+            if not fields.get("DDL") or not fields.get("LABEL"):
+                raise ValueError("source needs LABEL= and DDL=<schema.sql file>")
+            body.update(label=fields["LABEL"], ddl=Path(fields["DDL"]).read_text(), rows=fields.get("ROWS", "csv" if fields.get("CSV") else "none"))
+            if fields.get("CSV"):
+                csv = {f.name: f.read_text() for f in sorted(Path(fields["CSV"]).glob("*.csv"))}
+                if not csv:
+                    raise ValueError("CSV folder contains no CSV files")
+                body.update(csv=csv)
+            for key in ("QUESTIONS", "HELDOUT"):
+                if fields.get(key):
+                    body[key.lower()] = Path(fields[key]).read_text()
+        print(json.dumps(body))
+    elif mode == "error-detail":
+        raw = sys.stdin.read()
+        try:
+            value = json.loads(raw)
+        except ValueError:
+            value = {}
+        detail = value.get("detail", value.get("error", "")) if isinstance(value, dict) else ""
+        if detail:
+            print("kge: " + (detail if isinstance(detail, str) else json.dumps(detail)), file=sys.stderr)
+    elif mode == "served":
+        value = json.load(sys.stdin)
+        actual = value.get("serving")
+        if not isinstance(actual, str) or not re.fullmatch(r"[0-9a-f]{64}", actual):
+            raise ValueError("service returned no served hash")
+        expected = args[0] if args else ""
+        if expected and actual != expected:
+            raise ValueError("served hash has not switched: expected " + expected + ", got " + actual)
+        print("served: " + actual)
+        for card in value.get("catalogue_cards") or []:
+            if isinstance(card, dict) and card.get("id") and card.get("state"):
+                print("catalogue " + card["id"] + ": " + card["state"])
+    elif mode == "grant":
+        body = {"roles": [], "name": ""}
+        for pair in args:
+            key, value = pair.split("=", 1)
+            if key == "ROLES":
+                body["roles"] = [v.strip() for v in value.split(",") if v.strip()]
+            elif key == "NAME":
+                body["name"] = value
+            else:
+                raise ValueError("grant accepts ROLES= and NAME= only")
+        if not body["roles"]:
+            raise ValueError("grant needs ROLES=role,...")
+        print(json.dumps(body))
+    elif mode == "credentials":
+        username = sys.stdin.readline().rstrip("\n")
+        password = sys.stdin.read()
+        print(json.dumps({"username": username, "password": password}))
+    elif mode == "token":
+        token = json.load(sys.stdin).get("access_token", "")
+        if not token or any(ord(x) < 33 for x in token):
+            raise ValueError("sign-in returned no valid bearer token")
+        print(token)
+    elif mode == "identity":
+        row = json.load(sys.stdin)
+        email = row.get("email") or row.get("username") or row.get("id") or row.get("principal")
+        if not email:
+            raise ValueError("whoami returned no identity")
+        roles = row.get("roles", row.get("role", []))
+        if isinstance(roles, str):
+            roles = [roles]
+        roles = [str(r.get("id", r.get("label", ""))) if isinstance(r, dict) else str(r) for r in roles]
+        print(email + " (" + ", ".join(roles) + ")")
+    elif mode == "resources":
+        rows = json.load(sys.stdin)
+        for row in rows:
+            name = row.get("metadata", {}).get("name") or row.get("name", "")
+            if not name:
+                raise ValueError("resource has no name")
+            region = location(row) or args[0]
+            if not region:
+                raise ValueError("resource has no region: set REGION= before sync")
+            print(safe(name.split("/")[-1]) + "\t" + safe(region))
+    elif mode == "sync":
+        path, folder, project = args
+        c = config(path)
+        found = {}
+        for file in sorted(Path(folder).glob("*.json")):
+            kind, region, _ = file.stem.split("__", 2)
+            row = json.loads(file.read_text())
+            name = (row.get("metadata", {}).get("name") or row.get("name", "")).split("/")[-1]
+            env = {}
+            for obj in walk(row):
+                for item in obj.get("env", []):
+                    env[item["name"]] = item
+            client = env.get("PROFILE", {}).get("value", "")
+            store = env.get("STORE_URL", {}).get("value", "")
+            if not client or not store:
+                continue
+            if not re.fullmatch("[a-z][a-z0-9-]{0,15}", client):
+                raise ValueError("discovered invalid client id")
+            section = "gcp/" + client
+            data = found.setdefault(section, {"TARGET": "gcp", "CLIENT": client, "PROJECT": project, "REGION": region})
+            key = "SERVICE" if kind == "services" else "JOB"
+            if data["REGION"] != region or (key in data and data[key] != name):
+                raise ValueError("ambiguous resources for " + section + "; sync one REGION at a time")
+            data[key] = name
+            for key in ("STORE_URL", "LANDING_URL", "VERTEX_PROJECT", "VERTEX_REGION", "VERTEX_EMBEDDING_REGION"):
+                if key in env:
+                    value = env[key].get("value", "")
+                    if key in data and data[key] != value:
+                        raise ValueError("service/job disagree on " + key + " for " + section)
+                    data[key] = value
+            if kind == "services":
+                data["SERVICE_URL"] = row.get("status", {}).get("url") or row.get("uri", "")
+                data["URL"] = (c.get(section, "URL", fallback="") if c.get(section, "PID", fallback="")
+                               else data["SERVICE_URL"])
+                secret = env.get("SIGNIN_PASSWORDS", {})
+                ref = secret.get("valueFrom", {}).get("secretKeyRef", {})
+                secret_name = ref.get("name") or secret.get("valueSource", {}).get("secretKeyRef", {}).get("secret", "")
+                aliases = row.get("spec", {}).get("template", {}).get("metadata", {}).get("annotations", {}).get("run.googleapis.com/secrets", "")
+                for pair in aliases.split(","):
+                    alias, _, resource = pair.partition(":")
+                    if alias == secret_name and resource:
+                        secret_name = resource
+                if secret_name:
+                    data["PASSWORDS_SECRET"] = secret_name
+        for section, data in sorted(found.items()):
+            for key in ("JOB", "SERVICE", "STORE_URL", "LANDING_URL", "PASSWORDS_SECRET", "SERVICE_URL", "URL",
+                        "VERTEX_PROJECT", "VERTEX_REGION", "VERTEX_EMBEDDING_REGION"):
+                data.setdefault(key, "")
+            before = dict(c.items(section)) if c.has_section(section) else {}
+            if before.get("PID") and any(before.get(k) != data.get(k) for k in ("SERVICE", "REGION") if k in data):
+                raise ValueError("stop the proxy before updating " + section + ": kge proxy stop ENV=" + section)
+            if before.get("PROJECT", project) != project:
+                raise ValueError("saved " + section + " belongs to another project; use a separate KGE_STATE")
+            if not c.has_section(section):
+                c.add_section(section)
+            for key, value in data.items():
+                c.set(section, key, safe(value))
+            changed = any(before.get(k) != v for k, v in data.items())
+            print(("new: " if not before else "changed: " if changed else "unchanged: ") + section)
+        if found:
+            if not c.has_section("kge"):
+                c.add_section("kge")
+            if not c.get("kge", "CURRENT", fallback=""):
+                c.set("kge", "CURRENT", sorted(found)[0])
+            write(c, path)
+        else:
+            print("no KGE services or jobs found (PROFILE and STORE_URL required)")
+except (ValueError, KeyError, OSError, configparser.Error) as exc:
+    sys.exit("kge: " + str(exc))
+' "$@"
+}
+
+read_dotenv() {
+    local key=$1 folder=$2
+    [[ -f $folder/.env ]] || return 0
+    awk -v key="$key" 'index($0,key "=")==1 {v=substr($0,length(key)+2)} END {gsub(/^["\047]|["\047]$/, "", v); print v}' "$folder/.env"
+}
+
+command -v python3 >/dev/null || fail 'Python 3 is required (standard library only)'
+CURRENT=$(p get "$STATE" kge CURRENT)
+SELECTED=${ENV:-$CURRENT}
+ARGS=()
+for arg in "$@"; do
+    case "$arg" in --dry-run|DRY_RUN=yes) DRY_RUN=yes ;; DRY_RUN=no) ;; ENV=*) SELECTED=${arg#ENV=} ;; *) ARGS+=("$arg") ;; esac
+done
+[[ $DRY_RUN == yes || $DRY_RUN == no ]] || fail "DRY_RUN must be yes or no"
+export DRY_RUN
+set -- "${ARGS[@]}"
+COMMAND=${1:-help}
+if (($#)); then shift; fi
+if [[ $COMMAND == use && $# == 1 ]]; then SELECTED=$1; fi
+if [[ $COMMAND == add ]]; then
+    folder=${2:-$PWD}
+    [[ $folder != *=* ]] || folder=$PWD
+    client=$(read_dotenv CLIENT "$folder"); client=${client:-${PROFILE:-meridian}}
+    for arg in "$@"; do [[ $arg != CLIENT=* ]] || client=${arg#CLIENT=}; done
+    SELECTED=${1:-local}/$client
+fi
+printf 'kge: %s\n' "${SELECTED:-none}"
+
+valid_env() { [[ $1 =~ ^(local|compose|gcp)/[a-z][a-z0-9-]{0,15}$ ]] || fail 'environment must be local/<client>, compose/<client> or gcp/<client>'; }
+declare -A DRY_SETTINGS=()
+if [[ $DRY_RUN == yes ]]; then
+    mapfile -d '' -t snapshot < <(p snapshot "$STATE" "$SELECTED")
+    ((${#snapshot[@]} % 2 == 1)) && [[ ${snapshot[-1]} == '' ]] || fail 'could not read dry-run settings'
+    for ((i=0; i+1<${#snapshot[@]}; i+=2)); do
+        DRY_SETTINGS["${snapshot[i]}"]=${snapshot[i+1]}
+    done
+    unset snapshot
+fi
+setting() {
+    local key=$1 value arg
+    if [[ $DRY_RUN == yes ]]; then value=${DRY_SETTINGS[$key]:-}; else value=$(p get "$STATE" "$SELECTED" "$key"); fi
+    for arg in "${OVERRIDES[@]}"; do
+        [[ $arg != "$key="* ]] || value=${arg#*=}
+    done
+    printf '%s' "$value"
+}
+need() { local value; value=$(setting "$1"); [[ -n $value ]] || fail "missing $1; run kge config $1=<value>"; printf '%s' "$value"; }
+require() {
+    local key value
+    for key in "$@"; do
+        value=$(setting "$key")
+        [[ -n $value ]] || fail "missing $key; run kge config $key=<value>"
+    done
+}
+save() { p set "$STATE" "$SELECTED" "$@"; }
+OVERRIDES=()
+for arg in "$@"; do
+    if [[ $arg == *=* ]]; then
+        [[ $arg =~ ^[A-Z][A-Z0-9_]*= ]] || fail 'arguments must be NAME=value'
+        case ${arg%%=*} in *PASSWORD*|*TOKEN*|*SECRET*|*API_KEY*)
+            [[ ${arg%%=*} == PASSWORDS_SECRET || ${arg%%=*} == PASSWORDS_FILE ]] || fail 'never pass passwords, tokens or secret values as arguments' ;;
+        esac
+        [[ $arg != *$'\n'* && $arg != *$'\r'* ]] || fail 'arguments cannot contain newlines'
+        OVERRIDES+=("$arg")
+    fi
+done
+
+help() {
+    cat <<'HELP'
+Usage: kge [--dry-run] <command> [NAME=value ...] [ENV=target/client]
+Requires Bash 4.4+, Python 3 (standard library), curl and the selected runner.
+Run on your laptop or in Cloud Shell with your own Google login.
+--dry-run (or DRY_RUN=yes, environment or argument) previews any command.
+Prints every gcloud/docker/make/curl line without invoking them or saving state,
+tokens or passwords. Unknown discovery results use labelled placeholders;
+conditional API/proxy calls are shown without checking live state.
+
+setup [PROJECT=... REGION=...]    sync, prompting for an unknown project
+sync [PROJECT=... REGION=...]     discover existing KGE services and jobs, read-only
+add local [folder] CLIENT=id     save a demo folder (default: current folder)
+add compose <folder> CLIENT=id   save the folder holding compose.yaml
+use <target/client>              select local, compose or gcp environment
+config [NAME=value]              show settings or save one; never secret values
+
+check-pack [--pack folder | PACK=folder]  the onboarding input check, before upload; no graph is built
+Operator jobs: seed, onboard, release, rollback, teardown, setup-client, releases, put-example,
+access [NAME=value ...], admins <email...> [BY=operator-email], upload <folder>, passwords, eval pre (eval post runs by itself after release and rollback).
+admins uses your gcloud account on GCP; local and Compose require BY=.
+rollback means the release job with PREVIOUS=yes. Arguments go to the job.
+upload copies a complete folder, checks pack.yaml, then onboards FROM it.
+passwords writes a private local file and prints only its path. GCP uses the
+operator login to update the existing secret, then deletes both store files
+including old object versions. Compose keeps the hash file as the app needs it.
+GCP copies the latest secret version into the store before merging passwords.
+See INSTALL.md, "Passwords and the service", for the merge and restart steps.
+passwords REVISION=yes forces a new GCP service revision after updating hashes.
+
+proxy [stop]                    GCP service proxy; needs roles/run.invoker
+login [email] / logout          personal sign-in / forget the local token
+playbook <role> [--safe] [--dry-run] [UNIT=id PROPOSAL=id UPLOAD=folder]
+                               run the shipped role guide; stop on a broken step
+review, accept, certify         review / decide UNIT= or PROPOSAL= via the API
+source UNIT=id LABEL=name DDL=file [ROWS=invented|none|csv CSV=folder QUESTIONS=file HELDOUT=file]
+draft UNIT=id                   prepare a source and draft through the API
+restart                         restart Compose app; other targets follow releases
+served [HASH=hash]               print / verify the hash the API is actually serving
+versions                        read release history and automatic eval post via the API
+wait                           wait for the current job; a failed job fails the command
+connect / disconnect            proxy plus sign-in / stop and forget token
+API commands auto-connect unless config AUTO=off; tokens are private per env.
+checks, improve [UNIT=id], sign-off [HASH=...], publish [HASH=...], unpublish
+use POST /onboard/run. publish is the steward release; unpublish rolls back.
+release and rollback remain operator job commands.
+grant <email> ROLES=role,... [NAME=display-name], revoke <email>, list, audit
+use the access API. Identity always comes from the bearer token.
+
+State: ~/.config/kge/state (KGE_STATE overrides). ENV selects once, without
+changing the saved selection. SERVICE_URL is the discovered service URL; GCP API calls
+always use the local proxy. PORT defaults to 8085. AUTO defaults to on.
+Compose reads CLIENT, KGE_PORT and GCS_PORT from its .env without executing it;
+URL and GCS_URL may be overridden with config. Local passwords default to
+build/stores/<client>/run/passwords.txt; PASSWORDS_FILE overrides this path.
+HELP
+}
+
+
+
+case $COMMAND in
+    playbook)
+        exec python3 "$(dirname "$0")/playbook.py" "$0" "${SELECTED:-none}" "$@" ;;
+    help|-h|--help) help; exit 0 ;;
+    check-pack)
+        check_pack_command "$@" ;;
+    use)
+        [[ $# == 1 ]] || fail 'usage: kge use <target/client>'
+        valid_env "$SELECTED"
+        [[ -n $(p get "$STATE" "$SELECTED" TARGET) ]] || fail 'unknown environment; run kge add or kge sync'
+        p set "$STATE" kge "CURRENT=$SELECTED"; exit 0 ;;
+    add)
+        target=${1:-}; [[ $target == local || $target == compose ]] || fail 'usage: kge add local [folder] | add compose <folder>'
+        shift
+        folder=$PWD
+        if (($#)) && [[ $1 != *=* ]]; then folder=$1; shift; elif [[ $target == compose ]]; then fail 'compose needs a folder'; fi
+        folder=$(cd "$folder" && pwd) || fail 'folder does not exist'
+        client=$(read_dotenv CLIENT "$folder"); client=${client:-${PROFILE:-meridian}}
+        for arg in "$@"; do
+            [[ $arg == CLIENT=* ]] || fail 'add accepts CLIENT=<id>'
+            client=${arg#CLIENT=}
+        done
+        SELECTED=$target/$client; valid_env "$SELECTED"
+        if [[ $target == compose ]]; then
+            [[ -f $folder/compose.yaml ]] || fail 'folder must hold compose.yaml'
+        else
+            [[ -f $folder/Makefile ]] || fail 'local folder must hold Makefile'
+        fi
+        port=$(read_dotenv KGE_PORT "$folder"); gcs_port=$(read_dotenv GCS_PORT "$folder")
+        save "TARGET=$target" "CLIENT=$client" "FOLDER=$folder" "URL=http://127.0.0.1:${port:-8000}" "GCS_URL=http://127.0.0.1:${gcs_port:-4443}" 'STORE_URL=gs://kge-store'
+        p set "$STATE" kge "CURRENT=$SELECTED"; exit 0 ;;
+    setup|sync)
+        project=$(setting PROJECT)
+        if [[ -z $project ]]; then project=$(run gcloud config get-value project); fi
+        if [[ $DRY_RUN == yes && -z $project ]]; then project="<configured-project>"; fi
+        if [[ -z $project || $project == '(unset)' ]]; then
+            [[ $COMMAND == setup ]] || fail 'no project; run kge setup or kge sync PROJECT=<id>'
+            read -r -p 'Project: ' project || fail 'project is required'
+        fi
+        [[ -n $project ]] || fail 'project is required'
+        region=$(setting REGION)
+        if [[ -z $region ]]; then region=$(run gcloud config get-value run/region); fi
+        [[ $region != '(unset)' ]] || region=
+        if [[ $DRY_RUN == yes ]]; then
+            for kind in services jobs; do
+                flags=(--project "$project" --format=json)
+                [[ -z $region ]] || flags+=(--region "$region")
+                run gcloud run "$kind" list "${flags[@]}"
+                printf 'dry-run: for each discovered %s resource (names and regions need the list response):\n' "$kind"
+                run gcloud run "$kind" describe "<discovered-$kind-name>" --project "$project" --region "${region:-<discovered-region>}" --format=json
+            done
+            printf 'dry-run: would reconcile discovered environments into %s (state unchanged)\n' "$STATE"
+            exit 0
+        fi
+        scratch=$(mktemp -d); trap 'rm -rf "$scratch"' EXIT
+        flags=(--project "$project" --format=json)
+        [[ -z $region ]] || flags+=(--region "$region")
+        for kind in services jobs; do
+            run gcloud run "$kind" list "${flags[@]}" > "$scratch/list"
+            p resources "$region" < "$scratch/list" > "$scratch/rows"
+            while IFS=$'\t' read -r name location; do
+                [[ -n $name ]] || continue
+                [[ $name =~ ^[a-zA-Z0-9-]+$ && $location =~ ^[a-zA-Z0-9-]+$ ]] || fail 'invalid discovered resource name or region'
+                run gcloud run "$kind" describe "$name" --project "$project" --region "$location" --format=json > "$scratch/${kind}__${location}__${name}.json"
+            done < "$scratch/rows"
+        done
+        p sync "$STATE" "$scratch" "$project"; exit 0 ;;
+esac
+
+valid_env "${SELECTED:-none}"
+TARGET=$(p get "$STATE" "$SELECTED" TARGET)
+[[ -n $TARGET ]] || fail 'unknown environment; run kge add or kge sync'
+[[ $TARGET == "${SELECTED%%/*}" ]] || fail 'state target does not match the environment'
+CLIENT=${SELECTED#*/}
+TOKEN=$STATE_DIR/tokens/$SELECTED
+LAST_JOB=$STATE_DIR/jobs/$SELECTED
+
+if [[ $COMMAND == config ]]; then
+    if (($# == 0)); then p show "$STATE" "$SELECTED"; exit 0; fi
+    [[ $# == 1 && $1 == *=* ]] || fail 'usage: kge config NAME=value'
+    key=${1%%=*}; value=${1#*=}
+    case $key in
+        PROJECT|REGION|JOB|STORE_URL|LANDING_URL|PASSWORDS_SECRET|SERVICE|URL|SERVICE_URL|FOLDER|VERTEX_PROJECT|VERTEX_REGION|VERTEX_EMBEDDING_REGION|GCS_URL|PASSWORDS_FILE) ;;
+        AUTO) [[ $value == on || $value == off ]] || fail 'AUTO must be on or off' ;;
+        PORT) [[ $value =~ ^[0-9]+$ && $value -gt 0 && $value -lt 65536 ]] || fail 'PORT must be 1..65535' ;;
+        *) fail 'unknown setting; passwords and tokens are never stored in state' ;;
+    esac
+    case $key in
+        PORT|PROJECT|REGION|SERVICE)
+            [[ -z $(p get "$STATE" "$SELECTED" PID) ]] || fail 'stop the proxy before changing its settings: kge proxy stop' ;;
+    esac
+    save "$1"; exit 0
+fi
+
+job() {
+    local cmd=$1 folder runner joined arg delimiter=,
+    local args=()
+    shift
+    for arg in "$@"; do
+        [[ $arg =~ ^[A-Z][A-Z0-9_]*= ]] || fail 'job arguments must be NAME=value'
+        if [[ $cmd == setup-client && $arg == "CLIENT=$CLIENT" ]]; then continue; fi
+        [[ $arg != CLIENT=* && $arg != PROFILE=* ]] || fail 'select the client with ENV=<target/client>'
+        [[ $arg != *,* ]] || delimiter='|'
+        args+=("$arg")
+    done
+    [[ $cmd != setup-client ]] || args+=("CLIENT=$CLIENT")
+    set -- "${args[@]}"
+    case $TARGET in
+        gcp)
+            require JOB PROJECT REGION
+            joined=$cmd
+            for arg in "$@"; do
+                [[ $delimiter != '|' || $arg != *'|'* ]] || fail 'job argument cannot contain both comma and pipe'
+                joined+="$delimiter$arg"
+            done
+            [[ $delimiter == , ]] || joined="^|^$joined"
+            run gcloud run jobs execute "$(need JOB)" --project "$(need PROJECT)" --region "$(need REGION)" --wait "--args=$joined" ;;
+        compose)
+            require FOLDER
+            folder=$(need FOLDER)
+            (cd "$folder" || exit; export CLIENT; run docker compose run --rm job "$cmd" "$@") ;;
+        local)
+            require FOLDER
+            folder=$(need FOLDER); runner="make"
+            (cd "$folder" || exit; run "$runner" "$cmd" "PROFILE=$CLIENT" "$@") ;;
+    esac
+}
+
+case $COMMAND in
+    disconnect|logout|list|audit) (($# == 0)) || fail "$COMMAND accepts no arguments except ENV=<environment>" ;;
+    connect) (($# <= 1)) && [[ ${1:-person@example.com} != *=* ]] || fail 'usage: kge connect [email]' ;;
+    login) (($# <= 1)) || fail 'usage: kge login [email]'
+        [[ ${1:-} != *=* ]] || fail 'login expects an email, not a setting override' ;;
+    proxy) (($# <= 1)) || fail 'usage: kge proxy [stop]' ;;
+esac
+scratch=$(mktemp -d)
+trap 'rm -rf "$scratch"' EXIT
+api_url() {
+    if [[ $TARGET == gcp ]]; then printf 'http://localhost:%s' "${DRY_PORT:-$(setting PORT)}"; else need URL; fi
+}
+http() {
+    local method=$1 path=$2 body=${3:-} status
+    local opts=(-sS --connect-timeout 5 --max-time 30 -o "$scratch/response" -w '%{http_code}' -X "$method" -H 'Content-Type: application/json')
+    if [[ $DRY_RUN == yes ]]; then
+        opts+=(--header "@<private-bearer-header>")
+    elif [[ -s $TOKEN ]]; then
+        printf 'Authorization: Bearer %s\n' "$(cat "$TOKEN")" > "$scratch/header"
+        opts+=(--header "@$scratch/header")
+    fi
+    [[ -z $body ]] || opts+=(--data-binary "@$body")
+    if [[ $TARGET != gcp ]]; then require URL; fi
+    if [[ $DRY_RUN == yes ]]; then
+        show curl "${opts[@]}" "$(api_url)$path"
+        [[ -z $body || $path == /session/token ]] || printf 'dry-run body: %s\n' "$(cat "$body")" >&2
+        return 0
+    fi
+    status=$(curl "${opts[@]}" "$(api_url)$path") || return 1
+    [[ $status =~ ^2[0-9][0-9]$ ]] && return 0
+    printf 'kge: API %s %s refused (HTTP %s)\n' "$method" "$path" "$status" >&2
+    p error-detail < "$scratch/response"
+    return 1
+}
+proxy_stop() {
+    local pid
+    [[ $TARGET == gcp ]] || return 0
+    pid=$(setting PID)
+    if [[ $DRY_RUN == yes ]]; then
+        [[ -z $pid ]] || show kill "$pid"
+        save "PID=" "URL=$(setting SERVICE_URL)"
+        return 0
+    fi
+    if [[ $pid =~ ^[0-9]+$ && $pid -gt 1 ]]; then kill "$pid" 2>/dev/null || true; fi
+    save 'PID=' "URL=$(setting SERVICE_URL)"
+}
+proxy_start() {
+    local pid port log service project region i
+    [[ $TARGET == gcp ]] || return 0
+    pid=$(setting PID); port=$(p port "$STATE" "$SELECTED" "$(setting PORT)")
+    [[ $port =~ ^[0-9]+$ && $port -gt 0 && $port -lt 65536 ]] || fail 'invalid proxy port'
+    if [[ $DRY_RUN == yes ]]; then
+        require SERVICE PROJECT REGION
+        DRY_PORT=$port
+        show curl -fsS --connect-timeout 1 --max-time 1 -o /dev/null "http://localhost:$port/healthz"
+        printf 'dry-run: if the saved proxy is unhealthy, stop it; check the port before starting\n'
+        [[ -z $pid ]] || show kill "$pid"
+        show curl -sS --connect-timeout 1 --max-time 1 -o /dev/null "http://localhost:$port/healthz"
+        printf 'dry-run: start proxy if absent or unhealthy; poll healthz until ready\n'
+        show gcloud run services proxy "$(need SERVICE)" --project "$(need PROJECT)" --region "$(need REGION)" --port "$port"
+        show curl -fsS --connect-timeout 1 --max-time 1 -o /dev/null "http://localhost:$port/healthz"
+        return 0
+    fi
+    if [[ $pid =~ ^[0-9]+$ && $pid -gt 1 ]] && kill -0 "$pid" 2>/dev/null; then
+        if curl -fsS --connect-timeout 1 --max-time 1 -o /dev/null "http://localhost:$port/healthz" 2>/dev/null; then return 0; fi
+        proxy_stop
+        for ((i=0; i<20; i++)); do
+            kill -0 "$pid" 2>/dev/null || break
+            sleep 0.1
+        done
+    fi
+    require SERVICE PROJECT REGION
+    if curl -sS --connect-timeout 1 --max-time 1 -o /dev/null "http://localhost:$port/healthz" 2>/dev/null; then
+        fail "proxy PORT $port is already in use; run kge config PORT=<unused-port>"
+    fi
+    service=$(need SERVICE); project=$(need PROJECT); region=$(need REGION)
+    mkdir -p "$STATE_DIR/proxies/gcp"
+    log=$STATE_DIR/proxies/$SELECTED.log
+    show gcloud run services proxy "$service" --project "$project" --region "$region" --port "$port"
+    nohup gcloud run services proxy "$service" --project "$project" --region "$region" --port "$port" > "$log" 2>&1 < /dev/null &
+    pid=$!
+    if [[ -z $(setting SERVICE_URL) ]]; then save "SERVICE_URL=$(setting URL)"; fi
+    save "PID=$pid" "PORT=$port" "URL=http://localhost:$port"
+    for ((i=0; i<30; i++)); do
+        if ! kill -0 "$pid" 2>/dev/null; then
+            save 'PID='
+            fail "proxy failed; your Google account needs roles/run.invoker. See $log"
+        fi
+        if curl -fsS --connect-timeout 1 --max-time 1 -o /dev/null "http://localhost:$port/healthz" 2>/dev/null; then
+            sleep 0.2
+            if kill -0 "$pid" 2>/dev/null; then return 0; fi
+        fi
+        sleep 0.2
+    done
+    proxy_stop
+    fail "proxy did not become ready; check roles/run.invoker and $log"
+}
+login() {
+    local email=${1:-} password
+    proxy_start
+    if [[ $DRY_RUN == yes ]]; then
+        http POST /session/token "<private-sign-in-body>"
+        return 0
+    fi
+    [[ -n $email ]] || read -r -p 'Email: ' email || fail 'email is required; run kge login <email>'
+    [[ $email == *@* ]] || fail 'sign in with your email'
+    read -r -s -p 'Password (hidden): ' password || fail 'password is required'
+    printf '\n' >&2
+    printf '%s\n%s' "$email" "$password" | p credentials > "$scratch/credentials"
+    unset password
+    http POST /session/token "$scratch/credentials" || fail 'token sign-in failed; run kge login'
+    rm -f "$scratch/credentials"
+    p token < "$scratch/response" > "$scratch/token"
+    mkdir -p "$(dirname "$TOKEN")"
+    chmod 700 "$(dirname "$TOKEN")"
+    mv "$scratch/token" "$TOKEN"; chmod 600 "$TOKEN"
+}
+connect() {
+    local identity email=${1:-}
+    proxy_start
+    if [[ $DRY_RUN == yes ]]; then
+        http GET /whoami
+        printf 'dry-run: if token is absent or invalid, prompt for sign-in and verify identity\n'
+        http POST /session/token "<private-sign-in-body>"
+        http GET /whoami
+        return 0
+    fi
+    identity=
+    if [[ -s $TOKEN ]] && http GET /whoami; then identity=$(p identity < "$scratch/response"); fi
+    if [[ -z $identity || ( -n $email && ${identity%% *} != "$email" ) ]]; then
+        rm -f "$TOKEN"
+        login "$email"
+        http GET /whoami || fail 'identity could not be verified; run kge login'
+    fi
+    identity=$(p identity < "$scratch/response") || fail 'whoami returned no usable identity'
+    printf 'connected: %s as %s\n' "$SELECTED" "$identity"
+}
+ensure_api() {
+    if [[ $DRY_RUN == yes ]]; then
+        if [[ ${KGE_PLAYBOOK_SAFE:-} == 1 ]]; then
+            DRY_PORT=$(p port "$STATE" "$SELECTED" "$(setting PORT)")
+            http GET /whoami
+        elif [[ $(setting AUTO) == off ]]; then
+            proxy_start
+            http GET /whoami
+        else
+            connect
+        fi
+        return
+    fi
+    if [[ ${KGE_PLAYBOOK_SAFE:-} == 1 ]]; then
+        [[ -s $TOKEN ]] || fail 'safe playbook needs an existing token; run kge connect first'
+        if [[ $TARGET == gcp && -z $(setting PID) ]]; then fail 'safe playbook needs an existing proxy; run kge connect first'; fi
+        http GET /whoami || fail 'safe playbook token is invalid; run kge connect first'
+        return
+    fi
+    if [[ $(setting AUTO) != off ]]; then connect; else
+        [[ -s $TOKEN ]] || fail 'no token; run kge connect (or kge login)'
+        proxy_start
+        http GET /whoami || fail 'token is invalid or expired; run kge connect'
+    fi
+}
+
+upload() {
+    local folder=${1:-} destination stamp object file relative encoded
+    [[ -n $folder ]] || fail 'usage: kge upload <folder> [NAME=value ...]'
+    shift
+    if [[ $DRY_RUN == yes && $folder == '<upload>' ]]; then
+        printf 'dry-run: upload requires UPLOAD=<folder> with pack.yaml; transfers below are templates\n'
+    else
+        folder=$(cd "$folder" && pwd) || fail 'upload folder does not exist'
+        [[ -f $folder/pack.yaml ]] || fail 'upload folder must hold pack.yaml'
+    fi
+    stamp=$(date -u +%Y%m%dT%H%M%SZ)-$$
+    if [[ $TARGET == local ]]; then job onboard "FROM=$folder" "$@"; return; fi
+    require STORE_URL
+    [[ $TARGET != compose ]] || require GCS_URL
+    destination="$(need STORE_URL)/uploads/$CLIENT/$stamp"
+    if [[ $TARGET == gcp ]]; then
+        run gcloud storage cp -r "$folder"/* "$destination/"
+        run gcloud storage ls "$destination/pack.yaml"
+    elif [[ $DRY_RUN == yes && $folder == '<upload>' ]]; then
+        show curl -fsS -o /dev/null -X POST --data-binary "@<upload-file>" "$(need GCS_URL)/upload/storage/v1/b/kge-store/o?uploadType=media&name=<encoded-upload-key>"
+        encoded=$(p quote "uploads/$CLIENT/$stamp/pack.yaml")
+        show curl -fsS -o /dev/null "$(need GCS_URL)/storage/v1/b/kge-store/o/$encoded?alt=media"
+    else
+        while IFS= read -r -d '' file; do
+            relative=${file#"$folder/"}
+            object="uploads/$CLIENT/$stamp/$relative"
+            encoded=$(p quote "$object")
+            run curl -fsS -o /dev/null -X POST --data-binary "@$file" "$(need GCS_URL)/upload/storage/v1/b/kge-store/o?uploadType=media&name=$encoded"
+        done < <(find "$folder" -type f ! -path '*/.*' -print0)
+        encoded=$(p quote "uploads/$CLIENT/$stamp/pack.yaml")
+        run curl -fsS -o /dev/null "$(need GCS_URL)/storage/v1/b/kge-store/o/$encoded?alt=media"
+    fi
+    job onboard "FROM=$destination/" "$@"
+}
+passwords() {
+    local prefix hash_file plain_file encoded source secret project resource arg rotate='' revision=no
+    local args=() revision_command=()
+    for arg in "$@"; do
+        case $arg in
+            REVISION=*) revision=${arg#REVISION=} ;;
+            *) args+=("$arg"); [[ $arg != ROTATE=* ]] || rotate=${arg#ROTATE=} ;;
+        esac
+    done
+    [[ $revision == yes || $revision == no ]] || fail 'REVISION must be yes or no'
+    [[ $revision == no || $TARGET == gcp ]] || fail 'REVISION=yes requires a gcp environment'
+    case $TARGET in
+        gcp) require PASSWORDS_SECRET STORE_URL PROJECT REGION JOB SERVICE
+            secret=$(need PASSWORDS_SECRET); prefix="$(need STORE_URL)/secrets/$CLIENT"
+            project=$(need PROJECT)
+            resource=$secret
+            [[ $resource == projects/*/secrets/* ]] || resource="projects/$project/secrets/$secret"
+            if [[ $rotate != all ]]; then
+                run gcloud secrets versions access latest --secret "$secret" --project "$project" --out-file "$scratch/base.json"
+                run gcloud storage cp "$scratch/base.json" "$prefix/passwords.json"
+            fi ;;
+        compose) require GCS_URL FOLDER ;;
+        local) require FOLDER ;;
+    esac
+    if [[ $DRY_RUN == yes ]]; then
+        plain_file=$STATE_DIR/passwords/$SELECTED.XXXXXX
+    else
+        mkdir -p "$STATE_DIR/passwords/$TARGET"
+        plain_file=$(mktemp "$STATE_DIR/passwords/$SELECTED.XXXXXX")
+    fi
+    # Job output can contain manual instructions but must never expose plaintext.
+    if ! QUIET_RUN=1 job passwords "${args[@]}"; then
+        [[ ! -f $scratch/job-output ]] || cat "$scratch/job-output" >&2
+        run rm -f "$plain_file"; fail 'passwords job failed; inspect its job logs before retrying'
+    fi
+    case $TARGET in
+        gcp)
+            hash_file=$scratch/passwords.json
+            run gcloud storage cp "$prefix/passwords.json" "$hash_file"
+            run gcloud secrets versions add "$secret" --project "$(need PROJECT)" "--data-file=$hash_file" > /dev/null
+            printf '%s\n' "$resource" > "$scratch/passwords-secret"
+            run gcloud storage cp "$scratch/passwords-secret" "$(need STORE_URL)/deploy/$CLIENT/passwords-secret"
+            run gcloud storage cp "$prefix/passwords.txt" "$plain_file"
+            run chmod 600 "$plain_file"
+            run gcloud storage rm --all-versions "$prefix/passwords.json" "$prefix/passwords.txt"
+            printf '%s\n' 'The service picks up the new version within a minute once it supports the passwords-secret pointer.'
+            revision_command=(gcloud run services update "$(need SERVICE)" --project "$project" --region "$(need REGION)" "--revision-suffix=passwords-$(date +%s)")
+            if [[ $revision == yes ]]; then
+                run "${revision_command[@]}"
+            else
+                printf '%s\n' 'Otherwise, run this exact command to start a new revision:'
+                show "${revision_command[@]}"
+            fi
+            ;;
+        compose)
+            encoded=$(p quote "secrets/$CLIENT/passwords.txt")
+            run curl -fsS -o "$plain_file" "$(need GCS_URL)/storage/v1/b/kge-store/o/$encoded?alt=media"
+            run chmod 600 "$plain_file"
+            run curl -fsS -o /dev/null -X DELETE "$(need GCS_URL)/storage/v1/b/kge-store/o/$encoded"
+            printf '%s\n' 'Restart app to read the merged hashes: kge restart'
+            ;;
+        local)
+            source=$(setting PASSWORDS_FILE)
+            source=${source:-$(need FOLDER)/build/stores/$CLIENT/run/passwords.txt}
+            [[ $DRY_RUN == yes || -f $source ]] || fail 'passwords file missing; set PASSWORDS_FILE to the generated file'
+            run cp "$source" "$plain_file"; run chmod 600 "$plain_file"
+            ;;
+    esac
+    if [[ $DRY_RUN != yes ]]; then
+        python3 -c 'import os,sys; from pathlib import Path; file=Path(sys.argv[1]); link=file.parent / (sys.argv[2] + "-latest"); tmp=link.with_name(link.name + "." + str(os.getpid())); tmp.symlink_to(file.name); os.replace(tmp, link)' "$plain_file" "$CLIENT"
+    fi
+    printf 'passwords latest: %s\n' "$STATE_DIR/passwords/$TARGET/$CLIENT-latest"
+    printf '%s\n' "$plain_file"
+}
+
+eval_cmd() {
+    local sub=${1:-} arg suite_path='' stamp destination encoded
+    local eval_args=()
+    if [[ $sub == pre ]]; then
+        shift
+        job eval-pre "$@"
+        return
+    fi
+    if [[ $sub != post ]]; then
+        fail 'usage: kge eval pre [NAME=value ...] | kge eval post SUITE=<file> [ARM=...] [PRINCIPAL=...] (post without SUITE= runs automatically on release and rollback)'
+    fi
+    shift
+    for arg in "$@"; do
+        case $arg in
+            SUITE=*) suite_path=${arg#SUITE=} ;;
+            ARM=*|PRINCIPAL=*) ;;
+            *) fail 'usage: kge eval post SUITE=<file> [ARM=...] [PRINCIPAL=...] (post without SUITE= runs automatically on release and rollback)' ;;
+        esac
+    done
+    [[ -n $suite_path ]] || fail 'eval post without SUITE=<file> runs automatically on release and rollback; pass SUITE=<file> [ARM=...] [PRINCIPAL=...]'
+    stamp=$(date -u +%Y%m%dT%H%M%SZ)-$$
+    for arg in "$@"; do
+        if [[ $arg == SUITE=* ]]; then
+            suite_path=${arg#SUITE=}
+            if [[ $suite_path == gs://* || $suite_path == file://* ]]; then
+                eval_args+=("$arg")
+            elif [[ $TARGET == local ]]; then
+                if [[ $DRY_RUN != yes ]]; then
+                    [[ -f $suite_path ]] || fail "suite file does not exist: $suite_path"
+                    suite_path="$(cd "$(dirname "$suite_path")" && pwd)/$(basename "$suite_path")"
+                fi
+                eval_args+=("SUITE=$suite_path")
+            else
+                [[ $DRY_RUN == yes || -f $suite_path ]] || fail "suite file does not exist: $suite_path"
+                require STORE_URL
+                [[ $TARGET != compose ]] || require GCS_URL
+                destination="$(need STORE_URL)/uploads/$CLIENT/uat-$stamp.json"
+                if [[ $TARGET == gcp ]]; then
+                    run gcloud storage cp "$suite_path" "$destination"
+                else
+                    encoded=$(p quote "uploads/$CLIENT/uat-$stamp.json")
+                    run curl -fsS -o /dev/null -X POST --data-binary "@$suite_path" "$(need GCS_URL)/upload/storage/v1/b/kge-store/o?uploadType=media&name=$encoded"
+                fi
+                eval_args+=("SUITE=$destination")
+            fi
+        else
+            eval_args+=("$arg")
+        fi
+    done
+    job eval "${eval_args[@]}"
+}
+
+case $COMMAND in
+    eval) eval_cmd "$@" ;;
+    teardown)
+        [[ $TARGET != local ]] || fail 'teardown requires a Compose or GCP store'
+        job teardown "$@" ;;
+    seed|release|setup-client|access) job "$COMMAND" "$@" ;;
+    onboard)
+        if [[ ${1:-} == portal || ${1:-} == graph ]]; then
+            target=$1
+            shift
+            job onboard "CATALOGUE_TARGET=$target" "$@"
+        else
+            job onboard "$@"
+        fi ;;
+    restart)
+        (($# == 0)) || fail 'restart accepts no arguments'
+        if [[ $TARGET == compose ]]; then
+            folder=$(need FOLDER)
+            (cd "$folder" || exit; export CLIENT; run docker compose restart app)
+            if [[ $DRY_RUN == yes ]]; then
+                show curl -fsS --connect-timeout 1 --max-time 2 -o /dev/null "$(need URL)/healthz"
+                printf 'restart: dry run, nothing restarted\n'
+            else
+                ready=no
+                for ((i=0; i<60; i++)); do
+                    if curl -fsS --connect-timeout 1 --max-time 2 -o /dev/null "$(need URL)/healthz" 2>/dev/null; then ready=yes; break; fi
+                    sleep 1
+                done
+                [[ $ready == yes ]] || fail 'app did not become healthy after restart'
+                printf 'restart: compose app ready\n'
+            fi
+        elif [[ $DRY_RUN == yes ]]; then
+            printf 'restart: dry run, nothing restarted\n'
+        elif [[ $TARGET == gcp ]]; then
+            printf 'restart: nothing needed; the service follows releases on its next status poll and passwords within a minute\n'
+        else
+            printf 'restart: nothing needed; the local service follows releases on its next status poll; restart its process after password changes\n'
+        fi ;;
+    versions)
+        (($# == 0)) || fail 'versions accepts no arguments'
+        ensure_api
+        http GET /versions || fail 'cannot read versions'
+        [[ $DRY_RUN == yes ]] || cat "$scratch/response"; printf '\n' ;;
+    releases)
+        if [[ $TARGET == local ]]; then
+            (($# == 0)) || fail 'local releases accepts no arguments'
+            ensure_api
+            http GET /versions || fail 'cannot read releases'
+            [[ $DRY_RUN == yes ]] || cat "$scratch/response"; printf '\n'
+        else
+            job releases "$@"
+        fi ;;
+    put-example)
+        [[ $TARGET != local ]] || fail 'local demo already includes the sample; put-example requires a Compose or GCP store'
+        job put-example "$@" ;;
+    rollback)
+        if [[ ${1:-} == portal ]]; then
+            shift
+            job onboard CATALOGUE_TARGET=portal ACTION=rollback "$@"
+        else
+            job release "$@" PREVIOUS=yes
+        fi ;;
+    admins)
+        emails=; by=; explicit_by=no
+        for email in "$@"; do
+            if [[ $email == BY=* ]]; then
+                [[ $explicit_by == no ]] || fail 'admins accepts one BY= argument'
+                by=${email#BY=}; explicit_by=yes; continue
+            fi
+            [[ $email == *@* && $email != *,* && $email != *=* ]] || fail 'admins expects email addresses'
+            emails+=${emails:+,}$email
+        done
+        [[ -n $emails ]] || fail 'usage: kge admins <email...> [BY=operator-email]'
+        if [[ $explicit_by == no && $TARGET == gcp ]]; then by=$(run gcloud config get-value account) || by=; [[ $DRY_RUN != yes ]] || by="<gcloud-account>@example.com"; fi
+        [[ $by == *@* && $by != *,* && $by != *=* && $by != *' '* ]] || fail 'admins requires BY=<operator email>; set BY= explicitly when no gcloud account is available'
+        job access "ADMINS=$emails" "BY=$by" ;;
+    upload) upload "$@" ;;
+    passwords) passwords "$@" ;;
+    proxy) case ${1:-} in '') proxy_start ;; stop) proxy_stop ;; *) fail 'usage: kge proxy [stop]' ;; esac ;;
+    login) login "${1:-}" ;;
+    logout) run rm -f "$TOKEN" ;;
+    connect) connect "${1:-}" ;;
+    disconnect) proxy_stop; run rm -f "$TOKEN" ;;
+    wait)
+        (($# == 0)) || fail 'wait accepts no arguments'
+        ensure_api
+        if [[ $DRY_RUN == yes ]]; then http GET /onboard; exit 0; fi
+        started=$SECONDS; waiting=$(cat "$LAST_JOB" 2>/dev/null || true)
+        while :; do
+            http GET /onboard || fail 'cannot read job status'
+            read -r job_id job_state < <(p job-state < "$scratch/response")
+            [[ -n $job_id && -n $job_state ]] || fail 'no job to wait for'
+            [[ -z $waiting || $waiting == "$job_id" ]] || fail 'job was replaced while waiting'
+            waiting=$job_id
+            case $job_state in
+                done) printf 'job: done (%s)\n' "$job_id"; break ;;
+                failed|interrupted|cancelled) cat "$scratch/response"; fail "job: $job_state ($job_id)" ;;
+                running|queued) ;;
+                *) fail "unknown job state: $job_state" ;;
+            esac
+            (( SECONDS - started < 1800 )) || fail "job: timed out ($job_id); inspect the page"
+            sleep 1
+        done ;;
+    review)
+        (($# == 0)) || fail 'review accepts no arguments'
+        ensure_api
+        http GET /onboard || fail 'review refused'
+        [[ $DRY_RUN == yes ]] || cat "$scratch/response"; printf '\n' ;;
+    served)
+        (($# <= 1)) && [[ ${1:-HASH=} == HASH=* ]] || fail 'usage: kge served [HASH=<expected hash>]'
+        expected=${1:-HASH=}
+        ensure_api
+        http GET /onboard || fail 'cannot read served hash'
+        [[ $DRY_RUN == yes ]] || p served "${expected#HASH=}" < "$scratch/response" ;;
+    source|draft)
+        p "$COMMAND" "$@" > "$scratch/body"
+        ensure_api
+        http POST "/onboard/$COMMAND" "$scratch/body" || fail "$COMMAND refused"
+        [[ $DRY_RUN == yes ]] || cat "$scratch/response"; printf '\n' ;;
+    accept|certify)
+        p transition "$@" > "$scratch/body"
+        ensure_api
+        http POST "/onboard/$COMMAND" "$scratch/body" || fail 'review decision refused'
+        [[ $DRY_RUN == yes ]] || cat "$scratch/response"; printf '\n' ;;
+    checks|improve|sign-off|publish|unpublish)
+        step=$COMMAND
+        [[ $COMMAND != publish ]] || step=release
+        [[ $COMMAND != unpublish ]] || step=rollback
+        p body "$step" "$@" > "$scratch/body"
+        ensure_api
+        http POST "$RUN_PATH" "$scratch/body" || fail 'API command refused'
+        if [[ $DRY_RUN == yes ]]; then
+            if [[ $TARGET == compose ]]; then
+                printf 'dry-run: if API response requests the Compose runner:\n'
+                job onboard-request
+            fi
+            exit 0
+        fi
+        read -r job_id job_state < <(p job-state < "$scratch/response")
+        [[ -n $job_id ]] || fail 'API returned no job id'
+        mkdir -p "$(dirname "$LAST_JOB")"
+        printf '%s\n' "$job_id" > "$LAST_JOB"
+        if [[ $TARGET == compose ]] && python3 -c 'import json,sys; sys.exit(not bool(json.load(sys.stdin).get("command")))' < "$scratch/response"; then
+            job onboard-request
+        fi
+        [[ $DRY_RUN == yes ]] || cat "$scratch/response"; printf '\n' ;;
+    grant|revoke|list|audit)
+        path=$ACCESS_PATH; method=GET; body=
+        case $COMMAND in
+            grant|revoke)
+                (($#)) || fail "$COMMAND needs an email"
+                email=$1; shift
+                [[ $email == *@* ]] || fail "$COMMAND needs an email"
+                path+=/$(p quote "$email")
+                if [[ $COMMAND == grant ]]; then
+                    p grant "$@" > "$scratch/body"; body=$scratch/body; method=PUT
+                else
+                    (($# == 0)) || fail 'revoke accepts only an email'; method=DELETE
+                fi ;;
+            audit) path=$AUDIT_PATH ;;
+        esac
+        ensure_api
+        http "$method" "$path" "$body" || fail 'access API command refused'
+        [[ $DRY_RUN == yes ]] || cat "$scratch/response"; printf '\n' ;;
+    *) fail "unknown command: $COMMAND; run kge help" ;;
+esac

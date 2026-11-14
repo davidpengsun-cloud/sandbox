@@ -1,0 +1,43 @@
+# Fellmoor Regional Transit's fixture estate: two warehouses, as their own catalogues hold them. Everything here is
+# invented: Fellmoor Regional Transit is a small regional bus operator made up for issue #40's second client from scratch.
+# kge/estate/from_files.py builds the warehouses from this file and the rows under data/; each column's description is the
+# comment its catalogue carries, which certification lands and the lock freezes.
+warehouses:
+  ticketing:
+    label: Fares and Ticketing
+    tables:
+      - name: card
+        columns:
+          - {name: card_id, type: VARCHAR, description: The smartcard's number in the ticketing system}
+          - {name: holder_email, type: VARCHAR, description: "The cardholder's contact address: personal data, restricted"}
+          - {name: fare_class, type: VARCHAR, description: "Fare class the card is issued under: ADULT, CONCESSION or STUDENT"}
+        primary_key: [card_id]
+      - name: journey
+        columns:
+          - {name: journey_id, type: INTEGER, description: The journey's number}
+          - {name: card_id, type: VARCHAR, description: The smartcard the journey was tapped with}
+          - {name: route_code, type: VARCHAR, description: The route the journey was made on}
+          - {name: vehicle_ref, type: VARCHAR, description: "The vehicle number as the driver keyed it at sign-on, never checked against the fleet register"}
+          - {name: tapped_on, type: DATE, description: The day the card was tapped on board}
+          - {name: fare_usd, type: "DECIMAL(10,2)", description: "Fare charged for the journey, in USD, after any concession"}
+        primary_key: [journey_id]
+        foreign_keys:
+          - {columns: [card_id], ref_table: card, ref_columns: [card_id]}
+  fleet:
+    label: Fleet Engineering
+    tables:
+      - name: vehicle
+        columns:
+          - {name: vehicle_no, type: VARCHAR, description: The vehicle's fleet number in the fleet register}
+          - {name: depot_code, type: VARCHAR, description: "The depot the vehicle runs from: NORTHGATE or RIVERSIDE"}
+          - {name: entered_service_on, type: DATE, description: The day the vehicle entered service}
+        primary_key: [vehicle_no]
+      - name: repair
+        columns:
+          - {name: repair_id, type: INTEGER, description: The repair order's number}
+          - {name: vehicle_no, type: VARCHAR, description: The vehicle repaired}
+          - {name: completed_on, type: DATE, description: The day the repair was completed and signed off by the workshop}
+          - {name: cost_usd, type: "DECIMAL(10,2)", description: "Parts and labour charged to the repair, in USD"}
+        primary_key: [repair_id]
+        foreign_keys:
+          - {columns: [vehicle_no], ref_table: vehicle, ref_columns: [vehicle_no]}

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "owner", "question": "Who owns client accounts?", "expected_products": ["retail-accounts"],
+    "reply": { "statements": [{ "product_id": "retail-accounts", "text": "Data domain owner: Administrator; Data steward: Steward." }] },
+    "expected_text": "Data domain owner: Administrator; Data steward: Steward."
+  },
+  {
+    "id": "fields", "question": "What fields are in client accounts?", "expected_products": ["retail-accounts"],
+    "reply": { "statements": [{ "product_id": "retail-accounts", "text": "Fields: Account identifier (id), Region code (region_code), Certified NNA (nna)." }] },
+    "expected_text": "Region code (region_code)"
+  },
+  {
+    "id": "field-meaning", "question": "What does certified NNA mean?", "expected_products": ["retail-accounts"],
+    "reply": { "statements": [{ "product_id": "retail-accounts", "field": "nna", "text": "Certified NNA means certified net new assets." }] },
+    "expected_text": "Certified NNA means certified net new assets."
+  },
+  {
+    "id": "which-product-holds", "question": "Which product holds the region code?", "expected_products": ["retail-accounts"],
+    "reply": { "statements": [{ "product_id": "retail-accounts", "field": "region_code", "text": "Region code identifies the account's reporting region." }] },
+    "expected_text": "Region code identifies"
+  },
+  {
+    "id": "out-of-catalogue", "question": "What is the weather tomorrow?", "expected_products": [], "decline": true,
+    "reply": { "statements": [] }
+  },
+  {
+    "id": "figure", "question": "What is the total NNA?", "expected_products": [], "decline": true,
+    "reply": { "statements": [] }
+  },
+  {
+    "id": "unreadable", "question": "Who owns Wealth Holdings?", "expected_products": [], "decline": true,
+    "reply": { "statements": [] }, "never_named": "Wealth Holdings"
+  },
+  {"id": "meridian-certified-nna", "catalogue": "meridian", "question": "Where can I find certified net new assets?", "expected_products": ["wealth.F_NNA_FIN"], "reply": {"statements": [{"product_id": "wealth.F_NNA_FIN", "field": "NNA_AM", "text": "Net new assets amount"}, {"product_id": "wealth.F_NNA_FIN", "text": "Net New Assets"}, {"product_id": "wealth.F_NNA_FIN", "text": "Object type: View"}]}, "expected_citations": ["wealth.F_NNA_FIN.NNA_AM", "wealth.F_NNA_FIN", "wealth.F_NNA_FIN"], "expected_text": "Object type: View"},
+  {"id": "meridian-quality-rules", "catalogue": "meridian", "question": "Is net new asset amount governed by any data quality rules?", "expected_products": ["wealth.F_NNA_FIN"], "reply": {"statements": [{"product_id": "wealth.F_NNA_FIN", "field": "NNA_AM", "text": "Quality rule: NNA_AM is populated; Type: Custom_Data_Checks; Dimension: Completeness; Failing: 0%."}]}, "expected_citations": ["wealth.F_NNA_FIN.NNA_AM"], "expected_text": "Dimension: Completeness"},
+  {"id": "meridian-last-refresh", "catalogue": "meridian", "question": "When was the view F_NNA_FIN last refreshed?", "expected_products": ["wealth.F_NNA_FIN"], "reply": {"statements": [{"product_id": "wealth.F_NNA_FIN", "text": "Last refreshed: 2025-07-01"}]}, "expected_citations": ["wealth.F_NNA_FIN"], "expected_text": "Last refreshed: 2025-07-01"},
+  {"id": "meridian-owner", "catalogue": "meridian", "question": "Who owns the view F_NNA_FIN?", "expected_products": ["wealth.F_NNA_FIN"], "reply": {"statements": [{"product_id": "wealth.F_NNA_FIN", "text": "Data domain owner: Finance Data Office; Data steward: Soren Varga."}]}, "expected_citations": ["wealth.F_NNA_FIN"], "expected_text": "Data domain owner: Finance Data Office; Data steward: Soren Varga."},
+  {"id": "meridian-document", "catalogue": "meridian", "question": "Where can I view complaint records?", "expected_products": ["retail.complaint"], "reply": {"statements": [{"product_id": "retail.complaint", "text": "Complaint"}, {"product_id": "retail.complaint", "text": "Object type: Documents"}]}, "expected_citations": ["retail.complaint", "retail.complaint"], "expected_text": "Object type: Documents"},
+  {"id": "meridian-connector", "catalogue": "meridian", "question": "Is there a connector for the fiscal calendar?", "expected_products": ["corporate.fiscal_calendar"], "reply": {"statements": [{"product_id": "corporate.fiscal_calendar", "text": "Fiscal Calendar"}, {"product_id": "corporate.fiscal_calendar", "text": "Object type: API/MCP"}]}, "expected_citations": ["corporate.fiscal_calendar", "corporate.fiscal_calendar"], "expected_text": "Object type: API/MCP"},
+  {"id": "meridian-no-quality-rule", "catalogue": "meridian", "question": "Is the field ACCT_RELT_SPS_IN governed by any data quality rules?", "expected_products": ["wealth.ACCT_DIM2_1"], "reply": {"statements": [{"product_id": "wealth.ACCT_DIM2_1", "field": "ACCT_RELT_SPS_IN", "text": "Quality rules: no quality rule is recorded."}]}, "expected_citations": ["wealth.ACCT_DIM2_1.ACCT_RELT_SPS_IN"], "expected_text": "no quality rule is recorded"},
+  {"id": "meridian-no-refresh-date", "catalogue": "meridian", "question": "When was the view F_NNA_FIN last refreshed?", "expected_products": ["wealth.F_NNA_FIN"], "blank": {"wealth.F_NNA_FIN": ["last_refresh"]}, "reply": {"statements": [{"product_id": "wealth.F_NNA_FIN", "text": "Last refreshed: not recorded"}]}, "expected_citations": ["wealth.F_NNA_FIN"], "expected_text": "Last refreshed: not recorded"}
+]

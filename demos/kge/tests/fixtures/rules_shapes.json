@@ -1,0 +1,2209 @@
+[
+  {
+    "id": "time-01",
+    "set": "time",
+    "question": "NNA for Q1 2025 by month",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-02",
+    "set": "time",
+    "question": "NNA for Q1 2025 per month",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-03",
+    "set": "time",
+    "question": "NNA for Q1 2025 each month",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-04",
+    "set": "time",
+    "question": "NNA for Q1 2025 monthly",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-05",
+    "set": "time",
+    "question": "NNA for Q1 2025 by quarter",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [
+      "quarter"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-06",
+    "set": "time",
+    "question": "NNA for Q1 2025 by year",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [
+      "year"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-07",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by month",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-08",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 per month",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-09",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 each month",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-10",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 monthly",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-11",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by quarter",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "quarter"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-12",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by year",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "year"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-13",
+    "set": "time",
+    "question": "client-directed NNA for Q1 2025 by month",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-14",
+    "set": "time",
+    "question": "client-directed NNA for Q1 2025 per month",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-15",
+    "set": "time",
+    "question": "client-directed NNA for Q1 2025 each month",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-16",
+    "set": "time",
+    "question": "client-directed NNA for Q1 2025 monthly",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-17",
+    "set": "time",
+    "question": "client-directed NNA for Q1 2025 by quarter",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [
+      "quarter"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-18",
+    "set": "time",
+    "question": "client-directed NNA for Q1 2025 by year",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [
+      "year"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-19",
+    "set": "time",
+    "question": "branch sales NNA for Q1 2025 by month",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-20",
+    "set": "time",
+    "question": "branch sales NNA for Q1 2025 per month",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-21",
+    "set": "time",
+    "question": "branch sales NNA for Q1 2025 each month",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-22",
+    "set": "time",
+    "question": "branch sales NNA for Q1 2025 monthly",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-23",
+    "set": "time",
+    "question": "branch sales NNA for Q1 2025 by quarter",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [
+      "quarter"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-24",
+    "set": "time",
+    "question": "branch sales NNA for Q1 2025 by year",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [
+      "year"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-25",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by month and branch",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month",
+      "branch"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-26",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by branch and month",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "branch",
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-27",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by month and sub-segment",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month",
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-28",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by sub-segment and month",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "segment",
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-29",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by branch and sub-segment",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "branch",
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-30",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by sub-segment and branch",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "segment",
+      "branch"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-31",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by month and branch and sub-segment",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month",
+      "branch",
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-32",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by month and sub-segment and branch",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month",
+      "segment",
+      "branch"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-33",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by branch and month and sub-segment",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "branch",
+      "month",
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-34",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by branch and sub-segment and month",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "branch",
+      "segment",
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-35",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by sub-segment and month and branch",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "segment",
+      "month",
+      "branch"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-36",
+    "set": "time",
+    "question": "certified NNA for Q1 2025 by sub-segment and branch and month",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "segment",
+      "branch",
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-37",
+    "set": "time",
+    "question": "certified NNA for January through March 2025",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-38",
+    "set": "time",
+    "question": "NNA for January to March 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "time-39",
+    "set": "time",
+    "question": "client-directed NNA for from January to June 2025",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-07-01"
+    ]
+  },
+  {
+    "id": "time-40",
+    "set": "time",
+    "question": "certified NNA for January through March 2025 by business line by month by sub-segment",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "segment",
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "context-01",
+    "set": "context",
+    "question": "certified vs current NNA for Q1 2025",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-02",
+    "set": "context",
+    "question": "certified vs current NNA for Q1 2025 by month",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-03",
+    "set": "context",
+    "question": "certified vs current NNA for Q1 2025 by month by sub-segment with the dollar and percent difference",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [
+      "month",
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": true
+  },
+  {
+    "id": "context-04",
+    "set": "context",
+    "question": "certified NNA versus current NNA for Q1 2025",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-05",
+    "set": "context",
+    "question": "certified NNA versus current NNA for Q1 2025 by month",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-06",
+    "set": "context",
+    "question": "certified NNA versus current NNA for Q1 2025 by month by sub-segment with the dollar and percent difference",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [
+      "month",
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": true
+  },
+  {
+    "id": "context-07",
+    "set": "context",
+    "question": "certified NNA compared with current NNA for Q1 2025",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-08",
+    "set": "context",
+    "question": "certified NNA compared with current NNA for Q1 2025 by month",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-09",
+    "set": "context",
+    "question": "certified NNA compared with current NNA for Q1 2025 by month by sub-segment with the dollar and percent difference",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [
+      "month",
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": true
+  },
+  {
+    "id": "context-10",
+    "set": "context",
+    "question": "certified NNA against current NNA for Q1 2025",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-11",
+    "set": "context",
+    "question": "certified NNA against current NNA for Q1 2025 by month",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-12",
+    "set": "context",
+    "question": "certified NNA against current NNA for Q1 2025 by month by sub-segment with the dollar and percent difference",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [
+      "month",
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": true
+  },
+  {
+    "id": "context-13",
+    "set": "context",
+    "question": "compare certified NNA with current NNA for Q1 2025",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-14",
+    "set": "context",
+    "question": "compare certified NNA with current NNA for Q1 2025 by month",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-15",
+    "set": "context",
+    "question": "compare certified NNA with current NNA for Q1 2025 by month by sub-segment with the dollar and percent difference",
+    "contexts": [
+      "nna_certified",
+      "nna"
+    ],
+    "dimensions": [
+      "month",
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": true
+  },
+  {
+    "id": "context-16",
+    "set": "context",
+    "question": "current vs certified NNA for Q1 2025",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-17",
+    "set": "context",
+    "question": "current vs certified NNA for Q1 2025 by month",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-18",
+    "set": "context",
+    "question": "current vs certified NNA for Q1 2025 by month by sub-segment with the dollar and percent difference",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month",
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": true
+  },
+  {
+    "id": "context-19",
+    "set": "context",
+    "question": "current NNA versus certified NNA for Q1 2025",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-20",
+    "set": "context",
+    "question": "current NNA versus certified NNA for Q1 2025 by month",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-21",
+    "set": "context",
+    "question": "current NNA versus certified NNA for Q1 2025 by month by sub-segment with the dollar and percent difference",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month",
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": true
+  },
+  {
+    "id": "context-22",
+    "set": "context",
+    "question": "current NNA compared with certified NNA for Q1 2025",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-23",
+    "set": "context",
+    "question": "current NNA compared with certified NNA for Q1 2025 by month",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-24",
+    "set": "context",
+    "question": "current NNA compared with certified NNA for Q1 2025 by month by sub-segment with the dollar and percent difference",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month",
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": true
+  },
+  {
+    "id": "context-25",
+    "set": "context",
+    "question": "current NNA against certified NNA for Q1 2025",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-26",
+    "set": "context",
+    "question": "current NNA against certified NNA for Q1 2025 by month",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-27",
+    "set": "context",
+    "question": "current NNA against certified NNA for Q1 2025 by month by sub-segment with the dollar and percent difference",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month",
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": true
+  },
+  {
+    "id": "context-28",
+    "set": "context",
+    "question": "compare current NNA with certified NNA for Q1 2025",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-29",
+    "set": "context",
+    "question": "compare current NNA with certified NNA for Q1 2025 by month",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": false
+  },
+  {
+    "id": "context-30",
+    "set": "context",
+    "question": "compare current NNA with certified NNA for Q1 2025 by month by sub-segment with the dollar and percent difference",
+    "contexts": [
+      "nna",
+      "nna_certified"
+    ],
+    "dimensions": [
+      "month",
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "changes": true
+  },
+  {
+    "id": "ranking-01",
+    "set": "ranking",
+    "question": "top 5 branches by NNA for Q1 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [
+      "branch"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "desc",
+    "limit": 5
+  },
+  {
+    "id": "ranking-02",
+    "set": "ranking",
+    "question": "top 5 regions by certified NNA for Q1 2025",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "region"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "desc",
+    "limit": 5
+  },
+  {
+    "id": "ranking-03",
+    "set": "ranking",
+    "question": "top 5 sub-segments by client-directed NNA for Q1 2025",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "desc",
+    "limit": 5
+  },
+  {
+    "id": "ranking-04",
+    "set": "ranking",
+    "question": "top 5 branches by branch sales NNA for Q1 2025",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [
+      "branch"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "desc",
+    "limit": 5
+  },
+  {
+    "id": "ranking-05",
+    "set": "ranking",
+    "question": "top 5 regions by NNA for Q1 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [
+      "region"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "desc",
+    "limit": 5
+  },
+  {
+    "id": "ranking-06",
+    "set": "ranking",
+    "question": "bottom 3 sub-segments by certified NNA for Q1 2025",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "asc",
+    "limit": 3
+  },
+  {
+    "id": "ranking-07",
+    "set": "ranking",
+    "question": "bottom 3 branches by client-directed NNA for Q1 2025",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [
+      "branch"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "asc",
+    "limit": 3
+  },
+  {
+    "id": "ranking-08",
+    "set": "ranking",
+    "question": "bottom 3 regions by branch sales NNA for Q1 2025",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [
+      "region"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "asc",
+    "limit": 3
+  },
+  {
+    "id": "ranking-09",
+    "set": "ranking",
+    "question": "bottom 3 sub-segments by NNA for Q1 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "asc",
+    "limit": 3
+  },
+  {
+    "id": "ranking-10",
+    "set": "ranking",
+    "question": "bottom 3 branches by certified NNA for Q1 2025",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "branch"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "asc",
+    "limit": 3
+  },
+  {
+    "id": "ranking-11",
+    "set": "ranking",
+    "question": "which region had the least client-directed NNA for Q1 2025",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [
+      "region"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "asc",
+    "limit": 1
+  },
+  {
+    "id": "ranking-12",
+    "set": "ranking",
+    "question": "which sub-segment had the most branch sales NNA for Q1 2025",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "desc",
+    "limit": 1
+  },
+  {
+    "id": "ranking-13",
+    "set": "ranking",
+    "question": "which branch had the least NNA for Q1 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [
+      "branch"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "asc",
+    "limit": 1
+  },
+  {
+    "id": "ranking-14",
+    "set": "ranking",
+    "question": "which region had the most certified NNA for Q1 2025",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [
+      "region"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "desc",
+    "limit": 1
+  },
+  {
+    "id": "ranking-15",
+    "set": "ranking",
+    "question": "which sub-segment had the least client-directed NNA for Q1 2025",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [
+      "segment"
+    ],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "direction": "asc",
+    "limit": 1
+  },
+  {
+    "id": "period-01",
+    "set": "period",
+    "question": "NNA change from March to April 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-05-01"
+    ],
+    "prior": [
+      "2025-03-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-02",
+    "set": "period",
+    "question": "NNA percent change from Q1 to Q2 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-03",
+    "set": "period",
+    "question": "NNA for Q2 2025 vs Q1 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-04",
+    "set": "period",
+    "question": "certified NNA change from March to April 2025",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-05-01"
+    ],
+    "prior": [
+      "2025-03-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-05",
+    "set": "period",
+    "question": "certified NNA percent change from Q1 to Q2 2025",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-06",
+    "set": "period",
+    "question": "certified NNA for Q2 2025 vs Q1 2025",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-07",
+    "set": "period",
+    "question": "client-directed NNA change from March to April 2025",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-05-01"
+    ],
+    "prior": [
+      "2025-03-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-08",
+    "set": "period",
+    "question": "client-directed NNA percent change from Q1 to Q2 2025",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-09",
+    "set": "period",
+    "question": "client-directed NNA for Q2 2025 vs Q1 2025",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-10",
+    "set": "period",
+    "question": "branch sales NNA change from March to April 2025",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-05-01"
+    ],
+    "prior": [
+      "2025-03-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-11",
+    "set": "period",
+    "question": "branch sales NNA percent change from Q1 to Q2 2025",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-12",
+    "set": "period",
+    "question": "branch sales NNA for Q2 2025 vs Q1 2025",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-13",
+    "set": "period",
+    "question": "certified NNA for April 2025 previous period",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-05-01"
+    ],
+    "prior": [
+      "2025-03-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-14",
+    "set": "period",
+    "question": "certified NNA for Q2 2025 previous period",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-15",
+    "set": "period",
+    "question": "certified NNA for Q2 2025 year over year",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2024-04-01",
+      "2024-07-01"
+    ]
+  },
+  {
+    "id": "period-16",
+    "set": "period",
+    "question": "NNA change from March 2025 to April 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-05-01"
+    ],
+    "prior": [
+      "2025-03-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-17",
+    "set": "period",
+    "question": "change in NNA from March 2025 to April 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-05-01"
+    ],
+    "prior": [
+      "2025-03-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-18",
+    "set": "period",
+    "question": "change in NNA from March to April 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-05-01"
+    ],
+    "prior": [
+      "2025-03-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-19",
+    "set": "period",
+    "question": "NNA percent change from Q1 2025 to Q2 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-20",
+    "set": "period",
+    "question": "percent change in NNA from Q1 2025 to Q2 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-21",
+    "set": "period",
+    "question": "percent change in NNA from Q1 to Q2 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-22",
+    "set": "period",
+    "question": "NNA for Q2 2025 previous period",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-23",
+    "set": "period",
+    "question": "NNA for Q2 2025 vs previous period",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-24",
+    "set": "period",
+    "question": "NNA for Q2 2025 vs the previous period",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-25",
+    "set": "period",
+    "question": "percent change in NNA for Q2 2025 vs the previous period",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-26",
+    "set": "period",
+    "question": "previous period change in NNA for Q2 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-27",
+    "set": "period",
+    "question": "NNA for Q2 2025 year over year",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2024-04-01",
+      "2024-07-01"
+    ]
+  },
+  {
+    "id": "period-28",
+    "set": "period",
+    "question": "year over year change in NNA for Q2 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2024-04-01",
+      "2024-07-01"
+    ]
+  },
+  {
+    "id": "period-29",
+    "set": "period",
+    "question": "percent change in NNA for Q2 2025 year over year",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2024-04-01",
+      "2024-07-01"
+    ]
+  },
+  {
+    "id": "period-30",
+    "set": "period",
+    "question": "change in certified NNA from March to April 2025",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-05-01"
+    ],
+    "prior": [
+      "2025-03-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-31",
+    "set": "period",
+    "question": "percent change in certified NNA from Q1 to Q2 2025",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-32",
+    "set": "period",
+    "question": "change in client-directed NNA from March to April 2025",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-05-01"
+    ],
+    "prior": [
+      "2025-03-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-33",
+    "set": "period",
+    "question": "percent change in client-directed NNA from Q1 to Q2 2025",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-34",
+    "set": "period",
+    "question": "change in branch sales NNA from March to April 2025",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-05-01"
+    ],
+    "prior": [
+      "2025-03-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "period-35",
+    "set": "period",
+    "question": "percent change in branch sales NNA from Q1 to Q2 2025",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-04-01",
+      "2025-07-01"
+    ],
+    "prior": [
+      "2025-01-01",
+      "2025-04-01"
+    ]
+  },
+  {
+    "id": "parts-01",
+    "set": "parts",
+    "question": "ratio of client-directed NNA to NNA for Q1 2025",
+    "contexts": [
+      "nna_client_directed",
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "ratio": true,
+    "filter": null
+  },
+  {
+    "id": "parts-02",
+    "set": "parts",
+    "question": "ratio of client-directed NNA to NNA for Q1 2025 for the NORTHEAST region",
+    "contexts": [
+      "nna_client_directed",
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "ratio": true,
+    "filter": "region"
+  },
+  {
+    "id": "parts-03",
+    "set": "parts",
+    "question": "ratio of client-directed NNA to NNA for Q1 2025 for segment level 5 AFFLUENT",
+    "contexts": [
+      "nna_client_directed",
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "ratio": true,
+    "filter": "affluent"
+  },
+  {
+    "id": "parts-04",
+    "set": "parts",
+    "question": "client-directed NNA as a share of NNA for Q1 2025",
+    "contexts": [
+      "nna_client_directed",
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "ratio": true,
+    "filter": null
+  },
+  {
+    "id": "parts-05",
+    "set": "parts",
+    "question": "client-directed NNA as a share of NNA for Q1 2025 for the NORTHEAST region",
+    "contexts": [
+      "nna_client_directed",
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "ratio": true,
+    "filter": "region"
+  },
+  {
+    "id": "parts-06",
+    "set": "parts",
+    "question": "client-directed NNA as a share of NNA for Q1 2025 for segment level 5 AFFLUENT",
+    "contexts": [
+      "nna_client_directed",
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "ratio": true,
+    "filter": "affluent"
+  },
+  {
+    "id": "parts-07",
+    "set": "parts",
+    "question": "client-directed NNA's share of NNA for Q1 2025",
+    "contexts": [
+      "nna_client_directed",
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "ratio": true,
+    "filter": null
+  },
+  {
+    "id": "parts-08",
+    "set": "parts",
+    "question": "client-directed NNA's share of NNA for Q1 2025 for the NORTHEAST region",
+    "contexts": [
+      "nna_client_directed",
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "ratio": true,
+    "filter": "region"
+  },
+  {
+    "id": "parts-09",
+    "set": "parts",
+    "question": "client-directed NNA's share of NNA for Q1 2025 for segment level 5 AFFLUENT",
+    "contexts": [
+      "nna_client_directed",
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "ratio": true,
+    "filter": "affluent"
+  },
+  {
+    "id": "parts-10",
+    "set": "parts",
+    "question": "NNA inflows and outflows for Q1 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "parts": [
+      "I",
+      "O"
+    ]
+  },
+  {
+    "id": "parts-11",
+    "set": "parts",
+    "question": "certified NNA inflows and outflows for Q1 2025",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "parts": [
+      "I",
+      "O"
+    ]
+  },
+  {
+    "id": "parts-12",
+    "set": "parts",
+    "question": "client-directed NNA inflows and outflows for Q1 2025",
+    "contexts": [
+      "nna_client_directed"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "parts": [
+      "I",
+      "O"
+    ]
+  },
+  {
+    "id": "parts-13",
+    "set": "parts",
+    "question": "branch sales NNA inflows and outflows for Q1 2025",
+    "contexts": [
+      "nna_branch_sales"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "parts": [
+      "I",
+      "O"
+    ]
+  },
+  {
+    "id": "parts-14",
+    "set": "parts",
+    "question": "gross inflows of NNA for Q1 2025",
+    "contexts": [
+      "nna"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "parts": [
+      "I"
+    ]
+  },
+  {
+    "id": "parts-15",
+    "set": "parts",
+    "question": "gross inflows of certified NNA for Q1 2025",
+    "contexts": [
+      "nna_certified"
+    ],
+    "dimensions": [],
+    "window": [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    "parts": [
+      "I"
+    ]
+  }
+]

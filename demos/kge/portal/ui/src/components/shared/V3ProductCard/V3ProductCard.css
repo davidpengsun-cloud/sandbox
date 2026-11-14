@@ -1,0 +1,73 @@
+/* Reusable v3 product card. Self-contained (mp-*) so it can drop into any
+   surface. Uses the global --v3-* tokens from v3-tokens.css. */
+
+.mp-card{
+  display:flex; flex-direction:column; text-align:left; padding:0;
+  background:var(--v3-surface); border:1px solid var(--v3-line);
+  border-left:3px solid var(--v3-accent); border-radius:var(--v3-r-sm);
+  height:100%; cursor:pointer; font-family:var(--v3-body); color:var(--v3-ink);
+  transition:box-shadow .14s, transform .14s, border-color .14s;
+}
+.mp-card:hover{box-shadow:var(--v3-shadow-2); transform:translateY(-2px)}
+.mp-card:focus-visible{outline:2px solid var(--v3-focus); outline-offset:2px}
+.mp-card--s{border-left-color:var(--v3-navy-500)}
+.mp-card--b{border-left-color:#8D7A63}
+.mp-card--n{border-left-color:var(--v3-line-2)}
+
+.mp-card__body{padding:14px 15px 12px; flex:1; display:flex; flex-direction:column; gap:8px}
+.mp-card__eyebrow{
+  display:flex; align-items:center; gap:7px;
+  font-family:var(--v3-mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--v3-ink-3);
+}
+.mp-card__kind{overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0}
+.mp-card__title{
+  margin:0; font-family:var(--v3-body); font-size:14px; font-weight:600;
+  letter-spacing:-.012em; line-height:1.3; color:var(--v3-ink);
+}
+.mp-card__desc{
+  margin:0; font-size:12px; color:var(--v3-ink-2); line-height:1.5;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+}
+.mp-muted{color:var(--v3-ink-3)}
+.mp-card__facts{display:flex; flex-wrap:wrap; gap:5px; margin-top:auto}
+
+.mp-card__foot{
+  display:flex; align-items:center; gap:12px; padding:8px 16px;
+  border-top:1px solid var(--v3-line); background:var(--v3-surface-2);
+  font-family:var(--v3-mono); font-size:10px; color:var(--v3-ink-3); letter-spacing:.02em;
+}
+.mp-card__meta{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.mp-card__meta--right{margin-left:auto}
+.mp-heart{
+  margin-left:auto; border:none; background:none; padding:2px; cursor:pointer;
+  color:var(--v3-ink-4); display:inline-flex; align-items:center; gap:4px;
+  font-family:var(--v3-mono); font-size:10px;
+}
+.mp-heart:hover{color:var(--v3-rasp-600)}
+.mp-heart[aria-pressed="true"]{color:var(--v3-rasp-600)}
+.mp-heart[aria-pressed="true"] svg{fill:var(--v3-rasp-600)}
+
+/* tier badges */
+.mp-tier{
+  width:20px; height:20px; border-radius:var(--v3-r-xs); display:inline-grid; place-items:center;
+  font-family:var(--v3-mono); font-size:10px; font-weight:600; color:#fff; flex-shrink:0;
+}
+.mp-tier-g{background:var(--v3-azure-600)}
+.mp-tier-s{background:var(--v3-navy-500)}
+.mp-tier-b{background:#8D7A63}
+.mp-tier-n{background:transparent; color:var(--v3-ink-4); box-shadow:inset 0 0 0 1.5px var(--v3-line-2)}
+
+/* chips */
+.mp-chip{
+  display:inline-flex; align-items:center; gap:5px; height:19px; padding:0 7px;
+  border-radius:var(--v3-r-xs); font-family:var(--v3-mono); font-size:10px; font-weight:500;
+  letter-spacing:.04em; border:1px solid transparent; white-space:nowrap;
+}
+.mp-chip-plum{background:var(--v3-structure-soft); color:var(--v3-structure); border-color:var(--v3-line)}
+.mp-chip-plain{background:var(--v3-surface); color:var(--v3-ink-2); border-color:var(--v3-line)}
+/* source / platform chip — azure "live signal" with a filled dot */
+.mp-chip-aqua{background:var(--v3-chip-bg); color:var(--v3-chip-ink); border-color:var(--v3-accent-line)}
+.mp-chip-dot{width:5px; height:5px; border-radius:50%; background:var(--v3-accent); flex-shrink:0}
+
+/* medal badge icon (gold / silver / bronze hexagons from assets/icons) */
+.mp-tier-img{width:19px; height:19px; object-fit:contain; flex-shrink:0}

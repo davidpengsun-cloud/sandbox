@@ -1,0 +1,1405 @@
+{
+ "about": "#402-6/7; owner 2026-11-10 final cleanup: generic measure phrases, certified NNA definition linkage, final current-branch fixture reload and checked request coverage; #279/#290 re-recorded on combined code after retaining body-table passages.",
+ "packages": {
+  "golden:G001:control:analyst_enterprise": {
+   "block": "gvvodqdk6nnbabbli5axbbgnk3fbfqjkx4x65cyrseiwxuk7kpxa",
+   "package": "5fclbmlwgez6vq3icjjdethdgn2dubncbhgi7ltkof5ieuguqkwa"
+  },
+  "golden:G001:control:analyst_retail": {
+   "block": "i6jjpcuvcxcfsc42xf7b57wvnp5t3c3bhc3ebtqoawnggo223x7a",
+   "package": "nej4m36x2jrieqyccv5dfitjqzan2lfzwnn4xqu3ogxb322hbjlq"
+  },
+  "golden:G001:treatment:analyst_enterprise": {
+   "block": "gyalpcncb5xfpc7fcrfaktdebrgs7ktgps2vcha2ke7gzsby7fgq",
+   "package": "gazg7eiuq46rdzg4klczmeoyhjvv5pbm5y3zdonu6zvytufdh6vq"
+  },
+  "golden:G001:treatment:analyst_retail": {
+   "block": "3hpgk3vt5zuntbpsplkaa7etraudeaskgnzd7267omlj6no7cz5q",
+   "package": "xv3t2crz6pjikglghot4zmldg7eoiosvsnlfl2bqv7l3urpgjlaa"
+  },
+  "golden:G002:control:analyst_enterprise": {
+   "block": "f3d4opl4gopfur77hcoxyj6lpkgeocci6b3c5ru77jdk5xgnt3zq",
+   "package": "tx5mdqivio45zj7dq6bbolqihu4yh7p2lighuqrvykttrx2v2kjq"
+  },
+  "golden:G002:control:analyst_retail": {
+   "block": "tm4p2ie7545wcpjlkoezbnete6c7cegln7bkgx4vpnj4w6humhoq",
+   "package": "us4asxeyiycsgrbczqckimjkzqcgsmnn5ymujdlwwpwinok55dqq"
+  },
+  "golden:G002:treatment:analyst_enterprise": {
+   "block": "ndlbxpw5hrmfxdvfuqg5tc2ukeitl524han6gcyaqlztlqfwgqbq",
+   "package": "wngmchnzpu6regjzngke7whelk26aucoegjrjalpwbltlhtgtpuq"
+  },
+  "golden:G002:treatment:analyst_retail": {
+   "block": "qjdptqkuclyts55dqr326jagfvn37pdh6trxyfo6d4rurxkboggq",
+   "package": "4exnmxrjy6lumfiuumv4iat3r37mm5c3tb2q2u2l3csr2pv2kwmq"
+  },
+  "golden:G003:control:analyst_enterprise": {
+   "block": "ic7w5krg4qem6zgesz5sriqsipff5bicwydedj5xsxjn5uz5fvta",
+   "package": "4sghw5wngihlpxhq54d5rvez7eoqklw2xnt7fgrbje3hucqg2sda"
+  },
+  "golden:G003:control:analyst_retail": {
+   "block": "e2ktdabdn5rv54el2swogwni7bqiwswrh4ygbak5a43bh4jigkxa",
+   "package": "hcjisklyqackulgyahmf6tcrqyutwlcawnyblwq3lwsnybx5evoq"
+  },
+  "golden:G003:treatment:analyst_enterprise": {
+   "block": "cogsxpzewngh3q2q62omu6qjzlbj2uingtchzqzb4f5a4faaikca",
+   "package": "miysn7pzds2bs7pprumz7xg2xkgizmymxwyxuahwyiubvqdaqeuq"
+  },
+  "golden:G003:treatment:analyst_retail": {
+   "block": "5vxm56pca7ej3eci3fijtagcclmomojhf3wkdkbrwwe5vugvg2ka",
+   "package": "f5u55xe2rlxqgyhjfajshi5byhk2g754eokmgjerptycaf7xgx5q"
+  },
+  "golden:G004:control:analyst_enterprise": {
+   "block": "vxutnfedvx7ihvaaxmksimxflminmphnuuiz2sbs2xsm5gy73s7a",
+   "package": "a4bl2rl53lz2ocqorwgdiujgbcvotgfyrdetxhyl77tt57zr2uaq"
+  },
+  "golden:G004:control:analyst_retail": {
+   "block": "o5e6odbin5fwysnrjur5d6glgnagn2nrxgwjj3dqe74c3mtjuqjq",
+   "package": "2rmzyixhejihqsrqt5lhgyshmu5mz5qpjep4au6mmqoramcuzwoq"
+  },
+  "golden:G004:treatment:analyst_enterprise": {
+   "block": "dpo4zi64rw5wqc6srpiu3kltorcirbpcw4byxs3bave4utk26fda",
+   "package": "mtxoeyakr3olx4wesh7bzlrxecljbwvg64bvbpo35r2i7vj3beka"
+  },
+  "golden:G004:treatment:analyst_retail": {
+   "block": "cobfrg4fcrkfgxcj3ywbygithmc32j4zo32lwfc4ao6763grhhha",
+   "package": "32lkcscgmjrp5dlebbgdsq2xubpvwhlhyljesu3du5mb7bbpqdua"
+  },
+  "golden:G005:control:analyst_enterprise": {
+   "block": "lyshejxvvshqhqveqxnxehwczxgwdm44xn4j43uecmqfphv6jxiq",
+   "package": "2k5vbvrshchkzl4wjou65b3xt7eifblritqq3jgo7vh5j5ohgteq"
+  },
+  "golden:G005:control:analyst_retail": {
+   "block": "sn27idsmzurkhpswl55m3xt4ookgdqethr27art2djk64lv3tgba",
+   "package": "4ilpjtaabdog7aeuo2f2ke3mnxyczyuzymhkozgus5uygpoldb6q"
+  },
+  "golden:G005:treatment:analyst_enterprise": {
+   "block": "ugkb5avq56nqnrbhh7heni7dw6bssjijymlf6vy6vxz7i6s4qbvq",
+   "package": "uajpoppsg5ievfmisdk3t2bifqo2hd4cmyuejv3rjn37vuougbuq"
+  },
+  "golden:G005:treatment:analyst_retail": {
+   "block": "mmxceritcnzp2oyymacporhpcguil6dxwixhn3hpdsivujqpqrua",
+   "package": "fwjz5mim2y2oibe7qms6zab3emg2cxeo4liqdm6flnk5fbrwyjaa"
+  },
+  "golden:G006:control:analyst_enterprise": {
+   "block": "4zrsvx7sbw727rmxj2t7rn6v3bfcbo5lhraixqu6ebihqmsfrniq",
+   "package": "slpdlapuhvu5uy7wqxrjm4srwelei5mr5i6mgy3ecwwp5rnfokma"
+  },
+  "golden:G006:control:analyst_retail": {
+   "block": "ucjtzckdsj47ldynbgqmh5hat4orc2lgxpgtamil7lxoo6dinsxq",
+   "package": "2lf2fqcvqs5jq3bgwag3y3n7svvmi7o36efwpyil77mzi5vebzlq"
+  },
+  "golden:G006:treatment:analyst_enterprise": {
+   "block": "w7iaxvp6sqcglj3bbqt672jzsqucmecsdyy2v5vpmyga6xflrkzq",
+   "package": "kisnha2sa4brcz3xc2ntap2gjtbnnosvk3jwxwv62paxbn3def5a"
+  },
+  "golden:G006:treatment:analyst_retail": {
+   "block": "eftf277g3eqybpp43jqzgu225cdojg7ufg3wqmjobehlcfnh2gsa",
+   "package": "ibxuewaw3zrybccn7ji6eeb46iyegfpmympstzamyc3t4vnfir5q"
+  },
+  "golden:G007:control:analyst_enterprise": {
+   "block": "ubpobtjdsfr63fii4n4hv46rxab7zepdqo262apfbwknuxj6hnqa",
+   "package": "4fy2nhyrgjgehitw4uptwr3bx4dqxzlg3pjnbdyxdsp72ndo6a5q"
+  },
+  "golden:G007:control:analyst_retail": {
+   "block": "r4rkjuefqsnkxk3fkuvf7nqnjvhzuvgjn7lygg5c3lvdbznpvxda",
+   "package": "s2nf4hxaet57na4whq6kaswpwy5al73daoyvywtqx5nklivmvu6a"
+  },
+  "golden:G007:treatment:analyst_enterprise": {
+   "block": "elptqvdtfsataoahqi2vl6fbklxng4gwczlegzs3ktmd3doyfj2a",
+   "package": "xnffnqggdnuv6xdpmnovvc3h6umue6lbwbicjt4ad7asqke54tua"
+  },
+  "golden:G007:treatment:analyst_retail": {
+   "block": "j4axncn2sctiavazackcifhiel5skrhthvtb5dht262onjdnj3xa",
+   "package": "twzhmukecavc5zznm24mmxyw7d2tbaie4nnlaitihzo2yht55z4a"
+  },
+  "golden:G008:control:analyst_enterprise": {
+   "block": "26gbkogzkk7jmvfz6ntwz5gc2zehyx3rvmxro7dujznkngs3n2ya",
+   "package": "tvsnlpsmooev3ejdm746i3xfo2xyopt3ska2sj5jlz3yjiq5byna"
+  },
+  "golden:G008:control:analyst_retail": {
+   "block": "zachad4fpn7mt5lzd5ku5dcf5at3jmog6f5blrjlkcaf4p7ogpgq",
+   "package": "raravwt2ofvkunqnvhl7knb7ie2yo3fvherfao3jh3daffqp6f5q"
+  },
+  "golden:G008:treatment:analyst_enterprise": {
+   "block": "apmzupm4ffpyoeb3itn6ndbfhnqtezwqp2lawmuyz4jknitq4pgq",
+   "package": "nb67abk753t2s2esen2zntu3n5d6neyykohbqxyj7altosw2tktq"
+  },
+  "golden:G008:treatment:analyst_retail": {
+   "block": "4q3oqlaac5ph3kyovao7rfwci6ahgl6drpoooz6ypdql3rtjotla",
+   "package": "3wynhifvdqdsapp7ipsl532tl2k57qz2g6inijryiqqxiqlpwnqa"
+  },
+  "golden:G009:control:analyst_enterprise": {
+   "block": "to4fwebrlqe6ry2ld33mxwk533qo6a6s3655txapcy5yyzobwwuq",
+   "package": "onrwmpj6kym7mvtx5mehzbcw6inytk42b6ifzj7xzdvuq63kmaeq"
+  },
+  "golden:G009:control:analyst_retail": {
+   "block": "wv5ejvttnzls76qs7bk52w3jyhej5qkppbqqqayqwf74vgqclxsa",
+   "package": "kgga37b256o6h5k75pci2tewa6vhwpafzgowvchgkxagrjl773ga"
+  },
+  "golden:G009:treatment:analyst_enterprise": {
+   "block": "6qhtnn7rmmgxojmkjxa2gnivzfujeyiu5rd3pdw3rrluirmqhjda",
+   "package": "mjstbyqy2yby2azyahjhezdacbra4mohg7rpsh3vsk2jmsttac7a"
+  },
+  "golden:G009:treatment:analyst_retail": {
+   "block": "nf43oqzlr4simlkh7idlmhjccdvbt2twr4ql6ebn6zegzvc2ahyq",
+   "package": "urirwzx563333odpdutvmkqi6gm6snmn7bomfpmbscedue32hamq"
+  },
+  "golden:G010:control:analyst_enterprise": {
+   "block": "b7n6polbh2bp4buh6ztqkjmddvtpqsxk4sxhstvixtmadmbpwknq",
+   "package": "qmblaj6figp2wii2ktjtytsc6hsyyky6ajrn377pbrlzdmefxuea"
+  },
+  "golden:G010:control:analyst_retail": {
+   "block": "fdatpg7nwc26g2kz7c3xkmdpasycjh5abn52skksxhnwfbgwf6oq",
+   "package": "ez3dd3pmscqv2pzmgo3v5gltgulxcmfnkevisvlvlw6qbudl3wra"
+  },
+  "golden:G010:treatment:analyst_enterprise": {
+   "block": "auxpe25gispuwl6gtqewzuvbyzdvy5rkeedl2vjxaz75rzwn4d7a",
+   "package": "jzu7bsvszuhcbyomapzmhxzpdo5ib2eg3j67kqqfin4p44pgviha"
+  },
+  "golden:G010:treatment:analyst_retail": {
+   "block": "deqgawpcjrvml6ozyaaaz24bgvyx3kd5fscbxfxahp3fe7b5dynq",
+   "package": "p2lwyrjmsa442o4vsu5j6bqvkqrtuyrvk5oz25vmz45rk32tinoa"
+  },
+  "golden:G011:control:analyst_enterprise": {
+   "block": "7y3x2hqmiftkivceamelqrtisftxrw6i7an4kzgtlh7weimiupcq",
+   "package": "hudlspajj63jlld2sw6s7afgf2sqphrwpjjx7ywoywgkdflcbjga"
+  },
+  "golden:G011:control:analyst_retail": {
+   "block": "zxyrmv54dwx2ygabyfenzzx55lu6cpg7dxyxnrgc7s7e7h5hcafq",
+   "package": "osjlvnimlbhs6tlrdfz7zhx4c6ahh3zbleyehqchoe2ao2quxs6q"
+  },
+  "golden:G011:treatment:analyst_enterprise": {
+   "block": "g7zh54lkrxt2rnt5setklr7etuppsycom4zt7ctm5mkg4p4mtwga",
+   "package": "o4y67wspfhipq4vacfwi5ps4kj24jqvzmjb3cvwwbe5apvtjgbna"
+  },
+  "golden:G011:treatment:analyst_retail": {
+   "block": "brubnmwyz7wz6bbyt2xov65geee37lbtl2blhzzaubdvibi7nv4q",
+   "package": "4tkmeytehqb257rxefu7npfgigu4bfbz427awbrj43i4reabskfa"
+  },
+  "golden:G012:control:analyst_enterprise": {
+   "block": "wqmm3begs2rm2ssys7qoyfufxmvxns5y7ex7jb4ua55hhaz7im4a",
+   "package": "2qezqiij4d2qrnraagzh662vblput57jed4vy5ukxm673etdwbza"
+  },
+  "golden:G012:control:analyst_retail": {
+   "block": "af73kglcky7zfrpjwsqmf7r56ge4wn52cgslqtfnfhbqwdvna4sq",
+   "package": "wmmmdox4aq3rjvithmz47safuxzbqme442bwb35l776uitt6ppka"
+  },
+  "golden:G012:treatment:analyst_enterprise": {
+   "block": "wogvhanjq5fc5c6afwkitmpvx35lcxrk5bciojhwqk7ddvdriqeq",
+   "package": "wvy2wug3unxkxn6cjopjmm4nwz7u5nakmpres7pudqluofmvozqa"
+  },
+  "golden:G012:treatment:analyst_retail": {
+   "block": "3zaqgo7353btvq2w25rczo5tqgnsefo5jtcvthujpltc743tkgzq",
+   "package": "xsobcvzjxch54gtaweiqwmz3ho3q5qk3oztfjgdcez4h5nzg6ota"
+  },
+  "golden:G013:control:analyst_enterprise": {
+   "block": "e5fmnokswdsfr3ulov4akwsnwxaqlmjjipi75w4tpw3wbsyjlt5a",
+   "package": "7fgqgwtbphmg4mqeheerv22mo4mv4trfrronmxl4ovef5nkyuuwq"
+  },
+  "golden:G013:control:analyst_retail": {
+   "block": "5x2gumcrofydb3zmlyyxez2xvk4xueitbzuhbedfpqfw5tpmsrrq",
+   "package": "ssyfn5lbozzhrbdjyj3fxxuq5gtmcacpg56zstwg6uexf5543ygq"
+  },
+  "golden:G013:treatment:analyst_enterprise": {
+   "block": "a36tmpqb6hwt2exyh5mutuj3xlzulpiu33drk4kxxeef3cuvhnya",
+   "package": "peya7vbmhxpkcjlmnsb7ienhhusl3f7qpqmw2fyqi77jqpljkudq"
+  },
+  "golden:G013:treatment:analyst_retail": {
+   "block": "kscfnsfq4im7m6lhbyezy3sagzwfqadfzg63bdujdoxhjnclcwba",
+   "package": "pq3znk6bsh73dgtzamivayfnkv6aiion7ceuk3uttfkwpn5im63a"
+  },
+  "golden:G014:control:analyst_enterprise": {
+   "block": "kdoxgu2tkhx3752c6oa3aty6paxlgfwktnqg3vchsidv2g456txa",
+   "package": "2gew3bvb4desvdcdq3arfofrm2umfziv2g34jjhfzepz7miryhtq"
+  },
+  "golden:G014:control:analyst_retail": {
+   "block": "etnpmljo3z5wgqvgvgwxoxijv7pw3yoka6kjfbr3df2impq4vxhq",
+   "package": "e6qbicpsi7urbf2q22ckn6ph37moj3zbf4okqmj2c2v6u6yyc7mq"
+  },
+  "golden:G014:treatment:analyst_enterprise": {
+   "block": "ze23zeghfqypavygpbixpdvwe4ndtrrcnfcrcolc6btijhcq26ta",
+   "package": "rluorfgboolnluilgdr6hj2csfoljlcdhlcchtgsxvds2hykeyca"
+  },
+  "golden:G014:treatment:analyst_retail": {
+   "block": "vdjjtxnopqp4knjtras362zsftg4bkiirfmrc26nxlgfafbgvlja",
+   "package": "xltqrv2itbgffhoycmg7mbzrbjj5qbyxhc42xlzhyfgdybzuwflq"
+  },
+  "golden:G015:control:analyst_enterprise": {
+   "block": "gzrwjindavn3sjc6zf7hmduuzqtqp5kydgwhc23esqsks2ooaliq",
+   "package": "yk5hdl3ypqhccvhtudbdacursiu2quczzzavsgqxkuhvuf3lissa"
+  },
+  "golden:G015:control:analyst_retail": {
+   "block": "bxsebjcudnsbfjfliys45ilkbyc6mpqwofrqfkfemjvyzr2bnmka",
+   "package": "jtoxd5cibr72skpltgvzzloc42pzouhqzg7254oxnppzrvgnhpoq"
+  },
+  "golden:G015:treatment:analyst_enterprise": {
+   "block": "hthgd7yzoz4lsplqufwbhdzl3ye2xxpb7uimpmz4ow7nzypw6qtq",
+   "package": "dkfd2cxbktiqdtipw4twwk2kneiou24bnalst7odahqnmbwxmaua"
+  },
+  "golden:G015:treatment:analyst_retail": {
+   "block": "xae2bmnm74nqzrio4oxigcorkt6lzxvwmh5oalpq5vuzt3n3v3iq",
+   "package": "p5l2cr6rrwcbr6bkejeirequ2otlswgdrjbsjpchhcd6g7hkmxda"
+  },
+  "golden:G016:control:analyst_enterprise": {
+   "block": "3r73ysoc3plfwavsvln7ols4a7z6pqq7fze2zmvjhejcymzy77dq",
+   "package": "remqu2565tr66olzmflr7ygsgh3g7iingvao2kejnjjzugqagdnq"
+  },
+  "golden:G016:control:analyst_retail": {
+   "block": "mmotagnh75llkz67yswab5in2zfo37r4kxekzlizz7j35r733ima",
+   "package": "63tcjwjzhfspnknvk2nzypx2sb5ylyhnv5ieyrpazrxmxw7unbyq"
+  },
+  "golden:G016:treatment:analyst_enterprise": {
+   "block": "25gqln5e36yuvdpqiwuqhoefmienwf7ajdg5bwwl6prbbkp3drfq",
+   "package": "mamgm7p2bvt2ldpwdtguekak5w75d4xfct3ueijsswszegipgz3a"
+  },
+  "golden:G016:treatment:analyst_retail": {
+   "block": "ntr4cxii26mrnudfop5sjy5rik5f7ygxfxlflkor3q6clczmlcoa",
+   "package": "5bylwaixw5fwpebrzb24zxmfsembhwztr7bluuqdjyy6hlscg25a"
+  },
+  "golden:G017:control:analyst_enterprise": {
+   "block": "2ouu7kmnlk4bcmoxbx3726jkhgtb5zimpodwm76jlkirsydbzkka",
+   "package": "qhgniiu4wlcxfo53jqgs2h4ogagi7ethpma4qpsgaesrovpw66rq"
+  },
+  "golden:G017:control:analyst_retail": {
+   "block": "btdrglbjsmiempsipcoaavisb4hlae6xckrl3sjdtqfbbq272q6q",
+   "package": "tbmnlaogn27wdx3r2uvuhoftapmhwj3fw6pfgm7ojdrdibm6dalq"
+  },
+  "golden:G017:treatment:analyst_enterprise": {
+   "block": "x5widgb7hlo45gq2bktdsu3jfecrc2haun73onmqbhov6rxpfcwa",
+   "package": "qhewzr4o6lvneiwyxfu35tapljuuch5pawlf52z5sy4yaavblkqa"
+  },
+  "golden:G017:treatment:analyst_retail": {
+   "block": "l4vhfccyfjzio34skl476bo6zuqnj6ule7gezeoin64n2zmqji6a",
+   "package": "jmpryxf7vi6g24phlb6jqpfeczlu7pfzydsim4b4gagsdni3b5ra"
+  },
+  "golden:G018:control:analyst_enterprise": {
+   "block": "ckswlc5twtap5hucx52k7nqf3pmzc4g3yygpvjtngqxcnxn5uv3q",
+   "package": "yqcmg2jgdsessthcouldmflhmvwls4wbba7mmpdzprxekmdfmn5a"
+  },
+  "golden:G018:control:analyst_retail": {
+   "block": "ajt5wnehh7ugtsc4kzcuhytuv65jqwqghctgkfacswxelwrbubla",
+   "package": "whrnlo34iup5xaydlxj6ukdas45pt4gdv47q6pmesvdx322p7mza"
+  },
+  "golden:G018:treatment:analyst_enterprise": {
+   "block": "4oag4vh7mlx64ibyq5qc2l3anrqfkrymgqwtixcufqngynrd6m3q",
+   "package": "mufhrw7wp42ooassrnsjwrww7xma2xeoubqkjptyypcdb54yayrq"
+  },
+  "golden:G018:treatment:analyst_retail": {
+   "block": "sphyudcfatk2g6rwkzsvsm6nkryjvs44hysacg2qf45nst37jqfa",
+   "package": "az664efpnvee7orulbzwxmbv7e74kt24svxemivwsct74sateqsq"
+  },
+  "golden:G019:control:analyst_enterprise": {
+   "block": "gkqwzseqss3dgfe2cem2h32vxjcddojb6n2vw6pkh67uajweuqfq",
+   "package": "4gci7nb7n5vwtjud7sj7ntg7twwcpiyj5hxhjnssxtyz5xhfe5mq"
+  },
+  "golden:G019:control:analyst_retail": {
+   "block": "5llpfkhqqxpfelz4odjvy2xd646nzsneqeprvcsfcvpnn77gbmta",
+   "package": "dbaoefqtdtcdj5ofxk5ozl3hm37tpus5axuuykjectn536afu6hq"
+  },
+  "golden:G019:treatment:analyst_enterprise": {
+   "block": "zupnq6t64pndp7qa3jhdsa3yq67eqfq23pd4jyy436lc72dhudma",
+   "package": "trpknqup4orasvt5sorvu3j6qwghr62mzdoj4352txv2b5ycvhuq"
+  },
+  "golden:G019:treatment:analyst_retail": {
+   "block": "2onrxphhvvw6sjioaze4ofsd2skl5dp2xxips5eptnwwqqbclwha",
+   "package": "tnethskfvhtkdiysxvgbwx225m5f2uahpwpzu6s4bprj3u7gk5pq"
+  },
+  "golden:G020:control:analyst_enterprise": {
+   "block": "objhxl23bic3mzgno4khmvqpctkmvx63kvulcm3sbtzd2eerp6hq",
+   "package": "5wi663pezzlbyvins3vwec5q3pxywwnejzxd6fzlml2xheg5g2ca"
+  },
+  "golden:G020:control:analyst_retail": {
+   "block": "dvdv5gdcuocwztithf5rr5rvnjxrzjhmigx6gsxooe3ahmzaim6q",
+   "package": "wx76fdymdfdpotleznn4da6nl7cfgohp4633h2cnmbwj7ys6zi3q"
+  },
+  "golden:G020:treatment:analyst_enterprise": {
+   "block": "saegrfznhkmlauevuznksh6vzzinsd3z3znm7v5tnxlo42cubhjq",
+   "package": "prne66sftpwytybeyudqfvk7yrzwxufwpcbfb4ne4uobmguncf5q"
+  },
+  "golden:G020:treatment:analyst_retail": {
+   "block": "uxofjed77ewpgex47xjyoh4d2stzqxcgq4w25gfwcwygnbaioiia",
+   "package": "t3f4q62dcxlpfv5si3zbhzvu5kc5vuha5keiooiuhkkukoncex5a"
+  },
+  "golden:G021:control:analyst_enterprise": {
+   "block": "3b6ych45zscfelvzxgbyptxqumar5r26go6w4ashqub36i7z3erq",
+   "package": "pj7fu72w6i5aqtat4d6aeggnhjjkjsznqimt5573nz2mjvblugaq"
+  },
+  "golden:G021:control:analyst_retail": {
+   "block": "c34tf6z66v23vy6xyr337qxhjr3mh7nhwnjvbfb4zw275mxrj63q",
+   "package": "ucnljqnhsnbrl2ircyadpgsde7c3rvw4ry3jnxihaqou6xamk2fq"
+  },
+  "golden:G021:treatment:analyst_enterprise": {
+   "block": "xfwbvayzwsmehsboyclmv4uwojte6bdqh3klcmmrbqfi65kbp3bq",
+   "package": "rdigls6hwsflh7eebkfn4ti3u3q7lfzpo2svcn7ilr7jmam3owtq"
+  },
+  "golden:G021:treatment:analyst_retail": {
+   "block": "buescppl7t2tyvqigauuh4d4jn3j3uf5mi3vaauvv5kglbv7mqba",
+   "package": "etitbdb6rdfodkdwo24fjyq5zp7btrrky4d4nn3i2kwzx3uamefa"
+  },
+  "golden:G022:control:analyst_enterprise": {
+   "block": "2axa4hcaab6yyhrgfinb727ifvg7uihpsgdmssw2inlcq7de72sa",
+   "package": "qhiv7g4ti2dpsw67fiduq7ghesfi66256qi6sun7isioowjfteja"
+  },
+  "golden:G022:control:analyst_retail": {
+   "block": "aqlwelprlywfuqh7wcanjflx4jkv6whslg2gu7mumfoqkn555fvq",
+   "package": "6yvtskeubfgylmccminbazlpwwbbkmxkl2rvqduec3fczomqjnua"
+  },
+  "golden:G022:treatment:analyst_enterprise": {
+   "block": "rmyhvqeucuznbvv3vh3l6ll3jtsabqxbe22ixwcpzmt4gwqytnsq",
+   "package": "wyltcjg3hlqaklfcergudzc2h54sfnsjhg7uh6smcjaobwha55ta"
+  },
+  "golden:G022:treatment:analyst_retail": {
+   "block": "o7qekpsxq3a5hzetq2fgdoob6afgoivjii4lzrsjhnvcmwwz4rhq",
+   "package": "4y2d54phgrfu5t2s6pbhg7qzew433ybmn46vmhohgnvqk6s7gcia"
+  },
+  "golden:G023:control:analyst_enterprise": {
+   "block": "3l4lgfjkattddr4viqhxlajhxgas5ohyfmdjfpqeiv4ykgwhcykq",
+   "package": "bqjlxadcxvt5245bttf3md7fgx4mnjvxavkltnfavl2a2cokqhda"
+  },
+  "golden:G023:control:analyst_retail": {
+   "block": "n7hw4mdr7ywjdo5cwc5cwasmchyugpbrzlb3w3dltyf2zyrolmva",
+   "package": "okneofjvrypjhgwsn4slwsb6olvlrcdnov5izlummgkczuuoe5vq"
+  },
+  "golden:G023:treatment:analyst_enterprise": {
+   "block": "gkepc7lgdj3ug65bnexikmbr32bb23iee4s4mh2kkvq32va7cmiq",
+   "package": "szxtozkfopcas47neejyqyoudqjt472rl5wkzgajzxbowlpkz3nq"
+  },
+  "golden:G023:treatment:analyst_retail": {
+   "block": "zpdlbgrsahj4srknhcb73lidp553zjqjhnxeuysbtfatjfukhs2q",
+   "package": "iscz754jdza4dbymyaer3iplstcod7fldlnboihz57xhhkum3boa"
+  },
+  "golden:G024:control:analyst_enterprise": {
+   "block": "fif6udj3yaxq2blxpliqbglfqcxno5pjtkoxbcrrry7j3wdlkxla",
+   "package": "lzkd6n2icmnk64t2u2vfonkif7qgys665lkhl3hxhgxyh37yhqhq"
+  },
+  "golden:G024:control:analyst_retail": {
+   "block": "7m4swtk3kbw7u7ugghdrdegtr5we3mvo6uzju62762mbhijtgoca",
+   "package": "kdyezfxmbtxemkdstvokp5zj5gaw6ixy5ge26qyzecpya7hpzyla"
+  },
+  "golden:G024:treatment:analyst_enterprise": {
+   "block": "j7uudkrdt72puc2r5a6r47ozrxj6eq6ypn2yaisqrb6xidguwigq",
+   "package": "2avtlxptsrr7pzmarftur3trdzxsuwnuhiuzjdxximnru6tye2wq"
+  },
+  "golden:G024:treatment:analyst_retail": {
+   "block": "6pdeuvtpw7isdpr2txvwrzgliaeir7dgszsbusnqdggw74w6dssq",
+   "package": "brv7ew4bq77lg6uqkite6ejyeisjptqrdtrbfehrgl2pueu47aca"
+  },
+  "golden:G025:control:analyst_enterprise": {
+   "block": "fdp6zh7jscgl7lmtijmwzl7k2e4p3a7fempoeamknnct6ctg6twq",
+   "package": "kzzcpdgy3km23e3dg5rutomnbfg543otmllid63lywi3j5w47lqa"
+  },
+  "golden:G025:control:analyst_retail": {
+   "block": "wqzqdov5ylnqlltz343kcktgz6e5emf3rneub6cr5su4j6sm4dwa",
+   "package": "37pt3ktmx46wvwcsv3oiybvpvraclowrty5unqox6t6g4kawnfva"
+  },
+  "golden:G025:treatment:analyst_enterprise": {
+   "block": "hwah3c63esiij2dgzxlyaaj2rsoa4gtbu4abm7azxo6mxuutbmlq",
+   "package": "gckbqji7wghmpucu5avycx67r5g6mjgngtc4iegjkgxnp5xdnriq"
+  },
+  "golden:G025:treatment:analyst_retail": {
+   "block": "wyu4ykko5xmpeeyfl6tdm2amx7pnpufkoqp344born7inkvchebq",
+   "package": "iekozgyr7vetl3cz7jn7jy5gpeun56ezn75ad6rrjc4xuhydtmbq"
+  },
+  "golden:G026:control:analyst_enterprise": {
+   "block": "mfqhz2ddrqa5z2aewu52zxv364yhqqfyh3aydkhk52t5l53b7gvq",
+   "package": "nbokv32tuh6shns7pvj4upv35ilpe2p7f66psopdu6rhuntsr2ia"
+  },
+  "golden:G026:control:analyst_retail": {
+   "block": "5jrranzzn6vee5dfwnism5i6uqr3mrouzeayr3uzi2jol5bsaeoa",
+   "package": "bibw6rhv3mdf7k5d7qxyvdog5vc6akoaulvcekbmzg7zm2zyacka"
+  },
+  "golden:G026:treatment:analyst_enterprise": {
+   "block": "twyhv323o6vkrxblu5x63e35flxdedohfxanzbfwuzr4ywinldoq",
+   "package": "ujjipwki6q3kkwpkfbswot5qjd4ufjxkncovmymybt7jramksemq"
+  },
+  "golden:G026:treatment:analyst_retail": {
+   "block": "6jporxhfnwdadaqbhg3qcsz5aw734utsth43eydm6jndtzemwpia",
+   "package": "y2qsxipafbeeq5c2k3uuydhnmntigzcpjuale7snvoaktstnhmtq"
+  },
+  "golden:G027:control:analyst_enterprise": {
+   "block": "mfxmei7ggsxjprgjfxcz4rmzgxkt5qs7zjzhfebbgpatzxrqcgpa",
+   "package": "6cbpxp6q3sbhzspahaedewednvln3n7dsvzne3bggcouerc2clva"
+  },
+  "golden:G027:control:analyst_retail": {
+   "block": "7ytltnv2eip2l5ypgmbu5k3lbpd6yvhkwkiydkrbj2a3s36je6ja",
+   "package": "nqtw3mzo3mf7l7kkoy5qg7w2ci2vsrn7qe2b2aaqf45ajkd2kd4q"
+  },
+  "golden:G027:treatment:analyst_enterprise": {
+   "block": "yniik7573gxvtzftzjic3skyio2ukkgo6xdaf3jb72vuvnv5kvhq",
+   "package": "3gvoye7al6seojrp7ipiqsac46buholjlhnpzgmdox4sly43qo3q"
+  },
+  "golden:G027:treatment:analyst_retail": {
+   "block": "o7gqshbi6fddrq4nix3j4uc2hyxzpmq5fj5rdmph6v5x6x73zxmq",
+   "package": "jgt5y7mlmsb76fidp3hilomfiamus4meok72eno3q7ucvfbixeba"
+  },
+  "golden:G028:control:analyst_enterprise": {
+   "block": "v5uet75wzdzonlgmb7slmk24rpq34e27b72dgdpxfrbgkigyosyq",
+   "package": "hcd3n7acqcfxfbvzxagr5idzcfp3zgasvg7ouheeaw4ajyyywtea"
+  },
+  "golden:G028:control:analyst_retail": {
+   "block": "gwffrkdigdtaosofolx5qarztfaheuxeikct2iioxo27nudgno5q",
+   "package": "bnmyhrzmq4ofefq2ux445lf64dw5meye7vy4wdmm4dkgsae2haua"
+  },
+  "golden:G028:treatment:analyst_enterprise": {
+   "block": "fved5wzvzflwsrlyp7sv6gkr5mlzuv3pnfgmhnwmjwxzhaxdux2a",
+   "package": "pk5nptfqwar3gwwfos74bul4konhqm4fmkfd7xuwhpupar5o6xhq"
+  },
+  "golden:G028:treatment:analyst_retail": {
+   "block": "epnljdlzzuv4jzyav7eouet4cwm5ebxvb4gucckjm6kiffjxkpva",
+   "package": "f2w4jsg6xrcpc2zsqhcbnbiovjtdg332vspdigj6wmx74pdfd5aq"
+  },
+  "golden:G029:control:analyst_enterprise": {
+   "block": "ky2tpbouhhgargqlwpydbiwn6lwye6azrgt22ekthsmdmnsblwhq",
+   "package": "nltxesgneaiwngudr63pzh5ymlyopviyvtaox2iovqf37phmkj3q"
+  },
+  "golden:G029:control:analyst_retail": {
+   "block": "6r6csdvfai3hxggasfsd62zz2k7ltkigpn2t2apnxkyzvnes6sja",
+   "package": "xlbggnpkxwc4veuiwjbfx736k4i4yjhfgszar4qexemf735ipz5a"
+  },
+  "golden:G029:treatment:analyst_enterprise": {
+   "block": "6jctimcl4pgnyrdeel7gg67wz2rmtp23es5oe6sjocdged4o7oyq",
+   "package": "mgxtmqeajiacuscsrjr5qd4mjq7ipl6u4kv7r36z4xcekwwtdq2a"
+  },
+  "golden:G029:treatment:analyst_retail": {
+   "block": "vmgxbjdhjj4tukdpltn75uwsel5ntjg6tmbzj3qh2pz34t7xofqa",
+   "package": "bppbjisrdbawxf2rv2m2ezqzhvtqlngsnlqdwr3waqy53rssjcga"
+  },
+  "golden:G030:control:analyst_enterprise": {
+   "block": "smacmayg5oowfg2cky3tnpb62vrb4ledheotvp3jhiwqg74s2m4a",
+   "package": "yzrlvbgdyjzzdckuqoz35t4tfgw5yo3hhumqedqr7irg7yakanrq"
+  },
+  "golden:G030:control:analyst_retail": {
+   "block": "j4wjaxx4dh7qmu7s3nrq6azcwkrgjhqq6zoz2b65ahed4bm5k5wa",
+   "package": "ritek4fmbjek72laruks4ss5ho3m5df22a24xnvxr6s5442vgywa"
+  },
+  "golden:G030:treatment:analyst_enterprise": {
+   "block": "ry7hbfvciszxcm3fuhe7nvkfesuwnurfgbfjti3vgkur5nwncdrq",
+   "package": "ej4gdk3v2x6fqsouj44b47ux2j5osucxysqxz5bafy3mof2oi24q"
+  },
+  "golden:G030:treatment:analyst_retail": {
+   "block": "lebf2dtzbkneh4iyt7zg6bxcsicy77hnim6wdzki2p4ulglm4r6q",
+   "package": "j5khfk57r7jurqpekazej4rajxzanz55wxyvahbaigsvf4rcuwtq"
+  },
+  "golden:G031:control:analyst_enterprise": {
+   "block": "672pud6s7e747etosuoqj66jrwi4fbu7umvavuc3nwmuiwnluhnq",
+   "package": "k5bfh6qafiex3y2rd2thtczoqklebnjkq7pddozve42i2b752kvq"
+  },
+  "golden:G031:control:analyst_retail": {
+   "block": "q2zsm46wfxogyu2yyf566dypntofon3b5uzxux2u375hzewtmwwa",
+   "package": "z7byzsuhwyfcc2wpzwhmjfb2ahdopb4jj2u7tk4nbbi7tvep46zq"
+  },
+  "golden:G031:treatment:analyst_enterprise": {
+   "block": "qdtobuf37f7otgkzvyawgjglxqqoianh7vjtjjid5npwb6h6akzq",
+   "package": "hcu7cstuwapgj6jc6sf5xa4stsx42sfr7ngqzmwstvbg6rrq7fya"
+  },
+  "golden:G031:treatment:analyst_retail": {
+   "block": "mrv5us6gdnn3re64vh55n4xgxqik7icnyov2miz6i4gwiixc7ziq",
+   "package": "yguoo2wkc532yq4m4vtsi2ftkdcxugdrg76romjvk4lyaxcsm3gq"
+  },
+  "golden:G032:control:analyst_enterprise": {
+   "block": "6fampzt6pgkq44wj7poo3je27hmgj5ffge5obtudorum3jobe6ka",
+   "package": "7e2q5z2fhm3fadu6fqrnds3kvt64i5ozkkqxpw6k6wtpcajqwjwq"
+  },
+  "golden:G032:control:analyst_retail": {
+   "block": "i2y23zbh4ak5jmvrpzwmyh2iwgnh3pit2a3egbvt4lykf4tghgvq",
+   "package": "fupxx75wjytbq2wlytp2oic7qrayefgdk3zbhe3b4ivwlw35xhha"
+  },
+  "golden:G032:treatment:analyst_enterprise": {
+   "block": "ahu54cj3kyoiqpf6tt5zambkcp27tukjv3ngg72gtkrluxekg37q",
+   "package": "p2ybfvuz4h3qz5wja7ebu5kjmw4tm3tkzal4wqktq2plctunywxq"
+  },
+  "golden:G032:treatment:analyst_retail": {
+   "block": "4matglyqv6v7hgwn5ljfpnq5gwk3a32tvmo7v7cme2sttoxejjfa",
+   "package": "vzrnfn5iikykv3euuj446fwgjaiye57y2acf4lpqizhzk2gdvvba"
+  },
+  "golden:G033:control:analyst_enterprise": {
+   "block": "nwaqthkkdj6aqmys4t4tt24xcvvfwzrx6lhmwoou6z7p3f5mwbeq",
+   "package": "ngma26b24i6noqptbblqybn4nfafkl4zeykzxk4mema3d4556osa"
+  },
+  "golden:G033:control:analyst_retail": {
+   "block": "skudia5vqk4z4qfcn6wepcs6hxmhr5bdavsrsifqhzi3bvvrrstq",
+   "package": "vken24qpnkgnwg6cs7qk6xscboosufd33ydbpkw5amgyei22zquq"
+  },
+  "golden:G033:treatment:analyst_enterprise": {
+   "block": "iimp2lvsx6dptxty3u3nddju4y7eq4qvvxorbjozzvejnlubsz5a",
+   "package": "cvtmm5chpexqxv2zu4wvycgby6fa6dzu2zgtgw6rcnjifrkxsoka"
+  },
+  "golden:G033:treatment:analyst_retail": {
+   "block": "5mzqevuyqmbtcy737cq5vzdetzlikumdcpswfty4t5r53y7lj62a",
+   "package": "gzatfs2za3p2llzdcmyvpg2k7d46zuw46ypthyk7a4kzt2pdwd2q"
+  },
+  "golden:G034:control:analyst_enterprise": {
+   "block": "jydpkqgr2ft37nj2ofj6qacqw2tcx72ate46vyqpw6jzudw7x6sq",
+   "package": "wvtidpbryyrafsdhwedgzpqwfi224ci4czstpvj46ymrfstsf7qa"
+  },
+  "golden:G034:control:analyst_retail": {
+   "block": "fjsjz2v4rdeep26l4pplnmbrrrtqdc7bffwj2k5l3yvmakoh246q",
+   "package": "epkbp4oevv2msobusw2ydvrxdmlmsrem5yo4w3425flw57bv3lnq"
+  },
+  "golden:G034:treatment:analyst_enterprise": {
+   "block": "wgm67cv6oxtlk7xebe3z3ft3hreq5aermvb2kliboj55jjfyadwq",
+   "package": "svzqmczhxsque6yrhhnb6fa6eqx2zg6tde5yg2azmbxzohojgcfq"
+  },
+  "golden:G034:treatment:analyst_retail": {
+   "block": "kr2but4pxyknyespikas63nlyy66bgmxgkkw24gyyxaugqmud6xa",
+   "package": "wcbnaheqjrexnpnqg2zc6jj4pktuhoul526mgk3gddraczljcyvq"
+  },
+  "golden:G035:control:analyst_enterprise": {
+   "block": "cexagjv2ucuugmgfxcmhpevgcg53kdd5wwsebom53dxjztuxqb3a",
+   "package": "cxghgfjj5brub22qps7ayano52xyeehmybqyu62yszi7lsj6ayxq"
+  },
+  "golden:G035:control:analyst_retail": {
+   "block": "q6ylzip7uikbnhzgkxbgk2lhq2zlt7hdingrmeafek6t3dp7kzxa",
+   "package": "7ozxpnrijymaimvymbulxpixpxyqq44ugtie2tzmw64urblbnmca"
+  },
+  "golden:G035:treatment:analyst_enterprise": {
+   "block": "eewc7sy6t7tnogerap24mdlu4h5osxupybwbkcjtw72xtn3gpvna",
+   "package": "fpexogyces5x7h3333trpfq7kil63k54jodctt4t7f3hbgf3rk3a"
+  },
+  "golden:G035:treatment:analyst_retail": {
+   "block": "efz5i3g6iox2vkqhkoii4gfncxianbq7uflx73h23j64u4b5hqta",
+   "package": "kwu5ycf4vcukd7swufevf7engwrbbbkch7equp2kiy2rjsheflzq"
+  },
+  "golden:G036:control:analyst_enterprise": {
+   "block": "62udpzkvjzk3axwcuu4dd33nptpiw7tokx6tlebckw3xwaiuagda",
+   "package": "gior3wduadicr7vgi6n4gvlffyr6e7ylv3cehdgwenpcawjrsfgq"
+  },
+  "golden:G036:control:analyst_retail": {
+   "block": "wkndo342qr7odr5pitzqvfy46nylzqmxfvp7k72fsyoskq7dkwha",
+   "package": "hzzeisgxlutj2dzunm73tdblne7ihswoioezxzmrysf4ulrn2urq"
+  },
+  "golden:G036:treatment:analyst_enterprise": {
+   "block": "ayqnnanxmm2dedhpmkwdjip7r3kjue4jmojwflraudhn466wi3wa",
+   "package": "rq4wcftoo4mouxyalqswwpcxgscyuhhbueg3oyon2ypculzkzkja"
+  },
+  "golden:G036:treatment:analyst_retail": {
+   "block": "jbdt3r3mfya75gtedbvvxmirrtsvnp6lg4ggnvzhfmoit7jh772a",
+   "package": "awdzjuqos3okyg5d2qxwhrrkwgm4e5vx42clwbekwin6szibzloq"
+  },
+  "golden:G037:control:analyst_enterprise": {
+   "block": "ujq6beezygw2au65yptikhhyiy3yuhtmzgykfsiwunjj7qwpwrxq",
+   "package": "p2aprpixl4c4y4wdnap7pspprv6ar2yn6ob6tktsap66doiwssjq"
+  },
+  "golden:G037:control:analyst_retail": {
+   "block": "ue7xa4wpo6udykqpsota5gxn42xq567zs4jpfmo6dau3vvzze4ha",
+   "package": "223rfjl4tllk7wba5icdrcrs567omsze47jd6pbh534uxnjhtqgq"
+  },
+  "golden:G037:treatment:analyst_enterprise": {
+   "block": "t37nnni4teackcq54neeauwdpwrwua4atvtocxbvixs4yrrl2mva",
+   "package": "lvirc76vpcas6vnpylqlpknntqk7eseiphft4paqxojwaudomyqq"
+  },
+  "golden:G037:treatment:analyst_retail": {
+   "block": "55sncysoajpfk5zv7fdkrywrg5z2wxu7w5dqbp3xltwuifgmjc3q",
+   "package": "ft5pruthkujtccavpp6btwj5lookr7yjey5ztoj3fv6acujrq52q"
+  },
+  "golden:G038:control:analyst_enterprise": {
+   "block": "nqigvjapaa7v2g6vmmvc5y5rxs425k4gprkc6kb6lqet6ourx7va",
+   "package": "4nwhamdypfqirxts33ifkc4dyat35tafkvmcrjsc2kkx6zopwmxq"
+  },
+  "golden:G038:control:analyst_retail": {
+   "block": "sxe7tph2vqywg4bhlan6nper7m7devenv56wrwccta5zl3antshq",
+   "package": "tu5bs4jyw7opz7bx54nlx4wl324mi2cpmvwry5o4mxjptgphbkwa"
+  },
+  "golden:G038:treatment:analyst_enterprise": {
+   "block": "esihkb3kbq6jz3cq2jo5uz2ejnygupjjc6mrl27mvy6djvr3ko5q",
+   "package": "f5gbccz2fpcbfhfnpltutcne4gemdb45eet5mlp6scchvyhmozrq"
+  },
+  "golden:G038:treatment:analyst_retail": {
+   "block": "euyjamm4b6uy3hwpqq5nzrq2wc7rzfiqpxjox4tfixwtd3yff6qq",
+   "package": "2oojytupf5mh6hyaviuj3d5zz2r3lh6raslfqnrpbv4p2glbhtsq"
+  },
+  "golden:G039:control:analyst_enterprise": {
+   "block": "5zz2dppqtb6ojkdxy2saryrvm7pfv4ngzrzyvo6ntezkdhwpca6a",
+   "package": "yq2lc2m2nvu6zk5iz2vm7ysf44asww2tbnabjoodpbwb3ae6oevq"
+  },
+  "golden:G039:control:analyst_retail": {
+   "block": "flprrntgyunlidym3cz4jy652y6uzd26bqpiifk4s3xrfgtaud4q",
+   "package": "otyv3xy5exxt63psw4xphrtvptnu5q7qx4ryzbd5gv7zupvymbmq"
+  },
+  "golden:G039:treatment:analyst_enterprise": {
+   "block": "lrflxfimfdzdzsrlwbdzipk5oozdyzuqzzgjpx2f2yuazabxgtrq",
+   "package": "eh6gy765tb4zekk3yaarfjtahj7thr6muxyjtmqii4y7q26y3tla"
+  },
+  "golden:G039:treatment:analyst_retail": {
+   "block": "3lnilqzsger43czcl5gxkgakdf7ziqja3mvhfnruhwcoiphzle6q",
+   "package": "3hbou6pim7r56gbycyb5k6y4nnnot5434lrvxj4bzetrjce6o2uq"
+  },
+  "golden:G040:control:analyst_enterprise": {
+   "block": "u36qnux7kx6qtm4ttvhecbli37z2tyif3nux6i4jtimztribhqha",
+   "package": "lou5klzut37bqrdoki5yej6aaji3zu4gfy6snfqnqnfpjsqbvdtq"
+  },
+  "golden:G040:control:analyst_retail": {
+   "block": "kxocddpdqccvlzhkdogy4vfklvcnd4fjzy5phs2h2q5zc5ohdglq",
+   "package": "av3nekqrmrpqf4uv7mlqmj3e3o75q7mf6h6e7lr5zkwhhzz6pgra"
+  },
+  "golden:G040:treatment:analyst_enterprise": {
+   "block": "4ar5szk5mmyxsf43pzbb56h3czr3gcxcwgw47iusacxckx34px4a",
+   "package": "ecrvzx26j5my3pqfuzomtsgoqo3fwy4znkzrbnamdzplobfde33a"
+  },
+  "golden:G040:treatment:analyst_retail": {
+   "block": "bhbf4wjjvufd4twwpjfq3yzoz7ioqfnjdfhbxeph3oe3rrhq22iq",
+   "package": "dlf4niff5l762ep6zadp4xr7n5i3gayuykrwxgwpy7lve224y72a"
+  },
+  "golden:G041:control:analyst_enterprise": {
+   "block": "i5tuefelcqc3zgrhf4esabbyinxtpovpbk4dntznfolufqyvgpeq",
+   "package": "csntms4quurhivcobzchlp5nj2ixkwultcfz7fjzfeacyvq7mswa"
+  },
+  "golden:G041:control:analyst_retail": {
+   "block": "b3ka6lp44fb4glq6poaqdlypigxrj4wyejauk56udqighumz7peq",
+   "package": "fp22mwc5hctt2fn3i6wzmuvy4irztjjzdsstu4d4o3uqxu6wmrpa"
+  },
+  "golden:G041:treatment:analyst_enterprise": {
+   "block": "wln5zm5souim47hlrrtl3egwaz73gl6fpifwsz3nmggsxk3hocma",
+   "package": "5vcpe32ejtvsjrfyg7rr2dlidqcyeiszxpyk53vc22mjjarvc46q"
+  },
+  "golden:G041:treatment:analyst_retail": {
+   "block": "627kxm4hawyig6sjpysoewiyuouhtxndvqrcyixxq3r5be5fa34q",
+   "package": "swmqe5bdeavfxhxlo7dipym6j25big2hizmpekxcuojka7jhibda"
+  },
+  "golden:G042:control:analyst_enterprise": {
+   "block": "tb4v4lllnjuszggnyour3oiz7bwdceogepnclfpj4zuw7eweknqa",
+   "package": "sxrm2at6zn7rdu7lzntoxlcibjov6utcbfig4ybwyum6bh3pvg4a"
+  },
+  "golden:G042:control:analyst_retail": {
+   "block": "k5u3efhri7zmniet52y44eimie7ep373o3wsnhtingmswctsmv2q",
+   "package": "omvyt5kvkfmt4xsysulfojdviy4apdc7ghdjyjbmnx3s4fmdwn4a"
+  },
+  "golden:G042:treatment:analyst_enterprise": {
+   "block": "rxh5jbgps6fjk7gpyhdsmlgisg3mc22jnzgzm5o4kxmgwjp2vpiq",
+   "package": "fe3bq253yr2hfwygicg3h3fpououdhnv4u6r3dymng5yomdca4oq"
+  },
+  "golden:G042:treatment:analyst_retail": {
+   "block": "pna5ovmokwsim5q66lblg4p5avquvhkxrfveeh3plu7qwxlbnsha",
+   "package": "jqzrmjozp2oykukl4xdsf4og6dcvtrdfohozxjjygxklkvu6nsra"
+  },
+  "golden:G043:control:analyst_enterprise": {
+   "block": "xq34uthagl5i7vwmzwvoabfou7wu5h2mem43e3kuenyl44mniewq",
+   "package": "7zww5wj6uxyjfdhg46ns5zff2jmiqv2qkd6l3llfycnvkycx3h3a"
+  },
+  "golden:G043:control:analyst_retail": {
+   "block": "yquwb4mcnvixasonnr4xvmngavn5dmbywwjvuqfb25riufl5qeeq",
+   "package": "avhofupdpevi5tmavvj23ecll5fwymadlarof35m4xlk64twjk2a"
+  },
+  "golden:G043:treatment:analyst_enterprise": {
+   "block": "2gatxhhmsvcwqb4eqtemcniphya3t34snxtibdz6eoyjjad7xvga",
+   "package": "q5bedwmht2ec4z3yb3p433hwwefci53uyu6uekt75zkrj4pnksmq"
+  },
+  "golden:G043:treatment:analyst_retail": {
+   "block": "47efgpyxbq35523mfqetwvjamjxjhrpy67pliryxbdutqsupgela",
+   "package": "6xaofieju5cf5hrgatvd3y7ougm6h44uw7twdahh2p4vrk5lukqa"
+  },
+  "golden:G044:control:analyst_enterprise": {
+   "block": "kzit6e6ja4qgtsxoisv4pqapvd2xbzyfu3bxyvgsffx5n6avn7aq",
+   "package": "g4sctkwmhxf7wkzyxydfohm6ze76ee7npffe6kh2m52z6ypyra2a"
+  },
+  "golden:G044:control:analyst_retail": {
+   "block": "mzjw7go3fqhv6fnwxucisroi5zzhglefa355fmvzbn62jnzvtxmq",
+   "package": "6lbtscoqftp3osn543336qeiyimitdtsokoegeolm4uwgeye2wnq"
+  },
+  "golden:G044:treatment:analyst_enterprise": {
+   "block": "gxmkstyckdz2whcxvmwnck267lug6jti7pzkgmhfo3ydklgv2cta",
+   "package": "lguujdofc4srnigoy3if7orwnelqnqlbz6jo7obede4z25zyajnq"
+  },
+  "golden:G044:treatment:analyst_retail": {
+   "block": "7zl5dn2zb4t53d6i7dtjt7rl6tcs5kxljivhttbpjw6666a473ia",
+   "package": "dhmtowcymp4kvslrevclh7c6aryedry3aiw7s5ulvw3v7gydyboq"
+  },
+  "golden:G045:control:analyst_enterprise": {
+   "block": "ecoieiibxcge4lg3t56z2xhgrwpe2e3sx7ikckjkbmqeuqrbjyhq",
+   "package": "jbfubqgobboy2imtl25q6a53gkf47oxjhxnojbbpnimbrbqxnspa"
+  },
+  "golden:G045:control:analyst_retail": {
+   "block": "67jyd25fzmtm5rsowjtf7fjnbriok3sv255qobafbjfyh323nbqq",
+   "package": "qogjtwnqitueow667exzzsx5c5baa7jnsvhcmq4rbsshsirjqx3q"
+  },
+  "golden:G045:treatment:analyst_enterprise": {
+   "block": "s5mestfhu2s4ycos44oed2w2xu5xsvnekf3ak5x7g3nwt5ax7rlq",
+   "package": "bksjpmn7g2ldnqhdornfqfwdpb6vjmxfnrovcqoyayfjwlpwlaba"
+  },
+  "golden:G045:treatment:analyst_retail": {
+   "block": "zsg26hpa2txilmx5qzpjhucs3hb2ilkbzf2tb2ggbkhdf6rkn24a",
+   "package": "47mper6mwtkuff2wc6gciinmncnjy3b54rvdxn2y5c6ilkukxquq"
+  },
+  "golden_wealth_v1:W01:control:analyst_enterprise": {
+   "block": "vpingmqaolq2xannamyugpzvn3jwzdjqvomtf4y42zpohh5ieova",
+   "package": "3xixagsg24idplfikjyi7lod3voiy6qnhrd5lzwg53fxw2asz7jq"
+  },
+  "golden_wealth_v1:W01:control:analyst_retail": {
+   "block": "rxfsooni4x6fvhgvwsupnk7vxmjy6cdw7fgwtcgmwjnpbhvarrla",
+   "package": "b74i7zl6ew5nrwz2jfwwqioiodsiaaqq2ht44b633kzhcnodjlsq"
+  },
+  "golden_wealth_v1:W01:treatment:analyst_enterprise": {
+   "block": "tsqj3osnhg5rx32znort2xyt2xwizfhtz47lelugj3o3hm7e2g5a",
+   "package": "vlx32gz3bu3tkiydivpk72u77wyeb25ovncmtwzbv24imgkb3tqq"
+  },
+  "golden_wealth_v1:W01:treatment:analyst_retail": {
+   "block": "mafisrde6yduda7mypnea4s462tcpquigxpzfzzxnfzarsdhndpa",
+   "package": "ww6wlui2mg547ynzav5pctajcjdwmjtaywm7xeynvapbdujgh6iq"
+  },
+  "golden_wealth_v1:W02:control:analyst_enterprise": {
+   "block": "uefai36bba6yuvaljzpod35ctjhq4htcvnexy73foz6bdohvk5pa",
+   "package": "w7uko7h44e6utmqvq7ta4grz3g3hvu72k6diiebi2352uj7lbkzq"
+  },
+  "golden_wealth_v1:W02:control:analyst_retail": {
+   "block": "f5m5ww7vu7piw7pzheqjanlroeishwpmqj54yftacwu2bo5vljma",
+   "package": "3kqfgytf4z5sie4wmfwc7q3fwpfzes2thq6az5zf5j2eant3xc2a"
+  },
+  "golden_wealth_v1:W02:treatment:analyst_enterprise": {
+   "block": "6d2jb7jis7zlzukxzcix2bwejl4jqbhvhfhiie3bfel3mms6ocza",
+   "package": "yj5q5s2y5a6dkedc5cczryqgtwheevhlmissprji5xbvyinal4za"
+  },
+  "golden_wealth_v1:W02:treatment:analyst_retail": {
+   "block": "pao27jwwjmpxqu2fprggypm7na6hvepb2uih7ugx7m3r7kuerpla",
+   "package": "jfprfl3rtvyxwfttimedjfabetdogvp3qe7bguygijdzzlhf4m2a"
+  },
+  "golden_wealth_v1:W03:control:analyst_enterprise": {
+   "block": "xvv5mg4p3d3cogft54batxzbqpw44hnvrkec2lipbb62ao6a4ytq",
+   "package": "3xlwk6mdnj77vftfclashsik3irxbi4k6c7nlusv3dhmk2572kha"
+  },
+  "golden_wealth_v1:W03:control:analyst_retail": {
+   "block": "fnvjdwnh6aire2ic3nzqwwsdlsi62rlrd7ik3pfa5fwxsrjd5r5q",
+   "package": "4zgy3cdtxft4cophy5jeewuuz3favw7ctryj57d4kmd3eo3znega"
+  },
+  "golden_wealth_v1:W03:treatment:analyst_enterprise": {
+   "block": "rd23zkj3lgh6tdyp27bohp5dbzijwnxxr7vuecuytbwxx73zrjnq",
+   "package": "tx77i24fzntcutflh7bem6sbacucrlf7ujr7pfkqao4xml4y62rq"
+  },
+  "golden_wealth_v1:W03:treatment:analyst_retail": {
+   "block": "r4ulqbdibe6dlfm5kqmtxi2v2lowcr7nv2vgwwh4chussy2bswwa",
+   "package": "4afwyzdchjthfcndjjuqwe7kz7s7ouvkpwcfovmcjerhghmsmsya"
+  },
+  "golden_wealth_v1:W04:control:analyst_enterprise": {
+   "block": "lo2bjk7qlrbeklp4zhls7lwabhaiaowqyreiugin4wz7ccystija",
+   "package": "v7vsjh2qbqbihc2t3kkm6pqw56sndajsl6k7xrfbmqkeoczohl2a"
+  },
+  "golden_wealth_v1:W04:control:analyst_retail": {
+   "block": "z654ihmcmih2fanamz3z7ebzahc6yfuloh4avqj3o5ill2rg5awa",
+   "package": "unx7qp3rjy3eswa4djnby7ppkjxymqmyp2k27324fpvpiaacgwaa"
+  },
+  "golden_wealth_v1:W04:treatment:analyst_enterprise": {
+   "block": "dyze5gw6yr2cjjmbi4yhlrtuedsswrtzvjgib64tjtoqn7nbu4ca",
+   "package": "r6m5iaj6aha4wsus5asnnrtvunxu57jj3ym2du3pudx56b7m6epa"
+  },
+  "golden_wealth_v1:W04:treatment:analyst_retail": {
+   "block": "56fmqldmg4j4wjnu4pfntt4wcv77fsugnshs5e4qmu7q4fmey7vq",
+   "package": "pc5mvtngax2kc257nwe5eqd3cqvk3cdjctf7uzps3j6buzkkzwma"
+  },
+  "golden_wealth_v1:W05:control:analyst_enterprise": {
+   "block": "hrb5g2kra3vszqpiojqjugtnprkhjy73t54fmrcyjgse6sxwfk6q",
+   "package": "se2xbxprwcrht6hq7j6exp6bfsbenipfwcrnpuyvjtdwsktqydoa"
+  },
+  "golden_wealth_v1:W05:control:analyst_retail": {
+   "block": "dpwyoxj2nfib7dkc2acjvj7giinspzcha4bued7qu2wdcd3ypzkq",
+   "package": "3qquyv4ilp2tdprhgxh43ttvahfckgscqogtviqekicgcomocqtq"
+  },
+  "golden_wealth_v1:W05:treatment:analyst_enterprise": {
+   "block": "wza4bq6mn6rkitspiresefhm5tsm2yfyczgwj5nwsjtn6htkajfa",
+   "package": "o64xzwza46bcd55ybd26kdpyz52k7jy47whapwwv77o2mb34ecnq"
+  },
+  "golden_wealth_v1:W05:treatment:analyst_retail": {
+   "block": "bmbbhrrdc4fhb4clcnx7nxu7aqn2ztjcbcj5raxnvhcctbcbp4sa",
+   "package": "mksodkvososz2i4sixj34yprp53ssgmhzwvm4q46ohls46ikg43q"
+  },
+  "golden_wealth_v1:W06:control:analyst_enterprise": {
+   "block": "f7ufmyfc4jdvcavimawnts4ra2zscym3ki7nceddhoqld3ia6rda",
+   "package": "moz3odtp7ybqez37ymtu7gjmgnloeszb4nzwvd5nfh4w264ialkq"
+  },
+  "golden_wealth_v1:W06:control:analyst_retail": {
+   "block": "5y3xlrnhtpmb5s7tztw4p2uxdzwewx6thjpbver3ktlqqmoczqwq",
+   "package": "4ikmz5bt5gssmbrfwkyryyipzb7ncib2lsdoeuo643cdgk4v3z3a"
+  },
+  "golden_wealth_v1:W06:treatment:analyst_enterprise": {
+   "block": "6lmsxeaptfvdx6qghn3lqwot3wk5xgc3e7wqvezrn27ivds3qjja",
+   "package": "twsfzznuvl6f25svkk5usuptftvy2suo2tc4cyfrv7w4ns437zma"
+  },
+  "golden_wealth_v1:W06:treatment:analyst_retail": {
+   "block": "mcoqziwrg46xddbtua2xbrh75eymexdq4pua3z4xjs2uodpxmzwq",
+   "package": "hheuf66tuk3loxzgb3w3inu23dv7a7demup4olkwjb6xw474ykxa"
+  },
+  "golden_wealth_v1:W07:control:analyst_enterprise": {
+   "block": "dg4zfmovchaxd5jmnxsxm432s5vqzfmixyx466snsgzvjo45ebwq",
+   "package": "yhcc4ix3mwk3twsi3kkcho7bq42jmkepq5te6cmddqeaovjcphfa"
+  },
+  "golden_wealth_v1:W07:control:analyst_retail": {
+   "block": "nvz2gl4tqoy5tmf7hyn3fnclhvydelb52sujaku7iwtn7kb7bwea",
+   "package": "xulf4flmrkkgu5ynazpl75qcxmv7aeeusyansbvtsermafz47aca"
+  },
+  "golden_wealth_v1:W07:treatment:analyst_enterprise": {
+   "block": "njmwplnszxvwl66hblm5tfazu25wn63s5iv6hdc5nddqfhirepwq",
+   "package": "mj6vgtuse5ytqwq54rumw5j5yicwmtgahsqrq4bbbiacd6kycwla"
+  },
+  "golden_wealth_v1:W07:treatment:analyst_retail": {
+   "block": "36dfjcl2uodnriawmw5rnjsgnjpihcwff5csfatcneg3afyoqvna",
+   "package": "yiaq6zyyyallg6ztahennnczxmgfxvuvdux7qeft4dhv7t2iin6a"
+  },
+  "golden_wealth_v1:W09:control:analyst_enterprise": {
+   "block": "tbfryd7cegvtqeh7c4jleltjfqdgh3w4qhdywm3rwxvxlhh7y75q",
+   "package": "qc7ew7unk423wwxy6ai42hjq5pefxwkzjp5ol6tjnyvpx75j6bvq"
+  },
+  "golden_wealth_v1:W09:control:analyst_retail": {
+   "block": "a6tio3uwrylqzbvz3426mrkcbz7r3c7rvzn5c7riosiulqtlwhpa",
+   "package": "ejx2n4ox4driwaz5avtkd4dlxcbgyowqhtbgo7jy4mscwga4f62q"
+  },
+  "golden_wealth_v1:W09:treatment:analyst_enterprise": {
+   "block": "cdowy7rllt7mwjycwz7aav5vsn3msc6g2imq63fvj6a7hgdyfb6a",
+   "package": "mcioslnwvnod6ua2jrjezro6iytdifqwao2zgivqrfabrilbjeeq"
+  },
+  "golden_wealth_v1:W09:treatment:analyst_retail": {
+   "block": "gfldm65f5gnsagn6csqdzv5p4o2wf3tzntjntuikfqvzkcslrujq",
+   "package": "4cniw2mamcypy7ovk7wfxa2ew4mdi3knh54dhds7cnl7sacuofsq"
+  },
+  "golden_wealth_v1:W10:control:analyst_enterprise": {
+   "block": "xiobgzy5rlseuydiw46pctv2zsienepple2icqbwyoaiikrp7gdq",
+   "package": "5jdm4w434oeyp2pqh2att6ocloldxwx3a2ozifjbss6kjq3og2uq"
+  },
+  "golden_wealth_v1:W10:control:analyst_retail": {
+   "block": "3axchg47j5hpzuncytxgnuwxgc2i2i42uoepelees3ymfahb3sva",
+   "package": "bxzfc4h245ozjxpi4n57diuptgopfledg3fk6aymurfiqdqnraaq"
+  },
+  "golden_wealth_v1:W10:treatment:analyst_enterprise": {
+   "block": "52sgp4gsnibrctfnzt2mbc7eahuuk4dqazf3wi6nqyjfyv6zacdq",
+   "package": "gq3amshtm6o3567xyualxzovbt5hnh2ttrgf4qqp7qmqdj77hsja"
+  },
+  "golden_wealth_v1:W10:treatment:analyst_retail": {
+   "block": "7tsbbiueuiokb7dxi3jbq3hihmbvahowphat7qhr2mkhrwok32uq",
+   "package": "itdhw4ms3eq4nsgoqeybryondahfekuywopiqctx72uzmvyshm4a"
+  },
+  "golden_wealth_v1:W11:control:analyst_enterprise": {
+   "block": "vdtapfs2qavnmhgl5mliauce4ogafea66lf4b3yrvlnuv75pvzqq",
+   "package": "kukc3qlin5koq7ex3zg6jllgolhw5pyajtc5obvwah64i75e4geq"
+  },
+  "golden_wealth_v1:W11:control:analyst_retail": {
+   "block": "sul4icj3yc3miuqq3reol6yxqdt7u4kgyaf3jgiq3ss2damd57ya",
+   "package": "3iy445s633csfgwsox4fdgah3a3ihoavttlej6sixbx6lp4zf5za"
+  },
+  "golden_wealth_v1:W11:treatment:analyst_enterprise": {
+   "block": "mavdafxgnsj65ug3lqf2ia4is6zfziswpciszh42hnlmbneegtta",
+   "package": "2jafkut7tncvc7qrexmgni5s4jj5qga5np6wi2bf4j25s63samba"
+  },
+  "golden_wealth_v1:W11:treatment:analyst_retail": {
+   "block": "otow5nn3nn46wofqotdhfgo6oglreho6xih3iwrksd75kzer2bwq",
+   "package": "5rqjpkxo5ogt53qmj7gyoqwawgigcyb45doieez6efhizf4yicla"
+  },
+  "golden_wealth_v1:W12:control:analyst_enterprise": {
+   "block": "mpsycciyxv3p5zywcgeja5mbor47oirpwkb2onq7qfrcv4yavqcq",
+   "package": "jrndgjl5dqu7uxoaleuoh72sotdxys2lihmp4swa4zyfxczoahea"
+  },
+  "golden_wealth_v1:W12:control:analyst_retail": {
+   "block": "dnbjusatpe4pxw6nel2ti4sfdkumdzfrbz4zqyoogcf3tszyhymq",
+   "package": "3wi4taxjpli2y7zifryhsmih633o2ke66mpsjmrfz67rbrn3rj7q"
+  },
+  "golden_wealth_v1:W12:treatment:analyst_enterprise": {
+   "block": "py6uk4bfbwubvobt5itzfl4yfhjdlsvpx7s6m5v3yindzxhfu3bq",
+   "package": "4du64rwzexuzoypnzdi3bnuk6fz4dnfmihntbsbhldhbo2villca"
+  },
+  "golden_wealth_v1:W12:treatment:analyst_retail": {
+   "block": "nc4d4dzx547vadn3fdjflrceoluadn4x22wqz7zuvqto5bczas6a",
+   "package": "rslq4ao3fl5jqewwtfuzospkhsniocrxogat2hi4zqubwqwxw4ga"
+  },
+  "golden_wealth_v1:W13:control:analyst_enterprise": {
+   "block": "7k7lqwucp7lpddvltgxctm4jwx6s3kmt4aufw6nxmh3lvntlntfa",
+   "package": "hr4fg2jbp4q2m6sydihl4cgy27vsckkkdlr4w3mrtalb5m7vrbqa"
+  },
+  "golden_wealth_v1:W13:control:analyst_retail": {
+   "block": "4lje3xqcct4xn2pqtatigj676babo27a45vomufgqabpyieai7ha",
+   "package": "vupslwbw3rbz4oauvqswvp5eayxndtxfn3uihflabs7y4p2js5sq"
+  },
+  "golden_wealth_v1:W13:treatment:analyst_enterprise": {
+   "block": "plwjwewvza7vhgqlyzwdomlvmaimvlmi5zkuzmcq6uaavaqmyivq",
+   "package": "j6qvxwqdohk4cf2wgddcz7flgvs3ccfxjlcrt2jvavirjmyo32mq"
+  },
+  "golden_wealth_v1:W13:treatment:analyst_retail": {
+   "block": "lmcbwgs5jnd3djp5o3az4xq2lu52qnshn5ydxgriifveoeufihta",
+   "package": "kxnq2fxlh6ypoyndb6vapgp57ehnzovjbg7wyo6bg5crvgiddkqq"
+  },
+  "golden_wealth_v1:W14:control:analyst_enterprise": {
+   "block": "qunf6mj67h56r2ilbofwcodx3l2kuko2r7pge5v7vz2rkgjqqcbq",
+   "package": "ns4c3zqjsawmo2befmch7s6t223btsigg7wbc344iet72og4piga"
+  },
+  "golden_wealth_v1:W14:control:analyst_retail": {
+   "block": "kqqmpum5n5argtz2r2pbogwlur3u76xun77musk7olrwnhi2s3pq",
+   "package": "ynesd6ctujezfohh6lbrkfn3chzz6l33n6ex5uaubbv55rjhbt6q"
+  },
+  "golden_wealth_v1:W14:treatment:analyst_enterprise": {
+   "block": "2qxnplsdwufiieojmutpb7fbztsvuvlkxpmt465i6y4dddmufxbq",
+   "package": "6dejixrcqumdz5zgnjuk3woexas6i5d5ck3p7okagmmyqp5y4tnq"
+  },
+  "golden_wealth_v1:W14:treatment:analyst_retail": {
+   "block": "hyrcmp44m7sxa6hrtl3uj3gi743aucrmknyzid57jvc7fl2bc6wa",
+   "package": "bkm4tae32xoropxwbn4oyumb67vd2zgxyaycqj5oi656hpy32ora"
+  },
+  "golden_wealth_v1:W15:control:analyst_enterprise": {
+   "block": "5zw7sm7to2jypky7plelksazii6ba4mjhn5ghptcy2sefxzrczzq",
+   "package": "atvgvjnsnjdcyh7g4pvsp4rld5ylxkyhlh3yno7vsswch4ytg5mq"
+  },
+  "golden_wealth_v1:W15:control:analyst_retail": {
+   "block": "hc5mk3emlzrrem34a3dttiucasgpci64knx5ox6vy2jjonzvoaea",
+   "package": "pndg3nfrk65zzc4vf5gviocah4apmh4p5qqcnlu3avlag4hnwbeq"
+  },
+  "golden_wealth_v1:W15:treatment:analyst_enterprise": {
+   "block": "vklvwtmffhoklnowflmd7cad6lxu3cvgrzxcyioj6gxvrakgkgeq",
+   "package": "hlqi2chkz4gunjq7pdrrqc3vjcb3iuornmumcobocf2xzsesxtkq"
+  },
+  "golden_wealth_v1:W15:treatment:analyst_retail": {
+   "block": "pkzil27o6bk2oq6aeasjcdha7n6r3hosasom5pzvywllpsyhfo3q",
+   "package": "nxv3j3cf7bxftdf4ytz3noo7t6nz6inlvp5owcrp2xwacw3g2uwq"
+  },
+  "golden_wealth_v1:W16:control:analyst_enterprise": {
+   "block": "7oy53rf4tiodcuhdy5zn5qmvxaglephu2eoyga7fqvg5vfwpdgiq",
+   "package": "vaoikjxuu5j6q6irdyx5jojjhljxorajiuqvnigq2qw2amhu2lga"
+  },
+  "golden_wealth_v1:W16:control:analyst_retail": {
+   "block": "csnmhibxok2h6xo2ayqiaej5xyudmilrbpxlokf6oubigocsfrda",
+   "package": "ownqimu7tb2okqj7at2h4b4svuaolbyeiuthqrqckvfwfb5prtbq"
+  },
+  "golden_wealth_v1:W16:treatment:analyst_enterprise": {
+   "block": "76ibxfiuf5nq5zotnlk73uyr22qc7uurqa6ggb3og3aevlrjz5ja",
+   "package": "2lhkfnsncn6m4e2lm43lvlxzvbs3nfra44aztjavbdpfrtorjcfa"
+  },
+  "golden_wealth_v1:W16:treatment:analyst_retail": {
+   "block": "bsufrzujgrs6g73awu6yd5szfsiy6sbnw5jj7di74cgeqfafednq",
+   "package": "xvrzfhdkec5nctep5duqaoqlxt4mvdmrydycemsl72qwd7cbvw7q"
+  },
+  "golden_wealth_v1:W17:control:analyst_enterprise": {
+   "block": "czfu7keovfzgzu3mdg7vczhqmnd4yhd4kmfhcra63xhyf4te5f5a",
+   "package": "vozcmcnmm3jaxsmdynkeucl3p7qkm5ab3fyvoql23e74hylqd4xq"
+  },
+  "golden_wealth_v1:W17:control:analyst_retail": {
+   "block": "tjl7pihaur73qchtciuwrkzxoitlnsyjxapjl6denvhmrfkc6uoa",
+   "package": "w5e5asl3rmrxukcf6uwidhoesmbsez6xfhfjqpqlgxv6whwqbiza"
+  },
+  "golden_wealth_v1:W17:treatment:analyst_enterprise": {
+   "block": "ngq3wwnbodfrojdqtecmr5b5l5cnrsf6yej7cpvm6vojdbffjtma",
+   "package": "hpmdghuulmkdq7jds2hqcwekgawmckvsqyo6wx7na63wdtiawlpq"
+  },
+  "golden_wealth_v1:W17:treatment:analyst_retail": {
+   "block": "kgm3jilnjdyx4ce7soane7irbcf3hgi6uyeyyxfcbmnrc25akaoa",
+   "package": "i5tmti263umqmdbgumsclhnn27gdufhckylcm64qe7areas7aizq"
+  },
+  "golden_wealth_v1:W18:control:analyst_enterprise": {
+   "block": "uhcil3jgdlfgdn4ap3wfu6ufe7gz6fjojkau3ixsarmxwhdqd73q",
+   "package": "b3vbvaxqjublesbqo7zrf3csisoxx4oxotwbt5gdpyrdcve4yega"
+  },
+  "golden_wealth_v1:W18:control:analyst_retail": {
+   "block": "7egragh53t3wqcazc4lrx4axyeifhfjpnjqpxizfa4t6idaio44a",
+   "package": "27eowbar2c7ulqwp5wxastn4qib7gmuqcgay2umayjbuc6hxm3pa"
+  },
+  "golden_wealth_v1:W18:treatment:analyst_enterprise": {
+   "block": "kmny2di6edryl6q2gk6js6fgmgnpmn442gr5clpuo36xtu3l5zga",
+   "package": "l7sdwrn6nvmr7q2oh4gzj7bqkosbp74bx37i5naxxnz2hlvdwbfq"
+  },
+  "golden_wealth_v1:W18:treatment:analyst_retail": {
+   "block": "qw5lbgvnqmmf74auyhozgj6truuyxccqryrfjyin5ndkb3g33bja",
+   "package": "j3gblxmaktjg7feaaedui5lngsqmtiqi5fazf6qizdhlk5yheweq"
+  },
+  "golden_wealth_v1:W19:control:analyst_enterprise": {
+   "block": "n4sayv2gkjtnrxsnegduaqyhzfu65mcau46u5y23hsfzywqsmmwq",
+   "package": "sxzjukvn4csq6fant6nqzhtp2yh37wqfs7ytxxbwoqu2zg7wuieq"
+  },
+  "golden_wealth_v1:W19:control:analyst_retail": {
+   "block": "3ii3ijiz5fniusr7pr3i5dstzetr2nfu3xemyw3l4i7jwmcu7roa",
+   "package": "i7gqdv4ergms2nkilpjvo5uwfngxrvvo32wrtso5fkctpyyr544q"
+  },
+  "golden_wealth_v1:W19:treatment:analyst_enterprise": {
+   "block": "q32sywop5kcqqf56rfid3oluakvklgqof3m7qobu5kex5cwj62mq",
+   "package": "6tlgmtyglbd7q2owvd2jpfpy67mderu7ul4h2d4x77d2g6tixcba"
+  },
+  "golden_wealth_v1:W19:treatment:analyst_retail": {
+   "block": "hvw5mshg7hexx4o72sbsvzpi5tzzmqxpll7koyr66rl3jy5cn7sa",
+   "package": "ohgbrfabpm5y6xbo7q6foxx3ci2wdu24hefu6txhyio5dx3xdmyq"
+  },
+  "golden_wealth_v1:W20:control:analyst_enterprise": {
+   "block": "nppaicy5t3m4goj4pyuyy6z4vzxihrocsi3ldvfldpugi6fir3gq",
+   "package": "cni5z2mxm3cor7j3dwq4q34wsaopd7o7ms5hyrbsglv7rhvydyiq"
+  },
+  "golden_wealth_v1:W20:control:analyst_retail": {
+   "block": "ys7bxj57ti54525nbym6ulcc2x6hn6hppxh6worfugbyeqbse52a",
+   "package": "atdechknrt6z57smvkax2qglsits6i72mo3rlatbcyhrhvcfn7ia"
+  },
+  "golden_wealth_v1:W20:treatment:analyst_enterprise": {
+   "block": "kjgvg5peeoojj7uweyzgzd2wb324qnxnbic6qqe4vrvuzhoo4mdq",
+   "package": "64qoaobabfzqapmyk6xbh6rwrv6katollm2tcttc6hflim73mefa"
+  },
+  "golden_wealth_v1:W20:treatment:analyst_retail": {
+   "block": "fdbtzkuhygm7lhl2eo7bt3swkcs5luuysfum26mgfqv7bsp4345a",
+   "package": "keezfnkbleuby7gpg4vmbzlvbpexvnnkymfqeffqji6gnysojtxa"
+  },
+  "golden_wealth_v1:XB-DOB:control:analyst_enterprise": {
+   "block": "bigtvtsruzrdnco4kzh4cjhps7eydal7vzu4qy4ap5rgbtfzxzeq",
+   "package": "qbkv5h6j2vhkwminvvuikvfajfji7u527y37zwvovsxphhnnk2eq"
+  },
+  "golden_wealth_v1:XB-DOB:control:analyst_retail": {
+   "block": "2sacrjdnswbjpfkvscawteyrwpvkloqvnqz6blodkn55j5sgxd2a",
+   "package": "jkpjgqgrv76i4g3fji6lkpaqnabkzxct4mejkrs3j6duxrpnt4eq"
+  },
+  "golden_wealth_v1:XB-DOB:treatment:analyst_enterprise": {
+   "block": "a5ywnyjcwyrv36nysgptj73cfary73drgek3mek24zwd5qddffba",
+   "package": "yu34vzrgtaiotbvjzwzpjosspbluq4iq4h7f43al2h4ssbpn3n2q"
+  },
+  "golden_wealth_v1:XB-DOB:treatment:analyst_retail": {
+   "block": "66rmi24altdzi2m4dq3fwiuo2noyme36wmhqo4uertfqevlushfq",
+   "package": "6ykyjdkapm7nl47rz26oxn4fa5cnurqfgzrwozeuwb6t5x4qhfeq"
+  },
+  "golden_wealth_v1:XB-EMAIL:control:analyst_enterprise": {
+   "block": "qm7kwlhlrdv3ppvaax3lzlqxmt33hojdvhqvzx7trxvpv2vnpfma",
+   "package": "32wu2tj5fxigbwbogg2uu5jftfgtkjfpyxsn7gsq56znozmqv3ya"
+  },
+  "golden_wealth_v1:XB-EMAIL:control:analyst_retail": {
+   "block": "qg4wv7bom43qpex4pefjic2d5cmktgz6emkaibaf2fnwboxkeq5q",
+   "package": "svnxb7zpnuzxjoesdknwocwgtuuanleyvq5l3672gs3myjjznn7q"
+  },
+  "golden_wealth_v1:XB-EMAIL:treatment:analyst_enterprise": {
+   "block": "xqs4wk5qp4ivszywr7uu2beb3soq55gifma7o5ucfs6cjiqk4vcq",
+   "package": "sllkwx2v2eo3thyxzt4qlnk6g37pngl2qw3kk6gh3artc4umjoyq"
+  },
+  "golden_wealth_v1:XB-EMAIL:treatment:analyst_retail": {
+   "block": "zm2bxsk22uzbblfwez4qhtus54b274ada6nw4us5kvwkgmz65wnq",
+   "package": "eers262po5oiozw4zn5wxwqiqdihjvqewqg2ianuprsizqeezhoa"
+  },
+  "golden_wealth_v1:XB1-R:control:analyst_retail": {
+   "block": "j32m733hpauc2mrxzse5ejoftyr3kazgdwqwufoae5nf2txfn54a",
+   "package": "pmw4fqlroa63oskrovtrbhg77oa2semsxyodypkbskjx33p4qmza"
+  },
+  "golden_wealth_v1:XB1-R:treatment:analyst_retail": {
+   "block": "jtarj26fsa7w54wyuy6fljvxlql4uhc4cab6pl6e2nt7sfoqybla",
+   "package": "5x2tiromuu5kb57mkihlyqw4g2gneki5oybqntsw5kqkavtarkpa"
+  },
+  "golden_wealth_v1:XB1:control:analyst_enterprise": {
+   "block": "kxsa27q7zqeguhk2hi53fmkmaq2zu7vd6svfbqdn7rqd5tqspmiq",
+   "package": "r7ponze2tvjixnvxpvue4n4lh73aa6se2y3gkbludbhfxhzedifq"
+  },
+  "golden_wealth_v1:XB1:control:analyst_retail": {
+   "block": "j32m733hpauc2mrxzse5ejoftyr3kazgdwqwufoae5nf2txfn54a",
+   "package": "pmw4fqlroa63oskrovtrbhg77oa2semsxyodypkbskjx33p4qmza"
+  },
+  "golden_wealth_v1:XB1:treatment:analyst_enterprise": {
+   "block": "fefv6v52xnveomx2yhjejnoljgkz7f7xtmgjchwrsy2far5eqgsa",
+   "package": "66aelnrimqjadlsr53ykgi3mwloladkoql27thy3jz7l4w5oixaq"
+  },
+  "golden_wealth_v1:XB1:treatment:analyst_retail": {
+   "block": "jtarj26fsa7w54wyuy6fljvxlql4uhc4cab6pl6e2nt7sfoqybla",
+   "package": "5x2tiromuu5kb57mkihlyqw4g2gneki5oybqntsw5kqkavtarkpa"
+  },
+  "golden_wealth_v1:XB2:control:analyst_enterprise": {
+   "block": "l6gxccmb4nlyvbtwsxxr3ixdpfta5v6un6eproqkqzweo3y4zkpq",
+   "package": "oj2csftdy6vqtlpbrlnb3dt2hcinibiognjhb7t5uu7oepcpevfa"
+  },
+  "golden_wealth_v1:XB2:control:analyst_retail": {
+   "block": "6sr23di5qqmsdfygtys7rj5zkaorqi767okxfvb22trtktp6plcq",
+   "package": "6jryimvry4t3kvrlyga67nc6qd54ij772xfwbiysgoyvrpc3z7tq"
+  },
+  "golden_wealth_v1:XB2:treatment:analyst_enterprise": {
+   "block": "pclebfxqx5ocbelamp2rvw3cw4lujmvpjuih5ieousmnn2m765bq",
+   "package": "l73sgesgykny3n7uiutp7rhjo2nlonkzp2o6guav3gbwfdlhbaga"
+  },
+  "golden_wealth_v1:XB2:treatment:analyst_retail": {
+   "block": "6te2adqpmh6hybmobp3ikqt26rzak7ndpwflagqhsxmkqcof342a",
+   "package": "engy5z2z4ytrq5rqiwg3msjjhp4addiftgtaadqm7kvjkdxrbhca"
+  },
+  "golden_wealth_v1:XB4:control:analyst_enterprise": {
+   "block": "hrbcm37rzd3cwocgkdksdee45fbw5kzggn5ci4rwccvuigwd723q",
+   "package": "ndpvqevushwd4lupu7hrk265rz7jtbng2bmdmriy677uuyicjhpq"
+  },
+  "golden_wealth_v1:XB4:control:analyst_retail": {
+   "block": "ihx3twg2djpvobixnifcbh7lqbfg5n6xfy45vex6mrm2pnxzy5sa",
+   "package": "tlb6q6jmcqybuxalygh4pnfw3ua6vvoxo2nlbygecg73et3fnipq"
+  },
+  "golden_wealth_v1:XB4:treatment:analyst_enterprise": {
+   "block": "la2me2wyx3cl5x64fx7shsxd5ssdk6lfp3ryzsu4avubxm52e2wa",
+   "package": "pbbykqfavni7ijqkpq37hrupgbzcecqyicsu4exru56cfgyzhegq"
+  },
+  "golden_wealth_v1:XB4:treatment:analyst_retail": {
+   "block": "htxofr3pjzkbv3b6g6qft4em5dnv6ubp7xilxxyyojktn65q57fa",
+   "package": "5pkkyfv55durkgpypjchioftzgrvmoazwgjmsfytcu4gy7yjnfea"
+  },
+  "golden_wealth_v1:XB5:control:analyst_enterprise": {
+   "block": "sibm3zbwp7tfgdsrdkh6cthlyagdrmdp2oshbdlanbwiuxseoaaa",
+   "package": "s56x3tusfhm7nsjdsbyfnaf23hf7xapgidmt6gtyouuhbg6gzfuq"
+  },
+  "golden_wealth_v1:XB5:control:analyst_retail": {
+   "block": "l3keu7eu4q2cggd5q5iczdehm4kpxhuiu5ufrg5lioosbaz2dy3q",
+   "package": "etin4ecarazher4g6qogmahztqaadtg5qzdpxl5j52grojs7dora"
+  },
+  "golden_wealth_v1:XB5:treatment:analyst_enterprise": {
+   "block": "pi3s266jrqrazu6uuc7dtgyxnvqnv7yaclxroa7q4dn5rhrtqfwq",
+   "package": "z4ewa5ufuyvy2a3z5nmr5ioft26hn7oklu3cay5ycuxy2yqdrnoa"
+  },
+  "golden_wealth_v1:XB5:treatment:analyst_retail": {
+   "block": "inwpwuiwiugukdgktaepypn43ytz6w2box6q6cryy5wcflgy2mja",
+   "package": "ei2aujqwsrekm4y5uouem2zkpcc5gckonzzr5pimiuoq5pyk4l5a"
+  },
+  "golden_wealth_v1:XB6:control:analyst_enterprise": {
+   "block": "i2ahbafnb3gj4sxtvg77imv3gjje5scorg5vr2wcr6zu3aaxvzbq",
+   "package": "oukeoke7jadk4723egazy3lqbqs35wr6swm4ibakfuvjp5ku7s7a"
+  },
+  "golden_wealth_v1:XB6:control:analyst_retail": {
+   "block": "6duxh7cbo4ozgmovhen5jf2tikvfhfxb2ea3y46vs4fcoonrsjvq",
+   "package": "vq5jeiktxokeju5zv3ordgxgq5oyhv6w3ndtxb2mor2fn6lk3hca"
+  },
+  "golden_wealth_v1:XB6:treatment:analyst_enterprise": {
+   "block": "mf7yorfnsgkrvsnkcuyzyzmc7cij6bykv3zemtnk4lqndcyp4y6q",
+   "package": "z56w47kv6vzdq4l3szumpqsanyv5loh45xhukpw7qocji3p4kypq"
+  },
+  "golden_wealth_v1:XB6:treatment:analyst_retail": {
+   "block": "sexg2642tzlzseqfxkuiio4krrf4jnmqj26xvma6y6hatri3typq",
+   "package": "idelyxi3il2ecjocwvyy6xodst725r4yco6vq24cn6zumjtcgvoq"
+  },
+  "heldout:H001:control:analyst_enterprise": {
+   "block": "2lyh4vk7nee7werbrt2snpwtosq3opuunfztz6dt4hxbpvn4glda",
+   "package": "cye4kq74yxriejvy3h55pcpsih27pgbxqvot3pdabwgtklvltvrq"
+  },
+  "heldout:H001:control:analyst_retail": {
+   "block": "hzeha4ypcsr2qg53zzvnjgebl6xiiy3u5rmyzaryikkkpjeebhpa",
+   "package": "cp6dl3gkasd44ifaphvrvkmmt3mi76k237kjwzodxpa5c4rhjbuq"
+  },
+  "heldout:H001:treatment:analyst_enterprise": {
+   "block": "5xemj5mhw6qtz523qx5t4owum5n7ejvugqx3mbxr4nykcz33dg3a",
+   "package": "x3rnbwphcljdn52qtch6unp6nyivsbhnljp42nwt5f5ohofgdqka"
+  },
+  "heldout:H001:treatment:analyst_retail": {
+   "block": "7yix3mkmax2zwoo5fu4hcx6wkvs2ryrkzucgelktsyfspfga24uq",
+   "package": "jlovvawvtagwv475fe4zvhxc3ykarvdstfzbollm65hcd5nmdnwq"
+  },
+  "heldout:H002:control:analyst_enterprise": {
+   "block": "wciacwzqlq5jq26hhyqmb4lyiwlbdlvc77awl5pinu3ge6ailvgq",
+   "package": "hhnlf2tgrxfnc5qj4deewrkpihfauyvd46rx42nctf5bqotlvf4a"
+  },
+  "heldout:H002:control:analyst_retail": {
+   "block": "ecz6hsxf5azjo47d7acg4askt5ihkpqgle43g4hbakhfevbgeaha",
+   "package": "pwyjx6skl2xtoucnr7l5glghvow7oe6ezucdpwyvui5cobjqzl6a"
+  },
+  "heldout:H002:treatment:analyst_enterprise": {
+   "block": "mqathinnt2oqbojmiihrfqmza6gaf66jafuyzoffbtt6tcjaywzq",
+   "package": "filx27rtwrsxeoawtofc7ofb6fnhgb7c6bwyhpnkaccylnlcy6za"
+  },
+  "heldout:H002:treatment:analyst_retail": {
+   "block": "654uz2aerfxvgc5deyqd7nwd462tffkrv3xtzofs2l53iyasrq3q",
+   "package": "lqmebzfd2gyv7sdfezhybd4oz6zpmpcebfulzepbpn6jnmzsvj5q"
+  },
+  "heldout:H003:control:analyst_enterprise": {
+   "block": "qltkgk4q2aqhrnn2bq43pbihkjg6wdwyf5g2527tiar7wn6t5kya",
+   "package": "6dpcr44jnw2iupcwdpnzaulyfqimlff3hybfauacywyjzmmr4lva"
+  },
+  "heldout:H003:control:analyst_retail": {
+   "block": "z5csamvxihhqd7bsuucbzdvx2tkj5zuktezwvq36muukrvh73j7q",
+   "package": "zpc5menvllwmxu3x4rnbxr4ncqsnul5j5ih3yn65csrhxw7e7llq"
+  },
+  "heldout:H003:treatment:analyst_enterprise": {
+   "block": "pmcxbo7tpgtz3iybwrsstftbof33l2sh2dv2xc6gmv5gwipku7cq",
+   "package": "ck2wo4vxj5ox773wijgfa4m53k7zm66ubancxhyvxa5dos3mb2gq"
+  },
+  "heldout:H003:treatment:analyst_retail": {
+   "block": "cys4svgzheoni2lel2wflhh46rsade2pwm546wtqizylshtulcva",
+   "package": "zsae3vefwwdac7o3uyxfaug6zrfp2knqijd4gwl6w25h2w5eatya"
+  },
+  "heldout:H004:control:analyst_enterprise": {
+   "block": "oqmcpjtu3xgt6fdwtpt5vbw2f6fhi74shbmfjqjxfwsgauy6ldjq",
+   "package": "ubkcejcp46ayrxv5nbnjqka2v5cbk6luaav7ryhheyrgn6aof6ba"
+  },
+  "heldout:H004:control:analyst_retail": {
+   "block": "rzduzrlayyfe5esb5qek7elmdehrldk3uld3dyyzieyosybkt7lq",
+   "package": "nbwj52bbhw77jlpe5dtpkmgz74nbsvyhm6ylkvefw6fzi2f6r56q"
+  },
+  "heldout:H004:treatment:analyst_enterprise": {
+   "block": "augbavskl3lppoqi4sreq7jmhd5lszkqrx3ynh25zhxszdxd5mpq",
+   "package": "dhpxmtf6yd2wr7pf43whfdqzl2uri6gx6hcfj6aubbfyws7xahma"
+  },
+  "heldout:H004:treatment:analyst_retail": {
+   "block": "hajuqxsyqoicnui4myaw3cw6ii3eecw7o2ds62tgsppztso3jigq",
+   "package": "jwob6qaghbwpi46fiixkgtlkccr7e7rdkesuh7dx3naokmi473bq"
+  },
+  "heldout:H005:control:analyst_enterprise": {
+   "block": "ubbbghslfwfn4thz36ca2eblh62cux4osfxr5tpto2pcbjlpknaq",
+   "package": "7ufrnhkm35iac6fm6p5zo3oftr3ntkujt2k3daq64kejcfdwl43a"
+  },
+  "heldout:H005:control:analyst_retail": {
+   "block": "znyz27pfx4wjipeu64ni4lc5xqugcfyuis32mpi3u45yqdlemeca",
+   "package": "jnzr5i2mlzkrxy7i6cdu2p3ds7gcu3ca7gtqr6nmmfmzqz2kw2qa"
+  },
+  "heldout:H005:treatment:analyst_enterprise": {
+   "block": "box7hvzkb6t2h7u3daulgzhevhls6zmjjis6h2u3llzmgtdj666a",
+   "package": "ip2orhjk2erjsoo5o5dgp6aw64vdgmnxmuzn2gisuepgndlznfpq"
+  },
+  "heldout:H005:treatment:analyst_retail": {
+   "block": "37o25gujog5l6uzqishyzjwyzvp6lfpz3qyrcrcu3i5dihfma4oq",
+   "package": "se72lcadu2uayeqxpwddiruzuxolob4bvgam7yk2mayscyqrofsq"
+  },
+  "heldout:H006:control:analyst_enterprise": {
+   "block": "poa4cevbioea3c4xr2uq7p3fbhjg4qcxazfnqyru6g7unkojhsaa",
+   "package": "iae4ovobgyvync2jkqyfasrqenaipuvdjzzsqwhymk2ymu7knhxa"
+  },
+  "heldout:H006:control:analyst_retail": {
+   "block": "up7jsrnbp5dh5wicqpvdx7p5o27xmrsa3smqm6uzrvs6rb6hrjkq",
+   "package": "b7oudpgmm7rqj75bfh2y535o3aijkrgc5mnjrjjudhnpvdu3rnta"
+  },
+  "heldout:H006:treatment:analyst_enterprise": {
+   "block": "tp5lbqfo6f62gbvipijbez4p3ms6wi7664kjht2rwugno36puqea",
+   "package": "6bta7ubavq66xh6443teeybzgkc5yzng4oktpu5w4gx74li6a7xq"
+  },
+  "heldout:H006:treatment:analyst_retail": {
+   "block": "ptrtl4mmx7nqy5rrhcfzck6qyw2g6x7xjluesv2rpkvz246rtb2a",
+   "package": "vo4nhppi4eeojtz543uybswrqrzadcqaojbauucjui4p64neqbpa"
+  },
+  "heldout:H007:control:analyst_enterprise": {
+   "block": "wbex77a4e5vuc4sxropmdlo5knzjfnianegnbu7jjjrdllyp3lcq",
+   "package": "u43ucc3krxxauhbf6jhy2kdtidtyvrloua3l3i2euy35agbcwkaa"
+  },
+  "heldout:H007:control:analyst_retail": {
+   "block": "4curl2oizxpl5mllj4ib2vzhn2d7nuuuwo2ktaq5trgy5bbmwkca",
+   "package": "ej4v4eehcvbovdf4gjpkgkxegdkjnwunoa3qpkqk4irg5j5tvpfa"
+  },
+  "heldout:H007:treatment:analyst_enterprise": {
+   "block": "rmyhvqeucuznbvv3vh3l6ll3jtsabqxbe22ixwcpzmt4gwqytnsq",
+   "package": "j4yaupvypmx6zlqiibvrwoei3arf4jra6khivhfa5ftg27l7ugfq"
+  },
+  "heldout:H007:treatment:analyst_retail": {
+   "block": "o7qekpsxq3a5hzetq2fgdoob6afgoivjii4lzrsjhnvcmwwz4rhq",
+   "package": "ci4l7ohm3nm5tjqq4oxqiossqthcoevfloduzidbmfbb2bjdnzia"
+  },
+  "heldout:H008:control:analyst_enterprise": {
+   "block": "ccsfwp5pe4itrzebvlqyb2hp5k7j2bo5gkjdigtatflkg7nfgmnq",
+   "package": "fgx4ont435tn47pbxuoszyfqw6uatqyxwzhwylk3ormosm7yg6hq"
+  },
+  "heldout:H008:control:analyst_retail": {
+   "block": "upbfoq44z52xwfq3pnuxkzc2frfvu5kx52saforq72n2kbztpsmq",
+   "package": "ltf4vffeahaxvpktk5rtyes7jalu56lmwpnax5ifnqh2znvlnkcq"
+  },
+  "heldout:H008:treatment:analyst_enterprise": {
+   "block": "hwah3c63esiij2dgzxlyaaj2rsoa4gtbu4abm7azxo6mxuutbmlq",
+   "package": "gluwykozamwbwnh42ekphekimdrpuuy2nd74wuckn754m6yxgaka"
+  },
+  "heldout:H008:treatment:analyst_retail": {
+   "block": "wyu4ykko5xmpeeyfl6tdm2amx7pnpufkoqp344born7inkvchebq",
+   "package": "qc5gt22b66jbgothj62nxxuh4u2gg2qer3ux5hjnydqjd2peodra"
+  },
+  "heldout:H009:control:analyst_enterprise": {
+   "block": "iskwrwvoptisfroyeozmt57zh6f4oabhzrqkhc7p4qf7aad4yu7q",
+   "package": "t5gwv6wpkxvypwirfw5jtnivmgk3ngwpt47cpiwhmqaovmkzwvla"
+  },
+  "heldout:H009:control:analyst_retail": {
+   "block": "aactbkj6yject5wo4bgswoqovte35p6mqs7jm75upmhhhj23tnrq",
+   "package": "vpqiap4eclng64ht4q5wxb6soyjycrixmaws2cjfrea4hrvrfh4q"
+  },
+  "heldout:H009:treatment:analyst_enterprise": {
+   "block": "joqb42urv77uo654fjulj6q5firxefz3gvh76l4tbvz2h5av2ika",
+   "package": "lbgjkzfop4epac2vihd6cghhu37fmoghruqaaryczfoe5tjpk2tq"
+  },
+  "heldout:H009:treatment:analyst_retail": {
+   "block": "7hqtdbblbpglqro4lxiap3smhrqyjroum4plu2oecqv5qdemcecq",
+   "package": "ypuzru3klef5cmxq7mmuf6nitatwhym5qhoikp6lcm2t3x6wcciq"
+  },
+  "heldout:H010:control:analyst_enterprise": {
+   "block": "5uzbaeztp7r3brcjjfpkoxunnr6g2ranfxjgpxm5qwtblddqtyzq",
+   "package": "so6bquvu5xq3feyocvyjha5wb7mn64rbx6bw4mpfmnfzwgnrgixa"
+  },
+  "heldout:H010:control:analyst_retail": {
+   "block": "7enpbsxkh2dxoaa5xhyui2fgkyda4aokjvsabtkr3uji2ffgjz7q",
+   "package": "gxtkoshza7747bz5gce2o3uwclbcqwiocvypnvdarz3pliw2eqwa"
+  },
+  "heldout:H010:treatment:analyst_enterprise": {
+   "block": "lakds5lb4p3owpdduocbvmbewk5exwzwvs7fsacwsm6z5tu6n56q",
+   "package": "qp2myxwfpxzt24ljdnxf54inkovcgcrgthxba6hg52ba7hmk2caq"
+  },
+  "heldout:H010:treatment:analyst_retail": {
+   "block": "f4l4vicewepqcpaxj2dvtx3rxgqisbdzzmxyjvz5cmekdafx7p6a",
+   "package": "z2vtbnjwgxnu6it2trgeysmhsb2mmoaa63cqopyzs33s6vs5wrra"
+  },
+  "heldout:H011:control:analyst_enterprise": {
+   "block": "ymgufgmivk3phlvogwro2tjryjoykr7bx4uwssfwnv7hcfjln5ra",
+   "package": "felx53qxjweakd6bs336mvxsplsfycycrnbqzys3nja7g5uewbza"
+  },
+  "heldout:H011:control:analyst_retail": {
+   "block": "xxhkcxuostwmb2bkactjktyfgm7krm4bsxales3mbrzruoct4ldq",
+   "package": "shf2sjnga4r2wd6hbv37fryxoycmpkg4d3k46x33jbpyi4o66fia"
+  },
+  "heldout:H011:treatment:analyst_enterprise": {
+   "block": "s2rbsb3ncp45n2hmwqynw3pgroiilr6g3cuuaffffsb76sc6sz7q",
+   "package": "jfxcor55vganlyhsbsvivyuljnozq4gdohobkxvmguc2lcsgrzua"
+  },
+  "heldout:H011:treatment:analyst_retail": {
+   "block": "7ianrbfobqbniwjwy35bm42u23cdowgng7ju7tghzmfaf6cdhv7q",
+   "package": "t7ybu7ilw5z2zlbnjohr36sidm2a5tztftw5duv3xw6r3edljjhq"
+  },
+  "heldout:H012:control:analyst_enterprise": {
+   "block": "itzvsugrkrwlxvb2nwshuqreuvayklhd77g2wory3qt4j43fl5sq",
+   "package": "d6tnmpnebexpzbtoqov3osmua5idmvheikjkjqjcaivg5plkntga"
+  },
+  "heldout:H012:control:analyst_retail": {
+   "block": "gpyfw2xgqijyunnklz3gkquizujoce464sar2kurpa324b33ulja",
+   "package": "zowbdnfmzjge7c24rzyobjmwdhxnwj4ddzp6lw6ths4sm4li7req"
+  },
+  "heldout:H012:treatment:analyst_enterprise": {
+   "block": "umju4fvykzwsicjla6p3sydquefuazgkcg2attuei2gdaxt67pqa",
+   "package": "cbxbtsutqtfafu244y3ffz26cruck75wms62iyzpxa4jsijpcdxa"
+  },
+  "heldout:H012:treatment:analyst_retail": {
+   "block": "cansf6gq27d725pojanuxov3amxxkrd53f3ig6cgrkzqp4d267oq",
+   "package": "dmkztq2inacnnocwjbgfxfmhuwnz66bjk5iag5xytwvni5yukjtq"
+  },
+  "heldout:H013:control:analyst_enterprise": {
+   "block": "lf5i3xrqfyuwx4lnjfzymsykbvm3d5qt63cosn7jjmetvhazyfhq",
+   "package": "nhsbpo7z3sb7ncrcjk7d27eb4uol3qpotl7wiayoaqstmhn6bsla"
+  },
+  "heldout:H013:control:analyst_retail": {
+   "block": "cnen2ze372odypy5u34swk475xyu2gqy4fwd6rc3oj5wmholenpq",
+   "package": "bgbayrq2lj4yb7rplv3h3ktiguk4tu2hanyyh37rik6tcz2mub5q"
+  },
+  "heldout:H013:treatment:analyst_enterprise": {
+   "block": "ztekifhynqv6c6knrwy3qmfdkykyaxeyzadolg7smpjh4v3sfdxq",
+   "package": "6fp7y5izep5hfwr5p2styrfbiasfkivfwknik2wjugqtrt5iqiqa"
+  },
+  "heldout:H013:treatment:analyst_retail": {
+   "block": "y3l4nd3fegok47okhgonh2dwfk7gje6uuf6wvoekkvampgyzl5ea",
+   "package": "pghbia3wp3j5bvae2aangw4gfcaulc7acw5rp3dxzjur3p2qjroa"
+  },
+  "heldout:H014:control:analyst_enterprise": {
+   "block": "lmm5t5km6ad7lroa3rpusxwy2vuxqvnbeqlxuzoujp7lpddniy7q",
+   "package": "mvatmm7doay5bqdlkwtobd4amfwm2w3vsyqgpmnoo47i5riwvdiq"
+  },
+  "heldout:H014:control:analyst_retail": {
+   "block": "tcinc7h56ojn653gs7wleb5smwtqlo2k2cpugp5zyuja6t4pkr3q",
+   "package": "hgp5xjaidii2uuf32mamwdqjornhubj4zcgylm3s2xc35sad24sq"
+  },
+  "heldout:H014:treatment:analyst_enterprise": {
+   "block": "uxwk5i6vyecge5uj3e6aryub35ptzeo22qjdkss2tguyccza63la",
+   "package": "2t2vuqkepkg5ndh22fvhefm5mm2t33clz3feivwjz7csqa3hupna"
+  },
+  "heldout:H014:treatment:analyst_retail": {
+   "block": "ft4zik6ommi5bcvko7fod3a5hisozjh3a42vdihqf7geq5dllj3q",
+   "package": "5vhi4zfuc5kbs5h3gddqvmonnsbw45nmzgqrhdonxhzijzdvof5q"
+  },
+  "heldout:H015:control:analyst_enterprise": {
+   "block": "qxo6livsqyyfgvcmiehyqjjqt4b342poiu2yprqnewgke63ugs5a",
+   "package": "dqwlfuk4fb3saqbvag4sskdwmswpqvzd5kb2qvrvb63ihnvvko7q"
+  },
+  "heldout:H015:control:analyst_retail": {
+   "block": "gaqbfwzuxqp5wojvxjwz7bogs3xdiuwrwpi7qnrm2mus4vjzflwa",
+   "package": "shf66vpn54xn3q7givpfeuhcgxbk2cxsukcitnljjtvyq2joroka"
+  },
+  "heldout:H015:treatment:analyst_enterprise": {
+   "block": "i5a4x6nlw25b7p2b4bemv7ipscp4mnkbtvlutam3mp2ft4t6swya",
+   "package": "v2dedxdxsrak6mz7bodyn5kxsewmdp5y7l3eoacy6jwbqmtcorpa"
+  },
+  "heldout:H015:treatment:analyst_retail": {
+   "block": "xjza6qmdv2s23tltdhrohdtbhgyho43vx7obyl6ds4hanknfhtca",
+   "package": "qd2o575rf2jlq65ltwvfdp2kfn2tzbaxhgk3uk6e4myfartzgw2q"
+  },
+  "heldout:H016:control:analyst_enterprise": {
+   "block": "qmlq5chgypqehrr32stbmdps4pcgd74fjdkpmx4qwbwafuiin6lq",
+   "package": "uihbpxc2tjawcsnlmmooqbulz56xsqxm5cq7r7ohoy3ijaxo5gea"
+  },
+  "heldout:H016:control:analyst_retail": {
+   "block": "xicacn26aouifs56aou25rb76jve5v5adruya57j5yxmjs6d5zja",
+   "package": "ghrnq7dbouh5vewmrchluzpbui3bhgntwbferodcxeoyxtpespua"
+  },
+  "heldout:H016:treatment:analyst_enterprise": {
+   "block": "3tovwveosowuofjxyhf5oqwfvjlv25rgwslcpmaqex62fpg4nbkq",
+   "package": "hpgmcqjtd4df573yfkigbhv6yjcu4ss5guf2xe2m2d7je43dveia"
+  },
+  "heldout:H016:treatment:analyst_retail": {
+   "block": "kxwop64bfazcz7ulxqu5m5iyyxl4izuplnubspfm4yqha7h5377a",
+   "package": "vl7dbjihdszdxomdsv3by4lzlfjt6qmloibejdb5q6zm7b3owosq"
+  }
+ }
+}

@@ -1,0 +1,597 @@
+[
+ {
+  "name": "clean",
+  "svg": "<?xml version=\"1.0\"?>\n<!-- mark -->\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><defs><linearGradient id=\"g\"/><path id=\"a\" d=\"M0 0h1\"/></defs><use href=\"#a\" fill=\"url(#g)\"/></svg>",
+  "accepted": true
+ },
+ {
+  "name": "clean-bom",
+  "svg": "﻿<svg/>",
+  "accepted": true
+ },
+ {
+  "name": "not-svg-root",
+  "svg": "<html><svg/></html>",
+  "accepted": false
+ },
+ {
+  "name": "upper-root",
+  "svg": "<SVG/>",
+  "accepted": false
+ },
+ {
+  "name": "script",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><script>alert(1)</script></svg>",
+  "accepted": false
+ },
+ {
+  "name": "script-spaced",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\">< script>alert(1)</script></svg>",
+  "accepted": false
+ },
+ {
+  "name": "onload",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" onload=\"alert(1)\"/>",
+  "accepted": false
+ },
+ {
+  "name": "external-href",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"https://example.com\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "xlink-data-href",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><image xlink:href=\"data:image/png;base64,AA\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "prefixed-href",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:x=\"http://www.w3.org/1999/xlink\"><a x:href=\"javascript:alert(1)\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "unquoted-href",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=javascript:alert(1)><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "entity",
+  "svg": "<?xml version='1.0'?><!DOCTYPE svg [<!ENTITY x 'y'>]><svg/>",
+  "accepted": false
+ },
+ {
+  "name": "foreign-object",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><foreignObject/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "smil-set-href",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a><set attributeName=\"href\" to=\"javascript:alert(1)\"/><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "smil-animate-values",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a><animate attributeName=\"href\" values=\"javascript:alert(1)\"/><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "smil-animate-motion",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect><animateMotion path=\"M0 0L1 1\"/></rect></svg>",
+  "accepted": false
+ },
+ {
+  "name": "smil-animate-transform",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect><animateTransform attributeName=\"transform\" type=\"rotate\"/></rect></svg>",
+  "accepted": false
+ },
+ {
+  "name": "smil-attribute-xlink-href",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><use attributeName=\"xlink:href\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "style-import",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><style>@import url(https://example.com/a.css);</style></svg>",
+  "accepted": false
+ },
+ {
+  "name": "style-url",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><style>rect{fill:url(https://example.com/a.svg#p)}</style><rect/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "inline-style-url",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect style=\"fill:url(https://example.com/a.svg#p)\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "inline-style-import",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect style='@import \"x.css\"'/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "doctype-plain",
+  "svg": "<!DOCTYPE svg>\n<svg xmlns=\"http://www.w3.org/2000/svg\"/>",
+  "accepted": false
+ },
+ {
+  "name": "ns-set",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><a><svg:set attributeName=\"href\" to=\"javascript:alert(1)\"/><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "ns-script",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><svg:script>alert(1)</svg:script></svg>",
+  "accepted": false
+ },
+ {
+  "name": "ns-animate",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:s=\"http://www.w3.org/2000/svg\"><a><s:animate attributeName=\"href\" values=\"javascript:alert(1)\"/><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "ns-style",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><svg:style>@import url(https://x.example/a.css);</svg:style></svg>",
+  "accepted": false
+ },
+ {
+  "name": "ns-foreignObject",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:svg=\"http://www.w3.org/2000/svg\"><svg:foreignObject><body xmlns=\"http://www.w3.org/1999/xhtml\"><iframe src=\"https://x.example\"/></body></svg:foreignObject></svg>",
+  "accepted": false
+ },
+ {
+  "name": "charref-elem",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><&#115;cript>alert(1)</script></svg>",
+  "accepted": false
+ },
+ {
+  "name": "charref-attr-on",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" &#111;nload=\"alert(1)\"/>",
+  "accepted": false
+ },
+ {
+  "name": "charref-attrname-href",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a><set attributeName=\"&#104;ref\" to=\"javascript:alert(1)\"/><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "entityref-attrname-href",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a><set attributeName=\"h&#x72;ef\" to=\"javascript:alert(1)\"/><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "charref-href-value",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"&#106;avascript:alert(1)\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "charref-href-value-hash",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"#&#x2F;..\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "cdata-script",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><![CDATA[<script>alert(1)</script>]]></svg>",
+  "accepted": false
+ },
+ {
+  "name": "comment-split-script",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><scr<!---->ipt>alert(1)</script></svg>",
+  "accepted": false
+ },
+ {
+  "name": "newline-in-tag",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a\nhref=\"javascript:alert(1)\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "tab-before-on",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"\tonload=\"alert(1)\"/>",
+  "accepted": false
+ },
+ {
+  "name": "newline-before-on",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"\nonload=\"alert(1)\"/>",
+  "accepted": false
+ },
+ {
+  "name": "on-after-slash",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"/onload=\"alert(1)\"/>",
+  "accepted": false
+ },
+ {
+  "name": "on-after-quote",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"onload=\"alert(1)\"/>",
+  "accepted": false
+ },
+ {
+  "name": "on-digit",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" on1load=\"alert(1)\"/>",
+  "accepted": false
+ },
+ {
+  "name": "on-hyphen",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" on-load=\"alert(1)\"/>",
+  "accepted": false
+ },
+ {
+  "name": "upper-script",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><SCRIPT>alert(1)</SCRIPT></svg>",
+  "accepted": false
+ },
+ {
+  "name": "upper-onload",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" ONLOAD=\"alert(1)\"/>",
+  "accepted": false
+ },
+ {
+  "name": "mixed-javascript",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"JaVaScRiPt:alert(1)\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "ws-prefixed-javascript",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"   javascript:alert(1)\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "nl-prefixed-javascript",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"\njavascript:alert(1)\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "tab-in-javascript",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"java\tscript:alert(1)\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "xml-base",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xml:base=\"https://x.example/\"><use href=\"#a\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "xml-base-javascript",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xml:base=\"javascript:alert(1)//\"><a href=\"#\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "use-odd-prefix",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:zz=\"http://www.w3.org/1999/xlink\"><use zz:href=\"https://x.example/a.svg#b\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "image-external",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><image href=\"https://x.example/a.png\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "image-protocol-relative",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><image href=\"//x.example/a.png\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "image-relative",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><image href=\"a.png\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "feImage-external",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><filter id=\"f\"><feImage href=\"https://x.example/a.png\"/></filter></svg>",
+  "accepted": false
+ },
+ {
+  "name": "href-empty-quotes",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "href-single-quote-ws",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=' javascript:alert(1)'><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "href-unquoted-nl",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a\nhref=javascript:alert(1)\n><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "href-attr-no-space-after-quote",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a id=\"x\"href=\"javascript:alert(1)\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "href-after-slash",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a id=\"x\"/href=\"javascript:alert(1)\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "HREF-upper",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a HREF=\"javascript:alert(1)\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "attributeName-ws",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a><set attributeName = \" href\" to=\"javascript:alert(1)\"/><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "attributeName-nl-value",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a><set attributeName=\"\nhref\" to=\"javascript:alert(1)\"/><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "set-upper",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a><SET attributeName=\"href\" to=\"javascript:alert(1)\"/><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "set-newline",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a><set\nattributeName=\"href\" to=\"javascript:alert(1)\"/><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "style-elem-ws",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\">< style>@import url(x)</style></svg>",
+  "accepted": false
+ },
+ {
+  "name": "style-attr-nl",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect style=\"fill:\nurl(https://x.example/a.svg#p)\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "style-attr-unquoted",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect style=fill:url(https://x.example/a.svg#p)/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "style-attr-escaped-url",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect style=\"fill:\\75 rl(https://x.example/a.svg#p)\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "style-attr-charref-url",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect style=\"fill:&#117;rl(https://x.example/a.svg#p)\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "style-attr-image-set",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect style=\"background:image-set('https://x.example/a.png' 1x)\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "style-attr-src",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect style=\"mask:src(https://x.example/a.svg)\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "fill-url-external",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect fill=\"url(https://x.example/a.svg#p)\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "filter-url-external",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect filter=\"url(https://x.example/a.svg#f)\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "prologue-pi-stylesheet",
+  "svg": "<?xml-stylesheet href=\"https://x.example/a.css\" type=\"text/css\"?><svg xmlns=\"http://www.w3.org/2000/svg\"/>",
+  "accepted": false
+ },
+ {
+  "name": "doctype-external-dtd",
+  "svg": "<!DOCTYPE svg SYSTEM \"https://x.example/a.dtd\"><svg xmlns=\"http://www.w3.org/2000/svg\"/>",
+  "accepted": false
+ },
+ {
+  "name": "doctype-internal-subset-no-entity",
+  "svg": "<!DOCTYPE svg [<!ATTLIST svg onload CDATA \"alert(1)\">]><svg xmlns=\"http://www.w3.org/2000/svg\"/>",
+  "accepted": false
+ },
+ {
+  "name": "doctype-internal-subset-entity-upper",
+  "svg": "<!DOCTYPE svg [<!ENTITY x SYSTEM \"file:///etc/passwd\">]><svg xmlns=\"http://www.w3.org/2000/svg\">&x;</svg>",
+  "accepted": false
+ },
+ {
+  "name": "svg-root-tab",
+  "svg": "<svg\txmlns=\"http://www.w3.org/2000/svg\"/>",
+  "accepted": true
+ },
+ {
+  "name": "svg-prefixed-root",
+  "svg": "<svg:svg xmlns:svg=\"http://www.w3.org/2000/svg\"/>",
+  "accepted": false
+ },
+ {
+  "name": "two-roots",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"/><script>alert(1)</script>",
+  "accepted": false
+ },
+ {
+  "name": "html-after-svg",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"/><html><body onload=\"alert(1)\"/></html>",
+  "accepted": false
+ },
+ {
+  "name": "a-target",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"#x\" target=\"_top\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "handler-element",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><handler xmlns:ev=\"http://www.w3.org/2001/xml-events\" ev:event=\"load\">alert(1)</handler></svg>",
+  "accepted": false
+ },
+ {
+  "name": "listener-element",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><listener event=\"load\" handler=\"#h\"/><handler id=\"h\">alert(1)</handler></svg>",
+  "accepted": false
+ },
+ {
+  "name": "xhtml-iframe-direct",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><iframe xmlns=\"http://www.w3.org/1999/xhtml\" src=\"https://x.example\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "xhtml-script-direct",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><h:script xmlns:h=\"http://www.w3.org/1999/xhtml\">alert(1)</h:script></svg>",
+  "accepted": false
+ },
+ {
+  "name": "svg-in-svg-script",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><svg><script>alert(1)</script></svg></svg>",
+  "accepted": false
+ },
+ {
+  "name": "bom-utf16",
+  "svg": "﻿<svg/>",
+  "accepted": true
+ },
+ {
+  "name": "nul-in-script",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><scr\u0000ipt>alert(1)</script></svg>",
+  "accepted": false
+ },
+ {
+  "name": "unicode-ws-before-on",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" onload=\"alert(1)\"/>",
+  "accepted": false
+ },
+ {
+  "name": "formfeed-before-on",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"\fonload=\"alert(1)\"/>",
+  "accepted": false
+ },
+ {
+  "name": "vt-before-on",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"\u000bonload=\"alert(1)\"/>",
+  "accepted": false
+ },
+ {
+  "name": "href-cr-prefixed",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"\rjavascript:alert(1)\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "href-ff-prefixed",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"\fjavascript:alert(1)\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "href-nbsp-prefixed",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\" javascript:alert(1)\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "href-quote-then-space-hash",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\" #x\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "href-unquoted-hash-then-space-js",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=#x onclick=alert(1)><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "mpath-external",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect><animateMotion><mpath href=\"https://x.example/a.svg#p\"/></animateMotion></rect></svg>",
+  "accepted": false
+ },
+ {
+  "name": "textPath-external",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><text><textPath href=\"https://x.example/a.svg#p\">x</textPath></text></svg>",
+  "accepted": false
+ },
+ {
+  "name": "pattern-external",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><pattern href=\"https://x.example/a.svg#p\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "gradient-external",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><linearGradient href=\"https://x.example/a.svg#g\"/></svg>",
+  "accepted": false
+ },
+ {
+  "name": "href-with-space-inside-value-unquoted",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=javascript:alert(1)//#x><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "href-quoted-containing-gt",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\">#x\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "href-quoted-space-hash-js",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"# javascript:alert(1)\"><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "attributeName-charref-x",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"#\"><set attributeName=\"&#x68;ref\" to=\"javascript:alert(1)\"/><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "attributeName-entity-xlink",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"><a xlink:href=\"#\"><set attributeName=\"xlink:&#104;ref\" to=\"javascript:alert(1)\"/><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "set-attributeName-other-then-href-values",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"#\"><set attributeName=\"target\" to=\"_top\"/><rect/></a></svg>",
+  "accepted": false
+ },
+ {
+  "name": "animate-no-attributeName",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><rect><animate/></rect></svg>",
+  "accepted": false
+ },
+ {
+  "name": "entity-lower",
+  "svg": "<!DOCTYPE svg [<!entity x 'y'>]><svg xmlns=\"http://www.w3.org/2000/svg\"/>",
+  "accepted": false
+ },
+ {
+  "name": "entity-ws",
+  "svg": "<!DOCTYPE svg [<! ENTITY x 'y'>]><svg xmlns=\"http://www.w3.org/2000/svg\"/>",
+  "accepted": false
+ },
+ {
+  "name": "entity-after-root",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"/><!DOCTYPE svg [<!ENTITY x 'y'>]>",
+  "accepted": false
+ },
+ {
+  "name": "pi-after-root",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><?xml-stylesheet href=\"https://x.example/a.css\"?></svg>",
+  "accepted": false
+ },
+ {
+  "name": "leading-garbage-comment-unclosed",
+  "svg": "<!-- <svg/>",
+  "accepted": false
+ },
+ {
+  "name": "leading-doctype-with-gt-in-subset",
+  "svg": "<!DOCTYPE svg [<!ELEMENT svg (#PCDATA)>]><svg xmlns=\"http://www.w3.org/2000/svg\"/>",
+  "accepted": false
+ },
+ {
+  "name": "html-comment-wrapped-script",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><!--<script>alert(1)</script>--></svg>",
+  "accepted": false
+ },
+ {
+  "name": "svg-root-attr-newline-then-script-child",
+  "svg": "<svg\nxmlns=\"http://www.w3.org/2000/svg\"\n><script\n>alert(1)</script></svg>",
+  "accepted": false
+ },
+ {
+  "name": "clean-fragment-only",
+  "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\"><a href=\"#top\"><rect fill=\"url(#g)\"/></a></svg>",
+  "accepted": false
+ }
+]

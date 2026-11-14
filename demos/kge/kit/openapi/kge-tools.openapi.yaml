@@ -1,0 +1,3058 @@
+openapi: 3.0.3
+info:
+  title: Client ALTA
+  version: dev
+  description: Reference tool spec for an external agent calling a private KGE service. Send the KGE bearer token in X-KGE-Authorization.
+servers:
+- url: https://<KGE_SERVICE_URL>
+paths:
+  /context:
+    post:
+      tags:
+      - 'external: knowledge'
+      summary: Context Package
+      description: 'The context package the reference agent''s prompt carries on one arm, control (graph off) or treatment (graph on),
+
+        built by the context workflow (kge/services/ask/engine/context.py) as the caller, exactly as /agent builds it, as JSON (as_json). /agent''s
+
+        sign-in rules and errors: a bad arm is a 400. Set compact=true for the structured context, sources, definitions
+
+        and decisions, with only definitions in the prompt block and no SQL, traces, duplicate candidates or plan internals.
+
+        Omitted or false is unchanged.'
+      operationId: context_package_context_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContextAsk'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContextResponse'
+        '400':
+          description: A run config or an arm that cannot run here
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problems'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      parameters:
+      - name: X-KGE-Authorization
+        in: header
+        description: KGE sign-in, as `Bearer <token>`. On a private Cloud Run service the Google identity token is a separate header (`X-Serverless-Authorization`) and does not replace this one.
+        required: true
+        schema:
+          type: string
+  /ask:
+    post:
+      tags:
+      - 'external: query'
+      summary: Ask
+      description: 'The graph arm, answered whole: figures from the warehouse with the documents that back them.
+
+
+        A question with one customer group, optional narrowing and measures over it
+
+        is planned, gated and cited here (kge/services/ask/engine/combined.py); any other question gets
+
+        exactly what /answer returns, with combined: false. With no stages override
+
+        the model takes part wherever it can if one is configured, as before. Every answer carries answer_text, worded
+
+        by the template, or by the model where it phrases a combined answer and its wording passes the checks.
+
+        Set background=true in the query string to return a durable run id (202) and follow /ask/runs/{id}.
+
+        Set compact=true to omit SQL, traces, plan internals and duplicate candidates, keeping answer content,
+
+        runtime labels and the history needed for follow-up turns. Omitted or false leaves the full response unchanged.'
+      operationId: ask_ask_post
+      parameters:
+      - name: display
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: Display
+      - name: background
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+          title: Background
+      - name: X-KGE-Authorization
+        in: header
+        description: KGE sign-in, as `Bearer <token>`. On a private Cloud Run service the Google identity token is a separate header (`X-Serverless-Authorization`) and does not replace this one.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ask'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AskResponse'
+        '400':
+          description: A run config or an arm that cannot run here
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problems'
+        '202':
+          description: A background question run
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionRunResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /ask/runs/{run_id}:
+    get:
+      tags:
+      - 'external: query'
+      summary: Question Run
+      description: Resume the signed-in person's question by id, as JSON or reconnectable live events.
+      operationId: question_run_ask_runs__run_id__get
+      parameters:
+      - name: run_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Run Id
+      - name: after
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+          title: After
+      - name: X-KGE-Authorization
+        in: header
+        description: KGE sign-in, as `Bearer <token>`. On a private Cloud Run service the Google identity token is a separate header (`X-Serverless-Authorization`) and does not replace this one.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionRunResponse'
+        '202':
+          description: The background question is still running
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionRunResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /search:
+    post:
+      tags:
+      - 'external: knowledge'
+      summary: Search
+      description: Rank products, terms, metrics, columns and documents the signed-in person may read, with the reason for each match.
+      operationId: search_search_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Search'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      parameters:
+      - name: X-KGE-Authorization
+        in: header
+        description: KGE sign-in, as `Bearer <token>`. On a private Cloud Run service the Google identity token is a separate header (`X-Serverless-Authorization`) and does not replace this one.
+        required: true
+        schema:
+          type: string
+  /data/query:
+    post:
+      tags:
+      - 'external: query'
+      summary: Query
+      description: 'Run the signed-in person''s read-only SQL against one readable unit, returning at most 1,000 rows.
+
+
+        The SQL gate allows the query only when every rule below holds. It is within the complexity limit:
+
+        32,768 characters, 4,096 tokens, 128 OR or UNION terms, 32 parenthesis levels and 192 syntax-tree
+
+        levels, checked within 5 seconds. One statement, and it reads:
+
+        SELECT or WITH ... SELECT, nothing that writes. A second statement is refused. Every table is in
+
+        this unit''s warehouse. A CTE or subquery may not borrow a warehouse table''s name, and a source may
+
+        not rename its columns by position. Name every column: SELECT * is refused, as are COLUMNS(...) and
+
+        #n, and a whole row. Each named column must be on the unit''s allowlist. Restricted personal data is
+
+        refused. Joins are inner joins only. JOIN ON is a conjunction (AND) of one column equal to another
+
+        (table.column = table.column): OR, a constant or any other expression in ON is refused. Two tables
+
+        meet only on a declared join, and a composite declared join needs every column pair together. A
+
+        declared join that carries conditions of its own is used with those conditions, including its version
+
+        window. Server-information functions and memory-expanding functions are refused. The warehouse then
+
+        dry-runs the query and runs it only when that plan is accepted.'
+      operationId: query_data_query_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OwnQuery'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/kge__services__data__engine__models__RowsResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      parameters:
+      - name: X-KGE-Authorization
+        in: header
+        description: KGE sign-in, as `Bearer <token>`. On a private Cloud Run service the Google identity token is a separate header (`X-Serverless-Authorization`) and does not replace this one.
+        required: true
+        schema:
+          type: string
+components:
+  schemas:
+    Arithmetic:
+      properties:
+        kind:
+          type: string
+          enum:
+          - ratio
+          - percent_change
+          - difference
+          title: Kind
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        numerator:
+          type: string
+          minLength: 1
+          title: Numerator
+        denominator:
+          type: string
+          minLength: 1
+          title: Denominator
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - numerator
+      - denominator
+      - evidence
+      title: Arithmetic
+    Ask:
+      properties:
+        question:
+          type: string
+          maxLength: 2000
+          title: Question
+        purpose:
+          type: string
+          maxLength: 2000
+          title: Purpose
+          default: analysis
+        arm:
+          type: string
+          title: Arm
+          default: graph
+        stages:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/kge__services__ask__models__Stages'
+        compact:
+          type: boolean
+          title: Compact
+          description: Opt in to answer, figures, definitions, citations and action metadata without SQL, traces or duplicate plans. History stays intact for follow-up turns.
+          default: false
+        history:
+          items:
+            $ref: '#/components/schemas/HistoryEntry-Input'
+          type: array
+          maxItems: 8
+          title: History
+        products:
+          items:
+            type: string
+          type: array
+          nullable: true
+          title: Products
+          description: Optional product identifiers (<unit>.<table>) supplying default page or Explore context; readable sources outside it remain available.
+        runtimes:
+          items:
+            type: string
+          type: array
+          maxItems: 16
+          nullable: true
+          title: Runtimes
+          description: Optional ordered runtime ids to try for this request.
+      additionalProperties: false
+      type: object
+      required:
+      - question
+      title: Ask
+      description: 'A question for /ask or /answer. Never a principal: the caller is who asks (a 422 for one in the body).'
+    AskResponse:
+      properties:
+        question:
+          type: string
+          title: Question
+        principal:
+          type: string
+          title: Principal
+        purpose:
+          type: string
+          title: Purpose
+        arm:
+          type: string
+          title: Arm
+          description: The run config the answer ran on, as its label
+        behaviour:
+          type: string
+          enum:
+          - clarify
+          - combined
+          - figure
+          - sum_with_verdict
+          - sum_without_verdict
+          - parts_with_reason
+          - cite
+          - cite_certified
+          - glossary_definition
+          - refuse
+          - blocked_access
+          - abstain
+          - abstain_route_steward
+          - abstain_with_reason
+          title: Behaviour
+          description: 'What the answer is. combined: figures planned and answered whole with their documents (/ask). figure: one figure, or grouped rows. sum_with_verdict, sum_without_verdict, parts_with_reason: parts across units, added only where they add. cite, cite_certified, glossary_definition: a definition and what it cites. refuse, blocked_access: a refusal, with its reason. abstain, abstain_route_steward, abstain_with_reason: no answer, with what is missing. clarify: readable choices, without a figure'
+        answer_text:
+          type: string
+          title: Answer Text
+          description: 'The answer in plain English, for every behaviour: a figure''s value, currency, term or column, period and [n] markers; a refusal''s what and why and whom to ask, by role; an abstention''s what is missing. Every number in it is one the answer holds and every [n] one of its citations'
+        phrased_by:
+          type: string
+          title: Phrased By
+          description: 'Who worded answer_text: template, or model:<provider:model> where a model''s wording passed the number and citation checks; template (<why>) where it did not'
+        trace:
+          items: {}
+          type: array
+          nullable: true
+          title: Trace
+          description: The answer steps, omitted in compact mode
+        versions:
+          additionalProperties: true
+          type: object
+          title: Versions
+          description: The parser, planner, models and graph the answer ran on
+        run_trace:
+          additionalProperties: true
+          type: object
+          nullable: true
+          title: Run Trace
+          description: The run diagnostics, omitted in compact mode
+        result:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Result'
+        clarification:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Clarification'
+        history:
+          items:
+            $ref: '#/components/schemas/HistoryEntry-Output'
+          type: array
+          nullable: true
+          title: History
+        figure:
+          title: Figure
+          description: The figure, or the total of a sum
+          anyOf:
+          - type: integer
+          - type: number
+          nullable: true
+        unit:
+          type: string
+          nullable: true
+          title: Unit
+          description: The unit the figure is in
+        column:
+          type: string
+          nullable: true
+          title: Column
+          description: The certified column it measures, table.column
+        sql:
+          type: string
+          nullable: true
+          title: Sql
+          description: The query that gave it, after the gate passed it
+        rows:
+          additionalProperties:
+            anyOf:
+            - type: integer
+            - type: number
+            nullable: true
+          type: object
+          nullable: true
+          title: Rows
+          description: A grouped figure's rows, by group
+        parts:
+          title: Parts
+          description: 'Across units: each unit''s value (a sum''s), or each unit''s plan (a refusal''s)'
+          anyOf:
+          - additionalProperties:
+              anyOf:
+              - type: integer
+              - type: number
+              nullable: true
+            type: object
+          - items: {}
+            type: array
+          nullable: true
+        reason:
+          type: string
+          nullable: true
+          title: Reason
+          description: Why it refused or abstained, or what a sum's verdict rests on
+        definition_citation:
+          additionalProperties: true
+          type: object
+          nullable: true
+          title: Definition Citation
+          description: Certified pack glossary authority and context provenance for a context-backed definition with no defining document
+        certified_definitions:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+          nullable: true
+          title: Certified Definitions
+          description: Accepted pack definitions quoted verbatim with access redactions for the certified terms the answer explains, with their certifying documents
+        cite:
+          items:
+            type: string
+          type: array
+          nullable: true
+          title: Cite
+          description: The documents a definition cites, by id
+        citations:
+          items:
+            $ref: '#/components/schemas/Citation'
+          type: array
+          nullable: true
+          title: Citations
+          description: The documents the answer cites, numbered
+        answer:
+          type: string
+          enum:
+          - 'no'
+          nullable: true
+          title: Answer
+          description: 'The answer to a question that asks whether two units join on a key''s name: "no", the graph''s no-join fact the reason. Absent on every other answer'
+        denied_warehouses:
+          items:
+            type: string
+          type: array
+          nullable: true
+          title: Denied Warehouses
+          description: The units the caller may not read that it needs
+        joins_refused:
+          items:
+            type: string
+          type: array
+          nullable: true
+          title: Joins Refused
+          description: The unit pairs a no-join fact keeps apart
+        display:
+          additionalProperties: true
+          type: object
+          nullable: true
+          title: Display
+          description: The page's display block, only where the request asks for it (its display query parameter)
+        reference_sql:
+          type: string
+          nullable: true
+          title: Reference Sql
+          description: The reference plan's SQL before runtime renaming
+        runtime:
+          additionalProperties: true
+          type: object
+          nullable: true
+          title: Runtime
+          description: The runtime that executed the query
+        physical_tables:
+          items:
+            type: string
+          type: array
+          nullable: true
+          title: Physical Tables
+          description: The physical tables the runtime read
+        runtime_certified:
+          type: boolean
+          nullable: true
+          title: Runtime Certified
+          description: Whether the measure came from its certified runtime
+        certified_in:
+          type: string
+          nullable: true
+          title: Certified In
+          description: The runtime the measure is certified in
+        live_data:
+          type: boolean
+          nullable: true
+          title: Live Data
+          description: Whether the answer came from an external live runtime
+        queried_at:
+          type: string
+          nullable: true
+          title: Queried At
+          description: UTC timestamp when an external runtime executed the query
+        path:
+          additionalProperties: true
+          type: object
+          nullable: true
+          title: Path
+          description: Structured query path (nodes and edges), omitted in compact mode
+        graph_path:
+          additionalProperties: true
+          type: object
+          nullable: true
+          title: Graph Path
+          description: The context graph's nodes and edges this answer used (graph_path), omitted in compact mode
+        products:
+          items:
+            type: string
+          type: array
+          nullable: true
+          title: Products
+          description: Product identifiers (<unit>.<table>) supplying the question’s page or Explore context, when provided.
+        combined:
+          type: boolean
+          title: Combined
+          description: Whether /ask planned and answered it whole, figures with their documents
+        figures:
+          items:
+            $ref: '#/components/schemas/Figure'
+          type: array
+          nullable: true
+          title: Figures
+          description: A combined answer's figures, each bound to its citation
+        not_cited:
+          items:
+            $ref: '#/components/schemas/NotCited'
+          type: array
+          nullable: true
+          title: Not Cited
+          description: A combined answer's documents shown and not used
+        withheld:
+          items:
+            $ref: '#/components/schemas/Withheld'
+          type: array
+          nullable: true
+          title: Withheld
+          description: A combined answer's documents the privacy gate held back
+        unit_label:
+          type: string
+          nullable: true
+          title: Unit Label
+        period:
+          type: string
+          nullable: true
+          title: Period
+          description: A combined answer's period, in words
+      additionalProperties: true
+      type: object
+      required:
+      - question
+      - principal
+      - purpose
+      - arm
+      - behaviour
+      - answer_text
+      - phrased_by
+      - versions
+      - combined
+      title: AskResponse
+      description: 'POST /ask: the graph arm answered whole, figures with the documents that back them. A question of one customer
+
+        group and measures over it is planned and cited whole (combined: true, with figures, citations, not_cited and
+
+        withheld); any other gets /answer''s answer, with combined: false.'
+    Binding:
+      properties:
+        release_identity:
+          type: string
+          title: Release Identity
+        access_fingerprint:
+          type: string
+          title: Access Fingerprint
+        products:
+          items:
+            type: string
+          type: array
+          title: Products
+        purpose:
+          type: string
+          title: Purpose
+      additionalProperties: false
+      type: object
+      required:
+      - release_identity
+      - access_fingerprint
+      - products
+      - purpose
+      title: Binding
+    Boolean:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - boolean
+        value:
+          type: boolean
+          title: Value
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - value
+      title: Boolean
+    BoundDimension:
+      properties:
+        kind:
+          type: string
+          enum:
+          - column
+          - hierarchy
+          title: Kind
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        bindings:
+          items:
+            $ref: '#/components/schemas/DimensionBinding'
+          type: array
+          minItems: 1
+          title: Bindings
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - bindings
+      title: BoundDimension
+    Cell:
+      properties:
+        value:
+          oneOf:
+          - $ref: '#/components/schemas/Text'
+          - $ref: '#/components/schemas/Boolean'
+          - $ref: '#/components/schemas/Integer'
+          - $ref: '#/components/schemas/DecimalValue'
+          - $ref: '#/components/schemas/DateValue'
+          - $ref: '#/components/schemas/Null'
+          title: Value
+          discriminator:
+            propertyName: kind
+            mapping:
+              boolean: '#/components/schemas/Boolean'
+              date: '#/components/schemas/DateValue'
+              decimal: '#/components/schemas/DecimalValue'
+              integer: '#/components/schemas/Integer'
+              'null': '#/components/schemas/Null'
+              text: '#/components/schemas/Text'
+        citations:
+          items:
+            type: string
+          type: array
+          title: Citations
+        null_reasons:
+          items:
+            type: string
+          type: array
+          title: Null Reasons
+      additionalProperties: false
+      type: object
+      required:
+      - value
+      - citations
+      - null_reasons
+      title: Cell
+    Choice:
+      properties:
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        label:
+          type: string
+          title: Label
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - label
+      title: Choice
+    Citation:
+      properties:
+        n:
+          type: integer
+          title: N
+          description: 'Its marker: [n] in answer_text'
+        doc:
+          type: string
+          title: Doc
+        title:
+          type: string
+          title: Title
+          default: ''
+        why:
+          type: string
+          title: Why
+          default: ''
+      additionalProperties: true
+      type: object
+      required:
+      - n
+      - doc
+      title: Citation
+      description: 'A document the answer cites: its marker n, as [n] in answer_text, and why it is cited. The tier rule adds its tier,
+
+        how it is cited, its owner, version and time in force.'
+    Clarification:
+      properties:
+        spans:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Spans
+        slot:
+          type: string
+          minLength: 1
+          title: Slot
+        choices:
+          items:
+            $ref: '#/components/schemas/Choice'
+          type: array
+          title: Choices
+      additionalProperties: false
+      type: object
+      required:
+      - spans
+      - slot
+      - choices
+      title: Clarification
+    ColumnOperand:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - column
+        name:
+          $ref: '#/components/schemas/Name'
+        path:
+          items:
+            $ref: '#/components/schemas/Name'
+          type: array
+          title: Path
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - name
+      - path
+      title: ColumnOperand
+    Compare:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - compare
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        left:
+          oneOf:
+          - $ref: '#/components/schemas/ColumnOperand'
+          - $ref: '#/components/schemas/OutputOperand'
+          title: Left
+          discriminator:
+            propertyName: kind
+            mapping:
+              column: '#/components/schemas/ColumnOperand'
+              output: '#/components/schemas/OutputOperand'
+        op:
+          type: string
+          enum:
+          - eq
+          - ne
+          - lt
+          - le
+          - gt
+          - ge
+          title: Op
+        value:
+          oneOf:
+          - $ref: '#/components/schemas/Text'
+          - $ref: '#/components/schemas/Boolean'
+          - $ref: '#/components/schemas/Integer'
+          - $ref: '#/components/schemas/DecimalValue'
+          - $ref: '#/components/schemas/DateValue'
+          - $ref: '#/components/schemas/Null'
+          title: Value
+          discriminator:
+            propertyName: kind
+            mapping:
+              boolean: '#/components/schemas/Boolean'
+              date: '#/components/schemas/DateValue'
+              decimal: '#/components/schemas/DecimalValue'
+              integer: '#/components/schemas/Integer'
+              'null': '#/components/schemas/Null'
+              text: '#/components/schemas/Text'
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - left
+      - op
+      - value
+      - evidence
+      title: Compare
+    ContextAsk:
+      properties:
+        question:
+          type: string
+          maxLength: 2000
+          title: Question
+        purpose:
+          type: string
+          maxLength: 2000
+          title: Purpose
+          default: analysis
+        arm:
+          type: string
+          title: Arm
+          default: treatment
+        products:
+          items:
+            type: string
+          type: array
+          nullable: true
+          title: Products
+        plan_vocabulary:
+          type: boolean
+          title: Plan Vocabulary
+          default: false
+        compact:
+          type: boolean
+          title: Compact
+          description: Opt in to structured context, definitions, sources and decisions with definition text only in the prompt block, without SQL, traces, duplicate candidates or plan internals.
+          default: false
+        history:
+          items:
+            $ref: '#/components/schemas/HistoryEntry-Input'
+          type: array
+          maxItems: 8
+          title: History
+        runtimes:
+          items:
+            type: string
+          type: array
+          maxItems: 16
+          nullable: true
+          title: Runtimes
+      additionalProperties: false
+      type: object
+      required:
+      - question
+      title: ContextAsk
+    ContextComparison:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - contexts
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        left:
+          type: string
+          minLength: 1
+          title: Left
+        right:
+          type: string
+          minLength: 1
+          title: Right
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - left
+      - right
+      - evidence
+      title: ContextComparison
+    ContextResponse:
+      properties:
+        arm:
+          type: string
+          title: Arm
+          description: control (graph off) or treatment (graph on)
+        block:
+          type: string
+          title: Block
+          description: The text the agent's prompt carries; compact mode keeps only its definitions
+        sources:
+          items: {}
+          type: array
+          title: Sources
+        units:
+          items: {}
+          type: array
+          title: Units
+          description: The units the principal may read
+        certified:
+          additionalProperties: true
+          type: object
+          title: Certified
+        in_window:
+          items: {}
+          type: array
+          title: In Window
+        defines:
+          additionalProperties: true
+          type: object
+          title: Defines
+        meta:
+          additionalProperties: true
+          type: object
+          title: Meta
+        group:
+          title: Group
+        named:
+          items: {}
+          type: array
+          nullable: true
+          title: Named
+          description: Documents also named in the prompt block, omitted in compact mode
+        withheld:
+          items: {}
+          type: array
+          title: Withheld
+        needed:
+          items: {}
+          type: array
+          title: Needed
+        plan:
+          title: Plan
+        decided:
+          title: Decided
+        plan_vocabulary:
+          additionalProperties: true
+          type: object
+          nullable: true
+          title: Plan Vocabulary
+      additionalProperties: true
+      type: object
+      required:
+      - arm
+      - block
+      - sources
+      - units
+      - certified
+      - in_window
+      - defines
+      - meta
+      - withheld
+      - needed
+      title: ContextResponse
+      description: 'The context package the reference agent''s prompt carries on one arm: the block of text itself and what it was
+
+        built from. The fields beyond these vary with the arm, and are returned as the workflow gives them.'
+    DateValue:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - date
+        value:
+          type: string
+          title: Value
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - value
+      title: DateValue
+    DecimalValue:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - decimal
+        value:
+          type: string
+          pattern: -?(?:0|[1-9]\d*)(?:\.\d+)?$
+          title: Value
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - value
+      title: DecimalValue
+    DimensionBinding:
+      properties:
+        context:
+          $ref: '#/components/schemas/Name'
+        column:
+          $ref: '#/components/schemas/Name'
+        path:
+          items:
+            $ref: '#/components/schemas/Name'
+          type: array
+          title: Path
+        level:
+          type: integer
+          exclusiveMinimum: true
+          minimum: 0.0
+          nullable: true
+          title: Level
+      additionalProperties: false
+      type: object
+      required:
+      - context
+      - column
+      - path
+      - level
+      title: DimensionBinding
+    DistinctCount-Input:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - distinct_count
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        entity:
+          $ref: '#/components/schemas/Name'
+        context:
+          $ref: '#/components/schemas/Name'
+        mode:
+          type: string
+          enum:
+          - current
+          - as_reported
+          title: Mode
+        filters:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Compare'
+            - $ref: '#/components/schemas/In'
+            - $ref: '#/components/schemas/IsNull'
+            - $ref: '#/components/schemas/Junction-Input'
+            - $ref: '#/components/schemas/Not-Input'
+            - $ref: '#/components/schemas/Membership-Input'
+            discriminator:
+              propertyName: kind
+              mapping:
+                all: '#/components/schemas/Junction-Input'
+                any: '#/components/schemas/Junction-Input'
+                compare: '#/components/schemas/Compare'
+                in: '#/components/schemas/In'
+                membership: '#/components/schemas/Membership-Input'
+                not: '#/components/schemas/Not-Input'
+                'null': '#/components/schemas/IsNull'
+          type: array
+          title: Filters
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - entity
+      - context
+      - mode
+      - filters
+      title: DistinctCount
+    DistinctCount-Output:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - distinct_count
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        entity:
+          $ref: '#/components/schemas/Name'
+        context:
+          $ref: '#/components/schemas/Name'
+        mode:
+          type: string
+          enum:
+          - current
+          - as_reported
+          title: Mode
+        filters:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Compare'
+            - $ref: '#/components/schemas/In'
+            - $ref: '#/components/schemas/IsNull'
+            - $ref: '#/components/schemas/Junction-Output'
+            - $ref: '#/components/schemas/Not-Output'
+            - $ref: '#/components/schemas/Membership-Output'
+            discriminator:
+              propertyName: kind
+              mapping:
+                all: '#/components/schemas/Junction-Output'
+                any: '#/components/schemas/Junction-Output'
+                compare: '#/components/schemas/Compare'
+                in: '#/components/schemas/In'
+                membership: '#/components/schemas/Membership-Output'
+                not: '#/components/schemas/Not-Output'
+                'null': '#/components/schemas/IsNull'
+          type: array
+          title: Filters
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - entity
+      - context
+      - mode
+      - filters
+      title: DistinctCount
+    ExplicitComparison:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - explicit_period
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        inputs:
+          items:
+            type: string
+            minLength: 1
+          type: array
+          minItems: 1
+          title: Inputs
+        other:
+          oneOf:
+          - $ref: '#/components/schemas/Single'
+          - $ref: '#/components/schemas/Range'
+          - $ref: '#/components/schemas/Ytd'
+          - $ref: '#/components/schemas/Unbounded'
+          title: Other
+          discriminator:
+            propertyName: kind
+            mapping:
+              all_available: '#/components/schemas/Unbounded'
+              latest_released: '#/components/schemas/Unbounded'
+              range: '#/components/schemas/Range'
+              single: '#/components/schemas/Single'
+              ytd: '#/components/schemas/Ytd'
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - inputs
+      - other
+      - evidence
+      title: ExplicitComparison
+    Figure:
+      properties:
+        id:
+          type: string
+          title: Id
+        label:
+          type: string
+          title: Label
+        term:
+          type: string
+          title: Term
+        kind:
+          type: string
+          title: Kind
+          description: count, sum, avg, comparison or derived
+        column:
+          type: string
+          title: Column
+          description: The certified column, table.column
+        currency:
+          type: string
+          title: Currency
+          description: Its currency, empty where it counts
+        value:
+          title: Value
+          anyOf:
+          - type: integer
+          - type: number
+          nullable: true
+        cite:
+          type: integer
+          nullable: true
+          title: Cite
+          description: The n of the citation it is bound to
+      additionalProperties: true
+      type: object
+      required:
+      - id
+      - label
+      - term
+      - kind
+      - column
+      - currency
+      - value
+      title: Figure
+      description: 'One figure of a combined answer: what it measures and its value, bound to the citation it rests on.'
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    HistoryEntry-Input:
+      properties:
+        turn_id:
+          type: string
+          minLength: 1
+          title: Turn Id
+        question:
+          type: string
+          title: Question
+        plan:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/QueryPlan-Input'
+        clarification:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Clarification'
+        binding:
+          $ref: '#/components/schemas/Binding'
+      additionalProperties: false
+      type: object
+      required:
+      - turn_id
+      - question
+      - plan
+      - clarification
+      - binding
+      title: HistoryEntry
+    HistoryEntry-Output:
+      properties:
+        turn_id:
+          type: string
+          minLength: 1
+          title: Turn Id
+        question:
+          type: string
+          title: Question
+        plan:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/QueryPlan-Output'
+        clarification:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/Clarification'
+        binding:
+          $ref: '#/components/schemas/Binding'
+      additionalProperties: false
+      type: object
+      required:
+      - turn_id
+      - question
+      - plan
+      - clarification
+      - binding
+      title: HistoryEntry
+    Hit:
+      properties:
+        kind:
+          type: string
+          enum:
+          - product
+          - term
+          - metric
+          - column
+          - document
+          title: Kind
+        unit:
+          type: string
+          title: Unit
+        id:
+          type: string
+          title: Id
+        title:
+          type: string
+          title: Title
+        score:
+          type: number
+          maximum: 1.0
+          minimum: 0.0
+          title: Score
+        why:
+          $ref: '#/components/schemas/Why'
+        restricted:
+          type: boolean
+          title: Restricted
+          default: false
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - unit
+      - id
+      - title
+      - score
+      - why
+      title: Hit
+    In:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - in
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        left:
+          oneOf:
+          - $ref: '#/components/schemas/ColumnOperand'
+          - $ref: '#/components/schemas/OutputOperand'
+          title: Left
+          discriminator:
+            propertyName: kind
+            mapping:
+              column: '#/components/schemas/ColumnOperand'
+              output: '#/components/schemas/OutputOperand'
+        values:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Text'
+            - $ref: '#/components/schemas/Boolean'
+            - $ref: '#/components/schemas/Integer'
+            - $ref: '#/components/schemas/DecimalValue'
+            - $ref: '#/components/schemas/DateValue'
+            - $ref: '#/components/schemas/Null'
+            discriminator:
+              propertyName: kind
+              mapping:
+                boolean: '#/components/schemas/Boolean'
+                date: '#/components/schemas/DateValue'
+                decimal: '#/components/schemas/DecimalValue'
+                integer: '#/components/schemas/Integer'
+                'null': '#/components/schemas/Null'
+                text: '#/components/schemas/Text'
+          type: array
+          minItems: 1
+          title: Values
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - left
+      - values
+      - evidence
+      title: In
+    Integer:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - integer
+        value:
+          type: integer
+          title: Value
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - value
+      title: Integer
+    IsNull:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - 'null'
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        left:
+          oneOf:
+          - $ref: '#/components/schemas/ColumnOperand'
+          - $ref: '#/components/schemas/OutputOperand'
+          title: Left
+          discriminator:
+            propertyName: kind
+            mapping:
+              column: '#/components/schemas/ColumnOperand'
+              output: '#/components/schemas/OutputOperand'
+        is_null:
+          type: boolean
+          title: Is Null
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - left
+      - is_null
+      - evidence
+      title: IsNull
+    Junction-Input:
+      properties:
+        kind:
+          type: string
+          enum:
+          - all
+          - any
+          title: Kind
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        children:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Compare'
+            - $ref: '#/components/schemas/In'
+            - $ref: '#/components/schemas/IsNull'
+            - $ref: '#/components/schemas/Junction-Input'
+            - $ref: '#/components/schemas/Not-Input'
+            - $ref: '#/components/schemas/Membership-Input'
+            discriminator:
+              propertyName: kind
+              mapping:
+                all: '#/components/schemas/Junction-Input'
+                any: '#/components/schemas/Junction-Input'
+                compare: '#/components/schemas/Compare'
+                in: '#/components/schemas/In'
+                membership: '#/components/schemas/Membership-Input'
+                not: '#/components/schemas/Not-Input'
+                'null': '#/components/schemas/IsNull'
+          type: array
+          minItems: 1
+          title: Children
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - children
+      - evidence
+      title: Junction
+    Junction-Output:
+      properties:
+        kind:
+          type: string
+          enum:
+          - all
+          - any
+          title: Kind
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        children:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Compare'
+            - $ref: '#/components/schemas/In'
+            - $ref: '#/components/schemas/IsNull'
+            - $ref: '#/components/schemas/Junction-Output'
+            - $ref: '#/components/schemas/Not-Output'
+            - $ref: '#/components/schemas/Membership-Output'
+            discriminator:
+              propertyName: kind
+              mapping:
+                all: '#/components/schemas/Junction-Output'
+                any: '#/components/schemas/Junction-Output'
+                compare: '#/components/schemas/Compare'
+                in: '#/components/schemas/In'
+                membership: '#/components/schemas/Membership-Output'
+                not: '#/components/schemas/Not-Output'
+                'null': '#/components/schemas/IsNull'
+          type: array
+          minItems: 1
+          title: Children
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - children
+      - evidence
+      title: Junction
+    Membership-Input:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - membership
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        entity:
+          $ref: '#/components/schemas/Name'
+        relation:
+          $ref: '#/components/schemas/Name'
+        context:
+          $ref: '#/components/schemas/Name'
+        filters:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Compare'
+            - $ref: '#/components/schemas/In'
+            - $ref: '#/components/schemas/IsNull'
+            - $ref: '#/components/schemas/Junction-Input'
+            - $ref: '#/components/schemas/Not-Input'
+            - $ref: '#/components/schemas/Membership-Input'
+            discriminator:
+              propertyName: kind
+              mapping:
+                all: '#/components/schemas/Junction-Input'
+                any: '#/components/schemas/Junction-Input'
+                compare: '#/components/schemas/Compare'
+                in: '#/components/schemas/In'
+                membership: '#/components/schemas/Membership-Input'
+                not: '#/components/schemas/Not-Input'
+                'null': '#/components/schemas/IsNull'
+          type: array
+          title: Filters
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - entity
+      - relation
+      - context
+      - filters
+      - evidence
+      title: Membership
+    Membership-Output:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - membership
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        entity:
+          $ref: '#/components/schemas/Name'
+        relation:
+          $ref: '#/components/schemas/Name'
+        context:
+          $ref: '#/components/schemas/Name'
+        filters:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Compare'
+            - $ref: '#/components/schemas/In'
+            - $ref: '#/components/schemas/IsNull'
+            - $ref: '#/components/schemas/Junction-Output'
+            - $ref: '#/components/schemas/Not-Output'
+            - $ref: '#/components/schemas/Membership-Output'
+            discriminator:
+              propertyName: kind
+              mapping:
+                all: '#/components/schemas/Junction-Output'
+                any: '#/components/schemas/Junction-Output'
+                compare: '#/components/schemas/Compare'
+                in: '#/components/schemas/In'
+                membership: '#/components/schemas/Membership-Output'
+                not: '#/components/schemas/Not-Output'
+                'null': '#/components/schemas/IsNull'
+          type: array
+          title: Filters
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - entity
+      - relation
+      - context
+      - filters
+      - evidence
+      title: Membership
+    Name:
+      properties:
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - evidence
+      title: Name
+    Not-Input:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - not
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        child:
+          oneOf:
+          - $ref: '#/components/schemas/Compare'
+          - $ref: '#/components/schemas/In'
+          - $ref: '#/components/schemas/IsNull'
+          - $ref: '#/components/schemas/Junction-Input'
+          - $ref: '#/components/schemas/Not-Input'
+          - $ref: '#/components/schemas/Membership-Input'
+          title: Child
+          discriminator:
+            propertyName: kind
+            mapping:
+              all: '#/components/schemas/Junction-Input'
+              any: '#/components/schemas/Junction-Input'
+              compare: '#/components/schemas/Compare'
+              in: '#/components/schemas/In'
+              membership: '#/components/schemas/Membership-Input'
+              not: '#/components/schemas/Not-Input'
+              'null': '#/components/schemas/IsNull'
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - child
+      - evidence
+      title: Not
+    Not-Output:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - not
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        child:
+          oneOf:
+          - $ref: '#/components/schemas/Compare'
+          - $ref: '#/components/schemas/In'
+          - $ref: '#/components/schemas/IsNull'
+          - $ref: '#/components/schemas/Junction-Output'
+          - $ref: '#/components/schemas/Not-Output'
+          - $ref: '#/components/schemas/Membership-Output'
+          title: Child
+          discriminator:
+            propertyName: kind
+            mapping:
+              all: '#/components/schemas/Junction-Output'
+              any: '#/components/schemas/Junction-Output'
+              compare: '#/components/schemas/Compare'
+              in: '#/components/schemas/In'
+              membership: '#/components/schemas/Membership-Output'
+              not: '#/components/schemas/Not-Output'
+              'null': '#/components/schemas/IsNull'
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - child
+      - evidence
+      title: Not
+    NotCited:
+      properties:
+        doc:
+          type: string
+          title: Doc
+        why:
+          type: string
+          title: Why
+      additionalProperties: true
+      type: object
+      required:
+      - doc
+      - why
+      title: NotCited
+      description: 'A document shown and not used: superseded or uncertified, and why.'
+    'Null':
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - 'null'
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      title: 'Null'
+    Obligation:
+      properties:
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        spans:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          minItems: 1
+          title: Spans
+        kind:
+          type: string
+          enum:
+          - name
+          - filter
+          - time
+          - mode
+          - dimension
+          - count
+          - comparison
+          - derived
+          - order
+          - limit
+          - membership
+          title: Kind
+        targets:
+          items:
+            type: string
+            minLength: 1
+          type: array
+          title: Targets
+        state:
+          type: string
+          enum:
+          - applied
+          - unresolved
+          - ambiguous
+          - removed
+          title: State
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - spans
+      - kind
+      - targets
+      - state
+      title: Obligation
+    Order:
+      properties:
+        output:
+          type: string
+          minLength: 1
+          title: Output
+        direction:
+          type: string
+          enum:
+          - asc
+          - desc
+          - both
+          title: Direction
+        nulls:
+          type: string
+          title: Nulls
+          enum:
+          - last
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - output
+      - direction
+      - nulls
+      - evidence
+      title: Order
+    OutputOperand:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - output
+        id:
+          type: string
+          minLength: 1
+          title: Id
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      title: OutputOperand
+    OwnQuery:
+      properties:
+        unit:
+          type: string
+          minLength: 1
+          title: Unit
+        sql:
+          type: string
+          minLength: 1
+          title: Sql
+      additionalProperties: false
+      type: object
+      required:
+      - unit
+      - sql
+      title: OwnQuery
+    Period:
+      properties:
+        kind:
+          type: string
+          enum:
+          - day
+          - month
+          - calendar_quarter
+          - fiscal_quarter
+          - year
+          - fiscal_year
+          title: Kind
+        value:
+          type: string
+          title: Value
+        calendar:
+          $ref: '#/components/schemas/Name'
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - value
+      - calendar
+      title: Period
+    PlanMeasure-Input:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - measure
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        measure:
+          $ref: '#/components/schemas/Name'
+        context:
+          $ref: '#/components/schemas/Name'
+        mode:
+          type: string
+          enum:
+          - current
+          - as_reported
+          title: Mode
+        filters:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Compare'
+            - $ref: '#/components/schemas/In'
+            - $ref: '#/components/schemas/IsNull'
+            - $ref: '#/components/schemas/Junction-Input'
+            - $ref: '#/components/schemas/Not-Input'
+            - $ref: '#/components/schemas/Membership-Input'
+            discriminator:
+              propertyName: kind
+              mapping:
+                all: '#/components/schemas/Junction-Input'
+                any: '#/components/schemas/Junction-Input'
+                compare: '#/components/schemas/Compare'
+                in: '#/components/schemas/In'
+                membership: '#/components/schemas/Membership-Input'
+                not: '#/components/schemas/Not-Input'
+                'null': '#/components/schemas/IsNull'
+          type: array
+          title: Filters
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - measure
+      - context
+      - mode
+      - filters
+      title: PlanMeasure
+    PlanMeasure-Output:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - measure
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        measure:
+          $ref: '#/components/schemas/Name'
+        context:
+          $ref: '#/components/schemas/Name'
+        mode:
+          type: string
+          enum:
+          - current
+          - as_reported
+          title: Mode
+        filters:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Compare'
+            - $ref: '#/components/schemas/In'
+            - $ref: '#/components/schemas/IsNull'
+            - $ref: '#/components/schemas/Junction-Output'
+            - $ref: '#/components/schemas/Not-Output'
+            - $ref: '#/components/schemas/Membership-Output'
+            discriminator:
+              propertyName: kind
+              mapping:
+                all: '#/components/schemas/Junction-Output'
+                any: '#/components/schemas/Junction-Output'
+                compare: '#/components/schemas/Compare'
+                in: '#/components/schemas/In'
+                membership: '#/components/schemas/Membership-Output'
+                not: '#/components/schemas/Not-Output'
+                'null': '#/components/schemas/IsNull'
+          type: array
+          title: Filters
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - measure
+      - context
+      - mode
+      - filters
+      title: PlanMeasure
+    Problems:
+      properties:
+        error:
+          type: string
+          title: Error
+        problems:
+          items:
+            type: string
+          type: array
+          title: Problems
+        config:
+          additionalProperties: true
+          type: object
+          nullable: true
+          title: Config
+      type: object
+      required:
+      - error
+      - problems
+      title: Problems
+      description: 'A 400: a run config or an arm that cannot run here, each problem in plain English.'
+    QueryPlan-Input:
+      properties:
+        schema:
+          type: string
+          title: Schema
+          enum:
+          - query-plan/v1
+        layout:
+          type: string
+          enum:
+          - aligned
+          - separate
+          title: Layout
+        measures:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/PlanMeasure-Input'
+            - $ref: '#/components/schemas/DistinctCount-Input'
+            discriminator:
+              propertyName: kind
+              mapping:
+                distinct_count: '#/components/schemas/DistinctCount-Input'
+                measure: '#/components/schemas/PlanMeasure-Input'
+          type: array
+          minItems: 1
+          title: Measures
+        dimensions:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/BoundDimension'
+            - $ref: '#/components/schemas/TimeDimension'
+            discriminator:
+              propertyName: kind
+              mapping:
+                column: '#/components/schemas/BoundDimension'
+                hierarchy: '#/components/schemas/BoundDimension'
+                time: '#/components/schemas/TimeDimension'
+          type: array
+          title: Dimensions
+        filters:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Compare'
+            - $ref: '#/components/schemas/In'
+            - $ref: '#/components/schemas/IsNull'
+            - $ref: '#/components/schemas/Junction-Input'
+            - $ref: '#/components/schemas/Not-Input'
+            - $ref: '#/components/schemas/Membership-Input'
+            discriminator:
+              propertyName: kind
+              mapping:
+                all: '#/components/schemas/Junction-Input'
+                any: '#/components/schemas/Junction-Input'
+                compare: '#/components/schemas/Compare'
+                in: '#/components/schemas/In'
+                membership: '#/components/schemas/Membership-Input'
+                not: '#/components/schemas/Not-Input'
+                'null': '#/components/schemas/IsNull'
+          type: array
+          title: Filters
+        time:
+          oneOf:
+          - $ref: '#/components/schemas/Single'
+          - $ref: '#/components/schemas/Range'
+          - $ref: '#/components/schemas/Ytd'
+          - $ref: '#/components/schemas/Unbounded'
+          title: Time
+          discriminator:
+            propertyName: kind
+            mapping:
+              all_available: '#/components/schemas/Unbounded'
+              latest_released: '#/components/schemas/Unbounded'
+              range: '#/components/schemas/Range'
+              single: '#/components/schemas/Single'
+              ytd: '#/components/schemas/Ytd'
+        comparisons:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/TimeModeComparison'
+            - $ref: '#/components/schemas/RelativeComparison'
+            - $ref: '#/components/schemas/ExplicitComparison'
+            - $ref: '#/components/schemas/ContextComparison'
+            discriminator:
+              propertyName: kind
+              mapping:
+                contexts: '#/components/schemas/ContextComparison'
+                explicit_period: '#/components/schemas/ExplicitComparison'
+                previous_period: '#/components/schemas/RelativeComparison'
+                previous_year: '#/components/schemas/RelativeComparison'
+                time_mode: '#/components/schemas/TimeModeComparison'
+          type: array
+          title: Comparisons
+        derived:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Arithmetic'
+            - $ref: '#/components/schemas/Share'
+            - $ref: '#/components/schemas/RunningTotal'
+            discriminator:
+              propertyName: kind
+              mapping:
+                difference: '#/components/schemas/Arithmetic'
+                percent_change: '#/components/schemas/Arithmetic'
+                ratio: '#/components/schemas/Arithmetic'
+                running_total: '#/components/schemas/RunningTotal'
+                share: '#/components/schemas/Share'
+          type: array
+          title: Derived
+        order:
+          items:
+            $ref: '#/components/schemas/Order'
+          type: array
+          title: Order
+        limit:
+          type: integer
+          exclusiveMinimum: true
+          minimum: 0.0
+          nullable: true
+          title: Limit
+        obligations:
+          items:
+            $ref: '#/components/schemas/Obligation'
+          type: array
+          title: Obligations
+      additionalProperties: false
+      type: object
+      required:
+      - schema
+      - layout
+      - measures
+      - dimensions
+      - filters
+      - time
+      - comparisons
+      - derived
+      - order
+      - limit
+      - obligations
+      title: QueryPlan
+    QueryPlan-Output:
+      properties:
+        schema:
+          type: string
+          title: Schema
+          enum:
+          - query-plan/v1
+        layout:
+          type: string
+          enum:
+          - aligned
+          - separate
+          title: Layout
+        measures:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/PlanMeasure-Output'
+            - $ref: '#/components/schemas/DistinctCount-Output'
+            discriminator:
+              propertyName: kind
+              mapping:
+                distinct_count: '#/components/schemas/DistinctCount-Output'
+                measure: '#/components/schemas/PlanMeasure-Output'
+          type: array
+          minItems: 1
+          title: Measures
+        dimensions:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/BoundDimension'
+            - $ref: '#/components/schemas/TimeDimension'
+            discriminator:
+              propertyName: kind
+              mapping:
+                column: '#/components/schemas/BoundDimension'
+                hierarchy: '#/components/schemas/BoundDimension'
+                time: '#/components/schemas/TimeDimension'
+          type: array
+          title: Dimensions
+        filters:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Compare'
+            - $ref: '#/components/schemas/In'
+            - $ref: '#/components/schemas/IsNull'
+            - $ref: '#/components/schemas/Junction-Output'
+            - $ref: '#/components/schemas/Not-Output'
+            - $ref: '#/components/schemas/Membership-Output'
+            discriminator:
+              propertyName: kind
+              mapping:
+                all: '#/components/schemas/Junction-Output'
+                any: '#/components/schemas/Junction-Output'
+                compare: '#/components/schemas/Compare'
+                in: '#/components/schemas/In'
+                membership: '#/components/schemas/Membership-Output'
+                not: '#/components/schemas/Not-Output'
+                'null': '#/components/schemas/IsNull'
+          type: array
+          title: Filters
+        time:
+          oneOf:
+          - $ref: '#/components/schemas/Single'
+          - $ref: '#/components/schemas/Range'
+          - $ref: '#/components/schemas/Ytd'
+          - $ref: '#/components/schemas/Unbounded'
+          title: Time
+          discriminator:
+            propertyName: kind
+            mapping:
+              all_available: '#/components/schemas/Unbounded'
+              latest_released: '#/components/schemas/Unbounded'
+              range: '#/components/schemas/Range'
+              single: '#/components/schemas/Single'
+              ytd: '#/components/schemas/Ytd'
+        comparisons:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/TimeModeComparison'
+            - $ref: '#/components/schemas/RelativeComparison'
+            - $ref: '#/components/schemas/ExplicitComparison'
+            - $ref: '#/components/schemas/ContextComparison'
+            discriminator:
+              propertyName: kind
+              mapping:
+                contexts: '#/components/schemas/ContextComparison'
+                explicit_period: '#/components/schemas/ExplicitComparison'
+                previous_period: '#/components/schemas/RelativeComparison'
+                previous_year: '#/components/schemas/RelativeComparison'
+                time_mode: '#/components/schemas/TimeModeComparison'
+          type: array
+          title: Comparisons
+        derived:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Arithmetic'
+            - $ref: '#/components/schemas/Share'
+            - $ref: '#/components/schemas/RunningTotal'
+            discriminator:
+              propertyName: kind
+              mapping:
+                difference: '#/components/schemas/Arithmetic'
+                percent_change: '#/components/schemas/Arithmetic'
+                ratio: '#/components/schemas/Arithmetic'
+                running_total: '#/components/schemas/RunningTotal'
+                share: '#/components/schemas/Share'
+          type: array
+          title: Derived
+        order:
+          items:
+            $ref: '#/components/schemas/Order'
+          type: array
+          title: Order
+        limit:
+          type: integer
+          exclusiveMinimum: true
+          minimum: 0.0
+          nullable: true
+          title: Limit
+        obligations:
+          items:
+            $ref: '#/components/schemas/Obligation'
+          type: array
+          title: Obligations
+      additionalProperties: false
+      type: object
+      required:
+      - schema
+      - layout
+      - measures
+      - dimensions
+      - filters
+      - time
+      - comparisons
+      - derived
+      - order
+      - limit
+      - obligations
+      title: QueryPlan
+    QuestionRunResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        state:
+          type: string
+          enum:
+          - running
+          - done
+          - failed
+          - expired
+          title: State
+        expires_at:
+          type: number
+          title: Expires At
+        poll_after:
+          type: number
+          title: Poll After
+        events:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+          title: Events
+        cursor:
+          type: integer
+          title: Cursor
+        answer:
+          nullable: true
+          allOf:
+          - $ref: '#/components/schemas/AskResponse'
+        error:
+          type: string
+          nullable: true
+          title: Error
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - state
+      - expires_at
+      - poll_after
+      - events
+      - cursor
+      title: QuestionRunResponse
+      description: A durable question, readable only by its signed-in owner.
+    Range:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - range
+        first:
+          $ref: '#/components/schemas/Period'
+        last:
+          $ref: '#/components/schemas/Period'
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - first
+      - last
+      title: Range
+    RelativeComparison:
+      properties:
+        kind:
+          type: string
+          enum:
+          - previous_period
+          - previous_year
+          title: Kind
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        inputs:
+          items:
+            type: string
+            minLength: 1
+          type: array
+          minItems: 1
+          title: Inputs
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - inputs
+      - evidence
+      title: RelativeComparison
+    Result:
+      properties:
+        columns:
+          items:
+            $ref: '#/components/schemas/ResultColumn'
+          type: array
+          title: Columns
+        rows:
+          items:
+            $ref: '#/components/schemas/ResultRow'
+          type: array
+          title: Rows
+      additionalProperties: false
+      type: object
+      required:
+      - columns
+      - rows
+      title: Result
+    ResultColumn:
+      properties:
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        kind:
+          type: string
+          enum:
+          - dimension
+          - measure
+          - count
+          - derived
+          - comparison
+          title: Kind
+        type:
+          type: string
+          enum:
+          - text
+          - boolean
+          - integer
+          - decimal
+          - date
+          title: Type
+        currency:
+          type: string
+          nullable: true
+          title: Currency
+        lineage:
+          items:
+            type: string
+          type: array
+          title: Lineage
+        label:
+          type: string
+          nullable: true
+          title: Label
+        format:
+          type: string
+          enum:
+          - percent
+          - ratio
+          nullable: true
+          title: Format
+        display_order:
+          type: number
+          nullable: true
+          title: Display Order
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - kind
+      - type
+      - currency
+      - lineage
+      title: ResultColumn
+    ResultRow:
+      properties:
+        panel:
+          type: string
+          nullable: true
+          title: Panel
+        dimensions:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Text'
+            - $ref: '#/components/schemas/Boolean'
+            - $ref: '#/components/schemas/Integer'
+            - $ref: '#/components/schemas/DecimalValue'
+            - $ref: '#/components/schemas/DateValue'
+            - $ref: '#/components/schemas/Null'
+            discriminator:
+              propertyName: kind
+              mapping:
+                boolean: '#/components/schemas/Boolean'
+                date: '#/components/schemas/DateValue'
+                decimal: '#/components/schemas/DecimalValue'
+                integer: '#/components/schemas/Integer'
+                'null': '#/components/schemas/Null'
+                text: '#/components/schemas/Text'
+          type: array
+          title: Dimensions
+        dimension_labels:
+          items:
+            type: string
+            nullable: true
+          type: array
+          title: Dimension Labels
+          default: []
+        cells:
+          items:
+            $ref: '#/components/schemas/Cell'
+          type: array
+          title: Cells
+        end:
+          type: string
+          enum:
+          - top
+          - bottom
+          nullable: true
+          title: End
+        rank:
+          type: integer
+          exclusiveMinimum: true
+          minimum: 0.0
+          nullable: true
+          title: Rank
+        total:
+          type: boolean
+          title: Total
+          default: false
+      additionalProperties: false
+      type: object
+      required:
+      - panel
+      - dimensions
+      - cells
+      title: ResultRow
+    RunningTotal:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - running_total
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        input:
+          type: string
+          minLength: 1
+          title: Input
+        partition_by:
+          items:
+            type: string
+            minLength: 1
+          type: array
+          title: Partition By
+        order_by:
+          type: string
+          minLength: 1
+          title: Order By
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - input
+      - partition_by
+      - order_by
+      - evidence
+      title: RunningTotal
+    Search:
+      properties:
+        query:
+          type: string
+          maxLength: 2000
+          minLength: 1
+          title: Query
+        kinds:
+          items:
+            type: string
+            enum:
+            - product
+            - term
+            - metric
+            - column
+            - document
+          type: array
+          nullable: true
+          title: Kinds
+        limit:
+          type: integer
+          maximum: 100.0
+          minimum: 1.0
+          title: Limit
+          default: 20
+      additionalProperties: false
+      type: object
+      required:
+      - query
+      title: Search
+    SearchResponse:
+      properties:
+        hits:
+          items:
+            $ref: '#/components/schemas/Hit'
+          type: array
+          title: Hits
+      additionalProperties: false
+      type: object
+      required:
+      - hits
+      title: SearchResponse
+    Share:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - share
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        input:
+          type: string
+          minLength: 1
+          title: Input
+        remove_dimensions:
+          items:
+            type: string
+            minLength: 1
+          type: array
+          title: Remove Dimensions
+        remove_filters:
+          items:
+            type: string
+            minLength: 1
+          type: array
+          title: Remove Filters
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - input
+      - remove_dimensions
+      - remove_filters
+      - evidence
+      title: Share
+    Single:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - single
+        period:
+          $ref: '#/components/schemas/Period'
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - period
+      title: Single
+    Span:
+      properties:
+        turn:
+          type: string
+          minLength: 1
+          title: Turn
+        start:
+          type: integer
+          minimum: 0.0
+          title: Start
+        end:
+          type: integer
+          exclusiveMinimum: true
+          title: End
+          minimum: 0.0
+      additionalProperties: false
+      type: object
+      required:
+      - turn
+      - start
+      - end
+      title: Span
+    Text:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - text
+        value:
+          type: string
+          title: Value
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - value
+      title: Text
+    TimeDimension:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - time
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        calendar:
+          $ref: '#/components/schemas/Name'
+        grain:
+          type: string
+          enum:
+          - day
+          - month
+          - calendar_quarter
+          - fiscal_quarter
+          - year
+          - fiscal_year
+          title: Grain
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - calendar
+      - grain
+      title: TimeDimension
+    TimeModeComparison:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - time_mode
+        id:
+          type: string
+          minLength: 1
+          title: Id
+        inputs:
+          items:
+            type: string
+            minLength: 1
+          type: array
+          minItems: 1
+          title: Inputs
+        base:
+          type: string
+          enum:
+          - current
+          - as_reported
+          title: Base
+        other:
+          type: string
+          enum:
+          - current
+          - as_reported
+          title: Other
+        evidence:
+          items:
+            $ref: '#/components/schemas/Span'
+          type: array
+          title: Evidence
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - id
+      - inputs
+      - base
+      - other
+      - evidence
+      title: TimeModeComparison
+    Unbounded:
+      properties:
+        kind:
+          type: string
+          enum:
+          - latest_released
+          - all_available
+          title: Kind
+        calendar:
+          $ref: '#/components/schemas/Name'
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - calendar
+      title: Unbounded
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    Why:
+      properties:
+        kind:
+          type: string
+          enum:
+          - term
+          - synonym
+          - passage
+          - name
+          - description
+          title: Kind
+        text:
+          type: string
+          title: Text
+        term:
+          type: string
+          nullable: true
+          title: Term
+        chunk:
+          type: string
+          nullable: true
+          title: Chunk
+        similarity:
+          type: number
+          nullable: true
+          title: Similarity
+        via:
+          items:
+            type: string
+          type: array
+          title: Via
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - text
+      title: Why
+    Withheld:
+      properties:
+        doc:
+          type: string
+          title: Doc
+      additionalProperties: true
+      type: object
+      required:
+      - doc
+      title: Withheld
+      description: 'A document held back by the privacy gate: named, never quoted.'
+    Ytd:
+      properties:
+        kind:
+          type: string
+          title: Kind
+          enum:
+          - ytd
+        through:
+          $ref: '#/components/schemas/Period'
+        calendar:
+          $ref: '#/components/schemas/Name'
+      additionalProperties: false
+      type: object
+      required:
+      - kind
+      - through
+      - calendar
+      title: Ytd
+    kge__services__ask__models__Stages:
+      properties:
+        resolution:
+          type: string
+          nullable: true
+          title: Resolution
+        context:
+          type: string
+          nullable: true
+          title: Context
+        sql_source:
+          type: string
+          nullable: true
+          title: Sql Source
+        citation_rule:
+          type: string
+          nullable: true
+          title: Citation Rule
+        renderer:
+          type: string
+          nullable: true
+          title: Renderer
+        profile:
+          type: string
+          nullable: true
+          title: Profile
+      additionalProperties: false
+      type: object
+      title: Stages
+      description: 'A run-config override: each stage given replaces the preset''s; values are checked by RunConfig.problems. The
+
+        profile is no stage: one given is a 400 (RunConfig.with_stages), as the process sets it.'
+    kge__services__data__engine__models__RowsResponse:
+      properties:
+        columns:
+          items:
+            type: string
+          type: array
+          title: Columns
+        rows:
+          items:
+            additionalProperties: true
+            type: object
+          type: array
+          title: Rows
+        row_count:
+          type: integer
+          title: Row Count
+        capped_at:
+          type: integer
+          title: Capped At
+        run_trace:
+          additionalProperties: true
+          type: object
+          title: Run Trace
+      additionalProperties: false
+      type: object
+      required:
+      - columns
+      - rows
+      - row_count
+      - capped_at
+      - run_trace
+      title: RowsResponse

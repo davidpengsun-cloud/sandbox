@@ -1,0 +1,288 @@
+[
+  {
+    "key": "[\"query-plan-v1\",\"metric\",\"2c748a41b82260c8e80afcc234a8649371d906584bded0cd626ae2dbae497b0e\",\"55cf995baa1686e498d19b604aa2453b369791a7676fed745d0194ce97071f42\"]",
+    "reply": {
+      "kind": "propose",
+      "base_turn": "previous",
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m",
+            "measure": {
+              "id": "u.metric",
+              "evidence": []
+            },
+            "context": {
+              "id": "ctx",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [],
+        "time": {
+          "kind": "all_available",
+          "calendar": {
+            "id": "cal",
+            "evidence": []
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 0,
+                "end": 6
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "key": "[\"query-plan-v1\",\"metric sparkle\",\"2c748a41b82260c8e80afcc234a8649371d906584bded0cd626ae2dbae497b0e\",\"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945\"]",
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m",
+            "measure": {
+              "id": "u.metric",
+              "evidence": []
+            },
+            "context": {
+              "id": "ctx",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [],
+        "time": {
+          "kind": "all_available",
+          "calendar": {
+            "id": "cal",
+            "evidence": []
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 0,
+                "end": 6
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "key": "[\"query-plan-v1\",\"metric invented context\",\"2c748a41b82260c8e80afcc234a8649371d906584bded0cd626ae2dbae497b0e\",\"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945\"]",
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m",
+            "measure": {
+              "id": "u.metric",
+              "evidence": []
+            },
+            "context": {
+              "id": "absent-context",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [],
+        "time": {
+          "kind": "all_available",
+          "calendar": {
+            "id": "cal",
+            "evidence": []
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 0,
+                "end": 6
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "key": "[\"query-plan-v1\",\"metric previous period\",\"2c748a41b82260c8e80afcc234a8649371d906584bded0cd626ae2dbae497b0e\",\"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945\"]",
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m",
+            "measure": {
+              "id": "u.metric",
+              "evidence": []
+            },
+            "context": {
+              "id": "ctx",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [],
+        "time": {
+          "kind": "all_available",
+          "calendar": {
+            "id": "cal",
+            "evidence": []
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 0,
+                "end": 6
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "key": "[\"query-plan-v1\",\"executable reply\",\"2c748a41b82260c8e80afcc234a8649371d906584bded0cd626ae2dbae497b0e\",\"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945\"]",
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m",
+            "measure": {
+              "id": "u.metric",
+              "evidence": []
+            },
+            "context": {
+              "id": "ctx",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [],
+        "time": {
+          "kind": "all_available",
+          "calendar": {
+            "id": "cal",
+            "evidence": []
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 0,
+                "end": 6
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m"
+            ],
+            "state": "applied"
+          }
+        ]
+      },
+      "sql": "SELECT 999"
+    }
+  }
+]

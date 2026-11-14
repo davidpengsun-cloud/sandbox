@@ -1,0 +1,15 @@
+[
+  {"id": "T01", "kind": "within", "question": "Gross written premium for June 2025",
+   "expect": {"figure": "37646.14", "unit": "underwriting", "columns": ["premium.written_premium_usd"], "join_path": []}},
+  {"id": "T02", "kind": "within", "question": "Gross written premium for June 2025, segment SMALL",
+   "expect": {"figure": "26972.26", "unit": "underwriting", "columns": ["premium.written_premium_usd", "insured.segment_code"],
+              "join_path": ["premium.policy_no -> policy.policy_no", "policy.insured_id -> insured.insured_id"]}},
+  {"id": "T03", "kind": "cross", "question": "Gross written premium plus paid losses for June 2025",
+   "expect": {"behaviour": "refuse", "reason": "Two measures with different meanings, in two warehouses with no key between them.",
+              "joins_refused": ["underwriting-claims"]}},
+  {"id": "T04", "kind": "shelf", "question": "What is the definition of gross written premium?",
+   "expect": {"behaviour": "cite_certified", "cite": ["MD-GWP"], "must_not_cite": ["EM-LR-01"]}},
+  {"id": "T05", "kind": "abstain", "question": "What was the loss ratio for June 2025?",
+   "expect": {"behaviour": "abstain_route_steward", "reason": "Not a glossary term. A definition exists only on the uncertified shelf.",
+              "candidate_sources": ["EM-LR-01"]}}
+]

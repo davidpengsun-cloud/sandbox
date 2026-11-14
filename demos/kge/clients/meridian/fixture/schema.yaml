@@ -1,0 +1,3365 @@
+warehouses:
+  retail:
+    label: Retail Banking
+    tables:
+    - name: branch
+      columns:
+      - name: branch_id
+        type: INTEGER
+        description: Branch identifier
+      - name: branch_name
+        type: VARCHAR
+        description: Branch trading name
+      - name: region_code
+        type: VARCHAR
+        description: Sales region code
+      - name: opened_on
+        type: DATE
+        description: Date the branch opened
+      primary_key:
+      - branch_id
+      foreign_keys: []
+    - name: calendar_month
+      columns:
+      - name: month_start
+        type: DATE
+        description: First day of the calendar month
+      - name: calendar_year
+        type: INTEGER
+        description: Calendar year
+      - name: calendar_quarter
+        type: VARCHAR
+        description: Calendar quarter, e.g. 2025-Q2
+      primary_key:
+      - month_start
+      foreign_keys: []
+    - name: product
+      columns:
+      - name: product_id
+        type: INTEGER
+        description: Product identifier
+      - name: product_name
+        type: VARCHAR
+        description: Product marketing name
+      - name: product_family
+        type: VARCHAR
+        description: Current account, savings, lending, card
+      - name: rate_bps
+        type: INTEGER
+        description: Headline rate in basis points
+      - name: fee_monthly
+        type: DECIMAL(10,2)
+        description: Monthly account fee in USD
+      primary_key:
+      - product_id
+      foreign_keys: []
+    - name: customer
+      columns:
+      - name: customer_id
+        type: INTEGER
+        description: Retail customer identifier
+      - name: first_name
+        type: VARCHAR
+        description: Customer first name
+      - name: last_name
+        type: VARCHAR
+        description: Customer last name
+      - name: date_of_birth
+        type: DATE
+        description: Customer date of birth
+      - name: email
+        type: VARCHAR
+        description: Customer email address
+      - name: segment_code
+        type: VARCHAR
+        description: Marketing segment code
+      - name: branch_id
+        type: INTEGER
+        description: Home branch
+      - name: opened_on
+        type: DATE
+        description: Date the relationship opened
+      primary_key:
+      - customer_id
+      foreign_keys:
+      - columns:
+        - branch_id
+        ref_table: branch
+        ref_columns:
+        - branch_id
+    - name: account
+      columns:
+      - name: account_id
+        type: INTEGER
+        description: Account identifier
+      - name: customer_id
+        type: INTEGER
+        description: Owning customer
+      - name: product_id
+        type: INTEGER
+        description: Product held
+      - name: status_code
+        type: VARCHAR
+        description: OPEN, DORMANT or CLOSED
+      - name: opened_on
+        type: DATE
+        description: Date opened
+      - name: closed_on
+        type: DATE
+        description: Date closed, null while open
+      - name: currency_code
+        type: VARCHAR
+        description: Account currency, always USD in retail
+      primary_key:
+      - account_id
+      foreign_keys:
+      - columns:
+        - customer_id
+        ref_table: customer
+        ref_columns:
+        - customer_id
+      - columns:
+        - product_id
+        ref_table: product
+        ref_columns:
+        - product_id
+    - name: complaint
+      columns:
+      - name: complaint_id
+        type: INTEGER
+        description: Complaint identifier
+      - name: customer_id
+        type: INTEGER
+        description: Complainant
+      - name: raised_on
+        type: DATE
+        description: Date raised
+      - name: category
+        type: VARCHAR
+        description: Complaint category
+      - name: resolved_on
+        type: DATE
+        description: Date resolved, null while open
+      primary_key:
+      - complaint_id
+      foreign_keys:
+      - columns:
+        - customer_id
+        ref_table: customer
+        ref_columns:
+        - customer_id
+    - name: customer_activity
+      columns:
+      - name: activity_id
+        type: INTEGER
+        description: Row identifier
+      - name: customer_id
+        type: INTEGER
+        description: Customer
+      - name: month_start
+        type: DATE
+        description: Calendar month
+      - name: login_count
+        type: INTEGER
+        description: Digital logins in the month
+      - name: txn_count
+        type: INTEGER
+        description: Customer-initiated transactions in the month
+      - name: is_active_flag
+        type: BOOLEAN
+        description: True where txn_count is at least one in the month
+      primary_key:
+      - activity_id
+      foreign_keys:
+      - columns:
+        - customer_id
+        ref_table: customer
+        ref_columns:
+        - customer_id
+      - columns:
+        - month_start
+        ref_table: calendar_month
+        ref_columns:
+        - month_start
+    - name: daily_balance
+      columns:
+      - name: balance_id
+        type: BIGINT
+        description: Row identifier
+      - name: account_id
+        type: INTEGER
+        description: Account
+      - name: as_of
+        type: DATE
+        description: Balance date
+      - name: ledger_balance
+        type: DECIMAL(14,2)
+        description: End-of-day ledger balance
+      - name: available_balance
+        type: DECIMAL(14,2)
+        description: End-of-day available balance
+      primary_key:
+      - balance_id
+      foreign_keys:
+      - columns:
+        - account_id
+        ref_table: account
+        ref_columns:
+        - account_id
+    - name: monthly_revenue
+      columns:
+      - name: revenue_id
+        type: INTEGER
+        description: Row identifier
+      - name: account_id
+        type: INTEGER
+        description: Account the revenue accrues to
+      - name: month_start
+        type: DATE
+        description: Calendar month
+      - name: interest_income
+        type: DECIMAL(14,2)
+        description: Net interest income for the month, USD
+      - name: fee_income
+        type: DECIMAL(14,2)
+        description: Fee income for the month, USD
+      - name: total_revenue_usd
+        type: DECIMAL(14,2)
+        description: Interest plus fees, USD, calendar month
+      primary_key:
+      - revenue_id
+      foreign_keys:
+      - columns:
+        - account_id
+        ref_table: account
+        ref_columns:
+        - account_id
+      - columns:
+        - month_start
+        ref_table: calendar_month
+        ref_columns:
+        - month_start
+    - name: transaction
+      columns:
+      - name: txn_id
+        type: BIGINT
+        description: Transaction identifier
+      - name: account_id
+        type: INTEGER
+        description: Account posted to
+      - name: posted_on
+        type: DATE
+        description: Posting date
+      - name: amount
+        type: DECIMAL(14,2)
+        description: Signed amount in account currency
+      - name: txn_type
+        type: VARCHAR
+        description: DEBIT or CREDIT
+      - name: channel_code
+        type: VARCHAR
+        description: BRANCH, ATM, ONLINE, MOBILE
+      - name: merchant_category
+        type: VARCHAR
+        description: Merchant category code where applicable
+      - name: counterparty_bank
+        type: VARCHAR
+        description: Institution on the other side of a transfer; MERIDIAN for an
+          account held here
+      - name: counterparty_account
+        type: BIGINT
+        description: Account number on the other side of a transfer, at that institution
+      primary_key:
+      - txn_id
+      foreign_keys:
+      - columns:
+        - account_id
+        ref_table: account
+        ref_columns:
+        - account_id
+  sme:
+    label: SME Banking
+    tables:
+    - name: calendar_month
+      columns:
+      - name: month_start
+        type: DATE
+        description: First day of the calendar month
+      - name: calendar_year
+        type: INTEGER
+        description: Calendar year
+      - name: calendar_quarter
+        type: VARCHAR
+        description: Calendar quarter
+      primary_key:
+      - month_start
+      foreign_keys: []
+    - name: relationship_manager
+      columns:
+      - name: rm_id
+        type: INTEGER
+        description: Relationship manager identifier
+      - name: rm_name
+        type: VARCHAR
+        description: Relationship manager name
+      - name: team_code
+        type: VARCHAR
+        description: Coverage team
+      primary_key:
+      - rm_id
+      foreign_keys: []
+    - name: client
+      columns:
+      - name: client_no
+        type: INTEGER
+        description: SME client number
+      - name: legal_name
+        type: VARCHAR
+        description: Registered legal name
+      - name: registration_no
+        type: VARCHAR
+        description: Company registration number
+      - name: industry_code
+        type: VARCHAR
+        description: Industry classification code
+      - name: rm_id
+        type: INTEGER
+        description: Covering relationship manager
+      - name: onboarded_on
+        type: DATE
+        description: Onboarding date
+      primary_key:
+      - client_no
+      foreign_keys:
+      - columns:
+        - rm_id
+        ref_table: relationship_manager
+        ref_columns:
+        - rm_id
+    - name: client_activity
+      columns:
+      - name: activity_id
+        type: INTEGER
+        description: Row identifier
+      - name: client_no
+        type: INTEGER
+        description: Client
+      - name: month_start
+        type: DATE
+        description: Calendar month
+      - name: payments_count
+        type: INTEGER
+        description: Outbound payments in the month
+      - name: active_flag
+        type: BOOLEAN
+        description: True where payments_count is at least one
+      primary_key:
+      - activity_id
+      foreign_keys:
+      - columns:
+        - client_no
+        ref_table: client
+        ref_columns:
+        - client_no
+      - columns:
+        - month_start
+        ref_table: calendar_month
+        ref_columns:
+        - month_start
+    - name: facility
+      columns:
+      - name: facility_id
+        type: INTEGER
+        description: Facility identifier
+      - name: client_no
+        type: INTEGER
+        description: Borrowing client
+      - name: facility_type
+        type: VARCHAR
+        description: TERM_LOAN, OVERDRAFT, INVOICE_FINANCE
+      - name: limit_amount
+        type: DECIMAL(14,2)
+        description: Approved limit
+      - name: currency_code
+        type: VARCHAR
+        description: Facility currency, USD
+      - name: start_on
+        type: DATE
+        description: Facility start
+      - name: end_on
+        type: DATE
+        description: Facility maturity
+      primary_key:
+      - facility_id
+      foreign_keys:
+      - columns:
+        - client_no
+        ref_table: client
+        ref_columns:
+        - client_no
+    - name: monthly_client_revenue
+      columns:
+      - name: rev_id
+        type: INTEGER
+        description: Row identifier
+      - name: client_no
+        type: INTEGER
+        description: Client
+      - name: month_start
+        type: DATE
+        description: Calendar month
+      - name: nii
+        type: DECIMAL(14,2)
+        description: Net interest income, USD
+      - name: fees
+        type: DECIMAL(14,2)
+        description: Fee income, USD
+      - name: revenue_usd
+        type: DECIMAL(14,2)
+        description: NII plus fees, USD, calendar month
+      primary_key:
+      - rev_id
+      foreign_keys:
+      - columns:
+        - client_no
+        ref_table: client
+        ref_columns:
+        - client_no
+      - columns:
+        - month_start
+        ref_table: calendar_month
+        ref_columns:
+        - month_start
+    - name: covenant
+      columns:
+      - name: covenant_id
+        type: INTEGER
+        description: Covenant identifier
+      - name: facility_id
+        type: INTEGER
+        description: Facility the covenant attaches to
+      - name: covenant_type
+        type: VARCHAR
+        description: LEVERAGE, INTEREST_COVER, MIN_LIQUIDITY
+      - name: threshold
+        type: DECIMAL(10,4)
+        description: Covenant threshold
+      - name: tested_on
+        type: DATE
+        description: Last test date
+      - name: breached_flag
+        type: BOOLEAN
+        description: True where the last test breached
+      primary_key:
+      - covenant_id
+      foreign_keys:
+      - columns:
+        - facility_id
+        ref_table: facility
+        ref_columns:
+        - facility_id
+    - name: drawdown
+      columns:
+      - name: drawdown_id
+        type: INTEGER
+        description: Drawdown identifier
+      - name: facility_id
+        type: INTEGER
+        description: Facility drawn
+      - name: drawn_on
+        type: DATE
+        description: Drawdown date
+      - name: amount
+        type: DECIMAL(14,2)
+        description: Amount drawn
+      primary_key:
+      - drawdown_id
+      foreign_keys:
+      - columns:
+        - facility_id
+        ref_table: facility
+        ref_columns:
+        - facility_id
+    - name: repayment
+      columns:
+      - name: repayment_id
+        type: INTEGER
+        description: Repayment identifier
+      - name: facility_id
+        type: INTEGER
+        description: Facility repaid
+      - name: paid_on
+        type: DATE
+        description: Payment date
+      - name: amount
+        type: DECIMAL(14,2)
+        description: Amount paid
+      - name: days_past_due
+        type: INTEGER
+        description: Days past the scheduled date, zero when on time
+      primary_key:
+      - repayment_id
+      foreign_keys:
+      - columns:
+        - facility_id
+        ref_table: facility
+        ref_columns:
+        - facility_id
+  corporate:
+    label: Corporate & Institutional
+    tables:
+    - name: counterparty
+      columns:
+      - name: counterparty_ref
+        type: VARCHAR
+        description: Counterparty reference
+      - name: counterparty_name
+        type: VARCHAR
+        description: Legal entity name
+      - name: lei_code
+        type: VARCHAR
+        description: Legal entity identifier
+      - name: country_code
+        type: VARCHAR
+        description: Country of incorporation
+      - name: sector_code
+        type: VARCHAR
+        description: Sector classification
+      - name: onboarded_on
+        type: DATE
+        description: Onboarding date
+      primary_key:
+      - counterparty_ref
+      foreign_keys: []
+    - name: fiscal_calendar
+      columns:
+      - name: fiscal_quarter
+        type: VARCHAR
+        description: Fiscal quarter label, e.g. FY25-Q1
+      - name: fiscal_year
+        type: INTEGER
+        description: Fiscal year, starting 1 April
+      - name: quarter_start
+        type: DATE
+        description: First day of the fiscal quarter
+      - name: quarter_end
+        type: DATE
+        description: Last day of the fiscal quarter
+      primary_key:
+      - fiscal_quarter
+      foreign_keys: []
+    - name: contact
+      columns:
+      - name: contact_id
+        type: INTEGER
+        description: Contact identifier
+      - name: counterparty_ref
+        type: VARCHAR
+        description: Counterparty the contact belongs to
+      - name: customer_id
+        type: INTEGER
+        description: CRM contact number. Not the retail customer identifier, despite
+          the name
+      - name: contact_name
+        type: VARCHAR
+        description: Contact name
+      - name: contact_email
+        type: VARCHAR
+        description: Contact email
+      - name: role_code
+        type: VARCHAR
+        description: TREASURER, CFO, OPERATIONS
+      primary_key:
+      - contact_id
+      foreign_keys:
+      - columns:
+        - counterparty_ref
+        ref_table: counterparty
+        ref_columns:
+        - counterparty_ref
+    - name: deal
+      columns:
+      - name: deal_id
+        type: INTEGER
+        description: Deal identifier
+      - name: counterparty_ref
+        type: VARCHAR
+        description: Counterparty
+      - name: product_code
+        type: VARCHAR
+        description: FX_FWD, IRS, LOAN, BOND
+      - name: notional_eur
+        type: DECIMAL(16,2)
+        description: Notional in EUR
+      - name: trade_on
+        type: DATE
+        description: Trade date
+      - name: maturity_on
+        type: DATE
+        description: Maturity date
+      primary_key:
+      - deal_id
+      foreign_keys:
+      - columns:
+        - counterparty_ref
+        ref_table: counterparty
+        ref_columns:
+        - counterparty_ref
+    - name: exposure
+      columns:
+      - name: exposure_id
+        type: INTEGER
+        description: Row identifier
+      - name: counterparty_ref
+        type: VARCHAR
+        description: Counterparty
+      - name: as_of
+        type: DATE
+        description: Measurement date
+      - name: ead_eur
+        type: DECIMAL(16,2)
+        description: Exposure at default, EUR
+      - name: pd_bps
+        type: INTEGER
+        description: Probability of default, basis points
+      - name: lgd_pct
+        type: DECIMAL(5,2)
+        description: Loss given default, per cent
+      primary_key:
+      - exposure_id
+      foreign_keys:
+      - columns:
+        - counterparty_ref
+        ref_table: counterparty
+        ref_columns:
+        - counterparty_ref
+    - name: limit_utilisation
+      columns:
+      - name: util_id
+        type: INTEGER
+        description: Row identifier
+      - name: counterparty_ref
+        type: VARCHAR
+        description: Counterparty
+      - name: as_of
+        type: DATE
+        description: Measurement date
+      - name: limit_eur
+        type: DECIMAL(16,2)
+        description: Approved limit, EUR
+      - name: utilised_eur
+        type: DECIMAL(16,2)
+        description: Utilised amount, EUR
+      primary_key:
+      - util_id
+      foreign_keys:
+      - columns:
+        - counterparty_ref
+        ref_table: counterparty
+        ref_columns:
+        - counterparty_ref
+    - name: quarterly_revenue
+      columns:
+      - name: qrev_id
+        type: INTEGER
+        description: Row identifier
+      - name: counterparty_ref
+        type: VARCHAR
+        description: Counterparty
+      - name: fiscal_quarter
+        type: VARCHAR
+        description: Fiscal quarter
+      - name: revenue_eur
+        type: DECIMAL(16,2)
+        description: Revenue in EUR for the fiscal quarter
+      - name: fx_rate_period_end
+        type: DECIMAL(10,6)
+        description: EUR to USD rate at quarter end
+      - name: revenue_usd_converted
+        type: DECIMAL(16,2)
+        description: Revenue converted to USD at the period-end rate
+      primary_key:
+      - qrev_id
+      foreign_keys:
+      - columns:
+        - counterparty_ref
+        ref_table: counterparty
+        ref_columns:
+        - counterparty_ref
+      - columns:
+        - fiscal_quarter
+        ref_table: fiscal_calendar
+        ref_columns:
+        - fiscal_quarter
+    - name: rating
+      columns:
+      - name: rating_id
+        type: INTEGER
+        description: Row identifier
+      - name: counterparty_ref
+        type: VARCHAR
+        description: Counterparty
+      - name: rated_on
+        type: DATE
+        description: Rating date
+      - name: internal_grade
+        type: VARCHAR
+        description: Internal rating grade
+      - name: agency_grade
+        type: VARCHAR
+        description: External agency grade where available
+      primary_key:
+      - rating_id
+      foreign_keys:
+      - columns:
+        - counterparty_ref
+        ref_table: counterparty
+        ref_columns:
+        - counterparty_ref
+  wealth:
+    label: Wealth Management
+    tables:
+    - name: ADV_DIM_1
+      columns:
+      - name: ADV_ID
+        type: INTEGER
+        description: Advisor identifier
+      - name: ADV_NM
+        type: VARCHAR
+        description: Advisor name
+      - name: BRCH_CD
+        type: VARCHAR
+        description: Office
+      - name: LICNS_CLS_CD
+        type: VARCHAR
+        description: Licence class held
+      primary_key:
+      - ADV_ID
+      foreign_keys: []
+    - name: BANK_DEP_ACCT_ADDR_1
+      columns:
+      - name: DW_BANK_ACCT_ID
+        type: BIGINT
+        description: DW bank account id
+      - name: DW_EFF_DT
+        type: DATE
+        description: DW effective date
+      - name: DW_EXPR_DT
+        type: DATE
+        description: DW expiry date
+      - name: CURR_IN
+        type: BIGINT
+        description: Current indicator
+      - name: RCV_IN
+        type: BIGINT
+        description: Receive indicator
+      - name: DEP_ACCT_NR
+        type: BIGINT
+        description: Deposit account number
+      - name: DEP_ACCT_NR_DK
+        type: BIGINT
+        description: Deposit account number key
+      - name: MAIL_ADDR_LINE_1_TX
+        type: VARCHAR
+        description: Mail address line 1 tax
+      - name: MAIL_ADDR_LINE_2_TX
+        type: VARCHAR
+        description: Mail address line 2 tax
+      - name: MAIL_ADDR_LINE_3_TX
+        type: VARCHAR
+        description: Mail address line 3 tax
+      - name: MAIL_ADDR_LINE_4_TX
+        type: VARCHAR
+        description: Mail address line 4 tax
+      - name: MAIL_CITY_NM
+        type: VARCHAR
+        description: Mail city name
+      - name: MAIL_STATE_CD
+        type: VARCHAR
+        description: Mail state code
+      - name: MAIL_POSTL_CD
+        type: VARCHAR
+        description: Mail postal code
+      - name: MAIL_CNTRY_CD
+        type: VARCHAR
+        description: Mail country code
+      - name: DW_LOAD_TS
+        type: TIMESTAMP
+        description: DW load timestamp
+      - name: DW_CREAT_TS
+        type: TIMESTAMP
+        description: DW create timestamp
+      primary_key:
+      - DW_BANK_ACCT_ID
+      foreign_keys: []
+    - name: BRCH_DIM_1
+      columns:
+      - name: BRCH_CD
+        type: VARCHAR
+        description: Branch code
+      - name: DW_EFF_DT
+        type: DATE
+        description: DW effective date
+      - name: DW_EXPR_DT
+        type: DATE
+        description: DW expiry date
+      - name: CURR_IN
+        type: BIGINT
+        description: Current indicator
+      - name: RCV_IN
+        type: BIGINT
+        description: Receive indicator
+      - name: BRCH_NM
+        type: VARCHAR
+        description: Branch name
+      - name: BRCH_OPEN_DT
+        type: DATE
+        description: Branch open date
+      - name: BRCH_CLOS_DT
+        type: DATE
+        description: Branch close date
+      - name: BRCH_TYPE_CD
+        type: VARCHAR
+        description: Branch type code
+      - name: BRCH_STAT_CD
+        type: VARCHAR
+        description: Branch status code
+      - name: BRCH_ORG_ID
+        type: VARCHAR
+        description: Branch organization id
+      - name: COST_CENTR_CD
+        type: VARCHAR
+        description: Cost center code
+      - name: PARNT_BRCH_CD
+        type: VARCHAR
+        description: Parent branch code
+      - name: PARNT_BRCH_NM
+        type: VARCHAR
+        description: Parent branch name
+      - name: PARNT_BRCH_ORG_ID
+        type: VARCHAR
+        description: Parent branch organization id
+      - name: RGN_CD
+        type: VARCHAR
+        description: Region code
+      - name: RGN_NM
+        type: VARCHAR
+        description: Region name
+      - name: RGN_BRCH_EXCTV_NM
+        type: VARCHAR
+        description: Region branch executive name
+      - name: RGN_BRCH_EXCTV_MUB_PRSN_ID
+        type: VARCHAR
+        description: Region branch executive mub person id
+      - name: BRCH_MGR_MUB_PRSN_ID
+        type: VARCHAR
+        description: Branch manager mub person id
+      - name: BRCH_MGR_NM
+        type: VARCHAR
+        description: Branch manager name
+      - name: MKT_LEADER_MUB_PRSN_ID
+        type: VARCHAR
+        description: Market leader mub person id
+      - name: MKT_LEADER_NM
+        type: VARCHAR
+        description: Market leader name
+      - name: FRNCHS_BUSN_DIRTR_MUB_PRSN_ID
+        type: VARCHAR
+        description: Franchise business director mub person id
+      - name: FRNCHS_BUSN_DIRTR_NM
+        type: VARCHAR
+        description: Franchise business director name
+      - name: NEAREST_CMPY_MNGD_BRCH_CD
+        type: VARCHAR
+        description: Nearest company managed branch code
+      - name: AREA_CD
+        type: VARCHAR
+        description: Area code
+      - name: AREA_NM
+        type: VARCHAR
+        description: Area name
+      - name: BRCH_DIVSN_CD
+        type: VARCHAR
+        description: Branch division code
+      - name: BRCH_DIVSN_NM
+        type: VARCHAR
+        description: Branch division name
+      - name: PHON_ID
+        type: VARCHAR
+        description: Phone id
+      - name: EMAIL_ADDR_TX
+        type: VARCHAR
+        description: Email address tax
+      - name: ADDR_LINE1_TX
+        type: VARCHAR
+        description: Address line1 tax
+      - name: ADDR_LINE2_TX
+        type: VARCHAR
+        description: Address line2 tax
+      - name: CITY_NM
+        type: VARCHAR
+        description: City name
+      - name: STATE_CD
+        type: VARCHAR
+        description: State code
+      - name: POSTL_CD
+        type: VARCHAR
+        description: Postal code
+      - name: BRCH_SRCE_SYS_NM
+        type: VARCHAR
+        description: Branch source system name
+      - name: SRCE_SYS_ID
+        type: BIGINT
+        description: Source system id
+      - name: INSERT_TS
+        type: TIMESTAMP
+        description: Insert timestamp
+      - name: INSERT_USER_NM
+        type: VARCHAR
+        description: Insert user name
+      - name: MODIFY_TS
+        type: TIMESTAMP
+        description: Modify timestamp
+      - name: MODIFY_USER_NM
+        type: VARCHAR
+        description: Modify user name
+      - name: DW_AUTO_SIGNUP_IN
+        type: VARCHAR
+        description: DW auto signup indicator
+      - name: BRCH_ORIG_CD
+        type: VARCHAR
+        description: Branch original code
+      - name: DW_CREAT_TS
+        type: TIMESTAMP
+        description: DW create timestamp
+      - name: DW_LOAD_TS
+        type: TIMESTAMP
+        description: DW load timestamp
+      primary_key:
+      - BRCH_CD
+      - DW_EFF_DT
+      foreign_keys: []
+    - name: CLIENT_CD_ROLLUP_1
+      columns:
+      - name: CLNT_CD
+        type: VARCHAR
+        description: Client code
+      - name: DW_EFF_DT
+        type: DATE
+        description: DW effective date
+      - name: DW_EXPR_DT
+        type: DATE
+        description: DW expiry date
+      - name: CURR_IN
+        type: BIGINT
+        description: Current indicator
+      - name: RCV_IN
+        type: BIGINT
+        description: Receive indicator
+      - name: FILL_PARNT_HIER_LVL_NR
+        type: BIGINT
+        description: Fill parent hierarchy level number
+      - name: SEGMT_LVL_ID1_INODE_IN
+        type: BIGINT
+        description: Segment level id1 inode indicator
+      - name: SEGMT_LVL_ID1_FILL_IN
+        type: BIGINT
+        description: Segment level id1 fill indicator
+      - name: SEGMT_LVL_ID1
+        type: VARCHAR
+        description: Segment level id1
+      - name: SEGMT_LVL_NM1
+        type: VARCHAR
+        description: Segment level nm1
+      - name: SEGMT_LVL_SHRT_NM1
+        type: VARCHAR
+        description: Segment level short nm1
+      - name: SEGMT_LVL_ULTRA_SHRT_NM1
+        type: VARCHAR
+        description: Segment level ultra short nm1
+      - name: SEGMT_LVL_SORT_SEQ_NR1
+        type: BIGINT
+        description: Segment level sort sequence nr1
+      - name: SEGMT_LVL_ID2_INODE_IN
+        type: BIGINT
+        description: Segment level id2 inode indicator
+      - name: SEGMT_LVL_ID2_FILL_IN
+        type: BIGINT
+        description: Segment level id2 fill indicator
+      - name: SEGMT_LVL_ID2
+        type: VARCHAR
+        description: Segment level id2
+      - name: SEGMT_LVL_NM2
+        type: VARCHAR
+        description: Segment level nm2
+      - name: SEGMT_LVL_SHRT_NM2
+        type: VARCHAR
+        description: Segment level short nm2
+      - name: SEGMT_LVL_ULTRA_SHRT_NM2
+        type: VARCHAR
+        description: Segment level ultra short nm2
+      - name: SEGMT_LVL_SORT_SEQ_NR2
+        type: BIGINT
+        description: Segment level sort sequence nr2
+      - name: SEGMT_LVL_ID3_INODE_IN
+        type: BIGINT
+        description: Segment level id3 inode indicator
+      - name: SEGMT_LVL_ID3_FILL_IN
+        type: BIGINT
+        description: Segment level id3 fill indicator
+      - name: SEGMT_LVL_ID3
+        type: VARCHAR
+        description: Segment level id3
+      - name: SEGMT_LVL_NM3
+        type: VARCHAR
+        description: Segment level nm3
+      - name: SEGMT_LVL_SHRT_NM3
+        type: VARCHAR
+        description: Segment level short nm3
+      - name: SEGMT_LVL_ULTRA_SHRT_NM3
+        type: VARCHAR
+        description: Segment level ultra short nm3
+      - name: SEGMT_LVL_SORT_SEQ_NR3
+        type: BIGINT
+        description: Segment level sort sequence nr3
+      - name: SEGMT_LVL_ID4_INODE_IN
+        type: BIGINT
+        description: Segment level id4 inode indicator
+      - name: SEGMT_LVL_ID4_FILL_IN
+        type: BIGINT
+        description: Segment level id4 fill indicator
+      - name: SEGMT_LVL_ID4
+        type: VARCHAR
+        description: Segment level id4
+      - name: SEGMT_LVL_NM4
+        type: VARCHAR
+        description: Segment level nm4
+      - name: SEGMT_LVL_SHRT_NM4
+        type: VARCHAR
+        description: Segment level short nm4
+      - name: SEGMT_LVL_ULTRA_SHRT_NM4
+        type: VARCHAR
+        description: Segment level ultra short nm4
+      - name: SEGMT_LVL_SORT_SEQ_NR4
+        type: BIGINT
+        description: Segment level sort sequence nr4
+      - name: SEGMT_LVL_ID5_INODE_IN
+        type: BIGINT
+        description: Segment level id5 inode indicator
+      - name: SEGMT_LVL_ID5_FILL_IN
+        type: BIGINT
+        description: Segment level id5 fill indicator
+      - name: SEGMT_LVL_ID5
+        type: VARCHAR
+        description: Segment level id5
+      - name: SEGMT_LVL_NM5
+        type: VARCHAR
+        description: Segment level nm5
+      - name: SEGMT_LVL_ULTRA_SHRT_NM5
+        type: VARCHAR
+        description: Segment level ultra short nm5
+      - name: SEGMT_LVL_SHRT_NM5
+        type: VARCHAR
+        description: Segment level short nm5
+      - name: SEGMT_LVL_SORT_SEQ_NR5
+        type: BIGINT
+        description: Segment level sort sequence nr5
+      - name: SEGMT_LVL_ID6_INODE_IN
+        type: BIGINT
+        description: Segment level id6 inode indicator
+      - name: SEGMT_LVL_ID6_FILL_IN
+        type: BIGINT
+        description: Segment level id6 fill indicator
+      - name: SEGMT_LVL_ID6
+        type: VARCHAR
+        description: Segment level id6
+      - name: SEGMT_LVL_NM6
+        type: VARCHAR
+        description: Segment level nm6
+      - name: SEGMT_LVL_SHRT_NM6
+        type: VARCHAR
+        description: Segment level short nm6
+      - name: SEGMT_LVL_ULTRA_SHRT_NM6
+        type: VARCHAR
+        description: Segment level ultra short nm6
+      - name: SEGMT_LVL_SORT_SEQ_NR6
+        type: BIGINT
+        description: Segment level sort sequence nr6
+      - name: SEGMT_LVL_ID7_INODE_IN
+        type: BIGINT
+        description: Segment level id7 inode indicator
+      - name: SEGMT_LVL_ID7_FILL_IN
+        type: BIGINT
+        description: Segment level id7 fill indicator
+      - name: SEGMT_LVL_ID7
+        type: VARCHAR
+        description: Segment level id7
+      - name: SEGMT_LVL_NM7
+        type: VARCHAR
+        description: Segment level nm7
+      - name: SEGMT_LVL_SHRT_NM7
+        type: VARCHAR
+        description: Segment level short nm7
+      - name: SEGMT_LVL_ULTRA_SHRT_NM7
+        type: VARCHAR
+        description: Segment level ultra short nm7
+      - name: SEGMT_LVL_SORT_SEQ_NR7
+        type: BIGINT
+        description: Segment level sort sequence nr7
+      - name: DW_LOAD_TS
+        type: TIMESTAMP
+        description: DW load timestamp
+      primary_key:
+      - CLNT_CD
+      - DW_EFF_DT
+      foreign_keys: []
+    - name: CLNT_SEGMT_DIM_1
+      columns:
+      - name: SEGMT_CD
+        type: VARCHAR
+        description: Segment code
+      - name: SEGMT_NM
+        type: VARCHAR
+        description: Segment name
+      - name: PARNT_SEGMT_CD
+        type: VARCHAR
+        description: Parent segment, null at the top level
+      - name: SEGMT_LVL_NR
+        type: INTEGER
+        description: Level in the segment hierarchy, 1 at the top
+      primary_key:
+      - SEGMT_CD
+      foreign_keys: []
+    - name: DATE_DIM_1
+      columns:
+      - name: CALENDAR_DATE
+        type: DATE
+        description: Calendar date
+      - name: CALENDAR_EOD_DATE_TS
+        type: TIMESTAMP
+        description: Calendar eod date timestamp
+      - name: CALENDAR_DATE_TS
+        type: TIMESTAMP
+        description: Calendar date timestamp
+      - name: YEAR_MONTH
+        type: BIGINT
+        description: Year month
+      - name: YEAR_VAL
+        type: BIGINT
+        description: Year value
+      - name: DAY_OF_YEAR
+        type: BIGINT
+        description: Day of year
+      - name: DAY_OF_WEEK
+        type: VARCHAR
+        description: Day of week
+      - name: DAY_OF_WEEK_NUMBER
+        type: BIGINT
+        description: Day of week number
+      - name: WEEK_NUMBER
+        type: BIGINT
+        description: Week number
+      - name: MONTH_DAY_NUMBER
+        type: BIGINT
+        description: Month day number
+      - name: MONTH_NAME
+        type: VARCHAR
+        description: Month name
+      - name: MONTH_NUMBER
+        type: BIGINT
+        description: Month number
+      - name: CALENDAR_MONTH_END_DAY
+        type: BIGINT
+        description: Calendar month end day
+      - name: QUARTER_NUMBER
+        type: BIGINT
+        description: Quarter number
+      - name: CALENDAR_QRTR_END_DAY
+        type: BIGINT
+        description: Calendar quarter end day
+      - name: FISCAL_WEEK_END_DAY
+        type: BIGINT
+        description: Fiscal week end day
+      - name: FISCAL_MONTH_END_DAY
+        type: BIGINT
+        description: Fiscal month end day
+      - name: FISCAL_QRTR_END_DAY
+        type: BIGINT
+        description: Fiscal quarter end day
+      - name: FISCAL_YEAR_END_DAY
+        type: BIGINT
+        description: Fiscal year end day
+      - name: BUSINESS_WEEK_END_DAY
+        type: BIGINT
+        description: Business week end day
+      - name: BUSINESS_MONTH_END_DAY
+        type: BIGINT
+        description: Business month end day
+      - name: BUSINESS_QRTR_END_DAY
+        type: BIGINT
+        description: Business quarter end day
+      - name: BUSINESS_YEAR_END_DAY
+        type: BIGINT
+        description: Business year end day
+      - name: HR_PAY_PERIOD_END_DAY
+        type: BIGINT
+        description: Hr pay period end day
+      - name: HR_MONTH_END_DAY
+        type: BIGINT
+        description: Hr month end day
+      - name: HR_QRTR_END_DAY
+        type: BIGINT
+        description: Hr quarter end day
+      - name: HR_YEAR_END_DAY
+        type: BIGINT
+        description: Hr year end day
+      - name: HOLIDAY
+        type: BIGINT
+        description: Holiday
+      - name: WEEK_OF_MONTH_NUMBER
+        type: BIGINT
+        description: Week of month number
+      - name: EXCH_OPEN_IN
+        type: BIGINT
+        description: Exchange open indicator
+      - name: SETTL_DAY_IN
+        type: BIGINT
+        description: Settlement day indicator
+      - name: FED_RSRV_BANK_OPEN_IN
+        type: BIGINT
+        description: Fed reserve bank open indicator
+      - name: TIME_PRD_GRAIN_CD
+        type: VARCHAR
+        description: Time period grain code
+      - name: PREV_EXCH_OPEN_DT
+        type: DATE
+        description: Previous exchange open date
+      - name: NXT_EXCH_OPEN_DT
+        type: DATE
+        description: Next exchange open date
+      - name: RPTG_EXCH_OPEN_DT
+        type: DATE
+        description: Reporting exchange open date
+      - name: PREV_MUB_WRK_DT
+        type: DATE
+        description: Previous mub work date
+      - name: NEXT_MUB_WRK_DT
+        type: DATE
+        description: Next mub work date
+      - name: PREV_MUB_WRK_FRI_DT
+        type: DATE
+        description: Previous mub work fri date
+      - name: NEXT_MUB_WRK_FRI_DT
+        type: DATE
+        description: Next mub work fri date
+      - name: MUB_WRK_MTD_CT
+        type: BIGINT
+        description: Mub work mtd ct
+      - name: MUB_WRK_QTD_CT
+        type: BIGINT
+        description: Mub work qtd ct
+      - name: MUB_WRK_YTD_CT
+        type: BIGINT
+        description: Mub work ytd ct
+      - name: MNTH_START_CLDR_DT
+        type: DATE
+        description: Month start calendar date
+      - name: MNTH_TIME_PRD_GRAIN_CD
+        type: VARCHAR
+        description: Month time period grain code
+      - name: QRTR_START_CLDR_DT
+        type: DATE
+        description: Quarter start calendar date
+      - name: QRTR_TIME_PRD_GRAIN_CD
+        type: VARCHAR
+        description: Quarter time period grain code
+      - name: YEAR_START_CLDR_DT
+        type: DATE
+        description: Year start calendar date
+      - name: YEAR_TIME_PRD_GRAIN_CD
+        type: VARCHAR
+        description: Year time period grain code
+      - name: EXCH_DAY_CT
+        type: BIGINT
+        description: Exchange day ct
+      - name: MNTH_END_CLDR_DT
+        type: DATE
+        description: Month end calendar date
+      - name: CLDR_1_MOST_RCNT_DT
+        type: DATE
+        description: Calendar 1 most recent date
+      - name: CLDR_2_MOST_RCNT_DT
+        type: DATE
+        description: Calendar 2 most recent date
+      - name: SPCL_HLDY_NM
+        type: VARCHAR
+        description: Special holiday name
+      - name: FIN_MTRC_PBLSHNG_DT_IN
+        type: VARCHAR
+        description: Financial metric publishing date indicator
+      primary_key:
+      - CALENDAR_DATE
+      foreign_keys: []
+    - name: DIVSN_DIM_1
+      columns:
+      - name: DIVSN_CD
+        type: VARCHAR
+        description: Division code
+      - name: DIVSN_NM
+        type: VARCHAR
+        description: Division name
+      - name: DW_EFF_DT
+        type: DATE
+        description: First day this version of the row holds
+      - name: DW_EXPR_DT
+        type: DATE
+        description: Last day this version of the row holds, null while it is current
+      - name: CURR_IN
+        type: BOOLEAN
+        description: True for the version that holds today
+      primary_key:
+      - DIVSN_CD
+      - DW_EFF_DT
+      foreign_keys: []
+    - name: D_ACCT_SEGMT
+      columns:
+      - name: DW_ACCT_SEGMT_ID
+        type: BIGINT
+        description: DW account segment id
+      - name: DW_EFF_DT
+        type: DATE
+        description: DW effective date
+      - name: DW_EXPR_DT
+        type: DATE
+        description: DW expiry date
+      - name: CURR_IN
+        type: BIGINT
+        description: Current indicator
+      - name: RCV_IN
+        type: BIGINT
+        description: Receive indicator
+      - name: DW_SEGMT_GRP_ID
+        type: BIGINT
+        description: DW segment group id
+      - name: ELT_ID
+        type: BIGINT
+        description: Elt id
+      - name: SEGMT_NM
+        type: VARCHAR
+        description: Segment name
+      - name: SEGMT_DESC_TX
+        type: VARCHAR
+        description: Segment description tax
+      - name: SEGMT_LVL_TX
+        type: VARCHAR
+        description: Segment level tax
+      - name: SEGMT_START_DT
+        type: DATE
+        description: Segment start date
+      - name: SEGMT_END_DT
+        type: DATE
+        description: Segment end date
+      - name: SEGMT_ACTIV_IN
+        type: VARCHAR
+        description: Segment activity indicator
+      - name: INCL_IN_DATA_LOAD_IN
+        type: VARCHAR
+        description: Include indicator data load indicator
+      - name: MNGD_INVSTG_IN
+        type: VARCHAR
+        description: Managed invstg indicator
+      - name: RPT_SEGMT_NM
+        type: VARCHAR
+        description: Report segment name
+      - name: INSERT_TS
+        type: TIMESTAMP
+        description: Insert timestamp
+      - name: INSERT_USER_NM
+        type: VARCHAR
+        description: Insert user name
+      - name: MODIFY_TS
+        type: TIMESTAMP
+        description: Modify timestamp
+      - name: MODIFY_USER_NM
+        type: VARCHAR
+        description: Modify user name
+      - name: APPR_USER_TS
+        type: TIMESTAMP
+        description: Approval user timestamp
+      - name: APPR_USER_NM
+        type: VARCHAR
+        description: Approval user name
+      - name: DW_LOAD_TS
+        type: TIMESTAMP
+        description: DW load timestamp
+      primary_key:
+      - DW_ACCT_SEGMT_ID
+      foreign_keys: []
+    - name: D_CORE_OFFER
+      columns:
+      - name: CORE_OFFER_DK
+        type: BIGINT
+        description: Core offer key
+      - name: OFFER_START_DT
+        type: DATE
+        description: Offer start date
+      - name: OFFER_END_DT
+        type: DATE
+        description: Offer end date
+      - name: OFFER_AVAL_FOR_NEW_ENRLMT_IN
+        type: VARCHAR
+        description: Offer available for new enrlmt indicator
+      - name: OFFER_TYPE_CD
+        type: VARCHAR
+        description: Offer type code
+      - name: OFFER_NM
+        type: VARCHAR
+        description: Offer name
+      - name: OFFER_DESC_TX
+        type: VARCHAR
+        description: Offer description tax
+      - name: SRVC_OFFER_DK
+        type: BIGINT
+        description: Service offer key
+      - name: OFFER_SRVC_CD
+        type: VARCHAR
+        description: Offer service code
+      - name: OFFER_SRVC_NM
+        type: VARCHAR
+        description: Offer service name
+      - name: MNGD_INVSTG_SRVC_CD
+        type: VARCHAR
+        description: Managed invstg service code
+      - name: MNGD_INVSTG_SRVC_NM
+        type: VARCHAR
+        description: Managed invstg service name
+      - name: SRVC_GRP_NM
+        type: VARCHAR
+        description: Service group name
+      - name: SRVC_OFFER_FIN_CD
+        type: VARCHAR
+        description: Service offer financial code
+      - name: SRVC_CD
+        type: VARCHAR
+        description: Service code
+      - name: SRVC_NM
+        type: VARCHAR
+        description: Service name
+      - name: SRVC_TYPE_CD
+        type: VARCHAR
+        description: Service type code
+      - name: SRVC_TYPE_NM
+        type: VARCHAR
+        description: Service type name
+      - name: ALL_SRVC_CD
+        type: VARCHAR
+        description: All service code
+      - name: ALL_SRVC_NM
+        type: VARCHAR
+        description: All service name
+      - name: MNGD_INVSTG_IN
+        type: VARCHAR
+        description: Managed invstg indicator
+      - name: RETL_INDPNDNT_IN
+        type: VARCHAR
+        description: Retail independent indicator
+      - name: TRADE_SRVC_IN
+        type: VARCHAR
+        description: Trade service indicator
+      - name: ENT_CD
+        type: VARCHAR
+        description: Ent code
+      - name: SPC_IN
+        type: VARCHAR
+        description: Spc indicator
+      - name: MAS_IN
+        type: VARCHAR
+        description: Mas indicator
+      - name: SMP_IN
+        type: VARCHAR
+        description: Smp indicator
+      - name: PRSNL_TRUST_IN
+        type: VARCHAR
+        description: Personal trust indicator
+      - name: AUTO_PORT_TYPE_CD
+        type: VARCHAR
+        description: Automated portfolio type code
+      - name: SMP_TYPE_CD
+        type: VARCHAR
+        description: Smp type code
+      - name: TRADE_SRVC_TYPE_CD
+        type: VARCHAR
+        description: Trade service type code
+      - name: MUB_CHRMN_CRCL_TYPE_CD
+        type: VARCHAR
+        description: Mub chrmn crcl type code
+      - name: AMM_TYPE_CD
+        type: VARCHAR
+        description: Amount type code
+      - name: SAN_TYPE_CD
+        type: VARCHAR
+        description: San type code
+      - name: OFFER_ID
+        type: BIGINT
+        description: Offer id
+      - name: SGP_IN
+        type: VARCHAR
+        description: Sgp indicator
+      - name: MWA_IN
+        type: VARCHAR
+        description: Mwa indicator
+      - name: SP_IN
+        type: VARCHAR
+        description: Sp indicator
+      primary_key:
+      - CORE_OFFER_DK
+      foreign_keys: []
+    - name: FISCAL_QTR_DIM_1
+      columns:
+      - name: FISCAL_QTR_CD
+        type: VARCHAR
+        description: Fiscal quarter label, e.g. FY25-Q1
+      - name: FISCAL_YEAR_NR
+        type: INTEGER
+        description: Fiscal year, starting 1 April
+      - name: QRTR_START_CLDR_DT
+        type: DATE
+        description: First day of the fiscal quarter
+      - name: QRTR_END_CLDR_DT
+        type: DATE
+        description: Last day of the fiscal quarter
+      primary_key:
+      - FISCAL_QTR_CD
+      foreign_keys: []
+    - name: F_NNA_FIN
+      columns:
+      - name: DW_TRAN_ID
+        type: BIGINT
+        description: DW transaction id
+      - name: ACCT_SRCE_SYS_ID
+        type: BIGINT
+        description: Account source system id
+      - name: TRANS_SRCE_SYS_ID
+        type: BIGINT
+        description: Transaction source system id
+      - name: DW_ACCT_ID
+        type: BIGINT
+        description: DW account id
+      - name: DW_ACCT_DK
+        type: BIGINT
+        description: DW account key
+      - name: DW_TRAN_DT
+        type: DATE
+        description: DW transaction date
+      - name: DW_TRAN_MNTH_END_DT
+        type: DATE
+        description: DW transaction month end date
+      - name: TRAN_EXEC_DT
+        type: DATE
+        description: Transaction execution date
+      - name: TRAN_EXEC_TS
+        type: TIMESTAMP
+        description: Transaction execution timestamp
+      - name: TRAN_SETTL_DT
+        type: DATE
+        description: Transaction settlement date
+      - name: TRAN_EFF_DT
+        type: DATE
+        description: Transaction effective date
+      - name: DW_TRAN_TYPE_CD
+        type: VARCHAR
+        description: DW transaction type code
+      - name: CLIENT_DIRECTED_NNA_IN
+        type: VARCHAR
+        description: Client directed net new assets indicator
+      - name: DW_TRAN_DIRCTN_CD
+        type: VARCHAR
+        description: DW transaction direction code
+      - name: MUB_SEC_ID
+        type: BIGINT
+        description: Mub security id
+      - name: ITEM_ISS_ID
+        type: BIGINT
+        description: Item issue id
+      - name: RULE_SET_SUFF_ID
+        type: BIGINT
+        description: Rule set suffix id
+      - name: NNA_SHR_QY
+        type: DECIMAL(18,4)
+        description: Net new assets share qy
+      - name: NNA_EXEC_PRICE_PER_SHR_AM
+        type: DECIMAL(16,2)
+        description: Net new assets execution price per share amount
+      - name: NNA_AM
+        type: DECIMAL(16,2)
+        description: Net new assets amount
+      - name: FRZN_IN
+        type: VARCHAR
+        description: Frozen indicator
+      - name: TXPYR_CUST_DK
+        type: BIGINT
+        description: Taxpayer customer key
+      - name: HSHLD_DK
+        type: BIGINT
+        description: Household key
+      primary_key:
+      - DW_TRAN_ID
+      foreign_keys: []
+    - name: INS_SEC_PROD_CD_1
+      columns:
+      - name: CUSIP_ID
+        type: VARCHAR
+        description: Cusip id
+      - name: NSCC_ID
+        type: BIGINT
+        description: Nscc id
+      - name: DW_EFF_DT
+        type: DATE
+        description: DW effective date
+      - name: DW_EXPR_DT
+        type: DATE
+        description: DW expiry date
+      - name: CURR_IN
+        type: BIGINT
+        description: Current indicator
+      - name: RCV_IN
+        type: BIGINT
+        description: Receive indicator
+      - name: NSCC_NM
+        type: VARCHAR
+        description: Nscc name
+      - name: PROD_NM
+        type: VARCHAR
+        description: Product name
+      - name: CRIER_PPTRY_PROD_1_CD
+        type: VARCHAR
+        description: Crier pptry product 1 code
+      - name: CRIER_PPTRY_PROD_2_CD
+        type: VARCHAR
+        description: Crier pptry product 2 code
+      - name: THRD_PRTY_PROD_ID
+        type: BIGINT
+        description: Third party product id
+      - name: PROD_TYPE_NM
+        type: VARCHAR
+        description: Product type name
+      - name: PROD_TYPE_CD
+        type: VARCHAR
+        description: Product type code
+      - name: THRD_PRTY_ID
+        type: BIGINT
+        description: Third party id
+      - name: SRVC_ONLY_IN
+        type: VARCHAR
+        description: Service only indicator
+      - name: EFF_START_DT
+        type: TIMESTAMP
+        description: Effective start date
+      - name: EFF_END_DT
+        type: TIMESTAMP
+        description: Effective end date
+      - name: INSERT_TS
+        type: TIMESTAMP
+        description: Insert timestamp
+      - name: INSERT_USER_NM
+        type: VARCHAR
+        description: Insert user name
+      - name: MODIFY_TS
+        type: TIMESTAMP
+        description: Modify timestamp
+      - name: MODIFY_USER_NM
+        type: VARCHAR
+        description: Modify user name
+      - name: DW_LOAD_TS
+        type: TIMESTAMP
+        description: DW load timestamp
+      primary_key:
+      - CUSIP_ID
+      foreign_keys: []
+    - name: LGCY_ACCT_1
+      columns:
+      - name: ACCT_ID
+        type: BIGINT
+        description: Account id
+      - name: ACCT_DK
+        type: BIGINT
+        description: Account key
+      - name: DW_EFF_DT
+        type: DATE
+        description: DW effective date
+      - name: DW_EFF_TS
+        type: TIMESTAMP
+        description: DW effective timestamp
+      - name: DW_EXPR_DT
+        type: DATE
+        description: DW expiry date
+      - name: DW_EXPR_TS
+        type: TIMESTAMP
+        description: DW expiry timestamp
+      - name: CURR_IN
+        type: BIGINT
+        description: Current indicator
+      - name: RCV_IN
+        type: BIGINT
+        description: Receive indicator
+      - name: LGCY_ACCT_BRCH_CD
+        type: VARCHAR
+        description: Legacy account branch code
+      - name: ACCT_ACTIV_CD
+        type: VARCHAR
+        description: Account activity code
+      - name: CLNT_CD
+        type: VARCHAR
+        description: Client code
+      - name: LGCY_ACCT_TYPE_CD
+        type: VARCHAR
+        description: Legacy account type code
+      - name: ACCT_RGSTR_TYPE_CD
+        type: VARCHAR
+        description: Account registration type code
+      - name: CASH_MRGN_IRA_KEO_TYPE_CD
+        type: VARCHAR
+        description: Cash margin ira keo type code
+      - name: ALT_ACCT_ID
+        type: BIGINT
+        description: Alt account id
+      - name: ALT_ACCT_DK
+        type: BIGINT
+        description: Alt account key
+      - name: SPCL_ACCT_CD
+        type: VARCHAR
+        description: Special account code
+      - name: POSTL_CD
+        type: VARCHAR
+        description: Postal code
+      - name: POSTL_PLUS_4_CD
+        type: BIGINT
+        description: Postal plus 4 code
+      - name: TXPYR_ID
+        type: BIGINT
+        description: Taxpayer id
+      - name: TAX_ID_FRMT_IN
+        type: VARCHAR
+        description: Tax id format indicator
+      - name: CASH_ACCT_SCTY_INSTR_CD
+        type: VARCHAR
+        description: Cash account security instruction code
+      - name: CASH_ACCT_FUND_INSTR_CD
+        type: VARCHAR
+        description: Cash account fund instruction code
+      - name: MRGN_ACCT_SCTY_INSTR_CD
+        type: VARCHAR
+        description: Margin account security instruction code
+      - name: MRGN_ACCT_FUND_INSTR_CD
+        type: VARCHAR
+        description: Margin account fund instruction code
+      - name: ACCT_OPEN_DT
+        type: DATE
+        description: Account open date
+      - name: NSCC_CLR_ID
+        type: BIGINT
+        description: Nscc clearing id
+      - name: NSCC_CLR_LOC_CD
+        type: VARCHAR
+        description: Nscc clearing location code
+      - name: EXT_CHECK_HIST_IN
+        type: VARCHAR
+        description: Ext check history indicator
+      - name: MRKT_CAMP_CD_INACT_CD
+        type: VARCHAR
+        description: Market camp code inactive code
+      - name: ACCT_INSTN_CLS_CD
+        type: VARCHAR
+        description: Account institution class code
+      - name: MMF_RQST_CD
+        type: VARCHAR
+        description: Mmf request code
+      - name: MMF_TAX_XMPT_STATE_FUND_CD
+        type: VARCHAR
+        description: Mmf tax exempt state fund code
+      - name: MMF_INVST_CD
+        type: VARCHAR
+        description: Mmf investment code
+      - name: MMF_MIN_REQ_CD
+        type: VARCHAR
+        description: Mmf min request code
+      - name: MMF_DIV_DIST_IN
+        type: VARCHAR
+        description: Mmf dividend distribution indicator
+      - name: MMF_ACCT_TYPE_IN
+        type: VARCHAR
+        description: Mmf account type indicator
+      - name: PRIM_CD
+        type: VARCHAR
+        description: Primary code
+      - name: MMF_PEND_STAT_CD
+        type: VARCHAR
+        description: Mmf pending status code
+      - name: MUB_MUTL_FUND_PROD_CD
+        type: VARCHAR
+        description: Mub mutual fund product code
+      - name: CEF_ORIG_MMF_CD
+        type: VARCHAR
+        description: Cef original mmf code
+      - name: ACCT_ORIG_MMF_CD
+        type: VARCHAR
+        description: Account original mmf code
+      - name: FIRST_MUTL_FUND_DT
+        type: DATE
+        description: First mutual fund date
+      - name: ACCT_TAX_RPT_CD
+        type: VARCHAR
+        description: Account tax report code
+      - name: TAX_ID_AVAL_IN
+        type: VARCHAR
+        description: Tax id available indicator
+      - name: DUP_CFN_CD
+        type: VARCHAR
+        description: Dup cfn code
+      - name: DUP_STMT_CD
+        type: VARCHAR
+        description: Dup statement code
+      - name: ACCT_OPTN_MRGN_LIMIT_NR
+        type: BIGINT
+        description: Account option margin limit number
+      - name: MRGN_DR_INT_CD
+        type: VARCHAR
+        description: Margin debit interest code
+      - name: STOCK_LOAN_REBAT_RT
+        type: DECIMAL(18,4)
+        description: Stock loan rebat rate
+      - name: STOCK_BRROW_REBAT_RT
+        type: DECIMAL(18,4)
+        description: Stock borrow rebat rate
+      - name: CR_INT_RATE_IN
+        type: VARCHAR
+        description: Credit interest rate indicator
+      - name: CR_INT_ROST_CD
+        type: VARCHAR
+        description: Credit interest rost code
+      - name: MRGN_MAINT_REQ_IN
+        type: VARCHAR
+        description: Margin maintenance request indicator
+      - name: MRGN_LMT_CD
+        type: VARCHAR
+        description: Margin limit code
+      - name: OPTN_APPR_LVL_CD
+        type: VARCHAR
+        description: Option approval level code
+      - name: OPTN_PEND_RQST_CD
+        type: VARCHAR
+        description: Option pending request code
+      - name: OPTN_LVL_ENTER_DT
+        type: DATE
+        description: Option level enter date
+      - name: RGSTR_OPTN_REP_ID
+        type: VARCHAR
+        description: Registration option representative id
+      - name: RGSTR_OPTN_MUB_PRSN_ID
+        type: VARCHAR
+        description: Registration option mub person id
+      - name: RGSTR_OPTN_MUB_PRSN_DK
+        type: BIGINT
+        description: Registration option mub person key
+      - name: RGSR_OPTN_REP_APPR_DT
+        type: DATE
+        description: Registration option representative approval date
+      - name: OPTN_DSCLSR_SENT_DT
+        type: DATE
+        description: Option disclosure sent date
+      - name: OPTN_MAINT_REQ_CD
+        type: VARCHAR
+        description: Option maintenance request code
+      - name: OPTN_LMT_CD
+        type: VARCHAR
+        description: Option limit code
+      - name: ACCT_BUSN_EXT_ID
+        type: BIGINT
+        description: Account business ext id
+      - name: ACCT_MSTR_BKUP_TX
+        type: VARCHAR
+        description: Account master backup tax
+      - name: VIP_CD
+        type: VARCHAR
+        description: Vip code
+      - name: LGCY_ACCT_RSTR_1_CD
+        type: VARCHAR
+        description: Legacy account restriction 1 code
+      - name: LGCY_ACCT_RSTR_2_CD
+        type: VARCHAR
+        description: Legacy account restriction 2 code
+      - name: LGCY_ACCT_RSTR_3_CD
+        type: VARCHAR
+        description: Legacy account restriction 3 code
+      - name: LGCY_ACCT_RSTR_4_CD
+        type: VARCHAR
+        description: Legacy account restriction 4 code
+      - name: LGCY_ACCT_RSTR_5_CD
+        type: VARCHAR
+        description: Legacy account restriction 5 code
+      - name: S1_ACCT_IN
+        type: VARCHAR
+        description: S1 account indicator
+      - name: S2_ACCT_PROD_CD
+        type: VARCHAR
+        description: S2 account product code
+      - name: BLKD_ACCT_IN
+        type: VARCHAR
+        description: Blocked account indicator
+      - name: IRA_KEO_TRUST_SIGN_DT
+        type: DATE
+        description: Ira keo trust sign date
+      - name: KEO_PLAN_TAX_ID
+        type: BIGINT
+        description: Keo plan tax id
+      - name: DIV_RNVST_IN
+        type: VARCHAR
+        description: Dividend reinvest indicator
+      - name: OPTN_FIN_SRVC_IN
+        type: VARCHAR
+        description: Option financial service indicator
+      - name: ACCT_OPEN_CD
+        type: VARCHAR
+        description: Account open code
+      - name: COMM_DISCT_RT
+        type: DECIMAL(18,4)
+        description: Commission discount rate
+      - name: COMM_SCHED_TBL_TX
+        type: VARCHAR
+        description: Commission schedule table tax
+      - name: ACCT_INVST_OBJ_CD
+        type: VARCHAR
+        description: Account investment obj code
+      - name: ACCT_EFT_CD
+        type: VARCHAR
+        description: Account eft code
+      - name: AUTO_JRNL_CD
+        type: VARCHAR
+        description: Auto journal code
+      - name: CALL_BACK_PHON_CD
+        type: VARCHAR
+        description: Call back phone code
+      - name: INST_ACCT_IN
+        type: VARCHAR
+        description: Institutional account indicator
+      - name: MRKT_CAMP_IN
+        type: VARCHAR
+        description: Market camp indicator
+      - name: NEW_ACCT_FORM_ID
+        type: BIGINT
+        description: New account form id
+      - name: SPCL_HAND_INSTR_ID
+        type: BIGINT
+        description: Special hand instruction id
+      - name: LEAD_SRCE_CD
+        type: VARCHAR
+        description: Lead source code
+      - name: ACCT_OPEN_TRML_ID
+        type: VARCHAR
+        description: Account open trml id
+      - name: LEAD_QUAL_CD
+        type: VARCHAR
+        description: Lead qualified code
+      - name: ACCT_OPEN_USER_ID
+        type: VARCHAR
+        description: Account open user id
+      - name: ACCT_OPEN_MUB_PRSN_ID
+        type: VARCHAR
+        description: Account open mub person id
+      - name: ACCT_OPEN_MUB_PRSN_DK
+        type: BIGINT
+        description: Account open mub person key
+      - name: PROMO_CD
+        type: VARCHAR
+        description: Promo code
+      - name: NAL_PKG_NODEF_CD
+        type: VARCHAR
+        description: Nal package nodef code
+      - name: FEE_DISB_IN
+        type: VARCHAR
+        description: Fee disbursement indicator
+      - name: INVST_TRADR_IN
+        type: VARCHAR
+        description: Investment trader indicator
+      - name: DTC_INSTN_AUTO_INPUT_CD
+        type: BIGINT
+        description: Dtc institution auto input code
+      - name: DTC_CLEAR_ID
+        type: BIGINT
+        description: Dtc clear id
+      - name: DTC_INSTN_AGENT_BANK_CD
+        type: BIGINT
+        description: Dtc institution agent bank code
+      - name: NEW_ACCT_LEAD_DATE_NODEF_DT
+        type: DATE
+        description: New account lead date nodef date
+      - name: WEEK_ACCT_LEAD_INACT_DT
+        type: DATE
+        description: Week account lead inactive date
+      - name: PREV_CONV_ACCT_ID
+        type: VARCHAR
+        description: Previous conv account id
+      - name: PREV_CONV_ACCT_DK
+        type: BIGINT
+        description: Previous conv account key
+      - name: NAPOTCSYM_NODEF_TX
+        type: VARCHAR
+        description: Napotcsym nodef tax
+      - name: TXPYR_BIRTH_DATE_TX
+        type: VARCHAR
+        description: Taxpayer birth date tax
+      - name: ACCT_OCCUP_CD
+        type: VARCHAR
+        description: Account occupation code
+      - name: NEW_ACCT_CW_NODEF_DT
+        type: DATE
+        description: New account cw nodef date
+      - name: PROXY_MAIL_IN
+        type: VARCHAR
+        description: Proxy mail indicator
+      - name: ACCT_HIST_IN
+        type: VARCHAR
+        description: Account history indicator
+      - name: UNSECR_MAIL_IN
+        type: VARCHAR
+        description: Unsecured mail indicator
+      - name: DUP_ACCT_TYPE_IN
+        type: VARCHAR
+        description: Dup account type indicator
+      - name: CUST_INFO_CHG_DT
+        type: DATE
+        description: Customer info chg date
+      - name: MINOR_TRF_STATE_CD
+        type: VARCHAR
+        description: Minor transfer state code
+      - name: MINOR_AGE_NR
+        type: BIGINT
+        description: Minor age number
+      - name: SCND_NSCC_CD
+        type: VARCHAR
+        description: Second nscc code
+      - name: ACCT_CONV_DT
+        type: DATE
+        description: Account conv date
+      - name: NEW_SCRN_CHG_IN
+        type: VARCHAR
+        description: New scrn chg indicator
+      - name: SEGMT_ID
+        type: VARCHAR
+        description: Segment id
+      - name: HSHLD_ACCT_ID
+        type: BIGINT
+        description: Household account id
+      - name: HSHLD_ACCT_DK
+        type: BIGINT
+        description: Household account key
+      - name: DW_LOAD_TS
+        type: TIMESTAMP
+        description: DW load timestamp
+      primary_key:
+      - ACCT_ID
+      foreign_keys: []
+    - name: MONTH_DIM_1
+      columns:
+      - name: CLDR_EOM_DT
+        type: DATE
+        description: Calendar eom date
+      - name: CLDR_EOM_TS
+        type: TIMESTAMP
+        description: Calendar eom timestamp
+      - name: YEAR_MONTH
+        type: BIGINT
+        description: Year month
+      - name: YEAR_QTR
+        type: VARCHAR
+        description: Year quarter
+      - name: BUSN_EOM_TS
+        type: TIMESTAMP
+        description: Business eom timestamp
+      - name: BUSN_EOM_DT
+        type: DATE
+        description: Business eom date
+      - name: MNTH_START_CLDR_DT
+        type: DATE
+        description: Month start calendar date
+      - name: TIME_PRD_GRAIN_CD
+        type: VARCHAR
+        description: Time period grain code
+      - name: FIRST_MUB_WRK_DAY_OF_MNTH_DT
+        type: DATE
+        description: First mub work day of month date
+      - name: MNTH_NM
+        type: VARCHAR
+        description: Month name
+      - name: MNTH_CD
+        type: VARCHAR
+        description: Month code
+      - name: MNTH_YYYY_TX
+        type: VARCHAR
+        description: Month yyyy tax
+      - name: MNTH_OF_YEAR_CT
+        type: BIGINT
+        description: Month of year ct
+      - name: DW_BRKRG_MNTH_FRM_TODAY_CT
+        type: BIGINT
+        description: DW brokerage month form today ct
+      - name: FIRST_EXCH_OPEN_DAY_OF_MNTH_DT
+        type: DATE
+        description: First exchange open day of month date
+      - name: LAST_EXCH_OPEN_DAY_OF_MNTH_DT
+        type: DATE
+        description: Last exchange open day of month date
+      - name: TOT_CLDR_DAY_OF_MNTH_NR
+        type: BIGINT
+        description: Total calendar day of month number
+      - name: TOT_EXCH_OPEN_DAY_OF_MNTH_NR
+        type: BIGINT
+        description: Total exchange open day of month number
+      - name: TOT_BANK_OPEN_DAY_OF_MNTH_NR
+        type: BIGINT
+        description: Total bank open day of month number
+      - name: TOT_MUB_WRK_DAY_OF_MNTH_NR
+        type: BIGINT
+        description: Total mub work day of month number
+      - name: TOT_MUB_NON_WRK_DAY_OF_MNTH_NR
+        type: BIGINT
+        description: Total mub non work day of month number
+      - name: QRTR_START_CLDR_DT
+        type: DATE
+        description: Quarter start calendar date
+      - name: QRTR_TIME_PRD_GRAIN_CD
+        type: VARCHAR
+        description: Quarter time period grain code
+      - name: YEAR_START_CLDR_DT
+        type: DATE
+        description: Year start calendar date
+      - name: YEAR_TIME_PRD_GRAIN_CD
+        type: VARCHAR
+        description: Year time period grain code
+      - name: TOT_MNTH_EXCH_OPEN_DAY_CT
+        type: BIGINT
+        description: Total month exchange open day ct
+      - name: FIN_MTRC_RLSE_DT
+        type: DATE
+        description: Financial metric release date
+      primary_key:
+      - CLDR_EOM_DT
+      foreign_keys: []
+    - name: NNA_EXCL_1
+      columns:
+      - name: EXCL_ID
+        type: INTEGER
+        description: Exclusion identifier
+      - name: DW_ACCT_ID
+        type: INTEGER
+        description: Account excluded, on its source system
+      - name: SRCE_SYS_CD
+        type: VARCHAR
+        description: Source system of the account
+      - name: EXCL_RSN_CD
+        type: VARCHAR
+        description: Why the account is excluded
+      - name: EXCL_EFF_DT
+        type: DATE
+        description: First day the exclusion applies
+      - name: EXCL_EXPR_DT
+        type: DATE
+        description: Last day the exclusion applies, null while it is open
+      primary_key:
+      - EXCL_ID
+      foreign_keys: []
+    - name: RGN_DIM_1
+      columns:
+      - name: RGN_CD
+        type: VARCHAR
+        description: Region code
+      - name: RGN_NM
+        type: VARCHAR
+        description: Region name
+      - name: DIVSN_CD
+        type: VARCHAR
+        description: Division the region rolls up to
+      - name: DW_EFF_DT
+        type: DATE
+        description: First day this version of the row holds
+      - name: DW_EXPR_DT
+        type: DATE
+        description: Last day this version of the row holds, null while it is current
+      - name: CURR_IN
+        type: BOOLEAN
+        description: True for the version that holds today
+      primary_key:
+      - RGN_CD
+      - DW_EFF_DT
+      foreign_keys: []
+    - name: SRCE_SYS_1
+      columns:
+      - name: SRCE_SYS_ID
+        type: BIGINT
+        description: Source system id
+      - name: DW_EFF_DT
+        type: DATE
+        description: DW effective date
+      - name: DW_EXPR_DT
+        type: DATE
+        description: DW expiry date
+      - name: CURR_IN
+        type: BIGINT
+        description: Current indicator
+      - name: RCV_IN
+        type: BIGINT
+        description: Receive indicator
+      - name: SRCE_SYS_NM
+        type: VARCHAR
+        description: Source system name
+      - name: INSERT_TS
+        type: TIMESTAMP
+        description: Insert timestamp
+      - name: AFLT_ACCT_CMPY_CD
+        type: VARCHAR
+        description: Affiliate account company code
+      - name: INSERT_USER_NM
+        type: VARCHAR
+        description: Insert user name
+      - name: MODIFY_TS
+        type: TIMESTAMP
+        description: Modify timestamp
+      - name: MODIFY_USER_NM
+        type: VARCHAR
+        description: Modify user name
+      - name: DW_LOAD_TS
+        type: TIMESTAMP
+        description: DW load timestamp
+      primary_key:
+      - SRCE_SYS_ID
+      foreign_keys: []
+    - name: TRAN_FACT_EXCL_MFCLR_G
+      columns:
+      - name: DW_TRAN_ID
+        type: BIGINT
+        description: DW transaction id
+      - name: ACCT_SRCE_SYS_ID
+        type: BIGINT
+        description: Account source system id
+      - name: DW_ACCT_ID
+        type: BIGINT
+        description: DW account id
+      - name: DW_TRAN_DT
+        type: DATE
+        description: DW transaction date
+      - name: DW_EFF_DT
+        type: DATE
+        description: DW effective date
+      - name: DW_EXPR_DT
+        type: DATE
+        description: DW expiry date
+      - name: CURR_IN
+        type: BIGINT
+        description: Current indicator
+      - name: RCV_IN
+        type: BIGINT
+        description: Receive indicator
+      - name: MNTH_END_DT
+        type: DATE
+        description: Month end date
+      - name: DW_TRAN_TYPE_CD
+        type: VARCHAR
+        description: DW transaction type code
+      - name: DW_TRAN_DIRCTN_CD
+        type: VARCHAR
+        description: DW transaction direction code
+      - name: TRAN_SRCE_SYS_ID
+        type: BIGINT
+        description: Transaction source system id
+      - name: ITEM_ISS_ID
+        type: BIGINT
+        description: Item issue id
+      - name: RULE_SET_SUFF_ID
+        type: BIGINT
+        description: Rule set suffix id
+      - name: TRAN_EXEC_DT
+        type: DATE
+        description: Transaction execution date
+      - name: TRAN_SETTL_DT
+        type: DATE
+        description: Transaction settlement date
+      - name: TRAN_SHR_QY
+        type: DECIMAL(18,4)
+        description: Transaction share qy
+      - name: TRAN_EXEC_PRICE_PER_SHR_AM
+        type: DECIMAL(16,2)
+        description: Transaction execution price per share amount
+      - name: TRAN_AM
+        type: DECIMAL(16,2)
+        description: Transaction amount
+      - name: TRAN_ROST_TYPE_CD
+        type: VARCHAR
+        description: Transaction rost type code
+      - name: TRAN_ROST_ID
+        type: BIGINT
+        description: Transaction rost id
+      - name: TRAN_ADD_TS
+        type: TIMESTAMP
+        description: Transaction add timestamp
+      - name: TRAN_PROC_TS
+        type: TIMESTAMP
+        description: Transaction process timestamp
+      - name: OFSET_ACCT_ID
+        type: BIGINT
+        description: Offset account id
+      - name: TRAN_EFF_DT
+        type: DATE
+        description: Transaction effective date
+      - name: TRAN_EXEC_TS
+        type: TIMESTAMP
+        description: Transaction execution timestamp
+      - name: OFSET_SRCE_SYS_ID
+        type: BIGINT
+        description: Offset source system id
+      - name: NNA_IN
+        type: VARCHAR
+        description: Net new assets indicator
+      - name: NAF_IN
+        type: VARCHAR
+        description: Naf indicator
+      - name: FIN_MTRC_RLSE_FRZN_IN
+        type: VARCHAR
+        description: Financial metric release frozen indicator
+      - name: DW_LOAD_TS
+        type: TIMESTAMP
+        description: DW load timestamp
+      primary_key:
+      - DW_TRAN_ID
+      - DW_EFF_DT
+      foreign_keys: []
+    - name: TRAN_TYPE_1
+      columns:
+      - name: DW_TRAN_TYPE_CD
+        type: VARCHAR
+        description: Flow type code
+      - name: TRAN_TYPE_DESC_TX
+        type: VARCHAR
+        description: What the flow type covers
+      - name: DIRCTN_CD
+        type: VARCHAR
+        description: IN or OUT
+      - name: NNA_CNT_IN
+        type: BOOLEAN
+        description: True where flows of this type count towards net new assets
+      primary_key:
+      - DW_TRAN_TYPE_CD
+      foreign_keys: []
+    - name: ACCT_DIM2_1
+      columns:
+      - name: DW_ACCT_ID
+        type: BIGINT
+        description: DW account id
+      - name: SRCE_SYS_ID
+        type: BIGINT
+        description: Source system id
+      - name: DW_EFF_DT
+        type: DATE
+        description: DW effective date
+      - name: DW_EXPR_DT
+        type: DATE
+        description: DW expiry date
+      - name: CURR_IN
+        type: BIGINT
+        description: Current indicator
+      - name: RCV_IN
+        type: BIGINT
+        description: Receive indicator
+      - name: SRCE_ACCT_ID
+        type: VARCHAR
+        description: Source account id
+      - name: TXPYR_CORP_CUST_ID
+        type: BIGINT
+        description: Taxpayer corporate customer id
+      - name: HSHLD_DK
+        type: BIGINT
+        description: Household key
+      - name: LAST_RCV_HSHLD_DK
+        type: BIGINT
+        description: Last receive household key
+      - name: CUST_GRP_ID
+        type: BIGINT
+        description: Customer group id
+      - name: LAST_RCV_CUST_GRP_ID
+        type: BIGINT
+        description: Last receive customer group id
+      - name: ACCT_DOMCL_BRCH_CD
+        type: VARCHAR
+        description: Account domicile branch code
+      - name: CLNT_CD
+        type: VARCHAR
+        description: Client code
+      - name: EFF_CLNT_CD
+        type: VARCHAR
+        description: Effective client code
+      - name: ACCT_DETL_PROD_CD
+        type: VARCHAR
+        description: Account detail product code
+      - name: ACTIV_CD
+        type: VARCHAR
+        description: Activity code
+      - name: ACCT_ACTIV_CD
+        type: VARCHAR
+        description: Account activity code
+      - name: ACCT_STAT_CD
+        type: VARCHAR
+        description: Account status code
+      - name: ACCT_CT
+        type: BIGINT
+        description: Account ct
+      - name: STATE_CD
+        type: VARCHAR
+        description: State code
+      - name: POSTL_CD
+        type: VARCHAR
+        description: Postal code
+      - name: ACCT_OPEN_DT
+        type: DATE
+        description: Account open date
+      - name: ACCT_OPEN_TM
+        type: VARCHAR
+        description: Account open time
+      - name: ACCT_OPEN_TS
+        type: TIMESTAMP
+        description: Account open timestamp
+      - name: ACCT_CLOS_DT
+        type: DATE
+        description: Account close date
+      - name: PRIM_TXPYR_ID
+        type: VARCHAR
+        description: Primary taxpayer id
+      - name: HSHLD_OPEN_DT
+        type: DATE
+        description: Household open date
+      - name: FIRM_HSHLD_OPEN_DT
+        type: DATE
+        description: Firm household open date
+      - name: ACCT_NM
+        type: VARCHAR
+        description: Account name
+      - name: TEST_ACCT_IN
+        type: VARCHAR
+        description: Test account indicator
+      - name: INTRN_ACCT_IN
+        type: VARCHAR
+        description: Internal account indicator
+      - name: INTRN_ACCT_SUB_TYPE_CD
+        type: VARCHAR
+        description: Internal account sub type code
+      - name: SMRY_ACCT_IN
+        type: VARCHAR
+        description: Smry account indicator
+      - name: MSTR_ACCT_IN
+        type: VARCHAR
+        description: Master account indicator
+      - name: SUB_ACCT_IN
+        type: VARCHAR
+        description: Sub account indicator
+      - name: DUM_ACCT_IN
+        type: VARCHAR
+        description: Dum account indicator
+      - name: NEW_ACCT_FRAUD_IN
+        type: VARCHAR
+        description: New account fraud indicator
+      - name: TXPYR_CUST_ID
+        type: BIGINT
+        description: Taxpayer customer id
+      - name: ACCT_LOB_CD
+        type: VARCHAR
+        description: Account lob code
+      - name: FA_MSTR_ACCT_ID
+        type: BIGINT
+        description: Fa master account id
+      - name: EFF_FA_MSTR_ACCT_ID
+        type: BIGINT
+        description: Effective fa master account id
+      - name: EFF_FA_MSTR_ACCT_DT
+        type: DATE
+        description: Effective fa master account date
+      - name: BT_MSTR_ACCT_ID
+        type: BIGINT
+        description: Bt master account id
+      - name: K4_MSTR_ACCT_ID
+        type: BIGINT
+        description: K4 master account id
+      - name: ADV_ID
+        type: BIGINT
+        description: Advisor id
+      - name: FIRM_ID
+        type: BIGINT
+        description: Firm id
+      - name: SRCE_ACCT_RGSTR_TYPE_CD
+        type: VARCHAR
+        description: Source account registration type code
+      - name: CASH_PRCDS_CSTDY_CD
+        type: VARCHAR
+        description: Cash proceeds custody code
+      - name: CASH_PRCDS_CSTDY_DESC_TX
+        type: VARCHAR
+        description: Cash proceeds custody description tax
+      - name: CASH_DIST_CSTDY_CD
+        type: VARCHAR
+        description: Cash distribution custody code
+      - name: CASH_DIST_CSTDY_DESC_TX
+        type: VARCHAR
+        description: Cash distribution custody description tax
+      - name: CASH_DIST_MAIL_SCHED_CD
+        type: VARCHAR
+        description: Cash distribution mail schedule code
+      - name: CASH_DIST_MAIL_SCHED_DESC_TX
+        type: VARCHAR
+        description: Cash distribution mail schedule description tax
+      - name: CASH_ACCT_FUND_INSTR_CD
+        type: VARCHAR
+        description: Cash account fund instruction code
+      - name: CASH_STK_CSTDY_CD
+        type: VARCHAR
+        description: Cash stock custody code
+      - name: CASH_STK_CSTDY_DESC_TX
+        type: VARCHAR
+        description: Cash stock custody description tax
+      - name: CASH_ACCT_SEC_INSTR_CD
+        type: VARCHAR
+        description: Cash account security instruction code
+      - name: CASH_ACCT_SEC_INSTR_DESC_TX
+        type: VARCHAR
+        description: Cash account security instruction description tax
+      - name: CASH_ACCT_PRCDS_INSTR_DESC_TX
+        type: VARCHAR
+        description: Cash account proceeds instruction description tax
+      - name: CASH_ACCT_DIV_INSTR_DESC_TX
+        type: VARCHAR
+        description: Cash account dividend instruction description tax
+      - name: LGCY_CAMP_CD
+        type: VARCHAR
+        description: Legacy camp code
+      - name: VIP_CD
+        type: VARCHAR
+        description: Vip code
+      - name: APPR_OPTN_LVL_CD
+        type: VARCHAR
+        description: Approval option level code
+      - name: APPR_OPTN_LVL_DESC_TX
+        type: VARCHAR
+        description: Approval option level description tax
+      - name: BRKR_DEALR_ACCT_ID
+        type: BIGINT
+        description: Broker dealr account id
+      - name: CROSS_SYS_PRIM_ACCT_IN
+        type: VARCHAR
+        description: Cross system primary account indicator
+      - name: ACCT_RELT_DBS_IN
+        type: VARCHAR
+        description: Account relationship dbs indicator
+      - name: ACCT_RELT_STKPLN_IN
+        type: VARCHAR
+        description: Account relationship stkpln indicator
+      - name: CS_INTRN_IN
+        type: VARCHAR
+        description: Cs internal indicator
+      - name: CS_STKPLN_CATG_CD
+        type: VARCHAR
+        description: Cs stkpln category code
+      - name: ACCT_OPEN_30_DAY_EXPR_DT
+        type: DATE
+        description: Account open 30 day expiry date
+      - name: ACCT_OPEN_90_DAY_EXPR_DT
+        type: DATE
+        description: Account open 90 day expiry date
+      - name: ACCT_OPEN_180_DAY_EXPR_DT
+        type: DATE
+        description: Account open 180 day expiry date
+      - name: ACCT_OPEN_365_DAY_EXPR_DT
+        type: DATE
+        description: Account open 365 day expiry date
+      - name: ACCT_OPEN_1_MNTH_EXPR_DT
+        type: DATE
+        description: Account open 1 month expiry date
+      - name: ACCT_OPEN_3_MNTH_EXPR_DT
+        type: DATE
+        description: Account open 3 month expiry date
+      - name: ACCT_OPEN_6_MNTH_EXPR_DT
+        type: DATE
+        description: Account open 6 month expiry date
+      - name: ACCT_OPEN_12_MNTH_EXPR_DT
+        type: DATE
+        description: Account open 12 month expiry date
+      - name: MUB_SRVC_ORG_ID
+        type: VARCHAR
+        description: Mub service organization id
+      - name: STKPLN_ACCT_PRIM_CMPY_ID
+        type: BIGINT
+        description: Stock plan account primary company id
+      - name: STKPLN_ACCT_PRIM_CMPY_NM
+        type: VARCHAR
+        description: Stock plan account primary company name
+      - name: STKPLN_ACCT_PRIM_CMPY_TICKER_CD
+        type: VARCHAR
+        description: Stock plan account primary company ticker code
+      - name: CS_ACCT_PRIM_MSTR_ACCT_ID
+        type: BIGINT
+        description: Cs account primary master account id
+      - name: CS_ACCT_PRIM_FIRM_ID
+        type: BIGINT
+        description: Cs account primary firm id
+      - name: CS_ACCT_PRIM_FIRM_NM
+        type: VARCHAR
+        description: Cs account primary firm name
+      - name: ADV_SRVC_SEGMT_NM
+        type: VARCHAR
+        description: Advisor service segment name
+      - name: ADV_SRVC_SUB_SEGMT_NM
+        type: VARCHAR
+        description: Advisor service sub segment name
+      - name: ADV_SRVC_IN
+        type: VARCHAR
+        description: Advisor service indicator
+      - name: TOP_LVL_SEGMT_NM
+        type: VARCHAR
+        description: Top level segment name
+      - name: PROD_SEGMT_NM
+        type: VARCHAR
+        description: Product segment name
+      - name: ACCT_ORIG_CD
+        type: VARCHAR
+        description: Account original code
+      - name: ACCT_ORIG_DETL_CD
+        type: VARCHAR
+        description: Account original detail code
+      - name: LGCY_ASSET_MVMNT_CD
+        type: VARCHAR
+        description: Legacy asset movement code
+      - name: LGCY_SHARED_CUST_ROLE_TYPE_CD
+        type: VARCHAR
+        description: Legacy shared customer role type code
+      - name: EFF_ACCT_OPEN_DT
+        type: DATE
+        description: Effective account open date
+      - name: EFF_HSHLD_OPEN_DT
+        type: DATE
+        description: Effective household open date
+      - name: JRSDCTN_CUST_ID
+        type: BIGINT
+        description: Jurisdiction customer id
+      - name: JRSDCTN_CNTRY_CD
+        type: VARCHAR
+        description: Jurisdiction country code
+      - name: JRSDCTN_STATE_CD
+        type: VARCHAR
+        description: Jurisdiction state code
+      - name: ACCT_OMS_TYPE_NM
+        type: VARCHAR
+        description: Account oms type name
+      - name: ACCT_OMS_SW_DT
+        type: DATE
+        description: Account oms sw date
+      - name: ACCT_TRADR_SEGMT_NM
+        type: VARCHAR
+        description: Account trader segment name
+      - name: ACCT_RETL_SEGMT_NM
+        type: VARCHAR
+        description: Account retail segment name
+      - name: TAX_ADVTGD_IN
+        type: VARCHAR
+        description: Tax advtgd indicator
+      - name: ASSET_TIER_SEGMT_NM
+        type: VARCHAR
+        description: Asset tier segment name
+      - name: DW_ACCT_DK
+        type: BIGINT
+        description: DW account key
+      - name: TXPYR_CUST_DK
+        type: BIGINT
+        description: Taxpayer customer key
+      - name: FA_MSTR_ACCT_DK
+        type: BIGINT
+        description: Fa master account key
+      - name: EFF_FA_MSTR_ACCT_DK
+        type: BIGINT
+        description: Effective fa master account key
+      - name: BT_MSTR_ACCT_DK
+        type: BIGINT
+        description: Bt master account key
+      - name: K4_MSTR_ACCT_DK
+        type: BIGINT
+        description: K4 master account key
+      - name: ADV_DK
+        type: BIGINT
+        description: Advisor key
+      - name: BRKR_DEALR_ACCT_DK
+        type: BIGINT
+        description: Broker dealr account key
+      - name: CS_ACCT_PRIM_MSTR_ACCT_DK
+        type: BIGINT
+        description: Cs account primary master account key
+      - name: JRSDCTN_CUST_DK
+        type: BIGINT
+        description: Jurisdiction customer key
+      - name: DW_CREAT_TS
+        type: TIMESTAMP
+        description: DW create timestamp
+      - name: DW_LOAD_TS
+        type: TIMESTAMP
+        description: DW load timestamp
+      - name: ACCT_RELT_SPS_IN
+        type: VARCHAR
+        description: Invented yes/no account relationship indicator, stable across
+          versions of an account key.
+      primary_key:
+      - DW_ACCT_ID
+      - SRCE_SYS_ID
+      - DW_EFF_DT
+      foreign_keys:
+      - columns:
+        - SRCE_SYS_ID
+        ref_table: SRCE_SYS_1
+        ref_columns:
+        - SRCE_SYS_ID
+    - name: CORE_OFFER_ENRLMT_1
+      columns:
+      - name: ACCT_ID
+        type: BIGINT
+        description: Account id
+      - name: ACCT_DK
+        type: BIGINT
+        description: Account key
+      - name: OFFER_ORDER_ID
+        type: BIGINT
+        description: Offer order id
+      - name: DW_EFF_DT
+        type: DATE
+        description: DW effective date
+      - name: OFFER_ENRLMT_DT
+        type: DATE
+        description: Offer enrlmt date
+      - name: OFFER_ENRLMT_EXPR_DT
+        type: DATE
+        description: Offer enrlmt expiry date
+      - name: CUST_GRP_ID
+        type: BIGINT
+        description: Customer group id
+      - name: OFFER_ID
+        type: BIGINT
+        description: Offer id
+      - name: CORE_OFFER_DK
+        type: BIGINT
+        description: Core offer key
+      - name: OFFER_NM
+        type: VARCHAR
+        description: Offer name
+      - name: OFFER_ENRLMT_STAT_CD
+        type: VARCHAR
+        description: Offer enrlmt status code
+      - name: OFFER_ENRLMT_BAL_AM
+        type: DECIMAL(16,2)
+        description: Offer enrlmt balance amount
+      - name: DW_CREAT_TS
+        type: TIMESTAMP
+        description: DW create timestamp
+      - name: DW_LOAD_TS
+        type: TIMESTAMP
+        description: DW load timestamp
+      primary_key:
+      - OFFER_ORDER_ID
+      foreign_keys:
+      - columns:
+        - CORE_OFFER_DK
+        ref_table: D_CORE_OFFER
+        ref_columns:
+        - CORE_OFFER_DK
+    - name: F_ACCT_SEGMT_ENRLMT
+      columns:
+      - name: DW_ACCT_ID
+        type: BIGINT
+        description: DW account id
+      - name: SRCE_SYS_ID
+        type: BIGINT
+        description: Source system id
+      - name: DW_SEGMT_GRP_ID
+        type: BIGINT
+        description: DW segment group id
+      - name: DW_ACCT_SEGMT_ID
+        type: BIGINT
+        description: DW account segment id
+      - name: ACCT_ENRLMT_EFF_DT
+        type: DATE
+        description: Account enrlmt effective date
+      - name: ACCT_ENRLMT_EXPR_DT
+        type: DATE
+        description: Account enrlmt expiry date
+      - name: ACCT_ENRLMT_ACTIV_IN
+        type: VARCHAR
+        description: Account enrlmt activity indicator
+      - name: SEGMT_NM
+        type: VARCHAR
+        description: Segment name
+      - name: SEGMT_GRP_NM
+        type: VARCHAR
+        description: Segment group name
+      - name: DW_SRCE_TBL_NM
+        type: VARCHAR
+        description: DW source table name
+      - name: DW_CREAT_TS
+        type: TIMESTAMP
+        description: DW create timestamp
+      - name: DW_UPDT_TS
+        type: TIMESTAMP
+        description: DW update timestamp
+      primary_key:
+      - DW_ACCT_ID
+      - SRCE_SYS_ID
+      - DW_ACCT_SEGMT_ID
+      - ACCT_ENRLMT_EFF_DT
+      foreign_keys:
+      - columns:
+        - DW_ACCT_SEGMT_ID
+        ref_table: D_ACCT_SEGMT
+        ref_columns:
+        - DW_ACCT_SEGMT_ID
+    - name: HSHLD_DIM_1
+      columns:
+      - name: HSHLD_DK
+        type: INTEGER
+        description: Household identifier
+      - name: HSHLD_NM
+        type: VARCHAR
+        description: Household display name
+      - name: PRIM_ADV_ID
+        type: INTEGER
+        description: Primary advisor
+      - name: RISK_PRFL_CD
+        type: VARCHAR
+        description: CAUTIOUS, BALANCED, GROWTH
+      - name: HSHLD_ONBRD_DT
+        type: DATE
+        description: Onboarding date
+      primary_key:
+      - HSHLD_DK
+      foreign_keys:
+      - columns:
+        - PRIM_ADV_ID
+        ref_table: ADV_DIM_1
+        ref_columns:
+        - ADV_ID
+    - name: INS_CONTR_1
+      columns:
+      - name: CONTR_ID
+        type: VARCHAR
+        description: Contract id
+      - name: NSCC_ID
+        type: BIGINT
+        description: Nscc id
+      - name: DW_EFF_DT
+        type: DATE
+        description: DW effective date
+      - name: DW_EXPR_DT
+        type: DATE
+        description: DW expiry date
+      - name: CURR_IN
+        type: BIGINT
+        description: Current indicator
+      - name: RCV_IN
+        type: BIGINT
+        description: Receive indicator
+      - name: PROD_CUSIP_ID
+        type: VARCHAR
+        description: Product cusip id
+      - name: CONTR_STAT_CD
+        type: VARCHAR
+        description: Contract status code
+      - name: END_RCV_CMPY_ID
+        type: VARCHAR
+        description: End receive company id
+      - name: END_RCV_CMPY_TYPE_CD
+        type: VARCHAR
+        description: End receive company type code
+      - name: CONTR_GRP_NR
+        type: VARCHAR
+        description: Contract group number
+      - name: ORIG_CONTR_ID
+        type: VARCHAR
+        description: Original contract id
+      - name: CONTR_DIST_ACCT_ID
+        type: VARCHAR
+        description: Contract distribution account id
+      - name: IRS_QLFY_CD
+        type: VARCHAR
+        description: Irs qualify code
+      - name: CONTR_COMM_OPTN_CD
+        type: VARCHAR
+        description: Contract commission option code
+      - name: CONTR_COMM_EXT_CD
+        type: VARCHAR
+        description: Contract commission ext code
+      - name: CONTR_STATE_CD
+        type: VARCHAR
+        description: Contract state code
+      - name: FUND_TRF_RSTR_IN
+        type: VARCHAR
+        description: Fund transfer restriction indicator
+      - name: FUND_TRF_RSTR_REAS_CD
+        type: VARCHAR
+        description: Fund transfer restriction reason code
+      - name: CONTR_NON_ASSGN_ENDRSMT_IN
+        type: VARCHAR
+        description: Contract non assigned endrsmt indicator
+      - name: CONTR_PROD_TYPE_CD
+        type: VARCHAR
+        description: Contract product type code
+      - name: MVA_IN
+        type: VARCHAR
+        description: Mva indicator
+      - name: PROD_SHR_CLS_CD
+        type: VARCHAR
+        description: Product share class code
+      - name: COMM_SCHED_ID
+        type: VARCHAR
+        description: Commission schedule id
+      - name: CONTR_FEES_IN
+        type: VARCHAR
+        description: Contract fees indicator
+      - name: ORIG_CNTCT_NR
+        type: VARCHAR
+        description: Original contact number
+      - name: DW_LOAD_TS
+        type: TIMESTAMP
+        description: DW load timestamp
+      primary_key:
+      - CONTR_ID
+      foreign_keys:
+      - columns:
+        - PROD_CUSIP_ID
+        ref_table: INS_SEC_PROD_CD_1
+        ref_columns:
+        - CUSIP_ID
+    - name: TRAN_FACT_1
+      columns:
+      - name: DW_TRAN_ID
+        type: BIGINT
+        description: DW transaction id
+      - name: ACCT_SRCE_SYS_ID
+        type: BIGINT
+        description: Account source system id
+      - name: DW_ACCT_ID
+        type: BIGINT
+        description: DW account id
+      - name: DW_ACCT_DK
+        type: BIGINT
+        description: DW account key
+      - name: DW_TRAN_DT
+        type: DATE
+        description: DW transaction date
+      - name: DW_EFF_DT
+        type: DATE
+        description: DW effective date
+      - name: DW_EXPR_DT
+        type: DATE
+        description: DW expiry date
+      - name: CURR_IN
+        type: BIGINT
+        description: Current indicator
+      - name: RCV_IN
+        type: BIGINT
+        description: Receive indicator
+      - name: MNTH_END_DT
+        type: DATE
+        description: Month end date
+      - name: DW_TRAN_TYPE_CD
+        type: VARCHAR
+        description: DW transaction type code
+      - name: DW_TRAN_DIRCTN_CD
+        type: VARCHAR
+        description: DW transaction direction code
+      - name: TRANS_SRCE_SYS_ID
+        type: BIGINT
+        description: Transaction source system id
+      - name: ITEM_ISS_ID
+        type: BIGINT
+        description: Item issue id
+      - name: RULE_SET_SUFF_ID
+        type: BIGINT
+        description: Rule set suffix id
+      - name: TRAN_EXEC_DT
+        type: DATE
+        description: Transaction execution date
+      - name: TRAN_SETTL_DT
+        type: DATE
+        description: Transaction settlement date
+      - name: TRAN_SHR_QY
+        type: DECIMAL(18,4)
+        description: Transaction share qy
+      - name: TRAN_EXEC_PRICE_PER_SHR_AM
+        type: DECIMAL(16,2)
+        description: Transaction execution price per share amount
+      - name: TRAN_AM
+        type: DECIMAL(16,2)
+        description: Transaction amount
+      - name: TRAN_ROST_TYPE_CD
+        type: VARCHAR
+        description: Transaction rost type code
+      - name: TRAN_ROST_ID
+        type: BIGINT
+        description: Transaction rost id
+      - name: TRAN_ADD_TS
+        type: TIMESTAMP
+        description: Transaction add timestamp
+      - name: TRAN_PROC_TS
+        type: TIMESTAMP
+        description: Transaction process timestamp
+      - name: OFSET_ACCT_ID
+        type: BIGINT
+        description: Offset account id
+      - name: TRAN_EFF_DT
+        type: DATE
+        description: Transaction effective date
+      - name: TRAN_EXEC_TS
+        type: TIMESTAMP
+        description: Transaction execution timestamp
+      - name: OFSET_SRCE_SYS_ID
+        type: BIGINT
+        description: Offset source system id
+      - name: NNA_IN
+        type: VARCHAR
+        description: Net new assets indicator
+      - name: NAF_IN
+        type: VARCHAR
+        description: Naf indicator
+      - name: FIN_MTRC_RLSE_FRZN_IN
+        type: VARCHAR
+        description: Financial metric release frozen indicator
+      - name: TXPYR_CUST_DK
+        type: BIGINT
+        description: Taxpayer customer key
+      - name: HSHLD_DK
+        type: BIGINT
+        description: Household key
+      - name: DW_LOAD_TS
+        type: TIMESTAMP
+        description: DW load timestamp
+      primary_key:
+      - DW_TRAN_ID
+      - DW_EFF_DT
+      foreign_keys:
+      - columns:
+        - DW_TRAN_TYPE_CD
+        ref_table: TRAN_TYPE_1
+        ref_columns:
+        - DW_TRAN_TYPE_CD
+      - columns:
+        - ACCT_SRCE_SYS_ID
+        ref_table: SRCE_SYS_1
+        ref_columns:
+        - SRCE_SYS_ID
+      - columns:
+        - MNTH_END_DT
+        ref_table: MONTH_DIM_1
+        ref_columns:
+        - CLDR_EOM_DT
+    - name: AUA_FACT_1
+      columns:
+      - name: AUA_ID
+        type: INTEGER
+        description: Row identifier
+      - name: HSHLD_DK
+        type: INTEGER
+        description: Household
+      - name: AS_OF_DT
+        type: DATE
+        description: Valuation date, quarter end
+      - name: AUA_AM
+        type: DECIMAL(16,2)
+        description: Assets under advice, USD
+      primary_key:
+      - AUA_ID
+      foreign_keys:
+      - columns:
+        - HSHLD_DK
+        ref_table: HSHLD_DIM_1
+        ref_columns:
+        - HSHLD_DK
+    - name: AUM_MNTH_END_FACT_1
+      columns:
+      - name: HSHLD_DK
+        type: INTEGER
+        description: Household
+      - name: CLDR_EOM_DT
+        type: DATE
+        description: Month end; a quarter end, when holdings are valued
+      - name: AUM_AM
+        type: DECIMAL(18,2)
+        description: 'Assets under management, USD: the market value of the household''s
+          holdings on the date'
+      primary_key:
+      - HSHLD_DK
+      - CLDR_EOM_DT
+      foreign_keys:
+      - columns:
+        - HSHLD_DK
+        ref_table: HSHLD_DIM_1
+        ref_columns:
+        - HSHLD_DK
+      - columns:
+        - CLDR_EOM_DT
+        ref_table: MONTH_DIM_1
+        ref_columns:
+        - CLDR_EOM_DT
+    - name: HSHLD_MBR_1
+      columns:
+      - name: HSHLD_DK
+        type: INTEGER
+        description: Household
+      - name: MBR_ID
+        type: INTEGER
+        description: Member of the household
+      - name: MBR_ROLE_CD
+        type: VARCHAR
+        description: PRIMARY, JOINT or DEPENDENT
+      primary_key:
+      - HSHLD_DK
+      - MBR_ID
+      foreign_keys:
+      - columns:
+        - HSHLD_DK
+        ref_table: HSHLD_DIM_1
+        ref_columns:
+        - HSHLD_DK
+    - name: PRTFL_DIM_1
+      columns:
+      - name: PRTFL_ID
+        type: INTEGER
+        description: Portfolio identifier
+      - name: HSHLD_DK
+        type: INTEGER
+        description: Owning household
+      - name: MNDT_TYPE_CD
+        type: VARCHAR
+        description: DISCRETIONARY or ADVISORY
+      - name: BASE_CRNCY_CD
+        type: VARCHAR
+        description: Portfolio base currency, USD
+      - name: PRTFL_INCPTN_DT
+        type: DATE
+        description: Inception date
+      primary_key:
+      - PRTFL_ID
+      foreign_keys:
+      - columns:
+        - HSHLD_DK
+        ref_table: HSHLD_DIM_1
+        ref_columns:
+        - HSHLD_DK
+    - name: QTR_FEE_REV_FACT_1
+      columns:
+      - name: FEE_ID
+        type: INTEGER
+        description: Row identifier
+      - name: HSHLD_DK
+        type: INTEGER
+        description: Household
+      - name: FISCAL_QTR_CD
+        type: VARCHAR
+        description: Fiscal quarter
+      - name: ADV_FEE_AM
+        type: DECIMAL(14,2)
+        description: Advisory fees, USD
+      - name: PROD_FEE_AM
+        type: DECIMAL(14,2)
+        description: Product fees, USD
+      - name: REV_AM
+        type: DECIMAL(14,2)
+        description: Advisory plus product fees, USD, fiscal quarter
+      primary_key:
+      - FEE_ID
+      foreign_keys:
+      - columns:
+        - HSHLD_DK
+        ref_table: HSHLD_DIM_1
+        ref_columns:
+        - HSHLD_DK
+      - columns:
+        - FISCAL_QTR_CD
+        ref_table: FISCAL_QTR_DIM_1
+        ref_columns:
+        - FISCAL_QTR_CD
+    - name: SUIT_RVW_FACT_1
+      columns:
+      - name: RVW_ID
+        type: INTEGER
+        description: Review identifier
+      - name: HSHLD_DK
+        type: INTEGER
+        description: Household reviewed
+      - name: RVW_DT
+        type: DATE
+        description: Review date
+      - name: RVW_OUTCM_CD
+        type: VARCHAR
+        description: SUITABLE, ACTION_REQUIRED, ESCALATED
+      - name: RVWR_ADV_ID
+        type: INTEGER
+        description: Reviewing advisor
+      primary_key:
+      - RVW_ID
+      foreign_keys:
+      - columns:
+        - HSHLD_DK
+        ref_table: HSHLD_DIM_1
+        ref_columns:
+        - HSHLD_DK
+      - columns:
+        - RVWR_ADV_ID
+        ref_table: ADV_DIM_1
+        ref_columns:
+        - ADV_ID
+    - name: HLDG_FACT_1
+      columns:
+      - name: HLDG_ID
+        type: BIGINT
+        description: Row identifier
+      - name: PRTFL_ID
+        type: INTEGER
+        description: Portfolio
+      - name: AS_OF_DT
+        type: DATE
+        description: Valuation date
+      - name: INSTR_ID
+        type: VARCHAR
+        description: Instrument identifier
+      - name: HLDG_QY
+        type: DECIMAL(18,4)
+        description: Units held
+      - name: MKT_VAL_AM
+        type: DECIMAL(16,2)
+        description: Market value in base currency
+      primary_key:
+      - HLDG_ID
+      foreign_keys:
+      - columns:
+        - PRTFL_ID
+        ref_table: PRTFL_DIM_1
+        ref_columns:
+        - PRTFL_ID
+  xref:
+    label: Certified client cross-reference
+    tables:
+    - name: client_xref
+      columns:
+      - name: xref_id
+        type: INTEGER
+        description: Cross-reference identifier
+      - name: retail_customer_id
+        type: INTEGER
+        description: Retail customer, as retail.customer.customer_id
+      - name: household_id
+        type: INTEGER
+        description: Wealth household, as wealth.HSHLD_DIM_1.HSHLD_DK
+      - name: member_id
+        type: INTEGER
+        description: The household member the customer is, as wealth.HSHLD_MBR_1.MBR_ID
+      - name: source_system
+        type: VARCHAR
+        description: Wealth source system the match was made against
+      - name: valid_from
+        type: DATE
+        description: First day this version of the match holds
+      - name: valid_to
+        type: DATE
+        description: Last day this version of the match holds, null while it is current
+      - name: is_current
+        type: BOOLEAN
+        description: True for the version that holds today
+      - name: match_method
+        type: VARCHAR
+        description: DETERMINISTIC, PROBABILISTIC or MANUAL
+      - name: match_confidence
+        type: DECIMAL(4,3)
+        description: Confidence in the match, from 0 to 1
+      - name: certification_status
+        type: VARCHAR
+        description: 'CERTIFIED, PROPOSED or REJECTED: only a CERTIFIED match may
+          be joined on'
+      - name: certified_by
+        type: VARCHAR
+        description: Steward who certified the match
+      - name: certified_on
+        type: DATE
+        description: Date the match was certified
+      primary_key:
+      - xref_id
+      - valid_from
+      foreign_keys: []
+document_order:
+- docs/certified/DD-RETAIL.md
+- docs/certified/DD-SME.md
+- docs/certified/DD-CORPORATE.md
+- docs/certified/DD-WEALTH.md
+- docs/certified/MD-REVENUE.md
+- docs/certified/MD-ACTIVE-CUSTOMER.md
+- docs/certified/MD-ASSETS-UNDER-ADVICE.md
+- docs/certified/MD-NET-INTEREST-INCOME.md
+- docs/certified/MD-FEE-INCOME.md
+- docs/certified/MD-CREDIT-EXPOSURE.md
+- docs/certified/MD-DELINQUENCY-RATE.md
+- docs/certified/MD-CUSTOMER-ATTRITION.md
+- docs/certified/MD-AVERAGE-BALANCE.md
+- docs/certified/MD-FISCAL-YEAR.md
+- docs/certified/MD-PERIOD-END-FX-RATE.md
+- docs/certified/MD-ACTIVE-CUSTOMER-V1.md
+- docs/certified/POL-DATA-CLASS.md
+- docs/certified/POL-RETENTION.md
+- docs/certified/POL-METRIC-CERT.md
+- docs/certified/POL-ACCESS.md
+- docs/certified/POL-MODEL-RISK.md
+- docs/certified/POL-COMPLAINTS.md
+- docs/certified/STD-FISCAL-CAL.md
+- docs/certified/STD-FX.md
+- docs/certified/PROC-RECON.md
+- docs/certified/PROC-STEWARD.md
+- docs/certified/STD-TAGGING.md
+- docs/certified/STD-SUITABILITY.md
+- docs/uncertified/EM-001.md
+- docs/uncertified/EM-002.md
+- docs/uncertified/EM-003.md
+- docs/uncertified/EM-004.md
+- docs/uncertified/EM-005.md
+- docs/uncertified/EM-006.md
+- docs/uncertified/EM-007.md
+- docs/uncertified/EM-008.md
+- docs/uncertified/EM-009.md
+- docs/uncertified/EM-010.md
+- docs/uncertified/EM-011.md
+- docs/uncertified/EM-012.md
+- docs/uncertified/NOTE-001.md
+- docs/uncertified/NOTE-002.md
+- docs/uncertified/NOTE-003.md
+- docs/uncertified/NOTE-004.md
+- docs/uncertified/NOTE-005.md
+- docs/uncertified/NOTE-006.md
+- docs/uncertified/NOTE-007.md
+- docs/uncertified/NOTE-008.md
+- docs/uncertified/DRAFT-001.md
+- docs/uncertified/DRAFT-002.md
+- docs/uncertified/DRAFT-003.md
+- docs/uncertified/DRAFT-004.md
+- docs/uncertified/DRAFT-005.md
+- docs/uncertified/DRAFT-006.md
+- docs/uncertified/DRAFT-007.md
+- docs/uncertified/DRAFT-008.md
+- docs/uncertified/XLS-001.md
+- docs/uncertified/XLS-002.md
+- docs/uncertified/XLS-003.md
+- docs/uncertified/XLS-004.md
+- docs/uncertified/XLS-005.md
+- docs/uncertified/XLS-006.md
+- docs/uncertified/WIKI-001.md
+- docs/uncertified/WIKI-002.md
+- docs/uncertified/WIKI-003.md
+- docs/uncertified/WIKI-004.md
+- docs/uncertified/WIKI-005.md
+- docs/uncertified/WIKI-006.md
+- docs/certified/STD-DOCUMENT-READING.txt
+- docs/certified/MD-NET-NEW-ASSETS.md

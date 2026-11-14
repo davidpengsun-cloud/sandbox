@@ -1,0 +1,221 @@
+[
+  {
+    "id": "AH01",
+    "source": "catalogue",
+    "question": "Who is the data steward of the Account product?"
+  },
+  {
+    "id": "AH02",
+    "source": "catalogue",
+    "question": "Which person looks after the Monthly Revenue table?"
+  },
+  {
+    "id": "AH03",
+    "source": "catalogue",
+    "question": "Has the Corporate Exposure table been approved?"
+  },
+  {
+    "id": "AH04",
+    "source": "catalogue",
+    "question": "Can we trust the Daily Balance product?"
+  },
+  {
+    "id": "AH05",
+    "source": "catalogue",
+    "question": "What columns are in the retail Account table?"
+  },
+  {
+    "id": "AH06",
+    "source": "catalogue",
+    "question": "How many columns does the Account product have?"
+  },
+  {
+    "id": "AH07",
+    "source": "catalogue",
+    "question": "When was the Corporate Exposure table last refreshed?"
+  },
+  {
+    "id": "AH08",
+    "source": "catalogue",
+    "question": "What is the refresh cadence of Daily Balance?"
+  },
+  {
+    "id": "AH09",
+    "source": "catalogue",
+    "question": "What is the lineage of the Monthly Revenue table?"
+  },
+  {
+    "id": "AH10",
+    "source": "catalogue",
+    "question": "Who maintains the retail Account table?"
+  },
+  {
+    "id": "AH11",
+    "source": "catalogue",
+    "question": "Who owns the Daily Balance product for June 2025?"
+  },
+  {
+    "id": "AH12",
+    "source": "catalogue",
+    "question": "When was the Monthly Revenue product refreshed in June 2025?"
+  },
+  {
+    "id": "AH13",
+    "source": "catalogue",
+    "question": "Give me the metadata card for the Account product."
+  },
+  {
+    "id": "AH14",
+    "source": "catalogue",
+    "question": "What governance details are recorded for the Account product?"
+  },
+  {
+    "id": "AH15",
+    "source": "catalogue",
+    "principal": "analyst_retail",
+    "behaviour": "abstain",
+    "question": "Who owns the Quarterly Fee Revenue product?"
+  },
+  {
+    "id": "AH16",
+    "source": "catalogue",
+    "principal": "analyst_retail",
+    "behaviour": "abstain",
+    "question": "How up to date is the Quarterly Fee Revenue product?"
+  },
+  {
+    "id": "AH17",
+    "source": "search",
+    "question": "Is there a table that holds customer email addresses?"
+  },
+  {
+    "id": "AH18",
+    "source": "search",
+    "question": "Where can I find exposure data?"
+  },
+  {
+    "id": "AH19",
+    "source": "search",
+    "question": "What does the field customer_id mean?"
+  },
+  {
+    "id": "AH20",
+    "source": "ask",
+    "question": "Which tables have the lowest revenue in June 2025?"
+  },
+  {
+    "id": "AH21",
+    "source": "ask",
+    "question": "Which products have balance over 1000 in June 2025?"
+  },
+  {
+    "id": "AH22",
+    "source": "ask",
+    "question": "Give me an overview of complaints by channel for June 2025."
+  },
+  {
+    "id": "AH23",
+    "source": "ask",
+    "question": "What did the SME unit earn in June 2025?"
+  },
+  {
+    "id": "AH24",
+    "source": "ask",
+    "question": "Who had the highest balance in June 2025?"
+  },
+  {
+    "id": "AH25",
+    "source": "ask",
+    "question": "How is net interest margin defined?"
+  },
+  {
+    "id": "AH26",
+    "batch": 2,
+    "source": "catalogue",
+    "question": "How does Account join to Customer?"
+  },
+  {
+    "id": "AH27",
+    "batch": 2,
+    "source": "catalogue",
+    "question": "Which upstream sources feed Monthly Revenue?"
+  },
+  {
+    "id": "AH28",
+    "batch": 2,
+    "source": "catalogue",
+    "question": "How fresh is the Account table?"
+  },
+  {
+    "id": "AH29",
+    "batch": 2,
+    "source": "catalogue",
+    "question": "Show me the catalogue entry for Daily Balance."
+  },
+  {
+    "id": "AH30",
+    "batch": 2,
+    "source": "catalogue",
+    "question": "Walk me through the Limit Utilisation product."
+  },
+  {
+    "id": "AH31",
+    "batch": 2,
+    "source": "catalogue",
+    "question": "What badges are attached to the Drawdown table?"
+  },
+  {
+    "id": "AH32",
+    "batch": 2,
+    "source": "catalogue",
+    "question": "Give me the column list for Relationship Manager."
+  },
+  {
+    "id": "AH33",
+    "batch": 2,
+    "source": "catalogue",
+    "question": "What is recorded in the catalogue for the Portfolio table?"
+  },
+  {
+    "id": "AH34",
+    "batch": 2,
+    "source": "search",
+    "question": "Where would I look for complaint data?"
+  },
+  {
+    "id": "AH35",
+    "batch": 2,
+    "source": "search",
+    "question": "Show me tables that track covenant thresholds."
+  },
+  {
+    "id": "AH36",
+    "batch": 2,
+    "source": "search",
+    "question": "Give me data assets about facility drawdowns."
+  },
+  {
+    "id": "AH37",
+    "batch": 2,
+    "source": "ask",
+    "question": "Break down retail fee income by product family in May 2025."
+  },
+  {
+    "id": "AH38",
+    "batch": 2,
+    "source": "ask",
+    "question": "What was the total notional value of corporate deals in 2025?"
+  },
+  {
+    "id": "AH39",
+    "batch": 2,
+    "source": "ask",
+    "question": "Compare SME and Corporate revenue for calendar Q1 2025."
+  },
+  {
+    "id": "AH40",
+    "batch": 2,
+    "source": "ask",
+    "question": "According to the glossary, what counts as a suitability review escalation?"
+  }
+]

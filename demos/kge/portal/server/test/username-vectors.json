@@ -1,0 +1,165 @@
+{
+  "description": "Username normalisation vectors shared by the portal (node:test) and KGE (pytest). Algorithm: strip, NFKC, Unicode casefold, NFKC; then refuse empty, over 254 characters, any whitespace or control/format character, the reserved id access_admin and the role: prefix. expected null means the username is refused. Control and format characters are refused before stripping. Unassigned code points are refused before normalization and afterwards.",
+  "vectors": [
+    {
+      "why": "an already normal email",
+      "input": "reader@example.com",
+      "expected": "reader@example.com"
+    },
+    {
+      "why": "surrounding spaces and capitals",
+      "input": "  USER@EXAMPLE.COM  ",
+      "expected": "user@example.com"
+    },
+    {
+      "why": "mixed-case non-email principal",
+      "input": "Analyst_Retail",
+      "expected": "analyst_retail"
+    },
+    {
+      "why": "mixed-case non-email with a dot",
+      "input": "MixedCase.User",
+      "expected": "mixedcase.user"
+    },
+    {
+      "why": "non-breaking and ideographic spaces at the ends",
+      "input": " Person@Example.com　",
+      "expected": "person@example.com"
+    },
+    {
+      "why": "full-width look-alikes (NFKC)",
+      "input": "ＡＢＣ@ｅｘａｍｐｌｅ.ｃｏｍ",
+      "expected": "abc@example.com"
+    },
+    {
+      "why": "mathematical bold capital A (NFKC before casefold)",
+      "input": "𝐀nalyst",
+      "expected": "analyst"
+    },
+    {
+      "why": "fi ligature (NFKC)",
+      "input": "ﬁnance@example.com",
+      "expected": "finance@example.com"
+    },
+    {
+      "why": "sharp s casefolds to ss",
+      "input": "Straße@example.com",
+      "expected": "strasse@example.com"
+    },
+    {
+      "why": "Greek final sigma casefolds to sigma",
+      "input": "ΣΊΣΥΦΟΣ",
+      "expected": "σίσυφοσ"
+    },
+    {
+      "why": "DZ digraph with caron",
+      "input": "Ǆemal",
+      "expected": "džemal"
+    },
+    {
+      "why": "Angstrom sign",
+      "input": "Å",
+      "expected": "å"
+    },
+    {
+      "why": "A with a combining ring (composed by NFKC)",
+      "input": "Å",
+      "expected": "å"
+    },
+    {
+      "why": "Kelvin sign",
+      "input": "K",
+      "expected": "k"
+    },
+    {
+      "why": "capital I with dot above",
+      "input": "İstanbul",
+      "expected": "i̇stanbul"
+    },
+    {
+      "why": "254 characters, the maximum",
+      "input": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "expected": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    },
+    {
+      "why": "empty",
+      "input": "",
+      "expected": null
+    },
+    {
+      "why": "only spaces",
+      "input": "   ",
+      "expected": null
+    },
+    {
+      "why": "embedded space",
+      "input": "a b",
+      "expected": null
+    },
+    {
+      "why": "embedded ideographic space",
+      "input": "a　b",
+      "expected": null
+    },
+    {
+      "why": "control character (tab)",
+      "input": "\tuser@example.com",
+      "expected": null
+    },
+    {
+      "why": "newline",
+      "input": "a\nb",
+      "expected": null
+    },
+    {
+      "why": "format character (zero-width space)",
+      "input": "a​b",
+      "expected": null
+    },
+    {
+      "why": "reserved id",
+      "input": "access_admin",
+      "expected": null
+    },
+    {
+      "why": "reserved id after casefold",
+      "input": "ACCESS_ADMIN",
+      "expected": null
+    },
+    {
+      "why": "reserved id after NFKC",
+      "input": "ａｃｃｅｓｓ_ａｄｍｉｎ",
+      "expected": null
+    },
+    {
+      "why": "role: prefix",
+      "input": "role:reader",
+      "expected": null
+    },
+    {
+      "why": "role: prefix after casefold",
+      "input": "ROLE:admin",
+      "expected": null
+    },
+    {
+      "why": "255 characters, over the maximum",
+      "input": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "expected": null
+    },
+    {
+      "why": "U+1C89 is unassigned in Python Unicode but assigned in Node ICU",
+      "input": "Ᲊ",
+      "expected": null
+    },
+    {
+      "why": "U+A7CB is unassigned in Python Unicode but assigned in Node ICU",
+      "input": "Ɤ",
+      "expected": null
+    },
+    {
+      "why": "U+10D50 is unassigned in Python Unicode but assigned in Node ICU",
+      "input": "𐵐",
+      "expected": null
+    }
+  ]
+}

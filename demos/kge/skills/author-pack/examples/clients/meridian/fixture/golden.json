@@ -1,0 +1,13 @@
+{
+  "version": "v2",
+  "changes_from": {
+    "version": "v1",
+    "items": ["T02"],
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "why": "The person restated the second question."
+  },
+  "items": [
+    {"id": "T01", "question": "How many ledger rows are there?", "kind": "within", "expect": {"answer": "2"}},
+    {"id": "T02", "question": "What is the first ledger amount?", "kind": "within", "expect": {"answer": "100"}}
+  ]
+}

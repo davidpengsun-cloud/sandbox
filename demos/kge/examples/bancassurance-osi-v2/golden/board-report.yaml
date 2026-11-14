@@ -1,0 +1,10 @@
+- id: BR-02
+  question: Active and lapsed policy written premium for June 2025
+  expect: {figure: 1650.00}
+  sql: SELECT round(sum(premium.premium_amount), 2) FROM premium JOIN policy ON premium.policy_id = policy.policy_id WHERE policy.status IN ('active', 'lapsed') AND premium.written_on >= DATE '2025-06-01' AND premium.written_on < DATE '2025-07-01'
+  source: Q3 board report
+- id: BR-03
+  question: Board-reported active-policy written premium for June 2025
+  expect: {figure: 1250.00}
+  sql: SELECT round(sum(premium.premium_amount), 2) FROM premium JOIN policy ON premium.policy_id = policy.policy_id WHERE policy.status = 'active' AND premium.written_on >= DATE '2025-06-01' AND premium.written_on < DATE '2025-07-01'
+  source: Q2 board report
