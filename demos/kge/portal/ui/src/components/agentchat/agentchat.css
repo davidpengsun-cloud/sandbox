@@ -1,0 +1,79 @@
+/* Agent Chat UI's chat view on the portal's v3 tokens only: no colour or token of its own. */
+.agentchat-thread { display:flex; flex-direction:column; gap:12px; max-width:760px; width:100%; margin:0 auto; min-height:0 }
+.agentchat-messages { flex:1; display:flex; flex-direction:column; gap:12px; overflow:auto; min-height:0 }
+.agentchat-human { display:flex; justify-content:flex-end }
+.agentchat-bubble {
+  max-width:80%; padding:8px 14px; border-radius:var(--v3-r-md); background:var(--v3-accent-soft);
+  border:1px solid var(--v3-accent-line); color:var(--v3-ink); white-space:pre-wrap; overflow-wrap:anywhere;
+}
+.agentchat-ai { display:flex; flex-direction:column; gap:8px; align-items:stretch }
+.agentchat-answer { color:var(--v3-ink); white-space:pre-wrap; overflow-wrap:anywhere }
+.agentchat-muted { color:var(--v3-ink-3) }
+.agentchat-error { color:var(--v3-bad) }
+.agentchat-tool-calls { display:flex; flex-direction:column; gap:8px }
+.agentchat-tool, .agentchat-inbox-item {
+  border:1px solid var(--v3-line); border-radius:var(--v3-r-md); background:var(--v3-surface); overflow:hidden;
+}
+.agentchat-inbox-item { border-color:var(--v3-warn); background:var(--v3-warn-soft); padding-bottom:8px }
+.agentchat-tool-head {
+  margin:0; padding:6px 12px; display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  background:var(--v3-surface-2); border-bottom:1px solid var(--v3-line); font:600 14px/1.4 var(--v3-body); color:var(--v3-ink);
+}
+.agentchat-tool-label { font:600 11px/1.4 var(--v3-mono); text-transform:uppercase; letter-spacing:.06em; color:var(--v3-ink-3) }
+.agentchat-tool-id { padding:0 6px; border-radius:var(--v3-r-sm); background:var(--v3-chip-bg); color:var(--v3-chip-ink); font:12px/1.6 var(--v3-mono) }
+.agentchat-args { width:100%; border-collapse:collapse; font-size:13px }
+.agentchat-args th, .agentchat-args td { padding:6px 12px; text-align:left; vertical-align:top; border-top:1px solid var(--v3-line-2) }
+.agentchat-args th { font-weight:600; color:var(--v3-ink); white-space:nowrap }
+.agentchat-args td { color:var(--v3-ink-2); overflow-wrap:anywhere }
+.agentchat-args code, .agentchat-code-block { font:12px/1.5 var(--v3-mono); white-space:pre-wrap; overflow-wrap:anywhere }
+.agentchat-code-block { display:block; margin:0; padding:8px 12px; color:var(--v3-ink-2) }
+.agentchat-link { margin:0 0 8px; min-height:44px; padding:0 12px; border:0; background:none; color:var(--v3-link); cursor:pointer; font:inherit; font-size:13px }
+.agentchat-link:hover { color:var(--v3-link-hover) }
+.agentchat-actions { display:flex; gap:8px; flex-wrap:wrap; padding:8px 12px 0 }
+.agentchat-edit { display:flex; flex-direction:column; gap:4px; padding:8px 12px 0 }
+.agentchat-edit textarea { font:12px/1.5 var(--v3-mono); border:1px solid var(--v3-line); border-radius:var(--v3-r-sm); background:var(--v3-surface); color:var(--v3-ink); padding:6px }
+.agentchat-edit small { color:var(--v3-bad) }
+.agentchat-input {
+  display:flex; flex-direction:column; gap:8px; padding:12px; border:1px solid var(--v3-line);
+  border-radius:var(--v3-r-md); background:var(--v3-surface); box-shadow:var(--v3-shadow-1);
+}
+.agentchat-input input[type="text"] {
+  width:100%; min-height:44px; padding:8px 12px; border:1px solid var(--v3-line); border-radius:var(--v3-r-sm);
+  background:var(--v3-paper); color:var(--v3-ink); font:15px/1.5 var(--v3-body);
+}
+.agentchat-input-bar { display:flex; align-items:center; gap:8px; flex-wrap:wrap }
+.agentchat-input-bar > :last-child { margin-left:auto }
+.agentchat-history { display:flex; flex-direction:column; gap:8px; min-width:0 }
+.agentchat-history ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:2px }
+.agentchat-history-item {
+  width:100%; min-height:44px; padding:8px 12px; text-align:left; border:1px solid transparent; border-radius:var(--v3-r-sm);
+  background:transparent; color:var(--v3-ink-2); font:14px/1.4 var(--v3-body); cursor:pointer;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.agentchat-history-item:hover { background:var(--v3-surface-2); color:var(--v3-ink) }
+.agentchat-history-item[aria-current="true"] { background:var(--v3-accent-soft); border-color:var(--v3-accent-line); color:var(--v3-ink) }
+/* The input's suggestions, as Context's Ask offers them: a list over the box, and the top one's rest faint after the text. */
+.agentchat-input { position:relative }
+.agentchat-suggestions {
+  position:absolute; left:0; right:0; bottom:calc(100% - 4px); z-index:2; list-style:none; margin:0; padding:6px;
+  display:flex; flex-direction:column; gap:4px; background:var(--v3-surface-2); border:1px solid var(--v3-line);
+  border-radius:var(--v3-r-md); box-shadow:var(--v3-shadow-2);
+}
+.agentchat-suggestion {
+  display:flex; align-items:center; justify-content:space-between; gap:10px; min-height:44px; padding:8px 12px;
+  border-radius:var(--v3-r-sm); cursor:pointer; font-size:14px; color:var(--v3-ink-2);
+}
+.agentchat-suggestion.active, .agentchat-suggestion:hover { background:var(--v3-accent-soft); color:var(--v3-ink) }
+.agentchat-suggestion .suggestion-match { font-weight:700; color:var(--v3-ink) }
+.agentchat-suggestion-tag {
+  flex-shrink:0; padding:1px 8px; border-radius:var(--v3-r-full); font-size:12px; font-weight:600;
+  color:var(--v3-ink-2); background:var(--v3-structure-soft);
+}
+.agentchat-input-wrap { position:relative; display:flex; min-width:0 }
+.agentchat-input-wrap input[type="text"] { position:relative; z-index:1; background:transparent }
+.agentchat-ghost {
+  position:absolute; inset:0; display:flex; align-items:center; padding:8px 13px; border-radius:var(--v3-r-sm);
+  background:var(--v3-paper); font:15px/1.5 var(--v3-body); white-space:pre; overflow:hidden; pointer-events:none;
+}
+.agentchat-ghost-typed { visibility:hidden }
+.agentchat-ghost-rest { color:var(--v3-ink-3) }

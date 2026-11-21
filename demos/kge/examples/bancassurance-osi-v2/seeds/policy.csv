@@ -1,0 +1,4 @@
+policy_id,policyholder_id,status
+10,1,active
+20,2,inactive
+30,3,lapsed

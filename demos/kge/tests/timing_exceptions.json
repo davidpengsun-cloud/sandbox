@@ -1,0 +1,5 @@
+{
+  "tests.integration.test_role_playbooks_acceptance::test_every_role_guide_runs_against_the_local_demo": "The steward playbook exercises a complete sequence of dependent onboarding and release steps.",
+  "tests.integration.test_gate_answer::test_eval_runs_as_the_caller[knowledge_engineer-False]": "the evaluation job asks the golden set on three presets and the twenty approved golden-20 items on graph (#565)",
+  "tests.integration.test_gate_answer::test_eval_runs_as_the_caller[admin-False]": "the evaluation job asks the golden set on three presets and two approved golden-20 items on graph (#565)"
+}

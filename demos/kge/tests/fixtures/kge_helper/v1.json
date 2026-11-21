@@ -1,0 +1,260 @@
+{
+  "services-list": [
+    {
+      "apiVersion": "serving.knative.dev/v1",
+      "kind": "Service",
+      "metadata": {
+        "name": "kge-meridian",
+        "namespace": "your-project",
+        "labels": {
+          "cloud.googleapis.com/location": "us-central1"
+        }
+      },
+      "spec": {
+        "template": {
+          "spec": {
+            "containers": [
+              {
+                "image": "example.com/kge:sample",
+                "env": [
+                  {
+                    "name": "PROFILE",
+                    "value": "meridian"
+                  },
+                  {
+                    "name": "STORE_URL",
+                    "value": "gs://your-project-kge-store"
+                  },
+                  {
+                    "name": "VERTEX_PROJECT",
+                    "value": "your-project"
+                  },
+                  {
+                    "name": "VERTEX_REGION",
+                    "value": "global"
+                  },
+                  {
+                    "name": "VERTEX_EMBEDDING_REGION",
+                    "value": "us-central1"
+                  },
+                  {
+                    "name": "SIGNIN_PASSWORDS",
+                    "valueFrom": {
+                      "secretKeyRef": {
+                        "name": "password-alias",
+                        "key": "latest"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "annotations": {
+              "run.googleapis.com/secrets": "password-alias:projects/your-project/secrets/kge-meridian-passwords"
+            }
+          }
+        }
+      },
+      "status": {
+        "url": "https://kge-meridian.example.com",
+        "conditions": [
+          {
+            "type": "Ready",
+            "status": "True"
+          }
+        ]
+      }
+    }
+  ],
+  "services-describe-kge-meridian": {
+    "apiVersion": "serving.knative.dev/v1",
+    "kind": "Service",
+    "metadata": {
+      "name": "kge-meridian",
+      "namespace": "your-project",
+      "labels": {
+        "cloud.googleapis.com/location": "us-central1"
+      }
+    },
+    "spec": {
+      "template": {
+        "spec": {
+          "containers": [
+            {
+              "image": "example.com/kge:sample",
+              "env": [
+                {
+                  "name": "PROFILE",
+                  "value": "meridian"
+                },
+                {
+                  "name": "STORE_URL",
+                  "value": "gs://your-project-kge-store"
+                },
+                {
+                  "name": "VERTEX_PROJECT",
+                  "value": "your-project"
+                },
+                {
+                  "name": "VERTEX_REGION",
+                  "value": "global"
+                },
+                {
+                  "name": "VERTEX_EMBEDDING_REGION",
+                  "value": "us-central1"
+                },
+                {
+                  "name": "SIGNIN_PASSWORDS",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "name": "password-alias",
+                      "key": "latest"
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "metadata": {
+          "annotations": {
+            "run.googleapis.com/secrets": "password-alias:projects/your-project/secrets/kge-meridian-passwords"
+          }
+        }
+      }
+    },
+    "status": {
+      "url": "https://kge-meridian.example.com",
+      "conditions": [
+        {
+          "type": "Ready",
+          "status": "True"
+        }
+      ]
+    }
+  },
+  "jobs-list": [
+    {
+      "apiVersion": "run.googleapis.com/v1",
+      "kind": "Job",
+      "metadata": {
+        "name": "kge-meridian-job",
+        "namespace": "your-project",
+        "labels": {
+          "cloud.googleapis.com/location": "us-central1"
+        }
+      },
+      "spec": {
+        "template": {
+          "spec": {
+            "template": {
+              "spec": {
+                "containers": [
+                  {
+                    "image": "example.com/kge:sample",
+                    "env": [
+                      {
+                        "name": "PROFILE",
+                        "value": "meridian"
+                      },
+                      {
+                        "name": "STORE_URL",
+                        "value": "gs://your-project-kge-store"
+                      },
+                      {
+                        "name": "VERTEX_PROJECT",
+                        "value": "your-project"
+                      },
+                      {
+                        "name": "VERTEX_REGION",
+                        "value": "global"
+                      },
+                      {
+                        "name": "VERTEX_EMBEDDING_REGION",
+                        "value": "us-central1"
+                      },
+                      {
+                        "name": "LANDING_URL",
+                        "value": "gs://your-project-meridian-landing"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "status": {
+        "conditions": [
+          {
+            "type": "Ready",
+            "status": "True"
+          }
+        ]
+      }
+    }
+  ],
+  "jobs-describe-kge-meridian-job": {
+    "apiVersion": "run.googleapis.com/v1",
+    "kind": "Job",
+    "metadata": {
+      "name": "kge-meridian-job",
+      "namespace": "your-project",
+      "labels": {
+        "cloud.googleapis.com/location": "us-central1"
+      }
+    },
+    "spec": {
+      "template": {
+        "spec": {
+          "template": {
+            "spec": {
+              "containers": [
+                {
+                  "image": "example.com/kge:sample",
+                  "env": [
+                    {
+                      "name": "PROFILE",
+                      "value": "meridian"
+                    },
+                    {
+                      "name": "STORE_URL",
+                      "value": "gs://your-project-kge-store"
+                    },
+                    {
+                      "name": "VERTEX_PROJECT",
+                      "value": "your-project"
+                    },
+                    {
+                      "name": "VERTEX_REGION",
+                      "value": "global"
+                    },
+                    {
+                      "name": "VERTEX_EMBEDDING_REGION",
+                      "value": "us-central1"
+                    },
+                    {
+                      "name": "LANDING_URL",
+                      "value": "gs://your-project-meridian-landing"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "status": {
+      "conditions": [
+        {
+          "type": "Ready",
+          "status": "True"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,1 @@
+The document reading standard preserves source words, tables and page order. Charts and pictures are described in words. Each page records whether it was read from a text layer or by the model. A steward reviews the converted document before release.

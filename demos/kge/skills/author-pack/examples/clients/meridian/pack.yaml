@@ -1,0 +1,39 @@
+manifest:
+  client: meridian
+  meta_model_version: 1.3.0
+  id: meridian-author
+  version: 1.0.0
+  title: Meridian author worked example
+  platform: {meta_model: "^1.3", compiler: ">=0.4"}
+  compile: {store: kuzu, embedding_dim: 128, id_scheme: v1}
+  inputs:
+    estate:
+      fixture: fixture
+    catalogue: catalogue.yaml
+    sets: [golden, heldout]
+schema: {meta_model: "1.3", extensions: []}
+sources:
+  - id: teller
+    label: Teller
+    entity_key: entry_id
+    connection: {dialect: duckdb, ref: warehouses/teller.duckdb}
+    harvest: true
+glossary: []
+terminology:
+  aliases: []
+measures: []
+mappings: []
+access:
+  purposes: []
+  roles:
+    - {id: reader, label: Reader, reads: [teller], processes: [querying]}
+    - {id: steward, label: Steward, reads: [teller], processes: [certification]}
+    - {id: knowledge_engineer, label: Knowledge engineer, reads: [teller], processes: [drafting, building, improving, querying]}
+    - {id: pipeline_tagger, label: Pipeline, reads: [], processes: [tagging]}
+policies:
+  scd2:
+    - {id: scd2-ledger, table: teller.ledger, valid_from: valid_from, valid_to: valid_to, is_current: is_current, valid_to_inclusive: true}
+tests:
+  sets:
+    - {name: golden, version: v2}
+    - {name: heldout, version: v1}

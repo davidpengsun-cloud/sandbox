@@ -1,0 +1,7 @@
+{
+  "version": "v2",
+  "items": [
+    {"id": "T01", "question": "How many ledger rows are there?", "kind": "within", "expect": {"answer": "2"}},
+    {"id": "T02", "question": "What is the first ledger amount?", "kind": "within", "expect": {"answer": "100"}}
+  ]
+}

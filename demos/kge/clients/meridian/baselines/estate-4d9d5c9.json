@@ -1,0 +1,400 @@
+{
+ "about": "The estate's tables (estate/check_estate.py): per unit.table, its columns, its row count and a checksum of its rows, the sha256 of each row's values as JSON, the rows sorted, in base32. No row is held. Frozen: taken once, never edited.",
+ "tables": {
+  "corporate.contact": {
+   "checksum": "jgdskhcx5wsic6ikeevjtnsr6d753yhxmizwtnlcbirmktpkzd4a",
+   "columns": [
+    "contact_id",
+    "counterparty_ref",
+    "customer_id",
+    "contact_name",
+    "contact_email",
+    "role_code"
+   ],
+   "rows": 80
+  },
+  "corporate.counterparty": {
+   "checksum": "vlpjslk4ewnjro3plyyv7komgwmx4sjy2hopijzc5fxd4apfi33a",
+   "columns": [
+    "counterparty_ref",
+    "counterparty_name",
+    "lei_code",
+    "country_code",
+    "sector_code",
+    "onboarded_on"
+   ],
+   "rows": 40
+  },
+  "corporate.deal": {
+   "checksum": "hz5dfuuytxvkyhlqsanb5q7cq6ysbfcfkhxa64m3gs6w3xbj7roq",
+   "columns": [
+    "deal_id",
+    "counterparty_ref",
+    "product_code",
+    "notional_eur",
+    "trade_on",
+    "maturity_on"
+   ],
+   "rows": 120
+  },
+  "corporate.exposure": {
+   "checksum": "pvnynbouw434mnqwfi5er7whqnfqah4svs2q6mwjw3g334q4fsra",
+   "columns": [
+    "exposure_id",
+    "counterparty_ref",
+    "as_of",
+    "ead_eur",
+    "pd_bps",
+    "lgd_pct"
+   ],
+   "rows": 160
+  },
+  "corporate.fiscal_calendar": {
+   "checksum": "ipwbl4jsruhm2vzmk7bixdpumn2ddl5t73blkycg7ceqpibmqdpq",
+   "columns": [
+    "fiscal_quarter",
+    "fiscal_year",
+    "quarter_start",
+    "quarter_end"
+   ],
+   "rows": 4
+  },
+  "corporate.limit_utilisation": {
+   "checksum": "lrscaa2alkphzuwmqixqwsxteibhugdjbwniy42i366qudjqsetq",
+   "columns": [
+    "util_id",
+    "counterparty_ref",
+    "as_of",
+    "limit_eur",
+    "utilised_eur"
+   ],
+   "rows": 160
+  },
+  "corporate.quarterly_revenue": {
+   "checksum": "ddgmmyev65eteaf7ys3cz7ivx37fpvekmrm6h5lgi2obtqtckevq",
+   "columns": [
+    "qrev_id",
+    "counterparty_ref",
+    "fiscal_quarter",
+    "revenue_eur",
+    "fx_rate_period_end",
+    "revenue_usd_converted"
+   ],
+   "rows": 160
+  },
+  "corporate.rating": {
+   "checksum": "vmcmnjam5nb2tz7rs4rqbtt4s2ukxu6bx6kys4y5enw4vnp2ilpa",
+   "columns": [
+    "rating_id",
+    "counterparty_ref",
+    "rated_on",
+    "internal_grade",
+    "agency_grade"
+   ],
+   "rows": 40
+  },
+  "retail.account": {
+   "checksum": "iaegj5na26246naqcx7k365uyz2fm75q2vosyckqzuoybu6cztua",
+   "columns": [
+    "account_id",
+    "customer_id",
+    "product_id",
+    "status_code",
+    "opened_on",
+    "closed_on",
+    "currency_code"
+   ],
+   "rows": 350
+  },
+  "retail.branch": {
+   "checksum": "2dw5lljvsoehel25646icbkstokee3rqurvc33zeq4vtot2fkuna",
+   "columns": [
+    "branch_id",
+    "branch_name",
+    "region_code",
+    "opened_on"
+   ],
+   "rows": 12
+  },
+  "retail.calendar_month": {
+   "checksum": "abq2t2wzb4kybqjr7vad2gfial7bhrawsdfsep7v3nhz523jb2ea",
+   "columns": [
+    "month_start",
+    "calendar_year",
+    "calendar_quarter"
+   ],
+   "rows": 12
+  },
+  "retail.complaint": {
+   "checksum": "3wl7yw5cwjfsrjn7bfcoqfnbmqftrommgm2oinyksoewp6p64m5a",
+   "columns": [
+    "complaint_id",
+    "customer_id",
+    "raised_on",
+    "category",
+    "resolved_on"
+   ],
+   "rows": 40
+  },
+  "retail.customer": {
+   "checksum": "jv4lhbyu7atxkd5amxkksqijuu63wlt3yytyry2kb5u4w2rukqeq",
+   "columns": [
+    "customer_id",
+    "first_name",
+    "last_name",
+    "date_of_birth",
+    "email",
+    "segment_code",
+    "branch_id",
+    "opened_on"
+   ],
+   "rows": 200
+  },
+  "retail.customer_activity": {
+   "checksum": "5j6l4gtt2z2nmsdz6zhrudcag5p53ef7q4ptjsp7u6jybqexi2sa",
+   "columns": [
+    "activity_id",
+    "customer_id",
+    "month_start",
+    "login_count",
+    "txn_count",
+    "is_active_flag"
+   ],
+   "rows": 2400
+  },
+  "retail.daily_balance": {
+   "checksum": "hojogky5ykbkt5adajxwykgxgbpardfxtjpwpd2l43xdazheuhza",
+   "columns": [
+    "balance_id",
+    "account_id",
+    "as_of",
+    "ledger_balance",
+    "available_balance"
+   ],
+   "rows": 12468
+  },
+  "retail.monthly_revenue": {
+   "checksum": "3lswajeu4buoremq7dn6k5ri6kibusuv4j3gyzwdvoel76hgqpzq",
+   "columns": [
+    "revenue_id",
+    "account_id",
+    "month_start",
+    "interest_income",
+    "fee_income",
+    "total_revenue_usd"
+   ],
+   "rows": 4156
+  },
+  "retail.product": {
+   "checksum": "rjzgzgfmyi7wy2uhdbtzs244jdfpwmmtlf3fr4p2rlythbw23abq",
+   "columns": [
+    "product_id",
+    "product_name",
+    "product_family",
+    "rate_bps",
+    "fee_monthly"
+   ],
+   "rows": 6
+  },
+  "retail.transaction": {
+   "checksum": "bqfhhalcdjckaegzlcnypleeyamlm3qjv5tfwogcm2awy33kxibq",
+   "columns": [
+    "txn_id",
+    "account_id",
+    "posted_on",
+    "amount",
+    "txn_type",
+    "channel_code",
+    "merchant_category"
+   ],
+   "rows": 11107
+  },
+  "sme.calendar_month": {
+   "checksum": "abq2t2wzb4kybqjr7vad2gfial7bhrawsdfsep7v3nhz523jb2ea",
+   "columns": [
+    "month_start",
+    "calendar_year",
+    "calendar_quarter"
+   ],
+   "rows": 12
+  },
+  "sme.client": {
+   "checksum": "qnof4mmud32wr2qmkd5rez7m4r4iac2nm4twyfrwdrqanektsphq",
+   "columns": [
+    "client_no",
+    "legal_name",
+    "registration_no",
+    "industry_code",
+    "rm_id",
+    "onboarded_on"
+   ],
+   "rows": 60
+  },
+  "sme.client_activity": {
+   "checksum": "uxmofci7ciaf5lzhakaaa3k2z5jonwmii532lnvxwfnqqc7vfa7a",
+   "columns": [
+    "activity_id",
+    "client_no",
+    "month_start",
+    "payments_count",
+    "active_flag"
+   ],
+   "rows": 720
+  },
+  "sme.covenant": {
+   "checksum": "aqslymdlxfgabeo67rgfuc56v2n3eo3notcnnup2lerixhqpyvuq",
+   "columns": [
+    "covenant_id",
+    "facility_id",
+    "covenant_type",
+    "threshold",
+    "tested_on",
+    "breached_flag"
+   ],
+   "rows": 79
+  },
+  "sme.drawdown": {
+   "checksum": "3fnculzgfkxc2jyglhnntqdgj46b6ypzdnpb3e7dqnprq2oz6ada",
+   "columns": [
+    "drawdown_id",
+    "facility_id",
+    "drawn_on",
+    "amount"
+   ],
+   "rows": 200
+  },
+  "sme.facility": {
+   "checksum": "k43pdfr224dxp7ydpyswudmam6tm26dvxxhwzmm2xw6ejswmn22a",
+   "columns": [
+    "facility_id",
+    "client_no",
+    "facility_type",
+    "limit_amount",
+    "currency_code",
+    "start_on",
+    "end_on"
+   ],
+   "rows": 79
+  },
+  "sme.monthly_client_revenue": {
+   "checksum": "3whnjvsfenqgyaoqfjgsa3ctiq6v7yiphsi7fqpcm542rmoy77ya",
+   "columns": [
+    "rev_id",
+    "client_no",
+    "month_start",
+    "nii",
+    "fees",
+    "revenue_usd"
+   ],
+   "rows": 720
+  },
+  "sme.relationship_manager": {
+   "checksum": "crvbf2tw7k3ntanwfske4ynignal6xj2gyw2ytru75mltg6vi3lq",
+   "columns": [
+    "rm_id",
+    "rm_name",
+    "team_code"
+   ],
+   "rows": 8
+  },
+  "sme.repayment": {
+   "checksum": "ym5lcq6iavnodbwuy7wmh2revl7c6rnttrymrpz4eoevob3c3ria",
+   "columns": [
+    "repayment_id",
+    "facility_id",
+    "paid_on",
+    "amount",
+    "days_past_due"
+   ],
+   "rows": 600
+  },
+  "wealth.advisor": {
+   "checksum": "jlbg2mxkokw2jdiln4fgbfsljaxpwvn4u25j6vcs7ct3mfs5n57q",
+   "columns": [
+    "advisor_id",
+    "advisor_name",
+    "office_code",
+    "licence_class"
+   ],
+   "rows": 30
+  },
+  "wealth.assets_under_advice": {
+   "checksum": "fzf6esk5xq4yabdrcytnkdaucx4zbllamfkg6yksvtwmkuxdmtua",
+   "columns": [
+    "aua_id",
+    "household_id",
+    "as_of",
+    "aua_usd"
+   ],
+   "rows": 600
+  },
+  "wealth.fiscal_calendar": {
+   "checksum": "ipwbl4jsruhm2vzmk7bixdpumn2ddl5t73blkycg7ceqpibmqdpq",
+   "columns": [
+    "fiscal_quarter",
+    "fiscal_year",
+    "quarter_start",
+    "quarter_end"
+   ],
+   "rows": 4
+  },
+  "wealth.holding": {
+   "checksum": "nuc2fe5at5lhtdnkhhom4nzgy25hlcqlx33z75gcyv5nhxkn6jca",
+   "columns": [
+    "holding_id",
+    "portfolio_id",
+    "as_of",
+    "instrument_id",
+    "quantity",
+    "market_value"
+   ],
+   "rows": 3760
+  },
+  "wealth.household": {
+   "checksum": "gbtwotlpidbvrwqboiruof45gpprxq5mdwbmjyomaj2utgapyjkq",
+   "columns": [
+    "household_id",
+    "household_name",
+    "primary_advisor_id",
+    "risk_profile",
+    "onboarded_on"
+   ],
+   "rows": 150
+  },
+  "wealth.portfolio": {
+   "checksum": "o6kttrq2fvv7hm73e32uzg6ms3hpbxxk5qxpnptuekezpfjkt4rq",
+   "columns": [
+    "portfolio_id",
+    "household_id",
+    "mandate_type",
+    "base_currency",
+    "inception_on"
+   ],
+   "rows": 188
+  },
+  "wealth.quarterly_fee_revenue": {
+   "checksum": "dncqpup7dtf3ywhyiihbudnbn6adte7ne32zeat4dby762iur3wa",
+   "columns": [
+    "fee_id",
+    "household_id",
+    "fiscal_quarter",
+    "advisory_fee_usd",
+    "product_fee_usd",
+    "revenue_usd"
+   ],
+   "rows": 600
+  },
+  "wealth.suitability_review": {
+   "checksum": "hqnlc5fipocqo5ivtvb5vrkvrxekde5vpidenqaufni6idinezda",
+   "columns": [
+    "review_id",
+    "household_id",
+    "reviewed_on",
+    "outcome_code",
+    "reviewer_id"
+   ],
+   "rows": 150
+  }
+ },
+ "taken_on": "4d9d5c9, seed 7"
+}

@@ -1,0 +1,307 @@
+# graph-model.example.yaml — draft v0.2 (v0.2: AI-readiness tiers folded in; see graph-model-spec.md §3.3)
+# What the compiler would emit for the Meridian pack
+# into artifacts/meridian/<model_hash>/ (data/nodes/<Type>.csv, data/edges/<EDGE>__<From>__<To>.csv)
+# (schema part in full for the meta-model, instance data as an excerpt).
+# Grounded in docs/use-cases/kge/demo/graph/schema.py (origin/develop @ 01836f6).
+# Hashes are placeholders.
+
+manifest:
+  format: graph-model/v1
+  client: meridian                          # the pack's client: the artifact is under artifacts/meridian/
+  pack: {id: meridian-governance, version: 0.2.0, hash: "sha256:<pack>"}
+  lock_hash: "sha256:<pack.lock>"
+  meta_model_version: 1.0.0
+  compiler_version: 0.1.0
+  target: kuzu
+  params: {embedding_dim: 128}
+  schema_hash: "sha256:<schema>"
+  data_hash: "sha256:<data>"
+  model_hash: "sha256:<schema||data>"
+  layers_emitted: [harvested, curated]       # access is a deploy step; runtime is never emitted
+  meta_model_counts: {node_types: 15, edge_types: 25}
+
+provenance_sets:
+  assertion:
+    asserted_by: {type: STRING, required: true}
+    asserted_on: {type: DATE, required: true}
+    note: {type: STRING}
+    pack_version: {type: STRING, required: true}
+  certification:
+    certified: {type: BOOLEAN, required: true}
+    certified_by: {type: STRING}
+    certified_on: {type: DATE}
+  generated:
+    generator: {type: STRING, required: true, enum: [human, rule, model]}
+    confidence: {type: DOUBLE, required: true}
+    model: {type: STRING}
+    prompt_version: {type: STRING}
+    created_at: {type: TIMESTAMP}
+    evidence: {type: STRING}
+  lifecycle:                                # NEW v0.2: brief §4.5.1 envelope + policy link
+    effective_from: {type: DATE, required: true}
+    effective_to: {type: DATE}              # null = open until superseded; Tag 1/2 default = review window
+    version: {type: STRING, required: true}
+    policy_version: {type: STRING}          # required for ai_readiness, ai_certification_tier
+    bypass: {type: STRING}                  # Rule 2 bypass id that applied; null otherwise
+
+node_types:
+  Source:                                   # demo: Unit
+    origin: meta
+    layer: harvested
+    key: [id]
+    legacy_name: Unit
+    properties:
+      id: {type: STRING, required: true}
+      label: {type: STRING, required: true}
+      entity_key: {type: STRING, required: true}   # demo: key_column
+      dialect: {type: STRING, enum: [duckdb, bigquery, spanner]}
+  Table:                                    # demo: Tbl
+    origin: meta
+    layer: harvested
+    key: [id]
+    id_template: "{source}.{name}"
+    legacy_name: Tbl
+    properties:
+      id: {type: STRING, required: true}
+      source: {type: STRING, required: true}
+      name: {type: STRING, required: true}
+  Column:                                   # demo: Col (measure props moved to Measure)
+    origin: meta
+    layer: harvested
+    key: [id]
+    id_template: "{source}.{table}.{name}"
+    legacy_name: Col
+    extensible: true
+    properties:
+      id: {type: STRING, required: true}
+      source: {type: STRING, required: true}
+      table: {type: STRING, required: true}
+      name: {type: STRING, required: true}
+      data_type: {type: STRING, required: true}
+      description: {type: STRING}
+      is_key: {type: BOOLEAN, default: false}
+      ai_ready: {type: BOOLEAN, default: false, denormalised_from: ai_readiness}    # NEW v0.2; fail closed
+      tier: {type: STRING, enum: [bronze, silver, gold], denormalised_from: ai_certification_tier}  # NEW v0.2; null unless ai_ready
+  Term:
+    origin: meta
+    layer: curated
+    key: [id]                               # demo keys by name
+    extensible: true
+    properties:
+      id: {type: STRING, required: true}
+      name: {type: STRING, required: true}
+      domain: {type: STRING}
+      steward: {type: STRING, required: true}
+      definition: {type: STRING}
+      status: {type: STRING, enum: [certified, candidate], required: true}
+  Measure:                                  # NEW
+    origin: meta
+    layer: curated
+    key: [id]
+    properties:
+      id: {type: STRING, required: true}
+      expression: {type: STRING, required: true}
+      aggregation: {type: STRING, enum: [sum, count, count_distinct, avg, ratio, last_snapshot], required: true}
+      grain: {type: STRING, enum: [day, month, quarter, quarter_end, year, as_of], required: true}
+      currency: {type: STRING}
+      conversion: {type: STRING, default: none}
+      snapshot: {type: BOOLEAN, default: false}
+      population: {type: STRING}
+  Calendar:                                 # NEW
+    origin: meta
+    layer: curated
+    key: [id]
+    properties:
+      id: {type: STRING, required: true}
+      year_start_month: {type: INT64, required: true}
+      quarter_label: {type: STRING}
+  Alias:                                    # NEW
+    origin: meta
+    layer: curated
+    key: [phrase]
+    properties:
+      phrase: {type: STRING, required: true}
+      kind: {type: STRING, enum: [term, source, scope, intent, predicate, value, candidate], required: true}
+      params: {type: STRING}                # JSON: op/value for predicates, intent name
+  Policy:                                   # NEW
+    origin: meta
+    layer: curated
+    key: [id]
+    properties:
+      id: {type: STRING, required: true}
+      kind: {type: STRING, enum: [restricted_attribute, cross_source, commensurability, conversion, classification, privacy_detector, readiness, steward], required: true}
+      params: {type: STRING, required: true}  # JSON; kind=readiness holds gate/Tag 1/Tag 2/bypass rules
+      version: {type: STRING, required: true}
+  Tier:                                     # NEW v0.2: governance-owned tier definitions (data, not code)
+    origin: pack
+    layer: curated
+    key: [id]
+    properties:
+      id: {type: STRING, required: true, enum: [bronze, silver, gold]}
+      rank: {type: INT64, required: true}   # bronze 1 < silver 2 < gold 3
+      allows: {type: "STRING[]", required: true, enum: [embed, retrieve, cite_attributed, cite_authority]}
+      description: {type: STRING}
+  Document:
+    origin: meta
+    layer: curated
+    key: [id]
+    properties:
+      id: {type: STRING, required: true}
+      title: {type: STRING}
+      shelf: {type: STRING, enum: [certified, uncertified], required: true}
+      kind: {type: STRING, open: true, enum: [data_dictionary, metric_definition, policy, standard, email, note, draft, export, wiki]}
+      source: {type: STRING}                # demo: unit
+      owner: {type: STRING}
+      version: {type: STRING}
+      published_at: {type: STRING}
+      ai_ready: {type: BOOLEAN, default: false, denormalised_from: ai_readiness}    # NEW v0.2; fail closed
+      tier: {type: STRING, enum: [bronze, silver, gold], denormalised_from: ai_certification_tier}  # NEW v0.2
+  Chunk:
+    origin: meta
+    layer: runtime
+    key: [id]
+    properties:
+      id: {type: STRING, required: true}
+      doc_id: {type: STRING, required: true}
+      ordinal: {type: INT64, required: true}
+      text: {type: STRING}
+      gate_level: {type: STRING, enum: [prohibited, redacted, clear]}   # NEW v0.2; decides embedding only
+      readiness: {type: STRING, enum: [embed-prohibited, retrieval-internal, citable], deprecated: true}  # compat: embed-prohibited->prohibited; citable, retrieval-internal->clear
+      purposes: {type: "STRING[]"}
+      embedding: {type: "FLOAT[{embedding_dim}]"}
+      embedding_model: {type: STRING}
+  Tag:
+    origin: meta
+    layer: runtime
+    key: [id]
+    provenance: [generated, lifecycle]
+    properties:
+      id: {type: STRING, required: true}
+      family: {type: STRING, open: true, enum: [business_meaning, classification, privacy, candidate_term, ai_readiness, ai_certification_tier, privacy_review]}
+      value: {type: STRING}                 # ai_readiness: yes|no; ai_certification_tier: bronze|silver|gold (= AT_TIER target)
+  Role:                                     # NEW
+    origin: meta
+    layer: access
+    key: [id]
+    properties:
+      id: {type: STRING, required: true}
+  Principal:
+    origin: meta
+    layer: access
+    key: [id]
+    properties:
+      id: {type: STRING, required: true}
+      role: {type: STRING}                  # deprecated by HAS_ROLE
+  Process:
+    origin: meta
+    layer: access
+    key: [id]
+    constant: [tagging, certification, querying]
+    properties:
+      id: {type: STRING, required: true}
+      description: {type: STRING}
+
+edge_types:
+  HAS_TABLE:     {from: Source, to: Table, cardinality: one_to_many, layer: harvested}
+  HAS_COLUMN:    {from: Table, to: Column, cardinality: one_to_many, layer: harvested}
+  JOINS:         {from: Column, to: Column, cardinality: many_to_many, layer: harvested, properties: {via: {type: STRING}}}
+  JOINS_TABLE:
+    from: Table
+    to: Table
+    cardinality: many_to_many
+    layer: harvested
+    derived_from: JOINS
+    properties:
+      from_table: {type: STRING, required: true}
+      from_column: {type: STRING, required: true}
+      to_table: {type: STRING, required: true}
+      to_column: {type: STRING, required: true}
+  NO_JOIN:       {from: Source, to: Source, cardinality: many_to_many, symmetric: true, layer: curated, provenance: assertion}
+  MAPS_TO:       {from: Column, to: Term, cardinality: many_to_many, layer: curated, provenance: [certification, generated]}
+  MEASURE_OF:    {from: Measure, to: Term, cardinality: many_to_one, layer: curated}
+  COMPUTED_FROM: {from: Measure, to: Column, cardinality: many_to_many, layer: curated,
+                  properties: {role: {type: STRING, enum: [value, filter, period], required: true}}}
+  IN_CALENDAR:   {from: Measure, to: Calendar, cardinality: many_to_one, layer: curated}
+  PERIOD_COLUMN: {from: Table, to: Column, cardinality: one_to_many, layer: curated,
+                  properties: {kind: {type: STRING, enum: [month, fiscal_quarter, snapshot, event_date], required: true},
+                               calendar: {type: STRING, required: true}}}
+  ALIAS_OF:      {from: Alias, to: [Term, Source, Column], cardinality: many_to_one, layer: curated}   # Kuzu REL GROUP
+  GOVERNS:       {from: Policy, to: [Column, Source, Term, Document], cardinality: many_to_many, layer: curated}  # scope only; no tier/outcome props
+  DEFINES:       {from: Document, to: Term, cardinality: many_to_many, layer: curated, runtime_writable: true}
+  SUPERSEDED_BY: {from: Document, to: Document, cardinality: many_to_one, layer: curated, acyclic: true}
+  HAS_CHUNK:     {from: Document, to: Chunk, cardinality: one_to_many, layer: runtime}
+  MENTIONS:      {from: Chunk, to: Term, cardinality: many_to_many, layer: runtime, provenance: generated}
+  TAGGED:        {from: [Chunk, Document, Column], to: Tag, cardinality: one_to_many, layer: runtime}  # Kuzu REL GROUP; Tag 1/2 on Document|Column
+  AT_TIER:       {from: Tag, to: Tier, cardinality: many_to_one, layer: runtime, only_when: {family: ai_certification_tier}}
+  DERIVED_UNDER: {from: Tag, to: Policy, cardinality: many_to_one, layer: runtime, target_where: {kind: readiness}}
+  SUPERSEDES:    {from: Tag, to: Tag, cardinality: one_to_one, layer: runtime}
+  PROPOSES:      {from: Tag, to: Column, cardinality: many_to_many, layer: runtime, status: reserved,
+                  properties: {term: {type: STRING}}}   # declared in demo, never written
+  HAS_ROLE:      {from: Principal, to: Role, cardinality: many_to_many, layer: access}
+  CAN_READ:      {from: Role, to: Source, cardinality: many_to_many, layer: access}
+  CAN_WRITE:     {from: Role, to: [Term, Column], cardinality: many_to_many, layer: access}
+  MAY_PERFORM:   {from: Role, to: Process, cardinality: many_to_many, layer: access}
+
+extensions: []                              # pack declared none
+
+# ---- instance data (excerpt). Real artifact: artifacts/meridian/<model_hash>/data/nodes/<Type>.csv and data/edges/<EDGE>__<From>__<To>.csv, COPY FROM in this order.
+load_order: [Source, Table, Column, Term, Calendar, Measure, Alias, Policy, Tier, Document,
+             HAS_TABLE, HAS_COLUMN, JOINS, JOINS_TABLE, NO_JOIN, MAPS_TO, MEASURE_OF,
+             COMPUTED_FROM, IN_CALENDAR, PERIOD_COLUMN, ALIAS_OF, GOVERNS, DEFINES, SUPERSEDED_BY]
+data_excerpt:
+  Source:
+    - {id: retail, label: Retail Banking, entity_key: customer_id, dialect: duckdb}
+    - {id: corporate, label: "Corporate & Institutional", entity_key: counterparty_ref, dialect: duckdb}
+  Column:
+    - {id: retail.monthly_revenue.total_revenue_usd, source: retail, table: monthly_revenue, name: total_revenue_usd, data_type: "DECIMAL(14,2)", is_key: false}
+  Term:
+    - {id: revenue, name: Revenue, domain: Finance, steward: Group Finance Data Steward, status: certified}
+  Measure:
+    - {id: corporate.revenue, expression: "sum(quarterly_revenue.revenue_usd_converted)", aggregation: sum,
+       grain: quarter, currency: USD, conversion: "period_end_rate_from_EUR"}
+  NO_JOIN:
+    - {from: retail, to: corporate, asserted_by: Data Architecture Board, asserted_on: 2024-03-12,
+       note: "corporate.contact.customer_id is a CRM contact number. ...", pack_version: 0.1.0}
+  MAPS_TO:
+    - {from: retail.monthly_revenue.total_revenue_usd, to: revenue, certified: true,
+       certified_by: Group Finance Data Steward, certified_on: 2024-11-15, generator: human, confidence: 1.0}
+  JOINS_TABLE:
+    - {from: retail.monthly_revenue, to: retail.account, from_table: monthly_revenue, from_column: account_id,
+       to_table: account, to_column: account_id}
+
+  Tier:                                     # from pack policies.tiers
+    - {id: bronze, rank: 1, allows: [embed, retrieve], description: Reference only; never cited}
+    - {id: silver, rank: 2, allows: [embed, retrieve, cite_attributed], description: Cite with attribution}
+    - {id: gold, rank: 3, allows: [embed, retrieve, cite_attributed, cite_authority], description: Cite as the authority}
+  Policy:
+    - {id: readiness-v1, kind: readiness, version: 1.0.0,
+       params: '{"gate_order":["prohibited","redacted","clear"],"absent_ranks_as":"prohibited","review_window_days":90,"redacted_caps_at":"silver","bypasses":[]}'}
+  GOVERNS:
+    - {from: readiness-v1, to: retail}      # scope only: assets in these sources
+    - {from: readiness-v1, to: corporate}
+
+# ---- runtime overlay (NOT emitted by the compiler; written by the upstream
+# certification producer + steward gate; re-attached after load by stable ids).
+# Illustrative only: the demo writes no Tag 1 / Tag 2 today.
+runtime_overlay_example:
+  Tag:
+    - {id: "MD-ACTIVE-CUSTOMER/ai_readiness/c1", family: ai_readiness, value: "yes", generator: rule, confidence: 1.0,
+       evidence: "worst gate level clear", effective_from: 2026-10-01, effective_to: 2026-12-30, version: "1",
+       policy_version: 1.0.0, bypass: null}
+    - {id: "MD-ACTIVE-CUSTOMER/ai_certification_tier/c1", family: ai_certification_tier, value: gold, generator: rule,
+       confidence: 1.0, evidence: "certified shelf; owner named; not superseded", effective_from: 2026-10-01,
+       effective_to: 2026-12-30, version: "1", policy_version: 1.0.0, bypass: null}
+  TAGGED:
+    - {from: {Document: MD-ACTIVE-CUSTOMER}, to: "MD-ACTIVE-CUSTOMER/ai_readiness/c1"}
+    - {from: {Document: MD-ACTIVE-CUSTOMER}, to: "MD-ACTIVE-CUSTOMER/ai_certification_tier/c1"}
+  AT_TIER:
+    - {from: "MD-ACTIVE-CUSTOMER/ai_certification_tier/c1", to: gold}
+  DERIVED_UNDER:
+    - {from: "MD-ACTIVE-CUSTOMER/ai_readiness/c1", to: readiness-v1}
+    - {from: "MD-ACTIVE-CUSTOMER/ai_certification_tier/c1", to: readiness-v1}
+  denormalised:                             # rewritten on every derivation; candidate until steward confirms
+    Document: {MD-ACTIVE-CUSTOMER: {ai_ready: true, tier: gold}}
+
+frozen_tests:                               # golden/heldout with reference_sql resolved at compile (C02)
+  golden: {count: 45, by_kind: {within: 20, cross: 10, shelf: 10, abstain: 5}, file: tests/golden.resolved.json}
+  heldout: {count: 16, file: tests/heldout.resolved.json}

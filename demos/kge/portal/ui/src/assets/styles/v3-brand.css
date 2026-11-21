@@ -1,0 +1,10 @@
+/* The brand: the client logo when one is configured, else an initial tile. Same on the bar and on surfaces. */
+.v3-brand-logo{display:block; height:24px; width:auto; max-width:120px; object-fit:contain; flex-shrink:0}
+.v3-brand-tile{
+  display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;
+  width:24px; height:24px; border-radius:var(--v3-r-xs);
+  background:var(--v3-bar-accent); color:var(--v3-bar);
+  font-family:var(--v3-body); font-size:13px; font-weight:700; line-height:1;
+}
+.v3-signin .signin-brand{display:flex; align-items:center; gap:10px; margin-bottom:18px}
+.v3-signin .signin-brand .signin-eyebrow{margin:0}

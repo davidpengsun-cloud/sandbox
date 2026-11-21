@@ -1,0 +1,93 @@
+[
+  {
+    "key": "[\"query-plan-v1\",\"total retail revenue for june 2025\",\"2bcb9ba7eb27bd21d023c0b7127ca179597ca4479e21e5a14aea3aacbc85a569\",\"4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945\"]",
+    "reply": {
+      "kind": "propose",
+      "base_turn": null,
+      "plan": {
+        "schema": "query-plan/v1",
+        "layout": "aligned",
+        "measures": [
+          {
+            "kind": "measure",
+            "id": "m0",
+            "measure": {
+              "id": "retail.revenue",
+              "evidence": []
+            },
+            "context": {
+              "id": "retail_revenue",
+              "evidence": []
+            },
+            "mode": "current",
+            "filters": []
+          }
+        ],
+        "dimensions": [],
+        "filters": [],
+        "time": {
+          "kind": "single",
+          "period": {
+            "kind": "month",
+            "value": "2025-06",
+            "calendar": {
+              "id": "calendar",
+              "evidence": []
+            }
+          }
+        },
+        "comparisons": [],
+        "derived": [],
+        "order": [],
+        "limit": null,
+        "obligations": [
+          {
+            "id": "o0",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 6,
+                "end": 12
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m0"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o1",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 13,
+                "end": 20
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "m0"
+            ],
+            "state": "applied"
+          },
+          {
+            "id": "o2",
+            "spans": [
+              {
+                "turn": "turn",
+                "start": 25,
+                "end": 34
+              }
+            ],
+            "kind": "name",
+            "targets": [
+              "time"
+            ],
+            "state": "applied"
+          }
+        ]
+      }
+    }
+  }
+]

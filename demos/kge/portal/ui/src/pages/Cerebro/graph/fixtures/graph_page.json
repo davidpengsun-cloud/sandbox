@@ -1,0 +1,32 @@
+{
+  "pages": [
+    {
+      "nodes": [
+        { "kind": "table", "id": "table:retail.orders", "name": "orders" },
+        { "kind": "column", "id": "column:retail.orders.net_amount", "name": "net_amount" },
+        { "kind": "column", "id": "column:retail.orders.customer_id", "name": "customer_id" },
+        { "kind": "table", "id": "table:retail.customers", "name": "customers" }
+      ],
+      "links": [
+        { "source": "table:retail.orders", "target": "column:retail.orders.net_amount", "kind": "has_column", "status": "certified", "why": "The warehouse schema declares this column on the table." },
+        { "source": "table:retail.orders", "target": "column:retail.orders.customer_id", "kind": "has_column", "status": "certified", "why": "The warehouse schema declares this column on the table." },
+        { "source": "table:retail.orders", "target": "table:retail.customers", "kind": "joins", "status": "certified", "why": "A declared key joins orders.customer_id to customers.customer_id." },
+        { "source": "column:retail.orders.net_amount", "target": "term:net_revenue", "kind": "maps_to", "status": "certified", "why": "A steward certified this mapping." },
+        { "source": "column:retail.orders.customer_id", "target": "term:net_revenue", "kind": "maps_to", "status": "proposed", "why": "Suggested from the column's name; not yet reviewed." },
+        { "source": "column:retail.orders.net_amount", "target": "term:hidden", "kind": "maps_to", "status": "proposed", "why": "A term on no page." }
+      ],
+      "cursor": "page-2"
+    },
+    {
+      "nodes": [
+        { "kind": "term", "id": "term:net_revenue", "name": "Net revenue" },
+        { "kind": "document", "id": "document:pricing-policy", "name": "Pricing policy" },
+        { "kind": "domain", "id": "domain:sales", "name": "Sales" }
+      ],
+      "links": [
+        { "source": "document:pricing-policy", "target": "term:net_revenue", "kind": "mentions", "status": "inferred", "why": "The term's name appears in the document's text." },
+        { "source": "table:retail.orders", "target": "domain:sales", "kind": "in_domain", "status": "proposed", "why": "The catalogue places the table in this domain." }
+      ]
+    }
+  ]
+}

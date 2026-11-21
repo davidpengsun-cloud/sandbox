@@ -1,0 +1,20 @@
+{
+  "agreed_by": "owner, issue #218",
+  "agreed_at": "2026-11-02",
+  "rules": {
+    "mention_recall": 0.65,
+    "surface_recall": 0.95,
+    "candidate_recall": 0.2,
+    "mention_wrong_rate": 0.05,
+    "candidate_wrong_rate": 0.05
+  },
+  "model": {
+    "mention_recall": 0.85,
+    "surface_recall": 0.9,
+    "candidate_recall": 0.75,
+    "mention_wrong_rate": 0.15,
+    "candidate_wrong_rate": 0.2,
+    "max_wrong_candidates": 2,
+    "forbid_identifiers": true
+  }
+}

@@ -1,0 +1,23 @@
+body {
+  /* Removed `zoom: 67%` — it shrank the whole app to two-thirds size. The v3
+     redesign is built at full reference sizing, so it now renders at 100%. */
+  margin: 0;
+  overflow-x: hidden;
+  font-family:  "EB Garamond", "Inter", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif, Helvetica!important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* The page canvas follows the mode. `html body` outranks the legacy MUI
+   CssBaseline, which paints body ecru with black text. */
+html body {
+  background-color: var(--v3-paper);
+  color: var(--v3-ink);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

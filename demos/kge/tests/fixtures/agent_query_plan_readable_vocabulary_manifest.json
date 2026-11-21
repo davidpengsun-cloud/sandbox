@@ -1,0 +1,4094 @@
+{
+ "answers": [
+  {
+   "after_seal": "zis4uzrhpif2doaivsqiliu4n22dgnrrziqboxmgs536b5akfbeq",
+   "answer_sha": "iceb3r6rox6krcmfbdoesx3rnmkkplohsaaiuh7agnlyz6uvelwq",
+   "before_seal": "wtrs5wihbmu3vuan4merbiadpk3dktsk64vlfmgb7r5ocryizlva",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G001:control:bad_marker",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "jyyzppzlasih4s6t2sbqmhfi3qdtjkuzp4lzvp2aw5jwodtzdoqa",
+   "answer_sha": "iceb3r6rox6krcmfbdoesx3rnmkkplohsaaiuh7agnlyz6uvelwq",
+   "before_seal": "3pas5ruk7wyhzkwhwjlnl3libc4ad4ujemgbcgvmqtxchymdcwpa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G001:control:birth_date_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "wfih6n76ve3p7d6dxymf3wnylzq2ooqvfqm2xsflmh7xm2b4yzba",
+   "answer_sha": "iceb3r6rox6krcmfbdoesx3rnmkkplohsaaiuh7agnlyz6uvelwq",
+   "before_seal": "4praqeutexro3ff7ntxujdxja6qhtgcgbt55gvryr2facatgpzsa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G001:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "mdctxv6znbqg5smkujwyrvwvombejeopwtdl6lzkegvo3pq5n6ua",
+   "answer_sha": "iceb3r6rox6krcmfbdoesx3rnmkkplohsaaiuh7agnlyz6uvelwq",
+   "before_seal": "ddbowz5lmj37wmekfqj5fk3m7av7ibeyqmvfgurbm6ps4mtu2xla",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G001:control:constant_figure",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "omj2zxkpz7plni5444o2yxg4eflgd5dozqgxp3i6f24bsicenvoq",
+   "answer_sha": "iceb3r6rox6krcmfbdoesx3rnmkkplohsaaiuh7agnlyz6uvelwq",
+   "before_seal": "btxtxlfw624umgxst6v6r7ahnsjwn7ajcodjlpaxloaqwz3x47da",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G001:control:invented_number",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "2aabci3pu3mqslg67fyzt5xa5fw5wjgcb5illncxeqjycdmgnf5a",
+   "answer_sha": "iceb3r6rox6krcmfbdoesx3rnmkkplohsaaiuh7agnlyz6uvelwq",
+   "before_seal": "omxnep2m4zmjefarjqywiroabihcpookmfx4zacfn7nfgcdityua",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G001:control:key_name_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "jmwm6dt4ztcd65geahqkrfoyahtbsdhuk5kbicy7rjja5agdxfza",
+   "answer_sha": "iceb3r6rox6krcmfbdoesx3rnmkkplohsaaiuh7agnlyz6uvelwq",
+   "before_seal": "rissirzwplezybuzgnk4uptqj3eirxzuta3nkkff5s3drksn3snq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G001:control:malformed_json",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "fj3w57ff6tiljmpc4rwdxdi57npcvwunbc5s6zey422mixeonjqa",
+   "answer_sha": "iceb3r6rox6krcmfbdoesx3rnmkkplohsaaiuh7agnlyz6uvelwq",
+   "before_seal": "wcbphfnojox5flp4qpcu2totxceucqvdpixadhhakio7ihqrzbcq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G001:control:missing_certification",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "jmqf6vwak4tbh56efw5uvxwnchfdmwafmzwrmeljdkxc5255k2ca",
+   "answer_sha": "iceb3r6rox6krcmfbdoesx3rnmkkplohsaaiuh7agnlyz6uvelwq",
+   "before_seal": "popla2p7jvubxq66jtpymc76qmypbqncmzhl5p3pyx5abvh6qsfq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G001:control:outer_join_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "avd5zzdqa24zmtrfsgxmoahsuycqd63xiku3gv66yfutcrx6s7iq",
+   "answer_sha": "iceb3r6rox6krcmfbdoesx3rnmkkplohsaaiuh7agnlyz6uvelwq",
+   "before_seal": "4o3qps5aokbqkje6mokbv7auzs6ml7vfk222j6ajt7noqssikdna",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G001:control:restricted_column",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "nrtdifpdlrcgizi6ge7r3dxli7b7xuxeoxbvcoylnn4rmghiujiq",
+   "answer_sha": "4df4zhm5mvpmbxwpock77gsyi3zu23v3ajblrq77nqsf3vevrlqa",
+   "before_seal": "6e6o4bhsywpb74eb6qomm5e43sxryjjnnmca4tan4kwg2f4adxla",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G001:control:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id"
+   ]
+  },
+  {
+   "after_seal": "ydqqzqfba5qp4m7pc6usoil76orasfpehkz3mbxtu6bfusd2d7gq",
+   "answer_sha": "iceb3r6rox6krcmfbdoesx3rnmkkplohsaaiuh7agnlyz6uvelwq",
+   "before_seal": "7wtpis2jpzffjdwkiaam7zbk7r7hyulpsnk442tfzakelwab73qq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G001:control:scaled_figure",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "sugqhivqdzszpimgsfeuozrpfkxorpl4htzi4zqmf6oahycm72pa",
+   "answer_sha": "iceb3r6rox6krcmfbdoesx3rnmkkplohsaaiuh7agnlyz6uvelwq",
+   "before_seal": "j3jghyy7z3bnwrbvdof4qxgujl3t4pmrnyqfolfrejlfskspbmma",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G001:control:second_alias_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "3cajmw5qaiq4mt35kpmhqmky236ktns6e7vpun3ijjde3n4ouxiq",
+   "answer_sha": "iceb3r6rox6krcmfbdoesx3rnmkkplohsaaiuh7agnlyz6uvelwq",
+   "before_seal": "7yle2ywheei4pp2l7xyv6ocmjyaoeq7hxhubwr4rziu5564pmn5a",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G001:control:undeclared_join",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "z46dg73vtgsoa7whweiaaztssqy6a52bssuqjcuaywifnkyokeia",
+   "answer_sha": "7pslqtw6tvvwr4uveruzrt3i5teepafhklkeiqbh5ca7mn42md7q",
+   "before_seal": "zqwuyvrtm2hs45wpcevojv5z6kw5wdw2nouabylijoyfkjhvie6a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G001:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "lyedl2ff5lnktmnnzjqekeq3qrds2e7h4khvtdzsg7ziy3lvg7ja",
+   "answer_sha": "7hlkt24vxvymrkm2ceqxdenjmuamiazufx3cm6jtsl22yunl7a3a",
+   "before_seal": "2eqb2catnvjey4ebbliuvy7k3glsdp56txkdy75zegtr55rxihya",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G001:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "k7p4gv4efz63f74tyvdv2x34uk5i6izr7nsyc33flsg5hku7h7qq",
+   "answer_sha": "2i2ttb4rdqtsjkurcnut3idhydbwxmbm4m3ilqsimd3i3aijuiaq",
+   "before_seal": "zrhl45swpfwdfevr2vcl5vecimbckic67ocditjmjrs5iyluslha",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G002:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "wtoddd5552qhkf4nvb6kfl4ykkgrkbhedelpdjv7n7vfyluu54xq",
+   "answer_sha": "53ltydzdvv5ldok73ofbx7jymyvbauvhv2zo7ak2635decixgzwa",
+   "before_seal": "v5pmhc6ojongjrobtcde7unnuaqbf5lotc7pj5psnmz4w3bcevna",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G002:control:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id"
+   ]
+  },
+  {
+   "after_seal": "4el4x57eo2iyc572dseakwzegu7qvkjhx233lerw3gd7cyqsgwua",
+   "answer_sha": "fcdrwjenyridx77ytud474rybdfmtkx43saue2mayo7uqs6aic4q",
+   "before_seal": "wyovtm7xmvdkp3cs5qn2vdcg32m65ygsfxd6agbmcqm6cqo6salq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G002:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "v7r6an2sbujkiqglvwvy7wq3qktephmcozped3i43kjhtmhipy5a",
+   "answer_sha": "jahytddaiggddprtbge54hmpseqrufx3vwr5xanqni3fc7hvicsq",
+   "before_seal": "rak2shjyqmsnvdqchu4jbvczupn5oh6v7epkn3xdu4ufnaoqn7pa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G002:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "e7iaqgemxtshnus7b3ou24qxym2rgyu3syuucxsadby2kc7imbsa",
+   "answer_sha": "jc2rjvyn5wrlaka25wfznimcxyyl6bng3dm4cx4toeutrzrei2ia",
+   "before_seal": "fd2eg5wnu2qmwovv7266umvfb2ut2knfeeg5mb3v6dwmk6uqkchq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged. #396 (#397): model evidence that names no span of the question is dropped before the check, so this careful-mode refusal no longer names it; still no figure.",
+   "key": "golden:G003:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/reason",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "w3fzeofaczhytjdmzss75f756gbspigz57bx5gthj4wsyguwcoja",
+   "answer_sha": "lp7qgcg7lugowfpha2dw52smbhveni3jjfhszldk3mnro6tlc5la",
+   "before_seal": "yj6jkflyiamxhwv7dm3d6hp7afsge34ezgfqki6ae5iuyc4k26va",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G003:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "ncuhte4sudvnu6b5jnoaozhwr4k6it2ji2xen3dxu2m7ochqubka",
+   "answer_sha": "iajgmmtmx4byqrtkivlgzbs3ii6ffku5mj3kfl5kwyvdxcgiluuq",
+   "before_seal": "3nqoewybwjef55wmkofyqxrfijecptqtmjjafvwvw27ue257b3hq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G003:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "bffo7har4olureluwp64dydg5dldvpck2phpmjywdmidxzq5vgrq",
+   "answer_sha": "ryg6wbb23hluytxmtj5mjl5pebclwtunqybdxxg7hsn5jom6wu3q",
+   "before_seal": "5gbffhsbubs5rml4mo76qqhfbc5oyce5e6wzexlczjfcpruqazpa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G004:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "a4fagsnbtih7aznbl5pma67k7v2hkwgyj57oyfvpcl4uon7zm5ha",
+   "answer_sha": "3usemizktb5kfu6eg7klp6w7pz4255nr4oqkdouiz4ea26ao2krq",
+   "before_seal": "cpmh65ouddhgaicxz7bhkm7zzh77k7olj4mpzyolcuf5n2axlmwa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G004:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/plan/obligations/5/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "e2reufhhcpqndrnyanwd5tlw3fwpnnef7cerk73p432epq35tthq",
+   "answer_sha": "cc62m6ufmcpvsxoozknt7psnstdixoae2bn7c5qprmmwwat3i3pa",
+   "before_seal": "x3wtwryjsezrjjdnllpuy2twrs4t3xic424p6ankwx5r7hj3odcq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G004:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/plan/obligations/5/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "vcrgb7vcbu2u5yzqrnfpgwsarzay7ohkujmjtljxq2lj6avkokxa",
+   "answer_sha": "icpbdffspe6dhbeiwigqcecpyopnyajtiao4jqg7yab27h7wlfcq",
+   "before_seal": "hklfsazmui7qcpm25s3pd4ddpz7x4ydck4hsskt5ounpudzsjb3q",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G005:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "g4zp3g43bl7n5hah5qcueocy3wfn5rxvg7teiqlx432unwdrgfoa",
+   "answer_sha": "kskqdpni6pe2rvogtpbh4e7f5ufcbwzpdlissciqlc6mf5nbc2aa",
+   "before_seal": "oh56w6pqdpoi2cgpi5iigxeqyc7bv5ji2dz535ogqxhis35fmy6a",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G005:control:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id"
+   ]
+  },
+  {
+   "after_seal": "37xbv2em7huo3w4vv6f45tubvw4rgoiqph225vodlpfpm542ynma",
+   "answer_sha": "m2gfqmydtn3tdwtm7txm3evuy544mpcepevwlwzpd2ecnjygkhuq",
+   "before_seal": "rxjrkbd4q7fm5z647aztesbuwens4u2ggh34ttmoorg6trpe2pfa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G005:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "ugyjckrwx6d3igmsegma5lfsy4etoim62lfcdg33i57qupecjn4a",
+   "answer_sha": "ogc77wjxqc3kq772gee3cktaw2nzktkzaj4faocpaf3qafca3akq",
+   "before_seal": "rnvbrnsvuuc6j3n6onxuqmklfdmcgkdn5zoniko5u3evv3g7dwaq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G005:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "4yyvkbisd5y3cws3g5ddfnmnvtjkymwvtuf47gsea5pudum2e2rq",
+   "answer_sha": "cjqxjryaffqtlu6tkqeeasxtnubynzpncl2texuevzarzxi3kdga",
+   "before_seal": "yxd46tiyld356q2nfi33nwgmemdbcoov377qx4nnjoitxpyuzora",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G006:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "uzzttf7yndxrcxngjmmtpdicqtpqdspguzboxpi736ckh6mwsyva",
+   "answer_sha": "qhmj4dv372p5zsmrsozz42cdiyda3shzu4xelnukf25zjjdfcooa",
+   "before_seal": "bnlsq2kz2az2457pjky4tfdp7ho7qg22wlrobifdm2yfpvtz43uq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G006:control:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id"
+   ]
+  },
+  {
+   "after_seal": "fshc6xj3dhrnte5cki2mspjg3yi7lql6hjwdz7gor2lcoaoalafa",
+   "answer_sha": "64d4hzt4cm3poiyce3iteu6nbycadv6vra4mbs3rypd5vte5eviq",
+   "before_seal": "7tpk7ukudv7pto6gjp4povny6xogn6nmodlhyf7utihekzviepnq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G006:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "z6mjk7m4sxwoc3saph2dao4735vjqnbsokbq6sa5336moocatxqq",
+   "answer_sha": "zglqprdovv34vj3uiu7ko4yydrdu5mksk472nikqpqybk6gevula",
+   "before_seal": "ztamggkw3gt6ek5syzgjnbpq3cep7upoqzlhnixdc2546x6lrqdq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G006:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "wenp4x2eexra5ip4hy5ovnx5zfhznafkcoooxq3ksuhx52o22xca",
+   "answer_sha": "ottkvl6mgda4aexdt2i6bcqxlo54ezo5w4ofzfvxqpxguxqnsqka",
+   "before_seal": "34fhlcmxftd6lx6uwwsifmupsqlftdiqxo4v3aakeu6why2qdypq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G007:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "gqqdnbwibehlxz5qbjenas5kpqentqp3wg64tf4524u4vn546nja",
+   "answer_sha": "3qohmsjd7cymlamx556jhn72wr23su62hyhykgjbbco3mhrcovya",
+   "before_seal": "epxekarzjec2haysljtgjgmsjluma6pimbthk6ys5eiskjymgfoq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G007:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "yp36u5shdnv7b7vwatwl222iicdsrejs2fmndci7bzwy5q54cjmq",
+   "answer_sha": "uqygysyxyvr7mohomcx36dkaxmrnharshpbxtuvzwevwp2tfitmq",
+   "before_seal": "btlykg2st6f4ql74a3z4zjhblzfrfn2xcqvd25izjt5j6wlbdh3a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G007:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "mzgr3dk7p3cvilaktfhjtlv7gnqoaulfm33cjvgfutwi5bt5heyq",
+   "answer_sha": "z2jrfi7zeuxkkcwayjvldkoiifr2tlbulddrgvcjcnzskxesge4a",
+   "before_seal": "gizfqwhexrap2io7p2ihyu2sbhhyoirrmq4rb74df4inykbjp3ha",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G008:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "3gshromfqgdth7mcicgworh4bx2qqeiqvd3seeo5yyl2q3bw6wza",
+   "answer_sha": "3yg2n33wc3dgmtvnupka2y7dfw2teokltra7535ahaejkh4cv4aa",
+   "before_seal": "rnv5eegoyd244ylvzmfnazohlifpr7d5oh7efl2a3kwhpvx37tjq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G008:control:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id"
+   ]
+  },
+  {
+   "after_seal": "dvv5xeq32jqkcktltmdvmf5ozfaseadrm5qdpliahq6lj4bzkgla",
+   "answer_sha": "zrafudzxsf5pwtasf2thjhvgqdwpf3ur7i26w4ocd4zszriedbya",
+   "before_seal": "olk3qrlsgcpagwvyoz7soc4ki57hj7zimfzjljc6khleozubfr2q",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G008:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "edojhbinyvjt5prsd72j7ar7enzyqq34ayuqo5o7soebwlfpalra",
+   "answer_sha": "wbbaplofjeibm3lkv4gkci6ljxpytfuoco45r6swiij4cppfcydq",
+   "before_seal": "ixnifhiy5t7yn7xyiazmbkmtmk6v34vzwspxl36mvgekzwqte6ua",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G008:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "sdpsdq22ezxl7yuqyz665luy6cwvwstnm6rq4gi4o4vkbrhomquq",
+   "answer_sha": "hcyhkvlsogrymuzmj6lqgolwlkdqrkg3dhe4hbmmfpu44qct37wq",
+   "before_seal": "bdaaxjlrobhhfxebx6v7nbdvli6bvdlo6cm7htqrl7ybds4mrrwa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged. #396 (#397): model evidence that names no span of the question is dropped before the check, so this careful-mode refusal no longer names it; still no figure.",
+   "key": "golden:G009:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/reason",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "ndujiczabn2wb2mdkurrak2pmwgwkcun7gpvn5xj64xs2d4vh3fq",
+   "answer_sha": "nia74dpphwbuhomnso6waneenwkmm6xu5qrq2ma5tvjlgbubdlvq",
+   "before_seal": "cjd5vpyovth5wmd46xuvhp2rtp6qj3rqji5qmr63nlxnlrmsissq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G009:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "r6qm6y5bub5jyqct6gcqglg7zuleoas2cha7ktpasfz2rgvt7epa",
+   "answer_sha": "xwwnyk7m2dnf4y423azbkssn5nzw6mly4s4tcc3utsyjoxmmbdma",
+   "before_seal": "k2xhk73mzsdacpg42iwnlw3e6qrjepayzdmtwoi4ul3323wco4da",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G009:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "zcl5m46a4swt3hr4z4akj425ayru4cu7o2cygpk3eagse7v64qla",
+   "answer_sha": "2qh4fvikyrvqg2nbdogqndiufqexhelj6qtqzvjlewzspd77encq",
+   "before_seal": "qhsy6rp6rwe6cqwd6sje5x75x7nrobajem6ofcr64sl6ua4khx5q",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G010:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "acprunnmqflpq7mbnkngqqrf6jlvzljnngwq7o6px3hej4uxr6ba",
+   "answer_sha": "evz4hfeuw3aapyyrrcxbtjwyouibdpzrvgefrtorskzspymgozaq",
+   "before_seal": "5zqkrb4icdj2opbzk47lifdxd5gjudxrcwtnz6advrwtnjrod3oa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G010:control:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id"
+   ]
+  },
+  {
+   "after_seal": "wdboepihtmoc5rymci2yohqvs7wvvbyjttcpu2jv3jgmkh3zk3aa",
+   "answer_sha": "3jwx5owcuh7ie7kq37porchqwglcsdajedl22o27fmhtg6fojbqa",
+   "before_seal": "dtontdz6dantsgc46crorivhpy6xphz3byzy27uedb36dszydjvq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G010:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "6prhgi4v72yon7rt5ciow2o6sgvuq4kke6gcnetju4iuiovtbwfq",
+   "answer_sha": "4zcgjbuxmyqktd6h37cej7jq6xf6dkn4rwdkf4wp743mdymsxwoa",
+   "before_seal": "mieq46vcue4uoqimzveb7etkjuhn3nrfac257echz7nrbgdtd47a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G010:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "s5gtdagsw56npo3ahcpthqnv7dxy32qm3jpfwxc2y42wsc2mh4da",
+   "answer_sha": "obhzuqj5q6tay7twlykdyfoawvkr5e7wdipgwpgv6yjgtw2nn4ja",
+   "before_seal": "si5kux225lehxhzbofvubwnjmd2c2tnaqgwlw3wgpk6wgr75fbcq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G011:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "xswjecvb72e2bfwgvorz5jfym7efaxfclpuey5rngu3zkqelpxzq",
+   "answer_sha": "6t36jvzjkrrb7osgdufklce7evtyzfmqb5wt4edaftuu7zpjw2yq",
+   "before_seal": "o5ixmuj5o37s7vqqgl3fk6ds53efv46pupciwstjayj5o2x4xhpa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G011:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "q4bg5zr5qwwyivdqrdinqas3zoeivdczdd3i5fqi7orwut4thlbq",
+   "answer_sha": "ocoedxsuzfnmainjijuabto47hpwzhijw4m5u64n2r27fdygkz7q",
+   "before_seal": "f3hkocvujspaoaz64emnksnrsig5azhhay4zi4gx4e63ymk4fi3q",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G011:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "ejfy4ukrzsiaacrb3igmyapaamg4lxw4fe5uitsld7z3fnfqn2ja",
+   "answer_sha": "zwn4koablsuhh6dmjygxvmz2oilwuc2p4hsidojbdj3hczw5ivsa",
+   "before_seal": "h4re2lzig5idxqkpbprnfagqskbxtehwordvupywyxez54ttovea",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G012:control:bad_marker",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "ybrfrlvuygdounkre3hdincyihf6lhjan5ovu7hkq2lshb6m3shq",
+   "answer_sha": "zwn4koablsuhh6dmjygxvmz2oilwuc2p4hsidojbdj3hczw5ivsa",
+   "before_seal": "6jfe6ojxa4k7xikhyqck5hjlaxj7wcmmanenpt4ruoidkorpexnq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G012:control:birth_date_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "omtdgnlfhdjanvfhzcagstkvbfiirvff4l4vc3uqxjxoedrrvs3a",
+   "answer_sha": "zwn4koablsuhh6dmjygxvmz2oilwuc2p4hsidojbdj3hczw5ivsa",
+   "before_seal": "mx4pevgfi66bpyefmg4an6jgvt4zfwbsfu4l5xvqzgwpw7b33eyq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G012:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "zgf2wn7mb4votyuie54jzf34rpu5c2yrwximgzcnmyptv4smo4xa",
+   "answer_sha": "zwn4koablsuhh6dmjygxvmz2oilwuc2p4hsidojbdj3hczw5ivsa",
+   "before_seal": "obyvelofwiv7c2jav74pnzbgzxpid6bdb42mvwd54lp5efu6utea",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G012:control:constant_figure",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "j73zqaopal77ssrctgqqthzjs77h45745f7rweyixaj3wfbn2ppq",
+   "answer_sha": "zwn4koablsuhh6dmjygxvmz2oilwuc2p4hsidojbdj3hczw5ivsa",
+   "before_seal": "wnlsgl7x7wpoktzzf5ytqfx7mjox3y7q57ylb5b7gll42phr2hda",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G012:control:invented_number",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "dcb4zgb2lbqwi2xxhhkjlfiukuttfxkrkzjgibt4fu56cg2g5dya",
+   "answer_sha": "zwn4koablsuhh6dmjygxvmz2oilwuc2p4hsidojbdj3hczw5ivsa",
+   "before_seal": "rh5bdwdbkpi3fcdanzisua4omtpf2k4z35x6j56am5jfiuqaclma",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G012:control:key_name_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "3bg743qugvbamjhkwitwrr5gqwcakljforjh5atbhc7pzxguplzq",
+   "answer_sha": "zwn4koablsuhh6dmjygxvmz2oilwuc2p4hsidojbdj3hczw5ivsa",
+   "before_seal": "zjupxn2ogak7te7cvgna4ddnduxlx6kjrpekbd4ppbsamsed5wka",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G012:control:malformed_json",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "nrbj7w6d67ydpcm7lrpxgmoja4mptknzsiab242kiptlcxin5bsa",
+   "answer_sha": "zwn4koablsuhh6dmjygxvmz2oilwuc2p4hsidojbdj3hczw5ivsa",
+   "before_seal": "zrlvsrvmmwjxwghnr5ucthcw522whmz5drv3fgu5bryj32u7p4ua",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G012:control:missing_certification",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "q7ookhkhstb5ienbwshkxonvfhk5nftwaiqukxl7lpdbhuqpowhq",
+   "answer_sha": "zwn4koablsuhh6dmjygxvmz2oilwuc2p4hsidojbdj3hczw5ivsa",
+   "before_seal": "znx44hkor7eus7ebnifbm3zel4rxub7ewd6kfixfvmz4js2hv2xq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G012:control:outer_join_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "ymy7d2wusyir4x5r2hlbrvmz5w5ynhql7y4uq633n3hnxbnq334a",
+   "answer_sha": "zwn4koablsuhh6dmjygxvmz2oilwuc2p4hsidojbdj3hczw5ivsa",
+   "before_seal": "v3jlhecxcdqrq7obz56qdljwqvsrow6kcbb2izmxdcplj3hepdza",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G012:control:restricted_column",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "it6gcymknvdmfl7ikwdqnwladyezfjpw6ftr2vk7be6c3ch2jfnq",
+   "answer_sha": "zwn4koablsuhh6dmjygxvmz2oilwuc2p4hsidojbdj3hczw5ivsa",
+   "before_seal": "7nc5estna5knox6htsyp7jyisnpmrvnnnl6h7gnm7qibayaqgtzq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G012:control:scaled_figure",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "qu4mi2efvmu7rpoa6v2sv74vftigj7mokoy6h27jlzsgs4eqvaqa",
+   "answer_sha": "zwn4koablsuhh6dmjygxvmz2oilwuc2p4hsidojbdj3hczw5ivsa",
+   "before_seal": "uwvxrkiqhd5skmjdwmgqnnu7vpagzmi4k4lr62vaqmo2munwku5a",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G012:control:second_alias_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "g2jzpuu7ruyucba5swgfppkyzdzamwp3an6kfgzyu5d7bzs7wn4a",
+   "answer_sha": "zwn4koablsuhh6dmjygxvmz2oilwuc2p4hsidojbdj3hczw5ivsa",
+   "before_seal": "fuee5jqqouff64rptihlvde2rrlbv3sqengxze5ozor7jymeg7eq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G012:control:undeclared_join",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "gxnkuag4rqyioyf7zcqoyizl6kiqmd3axzyvliqh5li3hcagjsxq",
+   "answer_sha": "kmiursyrvl35ykn3j42htgbp2lity7cofvdxfnyxqx4sqtypoc7q",
+   "before_seal": "mv6sguczo3hwry7sli4txmkcozewm5p3qkyewbs5gxwt446rknxq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G012:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "zmzmn3v56p7jtrflem7663vb7b3fkfjqg6dyllkqc7skklfelbna",
+   "answer_sha": "li3wco3647vxohcvlxgrg6t3nglvguzm3pqujgxxlkncjr3f5goa",
+   "before_seal": "ixpw4stjz4hjfizjrgn22rukiyzcddcow3fuzcrqlbzbpzojevsq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G012:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "wqzchzcvvvm5yh32fjl5zxphtdj4azgo2fw7wwat3sh2jgqwftoq",
+   "answer_sha": "goovcocvoerrwzqe7chnea7r626vj4jj3dr7uzfwbmye724dt2zq",
+   "before_seal": "muq7yq4niffcs2y66dd65k727qgdhb3c6yt3unw7yjk7y4lsqfka",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G013:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "yhjgjn6g5zcjtprvf3y23o5tixew3me7ntmylkjhpc5sytfz3h6a",
+   "answer_sha": "7nqvs4smrnyqrtk4om7jsuwjmsuw4ycjkqlv7dcj5lrn7up6gvxa",
+   "before_seal": "g2cr4og3qqi5zbyetj7sho5w6gomxr3vvodangddwkm3wj77htzq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G013:control:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id"
+   ]
+  },
+  {
+   "after_seal": "om7lpiid6i53aarfwu6fneyzxqsgnkb2hzp2j7ggouwjjp4lcfya",
+   "answer_sha": "smpvos3wxjmezkddkd3ovhsapedfsmsczd2bwks6aktwnpldy46a",
+   "before_seal": "6jrpsxdqenh3ypr3sx5nc7vbdf63ui4vebwr2nnycrfj7uz5i74q",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G013:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "fkhd6snbcgizt4odtbi5ccl7sma3momodo6j7foztxrfvxlceyzq",
+   "answer_sha": "mlm63efngppkk7ku3wgkvbxtkcpr2d2wznr6z6g52vukdohxh3ma",
+   "before_seal": "puwqjrbgataqbo47h6egkf4zmu7gqnxqzw77lcgewkvjkhmu3f5a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G013:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "ghmyjzjhkqjnykqw3ydiw56g7nz3zchbgqzbrsypmiapkka7f3xa",
+   "answer_sha": "p4zfa6gbrzcd35mapxikzhzwbzklzbc6lnojjza6l2hn5azp4f2a",
+   "before_seal": "v3gxecx5b7dqrrdyan2igjhjp7lowhwcsbzx3wyxugtyj5ibgn2a",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G014:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "hiluatgtm54hgsugfvqwpsxwbcervjp2geso4f43lgihqdvcfemq",
+   "answer_sha": "xegzlselzzlcmvxcguz6xctanjrrlkxmnurvqk4hi6ljrx6ka3za",
+   "before_seal": "wpg2g2gyjtwwhetmwyguzgrv5w6evt23rewzbiosdsj2jcamslpq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G014:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "e3dypk2zkwgrgsz6xgje6zlwj3rwbp4k4obyrndtvirxsfoq5ciq",
+   "answer_sha": "yqjkaqeoeer5lu4dzw7qayqel3jhxwdsbi3qhys5fja4cga43iva",
+   "before_seal": "drlkfxtlbedv7tmyfpjqkqrqr6kyegv7ugi3tppznsabf4qhbadq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G014:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "7yipd66amegptwz2la3wk3dpxlbcjycyp7j3ils36yum2ygkwxoa",
+   "answer_sha": "z26rpprca2te7tiijkk4rmrhznop5kf6n72wfvz2lqmnpcclia4a",
+   "before_seal": "dmsinwct4ulzq2s2toa3fotih3brd7rjyvygtsnd3c6kzwrdnlka",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G015:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "qyxcu5ni5xsy4rr5h2qu3r4vvcmemzf6xo5bmozpko3sqwlgejbq",
+   "answer_sha": "fkw3t5dze3r2mhuwtp4pocmb72emzx7qsvblh2ubgwr43nioim2q",
+   "before_seal": "k43fjxzqazas3s3xb65vt7cjzixvsesnqitj5an6xaxunpwxbeaa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G015:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "pjvlb6t2uxwvyzvwtlsupctda6s4yjew4da6dcm3nryu42c5b42a",
+   "answer_sha": "5wig4jdl3bzyubucgka2u7kwhxmjeb5ry5qnqs3h7lfhbhth6bta",
+   "before_seal": "fiz4w2uub2kf6dcfbpdm7uejnd3p653n7p5dmpuz5cuhwtfckuba",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G015:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "f6v2e2347ydbfu56ap5fv434mtwi445nzdkgx3rtjmlp3ss3aj3a",
+   "answer_sha": "sijiiqujp2l5t3m7zzj2q3oljg3wknqbwiz5hrijdky66gzfhwka",
+   "before_seal": "nbwtvj6kfwcb2q665ebbqf4t2jhtsfxhmqg22bv7dezk4ld7voia",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G016:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "gvrwecrtuoknhxkcdl2i6sxq7y5owhysmgjug3p36ijb6f2d6kqq",
+   "answer_sha": "klyzcpncy2fu5nvq3av73fabh35gz7hklbdm5227n55qcvbzhe5a",
+   "before_seal": "7lhx62dt7mjfqbvvdzk32nknybidwy5dxywhwz4vjom3qsd42vyq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G016:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "fjduqh7ahncdvjaqqscl6rfdjrwbtrcsvxhmxe3lqzdmp6nyz3ua",
+   "answer_sha": "7tkwvsfngwjomlc2w2fmnue4nebfzbwgmrksk7dn2tbgdbtnbobq",
+   "before_seal": "utwuelsp7gvm7qcfjgfp27jftatvz7idzz42jbakqxde6nydes5q",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G016:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "v7rf24xr7l2skefmzrxpmlniier4jbkggdxb5dn5fdqv6w5pylnq",
+   "answer_sha": "3fdrcab4yysbyuw5upupnjly2eneokuz5udyxxndethe35tqd6sq",
+   "before_seal": "5zapzf3ry7umraax52lal67eglusalk6rytw25rwagh57rfshrsq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G017:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "gygv4csehnwg7wzvsyytop3lzejkvw76z2ie7jwzkpcn4ux3p7aa",
+   "answer_sha": "xcjudtrjwari6fqwcv4hxodkkdxhek5mpls5ug3kryvuc35yisna",
+   "before_seal": "uilzomoa2nqkwn6mxxj3mfm3tonwgmzzzg7rbeawha3tecpmmheq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G017:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "2pwrjgd4qtasef6kt3bebviaxa6ujp6c6slnrhqyt45vrgjvdtoq",
+   "answer_sha": "ihkkla4u7nrmgdu6whhavcp77kwdjnst5khvfznpbqnf5ubf2abq",
+   "before_seal": "y2edll7bzcnedjkmqpt3cltf6iexuqqwjq2idjbpx2u75qg6cvra",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G018:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "h3xc2rnnfmmt57r62fyp4327t56m5kash54odsmbxqoe4bovp57q",
+   "answer_sha": "3qsemleg5d4lqade4mbzzxyjegpnng7lzyxrxsczyhgsaohqrysa",
+   "before_seal": "htquuwzv7jaog6alglkbezr7wibusglwzlfj4erhmgewswxu6dra",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G018:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "wqrhcav7jlorrszjeaqewur4s4guivzge7fgp74qlixu5l27tv5a",
+   "answer_sha": "kptd4fkbu5zzstxtr3m27qverzscxwgjwsc6gk67mo3rxrgfbika",
+   "before_seal": "svfupd6awqwaiptccrhdgf5narhx2qqmicujraq7x4bcaaqvxd4a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G018:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "clgp7vta7wriotwmukdqtxqwltwihpxwtszom45zat2ckj4ivhxa",
+   "answer_sha": "ko77psqvtxqxxjrya34c2bfo6x75pbx6je5uutpkpk673rcqaqea",
+   "before_seal": "m7rwjm4a5yjqwnihnrwxkmjygjjrr6j47xy2yarxl3fbbjdfbcda",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G019:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "zn5nbaiuwoedczltwdsyws6a4d7iuzmdfhwifyf5jiv3s7qgplgq",
+   "answer_sha": "4lxzubh4hxugsr2dtt35lcwc3vf54pvecbaqr7knn56rprgejkzq",
+   "before_seal": "y4sxczcdgctlt3zrs3mplkpotjdfyxgx5tjmie3b7rytlxtxszaq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G019:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "meg35hdgjn2uiegcdsxqagyxjuvwuz6vb5hsrtayrd6vb27a5lyq",
+   "answer_sha": "mndyfplku57bv6d26qmxhm2whmlqkxud4szeeo5owd7qgqaoha4q",
+   "before_seal": "zjqeeu3dqsvsexo3dsw5dootegzy4xe5sjl63gh2n6piwnsv4tva",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G019:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "itgdjnbgbw2jzwgius2r4pwoptpsmvd2wa4frx67zkyxbfxjibqq",
+   "answer_sha": "3a44wklb3jb7aitngu7ozfq6wdeprce5cvjki6licjova76xyjjq",
+   "before_seal": "gycyo3dmbage5mukdzudgaz6pjqscb7e7zuxf5mlxtcexk2epyia",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G020:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "3bxdxkxhl2akaf2w6gzx74m7x72rq6gyzrvt3pnd2dfob6tdvq6q",
+   "answer_sha": "eezttuahrdbjpy4abtuyzbpdumy3nikz3f5madrwjvbxddpb4pza",
+   "before_seal": "paxyd65hkhmtjxf7yd5e3bk2tw4egtkiofi2vvkfphdx7yxokgpq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G020:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "ttn4d2igpko32oez6eqfutr7fn2d5k5tfl673xldwgfvfugaiama",
+   "answer_sha": "kbdwsl237mavhums6t2sgic45zmscoev6i7lhq6tvfjhxdlvqw7q",
+   "before_seal": "gqyf52zpr5zf6chld5wqnkp24jiysdy4ksvueu65zofdnipsqdza",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G021:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "kmf3jnvszawyg6lcwo7lupkerkksn3lgkwxgxjmhahsdlynodruq",
+   "answer_sha": "2fd3z77fi3thefajbbfylaukcgrhj6rae7wac7ae4fqdmb3udjia",
+   "before_seal": "4kcbv2app4fjnecpgnohfhnw22sqmwlxh6shokv3k45nedvbhq3a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G021:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "akr4a6ip4gi4gq2vyo2frmtd4o6zlfzh4273mbyv4xuhsxt76xwq",
+   "answer_sha": "qaatqoe2fxr2ieccr4eb4dgroxhjmxnvpkyystcytosrcgzodvhq",
+   "before_seal": "ijl6s7vgilagi3pywwpejyjcbkfdxmuywpuujeessj3i2gth6rhq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G021:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "wgemomzzvxthwr5dhavjghpp3qxszr3s454eqj7lyyr56mcvkpwq",
+   "answer_sha": "cmivim4uuonxtuhr5jzbh24euqs2k3o5uqvdmpaonmpdhc7dvcwa",
+   "before_seal": "dwwcxabsafcxy2maod6g3ksd7o5zwxwhdliysjoa52pihiscbbia",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G022:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "clyr3omq56zjf7seow23atkti4sbyi4vusirmybqf7urzb5uy7ra",
+   "answer_sha": "ap7eulqyfbod4obbrjpx3wsdvoxs3vnefwptb6zeg3nsulasqxza",
+   "before_seal": "ibwuyvliue5okypxhde2hnvo42arv4rgb4u7wwmk53hziia6y5qa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G022:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "gw4yfbpdonfyuspo56xouub3cofpb3xcqzpv2ykztcd6zdwuj5ua",
+   "answer_sha": "qptxfkufh6rx2etjggt5jzmyucb457655h7gjpv4wi256svsymva",
+   "before_seal": "kwpvqgk5khb27e5uguu3ar2alptq57vdj4yfy2k3frxlxnjjhhia",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G022:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "sgxjgtesrgyir7dd2ao3svlvrvyicuojglvpoea5zxhuuwm2mlcq",
+   "answer_sha": "djn2tv5vovczig53n7i5gd4pwioylfqa2xot2522oy7o5ni5yxua",
+   "before_seal": "ikgwjlhts52nf4pv55ecb4r5j5d2adz6trq3wvdthcghccgq3gda",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:control:bad_marker",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "qpli3uidn3ip25f35yddtbu7db6ooqnxx65ka567pflqqgjebfeq",
+   "answer_sha": "djn2tv5vovczig53n7i5gd4pwioylfqa2xot2522oy7o5ni5yxua",
+   "before_seal": "mfxcbzbgahrvcleuhofj7274byr2tuyudmbadrzmpvjgwtuuppfa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:control:birth_date_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "uxmpaet32zoph6bwmn33jrgfixcqqvhoonmc6rkt2psslikk5d4q",
+   "answer_sha": "djn2tv5vovczig53n7i5gd4pwioylfqa2xot2522oy7o5ni5yxua",
+   "before_seal": "ddlmwrgywuncwbnufnkazrtqh34vuxna3xgdz5gqhumh3fsfqrba",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "i6rcgo22yhtyhv24tww4kcf3ttpvfja3qldoisdxi4lgnwotxsna",
+   "answer_sha": "djn2tv5vovczig53n7i5gd4pwioylfqa2xot2522oy7o5ni5yxua",
+   "before_seal": "hzkrk4hhv466a4jlml56nrq4totqzst7gfj5oonu6se6hma4e2wa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:control:constant_figure",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "a22qgfg7octsp6pzkzwxdiks2b2iy4rz7ztwrjm7bhtkjfbkzqca",
+   "answer_sha": "djn2tv5vovczig53n7i5gd4pwioylfqa2xot2522oy7o5ni5yxua",
+   "before_seal": "ibberhkqjoyoixil6uzwstsa4uf5d2eheklskjrrq6qhufjscxrq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:control:invented_number",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "fxuz2tqqubs6vw3o27tnuujdcrployyke463dgdour75bzhh4ija",
+   "answer_sha": "djn2tv5vovczig53n7i5gd4pwioylfqa2xot2522oy7o5ni5yxua",
+   "before_seal": "4ku34qhgivybsih2gsdnmvd3bdkpi2lahveg5ubzboyddjvfnjrq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:control:key_name_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "6fs5hkmoyv7vah3eulsemfqslvwthicaxsvfbhmmx4bmettlnnxa",
+   "answer_sha": "djn2tv5vovczig53n7i5gd4pwioylfqa2xot2522oy7o5ni5yxua",
+   "before_seal": "yaig63s77bgdfaslmpu2poonb4o766wzjydtgrs52snqylolbagq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:control:malformed_json",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "6ewtdai4ozrug6khah3l2ciu7zb56zxcigiradpxyvmiy4ahelaa",
+   "answer_sha": "djn2tv5vovczig53n7i5gd4pwioylfqa2xot2522oy7o5ni5yxua",
+   "before_seal": "dzdpxc7busjf4ojrbtwytkql4ttybmjrqsaitsepu7qvdzxr5ska",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:control:missing_certification",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "p6y66xxsjwovhfkgxntzps7topxhw3mwjhamwys2gbgvg57ggswa",
+   "answer_sha": "djn2tv5vovczig53n7i5gd4pwioylfqa2xot2522oy7o5ni5yxua",
+   "before_seal": "gxmk4mfkdqcu3famhk7l4mx2v23tcjnhnyetu27rc2vhpu7q6dcq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:control:outer_join_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "u5toamdwez2jebrve43cyjsvp2esqien6zojlcrsijccs7snnrva",
+   "answer_sha": "djn2tv5vovczig53n7i5gd4pwioylfqa2xot2522oy7o5ni5yxua",
+   "before_seal": "kdmtkvpkie2vhzpqg5fprxlz2rmmontvf666corqz25anetcv67a",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:control:restricted_column",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "xmvpxjrbwenbgbtttehtlppiytxw2vcdvslppycvqgdglsnkloqq",
+   "answer_sha": "ahisyvvjskqjszscgiotcjmihfuhx2v2rbgclu463lfvvw2utnoa",
+   "before_seal": "nqwzges5ewdij5mpde2kcruqommuw3f4eemop3qnbzdg6gjws4na",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:control:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id"
+   ]
+  },
+  {
+   "after_seal": "fqtqyppk6uehdvzhax2wvi4556njluzcld2lut3g57qb62ox674a",
+   "answer_sha": "djn2tv5vovczig53n7i5gd4pwioylfqa2xot2522oy7o5ni5yxua",
+   "before_seal": "33ordnk5cpzdnojyeo64jroxhhcwhmazoyycjhdaot34auaorloa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:control:scaled_figure",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "b2gam6fqvhbxglaenj4gc7gq2hmctwnrtgbth23cnvrgrq63xewa",
+   "answer_sha": "djn2tv5vovczig53n7i5gd4pwioylfqa2xot2522oy7o5ni5yxua",
+   "before_seal": "2ewyqtoui2c2nurrta3tokvgcckwponooxqwcod3zypddkjmlkma",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:control:second_alias_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "aderurrzafnko4kzpuritzp43pzovpthia7cdhr6qjbg5w7pmtja",
+   "answer_sha": "djn2tv5vovczig53n7i5gd4pwioylfqa2xot2522oy7o5ni5yxua",
+   "before_seal": "thzyknx5p47lco4xim5b4yl3rgd4hfdbr2cm4tcosmiyoemw4mea",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:control:undeclared_join",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "i5pvvqxhfjlybnfnz6vmiapqs4ewtoryai2ychhoedk3pd7jq7gq",
+   "answer_sha": "jsd5fcs77xmnhhiswrngalx6da6lf67qy2ihg7bjrzkbhkvgxjoa",
+   "before_seal": "ho3ucg4xaseun5iigge4qal53mkzqgznrbjjl6233buahw7hul6a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G023:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "f3cqhbgf7ndexwxkcg7fpwjgf67sxrcuczjplgsk7yfvpgbk57oa",
+   "answer_sha": "e6tjiou3v5727cl4txqmuoslnrf6cbgqv6gi5go6rq57f2awldiq",
+   "before_seal": "26l3koib3vv7ycugqdaxlptw5nyvfh4a3k45ezosciyj7fs6u5rq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G023:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id"
+   ]
+  },
+  {
+   "after_seal": "llc3idowiugmdicriwsu7qw7adak5a2tka6zfehpadgka6xkzmyq",
+   "answer_sha": "r7bhydprdhnz7uqocl72tjckvcrf7jatlgih6kqelrmvua5f2ema",
+   "before_seal": "axz7bcwu44idn3wszpenqvimnksy3wish54uecqjorrkalg6yeaq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G024:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/reason",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "4cvhzz4j7fzbg6m4jctpwzycqa4gnmrt7z3cjuiz6pxx7ocanqwq",
+   "answer_sha": "air63opv5jml33idnojrw5ylq4vm5wokjftuvkjbrofoxtdy7pnq",
+   "before_seal": "aed6io7trhdhjmheahfg42hcnd2bkaa2ue27shcy4dgkbh2eafca",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G024:control:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id"
+   ]
+  },
+  {
+   "after_seal": "lce3gus5zzvcleuwzd5wcg4bbpe53dmzc4tvi53qhknie776xzyq",
+   "answer_sha": "s3u5ae3fhouaqculjxa3je7asuhnsgm6vvapyxh2abryn2h26k7q",
+   "before_seal": "gpyxeyo6yhy3iw54o5xlhfpuzc75uuin4i5xhtqry66xko25cpbq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G025:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "2w6s7h6w7nh52lqcyowh767nkywms27vvggbtsj4qa57dytr4rra",
+   "answer_sha": "2cbkmuw3v534fgvq2g7hph54nmhnlazqoz5d32t5wa5h4arenocq",
+   "before_seal": "gnnxdadjpk6y7aylkffrryrgioosczsjmtw6ruqzzum3m52msqeq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G025:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "wi63dxtsbaanfnz36edsoovgtqdek6b35jrbpxncxywl7vn5e3ha",
+   "answer_sha": "agtdaqnczednlkvvldttrfuafsunz7kvvymsau3gr4lgmgdwvijq",
+   "before_seal": "56ie46gq3jztvemski3zvchjmihwuh2zwcmjvhuegzbqqvofnshq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G025:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "f3qan5fdfjdexnl36icdhgof54mnswgi6u4qvob57lcmc6hl3zza",
+   "answer_sha": "lobbpjd5s6w3ajpp7kblzybvl4xxmaf3db3fegqrdnnw2gx3r4hq",
+   "before_seal": "cx7bb5srvahkmm3nuhzkwcwy5nxthlememfvh5tg5tafeduaylda",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G026:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "7b5g5mjadx5kikbx4do7x6sj6xtcofsxu7n53qkmeydjp42bikia",
+   "answer_sha": "y4yuqoaujjzov5plifg3vqfqfqsnf5d67i3hqayhcitvfb5pkpsq",
+   "before_seal": "evjgrm7bttbcgieqg5lyrivoavjtssb3yagovar5bzaavobq5yda",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G026:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "damjon5slzonu73iv5vomzpsriuizu7dk3hwicxv2uofjxu23zba",
+   "answer_sha": "yh4o7nag52mjlu3jf57l73poapq4pigkypm4czgi53cxdjc25ytq",
+   "before_seal": "p7au6447eq2xt2mkjbn3brx7reuluw6oe7e7qnemdjkezanqzsza",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G026:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "kbbfy7hn6e6u7prqad53yb5oevmnf5xklcekp3fhjkgwsrnz2ama",
+   "answer_sha": "ezfjcdwqbtnjjz3bz7uyed3hx4sdpyk43lhqmxtye57v54eribeq",
+   "before_seal": "qkz7ga2jjtraiqpyop4ztavs2hn2owcjftdwuwdo26prh5phsnbq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G027:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "ej62wlbr6d7sakb26dixwnyqozrqqa7jncnsub55xhf4mab3wxka",
+   "answer_sha": "ssgiknpwmyrt7bzipn63wqjkuvovvip3a5h7nyewx3zzmgepfgna",
+   "before_seal": "n53qde67pou2xqpbx7wjmgbkygvuwb76rd6hbsinet22rr3h4a2a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G027:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "75sr4a6627dbxhwpmxcngov2iidhgtfxj3wgz3cyrxwy5e6bmk7q",
+   "answer_sha": "weo26bi7j6kzbc2ximd5t25w6uuy5vy3z5k3nupe3zxlz45ufnga",
+   "before_seal": "4t4awsr423meuym5jopapvdnjqy6ipuvrc2utu5oon6mi4zdlexa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G027:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "phvebrfw2jmjbsuz6o3jhbhdpixi6yjscnau3z76vj255fvd5ynq",
+   "answer_sha": "233i3feoqdypdwubqnicr5dbk5oha25lagmcr7cmyhteww4pps5a",
+   "before_seal": "54vdaot6yrbptbuiva5iropdmp2zktsazo4czsxsbmuvix2p73ma",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G028:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "5w7ezlxlxe3fcxyyl6bk6ciiy6egj6jwrf7f5op3w33muidcxdqq",
+   "answer_sha": "4xignwawjba3zjdqpse7c4rc547spfluy5yb2o6u3lwbxptnqk2q",
+   "before_seal": "itysgxzg6aolgpm4at7axdwvjr5xjysf6rzcrh4w3nafll5rpnya",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G028:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash"
+   ]
+  },
+  {
+   "after_seal": "d2yab5t2ksvhkrupblbvukk6qreycr6aow2lrqfqtao4km4tjo3q",
+   "answer_sha": "cxk6o4fcdjjqhsikale4ce7hxhrrfibiwsesasshqsawbqwv2dwq",
+   "before_seal": "yqgetqbkmpnqsweoo4bzd73yjj6lz3zbqyalokiyblao7yoos5yq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G029:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "cfxgbk3dbsbxkyxk2prrgn6ocraag7fldm7oaivbhx3ih4qsomoq",
+   "answer_sha": "4qqlpw2lswok6a2lvlt5zzszok2q5zpjkpajc3vvjwxykztr2xza",
+   "before_seal": "uwqvsv6zhdbeofnrgf25b6wbt3qgopo4ffd2vco5m4vbtrucdwka",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G029:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "2zxfisb2rwjsz2mvbgyhzhsjyeor2yhrokmtpghiahkz6bzgokma",
+   "answer_sha": "vlts53p4hc3wwm3r6klzl4m4ytx7r25eohf4y4aceb64dc4o756q",
+   "before_seal": "arab4zs4seolgu2ezmbgeeisfot3e36jcnjc6omnfc7pzmmrcssa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G030:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "o5uzijizl2upxsb5gwqcmnux274usptudr3ylibo3d26rdv7vo6a",
+   "answer_sha": "5huc2pgkioro2j3fkptqirtomhejuzklf2udq2gvbxrsdaw7d2wa",
+   "before_seal": "omxhpvmclolgye6myoedzt2two35fpsiuvqeqxahn2rzswhlwzfq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G030:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "it3hbtqxflpz5t5l7cq6rlwj6jzcd37kr2cr7syxlkcrupnzyk2q",
+   "answer_sha": "uwe5ru4fwmivmgfkchislf2binyv7iy5b6wdmn5iqsce4i2mtm4a",
+   "before_seal": "ub7soy2fybcs2qkts3vzqv6lywdlmmwgsqnouwqr5x3itq22nzia",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G030:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "banp5lvwrgfdcutzhxxjx7fkio3gwlrloskroi6z55gj23thdgna",
+   "answer_sha": "jogvbsy2sdwjdwfxi6hbv7fuqw6tyqmbob77uhhg2tv6d4dukhbq",
+   "before_seal": "pllnrmx74peptlm6uahuvz6j5putvr5pxq2wszl4tfbfdpd7gria",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G042:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "q2q4zitvlcts3snmhqadqdgayyygsjt5qmuyci7ks3vhrytnulyq",
+   "answer_sha": "psb4yobkjwbbvaec3sxmhkthdkeijvw47kpp3jrjhmkkqk3sb5bq",
+   "before_seal": "7dhe3tod2iwsbal6v4nlwdzqwuoccfnc2zxrgr4vaynjxtakxgyq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G042:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/1/hash"
+   ]
+  },
+  {
+   "after_seal": "yxqubzresnsohs4ks43nrea4oh5ttpr477tl3pas56pepdamkh5a",
+   "answer_sha": "66ercbwx3stnzroxaea4ypfdemcts2nayczo7afivfcnzlq3gt2a",
+   "before_seal": "xwwhod6h7rvhqfctz4ewtlplppft5zwwcx4whodum2iebpy4ijca",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G043:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "bowlrnjbhq7cpkljnorpaqnv4mcyt6u3cjjaqjautefjyjqs5l3a",
+   "answer_sha": "tl7qyjbpm27lik2ospvkdaedpg4n5krduua6y4caojaaocjmnmeq",
+   "before_seal": "ahyeceuijs5cauexjbskchwohi2is3zfmzr4gygbm7ruco2jyumq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden:G044:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "sgucr4bilnvfc2pfjzggofqpa4b5oo7pp43kmgysvyicvftypvua",
+   "answer_sha": "mxxrqu776vtsbzejqqmvaw46tk56k5ctnhi54dqlf5n27fhxa2iq",
+   "before_seal": "o3qbdrcf33cs5qmxw2blrt6lhvu5an4w4w3tgzfrznhn2mx6vxbq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden:G044:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "o36mxwzinu3occiey6acfq3rspr724rknun6m5kzhmrzy3wyo7xa",
+   "answer_sha": "plyq2n2sqy7b3ubvftcqvzbe4cmvt7a653i4qklrhtzucy3jjzba",
+   "before_seal": "u4y55v5y7f4yu2xsjqz2liwtnprrawu7s5jwz5ex2lkl53pkgpba",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_figures_v1:F04:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "g3xcanty5wj52ouxsyhsao2zps3nnbue5o2xcx2fv2c33cspsicq",
+   "answer_sha": "jtdx3h2mnfwrpu3gjyqx7m7anvgexeppczdbw2tlxkgt2vpnrk2q",
+   "before_seal": "yvbb2wkadhyvmvowslh67ur3ueeyn73uyxhlrp2bcojzxpujpbaa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_figures_v1:F04:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "sv4qblkcl5bsr7ghwokn3g56zfrdzo3pmdxaa6t44kuacmc2y2pq",
+   "answer_sha": "scmcbtcg3ia7desakdg72w4t5cj2iyl32cbkpgichqzo4gizrhrq",
+   "before_seal": "n3ucu2dgp4xzh2guq52jr4cggxkce6v56o5kkcre62zzrjdzy7va",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W01:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "hwibf65hzgaw44yjroks72agnlr6mdeo4tjherh4vqhtjpmmk3iq",
+   "answer_sha": "fkefsd2a7i5f7vpiu654ib45gqnwtofxlloivola4vkqposftmzq",
+   "before_seal": "nzlvqn5rbil4orr43juxckqzw5rjytk77an3mi6e4gtzupchzlba",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W01:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "37ar6gy4r73itfmgaf5m7dgc7t3h6kmqjczx2iph7lmfsc5kafla",
+   "answer_sha": "vjv6i4rh22spgx3o6ti5usutjdk2ckkjeibfvvmyhnlhacshloeq",
+   "before_seal": "uhixe56ofu2vr5oshhwkih6vmjyrzlfokju7mznphxbrgre2nljq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W01:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "3ttk2opnvuzed4toxzssjw7rv6yjjfybczecddrc5lvlftoc7hxq",
+   "answer_sha": "4e6gcc6jbl6vg3n2fjzj43wnliwlqf24evwhwu5n35gq5whe6tjq",
+   "before_seal": "n444mwoeln3bc7ngevy2kjmrvs7e26w3z2sr2bhl2hiqfiqdvjda",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W02:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "b4xrolj5sxwvbatj4jfw4fh3y2b7utptx7jkroa2mzogglgfx76a",
+   "answer_sha": "ai5gwam7vcaghizk2dije4r634f335j7ajuuk2wtolih4qttijcq",
+   "before_seal": "dwp6brog6zweng6h56ljvqilq7jfxw6moavttzabsodso4mpstuq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W02:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "gx4rnjo2m4ptfnielhymqwsrddfdg2ifkasazzyvxm2x3ifmejwa",
+   "answer_sha": "uvmfyzgj2y7yvfyqnm2zminablh4225czmd3xag7p5vacuas6xha",
+   "before_seal": "cwb4dyltpwzmyo5otsoxzwwvchugur4ztnibsruuo7havf4a7mdq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W02:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "fraaec3lvowpaxwydypwnvt4ms6jzww6whwbcmgpta5lgo3lyiiq",
+   "answer_sha": "4u6vzlgkvvvfd4oqk5wafja42ycgmt3zj5jxwfddatjl2dsermaq",
+   "before_seal": "tskchozisk6mlzds3dwofsraitv6otnb52yo4rkah435qioe4daa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W03:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "3vctbuy6kwr5f6346luhpd4uod6nydzctrn2lqevw2bd5kb3h4jq",
+   "answer_sha": "av3evhs5muockrjjgpqsx5sighcc4a67tmqytsuzrm7wcojq3akq",
+   "before_seal": "443qu3ce56x6w7n2ja2z3svqz2wit6fogczbk62skfl67gsmghba",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W03:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "jjzeu2jpdtvq23y5ddezdwfyydpmdtgavkl5mxx4boznpavtfgqq",
+   "answer_sha": "q5j35y6lqzhkahak6xnfq24we5l2hd5stv7hxgzvcxcno6hz7o7q",
+   "before_seal": "bd44yvo7722szoqi27em3tg2bovsaspj7xgo72qztoe6zpewdura",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W03:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "qxqhpsb4ss2sdll65dwovtkswqi65kpmrudjuxix7oyjiwnnt44a",
+   "answer_sha": "gstintlsncmldzlzrenmabkuabxszeewra7en4jsppxsh2flfjya",
+   "before_seal": "iyziuwcpnhrzt7khrbgrsakysevqtuk45ui7dffdlnf7gif6y55a",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W04:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "kder52lquk3j6mknn5ur5df2quinreg6ju6l5ibtnkqqclw7cypa",
+   "answer_sha": "d3wwnnkmwf6gnovur3w6osvtddaxcotphliwjoksun2tcn7nbz3a",
+   "before_seal": "4i25eawjkjvlhyca5wzn5pb5rt7ds62xwafakr3cjeu7ildm7mrq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W04:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "qreut2pmlyu347l726qfywxtsipyb6hjiwassfnnqkfuhq7ysxrq",
+   "answer_sha": "q52woby332o43fluajqw7yfayagz5tq6jrhempp53rx3j7ojm6mq",
+   "before_seal": "zkhimqwila6lynqxud3jpqypz4vwhqn3p2g5rvc33jrpmd5osoaa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W04:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "dedboqr2jdzevcxehseyfy4qzrer74xhwygl4i5oqgk6r7tvviwa",
+   "answer_sha": "ioapkcbkj2t6r54x5lsdwuhfneuiswwdepuvkktauqu3jdjtvq7a",
+   "before_seal": "s4mnuk42cdbinrwmqk6qyzkwbc3wx6ju4ufhhle7ogp2r5wog5kq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W05:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "bannx4kgwrjqe36bprfhut33pcili62lu53drylcjrxhxpfzzsmq",
+   "answer_sha": "yd5s6bwgvhmnmgvbbarjm27z3xqhcyfdic3kiherparzjl5jguka",
+   "before_seal": "xwrhl5rn7wpnyeh4llmzvt6s6rnefrs2iojc6klvovrbeftw6t2a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W05:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "3n3ku73njeg5uzosqisk6vf2h3ofzfdillo3kxxdcgqcablqbsiq",
+   "answer_sha": "63bpp2gka2n3g2ejrjfrz6r2p7iepuyuua22kjo3tbwmkqbdiv7a",
+   "before_seal": "va2m3fofrhycfhtyirl72o4ycp3tbvpr67f2lho3x5mwoiy7mxya",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W05:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "fccqexbnmlf7dddyixlnbwppfrnogbpuhshqa7pri6zwppi2dvsa",
+   "answer_sha": "qmef5h3dp6gpsdjbzxli2qhpohjtfaemjpx4tl7ybtdxhlsszveq",
+   "before_seal": "a4lehbxsevt2r5mjc4arxp3qvdhvztdj5za2h6bsz5qz4is4j2ta",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:control:bad_marker",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "e5vgjqkda7mu6nc4efjv3eseqkuqtypmmdyro7ppkaocqfdp5zya",
+   "answer_sha": "qmef5h3dp6gpsdjbzxli2qhpohjtfaemjpx4tl7ybtdxhlsszveq",
+   "before_seal": "oehd6f55ce5z7wakmwtkr3ebn7qjq7cofh3c3hbciwz4bbjocvua",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:control:birth_date_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "dth6kouac4pgk426a36f5pbqfje6tpqnaryszpbl4rvp4ekjwqgq",
+   "answer_sha": "qmef5h3dp6gpsdjbzxli2qhpohjtfaemjpx4tl7ybtdxhlsszveq",
+   "before_seal": "yctwas5dtdmwt56vrzc27uia5kwfdtfz2pyxb22o6ebady3fepla",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "zwt5oaonsate6us5sfgkwluuy747psjnknrojncutokwneaub2ja",
+   "answer_sha": "qmef5h3dp6gpsdjbzxli2qhpohjtfaemjpx4tl7ybtdxhlsszveq",
+   "before_seal": "3jzmfimnb7c4mvlqid6pnsjvfivqio2hjb5qeiqebx7zybrlx27q",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:control:constant_figure",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "gb5wrdl5haqfzmlgcvfygoebl64np7jblahlt2sjchlyatq2gtwq",
+   "answer_sha": "qmef5h3dp6gpsdjbzxli2qhpohjtfaemjpx4tl7ybtdxhlsszveq",
+   "before_seal": "zsbpzy3ob5lg2s6nic5yiqxd3brgk46lb6zohwnc6zfdxl2pzk4a",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:control:invented_number",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "eo7sshgoqjo3nugfj4vqw6surfixhsud6zdhzdduxm266vv5bxaq",
+   "answer_sha": "qmef5h3dp6gpsdjbzxli2qhpohjtfaemjpx4tl7ybtdxhlsszveq",
+   "before_seal": "skoz7eke3xukwyccid5ov6rro66a7zw7ovbutk4iyjez7dwaffkq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:control:key_name_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "auhxu2lcaz2tgiuedziethuzuk3ho6wrx44zld5gdt2sn3f55a6a",
+   "answer_sha": "qmef5h3dp6gpsdjbzxli2qhpohjtfaemjpx4tl7ybtdxhlsszveq",
+   "before_seal": "oievp3qo4cvovgdoyfhcmk7ojmvgs5wzii3qr5c346o4slfduana",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:control:malformed_json",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "z7nwpqjzuw3jifgsdrc5xdvkyvaltzhvp5aeotochw27jjctw5qa",
+   "answer_sha": "qmef5h3dp6gpsdjbzxli2qhpohjtfaemjpx4tl7ybtdxhlsszveq",
+   "before_seal": "de3nhstwvx4xs43nnpeukyelv2w54db4357g2j3vur6zh3usefnq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:control:missing_certification",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "c5bcco5claqoeupha2ecbvadrp6ig2rskxec6zecyjx2gh4nnqpq",
+   "answer_sha": "qmef5h3dp6gpsdjbzxli2qhpohjtfaemjpx4tl7ybtdxhlsszveq",
+   "before_seal": "5ay6qe6ellottyulqetai7umjcs74w3y2iy5hn4sxanbn7kfxhna",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:control:outer_join_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "wk2yogjjtixgwizuuqzz7uiuqc73x7o72hkc32rhxsivqh5d6oxa",
+   "answer_sha": "qmef5h3dp6gpsdjbzxli2qhpohjtfaemjpx4tl7ybtdxhlsszveq",
+   "before_seal": "ypmxjocneiweq75pewn5x5t6zfbyjriohyzyvmozdkwxgthutpda",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:control:restricted_column",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "c6wcpioc5v5rosctaaac45t7z5w2vlqltn5w3e355tqyu6pjp2lq",
+   "answer_sha": "qmef5h3dp6gpsdjbzxli2qhpohjtfaemjpx4tl7ybtdxhlsszveq",
+   "before_seal": "gjukm435lmusjypq5fc6lgdzcygo4wezzllcccttzkwmtm6r4niq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:control:scaled_figure",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "qkle7zwd32o25dvhce4ftfaxb6pns22xoovxmpvsuy3zjkeltufq",
+   "answer_sha": "qmef5h3dp6gpsdjbzxli2qhpohjtfaemjpx4tl7ybtdxhlsszveq",
+   "before_seal": "4b2xzkob5ngagn5brenmpby6nh5cmejg4ukpxtvqbpofad7izgdq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:control:second_alias_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "xqon2gzbiutscuoel6ity5jlbth5gews6awfpjeh66uzex5nkczq",
+   "answer_sha": "qmef5h3dp6gpsdjbzxli2qhpohjtfaemjpx4tl7ybtdxhlsszveq",
+   "before_seal": "r35nbcbicxkozog7u3cqr64ifbadb7sffxn4ggvcz4ehceth7gwa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:control:undeclared_join",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "4wroplb7hnts32oimaf6bnizgj3z3u6a7lavtvmy3mbo5mawrbbq",
+   "answer_sha": "jdach2j3a2fn4ey3glvrc25y5h2zkq6s2em5ky3n6mi3yt3g5f2q",
+   "before_seal": "ebgqzrn6xdrdmxyk3ey3feiz4424emgjfwvqhlbhsuuzy5tok3hq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "quiofrwgk6z5pbt7uqazzetulwqnwuopjshz6xa65m7v5nsczfgq",
+   "answer_sha": "dh4wepkzkt2c5bultixgsg7puz7tmjonctlwxofkfhz7a7kxypja",
+   "before_seal": "xuox7573wjna2aqtnwzgqxoga3cvkn5ptwwmnrqx3cu6pvawz5ea",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W06:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "nwlufiud6uw7dumqpqmayel4af53bagkweosqgnviegdhkfv4zna",
+   "answer_sha": "kyomkon2qbh3wv75bpo5b6io4sp5cy3ck23q75rrbddpm4sb72wq",
+   "before_seal": "daifdrudjodhefs6zxgwkmqre63lftpqm4lqmc5qixa47xi2hcfa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W07:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "7anxqly3tyoexpqbbbsiy6vg3peksxqmu73ha7ghulsf4nhvgxga",
+   "answer_sha": "xa6dpj7gc7mre7bw7yt47dufqtymbhixuh7ly42qbqpnmsjbrvkq",
+   "before_seal": "mizmqnmafikfeluv4dxujcdmh4i56jtrfdfgwq3qpdcuji2aspia",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W07:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "sv45hcyj7txhmlcpgy6wtu3mgwisluainxkqftbnciitallgekoa",
+   "answer_sha": "xv754otpr77v6vi7nlzy2xbrkfhbuyv7qx3wu73qqznisud3pota",
+   "before_seal": "g5qiiypvowxan3bf5o4b7yrbi5as4yptqcxlf56hmupsctrvs2ha",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W07:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "egdwffdbjktokgnlossmkcezluy2e3xnj4jfcp42kx7tzhsctzkq",
+   "answer_sha": "zl5gyu4btjkyfjtameowzsdcqjj5oqdsbmwa4h7k6foelo4nqnoq",
+   "before_seal": "wtjpwjemwuaeaz4culjst5wq6tji76aqrmxihxvc4rxgdt74bcoa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W08:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "7xzy3g22xb4jjjyk3gafx4wfm5xhtgfqc37pu4bu2snsy6kcor3a",
+   "answer_sha": "omnzevirwvjncvghddya2ohgrnmsdmg4a2qpslnllvua7szsf65a",
+   "before_seal": "a3tqgmehdeh36eg4mskimrxa7767sooaa4tapyeulgqxob62p6tq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W08:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "stfxo2ieww5ucdc5tenbxdx5c2vaubkjjm47ivmbeha4mpynwdaa",
+   "answer_sha": "5iz2up5ulgm2i4fzgp4a6ghc64ppocillml25ksrufd6trq4enzq",
+   "before_seal": "rmqlko76uelcthb7issq6n3foias6fagrowvz7vqy6p2nibw5i3a",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W09:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "7kz2qkoq7puur3tuubc35m72lehf4uls67e4gclu6scj5fzz652a",
+   "answer_sha": "qm347skkm6szpobkns2e2itxslvyswxgfrm2zrr7lx7pe4hif6dq",
+   "before_seal": "pcb2276waugp6qe3r3ygd6m2jm4ems3gk7wnueqe4ycs4xzpmatq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W09:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "3m2gd4gih6sxpkfile57y33o7g5dpmnekzfqqtexqwuosqqoi4kq",
+   "answer_sha": "qp4tepj5dtkyhu2amew6v2zemibjzcxwttd4a3op7dn3ug7ehxyq",
+   "before_seal": "kula4inj45r664rifk6ybhl2xgpt7u6mnf3bologmdky3gdyr42a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W09:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "ibjbvlvhbm5qdicdnwvzrquliuhjbacwu2kgu5wlj3wgouzjn5ma",
+   "answer_sha": "fdv6gkpw4hfcfiei2bejhkh4nvamzmsfqit7kfsag5e4aai2ng5a",
+   "before_seal": "i5aht5om37wdeyuscxeiyc34amj66u45cr5li3fczr6yfp5ih7ia",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W10:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "nocxshvigmuya6igjx5v3egtip6em524osez3vfkfyb5nhwljw7q",
+   "answer_sha": "aup7zwxvb26erpcrn7axxuoojjetl7ciqtenahjbapsfxfa46udq",
+   "before_seal": "zcu5ahcenxwlszl23cj3pnvleaqhlktc6c5nsbrrw5mfzcs6ecpq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W10:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "6jjyuzyqwvogknfubdnqj67rzq67qcq463e374igsqafqv6dtoha",
+   "answer_sha": "appwzotweb3toqkiqptzgcxmuwy7gc7xlkj7pznhzxtjfp25b5pq",
+   "before_seal": "ha635ubjc6dkbidu2kj26smd7oogkfb4sfiu2gsywxonvsiu4oza",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W10:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "xnghnf7aqfmtkjbslb66ughydwcv2z4k5ew34dn4f6pz65fsltba",
+   "answer_sha": "kkkrrej3dhth2npwidyvdz34ot5xw2fclfxqx5kmz5psqyl6xx5a",
+   "before_seal": "irdahxhbub6w3zyqiidbim4coiajjqxt6yjgqpdc7z4dxyvr7xbq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W11:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "lmkn7ebe7uvatjvewmf5slrk5f4tprqjy57j4febw6j6r5abmf7a",
+   "answer_sha": "jkypws7yksn6ea6qa6655nuxbdzrrswxxypahu6j764gtjdvueiq",
+   "before_seal": "g6b6mrxdj52pn6rqaqsr66gto6y3ipbnc46qf3klirmowlpga27a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W11:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "rhvfttb2jjrjlbtaxtw3nzs5qlz2j4w3t3mqdc5dqra6cyxmvkxa",
+   "answer_sha": "a6cd56wrxedisjy54vflhmbxdm6esod5g4yxkvp4rqoby4b27sfq",
+   "before_seal": "nrivwcgj5i57wpyq2lqgkxp2snfukc6svnjbkb5mohkqlvein4za",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W12:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "ompxhsedl3dxsn7vnx3qatuypenmyxr3352n7jh7jvduqiadg2qa",
+   "answer_sha": "2sznalrn6n6uvknvugqpznqhgv6y5q3tg4elbbmckassluwspjnq",
+   "before_seal": "efbantxdlbyi2wqzesyusqnzd3aqraeavazc5opm7k7k4u7cyxrq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W12:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "4dshsipgay4r4xpr6rq4ja4yai7jg5u665r6vtiv2yfhroj4picq",
+   "answer_sha": "7nhyk2phc5ub4avma27j7cnzty3uiczjdynqfvmclcx4qxyoydfq",
+   "before_seal": "3pl236qikt226agev5sjg723uft5apkjorvn42zys7y4aetirusa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W12:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "mwjyfy67qmgsbt4okacdm2djco63ivck4p4exwjww52fsxhgwfcq",
+   "answer_sha": "jociiygyv4ncvyxjcu3ypurjwfv3doysxtebtsjf7bqm6deluh7a",
+   "before_seal": "5xoiks44pz2r63vjnvkcrawewmxwyzyznorscfrlk27sfufn46fq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W13:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "wu4z4iznzqswjghtu533j6e6hszhyvail4nisw3aachx5ljxbrnq",
+   "answer_sha": "ds2tmigv5lqk3zi6yffiyskd4oarhtkwpqa5c2yh3bb7e6fiyyoq",
+   "before_seal": "yycbrjko3h5xderbsktqy5k3oz4rnq6f5yjyrm7nabrdw4orqqsq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W13:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "tf6lcwufge42ylzglxys5pl2ctvyzong6grmf37fnukus7uli6zq",
+   "answer_sha": "3nvnko5abhgc2i6jq3f5ma62lctlcqt7u2iaqkwimebf5lbjh4oq",
+   "before_seal": "73nu7f2pcknk5xiqwmyqppblf3h3yo2rsq4ulz7dfspwf6tcgapq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W14:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "6zatj3r2icg2wdqdm6vuqmngck7xvjovbmg6ioydxvwcdgaktb4q",
+   "answer_sha": "y3by5psfy5kahqehjfnmae3fwe2sgu5t6gp5ylzgxsvfvkaitmra",
+   "before_seal": "qly5qlq2tmc464pe7p6ny6ento7cfwl2w7br5vgeanh262beemia",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W14:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "bnlgje2b3ak74evplvnsbu2j5ylqroarlyktljwahqms63ankpca",
+   "answer_sha": "ikn4i3ukh3fnu4x7dhjzq4jeuo2d2bccpmugk7or57ctt3gxcnnq",
+   "before_seal": "hzgaldrehwavpg7xpafaps3jwmdrb26lt6ojnjgkat72jtmidrrq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W14:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "yui7noemiuxzcvwpuo446dsiz37p526m5einabu7wg2qducunpwa",
+   "answer_sha": "xi3pn7ozfswlmoguimts3khdwcm5hrekncg7h7mfi35odcqkhcmq",
+   "before_seal": "7p6vac5bujmalgreio3twiukqf7ifwzb6rlilbfq7dhg4vzhc5ca",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W15:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "25gzn4y47uliqomfqhmb7b6fiwlwelzicujubpxb5u55dhdqeraq",
+   "answer_sha": "zwncffuv3ma5xzfkabcckymrge2sp3ycyxv36boqti2g4tdundja",
+   "before_seal": "b76iyfr7ltgsg27i7nfn2rmvjjvlwgnylzqbscigjdkujqilxxxq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W15:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "c7gkwq5a43ym54dn2f2etncmb5kzcakiefhzochfdmf36q7s4cha",
+   "answer_sha": "5ss7tb2z7uoftjbabuvulplc4gquheeon5s3nvw4fxth5hbq4f3a",
+   "before_seal": "qphjmm2ycgna6hgbzxrypptafqjgnbgwxvict6m46tu7drmsdm5q",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W15:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "74pmycb6ouujtlupzon5hlnr37676w6s4p4xo4s5ajv2yo2xkkwa",
+   "answer_sha": "emhfio6o4t2dgbt5wyhhmrdutyg3vo25o2xx36jhfvnptum3fhvq",
+   "before_seal": "6hrtk7cjbl4ylsjevhmjz7mhjbytz45d63cuik7zuyw36zxhpvla",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W16:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "almwups25e65jbsci62w4u67xb7jhwo5oeakcecz2mw7cz7c22na",
+   "answer_sha": "pvdebk5wg5unugou7s7mxh366r4fuk5yjvnno7o73bj4o7ermz4a",
+   "before_seal": "htacistzjcrx2dfxbvo4xgzd6jvjrqtdqv6eecpy5cozkrhvu52a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W16:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "tmemeam6px7hlysyqg7k5o6pqes7suvxcq77vem65rrez25mqvpa",
+   "answer_sha": "nsn6czncr4vxk5vi3fvyo2qyahyttblaffyw5mk3dj5qzl4u5hla",
+   "before_seal": "oqwcgcef3smg2nhymhla7ytt5he63oj3t2ghfujv42ry2woorhtq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W16:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "6hrjw7zupupdwiwif3kzicx42cs4d3fbdke4zsm55tgmwznjwj2a",
+   "answer_sha": "vcvmghl5owwgiqya7kphomagmj46u6szjrjn22cgv3pqitremz4a",
+   "before_seal": "bwfolo2zkvtox4utptvu5xhturfw4vd4cn2pevdl52qu3sctejrq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W17:control:bad_marker",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "fhrf3knam65cqjmxa4wlk2uqu4vegvfj726dbhodnzsj7qtpojta",
+   "answer_sha": "vcvmghl5owwgiqya7kphomagmj46u6szjrjn22cgv3pqitremz4a",
+   "before_seal": "g4onjqmfvnh5xn3i3tox54p3dtmzvwemdak5luigvovlf74lyoya",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W17:control:birth_date_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "kvv5gajjxu32xmqoepj2i5pvkzawfud3y52zyr4ihrspv5b3byaa",
+   "answer_sha": "vcvmghl5owwgiqya7kphomagmj46u6szjrjn22cgv3pqitremz4a",
+   "before_seal": "2ky4lzdxatqosr7t2k6yo2amkowubbu7kyzj2w6ndtpu3l4t6h4q",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W17:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "dthmhpcqwvdpzfqmhpqrejbwgioi7h5fvzwpmuvvi75hw6ztitbq",
+   "answer_sha": "vcvmghl5owwgiqya7kphomagmj46u6szjrjn22cgv3pqitremz4a",
+   "before_seal": "vm6hoba4hjn2excoxzpenbfwmjnljzttc3qxue3pa77butpkep7q",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W17:control:constant_figure",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "agaa6waq5a53fehkzbah5u74363cxxdqaupa3khrat3ptep7i7pq",
+   "answer_sha": "vcvmghl5owwgiqya7kphomagmj46u6szjrjn22cgv3pqitremz4a",
+   "before_seal": "sionfufrokvw5f3ril4vtqpy4ms3llab4kpwbn5kx2gghdgav57a",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W17:control:invented_number",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "3qkxhcjjyu5v23xa7fiy7zrma5pwc6jtpzxfxl5vjmw4vpd242gq",
+   "answer_sha": "vcvmghl5owwgiqya7kphomagmj46u6szjrjn22cgv3pqitremz4a",
+   "before_seal": "aapeugurvyj6dhex56d25ssamxcup5ptgogidpgr4ui3p7cgygxq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W17:control:key_name_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "pnrqfsvzeivjlzhekwbbnml7o2lpricfk4vl3gomkhskmzllrbsa",
+   "answer_sha": "vcvmghl5owwgiqya7kphomagmj46u6szjrjn22cgv3pqitremz4a",
+   "before_seal": "akctftqwzej6agqmkwkd5wt4vywsgitqervcgscwih2yz5bdebrq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W17:control:malformed_json",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "2zlkwleyoyoim7c4ewuntlpmxmhwapy43zklvch5b4f3pwodb35q",
+   "answer_sha": "vcvmghl5owwgiqya7kphomagmj46u6szjrjn22cgv3pqitremz4a",
+   "before_seal": "5hydszhf44tmzzvaprgmw3lcdhgkijhr34q5bpfwghzt52guo32q",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W17:control:missing_certification",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "pbs3rzah4hpvcebewt2qstgd4rvmuecc6g5jbmqmssron5z6gnia",
+   "answer_sha": "vcvmghl5owwgiqya7kphomagmj46u6szjrjn22cgv3pqitremz4a",
+   "before_seal": "rz4m7plk7ftselvkqvj3wsu2oe2slb7y42vp4w3ihghnygla6zmq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W17:control:outer_join_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "m5fs4ifl767zg7ruxa57cwpfv4uvrobdzqqool7uhfykp547btbq",
+   "answer_sha": "vcvmghl5owwgiqya7kphomagmj46u6szjrjn22cgv3pqitremz4a",
+   "before_seal": "p7wcw6zmgcyoaj7xtfnuutckvf63una6ijzw26tldli6wmrmxioa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W17:control:restricted_column",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "rlpyrirmp2koiske2bemkudu3wsridti6aaor5hqilyybwjeb26a",
+   "answer_sha": "vcvmghl5owwgiqya7kphomagmj46u6szjrjn22cgv3pqitremz4a",
+   "before_seal": "24d3tccwe4glr2bfsgzaips6vt4xitzq2qfwg5tqhbh6mve6vmya",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W17:control:scaled_figure",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "mk3ct5fueof45qcnnrwq7pwsgawa7myma5xrdwsqywsrb43gs2ia",
+   "answer_sha": "vcvmghl5owwgiqya7kphomagmj46u6szjrjn22cgv3pqitremz4a",
+   "before_seal": "ktas7imuf7v5wkimchtvzd3tlokw6zicdwtugzkpca6pdbw2o65q",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W17:control:second_alias_match",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "hfraa4jsj7x7ogt6vflauoerj6g3ft3s75jg6nhv2rk5ftb4atiq",
+   "answer_sha": "vcvmghl5owwgiqya7kphomagmj46u6szjrjn22cgv3pqitremz4a",
+   "before_seal": "kj62bkudx5ekdj7bfbjee2ph3r2md2segb3ed2sb4xdxmhkwt4qq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W17:control:undeclared_join",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "sfbhvlt2bxnbw4pes6ga5ljae5csb47bbn2ygwce2rqdjbmlqjaa",
+   "answer_sha": "hqghmk2k35jybvxglhaxwciw7wpr6xdm5n6rvlkn5tbirrtdc4ja",
+   "before_seal": "uhnx6obgqi53mz45p22t4va6ghrjnktvo3bfjjtxxyumvzqfz4ia",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W17:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "onigktqldr5oynxfujjmfgykxiq7d5hiy23qabskpkjwzlydwb6q",
+   "answer_sha": "zpdffhdz2s34wbtcjyi3txdje4myfcufqrtpcg3xpj3wt5teph2q",
+   "before_seal": "wlq7n6whycp3vr6ramuormxejg6vmpfx6nelsjywhsug2x6kreja",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W18:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "tiecchvlkt6pbqevrwdiyxvqmxihxzu6qqkjgf32wiksclrbqujq",
+   "answer_sha": "vck62ckjzyopcxjnpdpu3ytru7cwmqdbry7qabkvjyt3b3bvmgfa",
+   "before_seal": "i4dm6zunfj54iyirklzelfwpatjob3cojwvx62sipdsdx2azhqka",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W18:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/plan/obligations/5/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "pxyj2j4utzmskg2z5yiqbd7fsejjjqb56vgaiaeiptr3f5e3u3xa",
+   "answer_sha": "g44nnd6dffrndfjy6n2pfnzsdwkh4rbdmanb42z4x45iaolt5evq",
+   "before_seal": "zzmnykai4hz6t4yquwpryhomwtylkfz2hxiumvvznxzzuuiblkwa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W19:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "hrckt4i7fvsbpxujmcffpjmfxqgz23xytb4igwzkkxkxtnqegsbq",
+   "answer_sha": "ar4f72etrlxffdi6jt74fj4i4fjec26pber4hpybcvatqj5wdt7a",
+   "before_seal": "kvwvym5jevdfcat4mww25i6a73hupj3pwh6g6sn7udz3pqjzomzq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W19:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash"
+   ]
+  },
+  {
+   "after_seal": "du6iffu4o3rhfmmmxajkafac3rlqaqfegrgst6zondi73hh2jjhq",
+   "answer_sha": "u2ximbx4vsw67yzarqchlnb4llidgjvcfgvpyzseui3qjcgkqe5q",
+   "before_seal": "pnbg44cl32anfmkm4gz6tbowryfjn2lvkp52bj4gb2klrwog6sea",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:W20:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "4jgpkr774jdmekyqb4fhzphsfihgy2bep7pnzsde6melsd5nefha",
+   "answer_sha": "xbiqqc6ivhl5mmhz2wj2vbij76hfmyk5ulkq2kyrdesldxq5hkoa",
+   "before_seal": "mthx5vs2sdzyvdq2qjk56t75cbiumksmyzyq4xgn7wi6ra6ex7ia",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:W20:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "2sngp4ag77asr2ghmecfzmsh2rrehwnwooufv5vd6xa6hl35axjq",
+   "answer_sha": "sjwsdcfqysdf4iuw4lyqrzfa7k6ocvxj2zybgdv6foxbaea7lvkq",
+   "before_seal": "ctc6bl3kg43jzegqpdo2odkvo5hpxwmugv5kmvmwtb5fnn6ndlxq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB1-R:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/1/hash"
+   ]
+  },
+  {
+   "after_seal": "un5nbtlnb5t3ccz3bagoxf426vpvnhznhc35hozk6hrdccp34rva",
+   "answer_sha": "qxmclypupoqhxokb3xlnqgvfcdmxh4awsklldqr66r3nbeshgc7q",
+   "before_seal": "cgdiq4xaqwa6o7rcpsuk3dyzusm77uim3shtkmazn5ewwpdspnwq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB1:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "qaetxq6epeti7nu6iy3b6gumb54iywvpzwpimalrkvunthvajmhq",
+   "answer_sha": "gaovs3p5xvoae3cdu5evyq366jwkzza5trshktq6xq5gfxhr47ea",
+   "before_seal": "pvxzf4ne24xhjtyxy34ov42e3hvm6kr6sgfrghimbn74ujeemjzq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB1:control:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id"
+   ]
+  },
+  {
+   "after_seal": "ilkeq2ohz6vk6lhyeiqyla75757klvyahtugmoqqbdoqyq6qtu2a",
+   "answer_sha": "axrx7nynk3arnc4p3nmqw5vojn6eydqrswa3jdjp5yl5cwzjdr4a",
+   "before_seal": "olotp6sb5mseyjxqoy5ngrilf3tmxiartei4d3lsenkz6zyljxxa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB1:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "zstwgwjnmk3i3nuqxzf27ld7gjbcyctaosnyfuwwmf7eo2kh7e6a",
+   "answer_sha": "ihxdfvy3vlje22bvpfcq6uxdtoa2sezttii6mlugyko5edf5g43q",
+   "before_seal": "irgxmoo7huzilrkp6edxehme3c7bkn64yqmfjsxb24tklhrjaelq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB2:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "ybniam2dfl4z4fvsm5mgxpg5yctcdyqbvtizdpp2bp4xoidulp5q",
+   "answer_sha": "5tyl3gtkbjtzsoj6p2dxlramxza4ftjll7usdeky6tlsd5ctro6q",
+   "before_seal": "lxcpz7yswzcg364szqhbuto5o56w4p3jp6aelrogzsuw5p2xjnta",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB2:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "gdcwoig77kxwddtoi3xdig43juntrtjsnklus4psrzur754hx5nq",
+   "answer_sha": "lwah3v5nyl56f4zpn3rtf6wx6cycnt4we6hmgzymr4rqe7jcojua",
+   "before_seal": "hryans4nyjmnfoqysprksfnzet7nxbxnuqxpz7dhcc4thdixnnxa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB3-W:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/1/hash"
+   ]
+  },
+  {
+   "after_seal": "tqu2dob2fuqrs7jkdf4hcqcyvxqxzpdolpawuyatxbvfb44jlwna",
+   "answer_sha": "ac65zpchswutxgbkuogucjf4rcql3n2pxtn2ao3trht2jspmrhnq",
+   "before_seal": "7wia2atxn4qbih46fzfklk245xijzvcrytiipw4bwbknakksdyja",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB3:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "lxikndoatt7qrk2q3cdwt7lwapdj2m5hkzbnn6da6vfnivyw3mbq",
+   "answer_sha": "rg2ijm3qilelvccx63wxaw3d3i5zaxjgjhmbnxtzjdgb5umq4ovq",
+   "before_seal": "e26zgthb33h4m2hbueftvnhuuknuiwqfmhor5t3xo6xynlkcls4a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB3:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/4/hash"
+   ]
+  },
+  {
+   "after_seal": "cvf2av3e3q74lyrmp6rtxqzoil4lyiztbmjnducfyodhkdjjwmga",
+   "answer_sha": "aaljzvq5k6vcokx5zd5e6ofpzlb7sbcdscyvtr6qhwxlctvxhp3q",
+   "before_seal": "ocrxdjlo6qo44ol5uxskjs3x3agy63shlxpiujdpzbwk2ft5byta",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB4:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "hn3k3sr243nkefdenzgois7lztv7q5kajzpan25r7yi2nvo6gsoq",
+   "answer_sha": "hxz5tj525prqgngx7xxgsy3uk67noyxl2iuqry6wljhvnat3p4yq",
+   "before_seal": "ah6lkisxffinhf2nf54pzghju7te7tloocwni2f22c5khuf253fa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB4:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "ng3ame44kgabv4jshxd437bg2jxy5ro2t67qsggbmql5k77oua4q",
+   "answer_sha": "sb6ji4hmi5slihcm2ys2ljn4uj3t5ppcjm5pqeubeetrsbdaa3gq",
+   "before_seal": "yi7y72hp4gfkxixhj4wcch52wf5dcigffu37mn2encnm7nzokhpa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB5:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "2ll76eawvqonzw4nmmifo7duxta232uqae3ayiyebfvmovbicoha",
+   "answer_sha": "dagwpcyhcnff2l5ztnana6w4lngzd7zyr7rjuvysmuaj4c3mogfq",
+   "before_seal": "tccxwpz42ljzlztgfavvuo4uao6mmksuhdfgfrb6ehk3jm2n4qqq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB5:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "b5ettsrjhm6aw4scxnnr64mvm6knl6umrjnzu6x6gf6sx4mt3hrq",
+   "answer_sha": "knirnam7hd4jo5szmv2j5e2akrpmj6qb3vkdme6x3y6jpcxjjfya",
+   "before_seal": "z66ybzlkbjg6d5dxzr37qydqtdv7hya7xnlnpilqdwygyp4st4eq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB6:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "324hn3c6h5totp42btejlsuv47yxl4fxuu2dhpbuy3hims2vscjq",
+   "answer_sha": "dd4bn7jrakrd6bfywrtalisuyudac5kzuwmhmyzwlhwhxrwerpoa",
+   "before_seal": "zr6drphnnlkmizfmpuiswrz45rbzbdbdzylvktjucspoty34z46q",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "golden_wealth_v1:XB6:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash"
+   ]
+  },
+  {
+   "after_seal": "x6sbu6r3qjbh7yxlb2qjvsboxpp3dqabhnynyfqqt6uxsxxobcaq",
+   "answer_sha": "fe2zttyzrjsgte275es3zoxlsdbagjykbi2solbvd2aootofmn2q",
+   "before_seal": "bwv62wfk7ubhl3isysnepy7z4igztnmwsdp4f54pvz64cc6cpjua",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "heldout:H001:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "bbhsk5anb7u2r5mayf6eit2vq6hw4z7ou6pid2uawma5rnss6nkq",
+   "answer_sha": "fifhvlx7mo7esbsz4mlkyb7irgdyv7intveej6keep3hfivkvj7a",
+   "before_seal": "i4iy5dzx4ptpggj74qih4743rqqyiydafe7w772kmvjyhk55zn6a",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "heldout:H001:control:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id"
+   ]
+  },
+  {
+   "after_seal": "lxfbs7efy3n5peiviece63tv2bsrcr3aorgpwk3hpg6s32futroa",
+   "answer_sha": "voo6mhqp5hwe763t2wog3kdflcf3v3ektz5jlvmtn3bwmevzv7fq",
+   "before_seal": "76gjmqotyfrnfgzprpwnualbjohwyhvcp6r4hwpwxivf6whbsk6q",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H001:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "7q5a7mcewjnts5vg2rwx5ttvrhjyyyz5pmaiblochhudybdpydpq",
+   "answer_sha": "22loaqgfm6nt5oym3rlciogteyhwou6wbg5dt4xdqztrdetwrgyq",
+   "before_seal": "wcbokg5qeo2jwk5kqxpisirm6kvswsxgng3dsvk5arxwu73mrppa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H001:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "ih6anc6iampo5vo5za4rsb5c7by6hzewabmgcn5vki7oebx7d4tq",
+   "answer_sha": "f4cwrehc2xm3gnx77kcbisknnhtzfy3mewdz2xpqs2n7tzli57ka",
+   "before_seal": "xbi6vk46finulvcmdpudehtwglht6qushmk6sdp77h35o7v6awxa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "heldout:H002:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "kfz2iky5t6cgpvzi5676mo7ocrmnkq5dsihjz2gr7dxvbauzwg3a",
+   "answer_sha": "fc56en6lkmycuibdsokrhfvwqvhj53ydhmkkrdxdjwis3hvqt42q",
+   "before_seal": "io4lux2jb4wuhkbzseqqbjxd4um27brqz7amu4kkvr3cgvik5dqa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H002:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "ib6bnshd6ks37pl6zrup3y7jsocoejriuefqsekhnmkls4mpu5bq",
+   "answer_sha": "ye24wr5txom4xj6zhl3xtexpctxcimm4fjisxzxkrygs3b55ecwq",
+   "before_seal": "kyue7s4ltl32esszwwdpydwgersow6om4spziqkvhsdcs566akna",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H002:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "ym3j56nmvqznjbtwrjnezkr5yhormveun5ekg3gwbaq3clivkpra",
+   "answer_sha": "psvvehozh3p63rile536z72ozsbk4jjj2kwzr2etujpjaikjij7q",
+   "before_seal": "n5gtfm7gw74iknqoetkeut6h3xpyp5iif7f7cl2i3pp4axrpuikq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged. #396 (#397): model evidence that names no span of the question is dropped before the check, so this careful-mode refusal no longer names it; still no figure.",
+   "key": "heldout:H003:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/reason",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "s6n4lgga2m55q54s6fpv7ei6cnbeqo4qg35kg77nrwizydxtd3la",
+   "answer_sha": "42zavskig37v6fbdx2be5li72boiwtyrcz4miry3fv7q4txj4qoa",
+   "before_seal": "ufzymbsh3tnshev35tosjoipawbrara26gv46ls324sajnefwouq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H003:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "icuifaairw2pyisebtofyypy5zhehvkbx2tzfiwz7ftqtf242kuq",
+   "answer_sha": "igoy4ldfayrg4z4llulwkqpzfjmqxx4vpx46v7rdbxdf7rcrjs5q",
+   "before_seal": "f4qpvkkpxc5vu3qhhcaxy3ykujb43sramx2ii25bvikfpwclqfxa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H003:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "6mwheynxuiv2gdry3brtrfhieir5gbhptlbghzc5go2fas3cr5xa",
+   "answer_sha": "rqvht4x44uefdm42xl3ummdecxmgxmmq7hwcuttivvzhnqp4ciia",
+   "before_seal": "m3z7egn5ggl3d5y2dmtgryghuj43xr3ur6jg6ka6kcxtgvyx6lca",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "heldout:H004:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "m4nzzouq5ys5try6fyjoryzuozozr2iafdzz5wilkrqxdftjoyoa",
+   "answer_sha": "q7imrlfs7x3ukdyzbgr3wrl23zu36ebok2fkz72p6utcr57colsq",
+   "before_seal": "zpcugc2hcz3io7lihy37v7z6vtguj6aoqvvqgucgcf35okro6qza",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H004:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "nie5wemtym7fm4ukdka6eq4t5awt42msprnllvfgddanigf23rnq",
+   "answer_sha": "7k5oxaqac3penqqb4metorgozu5tuyvwvtdb5257c7baiteztxza",
+   "before_seal": "woiuioqfpqciezg6uu4zgtql55v5toyu3tmbjemrze4ilpqetu4a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H004:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "lyznhwh3b3f6mnmnc4yp7vx3qqhbr55owpdmygmkkplqrcxwoxga",
+   "answer_sha": "sapcaxedrb3vptck2kegcymp2sa66d7kjefaftph6k6454t7zbaa",
+   "before_seal": "6lq7w4r3bnpmzw5zr4sjkfscdpt3spaez5hq6lbrjuwiz5xaol6a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H005:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "wfwfc6stbmjiddrhcgrm2r6a2zl7ir5ssmupou4wxd4te3ummqmq",
+   "answer_sha": "zbhoa5qnd2upgo67stw5e24rr77beyzzfz5flfxq5bgxbt47vnna",
+   "before_seal": "bg57nuy6jdci6hcafbw2gwnctfr6cwltk6ir2rx3bmwp5qs3wv6a",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H005:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "3xcphft5k2vcgo4jgazcbf3wmp35e7vc4wmwnypjex34n2hjcgzq",
+   "answer_sha": "q6n66mbzkmzl6cupse4yxpn7inh562qyhgprc34hnrzcb5htgvsq",
+   "before_seal": "kfddb27lq22skah7tum27phodzxs6e6y226klvxhwap5fr3l2l2q",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "heldout:H006:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "dj2pm2sxs6yfgnbdpmrbkd6aanc6fe5zxa3plp5rwqce6pob5wfq",
+   "answer_sha": "byr75rkbbajn7ilzgomeral7ebn5mp5u4dr2txgqa7d76ugqk2ka",
+   "before_seal": "mjmwa3cm4oigyyydpnvdqvhyt3tumfqinpamwguorm37vz2bxxwa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "heldout:H006:control:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id"
+   ]
+  },
+  {
+   "after_seal": "ivl2xgda4bfvyg2e6manbfkxzikbmv2fscnxe5fahtsno6omymmq",
+   "answer_sha": "db6374fmzqpot4evgsd4bp5eqr5mdjxz7fdepkklsa5icbsluhga",
+   "before_seal": "l36i5bly3b6w76a6gsnr7xhnp5drqzmux7oxxmrxbso5wqklrpaa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H006:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "qrldi7c7swu3hexr4oq62wqukwhr4biizt2uj73ivwpsdnewgn6a",
+   "answer_sha": "pnrzxsh5fb7v4quzxhswrc5t3bsztt3n7a7rvxxwhq5tkfyle2wq",
+   "before_seal": "sn3b7ne2hjs5okhyafokjwyxmotequepz5t66lwe7qbyzkqrxxpa",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H006:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "7vuqegmx2fiblyjwahnipgitplt57ftoec6kmldcxbnkjhtrn7eq",
+   "answer_sha": "d2zowlzoeryyjyfw5fuvoipv6hshjxjwozftvtv4espinotm7s6q",
+   "before_seal": "3hh23c2vqkxp72z5ale3gb6d6gzmi6ekev7wdrtovp3ijyywuvca",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "heldout:H007:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "bng2fmohdwa6ez43oz3fixrxzffcaup7qfi4teq3qocin5vla3ra",
+   "answer_sha": "6veua6ki3fnyoe5wfzgxdkfojo5vzzaqshadubsycstj7y7qkpuq",
+   "before_seal": "7egh7klyqffnxojfpwff63jvnkio7padx3igo4t66bjaiyooufdq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H007:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "f4lzayopxqaambqwu2hammgzangw332labkq4rh3bzkyt65si77a",
+   "answer_sha": "2sk6bcx35uevwmq3v6vcm5ytltijtj5zeantzm4lpkyfattyqe7q",
+   "before_seal": "qw5vaitdz7i7ey65dbhu22qbraj6pkp5xwf2wwudwe55ltxxodda",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H007:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "upthygoyfcx7vgq7euq7bntsd3illd5vnlbuerq6l5qb7yknp76a",
+   "answer_sha": "rxd6qo33nhuf2vaqveitkgxfzbr2qrgzvs2xjiscuiuzgjxe2t2a",
+   "before_seal": "e2martyqazuljdpc47iqw43vwvlm3jrskyxeaopt7fm2tzxsucfq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "heldout:H008:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "zm2smw732p2p6ljbvcvr46m6tqpbvpa2vvfpo4m6ybatyiryfsja",
+   "answer_sha": "iwfp7z4c4sydh6ogomlfhquttfdo5pruqppo3jrwk432bema67la",
+   "before_seal": "b5dejc3xa65mg3ypocokcnyccs5wvigsigoxlzmuztfonvsxwiqq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H008:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "qxcohj5zabv4odn5sxacrxrolfhcqxgtla7onmdc4oymxlbjhfpq",
+   "answer_sha": "kpmnuekvuoaqpzklyhqydokengsao5uymd4j2h5gsgz7tpfax2na",
+   "before_seal": "cfwkicay5kqzs2tng4gzylbkgu66nvwyxzw3z32ovduhhbmhyljq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H008:treatment:rules",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/plan/obligations/0/spans/0/turn",
+    "/answer/history/0/plan/obligations/1/spans/0/turn",
+    "/answer/history/0/plan/obligations/2/spans/0/turn",
+    "/answer/history/0/plan/obligations/3/spans/0/turn",
+    "/answer/history/0/plan/obligations/4/spans/0/turn",
+    "/answer/history/0/turn_id",
+    "/answer/trace/3/hash"
+   ]
+  },
+  {
+   "after_seal": "prsykntciimfjqfs3npwrvxi5odnvf6hxbu4hpw53wmvmspanfiq",
+   "answer_sha": "gmfxitmv27oeskv4clkktlyphrzedm5257no355mm7wl6rw3c3ma",
+   "before_seal": "7tfbti5yd7rpgplvfid2rf2jffxp3oz2fo237etxnrimj3l5eqra",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "heldout:H009:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "la2ebtxpq56vrvmrdr2e2v32unk5txmbsuoeuwjxp6muiiygzsaq",
+   "answer_sha": "xme3pfqa5zcnownivi4kzw33l5d7ulgibh5alhs4qfvbwjvxvqza",
+   "before_seal": "rgbasa4qrjwpnpx7gdkcojar6lvvrza54mcfzkqhsmzzcwj6gpiq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H009:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash"
+   ]
+  },
+  {
+   "after_seal": "om45wdbuq4q6rufnf5fhehrzjxeqz34gj5s2f6sh6frdasgduisa",
+   "answer_sha": "a7miu6kl33sa27evp6pfc2jxa3oewvu5ol4axar3oz67riugsumq",
+   "before_seal": "oi3idlkha3xhlnqpyg2466qqqu5iofzwoxin6j3jcd3lkwzuihqa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "heldout:H010:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "ryfgo6ygqpblxqb43ncucrin56p7yhcnjctvds7qc7n5gj42z4kq",
+   "answer_sha": "h4xu4ji6w2n2q46j65744e4o35szychlsucpubjoss4ysc5x47aq",
+   "before_seal": "j7hv7u3lju7tion6o2tfdr3rc5w6jokbpvz6rr3mlfkoctzewevq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H010:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash"
+   ]
+  },
+  {
+   "after_seal": "frt2ze5plrnto5wdrtdz3n7kjmvxppmrgm2z5uwkrk7vi6wki5iq",
+   "answer_sha": "g2o4lk6vpf6wkc2keab72ml5dw56v3agedkahjtlyzp2le57nnrq",
+   "before_seal": "lu5wjyyho4jxezg4pwyr4dz3uarmaittdcml2gukv5biaqo6uddq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "heldout:H012:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "ectlvlzk5lpvhy34iuk7jssby7kxm2s5skhh6rhcj5qgm5b6vdbq",
+   "answer_sha": "mmuvv4kbjrh2m3btpokjcpnh5orw27poetdze2lhj5lxiyuvcxva",
+   "before_seal": "l4okvk7ra7r3scmtab3qdkn7i6cicnxoj6eclr3neb65eikqw2aq",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "heldout:H013:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "nbnlxeohvaxvb7oqllq36b6ljtxtb6katyvw5stpxojrfk6neiqa",
+   "answer_sha": "vvngnuhl37544latw62z6fammuaxqrxqc7hmwu2un4wbietx4wfa",
+   "before_seal": "gghr553gfs5rjzw43izd5rwjp4orbroqmjknoxupxttmd7oiezpa",
+   "decision": "#347 meta-model 1.5.0: artifact hash moves release_identity, turn_id and prompt_hash; answer fields and replay replies are unchanged.",
+   "key": "heldout:H016:control:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  },
+  {
+   "after_seal": "u7t6p6m3yqilagqkpk6asbjv6pq5ybz5eiozaeki6xx57ktujcpq",
+   "answer_sha": "ppbygh4dzhj242np2y7kaew2e4f4xpldgs6grswrjlbq7egqdysa",
+   "before_seal": "hzjjxtrphbobk6c4hoqiswqz32azdrl3cvz57fveqavztvpp7ysq",
+   "decision": "#316 9f item 1: retain readable meanings when private hidden labels collide; replay replies are unchanged.",
+   "key": "heldout:H016:treatment:careful",
+   "paths": [
+    "/answer/history/0/binding/release_identity",
+    "/answer/history/0/turn_id",
+    "/answer/trace/2/hash",
+    "/run_trace/llm_calls/0/context_hash",
+    "/run_trace/llm_calls/0/prompt_hash"
+   ]
+  }
+ ],
+ "baseline_sha": "aqi7jsy24k4lbvqokg7mfry2q575waykgqi2iypbyld25wg5vaxq",
+ "decision": "Issue #316 9f item 1 requires readable meanings to survive hidden-label collisions. Only explicit recording keys and vocabulary-derived trace hashes change; every recorded reply and answer field outside these metadata paths is preserved.",
+ "recordings": [
+  {
+   "after": "rybzq7pmjaufqkk6tillpdoddhtssh5qseci5chu35yrymtc5ekq",
+   "before": "bfmwas53itmeayo45reefdxfjd43zpeobjqntjg7k2vwsyilzflq",
+   "case": "golden:G001:treatment"
+  },
+  {
+   "after": "l5l5igxpy3oa2sl43qoo5nfpkoxny22kobirm7tmcbc5kbeqjj5q",
+   "before": "itodk4b6sjyz5buhfhhbtd77p4ga5wanbfhoh4sch2g25ulhiona",
+   "case": "golden:G002:treatment"
+  },
+  {
+   "after": "5ktek4swc77g3l4pljfs3tjf7mhlgsqaqnujyhwo6zezgkwacfda",
+   "before": "wtcinrped7nv6sfqwup2s6cms4tfitgjfuzahfntbjmtlpznsqsa",
+   "case": "golden:G003:treatment"
+  },
+  {
+   "after": "xwujz45ohmcglcajencsz2n2dilbooe2z4ptmvjdjn4jab7o43bq",
+   "before": "rlwlmk4ai5vq6damjt23au3u6i6drrq44hq7bczymsbhskx4tbdq",
+   "case": "golden:G004:treatment"
+  },
+  {
+   "after": "vg35l5uoxi7a6otwrkhziefppv4xzvgucwddhcj434y26f4rkswq",
+   "before": "j73lfnsnkghpqu7zjcjkrgldy4d5ubdivr3x3ssy2nne5bju4rvq",
+   "case": "golden:G005:treatment"
+  },
+  {
+   "after": "sdxnui2ip7uzh6fobrr3jibvgue6ofpvqnyiejcgwcayr5wcrh3q",
+   "before": "ipxuwwbhjlb6djyuv4kupgchoo556hqqejcjoogsa4h6fymmywpq",
+   "case": "golden:G006:treatment"
+  },
+  {
+   "after": "aozxlkkwp43kxkj3bjiq7b73ou2g4245rnqrgvf5duxjs2nsqyaq",
+   "before": "pl2zmqwbpmbdaago637qzdlliizn4wjlioaf5wsrghrkgsztibiq",
+   "case": "golden:G007:treatment"
+  },
+  {
+   "after": "is5ojlvusl2mbxokohp2nelmz33sk7yd7axnyoooiuaytam7vfdq",
+   "before": "g6t6qxeoza7xhp5kk2d7rvs6h6bgmnq6xwhkpqzkypnjqgk5kqva",
+   "case": "golden:G008:treatment"
+  },
+  {
+   "after": "3rudsi2rvg2k3wup3sspmxundsnkjqqpmhzl3bt5bpvs4jr5gexa",
+   "before": "u3jhfiylmbbhl5biouvxgilhhpnelelvpybldjkpufoztfhwgx3q",
+   "case": "golden:G009:treatment"
+  },
+  {
+   "after": "wcpsth4cicndgzpmb4ound3jlln7ojxtf4i2tuwerjckqu4giiza",
+   "before": "li5xxoet6gu2bxbbcrovp4strirjkoyaqyqzstycoxw5anglfgya",
+   "case": "golden:G010:treatment"
+  },
+  {
+   "after": "a6dq6ry4fc5vgklkheth5qpgweuajhybigr7vjhi4rcmrwh5br4a",
+   "before": "mdwxjh4kmcstv5cftysg3vgs3ipwmokmhzu2cvp5chva2s3kpwoq",
+   "case": "golden:G011:treatment"
+  },
+  {
+   "after": "szaximrholqdcbhkb6ls2lppjvx7yzjkmr2sv3tbxosamzrtjuka",
+   "before": "i3mgwrkoaiutewxspxerdg6uxtuku46qrnggvtyvzbj4xvxcjbyq",
+   "case": "golden:G012:treatment"
+  },
+  {
+   "after": "twtzmti7nqzoe3guezcljvx6ihli2lwwc2j2qhdazldeotmgbtma",
+   "before": "yvda5od74xcibz43aufelhsm2uwznqr6kfplm7mdl2eidwr42iya",
+   "case": "golden:G013:treatment"
+  },
+  {
+   "after": "dcdhkifwhkzvseuatvy5h6rm2qceeo5xs5pyx2v46jjb42elkc2q",
+   "before": "g2ahotz3w5cumojbdoraz7lvvoidtnkan3jsnd2apiglybl6272q",
+   "case": "golden:G014:treatment"
+  },
+  {
+   "after": "kpfje6m4dcgdeoliwd6nzzeu3bbymlac6z57s7glb5et3aemnnfq",
+   "before": "acbpvglfhzume2z5ungngubn6x67okil4hou7pxrmy2joqa7izaq",
+   "case": "golden:G015:treatment"
+  },
+  {
+   "after": "h57vzuiqkqu6kkgs3kehdwor5pam6w3hbmllxwwg64io7uwgs6pa",
+   "before": "vkfroj7fotxqh6hwc6b7bmag77cfv4f2gwwtnbqs2hvgubvjlyxq",
+   "case": "golden:G016:treatment"
+  },
+  {
+   "after": "oj5mph5idjj7cdqncjhspbfceeafsbj27bth4xjecvzzoa6dvgva",
+   "before": "svfuveerz4xtyuddrrktfyknck2xxye2hw4mseqfms3q3ryjbxfa",
+   "case": "golden:G017:treatment"
+  },
+  {
+   "after": "n43ow6zizy6wtjhlmdfjbcqenmmyjy4gfee5gszitparp3afejbq",
+   "before": "7zih5cks4fknldihse7pfuqs5cryjgzu225njp7zlukdzbrop6dq",
+   "case": "golden:G018:treatment"
+  },
+  {
+   "after": "3sq5rtet5nvhgqukhuivlacy6lcmkeokqos3ky3gcuyvpm7oap6q",
+   "before": "z5v47he252y2trvidloeerd2gfdf7bzmktd3rai4knllr6tg6ypa",
+   "case": "golden:G019:treatment"
+  },
+  {
+   "after": "vhoja5kfme6zjukdk3l6xo3gucmhg3iy4ufbcjwuu233jovxctcq",
+   "before": "mx6xc4igqoetvasvcpoyi5wfds2cwbzdr4jmlykwncck4hbypogq",
+   "case": "golden:G020:treatment"
+  },
+  {
+   "after": "fgyxygggf7ubltop5wsdfdorled4kjgrrv24cdf22hwuixvmh5kq",
+   "before": "5jzomjnee5g3q6cc4j5bunegpzcanouyvxg4sber75xjy3jgqinq",
+   "case": "golden:G021:treatment"
+  },
+  {
+   "after": "klygxdfx4ucekvbm7thotfusugknleqxmxagvks7k5d2cfjc5xeq",
+   "before": "eyxhq4q4vksnt7s7f72zbedp5qg2xfz6i3q57sazotd2nr5pzmzq",
+   "case": "golden:G022:treatment"
+  },
+  {
+   "after": "4mjo5ggue3x4tcfwfwwtt7ruth5z2yupkk3q7pa76bsyjve5rhka",
+   "before": "l6v5tq7xvuazvd62zvtdt2fnuk7niaffiubo5cvd3puae5xeqg4a",
+   "case": "golden:G023:treatment"
+  },
+  {
+   "after": "46jde3cqm5ar367vmmnhukceaxxbil6h4p7n3k4uzu24kx7oyrqq",
+   "before": "fvftgp6hjyw7wxjp7jgs5xnydspzenkixzhirjtgzl262oce4ztq",
+   "case": "golden:G024:treatment"
+  },
+  {
+   "after": "thk3fop6pdfl35nq5hjwr3rofykajh63n7swu5fink347erjpowq",
+   "before": "yvprvgfk2huldz7hjf44woe22l5fieefxrsfmcw5zt3tdikwfqxa",
+   "case": "golden:G025:treatment"
+  },
+  {
+   "after": "7a2btwpo6v3bgklk4uc6k6bfna2g7htz6vtbp7h5hldhy546fmaa",
+   "before": "gznxkyq45ftvr5zzxs4gu7qdziekepowpbiehelhhvv753bnld5a",
+   "case": "golden:G026:treatment"
+  },
+  {
+   "after": "addmxhlugrryvrlmrhbl4dodhkfo6kqyipamkot7xfofsz73p3ya",
+   "before": "3fw7hswgbzstm4kd3rbvmqzjipq2lpe5kcntygbqbhe4zufvmjfq",
+   "case": "golden:G027:treatment"
+  },
+  {
+   "after": "g3vpvhbphm2qmr2bhd43hszjn5ec4exutvhrazj5z37jr27a2yqa",
+   "before": "glhxzbjs72isnckvqapjzskbm32df2p5ndes3hd4kinoaw6rlxtq",
+   "case": "golden:G028:treatment"
+  },
+  {
+   "after": "wanz7mglxja5rtiffr3oq5b75byad3k3tseawjz3765irnirvm6a",
+   "before": "gj5zfh272if55n6phzdb4ivvbu6w6zxarrz4wwsn6vggdkluklgq",
+   "case": "golden:G029:treatment"
+  },
+  {
+   "after": "x6j56tak4i532nfugfs6xf54mfhrzm7z3a646xxmb7tt3ytfnjta",
+   "before": "my3tatmoclqtrimuhfn7k6cg5r6ij3yidvmdhvmr7hz5a2ktc5za",
+   "case": "golden:G030:treatment"
+  },
+  {
+   "after": "tvxh24unfhtjrxq3rvmw3eiuzaocx6ypgddivjxmvwbza535zvhq",
+   "before": "u4ejjqzns2zorsm4dglakftjiccnfy3yj42kqrdspfsatrgvgbka",
+   "case": "golden:G031:treatment"
+  },
+  {
+   "after": "rpxid5vwkpyhoxrjvdr5iqlrigxkirmzbgfj6xxb5gc47q5aadja",
+   "before": "ulprfg5l4gm7jrx2x3bxaxu2bis5vmmjmjqfqhod3ui43p7rpqqq",
+   "case": "golden:G032:treatment"
+  },
+  {
+   "after": "jrgaduzdjsyvu64cjm5s4xj7lqbjs5umhql6jrusmejbfsdlu3eq",
+   "before": "aph2474wblvq65plbcluottj3wcwljggnesfql6o6oscgwx3szza",
+   "case": "golden:G033:treatment"
+  },
+  {
+   "after": "s4cj7rcgi2hkmthht73y3yyn2ws2bkzl6kqnle4dyfxgthibix3a",
+   "before": "bcvicq43paekfa7nnp6yjmdlgl2lnjxwaetdb62wrudqlfou3rba",
+   "case": "golden:G034:treatment"
+  },
+  {
+   "after": "blrtlzkdwb6xmyhnto5woatcjtqk35xgg7gpkli7dvmxka27e4hq",
+   "before": "ljwizvawi2vvtuy35ajustpgn563v4exqmuwp2flq6au5rq67eqq",
+   "case": "golden:G035:treatment"
+  },
+  {
+   "after": "jf5ekt2dmkbutfx3pq24nweuugvbrkvem3l2ezyq4mpa374t237q",
+   "before": "xrg6phalvww7rc34zyjumxsqaaorowt7w6j3z4gzgiga4rrzhj3a",
+   "case": "golden:G036:treatment"
+  },
+  {
+   "after": "nvuqmkcqbnpgcx7cfss7yxrhltnsnhbllrfbowa55p7iqkomsgpq",
+   "before": "a2zw44cx3gl7awognjrky2a372lilz4k6i5ic2chy2aekplkblfa",
+   "case": "golden:G037:treatment"
+  },
+  {
+   "after": "3ymjqvceozwxoenwxsuxb7h5acpb2oqbop4ppfqkcsf4pzpywgmq",
+   "before": "wjqg4z3lctdgy65z6u6bqw2cf5klmms4arc4egzwb2fvthhvjqma",
+   "case": "golden:G038:treatment"
+  },
+  {
+   "after": "y7qoi5lxlq4kujxitaggkspccefayes42vd67lcb6f6yx6ic7bna",
+   "before": "vlhgyf47bk4vbynb277ddhzbwmmovvgkqufomducy7qhjybjirmq",
+   "case": "golden:G039:treatment"
+  },
+  {
+   "after": "t4p2wh5ac6m7ubjuwbzsuib3afa6yeye6thpcnpbfwrp2hdznlha",
+   "before": "aitsc62kxgck7s4j73rhgslz3n3z3ymhnudnt7ggxyojx426zsha",
+   "case": "golden:G040:treatment"
+  },
+  {
+   "after": "fvobo6o3bca4qqhdjjumrt2qeejpkddut3lxo7obo6klv5wt3rmq",
+   "before": "y55yzndktej2jbk3zmb7j7bwddlk7ew2ohfomkqsnhs374rswrbq",
+   "case": "golden:G041:treatment"
+  },
+  {
+   "after": "ugfxoiz3yj37fpji55miopjzmw7kpv3xyq65bkqsmdy6k6foraza",
+   "before": "kszcrg3css5vi7phypwsddrjwofaybo6k76bidtq3rkqeorpri7a",
+   "case": "golden:G042:treatment"
+  },
+  {
+   "after": "mrokc3on2fr7hnji75dkaihxtuwvw3zdsrxer4xhjc2ly2jyle3a",
+   "before": "65doetba62vhc36hnybkj3ajnpp2odkr2do2uebkowkvzdjlfv7a",
+   "case": "golden:G043:treatment"
+  },
+  {
+   "after": "u7vfi4p2w2cltccqzsvoctf5hyczstbnijocomnzwz7h3plenn5q",
+   "before": "dd3m6ajls2n3gt3ypz56eotc7cii53tstq2qnqaplfziyhcmnsra",
+   "case": "golden:G044:treatment"
+  },
+  {
+   "after": "lyqti2tok2p7vcvzdafzqmnxktjvltygxtceene3elzsqtrzrx5a",
+   "before": "rtbtmldt7eibxgc4bqovllbilwet7bemnkn76t45qe5gcajoah6q",
+   "case": "golden:G045:treatment"
+  },
+  {
+   "after": "k7qpzluq7l6tfjpvyy4mqfnkllaq3w2oxmpvnamkppewhgdxe4nq",
+   "before": "2qceffa7cay2epbjzdrshxayxjvps5t3mjwrlo66mqow6vvtlr5a",
+   "case": "heldout:H001:treatment"
+  },
+  {
+   "after": "qaendo5pcmnrr36dnforiqcjxmjavm2jwciqhldag3n72272svga",
+   "before": "dtq4cujgkkgdruvva64pjij5cw3xuol4ydz5oenvdlrq3bwfmdla",
+   "case": "heldout:H002:treatment"
+  },
+  {
+   "after": "qgc5w7g5hkgs3yxtrq7iicskoikn7scnf7ldvkwhwm6nryf7z6da",
+   "before": "ks6cm4huayaarvyf7bp75emdzegx6uzygeknmw723kix2orakooq",
+   "case": "heldout:H003:treatment"
+  },
+  {
+   "after": "zeiq7in2ogqo5b4lrbhstpsoj76keasyyo4rqpx545pzbkaroasa",
+   "before": "ne6r3j35cbr4xrxcgnsgrpl3pn4r42xv6m5c4zqv4zzgp7xxxt6q",
+   "case": "heldout:H004:treatment"
+  },
+  {
+   "after": "o726vf5373pl6j2oahy2jitxdathqbhlplleas7hrjnfhqp5b5ca",
+   "before": "pv7rcaosmuru3ywfad2jmauggcxnpfsctec2mqdyb3fchlyzhoxq",
+   "case": "heldout:H005:treatment"
+  },
+  {
+   "after": "qww2cbrhi67y5axjic6rhddngjdtzsexacuqkj45slsbsxlhkd3q",
+   "before": "uiqdcnsqxwbasvkanu7knfmp4t2vyxujsoot4qdyjff2vsaaam2a",
+   "case": "heldout:H006:treatment"
+  },
+  {
+   "after": "j75v7tgupsj3vdu6u446nln6we43sxobgyi4lgoy55gtvscamxrq",
+   "before": "rqf4bnym66zflvxtxj2xebpser2wm76kvceyr32pugarw6pxxzoa",
+   "case": "heldout:H007:treatment"
+  },
+  {
+   "after": "znuxwinfo3wwzigjcwcutv3znb3lva6wbmmc2p5nxqofuxjpfn7a",
+   "before": "d57kw6fpaerwfcmzc7zudoxacsc2yayysrixq255msagolyy6gfq",
+   "case": "heldout:H008:treatment"
+  },
+  {
+   "after": "55y6qatp7mp5zk7ckfl2unhztkru76s6mkdmfjxwyhurx3qsbauq",
+   "before": "gbqb2qkr3zrhpmvqa5ttwyc3uyn3fn2q5wp22s4cgi3hi3k4dora",
+   "case": "heldout:H009:treatment"
+  },
+  {
+   "after": "gslto6jgqu3e2monlpzqgj6xcq4yfbpmpszca2lect4sfewhde4q",
+   "before": "p2j6bnkzaybm2taupen42ivb7o4sdgky5fvqm2lgo3gj3f6a5uua",
+   "case": "heldout:H010:treatment"
+  },
+  {
+   "after": "fjkb43xl7tnkc4w2rpslpk2jonk7lcvrbgbreinp3kkizigkfbrq",
+   "before": "hvjmif4jm2sfb77p675hyt46iu356iuhj5m6ucyeao4i5qwdfzfa",
+   "case": "heldout:H011:treatment"
+  },
+  {
+   "after": "wzyhm2hv4krptp73ir7ve3xcp6wcbagmza3qnutyq2fr26nmdteq",
+   "before": "d7xkug7a2b3qgvszlhedimj2y4vipjobehzqwr65stkdtn5yzosa",
+   "case": "heldout:H012:treatment"
+  },
+  {
+   "after": "mrsn66meqlxhefr4ktqo5el4xwp37rx6gxqtr7nfsp5jym4fwzta",
+   "before": "ynkcfjznym52iaeikjc5nyk77srebnn5ahjuxwkl7f6rsq2wkbkq",
+   "case": "heldout:H013:treatment"
+  },
+  {
+   "after": "vmzvgqp2ov2gjupsez53msxslviwrfuxospxze4sfaqgpiv3f6lq",
+   "before": "2ofphayyhmcls3cbpsj4v6kpoal6dq75zjqyi7n73pmcbpyugzaq",
+   "case": "heldout:H014:treatment"
+  },
+  {
+   "after": "i5nwtrcncr7xvpkazgcrdobsaxsdezryngwznr62m27jjnwf4jxq",
+   "before": "ziauvxedp2agcog5yb5jkoqi4v2an6llv4bzz7ynaoncg3ufhwwa",
+   "case": "heldout:H015:treatment"
+  },
+  {
+   "after": "t6zmeusv6hrkhqzn5bmpvuyizqhbk56sbvlp6vdqqyl7vtkea4sq",
+   "before": "fm6k6gczjitauek24hajppny27sa7ennrb365trmpulhpyi3hu2q",
+   "case": "heldout:H016:treatment"
+  },
+  {
+   "after": "ks33vgvjh6z4de2rflswdrcwcemedwowvroyhlltesozmakvrcwa",
+   "before": "z7owzpbbh3gz4772vrvovxipih2s7yk2u4akjctdokyzlxdjt7za",
+   "case": "golden_wealth_v1:W01:treatment"
+  },
+  {
+   "after": "2s7li4nmtl2kxybipf2fi6j5lmmyn324q3znbacbsbnge5ud5jga",
+   "before": "kjwbmy4smgic5pc4dojh65xovu4kefeusp34ypwon2f66i7id5la",
+   "case": "golden_wealth_v1:W02:treatment"
+  },
+  {
+   "after": "asm7gcrohvpuancgd2ufxpdmoeemr2jzm6hauon746lnvpla2jjq",
+   "before": "5eha6lqteiul2pprr4agipbqcm4btjegbcqz5q7usqyqdsrmj4ta",
+   "case": "golden_wealth_v1:W03:treatment"
+  },
+  {
+   "after": "oveop4et6rfjorhz4jvxqx3ixj7xeg2wtmegrk3iwywmimlkezzq",
+   "before": "erv4mljfm6rbc5ls3u3iuocyke5csmydfwsm2b3p3czclwknh5pa",
+   "case": "golden_wealth_v1:W04:treatment"
+  },
+  {
+   "after": "pwp5rces6p6kqfpcaq6mzgwlxud6rnyqo2vua474js72ijspix3q",
+   "before": "x7hljcsiesi7pxdck6pqdnti4pnpqj74nkwhwkjdmufqjv6qqodq",
+   "case": "golden_wealth_v1:W05:treatment"
+  },
+  {
+   "after": "eodm2v3kref4roeq4lb66ch2zyfqjsiv6qz7lv2cs6wiyd4pbnbq",
+   "before": "vhjincxrl7qwwxs7inghviovrvdrpaehso7gsxt5qd4rqlt2izaa",
+   "case": "golden_wealth_v1:W06:treatment"
+  },
+  {
+   "after": "xhao45tsknbw23c6poq6lx4quiix22ygjguu6ruitdzkwqdtruna",
+   "before": "yir6c4l2ytfg5jz23op4rzefv2f3ti5mpqutj3e2kafklc2vgfna",
+   "case": "golden_wealth_v1:W07:treatment"
+  },
+  {
+   "after": "xebtsnvif644dldxb7gobaa4dbtgnv3meshuniwrybe5vcunypbq",
+   "before": "mcjk4oshah442hcdeys2vash7auoahjyyzhqvxnb5bcyy5vkvioq",
+   "case": "golden_wealth_v1:W08:treatment"
+  },
+  {
+   "after": "vi5z4j7lugjb7medqmcs6dk3suljvx6cmulhd2ubv4qa3r7fueuq",
+   "before": "jriy7itagp3zmkfgg5njaz3coxighmci3svl3nruks5mk566db6q",
+   "case": "golden_wealth_v1:W09:treatment"
+  },
+  {
+   "after": "2nllytlcan6hgb5prgjqbdz4nsgeo2c3hgs2ozrr4373lfc5ouiq",
+   "before": "7m6oyiaka23wpk43tszc2cydymq42zh7jtrk7gclcmjeppfk6oya",
+   "case": "golden_wealth_v1:W10:treatment"
+  },
+  {
+   "after": "ied2dsyaif2dabqwmmyhzvwdax3m3qeanimv226i5zjoxspnffgq",
+   "before": "tdzcjvgv7ufwcckoou776tewx6uiuyghighqkffwvnqyw2fulyta",
+   "case": "golden_wealth_v1:W11:treatment"
+  },
+  {
+   "after": "7nbxscchxuy6d2zltqlqwieg3bpsdwxs6yxqdl6fttcxp5heshbq",
+   "before": "3jfdazwnzjkxnnxkezk7bcrawazcqfzjca4psuo2nfu2ca7chbmq",
+   "case": "golden_wealth_v1:W12:treatment"
+  },
+  {
+   "after": "r67g3vfr4gdsvnu72ntkc5zeozgiclxz6qdeer437l7humfmz35a",
+   "before": "rznzhma72yygfvfsqi3hrbdtlath2p4kqwbf56c36k7oangi2xrq",
+   "case": "golden_wealth_v1:W13:treatment"
+  },
+  {
+   "after": "xadir5hyp2l56lfni5qexxma7qv62kohkhldmwgc5hdhcbucvi4a",
+   "before": "txoswgfkandapqknfvuvsdvm7yh7ukhuvksiarj4ctnf3gpqmhxa",
+   "case": "golden_wealth_v1:W14:treatment"
+  },
+  {
+   "after": "ieksxotekk4ec7bzm7vk7rbtokf7blyayc5z27ohf6t6zmnuzhpa",
+   "before": "rsfxh7aafcb2ohrlo7bninfuahp2evcghosmwd4wa3wt5z7fz76q",
+   "case": "golden_wealth_v1:W15:treatment"
+  },
+  {
+   "after": "p4rfcqkk3ui2l2ftzmyh3k5gmbho3loldiz73elpxp5zunrzs3wq",
+   "before": "ueysmysteccirv57gos42j3heexggd7ysptthddyeek2tzhtlm4a",
+   "case": "golden_wealth_v1:W16:treatment"
+  },
+  {
+   "after": "nz66qthaug6zszglgloux2kmz7inv2cexdtdn2d2tzzhvqcniiua",
+   "before": "o42ncxsta2pwygfbg5jitlob6wabo44mxwyojhme7ljmdj2xoisa",
+   "case": "golden_wealth_v1:W17:treatment"
+  },
+  {
+   "after": "twfnfbajayqqveaux4cbjrpiykggg6f27rovqt7nifnc62vuc7pa",
+   "before": "2c36r64k2lbslluptkx5ojxonnjo5cqavlceawalgglv5eakfqca",
+   "case": "golden_wealth_v1:W18:treatment"
+  },
+  {
+   "after": "bk3rejpegitp2wsrfbos5v4w3ju74bm7uajeckjkqxnrlekrdt5a",
+   "before": "e4a5cb6urvrgepypcpri7ctv6nn4vn4pzl36fhkdb7gjxsbr7cda",
+   "case": "golden_wealth_v1:W19:treatment"
+  },
+  {
+   "after": "oipazl6th2ku3kxuenjcizyfyt4vfcrlox3cuxir6klraary7w3a",
+   "before": "3yke5dok3zfhh2amwcyarcopbzp5p4dwvi6isxhbxlt2th3tf2qa",
+   "case": "golden_wealth_v1:W20:treatment"
+  },
+  {
+   "after": "y5vvyendsxcaeba5wh6owruq6rcstzyjvcdnhxbsptamhnnp3mnq",
+   "before": "5rpcjh3fze75fsza3seeoai65sd4gudbvskg5cfjkj26h7hikgsa",
+   "case": "golden_wealth_v1:XB1:treatment"
+  },
+  {
+   "after": "6sjtmdhudep3h3r5yutf2byjlllnnyhmr7iu6j3lx7lqy5jyoeoq",
+   "before": "pansiqvayxacpmlq6qztpda6gy3kkxwsnntk5ke2ej3gwgjek5nq",
+   "case": "golden_wealth_v1:XB2:treatment"
+  },
+  {
+   "after": "g4zww6dplibckzy4ftze7l65sfnms6yfgf5fnzd6tnk3f65ypkna",
+   "before": "atameoysdy7l7iztlws45hvggnmeen5ljj6lbktu7gbbn6g5v3la",
+   "case": "golden_wealth_v1:XB3:treatment"
+  },
+  {
+   "after": "hb2j2zbnwh5gfy22ihcruideubyfaa6djcxpqubc55da7wkbuw3a",
+   "before": "ibfihtnxlojofromtltxlealpregzzt2esphcxpubyl6whbrxycq",
+   "case": "golden_wealth_v1:XB4:treatment"
+  },
+  {
+   "after": "hvy5fxyusn6pinb76utwb2vbxixg63skrmxoqrnrrjgcj4uld4zq",
+   "before": "ug7vdh6qdtd574orxhdhxyukff7xb44febkrtl2gggg53u3a3sza",
+   "case": "golden_wealth_v1:XB5:treatment"
+  },
+  {
+   "after": "rkrhtajyfus2dcxurkxryxr4d6e4knexu6tk4nqrrshlujgrpw5a",
+   "before": "dw5ciqyezq34e2sqn3svupqgg3ovqzb2x4be2kr4vp27mwor7utq",
+   "case": "golden_wealth_v1:XB6:treatment"
+  },
+  {
+   "after": "inidpdtcqxpggi4pxrbhofaslxvgmllcmbbaah2cefgkatm4pw4q",
+   "before": "es5bazlvkoud34ebahwfbi5ccmpaldvudzwi3hfyrujhqn26atxq",
+   "case": "golden_wealth_v1:XB1-R:treatment"
+  },
+  {
+   "after": "7nl7mqeeikxifp7kfxcx2xtpyojdo7klgjq3kv3jd57jenyamzga",
+   "before": "ce5bagjpusgnjhfz4da6w4g5zgjq3llhypfau64oqarwobsjzfda",
+   "case": "golden_wealth_v1:XB3-W:treatment"
+  },
+  {
+   "after": "lch2tk5oxlchjsysypggdiqttekarvsyoz5dorr732g6bbpcsrjq",
+   "before": "zwhgrfm4euhnh6ir7isvaj5deekl7vn4zzbdt6qve6lxg5xd7oia",
+   "case": "golden_wealth_v1:XB-DOB:treatment"
+  },
+  {
+   "after": "h43odkton7oi7fkkjhq7txlcptip22piumqjk3qh2mp6tc2d3eqq",
+   "before": "uqxdtsy6maobhx5c3477fhtwiqghzojnt445wp55uv6yo5fcurma",
+   "case": "golden_wealth_v1:XB-EMAIL:treatment"
+  },
+  {
+   "after": "madtpharvikjhgqfndp4e35gmz7la6wbemoub64pfzp7nnfvxpca",
+   "before": "4gvd6c2prttraz5nlvrpc667igzgji46v7ydn5lnqwo4dk4fstfq",
+   "case": "golden_figures_v1:F04:treatment"
+  }
+ ],
+ "recordings_sha": "hxojzbmmdjj4riq55sfhgi5zvt6wkqb2uhxwklvwxyd52d3kanaa"
+}

@@ -1,0 +1,28 @@
+{
+  "_note": "Stub replies in A1's field names (MAR-231) for Behind the answer, until A2-4 replaces them with replies recorded from A1's Ask. `order` is the ASK_ORDER setting the answer ran under, as A1's reply carries it; the reply's ai_fallback field is left out (a deployment setting, not shown per answer). The model_plan_refused step's shape is the planner's trace step today.",
+  "rules_after_refused_model_plan": {
+    "question": "NNA by region for Q1 2025",
+    "principal": "reader@example.com",
+    "arm": "graph",
+    "behaviour": "figure",
+    "answer_mode": "certified",
+    "answered_by": "rules",
+    "order": "model_first",
+    "model": "none",
+    "trace": [
+      { "step": "resolve", "term": "net new assets" },
+      { "step": "model_plan_refused", "reason": "Missing plan recording: key", "fallback": "rules" }
+    ]
+  },
+  "model_answered": {
+    "question": "Certified NNA minus current NNA for March 2025",
+    "principal": "reader@example.com",
+    "arm": "graph",
+    "behaviour": "figure",
+    "answer_mode": "ai_generated",
+    "answered_by": "model",
+    "order": "rules_first",
+    "model": "vertex:gemini-stub",
+    "trace": [{ "step": "resolve", "term": "net new assets" }]
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "contract_version": "1",
+  "release": "abc123|generation-1|catalogue-badges-v3|portal:b7a40fccfd301b56",
+  "has_catalogue": true,
+  "products": [
+    {
+      "id": "retail.complaint",
+      "unit_id": "retail",
+      "table": "complaint",
+      "name": "Complaint",
+      "description": "Cases",
+      "product_owner": "Steward",
+      "business_owner": "Analyst",
+      "badges": [
+        "SILVER"
+      ],
+      "quality_score": 97.0,
+      "last_refresh": "",
+      "ingested_at": "",
+      "counts": {
+        "subscribe": 0,
+        "access": 0,
+        "views": 0
+      },
+      "rating": 0.0,
+      "domain": "Retail",
+      "community": "Conduct",
+      "application": "Cases",
+      "product_type": "Documents",
+      "records": 0,
+      "path": "Meridian > Conduct > Complaint",
+      "data_format": "Table",
+      "storage": "",
+      "last_dq_run": "",
+      "lineage": {
+        "origin_paths": [
+          "register"
+        ],
+        "destination_paths": [],
+        "upstream": [],
+        "downstream": []
+      },
+      "fields": [
+        {
+          "name": "case_id",
+          "business_name": "Case",
+          "data_type": "VARCHAR",
+          "description": "Case",
+          "quality": {
+            "dimension": "Completeness",
+            "rule": "present",
+            "rule_type": "completeness"
+          },
+          "terms": []
+        }
+      ],
+      "catalogue_state": "In sync"
+    },
+    {
+      "id": "retail.document_set",
+      "unit_id": "retail",
+      "table": "document_set",
+      "name": "Retail documents",
+      "description": "Certified documents for Retail Banking.",
+      "product_owner": "",
+      "business_owner": "",
+      "badges": [],
+      "quality_score": 0.0,
+      "last_refresh": "",
+      "ingested_at": "",
+      "counts": {
+        "subscribe": 0,
+        "access": 0,
+        "views": 0
+      },
+      "rating": 0.0,
+      "domain": "retail",
+      "community": "",
+      "application": "",
+      "product_type": "Documents",
+      "asset_type": "Unstructured",
+      "records": 0,
+      "path": "",
+      "data_format": "",
+      "storage": "",
+      "last_dq_run": "",
+      "lineage": {
+        "origin_paths": [],
+        "destination_paths": [],
+        "upstream": [],
+        "downstream": []
+      },
+      "fields": [],
+      "catalogue_state": "Not in the knowledge graph",
+      "portal_only": true,
+      "documents": [
+        {
+          "id": "DD-RETAIL",
+          "title": "DD-RETAIL title"
+        }
+      ]
+    },
+    {
+      "id": "wealth.document_set",
+      "unit_id": "wealth",
+      "table": "document_set",
+      "name": "Wealth documents",
+      "description": "Certified documents for Wealth Management.",
+      "product_owner": "",
+      "business_owner": "",
+      "badges": [],
+      "quality_score": 0.0,
+      "last_refresh": "",
+      "ingested_at": "",
+      "counts": {
+        "subscribe": 0,
+        "access": 0,
+        "views": 0
+      },
+      "rating": 0.0,
+      "domain": "wealth",
+      "community": "",
+      "application": "",
+      "product_type": "Documents",
+      "asset_type": "Unstructured",
+      "records": 0,
+      "path": "",
+      "data_format": "",
+      "storage": "",
+      "last_dq_run": "",
+      "lineage": {
+        "origin_paths": [],
+        "destination_paths": [],
+        "upstream": [],
+        "downstream": []
+      },
+      "fields": [],
+      "catalogue_state": "Not in the knowledge graph",
+      "portal_only": true,
+      "documents": [
+        {
+          "id": "DD-WEALTH",
+          "title": "DD-WEALTH title"
+        }
+      ]
+    }
+  ]
+}

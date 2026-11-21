@@ -1,0 +1,13 @@
+asker: analyst_enterprise
+steward: steward_glossary
+people:
+  - analyst_retail.sample@example.com:analyst_retail
+  - analyst_enterprise.sample@example.com:analyst_enterprise
+  - finance_reporting.sample@example.com:finance_reporting
+  - steward_glossary.sample@example.com:steward_glossary
+  - business_team.sample@example.com:business_team
+  - knowledge_engineer.sample@example.com:knowledge_engineer
+  - advisor_wealth.sample@example.com:advisor_wealth
+  - admin.sample@example.com:admin
+  - steward.sample@example.com:steward
+  - pipeline_tagger.sample@example.com:pipeline_tagger

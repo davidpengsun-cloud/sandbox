@@ -1,0 +1,166 @@
+{
+  "services-list": [
+    {
+      "name": "projects/your-project/locations/us-central1/services/kge-meridian",
+      "template": {
+        "containers": [
+          {
+            "image": "example.com/kge:sample",
+            "env": [
+              {
+                "name": "PROFILE",
+                "value": "meridian"
+              },
+              {
+                "name": "STORE_URL",
+                "value": "gs://your-project-kge-store"
+              },
+              {
+                "name": "VERTEX_PROJECT",
+                "value": "your-project"
+              },
+              {
+                "name": "VERTEX_REGION",
+                "value": "global"
+              },
+              {
+                "name": "VERTEX_EMBEDDING_REGION",
+                "value": "us-central1"
+              },
+              {
+                "name": "SIGNIN_PASSWORDS",
+                "valueSource": {
+                  "secretKeyRef": {
+                    "secret": "projects/your-project/secrets/kge-meridian-passwords",
+                    "version": "latest"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "uri": "https://kge-meridian.example.com"
+    }
+  ],
+  "services-describe-kge-meridian": {
+    "name": "projects/your-project/locations/us-central1/services/kge-meridian",
+    "template": {
+      "containers": [
+        {
+          "image": "example.com/kge:sample",
+          "env": [
+            {
+              "name": "PROFILE",
+              "value": "meridian"
+            },
+            {
+              "name": "STORE_URL",
+              "value": "gs://your-project-kge-store"
+            },
+            {
+              "name": "VERTEX_PROJECT",
+              "value": "your-project"
+            },
+            {
+              "name": "VERTEX_REGION",
+              "value": "global"
+            },
+            {
+              "name": "VERTEX_EMBEDDING_REGION",
+              "value": "us-central1"
+            },
+            {
+              "name": "SIGNIN_PASSWORDS",
+              "valueSource": {
+                "secretKeyRef": {
+                  "secret": "projects/your-project/secrets/kge-meridian-passwords",
+                  "version": "latest"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "uri": "https://kge-meridian.example.com"
+  },
+  "jobs-list": [
+    {
+      "name": "projects/your-project/locations/us-central1/jobs/kge-meridian-job",
+      "template": {
+        "template": {
+          "containers": [
+            {
+              "image": "example.com/kge:sample",
+              "env": [
+                {
+                  "name": "PROFILE",
+                  "value": "meridian"
+                },
+                {
+                  "name": "STORE_URL",
+                  "value": "gs://your-project-kge-store"
+                },
+                {
+                  "name": "VERTEX_PROJECT",
+                  "value": "your-project"
+                },
+                {
+                  "name": "VERTEX_REGION",
+                  "value": "global"
+                },
+                {
+                  "name": "VERTEX_EMBEDDING_REGION",
+                  "value": "us-central1"
+                },
+                {
+                  "name": "LANDING_URL",
+                  "value": "gs://your-project-meridian-landing"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "jobs-describe-kge-meridian-job": {
+    "name": "projects/your-project/locations/us-central1/jobs/kge-meridian-job",
+    "template": {
+      "template": {
+        "containers": [
+          {
+            "image": "example.com/kge:sample",
+            "env": [
+              {
+                "name": "PROFILE",
+                "value": "meridian"
+              },
+              {
+                "name": "STORE_URL",
+                "value": "gs://your-project-kge-store"
+              },
+              {
+                "name": "VERTEX_PROJECT",
+                "value": "your-project"
+              },
+              {
+                "name": "VERTEX_REGION",
+                "value": "global"
+              },
+              {
+                "name": "VERTEX_EMBEDDING_REGION",
+                "value": "us-central1"
+              },
+              {
+                "name": "LANDING_URL",
+                "value": "gs://your-project-meridian-landing"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

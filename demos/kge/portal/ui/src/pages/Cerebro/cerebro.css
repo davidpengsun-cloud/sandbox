@@ -1,0 +1,35 @@
+/* Cerebro's shell on the portal's v3 tokens only: no colour of its own (cerebro.md §7.1). */
+/* The app under the portal's global bar: the mode row, then the view taking the rest of the window's height. Nothing
+   in it scrolls the page; a view that is too tall scrolls inside itself. */
+.cerebro-app {
+  flex:1; min-width:0; min-height:0; display:flex; flex-direction:column; overflow:hidden;
+  background:var(--v3-paper); color:var(--v3-ink); font:15px/1.6 var(--v3-body);
+  * { box-sizing:border-box }
+  :focus-visible { outline:2px solid var(--v3-focus); outline-offset:3px }
+  code, kbd { font-family:var(--v3-mono); font-size:13px }
+  p { margin:0 }
+}
+/* The mode row: the tabs on the left, the switch hint on the right; the selected tab on the accent's soft fill and line. */
+.cerebro-bar {
+  flex:none; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
+  min-height:64px; padding:10px 24px; background:var(--v3-surface); border-bottom:1px solid var(--v3-line);
+}
+.cerebro-modes { display:flex; gap:8px }
+.cerebro-modes [role="tab"] {
+  min-height:44px; min-width:44px; padding:8px 18px; border:1px solid transparent; border-radius:var(--v3-r-md);
+  background:transparent; color:var(--v3-ink-2); font:600 15px/1.4 var(--v3-body); cursor:pointer;
+}
+.cerebro-modes [role="tab"]:hover { color:var(--v3-ink) }
+.cerebro-modes [role="tab"][aria-selected="true"] { background:var(--v3-accent-soft); border-color:var(--v3-accent-line); color:var(--v3-ink) }
+.cerebro-hint { margin-left:auto; color:var(--v3-ink-3); font-size:14px }
+.cerebro-hint kbd { padding:0 6px; border:1px solid var(--v3-line); border-radius:var(--v3-r-sm); background:var(--v3-surface-2) }
+.cerebro-view { position:relative; flex:1; min-width:0; min-height:0; display:flex; overflow:auto }
+.cerebro-view > * { min-width:0; min-height:0 }
+/* Graph mode holds the canvas to the view's height: the page never scrolls, the regions scroll inside themselves. */
+.cerebro-view-graph { overflow:hidden }
+.cerebro-muted { color:var(--v3-ink-3) }
+/* Each mode lays out its own view: graph/graph.css, chat/chat.css and curate/curate.css. */
+@media (max-width: 900px) {
+  .cerebro-bar { padding:8px 16px }
+  .cerebro-view-graph { overflow:auto }
+}

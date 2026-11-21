@@ -1,0 +1,13 @@
+card_id,holder_email,fare_class
+FC-20001,rider20001@example.net,ADULT
+FC-20002,rider20002@example.net,ADULT
+FC-20003,rider20003@example.net,ADULT
+FC-20004,rider20004@example.net,ADULT
+FC-20005,rider20005@example.net,ADULT
+FC-20006,rider20006@example.net,ADULT
+FC-20007,rider20007@example.net,CONCESSION
+FC-20008,rider20008@example.net,CONCESSION
+FC-20009,rider20009@example.net,CONCESSION
+FC-20010,rider20010@example.net,CONCESSION
+FC-20011,rider20011@example.net,STUDENT
+FC-20012,rider20012@example.net,STUDENT

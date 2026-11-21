@@ -1,0 +1,19 @@
+.paginationContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    color: #00345F;
+
+    .MuiSvgIcon-root {
+        font-size: xx-large;
+        color: #00345F;
+    }
+
+    .pageCount {
+        font-size: large;
+        font-weight: 600;
+    }
+}

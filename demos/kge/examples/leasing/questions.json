@@ -1,0 +1,20 @@
+{
+  "name": "team_leasing",
+  "version": "v1",
+  "items": [
+    {
+      "id": "LEASING-T01",
+      "kind": "within",
+      "question": "Lease rentals for June 2025",
+      "column": "leasing.rental.lease_rentals_usd",
+      "month": "2025-06"
+    },
+    {
+      "id": "LEASING-T02",
+      "kind": "within",
+      "question": "Lease income for June 2025",
+      "column": "leasing.rental.lease_rentals_usd",
+      "month": "2025-06"
+    }
+  ]
+}

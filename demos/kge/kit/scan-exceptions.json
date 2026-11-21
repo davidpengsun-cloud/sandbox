@@ -1,0 +1,200 @@
+[
+  {
+    "cve": "CVE-2026-115506",
+    "package": "expat",
+    "reason": "No fixed Red Hat package is reported by Trivy on 2026-11-11. Retained for the Python runtime XML parser pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-119373",
+    "package": "nodejs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-119373",
+    "package": "nodejs-full-i18n",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-119373",
+    "package": "nodejs-libs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-119373",
+    "package": "sqlite-libs",
+    "reason": "No fixed Red Hat package is reported by Trivy on 2026-11-11. Retain the base SQLite runtime pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-119374",
+    "package": "nodejs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-119374",
+    "package": "nodejs-full-i18n",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-119374",
+    "package": "nodejs-libs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-119374",
+    "package": "sqlite-libs",
+    "reason": "No fixed Red Hat package is reported by Trivy on 2026-11-11. Retain the base SQLite runtime pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-119379",
+    "package": "nodejs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-119379",
+    "package": "nodejs-full-i18n",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-119379",
+    "package": "nodejs-libs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-119379",
+    "package": "sqlite-libs",
+    "reason": "No fixed Red Hat package is reported by Trivy on 2026-11-11. Retain the base SQLite runtime pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-119586",
+    "package": "sqlite-libs",
+    "reason": "No fixed Red Hat package is reported by Trivy on 2026-11-11. Retain the base SQLite runtime pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-123864",
+    "package": "nodejs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-14. The UBI 9 repositories' newest Node.js 22 is the installed 22.23.4-2. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-123864",
+    "package": "nodejs-full-i18n",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-14. The UBI 9 repositories' newest Node.js 22 is the installed 22.23.4-2. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-123864",
+    "package": "nodejs-libs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-14. The UBI 9 repositories' newest Node.js 22 is the installed 22.23.4-2. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-123865",
+    "package": "nodejs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-13. Red Hat's CVE data lists RHEL 9 nodejs:22 as affected with no erratum, and the UBI 9 repositories' newest Node.js 22 is the installed 22.23.4-2. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-123865",
+    "package": "nodejs-full-i18n",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-13. Red Hat's CVE data lists RHEL 9 nodejs:22 as affected with no erratum, and the UBI 9 repositories' newest Node.js 22 is the installed 22.23.4-2. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-123865",
+    "package": "nodejs-libs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-13. Red Hat's CVE data lists RHEL 9 nodejs:22 as affected with no erratum, and the UBI 9 repositories' newest Node.js 22 is the installed 22.23.4-2. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-123866",
+    "package": "nodejs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-13. Red Hat's CVE data lists RHEL 9 nodejs:22 as affected with no erratum, and the UBI 9 repositories' newest Node.js 22 is the installed 22.23.4-2. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-123866",
+    "package": "nodejs-full-i18n",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-13. Red Hat's CVE data lists RHEL 9 nodejs:22 as affected with no erratum, and the UBI 9 repositories' newest Node.js 22 is the installed 22.23.4-2. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-123866",
+    "package": "nodejs-libs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-13. Red Hat's CVE data lists RHEL 9 nodejs:22 as affected with no erratum, and the UBI 9 repositories' newest Node.js 22 is the installed 22.23.4-2. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-123872",
+    "package": "nodejs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-14. The UBI 9 repositories' newest Node.js 22 is the installed 22.23.4-2. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-123872",
+    "package": "nodejs-full-i18n",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-14. The UBI 9 repositories' newest Node.js 22 is the installed 22.23.4-2. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-123872",
+    "package": "nodejs-libs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-14. The UBI 9 repositories' newest Node.js 22 is the installed 22.23.4-2. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-76641",
+    "package": "expat",
+    "reason": "No fixed Red Hat package is reported by Trivy on 2026-11-11. Retained for the Python runtime XML parser pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-84961",
+    "package": "nodejs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-84961",
+    "package": "nodejs-full-i18n",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-84961",
+    "package": "nodejs-libs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-85152",
+    "package": "nodejs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-85152",
+    "package": "nodejs-full-i18n",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  },
+  {
+    "cve": "CVE-2026-85152",
+    "package": "nodejs-libs",
+    "reason": "No fixed Red Hat Node.js 22 package is reported by Trivy on 2026-11-11. Retain the portal Node.js runtime, including its bundled SQLite and internationalisation support, pending a vendor fix.",
+    "expires": "2026-12-01"
+  }
+]

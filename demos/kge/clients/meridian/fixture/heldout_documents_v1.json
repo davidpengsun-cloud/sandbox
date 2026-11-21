@@ -1,0 +1,14 @@
+[
+  {
+    "id": "H017",
+    "kind": "shelf",
+    "question": "Explain the document reading standard",
+    "expect": {
+      "behaviour": "cite_certified",
+      "cite": [
+        "STD-DOCUMENT-READING"
+      ]
+    },
+    "paraphrase_of": "What is the document reading standard?"
+  }
+]

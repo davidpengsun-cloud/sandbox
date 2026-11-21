@@ -1,0 +1,11 @@
+{
+ "about": "Owner-stated moves beside the frozen estate snapshot estate-4d9d5c9.json, which is never edited (kge/estate/check_estate.py). Each names the table under the names the build gives it, the row count and checksum it moves to, and why; a stated table passes only at exactly those, and any other move still fails.",
+ "changes": [
+  {
+   "table": "wealth.ADV_DIM_1",
+   "rows": 30,
+   "checksum": "oki2ap6jgmeizyjve77tw2ka7ztsk2ov35yrdmsti4jjprumvyta",
+   "why": "#474 K2 job 1 (owner decision CA.6, 2026-11-15, \"Recode existing rows\"): the advisor office codes NYC and BOS are recoded in place to the golden branch codes QO and 5H; no other value moved"
+  }
+ ]
+}

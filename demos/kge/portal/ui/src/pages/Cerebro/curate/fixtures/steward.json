@@ -1,0 +1,81 @@
+{
+  "queue": [
+    {
+      "tag": "tag:sm1",
+      "family": "suggested_mention",
+      "value": "Net revenue",
+      "confidence": 0.82,
+      "similarity": 0.82,
+      "definition": "Revenue after returns and discounts.",
+      "passage": "Net revenue fell in the quarter.",
+      "evidence": "Embedding similarity; a steward must decide whether this passage mentions the term.",
+      "doc": "pricing-policy",
+      "node": "document:pricing-policy",
+      "shelf": "certified",
+      "chunk": "pricing-policy#3",
+      "kind": "term_tags"
+    },
+    {
+      "tag": "tag:ct1",
+      "family": "candidate_term",
+      "value": "Churn",
+      "confidence": 0.71,
+      "evidence": "Appears in 4 passages.",
+      "doc": "retention-note",
+      "node": "document:retention-note",
+      "shelf": "curated",
+      "chunk": "retention-note#1",
+      "kind": "new_words"
+    },
+    {
+      "tag": "tag:pv1",
+      "family": "privacy",
+      "value": "email",
+      "confidence": 0.9,
+      "evidence": "a***@example.org",
+      "doc": "onboarding-guide",
+      "node": "document:onboarding-guide",
+      "shelf": "certified",
+      "chunk": "onboarding-guide#2",
+      "assessment": "likely_personal",
+      "second_check_required_to_reject": true,
+      "kind": "documents"
+    },
+    {
+      "tag": "tag:xr1",
+      "family": "xref_match",
+      "value": "Store 12",
+      "confidence": 0.6,
+      "evidence": "Name match.",
+      "doc": "stores",
+      "shelf": "curated",
+      "chunk": null,
+      "units": [
+        "retail"
+      ],
+      "upstream": "rejected",
+      "kind": "cross_references"
+    },
+    {
+      "tag": "tag:nw1",
+      "family": "region_hint",
+      "value": "North",
+      "confidence": 0.5,
+      "evidence": "New family.",
+      "doc": "regions"
+    }
+  ],
+  "decided": [
+    {
+      "release": "a1b2c3d4e5f6a7b8",
+      "tag": "tag:sm0",
+      "doc": "pricing-policy",
+      "chunk": "pricing-policy#1",
+      "unit": "sales",
+      "term": "Gross margin",
+      "decision": "accept",
+      "who": "sam.steward",
+      "at": "2026-11-14T10:02:00Z"
+    }
+  ]
+}

@@ -1,0 +1,5611 @@
+[
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [],
+   "dimensions": [
+    {
+     "bindings": [
+      {
+       "column": {
+        "evidence": [],
+        "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID6"
+       },
+       "context": {
+        "evidence": [],
+        "id": "nna_certified"
+       },
+       "level": 1,
+       "path": [
+        {
+         "evidence": [],
+         "id": "finance_account"
+        },
+        {
+         "evidence": [],
+         "id": "account_client_code_finance"
+        }
+       ]
+      }
+     ],
+     "id": "d0",
+     "kind": "hierarchy"
+    }
+   ],
+   "filters": [],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [],
+      "id": "nna_certified"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 18,
+       "start": 9,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "d0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 26,
+       "start": 19,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 30,
+       "start": 27,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "d0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 47,
+       "start": 31,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "d0"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "kind": "single",
+    "period": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "calendar_quarter",
+     "value": "2024-Q2"
+    }
+   }
+  },
+  "question": "What was certified Q2 2024 NNA by business line?"
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [],
+   "dimensions": [
+    {
+     "bindings": [
+      {
+       "column": {
+        "evidence": [
+         {
+          "end": 54,
+          "start": 40,
+          "turn": "turn"
+         }
+        ],
+        "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID5"
+       },
+       "context": {
+        "evidence": [
+         {
+          "end": 17,
+          "start": 8,
+          "turn": "turn"
+         },
+         {
+          "end": 39,
+          "start": 36,
+          "turn": "turn"
+         }
+        ],
+        "id": "nna_certified"
+       },
+       "level": 1,
+       "path": [
+        {
+         "evidence": [],
+         "id": "finance_account"
+        },
+        {
+         "evidence": [],
+         "id": "account_client_code_finance"
+        }
+       ]
+      }
+     ],
+     "id": "d0",
+     "kind": "hierarchy"
+    },
+    {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "grain": "calendar_quarter",
+     "id": "t1",
+     "kind": "time"
+    }
+   ],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 35,
+       "start": 18,
+       "turn": "turn"
+      }
+     ],
+     "id": "f0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 35,
+         "start": 18,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID6"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "finance_account"
+       },
+       {
+        "evidence": [],
+        "id": "account_client_code_finance"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "S5100"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 17,
+        "start": 8,
+        "turn": "turn"
+       },
+       {
+        "end": 39,
+        "start": 36,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_certified"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 17,
+        "start": 8,
+        "turn": "turn"
+       },
+       {
+        "end": 39,
+        "start": 36,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 17,
+       "start": 8,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "d0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 35,
+       "start": 18,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 39,
+       "start": 36,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "d0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 54,
+       "start": 40,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "d0"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 58,
+       "start": 55,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "d0",
+      "t1"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 66,
+       "start": 59,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "t1"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 73,
+       "start": 71,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o7",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 81,
+       "start": 74,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o8",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 89,
+       "start": 82,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "first": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "calendar_quarter",
+     "value": "2024-Q1"
+    },
+    "kind": "range",
+    "last": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "calendar_quarter",
+     "value": "2024-Q3"
+    }
+   }
+  },
+  "question": "Show me certified Investor Services NNA by sub-segment and quarter for Q1 through Q3 2024."
+ },
+ {
+  "plan": {
+   "comparisons": [
+    {
+     "evidence": [
+      {
+       "end": 7,
+       "start": 0,
+       "turn": "turn"
+      },
+      {
+       "end": 18,
+       "start": 16,
+       "turn": "turn"
+      }
+     ],
+     "id": "c",
+     "kind": "contexts",
+     "left": "m1",
+     "right": "m0"
+    }
+   ],
+   "derived": [
+    {
+     "denominator": "c/other",
+     "evidence": [
+      {
+       "end": 67,
+       "start": 61,
+       "turn": "turn"
+      }
+     ],
+     "id": "x0",
+     "kind": "difference",
+     "numerator": "c/base"
+    },
+    {
+     "denominator": "c/other",
+     "evidence": [
+      {
+       "end": 90,
+       "start": 72,
+       "turn": "turn"
+      }
+     ],
+     "id": "x1",
+     "kind": "percent_change",
+     "numerator": "c/base"
+    }
+   ],
+   "dimensions": [
+    {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "grain": "month",
+     "id": "t0",
+     "kind": "time"
+    }
+   ],
+   "filters": [],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [],
+      "id": "nna"
+     },
+     "filters": [],
+     "id": "m1",
+     "kind": "measure",
+     "measure": {
+      "evidence": [],
+      "id": "wealth.net-new-assets"
+     },
+     "mode": "current"
+    },
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 29,
+        "start": 20,
+        "turn": "turn"
+       },
+       {
+        "end": 41,
+        "start": 38,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_certified"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 29,
+        "start": 20,
+        "turn": "turn"
+       },
+       {
+        "end": 41,
+        "start": 38,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 7,
+       "start": 0,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "c"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 15,
+       "start": 8,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m1",
+      "m0"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 18,
+       "start": 16,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "c"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 29,
+       "start": 20,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 37,
+       "start": 30,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 41,
+       "start": 38,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 44,
+       "start": 42,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "t0"
+     ]
+    },
+    {
+     "id": "o7",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 50,
+       "start": 45,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "t0"
+     ]
+    },
+    {
+     "id": "o8",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 67,
+       "start": 61,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "x0"
+     ]
+    },
+    {
+     "id": "o9",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 90,
+       "start": 72,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "x1"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "kind": "single",
+    "period": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "calendar_quarter",
+     "value": "2024-Q3"
+    }
+   }
+  },
+  "question": "Compare current vs. certified Q3 2024 NNA by month, with the dollar and percent difference."
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [
+    {
+     "evidence": [
+      {
+       "end": 27,
+       "start": 17,
+       "turn": "turn"
+      }
+     ],
+     "id": "share-m0",
+     "input": "m0",
+     "kind": "share",
+     "remove_dimensions": [
+      "d0"
+     ],
+     "remove_filters": []
+    }
+   ],
+   "dimensions": [
+    {
+     "bindings": [
+      {
+       "column": {
+        "evidence": [
+         {
+          "end": 16,
+          "start": 13,
+          "turn": "turn"
+         }
+        ],
+        "id": "wealth.ACCT_DIM2_1.ACCT_RELT_SPS_IN"
+       },
+       "context": {
+        "evidence": [
+         {
+          "end": 82,
+          "start": 74,
+          "turn": "turn"
+         }
+        ],
+        "id": "nna_client_directed"
+       },
+       "level": null,
+       "path": [
+        {
+         "evidence": [],
+         "id": "finance_account"
+        }
+       ]
+      }
+     ],
+     "id": "d0",
+     "kind": "column"
+    }
+   ],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 46,
+       "start": 31,
+       "turn": "turn"
+      }
+     ],
+     "id": "f0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 46,
+         "start": 31,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID5"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "finance_account"
+       },
+       {
+        "evidence": [],
+        "id": "account_client_code_finance"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "S4100"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 82,
+        "start": 74,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_client_directed"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 82,
+        "start": 74,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "as_reported"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 8,
+       "start": 0,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 16,
+       "start": 13,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "d0"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 27,
+       "start": 17,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "share-m0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 46,
+       "start": 31,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 58,
+       "start": 49,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 73,
+       "start": 59,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 82,
+       "start": 74,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "d0"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "kind": "single",
+    "period": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-09"
+    }
+   }
+  },
+  "question": "How much did SPS contribute to Retail Investor’s certified September 2024 NNAxFDIC?"
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [],
+   "dimensions": [
+    {
+     "bindings": [
+      {
+       "column": {
+        "evidence": [
+         {
+          "end": 70,
+          "start": 61,
+          "turn": "turn"
+         }
+        ],
+        "id": "wealth.BRCH_DIM_1.BRCH_CD"
+       },
+       "context": {
+        "evidence": [
+         {
+          "end": 33,
+          "start": 17,
+          "turn": "turn"
+         }
+        ],
+        "id": "nna_branch_sales"
+       },
+       "level": 1,
+       "path": [
+        {
+         "evidence": [],
+         "id": "branch_sales_account"
+        },
+        {
+         "evidence": [],
+         "id": "branch_sales_current_office"
+        }
+       ]
+      }
+     ],
+     "id": "d0",
+     "kind": "hierarchy"
+    }
+   ],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 95,
+       "start": 79,
+       "turn": "turn"
+      }
+     ],
+     "id": "f6",
+     "kind": "in",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 95,
+         "start": 79,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.BRCH_DIM_1.RGN_CD"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "branch_sales_account"
+       },
+       {
+        "evidence": [],
+        "id": "branch_sales_current_office"
+       }
+      ]
+     },
+     "values": [
+      {
+       "kind": "text",
+       "value": "CEO"
+      },
+      {
+       "kind": "text",
+       "value": "NER"
+      }
+     ]
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 33,
+        "start": 17,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_branch_sales"
+     },
+     "filters": [
+      {
+       "evidence": [
+        {
+         "end": 41,
+         "start": 34,
+         "turn": "turn"
+        }
+       ],
+       "id": "pf0",
+       "kind": "compare",
+       "left": {
+        "kind": "column",
+        "name": {
+         "evidence": [
+          {
+           "end": 41,
+           "start": 34,
+           "turn": "turn"
+          }
+         ],
+         "id": "wealth.TRAN_FACT_EXCL_MFCLR_G.DW_TRAN_DIRCTN_CD"
+        },
+        "path": []
+       },
+       "op": "eq",
+       "value": {
+        "kind": "text",
+        "value": "I"
+       }
+      }
+     ],
+     "id": "part0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 33,
+        "start": 17,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.branch-sales-nna"
+     },
+     "mode": "current"
+    },
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 33,
+        "start": 17,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_branch_sales"
+     },
+     "filters": [
+      {
+       "evidence": [
+        {
+         "end": 51,
+         "start": 43,
+         "turn": "turn"
+        }
+       ],
+       "id": "pf1",
+       "kind": "compare",
+       "left": {
+        "kind": "column",
+        "name": {
+         "evidence": [
+          {
+           "end": 51,
+           "start": 43,
+           "turn": "turn"
+          }
+         ],
+         "id": "wealth.TRAN_FACT_EXCL_MFCLR_G.DW_TRAN_DIRCTN_CD"
+        },
+        "path": []
+       },
+       "op": "eq",
+       "value": {
+        "kind": "text",
+        "value": "O"
+       }
+      }
+     ],
+     "id": "part1",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 33,
+        "start": 17,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.branch-sales-nna"
+     },
+     "mode": "current"
+    },
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 33,
+        "start": 17,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_branch_sales"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 33,
+        "start": 17,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.branch-sales-nna"
+     },
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 3,
+       "start": 0,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "part0",
+      "part1",
+      "m0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 16,
+       "start": 4,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 33,
+       "start": 17,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "part0",
+      "part1",
+      "m0",
+      "d0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 41,
+       "start": 34,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "pf0"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 51,
+       "start": 43,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "pf1"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 60,
+       "start": 57,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "part0",
+      "part1",
+      "m0"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 70,
+       "start": 61,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "d0"
+     ]
+    },
+    {
+     "id": "o7",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 95,
+       "start": 79,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f6"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "kind": "single",
+    "period": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-01"
+    }
+   }
+  },
+  "question": "Sum January 2024 branch sales NNA inflows, outflows, and net by Branch for the Heartland region."
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [],
+   "dimensions": [
+    {
+     "bindings": [
+      {
+       "column": {
+        "evidence": [
+         {
+          "end": 40,
+          "start": 30,
+          "turn": "turn"
+         }
+        ],
+        "id": "wealth.ACCT_DIM2_1.LAST_RCV_HSHLD_DK"
+       },
+       "context": {
+        "evidence": [
+         {
+          "end": 101,
+          "start": 85,
+          "turn": "turn"
+         }
+        ],
+        "id": "nna_branch_sales"
+       },
+       "level": null,
+       "path": [
+        {
+         "evidence": [],
+         "id": "branch_sales_account"
+        }
+       ]
+      }
+     ],
+     "id": "d0",
+     "kind": "column"
+    }
+   ],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 62,
+       "start": 48,
+       "turn": "turn"
+      }
+     ],
+     "id": "f0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 62,
+         "start": 48,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.BRCH_DIM_1.BRCH_CD"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "branch_sales_account"
+       },
+       {
+        "evidence": [],
+        "id": "branch_sales_current_office"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "QO"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": 10,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 101,
+        "start": 85,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_branch_sales"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 101,
+        "start": 85,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.branch-sales-nna"
+     },
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 12,
+       "start": 9,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 15,
+       "start": 13,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "limit"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 26,
+       "start": 20,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 29,
+       "start": 27,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "limit"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 40,
+       "start": 30,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "d0"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 62,
+       "start": 48,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 84,
+       "start": 72,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o7",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 101,
+       "start": 85,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "d0"
+     ]
+    }
+   ],
+   "order": [
+    {
+     "direction": "both",
+     "evidence": [
+      {
+       "end": 12,
+       "start": 9,
+       "turn": "turn"
+      },
+      {
+       "end": 26,
+       "start": 20,
+       "turn": "turn"
+      },
+      {
+       "end": 101,
+       "start": 85,
+       "turn": "turn"
+      }
+     ],
+     "nulls": "last",
+     "output": "m0"
+    }
+   ],
+   "schema": "query-plan/v1",
+   "time": {
+    "kind": "single",
+    "period": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-01"
+    }
+   }
+  },
+  "question": "List the top 10 and bottom 10 households in the Boulder branch based on January 2024 branch sales NNA."
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [],
+   "dimensions": [
+    {
+     "bindings": [
+      {
+       "column": {
+        "evidence": [
+         {
+          "end": 91,
+          "start": 68,
+          "turn": "turn"
+         }
+        ],
+        "id": "wealth.ACCT_DIM2_1.ACCT_DETL_PROD_CD"
+       },
+       "context": {
+        "evidence": [
+         {
+          "end": 20,
+          "start": 11,
+          "turn": "turn"
+         },
+         {
+          "end": 54,
+          "start": 51,
+          "turn": "turn"
+         }
+        ],
+        "id": "nna_certified"
+       },
+       "level": null,
+       "path": [
+        {
+         "evidence": [],
+         "id": "finance_account"
+        }
+       ]
+      },
+      {
+       "column": {
+        "evidence": [
+         {
+          "end": 91,
+          "start": 68,
+          "turn": "turn"
+         }
+        ],
+        "id": "wealth.ACCT_DIM2_1.ACCT_DETL_PROD_CD"
+       },
+       "context": {
+        "evidence": [
+         {
+          "end": 67,
+          "start": 59,
+          "turn": "turn"
+         }
+        ],
+        "id": "nna_client_directed"
+       },
+       "level": null,
+       "path": [
+        {
+         "evidence": [],
+         "id": "finance_account"
+        }
+       ]
+      }
+     ],
+     "id": "d0",
+     "kind": "column"
+    }
+   ],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 50,
+       "start": 35,
+       "turn": "turn"
+      },
+      {
+       "end": 105,
+       "start": 98,
+       "turn": "turn"
+      }
+     ],
+     "id": "f0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 50,
+         "start": 35,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID5"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "finance_account"
+       },
+       {
+        "evidence": [],
+        "id": "account_client_code_finance"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "S4100"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 20,
+        "start": 11,
+        "turn": "turn"
+       },
+       {
+        "end": 54,
+        "start": 51,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_certified"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 20,
+        "start": 11,
+        "turn": "turn"
+       },
+       {
+        "end": 54,
+        "start": 51,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "current"
+    },
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 67,
+        "start": 59,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_client_directed"
+     },
+     "filters": [],
+     "id": "m1",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 67,
+        "start": 59,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "current"
+    },
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 20,
+        "start": 11,
+        "turn": "turn"
+       },
+       {
+        "end": 54,
+        "start": 51,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_certified"
+     },
+     "entity": {
+      "evidence": [
+       {
+        "end": 105,
+        "start": 98,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth_account"
+     },
+     "filters": [],
+     "id": "n2",
+     "kind": "distinct_count",
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 20,
+       "start": 11,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "n2",
+      "d0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 34,
+       "start": 21,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 50,
+       "start": 35,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 54,
+       "start": 51,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "n2",
+      "d0"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 67,
+       "start": 59,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m1",
+      "d0"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 91,
+       "start": 68,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "d0"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 105,
+       "start": 98,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "n2",
+      "d0",
+      "f0"
+     ]
+    },
+    {
+     "id": "o7",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 112,
+       "start": 106,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "n2"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "kind": "single",
+    "period": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-02"
+    }
+   }
+  },
+  "question": "Break down certified February 2024 Retail Investor NNA and NNAxFDIC by account product code, with account counts."
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [],
+   "dimensions": [],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 21,
+       "start": 9,
+       "turn": "turn"
+      },
+      {
+       "end": 66,
+       "start": 47,
+       "turn": "turn"
+      }
+     ],
+     "id": "f0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 66,
+         "start": 47,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.BRCH_DIM_1.BRCH_CD"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "branch_sales_account"
+       },
+       {
+        "evidence": [],
+        "id": "branch_sales_current_office"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "5H"
+     }
+    },
+    {
+     "evidence": [
+      {
+       "end": 21,
+       "start": 9,
+       "turn": "turn"
+      },
+      {
+       "end": 38,
+       "start": 25,
+       "turn": "turn"
+      }
+     ],
+     "id": "size-0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 38,
+         "start": 25,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.TRAN_FACT_EXCL_MFCLR_G.TRAN_AM"
+      },
+      "path": []
+     },
+     "magnitude": true,
+     "op": "ge",
+     "value": {
+      "kind": "decimal",
+      "value": "250000"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 124,
+        "start": 108,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_branch_sales"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 124,
+        "start": 108,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.branch-sales-nna"
+     },
+     "mode": "current"
+    },
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 124,
+        "start": 108,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_branch_sales"
+     },
+     "entity": {
+      "evidence": [
+       {
+        "end": 21,
+        "start": 9,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth_flow_excl_mf_clearing"
+     },
+     "filters": [],
+     "id": "n1",
+     "kind": "distinct_count",
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 8,
+       "start": 0,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "n1"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 21,
+       "start": 9,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "n1",
+      "f0",
+      "size-0"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 38,
+       "start": 25,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "size-0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 66,
+       "start": 47,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 87,
+       "start": 75,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 107,
+       "start": 102,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "n1"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 124,
+       "start": 108,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "n1"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "kind": "single",
+    "period": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-01"
+    }
+   }
+  },
+  "question": "How many transactions of $250K or more did the Fort Collins branch have in January 2024, and what was their branch sales NNA?"
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [],
+   "dimensions": [
+    {
+     "bindings": [
+      {
+       "column": {
+        "evidence": [
+         {
+          "end": 38,
+          "start": 16,
+          "turn": "turn"
+         }
+        ],
+        "id": "wealth.ACCT_DIM2_1.JRSDCTN_CNTRY_CD"
+       },
+       "context": {
+        "evidence": [
+         {
+          "end": 75,
+          "start": 62,
+          "turn": "turn"
+         }
+        ],
+        "id": "nna_certified"
+       },
+       "level": null,
+       "path": [
+        {
+         "evidence": [],
+         "id": "finance_account"
+        }
+       ]
+      }
+     ],
+     "id": "d0",
+     "kind": "column"
+    }
+   ],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 61,
+       "start": 48,
+       "turn": "turn"
+      },
+      {
+       "end": 124,
+       "start": 117,
+       "turn": "turn"
+      }
+     ],
+     "id": "f0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 61,
+         "start": 48,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID4"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "finance_account"
+       },
+       {
+        "evidence": [],
+        "id": "account_client_code_finance"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "S3200"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": 10,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 75,
+        "start": 62,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_certified"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 75,
+        "start": 62,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "current"
+    },
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 75,
+        "start": 62,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_certified"
+     },
+     "entity": {
+      "evidence": [
+       {
+        "end": 124,
+        "start": 117,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth_account"
+     },
+     "filters": [],
+     "id": "n1",
+     "kind": "distinct_count",
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 12,
+       "start": 9,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 15,
+       "start": 13,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "limit"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 38,
+       "start": 16,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "d0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 61,
+       "start": 48,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 75,
+       "start": 62,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "n1",
+      "d0"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 87,
+       "start": 80,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 95,
+       "start": 88,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o7",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 110,
+       "start": 96,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o8",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 124,
+       "start": 117,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "n1",
+      "d0",
+      "f0"
+     ]
+    },
+    {
+     "id": "o9",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 131,
+       "start": 125,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "n1"
+     ]
+    }
+   ],
+   "order": [
+    {
+     "direction": "desc",
+     "evidence": [
+      {
+       "end": 12,
+       "start": 9,
+       "turn": "turn"
+      },
+      {
+       "end": 75,
+       "start": 62,
+       "turn": "turn"
+      }
+     ],
+     "nulls": "last",
+     "output": "m0"
+    }
+   ],
+   "schema": "query-plan/v1",
+   "time": {
+    "first": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-01"
+    },
+    "kind": "range",
+    "last": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-09"
+    }
+   }
+  },
+  "question": "List the top 10 jurisdiction countries based on International certified NNA for January through September 2024, with account counts."
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [],
+   "dimensions": [
+    {
+     "bindings": [
+      {
+       "column": {
+        "evidence": [],
+        "id": "wealth.SRCE_SYS_1.SRCE_SYS_ID"
+       },
+       "context": {
+        "evidence": [],
+        "id": "nna_certified"
+       },
+       "level": null,
+       "path": [
+        {
+         "evidence": [],
+         "id": "finance_source_system"
+        }
+       ]
+      }
+     ],
+     "id": "d0",
+     "kind": "column"
+    }
+   ],
+   "filters": [
+    {
+     "evidence": [],
+     "id": "f0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [],
+       "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID4"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "finance_account"
+       },
+       {
+        "evidence": [],
+        "id": "account_client_code_finance"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "S3200"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [],
+      "id": "nna_certified"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 11,
+       "start": 8,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 25,
+       "start": 12,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 39,
+       "start": 26,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "d0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 47,
+       "start": 40,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 62,
+       "start": 48,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 91,
+       "start": 75,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "d0"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "calendar": {
+     "evidence": [],
+     "id": "calendar"
+    },
+    "kind": "ytd",
+    "through": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-09"
+    }
+   }
+  },
+  "question": "Show me YTD International certified NNA through September 2024 broken down by source system."
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [],
+   "dimensions": [
+    {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "grain": "month",
+     "id": "t0",
+     "kind": "time"
+    }
+   ],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 23,
+       "start": 8,
+       "turn": "turn"
+      }
+     ],
+     "id": "f0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 23,
+         "start": 8,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID5"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "finance_account"
+       },
+       {
+        "evidence": [],
+        "id": "account_client_code_finance"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "S4100"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 37,
+        "start": 24,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_certified"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 37,
+        "start": 24,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "current"
+    },
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 50,
+        "start": 42,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_client_directed"
+     },
+     "filters": [],
+     "id": "m1",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 50,
+        "start": 42,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 23,
+       "start": 8,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 37,
+       "start": 24,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 50,
+       "start": 42,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m1"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 53,
+       "start": 51,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "t0"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 59,
+       "start": 54,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "t0"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 71,
+       "start": 64,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 79,
+       "start": 72,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o7",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 94,
+       "start": 80,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "first": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-01"
+    },
+    "kind": "range",
+    "last": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-09"
+    }
+   }
+  },
+  "question": "Show me Retail Investor certified NNA and NNAxFDIC by month for January through September 2024."
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [],
+   "dimensions": [],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 25,
+       "start": 10,
+       "turn": "turn"
+      }
+     ],
+     "id": "f6",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 25,
+         "start": 10,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID5"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "finance_account"
+       },
+       {
+        "evidence": [],
+        "id": "account_client_code_finance"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "S4100"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 44,
+        "start": 36,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_client_directed"
+     },
+     "filters": [
+      {
+       "evidence": [
+        {
+         "end": 58,
+         "start": 51,
+         "turn": "turn"
+        }
+       ],
+       "id": "pf0",
+       "kind": "compare",
+       "left": {
+        "kind": "column",
+        "name": {
+         "evidence": [
+          {
+           "end": 58,
+           "start": 51,
+           "turn": "turn"
+          }
+         ],
+         "id": "wealth.F_NNA_FIN.DW_TRAN_DIRCTN_CD"
+        },
+        "path": []
+       },
+       "op": "eq",
+       "value": {
+        "kind": "text",
+        "value": "I"
+       }
+      }
+     ],
+     "id": "part0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 44,
+        "start": 36,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "as_reported"
+    },
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 44,
+        "start": 36,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_client_directed"
+     },
+     "filters": [
+      {
+       "evidence": [
+        {
+         "end": 71,
+         "start": 63,
+         "turn": "turn"
+        }
+       ],
+       "id": "pf1",
+       "kind": "compare",
+       "left": {
+        "kind": "column",
+        "name": {
+         "evidence": [
+          {
+           "end": 71,
+           "start": 63,
+           "turn": "turn"
+          }
+         ],
+         "id": "wealth.F_NNA_FIN.DW_TRAN_DIRCTN_CD"
+        },
+        "path": []
+       },
+       "op": "eq",
+       "value": {
+        "kind": "text",
+        "value": "O"
+       }
+      }
+     ],
+     "id": "part1",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 44,
+        "start": 36,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "as_reported"
+    },
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 44,
+        "start": 36,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_client_directed"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 44,
+        "start": 36,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "as_reported"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 25,
+       "start": 10,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f6"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 35,
+       "start": 26,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "part0",
+      "part1",
+      "m0"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 44,
+       "start": 36,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "part0",
+      "part1",
+      "m0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 58,
+       "start": 51,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "pf0"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 71,
+       "start": 63,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "pf1"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 90,
+       "start": 76,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "kind": "single",
+    "period": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-09"
+    }
+   }
+  },
+  "question": "What were Retail Investor certified NNAxFDIC gross inflows and outflows for September 2024?"
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [],
+   "dimensions": [
+    {
+     "bindings": [
+      {
+       "column": {
+        "evidence": [
+         {
+          "end": 68,
+          "start": 43,
+          "turn": "turn"
+         }
+        ],
+        "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID4"
+       },
+       "context": {
+        "evidence": [
+         {
+          "end": 42,
+          "start": 34,
+          "turn": "turn"
+         }
+        ],
+        "id": "nna_client_directed"
+       },
+       "level": 1,
+       "path": [
+        {
+         "evidence": [],
+         "id": "finance_account"
+        },
+        {
+         "evidence": [],
+         "id": "account_client_code_finance"
+        }
+       ]
+      }
+     ],
+     "id": "d0",
+     "kind": "hierarchy"
+    }
+   ],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 23,
+       "start": 8,
+       "turn": "turn"
+      }
+     ],
+     "id": "f0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 23,
+         "start": 8,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID5"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "finance_account"
+       },
+       {
+        "evidence": [],
+        "id": "account_client_code_finance"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "S4100"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 42,
+        "start": 34,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_client_directed"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 42,
+        "start": 34,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "as_reported"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 23,
+       "start": 8,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 33,
+       "start": 24,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 42,
+       "start": 34,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "d0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 68,
+       "start": 43,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "d0"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 80,
+       "start": 73,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 88,
+       "start": 81,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 103,
+       "start": 89,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "first": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-01"
+    },
+    "kind": "range",
+    "last": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-09"
+    }
+   }
+  },
+  "question": "Show me Retail Investor certified NNAxFDIC by client segment level 4 for January through September 2024."
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [],
+   "dimensions": [
+    {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "grain": "month",
+     "id": "t0",
+     "kind": "time"
+    }
+   ],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 21,
+       "start": 8,
+       "turn": "turn"
+      },
+      {
+       "end": 97,
+       "start": 86,
+       "turn": "turn"
+      },
+      {
+       "end": 109,
+       "start": 102,
+       "turn": "turn"
+      }
+     ],
+     "id": "f0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 21,
+         "start": 8,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID4"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "finance_account"
+       },
+       {
+        "evidence": [],
+        "id": "account_client_code_finance"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "S3200"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 35,
+        "start": 22,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_certified"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 35,
+        "start": 22,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "current"
+    },
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 35,
+        "start": 22,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_certified"
+     },
+     "entity": {
+      "evidence": [
+       {
+        "end": 97,
+        "start": 86,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth_nna_reference"
+     },
+     "filters": [],
+     "id": "n1",
+     "kind": "distinct_count",
+     "mode": "current"
+    },
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 35,
+        "start": 22,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_certified"
+     },
+     "entity": {
+      "evidence": [
+       {
+        "end": 109,
+        "start": 102,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth_account"
+     },
+     "filters": [],
+     "id": "n2",
+     "kind": "distinct_count",
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 21,
+       "start": 8,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 35,
+       "start": 22,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "n1",
+      "n2"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 38,
+       "start": 36,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "t0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 44,
+       "start": 39,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "t0"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 56,
+       "start": 49,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 64,
+       "start": 57,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 79,
+       "start": 65,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o7",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 97,
+       "start": 86,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "n1",
+      "n2",
+      "f0"
+     ]
+    },
+    {
+     "id": "o8",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 109,
+       "start": 102,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "n2",
+      "f0"
+     ]
+    },
+    {
+     "id": "o9",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 116,
+       "start": 110,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "n1",
+      "n2"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "first": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-01"
+    },
+    "kind": "range",
+    "last": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-09"
+    }
+   }
+  },
+  "question": "Show me International certified NNA by month for January through September 2024, with transaction and account counts."
+ },
+ {
+  "plan": {
+   "comparisons": [
+    {
+     "evidence": [
+      {
+       "end": 64,
+       "start": 57,
+       "turn": "turn"
+      },
+      {
+       "end": 79,
+       "start": 65,
+       "turn": "turn"
+      }
+     ],
+     "id": "c",
+     "inputs": [
+      "m0"
+     ],
+     "kind": "previous_year"
+    }
+   ],
+   "derived": [
+    {
+     "denominator": "c/m0/other",
+     "evidence": [
+      {
+       "end": 79,
+       "start": 65,
+       "turn": "turn"
+      }
+     ],
+     "id": "x0",
+     "kind": "difference",
+     "numerator": "c/m0/base"
+    },
+    {
+     "denominator": "c/m0/other",
+     "evidence": [
+      {
+       "end": 79,
+       "start": 65,
+       "turn": "turn"
+      }
+     ],
+     "id": "x1",
+     "kind": "percent_change",
+     "numerator": "c/m0/base"
+    }
+   ],
+   "dimensions": [],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 23,
+       "start": 8,
+       "turn": "turn"
+      }
+     ],
+     "id": "f0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 23,
+         "start": 8,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID5"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "finance_account"
+       },
+       {
+        "evidence": [],
+        "id": "account_client_code_finance"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "S4100"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 37,
+        "start": 24,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_certified"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 37,
+        "start": 24,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 23,
+       "start": 8,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 37,
+       "start": 24,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 56,
+       "start": 42,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 64,
+       "start": 57,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "c"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 79,
+       "start": 65,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "c",
+      "x0",
+      "x1"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "kind": "single",
+    "period": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-09"
+    }
+   }
+  },
+  "question": "How did Retail Investor certified NNA for September 2024 compare year over year?"
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [],
+   "dimensions": [
+    {
+     "bindings": [
+      {
+       "column": {
+        "evidence": [
+         {
+          "end": 21,
+          "start": 6,
+          "turn": "turn"
+         }
+        ],
+        "id": "wealth.DATE_DIM_1.DAY_OF_WEEK"
+       },
+       "context": {
+        "evidence": [
+         {
+          "end": 64,
+          "start": 51,
+          "turn": "turn"
+         }
+        ],
+        "id": "nna_certified"
+       },
+       "level": null,
+       "path": [
+        {
+         "evidence": [],
+         "id": "finance_date"
+        }
+       ]
+      }
+     ],
+     "id": "d0",
+     "kind": "column"
+    }
+   ],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 50,
+       "start": 35,
+       "turn": "turn"
+      }
+     ],
+     "id": "f0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 50,
+         "start": 35,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID5"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "finance_account"
+       },
+       {
+        "evidence": [],
+        "id": "account_client_code_finance"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "S4100"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 64,
+        "start": 51,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_certified"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 64,
+        "start": 51,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 21,
+       "start": 6,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "d0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 34,
+       "start": 30,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 50,
+       "start": 35,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 64,
+       "start": 51,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "d0"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 65,
+       "start": 64,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "d0"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 78,
+       "start": 66,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 86,
+       "start": 79,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o7",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 101,
+       "start": 87,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    }
+   ],
+   "order": [
+    {
+     "direction": "desc",
+     "evidence": [
+      {
+       "end": 34,
+       "start": 30,
+       "turn": "turn"
+      },
+      {
+       "end": 64,
+       "start": 51,
+       "turn": "turn"
+      }
+     ],
+     "nulls": "last",
+     "output": "m0"
+    }
+   ],
+   "schema": "query-plan/v1",
+   "time": {
+    "calendar": {
+     "evidence": [],
+     "id": "calendar"
+    },
+    "kind": "ytd",
+    "through": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-09"
+    }
+   }
+  },
+  "question": "Which day of the week had the most Retail Investor certified NNA, year to date through September 2024?"
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [],
+   "dimensions": [
+    {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "grain": "month",
+     "id": "t0",
+     "kind": "time"
+    }
+   ],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 23,
+       "start": 8,
+       "turn": "turn"
+      }
+     ],
+     "id": "f0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 23,
+         "start": 8,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID5"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "finance_account"
+       },
+       {
+        "evidence": [],
+        "id": "account_client_code_finance"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "S4100"
+     }
+    },
+    {
+     "evidence": [
+      {
+       "end": 68,
+       "start": 56,
+       "turn": "turn"
+      }
+     ],
+     "id": "f1",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 68,
+         "start": 56,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.ACCT_DIM2_1.ACCT_RELT_SPS_IN"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "finance_account"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "Y"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 37,
+        "start": 24,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_certified"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 37,
+        "start": 24,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "current"
+    },
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 50,
+        "start": 42,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_client_directed"
+     },
+     "filters": [],
+     "id": "m1",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 50,
+        "start": 42,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 23,
+       "start": 8,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 37,
+       "start": 24,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 50,
+       "start": 42,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m1"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 68,
+       "start": 56,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f1"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 71,
+       "start": 69,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "t0"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 77,
+       "start": 72,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "t0"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 89,
+       "start": 82,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o7",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 97,
+       "start": 90,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o8",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 112,
+       "start": 98,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "first": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-01"
+    },
+    "kind": "range",
+    "last": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-09"
+    }
+   }
+  },
+  "question": "Show me Retail Investor certified NNA and NNAxFDIC from SPS accounts by month for January through September 2024."
+ },
+ {
+  "plan": {
+   "comparisons": [],
+   "derived": [
+    {
+     "declaration": {
+      "evidence": [
+       {
+        "end": 95,
+        "start": 67,
+        "turn": "turn"
+       }
+      ],
+      "id": "branch-sales-inflow-outflow-ratio"
+     },
+     "denominator": "m2",
+     "evidence": [
+      {
+       "end": 95,
+       "start": 67,
+       "turn": "turn"
+      }
+     ],
+     "id": "formula0",
+     "kind": "ratio",
+     "numerator": "m1"
+    }
+   ],
+   "dimensions": [],
+   "filters": [],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 39,
+        "start": 23,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_branch_sales"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 39,
+        "start": 23,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.branch-sales-nna"
+     },
+     "mode": "current"
+    },
+    {
+     "context": {
+      "evidence": [],
+      "id": "branch_sales_inflows"
+     },
+     "filters": [],
+     "id": "m1",
+     "kind": "measure",
+     "measure": {
+      "evidence": [],
+      "id": "wealth.branch-sales-inflows"
+     },
+     "mode": "current"
+    },
+    {
+     "context": {
+      "evidence": [],
+      "id": "branch_sales_outflows"
+     },
+     "filters": [],
+     "id": "m2",
+     "kind": "measure",
+     "measure": {
+      "evidence": [],
+      "id": "wealth.branch-sales-outflows"
+     },
+     "mode": "current"
+    },
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 39,
+        "start": 23,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_branch_sales"
+     },
+     "entity": {
+      "evidence": [
+       {
+        "end": 123,
+        "start": 113,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth_account_household"
+     },
+     "filters": [],
+     "id": "n3",
+     "kind": "distinct_count",
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 22,
+       "start": 10,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 39,
+       "start": 23,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "n3"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 47,
+       "start": 40,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m1"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 57,
+       "start": 49,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m2"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 95,
+       "start": 67,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m1",
+      "m2",
+      "formula0"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 112,
+       "start": 104,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "n3"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 123,
+       "start": 113,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "n3"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "kind": "single",
+    "period": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-01"
+    }
+   }
+  },
+  "question": "What were January 2024 branch sales NNA inflows, outflows, and the ratio of inflows to outflows, with a count of households?"
+ },
+ {
+  "plan": {
+   "comparisons": [
+    {
+     "evidence": [
+      {
+       "end": 109,
+       "start": 93,
+       "turn": "turn"
+      }
+     ],
+     "id": "c",
+     "inputs": [
+      "m0"
+     ],
+     "kind": "previous_period"
+    }
+   ],
+   "derived": [
+    {
+     "denominator": "c/m0/other",
+     "evidence": [
+      {
+       "end": 109,
+       "start": 93,
+       "turn": "turn"
+      }
+     ],
+     "id": "x0",
+     "kind": "difference",
+     "numerator": "c/m0/base"
+    },
+    {
+     "denominator": "c/m0/other",
+     "evidence": [
+      {
+       "end": 109,
+       "start": 93,
+       "turn": "turn"
+      },
+      {
+       "end": 118,
+       "start": 110,
+       "turn": "turn"
+      }
+     ],
+     "id": "x1",
+     "kind": "percent_change",
+     "numerator": "c/m0/base"
+    },
+    {
+     "evidence": [
+      {
+       "end": 133,
+       "start": 123,
+       "turn": "turn"
+      },
+      {
+       "end": 137,
+       "start": 134,
+       "turn": "turn"
+      }
+     ],
+     "id": "running_total-m0",
+     "input": "m0",
+     "kind": "running_total",
+     "order_by": "t0",
+     "partition_by": []
+    }
+   ],
+   "dimensions": [
+    {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "grain": "month",
+     "id": "t0",
+     "kind": "time"
+    }
+   ],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 21,
+       "start": 5,
+       "turn": "turn"
+      }
+     ],
+     "id": "f0",
+     "kind": "in",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 21,
+         "start": 5,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.BRCH_DIM_1.RGN_CD"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "branch_sales_account"
+       },
+       {
+        "evidence": [],
+        "id": "branch_sales_current_office"
+       }
+      ]
+     },
+     "values": [
+      {
+       "kind": "text",
+       "value": "CEO"
+      },
+      {
+       "kind": "text",
+       "value": "NER"
+      }
+     ]
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 38,
+        "start": 22,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_branch_sales"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 38,
+        "start": 22,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.branch-sales-nna"
+     },
+     "mode": "current"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 21,
+       "start": 5,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 38,
+       "start": 22,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 41,
+       "start": 39,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "t0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 47,
+       "start": 42,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "t0"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 59,
+       "start": 52,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 67,
+       "start": 60,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 82,
+       "start": 68,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o7",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 109,
+       "start": 93,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "c",
+      "x0",
+      "x1"
+     ]
+    },
+    {
+     "id": "o8",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 118,
+       "start": 110,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "x1"
+     ]
+    },
+    {
+     "id": "o9",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 133,
+       "start": 123,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "running_total-m0"
+     ]
+    },
+    {
+     "id": "o10",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 137,
+       "start": 134,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "running_total-m0"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "first": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-01"
+    },
+    "kind": "range",
+    "last": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-09"
+    }
+   }
+  },
+  "question": "Show Heartland region branch sales NNA by month for January through September 2024, with the month-over-month % change and cumulative NNA."
+ },
+ {
+  "plan": {
+   "comparisons": [
+    {
+     "evidence": [
+      {
+       "end": 69,
+       "start": 62,
+       "turn": "turn"
+      },
+      {
+       "end": 84,
+       "start": 70,
+       "turn": "turn"
+      }
+     ],
+     "id": "c",
+     "inputs": [
+      "m0"
+     ],
+     "kind": "previous_year"
+    }
+   ],
+   "derived": [
+    {
+     "denominator": "c/m0/other",
+     "evidence": [
+      {
+       "end": 84,
+       "start": 70,
+       "turn": "turn"
+      }
+     ],
+     "id": "x0",
+     "kind": "difference",
+     "numerator": "c/m0/base"
+    },
+    {
+     "denominator": "c/m0/other",
+     "evidence": [
+      {
+       "end": 84,
+       "start": 70,
+       "turn": "turn"
+      }
+     ],
+     "id": "x1",
+     "kind": "percent_change",
+     "numerator": "c/m0/base"
+    }
+   ],
+   "dimensions": [
+    {
+     "bindings": [
+      {
+       "column": {
+        "evidence": [
+         {
+          "end": 110,
+          "start": 85,
+          "turn": "turn"
+         }
+        ],
+        "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID4"
+       },
+       "context": {
+        "evidence": [
+         {
+          "end": 42,
+          "start": 34,
+          "turn": "turn"
+         }
+        ],
+        "id": "nna_client_directed"
+       },
+       "level": 1,
+       "path": [
+        {
+         "evidence": [],
+         "id": "finance_account"
+        },
+        {
+         "evidence": [],
+         "id": "account_client_code_finance"
+        }
+       ]
+      }
+     ],
+     "id": "d0",
+     "kind": "hierarchy"
+    }
+   ],
+   "filters": [
+    {
+     "evidence": [
+      {
+       "end": 23,
+       "start": 8,
+       "turn": "turn"
+      }
+     ],
+     "id": "f0",
+     "kind": "compare",
+     "left": {
+      "kind": "column",
+      "name": {
+       "evidence": [
+        {
+         "end": 23,
+         "start": 8,
+         "turn": "turn"
+        }
+       ],
+       "id": "wealth.CLIENT_CD_ROLLUP_1.SEGMT_LVL_ID5"
+      },
+      "path": [
+       {
+        "evidence": [],
+        "id": "finance_account"
+       },
+       {
+        "evidence": [],
+        "id": "account_client_code_finance"
+       }
+      ]
+     },
+     "op": "eq",
+     "value": {
+      "kind": "text",
+      "value": "S4100"
+     }
+    }
+   ],
+   "layout": "aligned",
+   "limit": null,
+   "measures": [
+    {
+     "context": {
+      "evidence": [
+       {
+        "end": 42,
+        "start": 34,
+        "turn": "turn"
+       }
+      ],
+      "id": "nna_client_directed"
+     },
+     "filters": [],
+     "id": "m0",
+     "kind": "measure",
+     "measure": {
+      "evidence": [
+       {
+        "end": 42,
+        "start": 34,
+        "turn": "turn"
+       }
+      ],
+      "id": "wealth.certified-nna"
+     },
+     "mode": "as_reported"
+    }
+   ],
+   "obligations": [
+    {
+     "id": "o0",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 23,
+       "start": 8,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "f0"
+     ]
+    },
+    {
+     "id": "o1",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 33,
+       "start": 24,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0"
+     ]
+    },
+    {
+     "id": "o2",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 42,
+       "start": 34,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "m0",
+      "d0"
+     ]
+    },
+    {
+     "id": "o3",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 61,
+       "start": 47,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "time"
+     ]
+    },
+    {
+     "id": "o4",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 69,
+       "start": 62,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "c"
+     ]
+    },
+    {
+     "id": "o5",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 84,
+       "start": 70,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "c",
+      "x0",
+      "x1"
+     ]
+    },
+    {
+     "id": "o6",
+     "kind": "name",
+     "spans": [
+      {
+       "end": 110,
+       "start": 85,
+       "turn": "turn"
+      }
+     ],
+     "state": "applied",
+     "targets": [
+      "d0"
+     ]
+    }
+   ],
+   "order": [],
+   "schema": "query-plan/v1",
+   "time": {
+    "kind": "single",
+    "period": {
+     "calendar": {
+      "evidence": [],
+      "id": "calendar"
+     },
+     "kind": "month",
+     "value": "2024-09"
+    }
+   }
+  },
+  "question": "How did Retail Investor certified NNAxFDIC for September 2024 compare year over year by client segment level 4?"
+ }
+]

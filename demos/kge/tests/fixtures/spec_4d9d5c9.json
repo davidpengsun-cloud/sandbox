@@ -1,0 +1,2076 @@
+{
+ "UNITS": [
+  "retail",
+  "sme",
+  "corporate",
+  "wealth"
+ ],
+ "UNIT_LABEL": {
+  "retail": "Retail Banking",
+  "sme": "SME Banking",
+  "corporate": "Corporate & Institutional",
+  "wealth": "Wealth Management"
+ },
+ "UNIT_KEY": {
+  "retail": "customer_id",
+  "sme": "client_no",
+  "corporate": "counterparty_ref",
+  "wealth": "household_id"
+ },
+ "SCHEMAS": {
+  "retail": {
+   "calendar_month": {
+    "pk": "month_start",
+    "columns": [
+     [
+      "month_start",
+      "DATE",
+      "First day of the calendar month"
+     ],
+     [
+      "calendar_year",
+      "INTEGER",
+      "Calendar year"
+     ],
+     [
+      "calendar_quarter",
+      "VARCHAR",
+      "Calendar quarter, e.g. 2025-Q2"
+     ]
+    ],
+    "fks": []
+   },
+   "branch": {
+    "pk": "branch_id",
+    "columns": [
+     [
+      "branch_id",
+      "INTEGER",
+      "Branch identifier"
+     ],
+     [
+      "branch_name",
+      "VARCHAR",
+      "Branch trading name"
+     ],
+     [
+      "region_code",
+      "VARCHAR",
+      "Sales region code"
+     ],
+     [
+      "opened_on",
+      "DATE",
+      "Date the branch opened"
+     ]
+    ],
+    "fks": []
+   },
+   "product": {
+    "pk": "product_id",
+    "columns": [
+     [
+      "product_id",
+      "INTEGER",
+      "Product identifier"
+     ],
+     [
+      "product_name",
+      "VARCHAR",
+      "Product marketing name"
+     ],
+     [
+      "product_family",
+      "VARCHAR",
+      "Current account, savings, lending, card"
+     ],
+     [
+      "rate_bps",
+      "INTEGER",
+      "Headline rate in basis points"
+     ],
+     [
+      "fee_monthly",
+      "DECIMAL(10,2)",
+      "Monthly account fee in USD"
+     ]
+    ],
+    "fks": []
+   },
+   "customer": {
+    "pk": "customer_id",
+    "columns": [
+     [
+      "customer_id",
+      "INTEGER",
+      "Retail customer identifier"
+     ],
+     [
+      "first_name",
+      "VARCHAR",
+      "Customer first name"
+     ],
+     [
+      "last_name",
+      "VARCHAR",
+      "Customer last name"
+     ],
+     [
+      "date_of_birth",
+      "DATE",
+      "Customer date of birth"
+     ],
+     [
+      "email",
+      "VARCHAR",
+      "Customer email address"
+     ],
+     [
+      "segment_code",
+      "VARCHAR",
+      "Marketing segment code"
+     ],
+     [
+      "branch_id",
+      "INTEGER",
+      "Home branch"
+     ],
+     [
+      "opened_on",
+      "DATE",
+      "Date the relationship opened"
+     ]
+    ],
+    "fks": [
+     [
+      "branch_id",
+      "branch",
+      "branch_id"
+     ]
+    ]
+   },
+   "account": {
+    "pk": "account_id",
+    "columns": [
+     [
+      "account_id",
+      "INTEGER",
+      "Account identifier"
+     ],
+     [
+      "customer_id",
+      "INTEGER",
+      "Owning customer"
+     ],
+     [
+      "product_id",
+      "INTEGER",
+      "Product held"
+     ],
+     [
+      "status_code",
+      "VARCHAR",
+      "OPEN, DORMANT or CLOSED"
+     ],
+     [
+      "opened_on",
+      "DATE",
+      "Date opened"
+     ],
+     [
+      "closed_on",
+      "DATE",
+      "Date closed, null while open"
+     ],
+     [
+      "currency_code",
+      "VARCHAR",
+      "Account currency, always USD in retail"
+     ]
+    ],
+    "fks": [
+     [
+      "customer_id",
+      "customer",
+      "customer_id"
+     ],
+     [
+      "product_id",
+      "product",
+      "product_id"
+     ]
+    ]
+   },
+   "transaction": {
+    "pk": "txn_id",
+    "columns": [
+     [
+      "txn_id",
+      "BIGINT",
+      "Transaction identifier"
+     ],
+     [
+      "account_id",
+      "INTEGER",
+      "Account posted to"
+     ],
+     [
+      "posted_on",
+      "DATE",
+      "Posting date"
+     ],
+     [
+      "amount",
+      "DECIMAL(14,2)",
+      "Signed amount in account currency"
+     ],
+     [
+      "txn_type",
+      "VARCHAR",
+      "DEBIT or CREDIT"
+     ],
+     [
+      "channel_code",
+      "VARCHAR",
+      "BRANCH, ATM, ONLINE, MOBILE"
+     ],
+     [
+      "merchant_category",
+      "VARCHAR",
+      "Merchant category code where applicable"
+     ]
+    ],
+    "fks": [
+     [
+      "account_id",
+      "account",
+      "account_id"
+     ]
+    ]
+   },
+   "monthly_revenue": {
+    "pk": "revenue_id",
+    "columns": [
+     [
+      "revenue_id",
+      "INTEGER",
+      "Row identifier"
+     ],
+     [
+      "account_id",
+      "INTEGER",
+      "Account the revenue accrues to"
+     ],
+     [
+      "month_start",
+      "DATE",
+      "Calendar month"
+     ],
+     [
+      "interest_income",
+      "DECIMAL(14,2)",
+      "Net interest income for the month, USD"
+     ],
+     [
+      "fee_income",
+      "DECIMAL(14,2)",
+      "Fee income for the month, USD"
+     ],
+     [
+      "total_revenue_usd",
+      "DECIMAL(14,2)",
+      "Interest plus fees, USD, calendar month"
+     ]
+    ],
+    "fks": [
+     [
+      "account_id",
+      "account",
+      "account_id"
+     ],
+     [
+      "month_start",
+      "calendar_month",
+      "month_start"
+     ]
+    ]
+   },
+   "daily_balance": {
+    "pk": "balance_id",
+    "columns": [
+     [
+      "balance_id",
+      "BIGINT",
+      "Row identifier"
+     ],
+     [
+      "account_id",
+      "INTEGER",
+      "Account"
+     ],
+     [
+      "as_of",
+      "DATE",
+      "Balance date"
+     ],
+     [
+      "ledger_balance",
+      "DECIMAL(14,2)",
+      "End-of-day ledger balance"
+     ],
+     [
+      "available_balance",
+      "DECIMAL(14,2)",
+      "End-of-day available balance"
+     ]
+    ],
+    "fks": [
+     [
+      "account_id",
+      "account",
+      "account_id"
+     ]
+    ]
+   },
+   "customer_activity": {
+    "pk": "activity_id",
+    "columns": [
+     [
+      "activity_id",
+      "INTEGER",
+      "Row identifier"
+     ],
+     [
+      "customer_id",
+      "INTEGER",
+      "Customer"
+     ],
+     [
+      "month_start",
+      "DATE",
+      "Calendar month"
+     ],
+     [
+      "login_count",
+      "INTEGER",
+      "Digital logins in the month"
+     ],
+     [
+      "txn_count",
+      "INTEGER",
+      "Customer-initiated transactions in the month"
+     ],
+     [
+      "is_active_flag",
+      "BOOLEAN",
+      "True where txn_count is at least one in the month"
+     ]
+    ],
+    "fks": [
+     [
+      "customer_id",
+      "customer",
+      "customer_id"
+     ],
+     [
+      "month_start",
+      "calendar_month",
+      "month_start"
+     ]
+    ]
+   },
+   "complaint": {
+    "pk": "complaint_id",
+    "columns": [
+     [
+      "complaint_id",
+      "INTEGER",
+      "Complaint identifier"
+     ],
+     [
+      "customer_id",
+      "INTEGER",
+      "Complainant"
+     ],
+     [
+      "raised_on",
+      "DATE",
+      "Date raised"
+     ],
+     [
+      "category",
+      "VARCHAR",
+      "Complaint category"
+     ],
+     [
+      "resolved_on",
+      "DATE",
+      "Date resolved, null while open"
+     ]
+    ],
+    "fks": [
+     [
+      "customer_id",
+      "customer",
+      "customer_id"
+     ]
+    ]
+   }
+  },
+  "sme": {
+   "calendar_month": {
+    "pk": "month_start",
+    "columns": [
+     [
+      "month_start",
+      "DATE",
+      "First day of the calendar month"
+     ],
+     [
+      "calendar_year",
+      "INTEGER",
+      "Calendar year"
+     ],
+     [
+      "calendar_quarter",
+      "VARCHAR",
+      "Calendar quarter"
+     ]
+    ],
+    "fks": []
+   },
+   "relationship_manager": {
+    "pk": "rm_id",
+    "columns": [
+     [
+      "rm_id",
+      "INTEGER",
+      "Relationship manager identifier"
+     ],
+     [
+      "rm_name",
+      "VARCHAR",
+      "Relationship manager name"
+     ],
+     [
+      "team_code",
+      "VARCHAR",
+      "Coverage team"
+     ]
+    ],
+    "fks": []
+   },
+   "client": {
+    "pk": "client_no",
+    "columns": [
+     [
+      "client_no",
+      "INTEGER",
+      "SME client number"
+     ],
+     [
+      "legal_name",
+      "VARCHAR",
+      "Registered legal name"
+     ],
+     [
+      "registration_no",
+      "VARCHAR",
+      "Company registration number"
+     ],
+     [
+      "industry_code",
+      "VARCHAR",
+      "Industry classification code"
+     ],
+     [
+      "rm_id",
+      "INTEGER",
+      "Covering relationship manager"
+     ],
+     [
+      "onboarded_on",
+      "DATE",
+      "Onboarding date"
+     ]
+    ],
+    "fks": [
+     [
+      "rm_id",
+      "relationship_manager",
+      "rm_id"
+     ]
+    ]
+   },
+   "facility": {
+    "pk": "facility_id",
+    "columns": [
+     [
+      "facility_id",
+      "INTEGER",
+      "Facility identifier"
+     ],
+     [
+      "client_no",
+      "INTEGER",
+      "Borrowing client"
+     ],
+     [
+      "facility_type",
+      "VARCHAR",
+      "TERM_LOAN, OVERDRAFT, INVOICE_FINANCE"
+     ],
+     [
+      "limit_amount",
+      "DECIMAL(14,2)",
+      "Approved limit"
+     ],
+     [
+      "currency_code",
+      "VARCHAR",
+      "Facility currency, USD"
+     ],
+     [
+      "start_on",
+      "DATE",
+      "Facility start"
+     ],
+     [
+      "end_on",
+      "DATE",
+      "Facility maturity"
+     ]
+    ],
+    "fks": [
+     [
+      "client_no",
+      "client",
+      "client_no"
+     ]
+    ]
+   },
+   "drawdown": {
+    "pk": "drawdown_id",
+    "columns": [
+     [
+      "drawdown_id",
+      "INTEGER",
+      "Drawdown identifier"
+     ],
+     [
+      "facility_id",
+      "INTEGER",
+      "Facility drawn"
+     ],
+     [
+      "drawn_on",
+      "DATE",
+      "Drawdown date"
+     ],
+     [
+      "amount",
+      "DECIMAL(14,2)",
+      "Amount drawn"
+     ]
+    ],
+    "fks": [
+     [
+      "facility_id",
+      "facility",
+      "facility_id"
+     ]
+    ]
+   },
+   "repayment": {
+    "pk": "repayment_id",
+    "columns": [
+     [
+      "repayment_id",
+      "INTEGER",
+      "Repayment identifier"
+     ],
+     [
+      "facility_id",
+      "INTEGER",
+      "Facility repaid"
+     ],
+     [
+      "paid_on",
+      "DATE",
+      "Payment date"
+     ],
+     [
+      "amount",
+      "DECIMAL(14,2)",
+      "Amount paid"
+     ],
+     [
+      "days_past_due",
+      "INTEGER",
+      "Days past the scheduled date, zero when on time"
+     ]
+    ],
+    "fks": [
+     [
+      "facility_id",
+      "facility",
+      "facility_id"
+     ]
+    ]
+   },
+   "monthly_client_revenue": {
+    "pk": "rev_id",
+    "columns": [
+     [
+      "rev_id",
+      "INTEGER",
+      "Row identifier"
+     ],
+     [
+      "client_no",
+      "INTEGER",
+      "Client"
+     ],
+     [
+      "month_start",
+      "DATE",
+      "Calendar month"
+     ],
+     [
+      "nii",
+      "DECIMAL(14,2)",
+      "Net interest income, USD"
+     ],
+     [
+      "fees",
+      "DECIMAL(14,2)",
+      "Fee income, USD"
+     ],
+     [
+      "revenue_usd",
+      "DECIMAL(14,2)",
+      "NII plus fees, USD, calendar month"
+     ]
+    ],
+    "fks": [
+     [
+      "client_no",
+      "client",
+      "client_no"
+     ],
+     [
+      "month_start",
+      "calendar_month",
+      "month_start"
+     ]
+    ]
+   },
+   "client_activity": {
+    "pk": "activity_id",
+    "columns": [
+     [
+      "activity_id",
+      "INTEGER",
+      "Row identifier"
+     ],
+     [
+      "client_no",
+      "INTEGER",
+      "Client"
+     ],
+     [
+      "month_start",
+      "DATE",
+      "Calendar month"
+     ],
+     [
+      "payments_count",
+      "INTEGER",
+      "Outbound payments in the month"
+     ],
+     [
+      "active_flag",
+      "BOOLEAN",
+      "True where payments_count is at least one"
+     ]
+    ],
+    "fks": [
+     [
+      "client_no",
+      "client",
+      "client_no"
+     ],
+     [
+      "month_start",
+      "calendar_month",
+      "month_start"
+     ]
+    ]
+   },
+   "covenant": {
+    "pk": "covenant_id",
+    "columns": [
+     [
+      "covenant_id",
+      "INTEGER",
+      "Covenant identifier"
+     ],
+     [
+      "facility_id",
+      "INTEGER",
+      "Facility the covenant attaches to"
+     ],
+     [
+      "covenant_type",
+      "VARCHAR",
+      "LEVERAGE, INTEREST_COVER, MIN_LIQUIDITY"
+     ],
+     [
+      "threshold",
+      "DECIMAL(10,4)",
+      "Covenant threshold"
+     ],
+     [
+      "tested_on",
+      "DATE",
+      "Last test date"
+     ],
+     [
+      "breached_flag",
+      "BOOLEAN",
+      "True where the last test breached"
+     ]
+    ],
+    "fks": [
+     [
+      "facility_id",
+      "facility",
+      "facility_id"
+     ]
+    ]
+   }
+  },
+  "corporate": {
+   "fiscal_calendar": {
+    "pk": "fiscal_quarter",
+    "columns": [
+     [
+      "fiscal_quarter",
+      "VARCHAR",
+      "Fiscal quarter label, e.g. FY25-Q1"
+     ],
+     [
+      "fiscal_year",
+      "INTEGER",
+      "Fiscal year, starting 1 April"
+     ],
+     [
+      "quarter_start",
+      "DATE",
+      "First day of the fiscal quarter"
+     ],
+     [
+      "quarter_end",
+      "DATE",
+      "Last day of the fiscal quarter"
+     ]
+    ],
+    "fks": []
+   },
+   "counterparty": {
+    "pk": "counterparty_ref",
+    "columns": [
+     [
+      "counterparty_ref",
+      "VARCHAR",
+      "Counterparty reference"
+     ],
+     [
+      "counterparty_name",
+      "VARCHAR",
+      "Legal entity name"
+     ],
+     [
+      "lei_code",
+      "VARCHAR",
+      "Legal entity identifier"
+     ],
+     [
+      "country_code",
+      "VARCHAR",
+      "Country of incorporation"
+     ],
+     [
+      "sector_code",
+      "VARCHAR",
+      "Sector classification"
+     ],
+     [
+      "onboarded_on",
+      "DATE",
+      "Onboarding date"
+     ]
+    ],
+    "fks": []
+   },
+   "contact": {
+    "pk": "contact_id",
+    "columns": [
+     [
+      "contact_id",
+      "INTEGER",
+      "Contact identifier"
+     ],
+     [
+      "counterparty_ref",
+      "VARCHAR",
+      "Counterparty the contact belongs to"
+     ],
+     [
+      "customer_id",
+      "INTEGER",
+      "CRM contact number. Not the retail customer identifier, despite the name"
+     ],
+     [
+      "contact_name",
+      "VARCHAR",
+      "Contact name"
+     ],
+     [
+      "contact_email",
+      "VARCHAR",
+      "Contact email"
+     ],
+     [
+      "role_code",
+      "VARCHAR",
+      "TREASURER, CFO, OPERATIONS"
+     ]
+    ],
+    "fks": [
+     [
+      "counterparty_ref",
+      "counterparty",
+      "counterparty_ref"
+     ]
+    ]
+   },
+   "deal": {
+    "pk": "deal_id",
+    "columns": [
+     [
+      "deal_id",
+      "INTEGER",
+      "Deal identifier"
+     ],
+     [
+      "counterparty_ref",
+      "VARCHAR",
+      "Counterparty"
+     ],
+     [
+      "product_code",
+      "VARCHAR",
+      "FX_FWD, IRS, LOAN, BOND"
+     ],
+     [
+      "notional_eur",
+      "DECIMAL(16,2)",
+      "Notional in EUR"
+     ],
+     [
+      "trade_on",
+      "DATE",
+      "Trade date"
+     ],
+     [
+      "maturity_on",
+      "DATE",
+      "Maturity date"
+     ]
+    ],
+    "fks": [
+     [
+      "counterparty_ref",
+      "counterparty",
+      "counterparty_ref"
+     ]
+    ]
+   },
+   "exposure": {
+    "pk": "exposure_id",
+    "columns": [
+     [
+      "exposure_id",
+      "INTEGER",
+      "Row identifier"
+     ],
+     [
+      "counterparty_ref",
+      "VARCHAR",
+      "Counterparty"
+     ],
+     [
+      "as_of",
+      "DATE",
+      "Measurement date"
+     ],
+     [
+      "ead_eur",
+      "DECIMAL(16,2)",
+      "Exposure at default, EUR"
+     ],
+     [
+      "pd_bps",
+      "INTEGER",
+      "Probability of default, basis points"
+     ],
+     [
+      "lgd_pct",
+      "DECIMAL(5,2)",
+      "Loss given default, per cent"
+     ]
+    ],
+    "fks": [
+     [
+      "counterparty_ref",
+      "counterparty",
+      "counterparty_ref"
+     ]
+    ]
+   },
+   "quarterly_revenue": {
+    "pk": "qrev_id",
+    "columns": [
+     [
+      "qrev_id",
+      "INTEGER",
+      "Row identifier"
+     ],
+     [
+      "counterparty_ref",
+      "VARCHAR",
+      "Counterparty"
+     ],
+     [
+      "fiscal_quarter",
+      "VARCHAR",
+      "Fiscal quarter"
+     ],
+     [
+      "revenue_eur",
+      "DECIMAL(16,2)",
+      "Revenue in EUR for the fiscal quarter"
+     ],
+     [
+      "fx_rate_period_end",
+      "DECIMAL(10,6)",
+      "EUR to USD rate at quarter end"
+     ],
+     [
+      "revenue_usd_converted",
+      "DECIMAL(16,2)",
+      "Revenue converted to USD at the period-end rate"
+     ]
+    ],
+    "fks": [
+     [
+      "counterparty_ref",
+      "counterparty",
+      "counterparty_ref"
+     ],
+     [
+      "fiscal_quarter",
+      "fiscal_calendar",
+      "fiscal_quarter"
+     ]
+    ]
+   },
+   "limit_utilisation": {
+    "pk": "util_id",
+    "columns": [
+     [
+      "util_id",
+      "INTEGER",
+      "Row identifier"
+     ],
+     [
+      "counterparty_ref",
+      "VARCHAR",
+      "Counterparty"
+     ],
+     [
+      "as_of",
+      "DATE",
+      "Measurement date"
+     ],
+     [
+      "limit_eur",
+      "DECIMAL(16,2)",
+      "Approved limit, EUR"
+     ],
+     [
+      "utilised_eur",
+      "DECIMAL(16,2)",
+      "Utilised amount, EUR"
+     ]
+    ],
+    "fks": [
+     [
+      "counterparty_ref",
+      "counterparty",
+      "counterparty_ref"
+     ]
+    ]
+   },
+   "rating": {
+    "pk": "rating_id",
+    "columns": [
+     [
+      "rating_id",
+      "INTEGER",
+      "Row identifier"
+     ],
+     [
+      "counterparty_ref",
+      "VARCHAR",
+      "Counterparty"
+     ],
+     [
+      "rated_on",
+      "DATE",
+      "Rating date"
+     ],
+     [
+      "internal_grade",
+      "VARCHAR",
+      "Internal rating grade"
+     ],
+     [
+      "agency_grade",
+      "VARCHAR",
+      "External agency grade where available"
+     ]
+    ],
+    "fks": [
+     [
+      "counterparty_ref",
+      "counterparty",
+      "counterparty_ref"
+     ]
+    ]
+   }
+  },
+  "wealth": {
+   "fiscal_calendar": {
+    "pk": "fiscal_quarter",
+    "columns": [
+     [
+      "fiscal_quarter",
+      "VARCHAR",
+      "Fiscal quarter label, e.g. FY25-Q1"
+     ],
+     [
+      "fiscal_year",
+      "INTEGER",
+      "Fiscal year, starting 1 April"
+     ],
+     [
+      "quarter_start",
+      "DATE",
+      "First day of the fiscal quarter"
+     ],
+     [
+      "quarter_end",
+      "DATE",
+      "Last day of the fiscal quarter"
+     ]
+    ],
+    "fks": []
+   },
+   "advisor": {
+    "pk": "advisor_id",
+    "columns": [
+     [
+      "advisor_id",
+      "INTEGER",
+      "Advisor identifier"
+     ],
+     [
+      "advisor_name",
+      "VARCHAR",
+      "Advisor name"
+     ],
+     [
+      "office_code",
+      "VARCHAR",
+      "Office"
+     ],
+     [
+      "licence_class",
+      "VARCHAR",
+      "Licence class held"
+     ]
+    ],
+    "fks": []
+   },
+   "household": {
+    "pk": "household_id",
+    "columns": [
+     [
+      "household_id",
+      "INTEGER",
+      "Household identifier"
+     ],
+     [
+      "household_name",
+      "VARCHAR",
+      "Household display name"
+     ],
+     [
+      "primary_advisor_id",
+      "INTEGER",
+      "Primary advisor"
+     ],
+     [
+      "risk_profile",
+      "VARCHAR",
+      "CAUTIOUS, BALANCED, GROWTH"
+     ],
+     [
+      "onboarded_on",
+      "DATE",
+      "Onboarding date"
+     ]
+    ],
+    "fks": [
+     [
+      "primary_advisor_id",
+      "advisor",
+      "advisor_id"
+     ]
+    ]
+   },
+   "portfolio": {
+    "pk": "portfolio_id",
+    "columns": [
+     [
+      "portfolio_id",
+      "INTEGER",
+      "Portfolio identifier"
+     ],
+     [
+      "household_id",
+      "INTEGER",
+      "Owning household"
+     ],
+     [
+      "mandate_type",
+      "VARCHAR",
+      "DISCRETIONARY or ADVISORY"
+     ],
+     [
+      "base_currency",
+      "VARCHAR",
+      "Portfolio base currency, USD"
+     ],
+     [
+      "inception_on",
+      "DATE",
+      "Inception date"
+     ]
+    ],
+    "fks": [
+     [
+      "household_id",
+      "household",
+      "household_id"
+     ]
+    ]
+   },
+   "holding": {
+    "pk": "holding_id",
+    "columns": [
+     [
+      "holding_id",
+      "BIGINT",
+      "Row identifier"
+     ],
+     [
+      "portfolio_id",
+      "INTEGER",
+      "Portfolio"
+     ],
+     [
+      "as_of",
+      "DATE",
+      "Valuation date"
+     ],
+     [
+      "instrument_id",
+      "VARCHAR",
+      "Instrument identifier"
+     ],
+     [
+      "quantity",
+      "DECIMAL(18,4)",
+      "Units held"
+     ],
+     [
+      "market_value",
+      "DECIMAL(16,2)",
+      "Market value in base currency"
+     ]
+    ],
+    "fks": [
+     [
+      "portfolio_id",
+      "portfolio",
+      "portfolio_id"
+     ]
+    ]
+   },
+   "quarterly_fee_revenue": {
+    "pk": "fee_id",
+    "columns": [
+     [
+      "fee_id",
+      "INTEGER",
+      "Row identifier"
+     ],
+     [
+      "household_id",
+      "INTEGER",
+      "Household"
+     ],
+     [
+      "fiscal_quarter",
+      "VARCHAR",
+      "Fiscal quarter"
+     ],
+     [
+      "advisory_fee_usd",
+      "DECIMAL(14,2)",
+      "Advisory fees, USD"
+     ],
+     [
+      "product_fee_usd",
+      "DECIMAL(14,2)",
+      "Product fees, USD"
+     ],
+     [
+      "revenue_usd",
+      "DECIMAL(14,2)",
+      "Advisory plus product fees, USD, fiscal quarter"
+     ]
+    ],
+    "fks": [
+     [
+      "household_id",
+      "household",
+      "household_id"
+     ],
+     [
+      "fiscal_quarter",
+      "fiscal_calendar",
+      "fiscal_quarter"
+     ]
+    ]
+   },
+   "assets_under_advice": {
+    "pk": "aua_id",
+    "columns": [
+     [
+      "aua_id",
+      "INTEGER",
+      "Row identifier"
+     ],
+     [
+      "household_id",
+      "INTEGER",
+      "Household"
+     ],
+     [
+      "as_of",
+      "DATE",
+      "Valuation date, quarter end"
+     ],
+     [
+      "aua_usd",
+      "DECIMAL(16,2)",
+      "Assets under advice, USD"
+     ]
+    ],
+    "fks": [
+     [
+      "household_id",
+      "household",
+      "household_id"
+     ]
+    ]
+   },
+   "suitability_review": {
+    "pk": "review_id",
+    "columns": [
+     [
+      "review_id",
+      "INTEGER",
+      "Review identifier"
+     ],
+     [
+      "household_id",
+      "INTEGER",
+      "Household reviewed"
+     ],
+     [
+      "reviewed_on",
+      "DATE",
+      "Review date"
+     ],
+     [
+      "outcome_code",
+      "VARCHAR",
+      "SUITABLE, ACTION_REQUIRED, ESCALATED"
+     ],
+     [
+      "reviewer_id",
+      "INTEGER",
+      "Reviewing advisor"
+     ]
+    ],
+    "fks": [
+     [
+      "household_id",
+      "household",
+      "household_id"
+     ],
+     [
+      "reviewer_id",
+      "advisor",
+      "advisor_id"
+     ]
+    ]
+   }
+  }
+ },
+ "GLOSSARY": [
+  {
+   "term": "Revenue",
+   "domain": "Finance",
+   "steward": "Group Finance Data Steward",
+   "definition": "Income earned from customers in a period, before costs. Each business unit reports it at its own grain, currency and calendar; see the implementation metadata."
+  },
+  {
+   "term": "Net Interest Income",
+   "domain": "Finance",
+   "steward": "Group Finance Data Steward",
+   "definition": "Interest earned less interest paid, in the reporting currency, for the period."
+  },
+  {
+   "term": "Fee Income",
+   "domain": "Finance",
+   "steward": "Group Finance Data Steward",
+   "definition": "Fees and commissions charged to customers in the period."
+  },
+  {
+   "term": "Active Customer",
+   "domain": "Customer",
+   "steward": "Customer Data Steward",
+   "definition": "A customer with at least one customer-initiated transaction in the calendar month. Logins alone do not count. Version 2, effective 1 January 2025."
+  },
+  {
+   "term": "Assets Under Advice",
+   "domain": "Wealth",
+   "steward": "Wealth Data Steward",
+   "definition": "Market value of client assets on which the firm gives advice, at quarter end, USD."
+  },
+  {
+   "term": "Credit Exposure",
+   "domain": "Risk",
+   "steward": "Credit Risk Data Steward",
+   "definition": "Exposure at default to a counterparty at the measurement date."
+  },
+  {
+   "term": "Delinquency Rate",
+   "domain": "Risk",
+   "steward": "Credit Risk Data Steward",
+   "definition": "Share of scheduled repayments more than 30 days past due in the month."
+  },
+  {
+   "term": "Customer Attrition",
+   "domain": "Customer",
+   "steward": "Customer Data Steward",
+   "definition": "Customers whose last account closed in the month, as a share of opening customers."
+  },
+  {
+   "term": "Average Balance",
+   "domain": "Finance",
+   "steward": "Group Finance Data Steward",
+   "definition": "Mean end-of-day ledger balance over the calendar month."
+  },
+  {
+   "term": "Dormant Account",
+   "domain": "Customer",
+   "steward": "Customer Data Steward",
+   "definition": "An open account with no customer-initiated transaction for twelve months."
+  },
+  {
+   "term": "Limit Utilisation",
+   "domain": "Risk",
+   "steward": "Credit Risk Data Steward",
+   "definition": "Utilised amount as a share of the approved limit at the measurement date."
+  },
+  {
+   "term": "Covenant Breach",
+   "domain": "Risk",
+   "steward": "Credit Risk Data Steward",
+   "definition": "A covenant whose most recent test failed its threshold."
+  },
+  {
+   "term": "Suitability Review",
+   "domain": "Wealth",
+   "steward": "Wealth Data Steward",
+   "definition": "A documented review of whether a household's portfolio remains suitable."
+  },
+  {
+   "term": "Complaint",
+   "domain": "Conduct",
+   "steward": "Conduct Data Steward",
+   "definition": "An expression of dissatisfaction recorded under the complaints handling procedure."
+  },
+  {
+   "term": "Notional",
+   "domain": "Markets",
+   "steward": "Markets Data Steward",
+   "definition": "Face value of a derivative or loan deal, in deal currency."
+  },
+  {
+   "term": "Probability of Default",
+   "domain": "Risk",
+   "steward": "Credit Risk Data Steward",
+   "definition": "Twelve-month probability of default, in basis points."
+  },
+  {
+   "term": "Loss Given Default",
+   "domain": "Risk",
+   "steward": "Credit Risk Data Steward",
+   "definition": "Expected loss as a share of exposure if the counterparty defaults."
+  },
+  {
+   "term": "Internal Rating",
+   "domain": "Risk",
+   "steward": "Credit Risk Data Steward",
+   "definition": "The bank's own credit grade for a counterparty."
+  },
+  {
+   "term": "Household",
+   "domain": "Wealth",
+   "steward": "Wealth Data Steward",
+   "definition": "The unit of advice in wealth management: one or more related clients advised together."
+  },
+  {
+   "term": "Relationship Manager",
+   "domain": "Customer",
+   "steward": "Customer Data Steward",
+   "definition": "The named individual accountable for an SME client relationship."
+  },
+  {
+   "term": "Fiscal Year",
+   "domain": "Finance",
+   "steward": "Group Finance Data Steward",
+   "definition": "The twelve months from 1 April, used by Corporate and Wealth. Retail and SME report on the calendar year."
+  },
+  {
+   "term": "Period-End FX Rate",
+   "domain": "Finance",
+   "steward": "Group Finance Data Steward",
+   "definition": "The exchange rate on the last day of the period, used to convert Corporate revenue to USD."
+  },
+  {
+   "term": "Product Holding",
+   "domain": "Customer",
+   "steward": "Customer Data Steward",
+   "definition": "Count of distinct open products held by a customer."
+  },
+  {
+   "term": "New-to-Bank Customer",
+   "domain": "Customer",
+   "steward": "Customer Data Steward",
+   "definition": "A customer whose first account opened in the month."
+  },
+  {
+   "term": "Market Value",
+   "domain": "Wealth",
+   "steward": "Wealth Data Steward",
+   "definition": "Value of a holding at the valuation date in portfolio base currency."
+  },
+  {
+   "term": "Digital Login",
+   "domain": "Customer",
+   "steward": "Customer Data Steward",
+   "definition": "An authenticated session on the mobile or online channel."
+  },
+  {
+   "term": "Branch",
+   "domain": "Distribution",
+   "steward": "Distribution Data Steward",
+   "definition": "A physical retail location."
+  },
+  {
+   "term": "Segment",
+   "domain": "Customer",
+   "steward": "Customer Data Steward",
+   "definition": "Marketing segment assigned to a retail customer."
+  },
+  {
+   "term": "Facility",
+   "domain": "Lending",
+   "steward": "Credit Risk Data Steward",
+   "definition": "A committed or uncommitted lending line to an SME client."
+  },
+  {
+   "term": "Drawdown",
+   "domain": "Lending",
+   "steward": "Credit Risk Data Steward",
+   "definition": "A utilisation of a facility."
+  },
+  {
+   "term": "Counterparty",
+   "domain": "Markets",
+   "steward": "Markets Data Steward",
+   "definition": "A legal entity with which the bank transacts in Corporate & Institutional."
+  },
+  {
+   "term": "Legal Entity Identifier",
+   "domain": "Markets",
+   "steward": "Markets Data Steward",
+   "definition": "The 20-character identifier for a counterparty under the global LEI system."
+  },
+  {
+   "term": "Risk Profile",
+   "domain": "Wealth",
+   "steward": "Wealth Data Steward",
+   "definition": "The household's agreed appetite for investment risk."
+  },
+  {
+   "term": "Mandate",
+   "domain": "Wealth",
+   "steward": "Wealth Data Steward",
+   "definition": "Whether the firm manages a portfolio at its discretion or advises only."
+  },
+  {
+   "term": "Channel",
+   "domain": "Distribution",
+   "steward": "Distribution Data Steward",
+   "definition": "The route by which a transaction was initiated."
+  },
+  {
+   "term": "Merchant Category",
+   "domain": "Payments",
+   "steward": "Payments Data Steward",
+   "definition": "The card-scheme category of a merchant."
+  },
+  {
+   "term": "Resolved Complaint",
+   "domain": "Conduct",
+   "steward": "Conduct Data Steward",
+   "definition": "A complaint with a recorded resolution date."
+  },
+  {
+   "term": "Open Account",
+   "domain": "Customer",
+   "steward": "Customer Data Steward",
+   "definition": "An account whose status is OPEN at the reference date."
+  },
+  {
+   "term": "Days Past Due",
+   "domain": "Risk",
+   "steward": "Credit Risk Data Steward",
+   "definition": "Days elapsed since a scheduled repayment date without payment."
+  },
+  {
+   "term": "Sector",
+   "domain": "Markets",
+   "steward": "Markets Data Steward",
+   "definition": "Industry sector of a counterparty."
+  }
+ ],
+ "CERTIFIED_MAPPINGS": [
+  [
+   "Revenue",
+   "retail",
+   "monthly_revenue",
+   "total_revenue_usd"
+  ],
+  [
+   "Revenue",
+   "sme",
+   "monthly_client_revenue",
+   "revenue_usd"
+  ],
+  [
+   "Revenue",
+   "corporate",
+   "quarterly_revenue",
+   "revenue_usd_converted"
+  ],
+  [
+   "Revenue",
+   "wealth",
+   "quarterly_fee_revenue",
+   "revenue_usd"
+  ],
+  [
+   "Net Interest Income",
+   "retail",
+   "monthly_revenue",
+   "interest_income"
+  ],
+  [
+   "Net Interest Income",
+   "sme",
+   "monthly_client_revenue",
+   "nii"
+  ],
+  [
+   "Fee Income",
+   "retail",
+   "monthly_revenue",
+   "fee_income"
+  ],
+  [
+   "Fee Income",
+   "sme",
+   "monthly_client_revenue",
+   "fees"
+  ],
+  [
+   "Active Customer",
+   "retail",
+   "customer_activity",
+   "is_active_flag"
+  ],
+  [
+   "Active Customer",
+   "sme",
+   "client_activity",
+   "active_flag"
+  ],
+  [
+   "Assets Under Advice",
+   "wealth",
+   "assets_under_advice",
+   "aua_usd"
+  ],
+  [
+   "Credit Exposure",
+   "corporate",
+   "exposure",
+   "ead_eur"
+  ],
+  [
+   "Probability of Default",
+   "corporate",
+   "exposure",
+   "pd_bps"
+  ],
+  [
+   "Loss Given Default",
+   "corporate",
+   "exposure",
+   "lgd_pct"
+  ],
+  [
+   "Average Balance",
+   "retail",
+   "daily_balance",
+   "ledger_balance"
+  ],
+  [
+   "Days Past Due",
+   "sme",
+   "repayment",
+   "days_past_due"
+  ],
+  [
+   "Covenant Breach",
+   "sme",
+   "covenant",
+   "breached_flag"
+  ],
+  [
+   "Internal Rating",
+   "corporate",
+   "rating",
+   "internal_grade"
+  ],
+  [
+   "Market Value",
+   "wealth",
+   "holding",
+   "market_value"
+  ],
+  [
+   "Notional",
+   "corporate",
+   "deal",
+   "notional_eur"
+  ],
+  [
+   "Period-End FX Rate",
+   "corporate",
+   "quarterly_revenue",
+   "fx_rate_period_end"
+  ],
+  [
+   "Digital Login",
+   "retail",
+   "customer_activity",
+   "login_count"
+  ],
+  [
+   "Complaint",
+   "retail",
+   "complaint",
+   "complaint_id"
+  ],
+  [
+   "Suitability Review",
+   "wealth",
+   "suitability_review",
+   "review_id"
+  ]
+ ],
+ "MEASURE_METADATA": [
+  [
+   [
+    "retail",
+    "monthly_revenue",
+    "total_revenue_usd"
+   ],
+   {
+    "grain": "month",
+    "currency": "USD",
+    "calendar": "calendar",
+    "conversion": "none"
+   }
+  ],
+  [
+   [
+    "sme",
+    "monthly_client_revenue",
+    "revenue_usd"
+   ],
+   {
+    "grain": "month",
+    "currency": "USD",
+    "calendar": "calendar",
+    "conversion": "none"
+   }
+  ],
+  [
+   [
+    "corporate",
+    "quarterly_revenue",
+    "revenue_usd_converted"
+   ],
+   {
+    "grain": "quarter",
+    "currency": "USD",
+    "calendar": "fiscal_april",
+    "conversion": "period_end_rate_from_EUR"
+   }
+  ],
+  [
+   [
+    "wealth",
+    "quarterly_fee_revenue",
+    "revenue_usd"
+   ],
+   {
+    "grain": "quarter",
+    "currency": "USD",
+    "calendar": "fiscal_april",
+    "conversion": "none"
+   }
+  ],
+  [
+   [
+    "retail",
+    "monthly_revenue",
+    "interest_income"
+   ],
+   {
+    "grain": "month",
+    "currency": "USD",
+    "calendar": "calendar",
+    "conversion": "none"
+   }
+  ],
+  [
+   [
+    "sme",
+    "monthly_client_revenue",
+    "nii"
+   ],
+   {
+    "grain": "month",
+    "currency": "USD",
+    "calendar": "calendar",
+    "conversion": "none"
+   }
+  ],
+  [
+   [
+    "retail",
+    "monthly_revenue",
+    "fee_income"
+   ],
+   {
+    "grain": "month",
+    "currency": "USD",
+    "calendar": "calendar",
+    "conversion": "none"
+   }
+  ],
+  [
+   [
+    "sme",
+    "monthly_client_revenue",
+    "fees"
+   ],
+   {
+    "grain": "month",
+    "currency": "USD",
+    "calendar": "calendar",
+    "conversion": "none"
+   }
+  ],
+  [
+   [
+    "wealth",
+    "assets_under_advice",
+    "aua_usd"
+   ],
+   {
+    "grain": "quarter_end",
+    "currency": "USD",
+    "calendar": "fiscal_april",
+    "conversion": "none"
+   }
+  ],
+  [
+   [
+    "corporate",
+    "exposure",
+    "ead_eur"
+   ],
+   {
+    "grain": "as_of",
+    "currency": "EUR",
+    "calendar": "calendar",
+    "conversion": "none"
+   }
+  ]
+ ],
+ "NO_JOIN_FACTS": [
+  {
+   "a": "retail",
+   "b": "sme",
+   "asserted_by": "Data Architecture Board",
+   "asserted_on": "2024-03-12",
+   "note": "Separate customer populations and separate key domains by design. No mapping table exists."
+  },
+  {
+   "a": "retail",
+   "b": "corporate",
+   "asserted_by": "Data Architecture Board",
+   "asserted_on": "2024-03-12",
+   "note": "corporate.contact.customer_id is a CRM contact number. It shares a name with retail.customer.customer_id and nothing else. No mapping table exists."
+  },
+  {
+   "a": "retail",
+   "b": "wealth",
+   "asserted_by": "Data Architecture Board",
+   "asserted_on": "2024-03-12",
+   "note": "Separate customer populations and separate key domains by design. No mapping table exists."
+  },
+  {
+   "a": "sme",
+   "b": "corporate",
+   "asserted_by": "Data Architecture Board",
+   "asserted_on": "2024-03-12",
+   "note": "Separate customer populations and separate key domains by design. No mapping table exists."
+  },
+  {
+   "a": "sme",
+   "b": "wealth",
+   "asserted_by": "Data Architecture Board",
+   "asserted_on": "2024-03-12",
+   "note": "Separate customer populations and separate key domains by design. No mapping table exists."
+  },
+  {
+   "a": "corporate",
+   "b": "wealth",
+   "asserted_by": "Data Architecture Board",
+   "asserted_on": "2024-03-12",
+   "note": "Separate customer populations and separate key domains by design. No mapping table exists."
+  }
+ ],
+ "RESTRICTED_COLUMNS": [
+  [
+   "retail",
+   "customer",
+   "first_name"
+  ],
+  [
+   "retail",
+   "customer",
+   "last_name"
+  ],
+  [
+   "retail",
+   "customer",
+   "date_of_birth"
+  ],
+  [
+   "retail",
+   "customer",
+   "email"
+  ],
+  [
+   "corporate",
+   "contact",
+   "contact_name"
+  ],
+  [
+   "corporate",
+   "contact",
+   "contact_email"
+  ],
+  [
+   "wealth",
+   "household",
+   "household_name"
+  ]
+ ],
+ "PROCESSES": {
+  "tagging": "write machine tags and derive readiness (the pipeline)",
+  "certification": "accept or reject proposals in the steward queue; certify terms and mappings",
+  "querying": "ask questions and retrieve documents; read only, within the warehouses the principal can read"
+ },
+ "PRINCIPALS": [
+  {
+   "principal": "analyst_retail",
+   "role": "Analyst",
+   "reads": [
+    "retail"
+   ],
+   "processes": [
+    "querying"
+   ]
+  },
+  {
+   "principal": "analyst_enterprise",
+   "role": "Analyst",
+   "reads": [
+    "retail",
+    "sme",
+    "corporate",
+    "wealth"
+   ],
+   "processes": [
+    "querying"
+   ]
+  },
+  {
+   "principal": "finance_reporting",
+   "role": "Finance",
+   "reads": [
+    "retail",
+    "sme",
+    "corporate",
+    "wealth"
+   ],
+   "processes": [
+    "querying"
+   ]
+  },
+  {
+   "principal": "steward_glossary",
+   "role": "Steward",
+   "reads": [
+    "retail",
+    "sme",
+    "corporate",
+    "wealth"
+   ],
+   "writes": [
+    "mappings",
+    "terms"
+   ],
+   "processes": [
+    "certification",
+    "querying"
+   ]
+  },
+  {
+   "principal": "advisor_wealth",
+   "role": "Advisor",
+   "reads": [
+    "wealth"
+   ],
+   "processes": [
+    "querying"
+   ]
+  },
+  {
+   "principal": "admin",
+   "role": "Admin",
+   "reads": [
+    "retail",
+    "sme",
+    "corporate",
+    "wealth"
+   ],
+   "writes": [
+    "mappings",
+    "terms"
+   ],
+   "processes": [
+    "tagging",
+    "certification",
+    "querying"
+   ]
+  },
+  {
+   "principal": "steward",
+   "role": "Steward",
+   "reads": [
+    "retail",
+    "wealth"
+   ],
+   "writes": [
+    "mappings",
+    "terms"
+   ],
+   "processes": [
+    "certification",
+    "querying"
+   ]
+  },
+  {
+   "principal": "pipeline_tagger",
+   "role": "Pipeline",
+   "reads": [],
+   "processes": [
+    "tagging"
+   ]
+  }
+ ],
+ "PURPOSES": [
+  "analysis",
+  "assistant",
+  "supervision"
+ ]
+}

@@ -1,0 +1,20 @@
+import { expect, test, vi } from 'vitest';
+import { render, screen, waitFor } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { MemoryRouter } from 'react-router-dom';
+import store from '../../app/store';
+import Search from './Search';
+import { getConfig } from '../../services/user';
+import { getSearchResults } from '../../services/search';
+vi.mock('../../services/user', () => ({ getConfig: vi.fn(), getFavouriteDataProducts: vi.fn(), saveFavouriteProduct: vi.fn(), removeFavouriteProduct: vi.fn() }));
+vi.mock('../../services/search', () => ({ getSearchResults: vi.fn().mockResolvedValue({ data: { data: [] } }), filterSearchResults: vi.fn().mockResolvedValue({ data: { data: [] } }) }));
+vi.mock('../../components/shared/Header/Header', () => ({ default: () => null }));
+vi.mock('../../components/askportal/Chatbot', () => ({ default: () => null }));
+test('Explore has no second Ask button and its closed facets are inert', async () => {
+  getConfig.mockResolvedValue({ data: { ask: true } });
+  const { container } = render(<Provider store={store}><MemoryRouter><Search /></MemoryRouter></Provider>);
+  await waitFor(() => expect(getSearchResults).toHaveBeenCalled());
+  expect(screen.queryByRole('button', { name: /Ask this domain/ })).toBeNull();
+  expect(container.querySelector('.cx-drawer')).toHaveAttribute('aria-hidden', 'true');
+  expect(container.querySelector('.cx-drawer')).toHaveAttribute('inert', '');
+});

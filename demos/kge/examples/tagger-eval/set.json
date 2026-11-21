@@ -1,0 +1,15 @@
+{
+  "version": "tagger-v1",
+  "glossary": ["Active Customer", "Net Revenue", "Written Premium", "Customer Group"],
+  "passages": [
+    {"id":"TE-001:1","document":"TE-001","kind":"email","shelf":"uncertified","text":"Subject: Friday channel numbers\nDigital Engagement Score: share of customers with two app sessions this week.\nStill a draft! Compare against Active Customer, not the total account count.","candidates":["Digital Engagement Score"],"mentions":["Active Customer"]},
+    {"id":"TE-001:2","document":"TE-001","kind":"email","shelf":"uncertified","text":"Re: Friday channel numbers\nFor the appendix, Active Customer is the denominator again. Active Customer should not count dormant accounts.\nNet Revenue goes in a separate column.","candidates":[],"mentions":["Active Customer","Net Revenue"]},
+    {"id":"TE-002:1","document":"TE-002","kind":"notes","shelf":"uncertified","text":"Channel huddle -- rough notes\nwe called it digital engagement score: the share opening the app twice in a week.\nThe active customer population is the denominator; numbers still provisional.","candidates":["Digital Engagement Score"],"mentions":["Active Customer"]},
+    {"id":"TE-003:1","document":"TE-003","kind":"memo","shelf":"uncertified","text":"Working memo / PLEASE REVIEW\nOur new metric, Renewal Friction Index, means unresolved renewal tasks divided by all renewal tasks.\nUse Written Premium for the exposure comparison. No approved mapping yet.","candidates":["Renewal Friction Index"],"mentions":["Written Premium"]},
+    {"id":"TE-004:1","document":"TE-004","kind":"email","shelf":"uncertified","text":"Subject: logistics only\nMeeting Notes: move the review to Thursday.\nAction Items: bring the slide deck.\nThanks all -- these are headings, no business definitions here.","candidates":[],"mentions":[]},
+    {"id":"TE-005:1","document":"TE-005","kind":"notes","shelf":"uncertified","text":"Whiteboard transcription\nCustomer Group links the retail and insurance views.\nCross Sell Reach: groups holding products in both units divided by all eligible groups.\nCross Sell Reach: same definition repeated for the minutes.","candidates":["Cross Sell Reach"],"mentions":["Customer Group"]},
+    {"id":"TE-006:1","document":"TE-006","kind":"memo","shelf":"uncertified","text":"Finance correction\nNet Revenue: use the certified definition, not a new metric.\nnet revenue is repeated here for the editor. Written Premium is a different measure.","candidates":[],"mentions":["Net Revenue","Written Premium"]},
+    {"id":"TE-007:1","document":"TE-007","kind":"notes","shelf":"uncertified","text":"Ops rough notes\nBacklog age, in days, is what we mean by Queue Age here.\nThis working metric excludes completed cases. Please tidy wording before publication.","candidates":["Queue Age"],"mentions":[]},
+    {"id":"TE-008:1","document":"TE-008","kind":"email","shelf":"uncertified","text":"Subject: copied table labels\nThe customer grouping worksheet was renamed. Revenue forecasts are delayed.\nPlease remove the blank rows and wrap the text. No metric is defined or discussed here.","candidates":[],"mentions":[]}
+  ]
+}

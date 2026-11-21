@@ -1,0 +1,15 @@
+- id: BR-01
+  question: In force premium at 30 June 2025
+  expect: {figure: 2000.00}
+  sql: SELECT round(sum(premium_snapshot.in_force_premium), 2) FROM premium_snapshot WHERE premium_snapshot.snapshot_on = DATE '2025-06-30'
+  source: Q2 board report
+- id: BR-02
+  question: Active-policy written premium for June 2025
+  expect: {figure: 1200.00}
+  sql: SELECT round(sum(premium.premium_amount), 2) FROM premium JOIN policy ON premium.policy_id = policy.policy_id WHERE policy.status = 'active' AND premium.written_on >= DATE '2025-06-01' AND premium.written_on < DATE '2025-07-01'
+  source: Q2 board report
+- id: BR-03
+  question: Board-reported active-policy written premium for June 2025
+  expect: {figure: 1250.00}
+  sql: SELECT round(sum(premium.premium_amount), 2) FROM premium JOIN policy ON premium.policy_id = policy.policy_id WHERE policy.status = 'active' AND premium.written_on >= DATE '2025-06-01' AND premium.written_on < DATE '2025-07-01'
+  source: Q2 board report

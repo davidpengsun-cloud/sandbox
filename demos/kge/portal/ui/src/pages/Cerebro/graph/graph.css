@@ -1,0 +1,233 @@
+/* Cerebro's graph on the portal's v3 tokens only: no colour of its own (cerebro.md §7.1). A link's
+   status is drawn apart by line as well as colour, so it reads without colour too (§7.5). */
+
+/* The regions (§1.5): the graph fills the free width, with the filter row over its top and Fit,
+   Center, the zoom and the legend over its left edge; the overview panel is a fixed column on the
+   right. Nothing else takes a column: the assistant floats over the canvas (chat.css), between the
+   legend's room and the overview, both sized once here. */
+.cerebro-view-graph { --cerebro-legend-room:264px; --cerebro-overview-width:400px }
+/* The portal's shared controls give every button, select and input a fixed height; here each sets its own. */
+.cerebro-graph :is(button, select, input) { height:auto }
+.cerebro-view > .cerebro-graph {
+  flex:1 1 auto; width:100%; min-width:0; min-height:0; display:grid;
+  grid-template-columns:minmax(0, 1fr) var(--cerebro-overview-width); grid-template-rows:minmax(0, 1fr); gap:0; padding:0;
+}
+.cerebro-canvas { position:relative; min-width:0; min-height:0; display:flex; flex-direction:column; overflow:hidden; background:var(--v3-paper) }
+.cerebro-canvas-note { padding:16px }
+.cerebro-flow { position:relative; flex:1; min-height:320px }
+.cerebro-flow .react-flow { position:absolute; inset:0; background:var(--v3-paper) }
+.cerebro-canvas .react-flow__background-pattern.dots { fill:var(--v3-line-2) }
+.cerebro-graph-note { padding:calc(var(--cerebro-filter-room, 60px) - 4px) 16px 8px; border-bottom:1px solid var(--v3-line); background:var(--v3-warn-soft); color:var(--v3-ink); font-size:13px }
+
+/* The filter row: one line of controls over the top of the canvas, which shows through around them. */
+.cerebro-filter-row {
+  position:absolute; z-index:5; top:12px; left:12px; right:12px; display:flex; flex-wrap:wrap; align-items:center; gap:8px;
+  pointer-events:none;
+}
+.cerebro-filter-row > * { pointer-events:auto; box-shadow:var(--v3-shadow-1) }
+.cerebro-field, .cerebro-switch, .cerebro-segments {
+  display:inline-flex; align-items:center; min-height:36px; border:1px solid var(--v3-line-2); border-radius:var(--v3-r-sm);
+  background:var(--v3-surface); color:var(--v3-ink);
+}
+.cerebro-field { gap:8px; padding:0 4px 0 10px }
+.cerebro-field-name { color:var(--v3-ink-3); font:600 11px/1 var(--v3-mono); letter-spacing:.06em; text-transform:uppercase }
+.cerebro-field select, .cerebro-field input {
+  min-height:32px; max-width:200px; padding:2px 4px; border:0; background:transparent; color:var(--v3-ink); font:400 14px/1.4 var(--v3-body);
+}
+.cerebro-field-search input { width:130px }
+.cerebro-segments { padding:2px; gap:2px; max-width:100%; overflow-x:auto }
+.cerebro-segments button {
+  white-space:nowrap; min-height:30px; padding:2px 10px; border:1px solid transparent; border-radius:var(--v3-r-xs);
+  background:transparent; color:var(--v3-ink-2); font:500 13px/1.4 var(--v3-mono); cursor:pointer;
+}
+.cerebro-segments button:hover { color:var(--v3-ink) }
+.cerebro-segments button[aria-pressed="true"] { background:var(--v3-accent-soft); border-color:var(--v3-accent-line); color:var(--v3-ink) }
+.cerebro-count { color:var(--v3-ink-3) }
+.cerebro-switch { padding:0 12px; font:500 13px/1.4 var(--v3-mono); color:var(--v3-ink-2); cursor:pointer }
+.cerebro-switch[aria-checked="true"] { background:var(--v3-warn-soft); border-color:var(--v3-warn); color:var(--v3-ink) }
+.cerebro-path-note { max-width:240px; padding:6px 10px; border:1px solid var(--v3-line-2); border-radius:var(--v3-r-sm); background:var(--v3-ok-soft); color:var(--v3-ink); font-size:13px; line-height:1.4 }
+
+/* Fit, Center, the zoom and the legend, over the canvas's left edge, under the filter row. */
+.cerebro-canvas .react-flow__panel.cerebro-overlay {
+  margin:var(--cerebro-filter-room, 60px) 12px 12px; display:flex; flex-direction:column; align-items:flex-start; gap:8px;
+  max-height:calc(100% - var(--cerebro-filter-room, 60px) - 12px); overflow:auto;
+}
+.cerebro-tools { display:flex; flex-direction:column; align-items:flex-start; gap:6px }
+.cerebro-tool, .cerebro-zoom {
+  display:inline-flex; align-items:center; gap:8px; min-height:34px; border:1px solid var(--v3-line-2); border-radius:var(--v3-r-full);
+  background:var(--v3-surface); color:var(--v3-ink); box-shadow:var(--v3-shadow-1);
+}
+.cerebro-tool { padding:4px 14px 4px 12px; font:500 13px/1.4 var(--v3-body); cursor:pointer }
+.cerebro-tool:hover, .cerebro-zoom button:hover { border-color:var(--v3-accent-line); background:var(--v3-accent-soft) }
+.cerebro-icon { position:relative; display:inline-block; width:12px; height:12px; border:2px solid var(--v3-ink-2) }
+/* Fit: four corners, as a frame drawn round the graph. */
+.cerebro-icon-fit {
+  border:0; --corner:linear-gradient(var(--v3-ink-2), var(--v3-ink-2));
+  background:
+    var(--corner) left top / 5px 2px no-repeat, var(--corner) left top / 2px 5px no-repeat,
+    var(--corner) right top / 5px 2px no-repeat, var(--corner) right top / 2px 5px no-repeat,
+    var(--corner) left bottom / 5px 2px no-repeat, var(--corner) left bottom / 2px 5px no-repeat,
+    var(--corner) right bottom / 5px 2px no-repeat, var(--corner) right bottom / 2px 5px no-repeat;
+}
+.cerebro-key { margin-left:2px; padding:0 5px; border:1px solid var(--v3-line); border-radius:var(--v3-r-xs); background:var(--v3-surface-2); color:var(--v3-ink-3); font:500 11px/1.5 var(--v3-mono) }
+.cerebro-icon-center { border-radius:var(--v3-r-full) }
+.cerebro-icon-center::after { content:""; position:absolute; inset:2px; border-radius:var(--v3-r-full); background:var(--v3-ink-2) }
+.cerebro-zoom { gap:2px; padding:2px 4px 2px 12px }
+.cerebro-zoom-level { min-width:3.2em; font:500 12px/1 var(--v3-mono); color:var(--v3-ink) }
+.cerebro-zoom button {
+  width:28px; height:28px; border:1px solid transparent; border-radius:var(--v3-r-full); background:transparent;
+  color:var(--v3-ink); font:600 16px/1 var(--v3-body); cursor:pointer;
+}
+
+/* The legend, which folds away to its heading. */
+.cerebro-legend { width:240px; border:1px solid var(--v3-line-2); border-radius:var(--v3-r-md); background:var(--v3-surface); box-shadow:var(--v3-shadow-1) }
+.cerebro-legend-toggle {
+  width:100%; display:flex; align-items:center; justify-content:space-between; min-height:36px; padding:6px 12px;
+  border:0; border-radius:var(--v3-r-md); background:transparent; color:var(--v3-ink); font:600 13px/1.4 var(--v3-body); cursor:pointer;
+}
+.cerebro-chevron { width:7px; height:7px; border-right:2px solid var(--v3-ink-2); border-bottom:2px solid var(--v3-ink-2); transform:rotate(45deg) }
+.cerebro-legend-toggle[aria-expanded="false"] .cerebro-chevron { transform:rotate(-45deg) }
+.cerebro-legend-body { padding:6px 8px 10px; border-top:1px solid var(--v3-line) }
+.cerebro-legend-body[hidden] { display:none }
+.cerebro-legend ul { margin:0 0 6px; padding:0; list-style:none; display:flex; flex-direction:column; gap:0 }
+.cerebro-legend ul + ul { padding-top:6px; border-top:1px solid var(--v3-line) }
+.cerebro-layer {
+  width:100%; display:flex; align-items:center; gap:10px; min-height:28px; padding:2px 6px; border:0; border-radius:var(--v3-r-sm);
+  background:transparent; color:var(--v3-ink); font:400 13px/1.4 var(--v3-body); cursor:pointer; text-align:left;
+}
+.cerebro-layer:hover { background:var(--v3-paper-2) }
+.cerebro-layer[aria-pressed="false"] { color:var(--v3-ink-4); text-decoration:line-through }
+.cerebro-layer[aria-pressed="false"] .cerebro-swatch, .cerebro-layer[aria-pressed="false"] .cerebro-line { opacity:.35 }
+.cerebro-legend-note { padding:0 6px; color:var(--v3-ink-3); font-size:12px; line-height:1.4 }
+.cerebro-line line { stroke-width:2; stroke:var(--v3-structure) }
+.cerebro-line-proposed line { stroke:var(--v3-warn); stroke-dasharray:6 4 }
+.cerebro-line-inferred line { stroke:var(--v3-info); stroke-dasharray:2 3 }
+
+/* A node is its kind's mark with its name beside it. The mark is the node's box, so links meet it;
+   the name hangs to its right. Both keep their size on screen as the view zooms out, through
+   --cerebro-label-scale, which GraphView sets on the canvas. */
+.cerebro-canvas .react-flow__node.cerebro-node {
+  width:12px; height:12px; padding:0; border:0; background:transparent; box-shadow:none; overflow:visible; cursor:pointer;
+}
+/* Sized by kind: the hubs (communities, domains, repositories) larger than the assets, the terms and people smaller. */
+.cerebro-canvas .react-flow__node.cerebro-node-community { width:20px; height:20px }
+.cerebro-canvas .react-flow__node:is(.cerebro-node-domain, .cerebro-node-repository) { width:17px; height:17px }
+.cerebro-canvas .react-flow__node:is(.cerebro-node-table, .cerebro-node-document) { width:13px; height:13px }
+.cerebro-canvas .react-flow__node:is(.cerebro-node-term, .cerebro-node-person) { width:10px; height:10px }
+.cerebro-node-glyph { position:absolute; inset:0; transform:scale(var(--cerebro-label-scale, 1)); transform-origin:50% 50% }
+.cerebro-node-dot, .cerebro-node-mark { position:absolute; inset:1px; display:block }
+.cerebro-node-label {
+  position:absolute; left:calc(100% + 5px); top:50%; transform:translateY(-50%); white-space:nowrap; padding:0 2px;
+  border-radius:var(--v3-r-xs); color:var(--v3-ink); font:500 11px/1.2 var(--v3-body);
+  text-shadow:0 0 2px var(--v3-paper), 0 0 3px var(--v3-paper);
+}
+.cerebro-node-community .cerebro-node-label { font:700 12px/1.2 var(--v3-mono); letter-spacing:.04em; text-transform:uppercase }
+.cerebro-node-domain .cerebro-node-label { font:600 11px/1.2 var(--v3-mono); letter-spacing:.04em; text-transform:uppercase }
+.cerebro-node-table .cerebro-node-label { font:600 11px/1.2 var(--v3-mono) }
+.cerebro-node-document .cerebro-node-label { color:var(--v3-ink-2); font-weight:400 }
+.cerebro-node-person .cerebro-node-label { color:var(--v3-ink-3); font-weight:400 }
+.cerebro-canvas .react-flow__node.selected .cerebro-node-label { background:var(--v3-accent-soft); color:var(--v3-ink); text-shadow:none }
+.cerebro-canvas .react-flow__node.selected .cerebro-node-dot { box-shadow:0 0 0 2px var(--v3-paper), 0 0 0 4px var(--v3-accent) }
+/* Zoomed out, only some kinds' names are drawn (GraphView's labelBand); a selected node's, the path's
+   and the one under the pointer always are. */
+.react-flow[data-labels="few"] :is(.cerebro-node-table, .cerebro-node-term, .cerebro-node-person):not(.selected, .cerebro-on-path, :hover) .cerebro-node-label,
+.react-flow[data-labels="some"] :is(.cerebro-node-person, .cerebro-node-term.cerebro-loose):not(.selected, .cerebro-on-path, :hover) .cerebro-node-label { display:none }
+.cerebro-canvas .react-flow__node.cerebro-node:hover { z-index:10 }
+/* The drawing budget (§7.5): handles are anchors only, never shown; zoomed out, a node is a mark. */
+.cerebro-canvas .react-flow__handle.cerebro-handle { visibility:hidden; pointer-events:none }
+
+/* Each kind's mark, the same on the canvas and in the legend. */
+.cerebro-swatch { position:relative; flex:none; width:10px; height:10px; display:inline-block }
+.cerebro-swatch, .cerebro-node-dot, .cerebro-node-mark { border-radius:var(--v3-r-full); background:var(--v3-structure) }
+.cerebro-layer-table .cerebro-swatch, .cerebro-node-table .cerebro-node-dot, .cerebro-node-table .cerebro-node-mark { background:var(--v3-ink) }
+.cerebro-layer-document .cerebro-swatch, .cerebro-node-document .cerebro-node-dot, .cerebro-node-document .cerebro-node-mark, .cerebro-doc-mark {
+  border-radius:var(--v3-r-xs); background:var(--v3-surface); border:2px solid var(--v3-info);
+}
+.cerebro-layer-repository .cerebro-swatch, .cerebro-node-repository .cerebro-node-dot, .cerebro-node-repository .cerebro-node-mark { border-radius:var(--v3-r-xs); background:var(--v3-structure) }
+.cerebro-layer-term .cerebro-swatch, .cerebro-node-term .cerebro-node-dot, .cerebro-node-term .cerebro-node-mark { border-radius:var(--v3-r-xs); background:var(--v3-warn); transform:rotate(45deg) scale(.85) }
+.cerebro-layer-community .cerebro-swatch, .cerebro-node-community .cerebro-node-dot, .cerebro-node-community .cerebro-node-mark { background:var(--v3-surface); border:2px solid var(--v3-ok) }
+.cerebro-layer-domain .cerebro-swatch, .cerebro-node-domain .cerebro-node-dot, .cerebro-node-domain .cerebro-node-mark { background:var(--v3-ok) }
+.cerebro-layer-person .cerebro-swatch, .cerebro-node-person .cerebro-node-dot, .cerebro-node-person .cerebro-node-mark { background:var(--v3-surface); border:2px solid var(--v3-ink-3) }
+
+/* Links: certified solid, proposed dashed, inferred dotted (§5.1, §7.5), the same width on screen at any zoom. */
+.cerebro-canvas .react-flow__edge.cerebro-link .react-flow__edge-path { stroke:var(--v3-structure); stroke-width:1.25; vector-effect:non-scaling-stroke }
+.cerebro-canvas .react-flow__edge.cerebro-link-proposed .react-flow__edge-path { stroke:var(--v3-warn); stroke-dasharray:6 4 }
+.cerebro-canvas .react-flow__edge.cerebro-link-inferred .react-flow__edge-path { stroke:var(--v3-info); stroke-dasharray:2 3 }
+.cerebro-canvas .react-flow__edge.selected .react-flow__edge-path { stroke:var(--v3-accent); stroke-width:3 }
+/* The last answer's path (§7.4). */
+.cerebro-canvas .react-flow__edge.cerebro-on-path .react-flow__edge-path { stroke:var(--v3-ok); stroke-width:3 }
+.cerebro-canvas .react-flow__node.cerebro-on-path .cerebro-node-dot { box-shadow:0 0 0 2px var(--v3-paper), 0 0 0 4px var(--v3-ok) }
+.cerebro-canvas .react-flow__node.cerebro-on-path .cerebro-node-label { background:var(--v3-ok-soft); text-shadow:none }
+
+/* The overview panel: the overview with nothing selected, a node's or a link's details otherwise. */
+.cerebro-details {
+  min-width:0; min-height:0; overflow:auto; display:flex; flex-direction:column; gap:12px; padding:20px 24px;
+  background:var(--v3-surface); border-left:1px solid var(--v3-line); color:var(--v3-ink);
+}
+.cerebro-overview { display:flex; flex-direction:column; gap:10px }
+.cerebro-overview-title { margin:0; font:600 24px/1.25 var(--v3-body); color:var(--v3-ink) }
+.cerebro-tiles { display:grid; grid-template-columns:1fr 1fr; margin:8px -24px 4px; border-top:1px solid var(--v3-line) }
+.cerebro-tile { display:flex; flex-direction:column-reverse; gap:4px; padding:14px 24px; border-bottom:1px solid var(--v3-line) }
+.cerebro-tile:nth-child(odd) { border-right:1px solid var(--v3-line) }
+.cerebro-tile dt { color:var(--v3-ink-3); font:600 11px/1.4 var(--v3-mono); letter-spacing:.06em; text-transform:uppercase }
+.cerebro-tile dd { margin:0; font:500 28px/1.1 var(--v3-body); font-variant-numeric:tabular-nums; color:var(--v3-ink) }
+.cerebro-docs-head { margin-top:6px }
+.cerebro-docs { margin:0; padding:0; list-style:none; display:flex; flex-direction:column }
+.cerebro-doc {
+  width:100%; display:grid; grid-template-columns:auto auto minmax(0, 1fr) auto; align-items:center; gap:8px; min-height:36px; padding:4px 6px;
+  border:0; border-radius:var(--v3-r-sm); background:transparent; color:var(--v3-ink); font:400 14px/1.4 var(--v3-body); text-align:left; cursor:pointer;
+}
+.cerebro-doc:hover { background:var(--v3-paper-2) }
+.cerebro-doc-id { color:var(--v3-link) }
+.cerebro-doc-title { overflow:hidden; white-space:nowrap; text-overflow:ellipsis }
+.cerebro-doc-domain { color:var(--v3-ink-3); font:400 12px/1.4 var(--v3-mono) }
+.cerebro-kind { margin:0; color:var(--v3-ink-3); font:600 11px/1.4 var(--v3-mono); letter-spacing:.06em; text-transform:uppercase }
+.cerebro-node-name { margin:4px 0 12px; font:600 20px/1.3 var(--v3-body); color:var(--v3-ink); overflow-wrap:anywhere }
+.cerebro-columns { margin:0 0 12px; padding:0; list-style:none; display:flex; flex-direction:column; gap:2px }
+.cerebro-links, .cerebro-why { margin:0 0 8px; padding:0; list-style:none; display:flex; flex-direction:column; gap:4px }
+.cerebro-id { color:var(--v3-ink-3); overflow-wrap:anywhere }
+.cerebro-actions { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 }
+.cerebro-actions button, .cerebro-back, .cerebro-inspect {
+  min-height:32px; padding:4px 12px; border:1px solid var(--v3-line-2); border-radius:var(--v3-r-sm);
+  background:var(--v3-surface); color:var(--v3-ink); font:600 13px/1.4 var(--v3-body); cursor:pointer;
+}
+.cerebro-back { align-self:flex-start; margin-bottom:8px }
+.cerebro-actions .cerebro-primary { background:var(--v3-action); border-color:var(--v3-action); color:var(--v3-action-ink) }
+.cerebro-actions .cerebro-primary:hover { background:var(--v3-action-hover) }
+.cerebro-inspect { min-height:28px; padding:2px 8px; font-size:12px; margin-top:2px }
+.cerebro-links li { padding:6px 0; border-bottom:1px solid var(--v3-line) }
+.cerebro-link-end { font-weight:600 }
+.cerebro-why-line { color:var(--v3-ink-2); font-size:13px }
+.cerebro-chip { display:inline-block; padding:0 6px; border-radius:var(--v3-r-full); font:600 11px/1.6 var(--v3-mono); letter-spacing:.04em; text-transform:uppercase }
+.cerebro-chip-certified { background:var(--v3-ok-soft); color:var(--v3-ink) }
+.cerebro-chip-proposed { background:var(--v3-warn-soft); color:var(--v3-ink) }
+.cerebro-chip-inferred { background:var(--v3-info-soft); color:var(--v3-ink) }
+
+/* A touch screen: every control over the canvas at least 44 px high. */
+@media (pointer: coarse) {
+  .cerebro-tool, .cerebro-zoom, .cerebro-field, .cerebro-switch, .cerebro-segments, .cerebro-legend-toggle, .cerebro-doc,
+  .cerebro-actions button, .cerebro-back { min-height:44px }
+  .cerebro-zoom button { width:44px; height:40px }
+  .cerebro-segments button { min-height:38px }
+  .cerebro-layer, .cerebro-inspect { min-height:40px }
+}
+
+/* Phone width: one column that scrolls as a whole: the filters, the canvas, the assistant (chat.css) and the
+   overview panel, in that order. The view's own grid steps aside so the assistant can sit between them. */
+@media (max-width: 900px) {
+  .cerebro-view.cerebro-view-graph { flex-direction:column; overflow:auto }
+  .cerebro-view > .cerebro-graph { display:contents }
+  .cerebro-canvas { order:0; flex:none; height:min(64dvh, 560px); min-height:380px }
+  .cerebro-details { order:2; flex:none; overflow:visible; border-left:0; border-top:1px solid var(--v3-line); padding:16px }
+  .cerebro-filter-row { position:static; padding:8px 12px; border-bottom:1px solid var(--v3-line); background:var(--v3-paper) }
+  .cerebro-filter-row > * { box-shadow:none }
+  .cerebro-graph-note { padding:8px 16px }
+  .cerebro-canvas .react-flow__panel.cerebro-overlay { --cerebro-filter-room:12px }
+  .cerebro-tiles { margin:8px -16px 4px }
+  .cerebro-tile { padding:12px 16px }
+  .cerebro-tools { flex-direction:row; flex-wrap:wrap }
+  .cerebro-legend { width:200px }
+  .cerebro-field select { max-width:160px }
+  .cerebro-field-search input { width:120px }
+  .cerebro-segments button { padding:2px 6px; font-size:12px }
+}

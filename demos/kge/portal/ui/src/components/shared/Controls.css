@@ -1,0 +1,71 @@
+/* Shared native controls, panels and tab lists, using the portal token roles. */
+:where(.v3-controls) {
+  font-family:var(--v3-body); font-size:15px;
+  .panel { background:var(--v3-surface); border:1px solid var(--v3-line); border-radius:var(--v3-r-md); padding:20px; min-width:0; box-shadow:var(--v3-shadow-1) }
+  .panel h2 { font-size:15px; font-weight:600; margin:0 0 16px; padding-bottom:12px; border-bottom:1px solid var(--v3-line); color:var(--v3-ink); letter-spacing:-.01em }
+  .panel h3 { font-size:14px; margin:18px 0 8px }
+
+  .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px }
+  input[type=text], input[type=password], select, textarea {
+    font:inherit; height:40px; padding:0 12px; border:1px solid var(--v3-ink-3); border-radius:var(--v3-r-sm);
+    background:var(--v3-surface-2); color:var(--v3-ink); min-width:0; transition:border-color .15s, box-shadow .15s }
+  input:focus-visible, select:focus-visible, textarea:focus-visible { outline-offset:0; border-color:var(--v3-accent) }
+  select { max-width:100%; flex:1 1 200px }
+  input[type=text] { flex:1 1 260px }
+  input[readonly] { color:var(--v3-ink-3) }
+  textarea { width:100%; min-height:92px; padding:10px 12px; resize:vertical }
+  .field { display:flex; gap:8px; align-items:center; flex:1 1 220px; min-width:0 }
+  .field label, .lbl { font-size:13px; font-weight:500; color:var(--v3-ink-3); white-space:nowrap; min-width:62px }
+  .lbl { display:block; margin:0 0 6px; white-space:normal }
+  .hint { flex-basis:100%; margin:-6px 0 4px; font-size:13px; color:var(--v3-ink-3) }
+
+  button { font:inherit; font-weight:500; height:40px; padding:0 16px; border:1px solid var(--v3-line-2); border-radius:var(--v3-r-sm);
+    background:var(--v3-surface); color:var(--v3-ink); cursor:pointer; transition:background .15s, border-color .15s }
+  button:hover { border-color:var(--v3-ink-3) }
+  button.primary { background:var(--v3-action); border-color:var(--v3-action); color:var(--v3-action-ink) }
+  button.primary:hover { background:var(--v3-action-hover); border-color:var(--v3-action-hover) }
+  button.quiet { background:none; border-color:transparent; color:var(--v3-ink-3) }
+  button.quiet:hover { color:var(--v3-bad); border-color:var(--v3-line-2) }
+  button:disabled, button[aria-busy="true"] { cursor:default; opacity:.6; filter:none }
+  button.copy { height:28px; padding:0 10px; font-size:12px }
+}
+
+/* Ask settings picker: one compact control in an ask bar; its panel opens upward over the bar. */
+.ask-settings { position:relative; display:inline-block; max-width:100%; min-width:0 }
+.ask-settings .ask-settings-trigger { height:32px; padding:0 12px; font-size:13px; display:inline-flex; gap:8px; align-items:center; max-width:100%;
+  border-radius:var(--v3-r-full); background:var(--v3-chip-bg); color:var(--v3-chip-ink); border-color:var(--v3-line) }
+.ask-settings .ask-settings-trigger[aria-expanded="true"] { border-color:var(--v3-accent) }
+.ask-settings .ask-settings-trigger[aria-expanded="true"] .ask-settings-caret { transform:rotate(180deg) }
+.ask-settings .ask-settings-name { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap }
+.ask-settings .ask-settings-now { display:block; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap }
+.ask-settings .ask-settings-now > span + span::before { content:"·"; margin:0 6px; color:var(--v3-ink-3) }
+.ask-settings .ask-settings-model { font-family:var(--v3-mono) }
+.ask-settings .ask-settings-panel { position:absolute; bottom:calc(100% + 6px); left:0; z-index:20; width:min(360px, calc(100vw - 32px));
+  max-height:min(70vh, 480px); overflow:auto; padding:14px 16px; display:flex; flex-direction:column; gap:12px;
+  background:var(--v3-surface); color:var(--v3-ink); border:1px solid var(--v3-line-2); border-radius:var(--v3-r-md); box-shadow:var(--v3-shadow-2) }
+.ask-settings .ask-settings-panel:focus-visible { outline:2px solid var(--v3-focus); outline-offset:2px }
+.ask-settings .ask-settings-row { display:flex; gap:8px; align-items:baseline; margin:0 }
+.ask-settings .ask-settings-row .lbl { margin:0; min-width:0 }
+.ask-settings .ask-settings-value { font-family:var(--v3-mono); font-size:13px; overflow-wrap:anywhere }
+.ask-settings .field { flex:none; flex-wrap:wrap }
+.ask-settings .field select { flex:1 1 180px }
+.ask-settings .ask-settings-runtimes { display:flex; flex-direction:column; gap:4px }
+.ask-settings .ask-settings-option { display:flex; gap:10px; align-items:flex-start; font-size:14px; cursor:pointer }
+.ask-settings .ask-settings-option input { margin-top:4px; accent-color:var(--v3-accent) }
+.ask-settings .ask-settings-note { font-size:13px; color:var(--v3-ink-2); margin:0 }
+.ask-settings .ask-settings-badge { font-size:12px; font-weight:600; padding:1px 8px; border-radius:var(--v3-r-full); color:var(--v3-ink-2); background:var(--v3-structure-soft) }
+.ask-settings .ask-settings-badge.ok { color:var(--v3-ok); background:var(--v3-ok-soft) }
+@media (prefers-reduced-motion: no-preference) { .ask-settings .ask-settings-caret { transition:transform .15s } }
+
+/* Waiting status: a spinning glyph in front of the status text, and the text pulses between two ink tokens; still with reduced motion. */
+.waiting-status { display:inline-flex; gap:8px; align-items:center; min-width:0; max-width:100%; font-size:14px; color:var(--v3-ink-2) }
+.waiting-status .waiting-status-spinner { flex:none; width:14px; height:14px; box-sizing:border-box; border-radius:var(--v3-r-full);
+  border:2px solid var(--v3-line-2); border-top-color:var(--v3-accent) }
+.waiting-status .waiting-status-text { min-width:0 }
+.waiting-status .waiting-status-detail { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--v3-ink-3) }
+.waiting-status .waiting-status-detail::before { content:"·"; margin-right:8px }
+.waiting-status.is-animated .waiting-status-spinner { animation:waiting-status-spin .9s linear infinite }
+.waiting-status.is-animated .waiting-status-text { animation:waiting-status-pulse 1.6s ease-in-out infinite alternate }
+@keyframes waiting-status-spin { to { transform:rotate(360deg) } }
+@keyframes waiting-status-pulse { from { color:var(--v3-ink-3) } to { color:var(--v3-ink) } }
+@media (prefers-reduced-motion:reduce){.waiting-status.is-animated .waiting-status-spinner, .waiting-status.is-animated .waiting-status-text{animation:none}}
