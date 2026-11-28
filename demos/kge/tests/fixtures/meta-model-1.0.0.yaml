@@ -1,0 +1,264 @@
+# The platform's graph meta-model (../../../../docs/use-cases/kge/platform/graph-model-spec.md). It names no client: a client's pack supplies the
+# instances, and declares which version of this file it was written for (its manifest's meta_model_version).
+#
+# Each type has a logical name (its key here), the name it is loaded under (loaded_as), a layer, an origin and its
+# properties; a node type has a key too. The graph keeps the names and keys it had before issue #39, so the runtime's
+# Cypher runs unchanged: the logical names are the platform's (Source, Table, Column), the loaded ones the graph's (Unit,
+# Tbl, Col), and a property whose logical name differs from its loaded one says so (logical).
+#
+#   layer    who governs it: harvested (mirrored from a client's systems), curated (the client's people), access (who
+#            may do what) or runtime (written while the graph is in use)
+#   origin   where its rows come from: lock (the catalogue certification landed, frozen in the pack's lock), pack, landing
+#            (what certification landed), deployment (its identities), platform (constants here), compiler, or pipeline
+#            (the tagging pipeline and the stewards, at run time)
+#
+# Properties are typed and listed in the order they are loaded. A property kept on a type for the runtime's sake, beside
+# the type it belongs to, names that type (denormalised_from). FLOAT[{embedding_dim}] takes the pack's embedding
+# dimension. graph/schema.py builds the DDL from this file, in the kuzu dialect, which Ladybug and Kuzu both load.
+#
+# Semver: a minor version only adds (a type, an edge, an optional property); a major one may change what is here.
+
+version: 1.0.0
+
+node_types:
+  Source:
+    loaded_as: Unit
+    key: id
+    layer: harvested
+    origin: pack
+    properties:
+      id: STRING
+      label: STRING
+      key_column: {type: STRING, logical: entity_key}   # the source's customer-like key
+      ordinal: INT64                                    # its place in the pack's list, from 1: the pairs' names follow it
+  Table:
+    loaded_as: Tbl
+    key: id                                             # <source>.<table>
+    layer: harvested
+    origin: lock
+    properties:
+      id: STRING
+      unit: {type: STRING, logical: source}
+      name: STRING
+  Column:
+    loaded_as: Col
+    key: id                                             # <source>.<table>.<column>
+    layer: harvested
+    origin: lock
+    properties:
+      id: STRING
+      unit: {type: STRING, logical: source}
+      tbl: {type: STRING, logical: table}
+      name: STRING
+      data_type: STRING
+      description: STRING
+      is_key: BOOLEAN
+      certified: {type: BOOLEAN, denormalised_from: MAPS_TO}
+      grain: {type: STRING, denormalised_from: Measure}
+      currency: {type: STRING, denormalised_from: Measure}
+      calendar: {type: STRING, denormalised_from: Measure}
+      conversion: {type: STRING, denormalised_from: Measure}
+  Term:
+    loaded_as: Term
+    key: name                                           # keyed by name, as before; id is the stable slug
+    layer: curated
+    origin: pack
+    properties:
+      name: STRING
+      domain: STRING
+      steward: STRING
+      definition: STRING
+      id: STRING
+  Document:
+    loaded_as: Document
+    key: id
+    layer: curated
+    origin: landing
+    properties:
+      id: STRING
+      title: STRING
+      shelf: STRING
+      kind: STRING
+      unit: {type: STRING, logical: source}
+      owner: STRING
+      version: STRING
+      published_at: STRING
+      ai_ready: BOOLEAN                                 # as certification landed it; fail closed
+      tier: STRING
+      cert_evidence: STRING
+      cert_policy: STRING
+      cert_version: STRING
+      cert_from: STRING
+      cert_to: STRING
+  Chunk:
+    loaded_as: Chunk
+    key: id
+    layer: runtime
+    origin: pipeline
+    properties:
+      id: STRING
+      doc_id: STRING
+      ordinal: INT64
+      text: STRING                                      # as certification landed it, masked
+      readiness: STRING
+      purposes: "STRING[]"
+      embedding: "FLOAT[{embedding_dim}]"
+      embedding_model: STRING
+  Tag:
+    loaded_as: Tag
+    key: id
+    layer: runtime
+    origin: pipeline
+    properties:
+      id: STRING
+      family: STRING
+      value: STRING
+      generator: STRING
+      confidence: DOUBLE
+      model: STRING
+      prompt_version: STRING
+      created_at: STRING
+      evidence: STRING
+  Principal:
+    loaded_as: Principal
+    key: id
+    layer: access
+    origin: deployment
+    properties:
+      id: STRING
+      role: STRING
+  Process:
+    loaded_as: Process
+    key: id
+    layer: access
+    origin: platform
+    # The processes bound to identities, which the code checks. A role template names some of them.
+    constants:
+      tagging: write machine tags and derive readiness (the pipeline)
+      certification: accept or reject proposals in the steward queue; certify terms and mappings
+      querying: ask questions and retrieve documents; read only, within the warehouses the principal can read
+    properties:
+      id: STRING
+      description: STRING
+  Release:                                              # the landed release the graph was loaded from
+    loaded_as: Release
+    key: id
+    layer: harvested
+    origin: landing
+    properties:
+      id: STRING
+      client: STRING
+      policy: STRING
+      as_of: STRING
+  Measure:
+    loaded_as: Measure
+    key: id
+    layer: curated
+    origin: pack
+    properties:
+      id: STRING
+      expression: STRING                                # one read-only aggregate over its own table's rows
+      aggregation: STRING
+      grain: STRING
+      currency: STRING
+      conversion: STRING
+      snapshot: BOOLEAN
+      population: STRING
+  Calendar:
+    loaded_as: Calendar
+    key: id
+    layer: curated
+    origin: pack
+    properties:
+      id: STRING
+      year_start_month: INT64
+      quarter_label: STRING
+  Alias:
+    loaded_as: Alias
+    key: phrase
+    layer: curated
+    origin: pack
+    properties:
+      phrase: STRING
+      kind: STRING                                      # term, source or candidate
+      target: STRING                                    # the term's id, the source's id or the candidate's name
+      ordinal: INT64                                    # its place in the pack's list, from 1: a tie in length goes to the first
+  Policy:
+    loaded_as: Policy
+    key: id
+    layer: curated
+    origin: pack
+    properties:
+      id: STRING
+      kind: STRING
+      params: STRING                                    # JSON
+      version: STRING
+  GraphModel:                                           # the compiled model the graph was loaded from
+    loaded_as: GraphModel
+    key: id                                             # the model hash
+    layer: curated
+    origin: compiler
+    properties:
+      id: STRING
+      client: STRING
+      pack_version: STRING
+      meta_model_version: STRING
+
+edge_types:
+  HAS_TABLE: {loaded_as: HAS_TABLE, from: Source, to: Table, layer: harvested, origin: lock, properties: {}}
+  HAS_COLUMN: {loaded_as: HAS_COLUMN, from: Table, to: Column, layer: harvested, origin: lock, properties: {}}
+  # Declared foreign keys, from the catalogue. Direction: referencing -> referenced.
+  JOINS: {loaded_as: JOINS, from: Column, to: Column, layer: harvested, origin: lock, properties: {via: STRING}}
+  # The same keys at table grain, so a join path is a walk over tables with its columns on the edges.
+  JOINS_TABLE:
+    loaded_as: JOINS_TABLE
+    from: Table
+    to: Table
+    layer: harvested
+    origin: lock
+    properties: {from_table: STRING, from_column: STRING, to_table: STRING, to_column: STRING}
+  MAPS_TO:
+    loaded_as: MAPS_TO
+    from: Column
+    to: Term
+    layer: curated
+    origin: pack
+    properties: {certified: BOOLEAN, certified_by: STRING, certified_on: STRING, generator: STRING, confidence: DOUBLE}
+  # The asserted absence of a join between two sources. Curated, never inferred.
+  NO_JOIN:
+    loaded_as: NO_JOIN
+    from: Source
+    to: Source
+    layer: curated
+    origin: pack
+    properties: {asserted_by: STRING, asserted_on: STRING, note: STRING}
+  CAN_READ: {loaded_as: CAN_READ, from: Principal, to: Source, layer: access, origin: deployment, properties: {}}
+  CAN_WRITE: {loaded_as: CAN_WRITE, from: Principal, to: Term, layer: access, origin: deployment, properties: {}}
+  MAY_PERFORM: {loaded_as: MAY_PERFORM, from: Principal, to: Process, layer: access, origin: deployment, properties: {}}
+  HAS_CHUNK: {loaded_as: HAS_CHUNK, from: Document, to: Chunk, layer: runtime, origin: pipeline, properties: {}}
+  DEFINES: {loaded_as: DEFINES, from: Document, to: Term, layer: curated, origin: pack, properties: {}}   # a steward's accept writes one too
+  SUPERSEDED_BY: {loaded_as: SUPERSEDED_BY, from: Document, to: Document, layer: curated, origin: landing, properties: {}}
+  MENTIONS:
+    loaded_as: MENTIONS
+    from: Chunk
+    to: Term
+    layer: runtime
+    origin: pipeline
+    properties: {confidence: DOUBLE, generator: STRING}
+  TAGGED: {loaded_as: TAGGED, from: Chunk, to: Tag, layer: runtime, origin: pipeline, properties: {}}
+  SUPERSEDES: {loaded_as: SUPERSEDES, from: Tag, to: Tag, layer: runtime, origin: pipeline, properties: {}}   # a human decision retires a tag
+  PROPOSES: {loaded_as: PROPOSES, from: Tag, to: Column, layer: runtime, origin: pipeline, properties: {term: STRING}}
+  MEASURE_OF: {loaded_as: MEASURE_OF, from: Measure, to: Term, layer: curated, origin: pack, properties: {}}
+  COMPUTED_FROM: {loaded_as: COMPUTED_FROM, from: Measure, to: Column, layer: curated, origin: pack, properties: {role: STRING}}
+  IN_CALENDAR: {loaded_as: IN_CALENDAR, from: Measure, to: Calendar, layer: curated, origin: pack, properties: {}}
+  # Which column carries a table's period, of what kind, on which calendar, and the table it rolls up through.
+  PERIOD_COLUMN:
+    loaded_as: PERIOD_COLUMN
+    from: Table
+    to: Column
+    layer: curated
+    origin: pack
+    properties: {kind: STRING, calendar: STRING, rollup_table: STRING, rollup_column: STRING}
+  ALIAS_OF: {loaded_as: ALIAS_OF, from: Alias, to: [Term, Source], layer: curated, origin: pack, properties: {}}   # a rel group
+  # A policy's scope; ordinal is the column's place in the pack's list of them, from 1, the order the runtime gives them in.
+  GOVERNS: {loaded_as: GOVERNS, from: Policy, to: Column, layer: curated, origin: pack, properties: {ordinal: INT64}}

@@ -1,0 +1,739 @@
+# The platform's preloaded reference standards: a fixed, versioned set of external standards' concepts, loaded into
+# every client's graph as reference OntologyConcepts (meta-model 1.3.0), never a client's data. It names no client.
+#
+# Onboarding only maps to these concepts: a drafted mapping names one of them, and the compiler refuses a pack mapping
+# to an IRI that is not here. Widening this set, or adding a standard, is a deliberate platform update (a new version
+# of this file, reviewed for licence and fit), never part of an upload. Nothing is fetched at run time.
+#
+# Researched and verified on 2026-10-19 against each standard's own published files (source, per concept). Each
+# concept's id is <standard>-<its IRI's local name, kebab-cased> (DPV's personal-data extension: dpv-pd-<name>), so
+# two standards' concepts of one local name never collide (fibo-monetary-amount, schemaorg-monetary-amount). Its
+# definition is the standard's own words where its licence allows (definition_text: verbatim) and ours otherwise
+# (own wording: schema.org's, whose definitions are CC BY-SA). The licence notices each standard asks for are in
+# NOTICES.md, beside this file, and ship with it.
+#
+# Left out on purpose: ISO 20022, whose terms do not plainly allow its text to ship under this platform's licence; and
+# any concept no mapping or onboarding rule needs yet. Apache Ossie is a format, not a vocabulary: it is listed
+# as a standard and supplies no concept.
+#
+# defaults: the structural rules onboarding's rule path drafts with, beside lexical matching (kge/estate/draftflow.py).
+#   currency_measure  the concept a drafted measure with an ISO 4217 currency is mapped to: a figure in a currency is
+#                     an amount of money, so the concept is the broader (broadMatch)
+#   personal_data     the concept a candidate restricted-data policy is mapped to, by the privacy family that flagged
+#                     its column (kge/pipeline/privacy.py); `default` for any family not named
+#
+# Format 2 (meta-model 1.6.0) adds the platform's side of question shapes: platform data too, naming no client, checked
+# by kge/compiler/standards.py, and the lists a pack's question-shape sections are held to (checks S32 to S36).
+#   operations           the closed list of operations a phrase may mark; held equal to the lexer's operation table
+#                        (tests/unit/test_standards.py), so a new operation changes both together
+#   coded_builders       the coded plan builders a shape's `replaces` may name: one per plan-building branch of
+#                        kge/services/ask/engine/planshapes.py, written planshapes.<function>[:<branch>]
+#   clarification_texts  the texts a clarification rule's `message` names by id, each in the coded planner's own words
+#   phrases, shapes, recipes, clarifications
+#                        the base set every client's graph loads, which a pack extends and never redefines, in the
+#                        pack's own item shapes (a base phrase may also carry `baseline: true`)
+#   phrases              baseline v1 (version 1.3.0): the coded planner's operation table, frozen. Each operation
+#                        phrase of kge/semantics/coverage.py OPERATORS with its operation, then each filler word
+#                        (SCAFFOLD) and filler phrase (SCAFFOLD_PHRASES) with `filler: true`. Every row has
+#                        `baseline: true`; baseline v1 never changes, and a later phrase is added without `baseline`.
+#                        Four baseline words keep both coded readings, an operation and filler: in, over, their and
+#                        which. The lexer reads the operation, and leaves the word as filler where a rule that
+#                        depends on the question sets the operation aside. Only a baseline phrase may be both. Every
+#                        phrase is quoted, so YAML never reads one (on, null, =) as anything but text
+#   shapes, recipes, clarifications
+#                        empty in this version
+#   shape_test_items     what the up-front check F12 asks of a test item a question shape cites: min_also_asked_as,
+#                        the fewest alternate phrasings (also_asked_as and added_phrasings together; the question is
+#                        one more), a planning estimate to raise if live questions show phrasings the tests missed
+
+format: 2
+version: 1.3.0
+researched: 2026-10-19
+
+defaults:
+  currency_measure: {concept: fibo-monetary-amount, relation: broadMatch}
+  personal_data:
+    default: {concept: dpv-personal-data, relation: broadMatch}
+    payment_card: {concept: dpv-pd-financial, relation: broadMatch}
+
+standards:
+  - id: fibo
+    name: "Financial Industry Business Ontology (FIBO)"
+    publisher: "EDM Council (standardised at OMG)"
+    version: "master_2026Q2 (released 2026-07-14)"
+    licence: "MIT"
+    licence_url: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/LICENSE"
+    namespace: "https://spec.edmcouncil.org/fibo/ontology/"
+  - id: bian
+    name: "BIAN Service Landscape / Semantic APIs"
+    publisher: "Banking Industry Architecture Network (BIAN)"
+    version: "14.0.0"
+    licence: "Apache-2.0"
+    licence_url: "https://github.com/bian-official/public/blob/main/LICENSE"
+    namespace: "none (no RDF namespace; commit-pinned GitHub file URLs used as locators)"
+  - id: schemaorg
+    name: "Schema.org"
+    publisher: "Schema.org (Google, Microsoft, Yahoo, Yandex)"
+    version: "30.1 (2026-09-16)"
+    licence: "CC BY-SA 3.0"
+    licence_url: "https://schema.org/docs/terms.html"
+    namespace: "https://schema.org/"
+  - id: skos
+    name: "SKOS Simple Knowledge Organization System"
+    publisher: "W3C"
+    version: "W3C Recommendation 2009-08-18"
+    licence: "W3C Document License (document use rules)"
+    licence_url: "https://www.w3.org/copyright/document-license-2023/"
+    namespace: "http://www.w3.org/2004/02/skos/core#"
+  - id: dpv
+    name: "Data Privacy Vocabulary (DPV) and Personal Data extension (pd)"
+    publisher: "W3C Data Privacy Vocabularies and Controls Community Group (a Community Group, not a W3C Recommendation)"
+    version: "2.3 (modified 2026-02-25)"
+    licence: "W3C Document License 2023"
+    licence_url: "https://www.w3.org/copyright/document-license-2023/"
+    namespace: "https://w3id.org/dpv# ; https://w3id.org/dpv/pd#"
+  - id: dcterms
+    name: "DCMI Metadata Terms"
+    publisher: "Dublin Core Metadata Initiative (DCMI)"
+    version: "DCMI Recommendation, issued 2020-01-20"
+    licence: "CC BY 4.0"
+    licence_url: "https://www.dublincore.org/about/copyright/"
+    namespace: "http://purl.org/dc/terms/"
+  - id: prov
+    name: "PROV-O: The PROV Ontology"
+    publisher: "W3C"
+    version: "W3C Recommendation 2013-04-30"
+    licence: "W3C Document License (document use rules)"
+    licence_url: "https://www.w3.org/copyright/document-license-2023/"
+    namespace: "http://www.w3.org/ns/prov#"
+  - id: dcat
+    name: "Data Catalog Vocabulary (DCAT) Version 3"
+    publisher: "W3C"
+    version: "W3C Recommendation 2024-08-22"
+    licence: "W3C Software and Document License 2023 (permissive document license)"
+    licence_url: "https://www.w3.org/copyright/software-license-2023/"
+    namespace: "http://www.w3.org/ns/dcat#"
+  - id: ossie
+    name: "Apache Ossie (incubating), formerly Open Semantic Interchange (OSI)"
+    publisher: "Apache Software Foundation (Incubator)"
+    version: "spec 0.2.0.dev0 (draft); only tag osi-0.1.1-rc1; no stable release"
+    licence: "Apache-2.0"
+    licence_url: "https://github.com/apache/ossie/blob/main/LICENSE"
+    namespace: "none (a format, not a vocabulary: its ontology concepts carry an optional iri field)"
+
+concepts:
+  - id: dcat-dataset
+    standard: dcat
+    iri: "http://www.w3.org/ns/dcat#Dataset"
+    label: "Dataset"
+    definition: "A collection of data, published or curated by a single source, and available for access or download in one or more representations."
+    definition_text: verbatim
+    sub_graph: physical
+    source: "https://www.w3.org/ns/dcat.ttl"
+  - id: skos-concept
+    standard: skos
+    iri: "http://www.w3.org/2004/02/skos/core#Concept"
+    label: "Concept"
+    definition: "An idea or notion; a unit of thought."
+    definition_text: verbatim
+    sub_graph: glossary
+    source: "https://www.w3.org/2004/02/skos/core.rdf"
+  - id: fibo-monetary-amount
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CurrencyAmount/MonetaryAmount"
+    label: "monetary amount"
+    definition: "measure that is an amount of money specified in monetary units"
+    definition_text: verbatim
+    sub_graph: metrics
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/Accounting/CurrencyAmount.rdf"
+    maturity: "Release"
+  - id: fibo-usd
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/ISO4217-CurrencyCodes/USD"
+    label: "USD"
+    definition: "the currency identifier for US Dollar"
+    definition_text: verbatim
+    sub_graph: metrics
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/Accounting/ISO4217-CurrencyCodes.rdf"
+    maturity: "Release"
+  - id: fibo-market-value
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Assessments/MarketValue"
+    label: "market value"
+    definition: "price an asset would sell for in the market"
+    definition_text: verbatim
+    sub_graph: metrics
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/Arrangements/Assessments.rdf"
+    maturity: "Release"
+  - id: fibo-cash-flow
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Accounting/CashFlows/CashFlow"
+    label: "cash flow"
+    definition: "the movement of money from some source to some sink"
+    definition_text: verbatim
+    sub_graph: metrics
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/Accounting/CashFlows.rdf"
+    maturity: "Provisional"
+  - id: fibo-calendar-quarter
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/DatesAndTimes/FinancialDates/CalendarQuarter"
+    label: "calendar quarter"
+    definition: "time interval of 3 months, starting on January 1, April 1, July 1, or October 1"
+    definition_text: verbatim
+    sub_graph: metrics
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/DatesAndTimes/FinancialDates.rdf"
+    maturity: "Release"
+    note: "An owl:NamedIndividual, not a class. Calendar quarters only: a fiscal year that starts in another month may share its quarter ends, but not its quarter labels."
+  - id: dcterms-period-of-time
+    standard: dcterms
+    iri: "http://purl.org/dc/terms/PeriodOfTime"
+    label: "Period of Time"
+    definition: "An interval of time that is named or defined by its start and end dates."
+    definition_text: verbatim
+    sub_graph: metrics
+    source: "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl"
+  - id: schemaorg-monetary-amount
+    standard: schemaorg
+    iri: "https://schema.org/MonetaryAmount"
+    label: "MonetaryAmount"
+    definition: "An amount of money, or a range of amounts, in a stated currency."
+    definition_text: own wording
+    sub_graph: metrics
+    source: "https://schema.org/version/latest/schemaorg-current-https.ttl"
+  - id: fibo-investment-account
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/InvestmentAccount"
+    label: "investment account"
+    definition: "account that provides a record of deposits of funds and/or securities held at a financial institution"
+    definition_text: verbatim
+    sub_graph: ontology
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FBC/ProductsAndServices/ClientsAndAccounts.rdf"
+    maturity: "Release"
+  - id: fibo-portfolio
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/OwnershipAndControl/Ownership/Portfolio"
+    label: "portfolio"
+    definition: "collection of holdings assembled and maintained as a unit for management purposes to achieve strategic objectives"
+    definition_text: verbatim
+    sub_graph: ontology
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/OwnershipAndControl/Ownership.rdf"
+    maturity: "Release"
+  - id: fibo-holding
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/OwnershipAndControl/Ownership/Holding"
+    label: "holding"
+    definition: "owned financial interest consisting of legal or beneficial ownership of an asset or security that confers economic rights on its owner"
+    definition_text: verbatim
+    sub_graph: ontology
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/OwnershipAndControl/Ownership.rdf"
+    maturity: "Release"
+  - id: schemaorg-money-transfer
+    standard: schemaorg
+    iri: "https://schema.org/MoneyTransfer"
+    label: "MoneyTransfer"
+    definition: "Sending money somewhere else, by any means."
+    definition_text: own wording
+    sub_graph: ontology
+    source: "https://schema.org/version/latest/schemaorg-current-https.ttl"
+  - id: bian-investment-portfolio-management
+    standard: bian
+    iri: "https://github.com/bian-official/public/blob/b58bf4c2c300dd018afc084e9bb24b7adaaa3500/release14.0.0/semantic-apis/oas3%20/yamls/InvestmentPortfolioManagement.yaml"
+    label: "Investment Portfolio Management (service domain)"
+    definition: "Manage an investment portfolio, initiating trading to leverage market opportunities, remaining within portfolio trading policies"
+    definition_text: verbatim
+    sub_graph: ontology
+    source: "https://github.com/bian-official/public/blob/b58bf4c2c300dd018afc084e9bb24b7adaaa3500/release14.0.0/semantic-apis/oas3%20/yamls/InvestmentPortfolioManagement.yaml"
+  - id: fibo-report
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Arrangements/Reporting/Report"
+    label: "report"
+    definition: "document that provides a structured description of something, prepared on ad hoc, periodic, recurring, regular, or as required basis"
+    definition_text: verbatim
+    sub_graph: documents
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/Arrangements/Reporting.rdf"
+    maturity: "Release"
+  - id: fibo-account-statement
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FBC/ProductsAndServices/ClientsAndAccounts/AccountStatement"
+    label: "account statement"
+    definition: "periodic summary of account activity for a given period of time"
+    definition_text: verbatim
+    sub_graph: documents
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FBC/ProductsAndServices/ClientsAndAccounts.rdf"
+    maturity: "Release"
+  - id: dcterms-policy
+    standard: dcterms
+    iri: "http://purl.org/dc/terms/Policy"
+    label: "Policy"
+    definition: "A plan or course of action by an authority, intended to influence and determine decisions, actions, and other matters."
+    definition_text: verbatim
+    sub_graph: documents
+    source: "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl"
+  - id: fibo-policy
+    standard: fibo
+    iri: "https://spec.edmcouncil.org/fibo/ontology/FND/Law/LegalCapacity/Policy"
+    label: "policy"
+    definition: "system of principles, rules and guidelines, adopted by an organization to guide decision making with respect to particular situations and implemented via procedures or protocols to achieve stated goals"
+    definition_text: verbatim
+    sub_graph: governance
+    source: "https://github.com/edmcouncil/fibo/blob/master_2026Q2/FND/Law/LegalCapacity.rdf"
+    maturity: "Release"
+  - id: dpv-personal-data
+    standard: dpv
+    iri: "https://w3id.org/dpv#PersonalData"
+    label: "Personal Data"
+    definition: "Data directly or indirectly associated or related to an individual"
+    definition_text: verbatim
+    sub_graph: governance
+    source: "https://raw.githubusercontent.com/w3c/dpv/master/2.3/dpv/dpv.ttl"
+  - id: dpv-pd-financial
+    standard: dpv
+    iri: "https://w3id.org/dpv/pd#Financial"
+    label: "Financial"
+    definition: "Information about finance including monetary characteristics and transactions"
+    definition_text: verbatim
+    sub_graph: governance
+    source: "https://raw.githubusercontent.com/w3c/dpv/master/2.3/pd/pd.ttl"
+  - id: dcterms-access-rights
+    standard: dcterms
+    iri: "http://purl.org/dc/terms/accessRights"
+    label: "Access Rights"
+    definition: "Information about who access the resource or an indication of its security status."
+    definition_text: verbatim
+    sub_graph: governance
+    source: "https://www.dublincore.org/specifications/dublin-core/dcmi-terms/dublin_core_terms.ttl"
+    note: "A property, not a class: attach to the dataset or column carrying the classification."
+  - id: prov-entity
+    standard: prov
+    iri: "http://www.w3.org/ns/prov#Entity"
+    label: "Entity"
+    definition: "An entity is a physical, digital, conceptual, or other kind of thing with some fixed aspects; entities may be real or imaginary."
+    definition_text: verbatim
+    sub_graph: governance
+    source: "https://www.w3.org/ns/prov-o.ttl"
+  - id: prov-was-derived-from
+    standard: prov
+    iri: "http://www.w3.org/ns/prov#wasDerivedFrom"
+    label: "wasDerivedFrom"
+    definition: "A derivation is a transformation of an entity into another, an update of an entity resulting in a new one, or the construction of a new entity based on a pre-existing entity."
+    definition_text: verbatim
+    sub_graph: governance
+    source: "https://www.w3.org/ns/prov-o.ttl"
+    note: "A property: the provenance of a figure is the figure (prov:Entity) wasDerivedFrom its source rows."
+
+operations: [
+  add, aggregate, all, all_available, any, asc, avg, band, calendar_quarter, comparison, contains, count, day, desc,
+  difference, dimension, eq, fiscal_quarter, fiscal_year, ge, gt, in, latest_released, le, lt, max, measure, median,
+  membership, min, month, moving_average, mtd, ne, not, not_in, not_null, "null", percent_change, previous_period,
+  previous_year, qtd, range, ratio, running_total, separate, share, starts_with, week, year, ytd]
+
+coded_builders:
+  - planshapes.compose:time_grain
+  - planshapes.compose:range
+  - planshapes.compose:explicit_period
+  - planshapes.compose:from_to
+  - planshapes.compose:previous_period
+  - planshapes.compose:previous_year
+  - planshapes.compose:time_mode
+  - planshapes.compose:contexts
+  - planshapes.compose:derived
+  - planshapes.compose:ratio
+  - planshapes.compose:share
+  - planshapes.compose:running_total
+  - planshapes.compose:moving_average
+  - planshapes.compose:ranking
+  - planshapes.parts
+
+clarification_texts:
+  - {id: contexts-or-periods, text: "Please identify whether to compare the contexts or their periods."}
+  - {id: ordered-range, text: "Please give an ordered range at one period grain."}
+  - {id: one-comparison-period, text: "Please identify one comparison period."}
+  - {id: both-comparison-contexts, text: "Please identify both comparison contexts."}
+  - {id: numerator-and-denominator, text: "Please identify the numerator and denominator."}
+  - {id: remaining-share, text: "Please identify the numerator and denominator for the remaining share."}
+  - {id: share-breakdown, text: "Please identify the breakdown for the share of total."}
+  - {id: time-breakdown-running-total, text: "Please identify one time breakdown for the running total."}
+  - {id: time-breakdown-moving-average, text: "Please identify one time breakdown for the moving average."}
+  - {id: moving-average-length, text: "Please declare one moving average length and time grain."}
+  - {id: rank-measure-and-breakdown, text: "Please identify the measure and breakdown to rank."}
+  - {id: same-top-and-bottom, text: "Please give the same number of top and bottom results."}
+  - {id: ranked-results-number, text: "Please give the number of ranked results."}
+  - {id: positive-ranked-results, text: "Please give a positive number of ranked results."}
+  - {id: measure-parts, text: "Please identify the measure parts used by the comparison or ratio."}
+  - {id: measure-part-predicate, text: "Please identify the declared predicate for this measure part."}
+
+phrases:
+  # Baseline v1, operation phrases: kge/semantics/coverage.py OPERATORS, sorted by operation then phrase. The four
+  # words that are also coded filler (in, over, their, which) keep both readings.
+  - {phrase: "plus", operation: add, baseline: true}
+  - {phrase: "add up", operation: aggregate, baseline: true}
+  - {phrase: "combined", operation: aggregate, baseline: true}
+  - {phrase: "in total", operation: aggregate, baseline: true}
+  - {phrase: "sum", operation: aggregate, baseline: true}
+  - {phrase: "all", operation: all, baseline: true}
+  - {phrase: "all of", operation: all, baseline: true}
+  - {phrase: "all available", operation: all_available, baseline: true}
+  - {phrase: "all dates", operation: all_available, baseline: true}
+  - {phrase: "all time", operation: all_available, baseline: true}
+  - {phrase: "any", operation: any, baseline: true}
+  - {phrase: "or", operation: any, baseline: true}
+  - {phrase: "ascending", operation: asc, baseline: true}
+  - {phrase: "bottom", operation: asc, baseline: true}
+  - {phrase: "least", operation: asc, baseline: true}
+  - {phrase: "lowest", operation: asc, baseline: true}
+  - {phrase: "smallest", operation: asc, baseline: true}
+  - {phrase: "worst", operation: asc, baseline: true}
+  - {phrase: "average", operation: avg, baseline: true}
+  - {phrase: "mean", operation: avg, baseline: true}
+  - {phrase: "band", operation: band, baseline: true}
+  - {phrase: "bands", operation: band, baseline: true}
+  - {phrase: "bucket", operation: band, baseline: true}
+  - {phrase: "buckets", operation: band, baseline: true}
+  - {phrase: "range", operation: band, baseline: true}
+  - {phrase: "ranges", operation: band, baseline: true}
+  - {phrase: "calendar", operation: calendar_quarter, baseline: true}
+  - {phrase: "calendar quarter", operation: calendar_quarter, baseline: true}
+  - {phrase: "calendar quarters", operation: calendar_quarter, baseline: true}
+  - {phrase: "quarter", operation: calendar_quarter, baseline: true}
+  - {phrase: "quarterly", operation: calendar_quarter, baseline: true}
+  - {phrase: "quarters", operation: calendar_quarter, baseline: true}
+  - {phrase: "against", operation: comparison, baseline: true}
+  - {phrase: "compare", operation: comparison, baseline: true}
+  - {phrase: "compare to", operation: comparison, baseline: true}
+  - {phrase: "compare with", operation: comparison, baseline: true}
+  - {phrase: "compared to", operation: comparison, baseline: true}
+  - {phrase: "compared with", operation: comparison, baseline: true}
+  - {phrase: "versus", operation: comparison, baseline: true}
+  - {phrase: "vs", operation: comparison, baseline: true}
+  - {phrase: "containing", operation: contains, baseline: true}
+  - {phrase: "contains", operation: contains, baseline: true}
+  - {phrase: "in the name", operation: contains, baseline: true}
+  - {phrase: "including", operation: contains, baseline: true}
+  - {phrase: "count", operation: count, baseline: true}
+  - {phrase: "count of", operation: count, baseline: true}
+  - {phrase: "counts", operation: count, baseline: true}
+  - {phrase: "distinct", operation: count, baseline: true}
+  - {phrase: "how many", operation: count, baseline: true}
+  - {phrase: "number", operation: count, baseline: true}
+  - {phrase: "number of", operation: count, baseline: true}
+  - {phrase: "which", operation: count, filler: true, baseline: true}
+  - {phrase: "calendar day", operation: day, baseline: true}
+  - {phrase: "calendar days", operation: day, baseline: true}
+  - {phrase: "daily", operation: day, baseline: true}
+  - {phrase: "day", operation: day, baseline: true}
+  - {phrase: "days", operation: day, baseline: true}
+  - {phrase: "best", operation: desc, baseline: true}
+  - {phrase: "descending", operation: desc, baseline: true}
+  - {phrase: "highest", operation: desc, baseline: true}
+  - {phrase: "largest", operation: desc, baseline: true}
+  - {phrase: "most", operation: desc, baseline: true}
+  - {phrase: "rank", operation: desc, baseline: true}
+  - {phrase: "ranked", operation: desc, baseline: true}
+  - {phrase: "ranking", operation: desc, baseline: true}
+  - {phrase: "top", operation: desc, baseline: true}
+  - {phrase: "$ change", operation: difference, baseline: true}
+  - {phrase: "$ difference", operation: difference, baseline: true}
+  - {phrase: "change", operation: difference, baseline: true}
+  - {phrase: "decrease", operation: difference, baseline: true}
+  - {phrase: "decreased", operation: difference, baseline: true}
+  - {phrase: "delta", operation: difference, baseline: true}
+  - {phrase: "difference", operation: difference, baseline: true}
+  - {phrase: "dollar", operation: difference, baseline: true}
+  - {phrase: "dollar change", operation: difference, baseline: true}
+  - {phrase: "dollar difference", operation: difference, baseline: true}
+  - {phrase: "dollars", operation: difference, baseline: true}
+  - {phrase: "gap", operation: difference, baseline: true}
+  - {phrase: "in dollar terms", operation: difference, baseline: true}
+  - {phrase: "in dollars", operation: difference, baseline: true}
+  - {phrase: "increase", operation: difference, baseline: true}
+  - {phrase: "increased", operation: difference, baseline: true}
+  - {phrase: "by", operation: dimension, baseline: true}
+  - {phrase: "in each", operation: dimension, baseline: true}
+  - {phrase: "per", operation: dimension, baseline: true}
+  - {phrase: "within each", operation: dimension, baseline: true}
+  - {phrase: "=", operation: eq, baseline: true}
+  - {phrase: "equal", operation: eq, baseline: true}
+  - {phrase: "equal to", operation: eq, baseline: true}
+  - {phrase: "equals", operation: eq, baseline: true}
+  - {phrase: "exactly", operation: eq, baseline: true}
+  - {phrase: "fiscal", operation: fiscal_quarter, baseline: true}
+  - {phrase: "fiscal quarter", operation: fiscal_quarter, baseline: true}
+  - {phrase: "fiscal quarters", operation: fiscal_quarter, baseline: true}
+  - {phrase: "fiscal year", operation: fiscal_year, baseline: true}
+  - {phrase: "fiscal years", operation: fiscal_year, baseline: true}
+  - {phrase: ">=", operation: ge, baseline: true}
+  - {phrase: "and above", operation: ge, baseline: true}
+  - {phrase: "and over", operation: ge, baseline: true}
+  - {phrase: "at least", operation: ge, baseline: true}
+  - {phrase: "greater than or equal to", operation: ge, baseline: true}
+  - {phrase: "no less than", operation: ge, baseline: true}
+  - {phrase: "or above", operation: ge, baseline: true}
+  - {phrase: "or more", operation: ge, baseline: true}
+  - {phrase: ">", operation: gt, baseline: true}
+  - {phrase: "above", operation: gt, baseline: true}
+  - {phrase: "greater than", operation: gt, baseline: true}
+  - {phrase: "more than", operation: gt, baseline: true}
+  - {phrase: "over", operation: gt, filler: true, baseline: true}
+  - {phrase: "any of", operation: in, baseline: true}
+  - {phrase: "in", operation: in, filler: true, baseline: true}
+  - {phrase: "include", operation: in, baseline: true}
+  - {phrase: "included", operation: in, baseline: true}
+  - {phrase: "includes", operation: in, baseline: true}
+  - {phrase: "last", operation: latest_released, baseline: true}
+  - {phrase: "latest", operation: latest_released, baseline: true}
+  - {phrase: "latest released", operation: latest_released, baseline: true}
+  - {phrase: "most recent", operation: latest_released, baseline: true}
+  - {phrase: "newest", operation: latest_released, baseline: true}
+  - {phrase: "<=", operation: le, baseline: true}
+  - {phrase: "and below", operation: le, baseline: true}
+  - {phrase: "and under", operation: le, baseline: true}
+  - {phrase: "at most", operation: le, baseline: true}
+  - {phrase: "less than or equal to", operation: le, baseline: true}
+  - {phrase: "no more than", operation: le, baseline: true}
+  - {phrase: "or below", operation: le, baseline: true}
+  - {phrase: "or less", operation: le, baseline: true}
+  - {phrase: "<", operation: lt, baseline: true}
+  - {phrase: "below", operation: lt, baseline: true}
+  - {phrase: "fewer than", operation: lt, baseline: true}
+  - {phrase: "less than", operation: lt, baseline: true}
+  - {phrase: "under", operation: lt, baseline: true}
+  - {phrase: "max", operation: max, baseline: true}
+  - {phrase: "maximum", operation: max, baseline: true}
+  - {phrase: "booked by", operation: measure, baseline: true}
+  - {phrase: "bring in", operation: measure, baseline: true}
+  - {phrase: "how much", operation: measure, baseline: true}
+  - {phrase: "median", operation: median, baseline: true}
+  - {phrase: "also", operation: membership, baseline: true}
+  - {phrase: "hold both", operation: membership, baseline: true}
+  - {phrase: "join", operation: membership, baseline: true}
+  - {phrase: "joined", operation: membership, baseline: true}
+  - {phrase: "line up", operation: membership, baseline: true}
+  - {phrase: "match", operation: membership, baseline: true}
+  - {phrase: "membership", operation: membership, baseline: true}
+  - {phrase: "next to", operation: membership, baseline: true}
+  - {phrase: "raised", operation: membership, baseline: true}
+  - {phrase: "their", operation: membership, filler: true, baseline: true}
+  - {phrase: "min", operation: min, baseline: true}
+  - {phrase: "minimum", operation: min, baseline: true}
+  - {phrase: "calendar month", operation: month, baseline: true}
+  - {phrase: "calendar months", operation: month, baseline: true}
+  - {phrase: "month", operation: month, baseline: true}
+  - {phrase: "monthly", operation: month, baseline: true}
+  - {phrase: "months", operation: month, baseline: true}
+  - {phrase: "moving average", operation: moving_average, baseline: true}
+  - {phrase: "rolling average", operation: moving_average, baseline: true}
+  - {phrase: "calendar month to date", operation: mtd, baseline: true}
+  - {phrase: "calendar month-to-date", operation: mtd, baseline: true}
+  - {phrase: "calendar mtd", operation: mtd, baseline: true}
+  - {phrase: "fiscal month to date", operation: mtd, baseline: true}
+  - {phrase: "fiscal month-to-date", operation: mtd, baseline: true}
+  - {phrase: "fiscal mtd", operation: mtd, baseline: true}
+  - {phrase: "month to date", operation: mtd, baseline: true}
+  - {phrase: "month-to-date", operation: mtd, baseline: true}
+  - {phrase: "mtd", operation: mtd, baseline: true}
+  - {phrase: "so far this month", operation: mtd, baseline: true}
+  - {phrase: "!=", operation: ne, baseline: true}
+  - {phrase: "<>", operation: ne, baseline: true}
+  - {phrase: "different from", operation: ne, baseline: true}
+  - {phrase: "not equal", operation: ne, baseline: true}
+  - {phrase: "not equal to", operation: ne, baseline: true}
+  - {phrase: "excluding", operation: not, baseline: true}
+  - {phrase: "not", operation: not, baseline: true}
+  - {phrase: "apart from", operation: not_in, baseline: true}
+  - {phrase: "except", operation: not_in, baseline: true}
+  - {phrase: "exclude", operation: not_in, baseline: true}
+  - {phrase: "excluded", operation: not_in, baseline: true}
+  - {phrase: "not in", operation: not_in, baseline: true}
+  - {phrase: "other than", operation: not_in, baseline: true}
+  - {phrase: "outside", operation: not_in, baseline: true}
+  - {phrase: "without", operation: not_in, baseline: true}
+  - {phrase: "is not null", operation: not_null, baseline: true}
+  - {phrase: "is present", operation: not_null, baseline: true}
+  - {phrase: "not null", operation: not_null, baseline: true}
+  - {phrase: "is missing", operation: "null", baseline: true}
+  - {phrase: "is null", operation: "null", baseline: true}
+  - {phrase: "missing", operation: "null", baseline: true}
+  - {phrase: "null", operation: "null", baseline: true}
+  - {phrase: "%", operation: percent_change, baseline: true}
+  - {phrase: "% change", operation: percent_change, baseline: true}
+  - {phrase: "in percent", operation: percent_change, baseline: true}
+  - {phrase: "in percentage terms", operation: percent_change, baseline: true}
+  - {phrase: "percent", operation: percent_change, baseline: true}
+  - {phrase: "percent change", operation: percent_change, baseline: true}
+  - {phrase: "percent difference", operation: percent_change, baseline: true}
+  - {phrase: "percentage", operation: percent_change, baseline: true}
+  - {phrase: "percentage change", operation: percent_change, baseline: true}
+  - {phrase: "percentage difference", operation: percent_change, baseline: true}
+  - {phrase: "day over day", operation: previous_period, baseline: true}
+  - {phrase: "day-over-day", operation: previous_period, baseline: true}
+  - {phrase: "dod", operation: previous_period, baseline: true}
+  - {phrase: "last day", operation: previous_period, baseline: true}
+  - {phrase: "last month", operation: previous_period, baseline: true}
+  - {phrase: "last period", operation: previous_period, baseline: true}
+  - {phrase: "last quarter", operation: previous_period, baseline: true}
+  - {phrase: "last week", operation: previous_period, baseline: true}
+  - {phrase: "mom", operation: previous_period, baseline: true}
+  - {phrase: "month over month", operation: previous_period, baseline: true}
+  - {phrase: "month-over-month", operation: previous_period, baseline: true}
+  - {phrase: "previous day", operation: previous_period, baseline: true}
+  - {phrase: "previous month", operation: previous_period, baseline: true}
+  - {phrase: "previous period", operation: previous_period, baseline: true}
+  - {phrase: "previous quarter", operation: previous_period, baseline: true}
+  - {phrase: "previous week", operation: previous_period, baseline: true}
+  - {phrase: "prior day", operation: previous_period, baseline: true}
+  - {phrase: "prior month", operation: previous_period, baseline: true}
+  - {phrase: "prior period", operation: previous_period, baseline: true}
+  - {phrase: "prior quarter", operation: previous_period, baseline: true}
+  - {phrase: "prior week", operation: previous_period, baseline: true}
+  - {phrase: "qoq", operation: previous_period, baseline: true}
+  - {phrase: "quarter over quarter", operation: previous_period, baseline: true}
+  - {phrase: "quarter-over-quarter", operation: previous_period, baseline: true}
+  - {phrase: "week over week", operation: previous_period, baseline: true}
+  - {phrase: "week-over-week", operation: previous_period, baseline: true}
+  - {phrase: "wow", operation: previous_period, baseline: true}
+  - {phrase: "a year earlier", operation: previous_year, baseline: true}
+  - {phrase: "last year", operation: previous_year, baseline: true}
+  - {phrase: "one year earlier", operation: previous_year, baseline: true}
+  - {phrase: "previous year", operation: previous_year, baseline: true}
+  - {phrase: "prior year", operation: previous_year, baseline: true}
+  - {phrase: "same day a year earlier", operation: previous_year, baseline: true}
+  - {phrase: "same day last year", operation: previous_year, baseline: true}
+  - {phrase: "same month a year earlier", operation: previous_year, baseline: true}
+  - {phrase: "same month last year", operation: previous_year, baseline: true}
+  - {phrase: "same period a year earlier", operation: previous_year, baseline: true}
+  - {phrase: "same period last year", operation: previous_year, baseline: true}
+  - {phrase: "same quarter a year earlier", operation: previous_year, baseline: true}
+  - {phrase: "same quarter last year", operation: previous_year, baseline: true}
+  - {phrase: "same week a year earlier", operation: previous_year, baseline: true}
+  - {phrase: "same week last year", operation: previous_year, baseline: true}
+  - {phrase: "year over year", operation: previous_year, baseline: true}
+  - {phrase: "year-over-year", operation: previous_year, baseline: true}
+  - {phrase: "yoy", operation: previous_year, baseline: true}
+  - {phrase: "calendar qtd", operation: qtd, baseline: true}
+  - {phrase: "calendar quarter to date", operation: qtd, baseline: true}
+  - {phrase: "calendar quarter-to-date", operation: qtd, baseline: true}
+  - {phrase: "fiscal qtd", operation: qtd, baseline: true}
+  - {phrase: "fiscal quarter to date", operation: qtd, baseline: true}
+  - {phrase: "fiscal quarter-to-date", operation: qtd, baseline: true}
+  - {phrase: "qtd", operation: qtd, baseline: true}
+  - {phrase: "quarter to date", operation: qtd, baseline: true}
+  - {phrase: "quarter-to-date", operation: qtd, baseline: true}
+  - {phrase: "so far this quarter", operation: qtd, baseline: true}
+  - {phrase: "between", operation: range, baseline: true}
+  - {phrase: "through", operation: range, baseline: true}
+  - {phrase: "until", operation: range, baseline: true}
+  - {phrase: "ratio", operation: ratio, baseline: true}
+  - {phrase: "cumulative", operation: running_total, baseline: true}
+  - {phrase: "cumulative sum", operation: running_total, baseline: true}
+  - {phrase: "cumulative total", operation: running_total, baseline: true}
+  - {phrase: "running total", operation: running_total, baseline: true}
+  - {phrase: "running totals", operation: running_total, baseline: true}
+  - {phrase: "separate", operation: separate, baseline: true}
+  - {phrase: "% of", operation: share, baseline: true}
+  - {phrase: "% of total", operation: share, baseline: true}
+  - {phrase: "contribute", operation: share, baseline: true}
+  - {phrase: "contribution", operation: share, baseline: true}
+  - {phrase: "percent of", operation: share, baseline: true}
+  - {phrase: "percent of total", operation: share, baseline: true}
+  - {phrase: "percentage of", operation: share, baseline: true}
+  - {phrase: "portion", operation: share, baseline: true}
+  - {phrase: "proportion", operation: share, baseline: true}
+  - {phrase: "remainder", operation: share, baseline: true}
+  - {phrase: "rest", operation: share, baseline: true}
+  - {phrase: "share", operation: share, baseline: true}
+  - {phrase: "beginning with", operation: starts_with, baseline: true}
+  - {phrase: "begins with", operation: starts_with, baseline: true}
+  - {phrase: "starting with", operation: starts_with, baseline: true}
+  - {phrase: "starts with", operation: starts_with, baseline: true}
+  - {phrase: "calendar week", operation: week, baseline: true}
+  - {phrase: "calendar weeks", operation: week, baseline: true}
+  - {phrase: "week", operation: week, baseline: true}
+  - {phrase: "weekly", operation: week, baseline: true}
+  - {phrase: "weeks", operation: week, baseline: true}
+  - {phrase: "annually", operation: year, baseline: true}
+  - {phrase: "calendar year", operation: year, baseline: true}
+  - {phrase: "calendar years", operation: year, baseline: true}
+  - {phrase: "year", operation: year, baseline: true}
+  - {phrase: "yearly", operation: year, baseline: true}
+  - {phrase: "years", operation: year, baseline: true}
+  - {phrase: "calendar year to date", operation: ytd, baseline: true}
+  - {phrase: "calendar year-to-date", operation: ytd, baseline: true}
+  - {phrase: "calendar ytd", operation: ytd, baseline: true}
+  - {phrase: "fiscal year to date", operation: ytd, baseline: true}
+  - {phrase: "fiscal year-to-date", operation: ytd, baseline: true}
+  - {phrase: "fiscal ytd", operation: ytd, baseline: true}
+  - {phrase: "so far this year", operation: ytd, baseline: true}
+  - {phrase: "to date", operation: ytd, baseline: true}
+  - {phrase: "year to date", operation: ytd, baseline: true}
+  - {phrase: "year-to-date", operation: ytd, baseline: true}
+  - {phrase: "ytd", operation: ytd, baseline: true}
+  # Baseline v1, filler words: SCAFFOLD, sorted.
+  - {phrase: "a", filler: true, baseline: true}
+  - {phrase: "across", filler: true, baseline: true}
+  - {phrase: "an", filler: true, baseline: true}
+  - {phrase: "and", filler: true, baseline: true}
+  - {phrase: "are", filler: true, baseline: true}
+  - {phrase: "as", filler: true, baseline: true}
+  - {phrase: "at", filler: true, baseline: true}
+  - {phrase: "be", filler: true, baseline: true}
+  - {phrase: "booked", filler: true, baseline: true}
+  - {phrase: "bring", filler: true, baseline: true}
+  - {phrase: "can", filler: true, baseline: true}
+  - {phrase: "did", filler: true, baseline: true}
+  - {phrase: "does", filler: true, baseline: true}
+  - {phrase: "during", filler: true, baseline: true}
+  - {phrase: "each", filler: true, baseline: true}
+  - {phrase: "for", filler: true, baseline: true}
+  - {phrase: "from", filler: true, baseline: true}
+  - {phrase: "give", filler: true, baseline: true}
+  - {phrase: "gross", filler: true, baseline: true}
+  - {phrase: "had", filler: true, baseline: true}
+  - {phrase: "have", filler: true, baseline: true}
+  - {phrase: "having", filler: true, baseline: true}
+  - {phrase: "how", filler: true, baseline: true}
+  - {phrase: "is", filler: true, baseline: true}
+  - {phrase: "it", filler: true, baseline: true}
+  - {phrase: "just", filler: true, baseline: true}
+  - {phrase: "list", filler: true, baseline: true}
+  - {phrase: "make", filler: true, baseline: true}
+  - {phrase: "may", filler: true, baseline: true}
+  - {phrase: "me", filler: true, baseline: true}
+  - {phrase: "now", filler: true, baseline: true}
+  - {phrase: "of", filler: true, baseline: true}
+  - {phrase: "on", filler: true, baseline: true}
+  - {phrase: "only", filler: true, baseline: true}
+  - {phrase: "please", filler: true, baseline: true}
+  - {phrase: "put", filler: true, baseline: true}
+  - {phrase: "show", filler: true, baseline: true}
+  - {phrase: "still", filler: true, baseline: true}
+  - {phrase: "tell", filler: true, baseline: true}
+  - {phrase: "that", filler: true, baseline: true}
+  - {phrase: "the", filler: true, baseline: true}
+  - {phrase: "there", filler: true, baseline: true}
+  - {phrase: "they", filler: true, baseline: true}
+  - {phrase: "to", filler: true, baseline: true}
+  - {phrase: "total", filler: true, baseline: true}
+  - {phrase: "using", filler: true, baseline: true}
+  - {phrase: "was", filler: true, baseline: true}
+  - {phrase: "were", filler: true, baseline: true}
+  - {phrase: "what", filler: true, baseline: true}
+  - {phrase: "where", filler: true, baseline: true}
+  - {phrase: "who", filler: true, baseline: true}
+  - {phrase: "whose", filler: true, baseline: true}
+  - {phrase: "with", filler: true, baseline: true}
+  - {phrase: "within", filler: true, baseline: true}
+  - {phrase: "you", filler: true, baseline: true}
+  # Baseline v1, filler phrases: SCAFFOLD_PHRASES, sorted.
+  - {phrase: "based on", filler: true, baseline: true}
+  - {phrase: "break down", filler: true, baseline: true}
+  - {phrase: "break out", filler: true, baseline: true}
+  - {phrase: "broken down", filler: true, baseline: true}
+  - {phrase: "for measure", filler: true, baseline: true}
+  - {phrase: "for the measure", filler: true, baseline: true}
+  - {phrase: "show me", filler: true, baseline: true}
+shapes: []
+recipes: []
+clarifications: []
+
+shape_test_items:
+  min_also_asked_as: 3

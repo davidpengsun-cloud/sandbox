@@ -1,0 +1,60 @@
+{
+  "about": "A synthetic pack's declarations (#707): invented names, none of Meridian's, so a reading rule that works only for one pack fails here. tests/unit/test_reading_rules.py reads it.",
+  "terms": {
+    "Container Throughput": ["teu", "box count"],
+    "Gated TEU": ["gated teu", "gate-in teu"],
+    "Vessel TEU": ["vessel teu"],
+    "Empty Return TEU": [],
+    "TEU Dwell": ["teu dwell"]
+  },
+  "meanings": [
+    {"phrase": "TEU", "expected": [["Container Throughput", true], ["Empty Return TEU", false], ["Gated TEU", false], ["Vessel TEU", false]]},
+    {"phrase": "gated TEU", "expected": [["Gated TEU", true]]},
+    {"phrase": "dwell", "expected": [["TEU Dwell", false]]},
+    {"phrase": "berth", "expected": []}
+  ],
+  "grouping": {
+    "phrases": {
+      "by quay": "port.QUAY_CD",
+      "by quay zone": "port.QUAY_ZN",
+      "by berth-side": "port.BERTH_SIDE",
+      "by terminal operator": "port.OPR_CD",
+      "operator level 2": "port.OPR_L2"
+    },
+    "labels": {
+      "port.QUAY_CD": "Quay",
+      "port.QUAY_ZN": "Quay zone",
+      "port.BERTH_SIDE": "Berth side",
+      "port.OPR_CD": "Terminal operator",
+      "port.OPR_L2": "Operator level two",
+      "port.CRANE_ID": "Crane"
+    },
+    "cases": [
+      {"words": "quay", "operator": "per", "expected": ["port.QUAY_CD", "port.QUAY_ZN"]},
+      {"words": "quay", "operator": "by", "expected": ["port.QUAY_CD"]},
+      {"words": "berth side", "operator": "by", "expected": ["port.BERTH_SIDE"]},
+      {"words": "berthside", "operator": "by", "expected": ["port.BERTH_SIDE"]},
+      {"words": "Berth-Side", "operator": "by", "expected": ["port.BERTH_SIDE"]},
+      {"words": "operator", "operator": "by", "expected": ["port.OPR_CD", "port.OPR_L2"]},
+      {"words": "crane", "operator": "by", "expected": []}
+    ]
+  },
+  "filters": {
+    "rows": [
+      {"id": "f1", "phrase": "Reefer", "column": "port.CNTR_TYP", "value": "RF"},
+      {"id": "f2", "phrase": "Dry Van", "column": "port.CNTR_TYP", "value": "DV"},
+      {"id": "f3", "phrase": "transshipment", "column": "port.MOVE_KIND", "value": null}
+    ],
+    "cases": [
+      {"query": "reefer", "expected": [["f1", 1.0]]},
+      {"query": "reefer boxes", "expected": [["f1", 0.9]]},
+      {"query": "van", "expected": [["f2", 0.9]]},
+      {"query": "ship", "expected": []}
+    ]
+  },
+  "fiscal_years": [
+    {"value": "FY25", "start_month": 7, "window": ["2024-07-01", "2025-06-30"]},
+    {"value": "FY2025", "start_month": 1, "window": ["2025-01-01", "2025-12-31"]},
+    {"value": "2026", "start_month": 10, "window": ["2025-10-01", "2026-09-30"]}
+  ]
+}

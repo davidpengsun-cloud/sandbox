@@ -1,0 +1,3 @@
+id: T02
+question: What is the first ledger amount?
+why: The person restated the second question.

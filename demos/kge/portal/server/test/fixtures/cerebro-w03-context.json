@@ -1,0 +1,105 @@
+{
+  "block": "Terms:\n  Net New Assets: Money clients bring to the firm less money they take away, in USD, from current received transactions marked eligible for net new assets, over released months, test accounts included. The current transaction view includes corrections since the month closed. Steward: Wealth Data Steward.\n    resolves to the context nna, below: its figure is built as the context declares it",
+  "sources": [
+    {
+      "n": 1,
+      "doc": "MD-NET-NEW-ASSETS",
+      "citable": true,
+      "chunk": "MD-NET-NEW-ASSETS#0",
+      "excerpt": "Metric Definition: Net New Assets **Definition.** Money clients bring to the firm less money they take away, in USD, over released months: eligible flows only, test accounts included. A move between",
+      "terms": [
+        "Net New Assets"
+      ],
+      "title": "Metric Definition: Net New Assets",
+      "tier": "silver",
+      "cited_as": "attributed",
+      "owner": "Wealth Data Steward",
+      "version": "1.0",
+      "attribution": "Wealth Data Steward, version 1.0",
+      "in_force": "2026-11-10 to now",
+      "why": "certified definition of Net New Assets",
+      "cert_from": "2026-11-10",
+      "cert_to": "",
+      "unit": ""
+    },
+    {
+      "n": 2,
+      "doc": "MD-FISCAL-YEAR",
+      "citable": true,
+      "chunk": "MD-FISCAL-YEAR#0",
+      "excerpt": "Metric Definition: Fiscal Year **Definition.** The twelve months from 1 April, used by Corporate and Wealth. Retail and SME report on the calendar year. Corporate & Institutional and Wealth Manageme",
+      "terms": [],
+      "title": "Metric Definition: Fiscal Year",
+      "tier": "gold",
+      "cited_as": "authority",
+      "owner": "Group Finance Data Steward",
+      "version": "1.3",
+      "attribution": null,
+      "in_force": "2024-11-15 to now",
+      "why": "retrieved by the question",
+      "cert_from": "2024-11-15",
+      "cert_to": "",
+      "unit": ""
+    },
+    {
+      "n": 3,
+      "doc": "DD-WEALTH",
+      "citable": true,
+      "chunk": "DD-WEALTH#10",
+      "excerpt": "Expansion tables: `month_end`, `division`, `region`, `office`, `client_segment`, `ref_source_system`, `ref_flow_type`, `account` and `flow` (SCD2: `valid_from`, `valid_to`, `is_current`), `nna_exclusi",
+      "terms": [],
+      "title": "Wealth Management Data Dictionary",
+      "tier": "gold",
+      "cited_as": "authority",
+      "owner": "Wealth Management Data Office",
+      "version": "3.2",
+      "attribution": null,
+      "in_force": "2025-02-01 to now",
+      "why": "retrieved by the question",
+      "cert_from": "2025-02-01",
+      "cert_to": "",
+      "unit": "wealth"
+    },
+    {
+      "n": 4,
+      "doc": "EM-003",
+      "citable": false,
+      "chunk": "EM-003#0",
+      "excerpt": "customer_id join between retail and corporate From: Data Engineering To: Analytics Someone asked whether we can join retail customers to corporate contacts on customer_id since both tables have the",
+      "terms": [],
+      "title": "customer_id join between retail and corporate",
+      "tier": "bronze",
+      "why": "bronze: for reasoning and reference, never cited",
+      "unit": ""
+    },
+    {
+      "n": 5,
+      "doc": "NOTE-001",
+      "citable": false,
+      "chunk": "NOTE-001#1",
+      "excerpt": "1. Active Customer v2 is in force from January. Marketing decks still using the 90-day login basis to be corrected. 2. Digital Engagement Score proposed. Definition: logins per active customer per mon",
+      "terms": [],
+      "title": "Customer data working group, March 2025",
+      "tier": "bronze",
+      "why": "bronze: for reasoning and reference, never cited",
+      "unit": ""
+    },
+    {
+      "n": 6,
+      "doc": "EM-005",
+      "citable": false,
+      "chunk": "EM-005#0",
+      "excerpt": "Wealth fee revenue timing From: Wealth Finance To: Group Finance Reminder that our fee revenue is booked on the fiscal quarter, so FY26-Q1 is April to June 2025. If you need calendar Q2 that is the",
+      "terms": [],
+      "title": "Wealth fee revenue timing",
+      "tier": "bronze",
+      "why": "bronze: for reasoning and reference, never cited",
+      "unit": ""
+    }
+  ],
+  "in_window": [
+    2,
+    3
+  ],
+  "withheld": []
+}

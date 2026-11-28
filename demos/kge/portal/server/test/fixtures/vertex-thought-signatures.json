@@ -1,0 +1,68 @@
+{
+  "about": "Hand-built Vertex AI streamGenerateContent replies (one JSON array of response chunks per model step) in the shapes Gemini 3 and Gemini 4 return for tool calls with thinking on, for #577. Signatures are opaque strings; no reply came from a live model.",
+  "gemini3": {
+    "model": "gemini-3.1-pro-preview",
+    "one_call": [
+      [
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "text": "Private reasoning: the person wants revenue, so call ask.", "thought": true }] } }] },
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "functionCall": { "name": "ask", "args": { "question": "What was revenue in March?" } }, "thoughtSignature": "G3-SIG-ASK" }] }, "finishReason": "STOP" }], "usageMetadata": { "promptTokenCount": 40, "candidatesTokenCount": 8, "thoughtsTokenCount": 12, "totalTokenCount": 60 } }
+      ],
+      [
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "text": "Certified: revenue " }] } }] },
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "text": "was 42." }] }, "finishReason": "STOP" }], "usageMetadata": { "promptTokenCount": 80, "candidatesTokenCount": 6, "totalTokenCount": 86 } }
+      ]
+    ],
+    "two_calls": [
+      [
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "text": "Private reasoning: ask for the figure and explore the term.", "thought": true }] } }] },
+        { "candidates": [{ "content": { "role": "model", "parts": [
+          { "functionCall": { "name": "ask", "args": { "question": "What was revenue in March?" } }, "thoughtSignature": "G3-SIG-PARALLEL" },
+          { "functionCall": { "name": "explore", "args": { "node": "term:revenue" } } }
+        ] }, "finishReason": "STOP" }] }
+      ],
+      [
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "text": "Revenue was 42; the term links to its table." }] }, "finishReason": "STOP" }] }
+      ]
+    ],
+    "sequential": [
+      [
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "text": "Private reasoning: first the term.", "thought": true }] } }] },
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "functionCall": { "name": "explore", "args": { "node": "term:revenue" } }, "thoughtSignature": "G3-SIG-STEP-1" }] }, "finishReason": "STOP" }] }
+      ],
+      [
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "text": "Private reasoning: now the figure.", "thought": true }] } }] },
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "text": "Let me look that up." }] } }] },
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "functionCall": { "name": "ask", "args": { "question": "What was revenue in March?" } }, "thoughtSignature": "G3-SIG-STEP-2" }] }, "finishReason": "STOP" }] }
+      ],
+      [
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "text": "Revenue was 42." }] }, "finishReason": "STOP" }] }
+      ]
+    ]
+  },
+  "gemini4": {
+    "model": "gemini-4-argon",
+    "parallel_each_signed": [
+      [
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "text": "", "thought": true, "thoughtSignature": "G4-SIG-THOUGHT" }] } }] },
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "functionCall": { "name": "ask", "args": { "question": "What was revenue in March?" } }, "thoughtSignature": "G4-SIG-ASK" }] } }] },
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "functionCall": { "name": "explore", "args": { "node": "term:revenue" } }, "thoughtSignature": "G4-SIG-EXPLORE" }] } }] },
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "text": "", "thoughtSignature": "G4-SIG-TAIL" }] }, "finishReason": "STOP" }], "usageMetadata": { "promptTokenCount": 40, "candidatesTokenCount": 12, "totalTokenCount": 52 } }
+      ],
+      [
+        { "candidates": [{ "content": { "role": "model", "parts": [{ "text": "Revenue was 42." }] }, "finishReason": "STOP" }] }
+      ]
+    ]
+  },
+  "unstreamed": {
+    "model": "gemini-4-argon",
+    "reply": {
+      "candidates": [{ "content": { "role": "model", "parts": [
+        { "text": "Private reasoning, unstreamed.", "thought": true },
+        { "text": "Checking both." },
+        { "functionCall": { "name": "ask", "args": { "question": "What was revenue in March?" } }, "thoughtSignature": "UN-SIG-ASK" },
+        { "functionCall": { "name": "explore", "args": { "node": "term:revenue" } }, "thoughtSignature": "UN-SIG-EXPLORE" }
+      ] }, "finishReason": "STOP" }],
+      "usageMetadata": { "promptTokenCount": 30, "candidatesTokenCount": 10, "totalTokenCount": 40 }
+    }
+  }
+}

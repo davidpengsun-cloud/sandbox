@@ -1,0 +1,82 @@
+[
+  {"id": "S06", "phrasings": [
+    "Give me certified NNA for Q2 2024, split by business line.",
+    "By business line, how much certified NNA did we book in the second quarter of 2024?"
+  ]},
+  {"id": "S07", "phrasings": [
+    "Give me Investor Services certified NNA for Q1, Q2 and Q3 2024, by quarter and sub-segment.",
+    "How much certified NNA did each Investor Services sub-segment bring in per quarter, Q1 through Q3 2024?"
+  ]},
+  {"id": "S08", "phrasings": [
+    "Month by month for Q3 2024, how does current NNA compare with certified NNA, in dollars and in percent?",
+    "For July, August and September 2024, put current NNA next to certified NNA and show the difference in dollars and as a percentage."
+  ]},
+  {"id": "S09", "phrasings": [
+    "In September 2024, how much of Retail Investor's certified NNAxFDIC came from SPS?",
+    "Break out Retail Investor certified NNAxFDIC for September 2024 between SPS and non-SPS, with each one's share."
+  ]},
+  {"id": "S10", "phrasings": [
+    "Branch by branch in the Heartland region, what were branch sales NNA inflows, outflows and net for January 2024?",
+    "Total up branch sales NNA inflows, outflows and net per branch in the Heartland region for January 2024."
+  ]},
+  {"id": "S11", "phrasings": [
+    "Rank households in the Boulder branch by branch sales NNA for January 2024 and show the 10 highest and the 10 lowest.",
+    "For January 2024 branch sales NNA in Boulder branch, who were the top 10 and bottom 10 households?"
+  ]},
+  {"id": "S12", "phrasings": [
+    "By account product code, what were Retail Investor certified NNA and NNAxFDIC in February 2024, and how many accounts were there?",
+    "Split Retail Investor's certified NNA and NNAxFDIC for February 2024 by account product code and count the accounts in each."
+  ]},
+  {"id": "S13", "phrasings": [
+    "Count the Fort Collins branch transactions of $250K and above in January 2024 and give their branch sales NNA.",
+    "For Fort Collins branch in January 2024, how many transactions were $250K or larger, and how much branch sales NNA did they add up to?"
+  ]},
+  {"id": "S14", "phrasings": [
+    "What are the 10 jurisdiction countries with the highest International certified NNA for January through September 2024, and the number of accounts in each?",
+    "Rank jurisdiction countries by International certified NNA from January to September 2024 and give the top 10 with their account counts."
+  ]},
+  {"id": "S15", "phrasings": [
+    "Which source systems did International's certified NNA come from year to date through September 2024, and how much from each?",
+    "By source system, give me International's YTD certified NNA through September 2024."
+  ]},
+  {"id": "S16", "phrasings": [
+    "Month by month from January to September 2024, give Retail Investor certified NNA and NNAxFDIC.",
+    "How did Retail Investor certified NNA and NNAxFDIC run by month, January through September 2024?"
+  ]},
+  {"id": "S17", "phrasings": [
+    "For September 2024, how much Retail Investor certified NNAxFDIC flowed in and how much flowed out, gross?",
+    "Show September 2024 gross inflows and gross outflows of Retail Investor certified NNAxFDIC."
+  ]},
+  {"id": "S18", "phrasings": [
+    "By client segment level 4, what was Retail Investor certified NNAxFDIC for January through September 2024?",
+    "For January through September 2024, how much Retail Investor certified NNAxFDIC fell in each client segment level 4?"
+  ]},
+  {"id": "S19", "phrasings": [
+    "Give International certified NNA month by month from January to September 2024, with counts of transactions and accounts.",
+    "Month by month, January through September 2024, how much International certified NNA was there, and how many transactions and accounts?"
+  ]},
+  {"id": "S20", "phrasings": [
+    "What was Retail Investor certified NNA in September 2024 versus September 2023?",
+    "Show September 2024 Retail Investor certified NNA year over year."
+  ]},
+  {"id": "S21", "phrasings": [
+    "For Retail Investor, which weekday brought in the most certified NNA year to date through September 2024?",
+    "Year to date through September 2024, rank the days of the week by Retail Investor certified NNA. Which day is highest?"
+  ]},
+  {"id": "S22", "phrasings": [
+    "Month by month for January through September 2024, what were Retail Investor certified NNA and NNAxFDIC on SPS accounts?",
+    "For SPS accounts in Retail Investor, give certified NNA and NNAxFDIC by month from January to September 2024."
+  ]},
+  {"id": "S23", "phrasings": [
+    "Give me branch sales NNA inflows and outflows for January 2024, the inflows-to-outflows ratio, and how many households there were.",
+    "How much branch sales NNA flowed in and out in January 2024, what was the ratio of inflows to outflows, and how many households were involved?"
+  ]},
+  {"id": "S24", "phrasings": [
+    "Month by month from January to September 2024, what was Heartland region branch sales NNA, with the percent change from the prior month and the cumulative total?",
+    "How did branch sales NNA in the Heartland region move each month from January through September 2024? Include the change versus the previous month in percent and the running cumulative total."
+  ]},
+  {"id": "S25", "phrasings": [
+    "By client segment level 4, how did Retail Investor certified NNAxFDIC in September 2024 compare with September 2023?",
+    "Show Retail Investor certified NNAxFDIC for September 2024 year over year, split by client segment level 4."
+  ]}
+]

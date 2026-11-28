@@ -1,0 +1,2 @@
+# PROD's state, in its own project's bucket: terraform init -backend-config=prod.gcs.tfbackend -backend-config="bucket=<prod project>-tfstate"
+prefix = "kge/prod"

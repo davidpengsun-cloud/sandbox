@@ -1,0 +1,8 @@
+DW_TRAN_TYPE_CD,TRAN_TYPE_DESC_TX,DIRCTN_CD,NNA_CNT_IN
+CASH_IN,Cash received from another institution,IN,True
+CASH_OUT,Cash paid to another institution,OUT,True
+FEE,Fees charged to the account,OUT,False
+INCOME,Dividends and interest credited,IN,False
+INT_TRF,Transfer from the household's own account elsewhere in the bank,IN,False
+SEC_IN,Securities transferred in from another institution,IN,True
+SEC_OUT,Securities transferred out to another institution,OUT,True

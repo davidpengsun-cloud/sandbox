@@ -1,0 +1,10 @@
+/* v3 segmented filter for the data-quality tab. */
+.dq-seg{display:inline-flex; background:var(--v3-paper-2); border-radius:var(--v3-r-sm, 3px); padding:2px; gap:2px; flex-wrap:wrap}
+/* Scoped under .v3-detail so these win over `.v3-detail button { font: inherit }`
+   (equal specificity otherwise, which was resetting the size back to the base font). */
+.v3-detail .dq-seg button{
+  border:none; background:none; height:22px; padding:0 9px; border-radius:var(--v3-r-xs, 2px);
+  font-family:'Geist Mono',ui-monospace,monospace; font-size:9.5px; font-weight:500; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--v3-ink-3); cursor:pointer;
+}
+.v3-detail .dq-seg button[aria-pressed="true"]{background:var(--v3-surface); color:var(--v3-structure); box-shadow:var(--v3-shadow-1)}

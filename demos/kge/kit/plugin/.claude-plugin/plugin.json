@@ -1,0 +1,8 @@
+{
+  "name": "kge",
+  "description": "Knowledge-engineer skills, the pre-upload pack check, and the kge helper.",
+  "version": "@VERSION@",
+  "author": {
+    "name": "KGE kit"
+  }
+}

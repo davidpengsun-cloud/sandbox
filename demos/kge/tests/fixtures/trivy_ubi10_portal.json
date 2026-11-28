@@ -1,0 +1,26 @@
+{
+  "SchemaVersion": 2,
+  "Trivy": {
+    "Version": "0.70.0"
+  },
+  "ArtifactName": "kge-portal:0.471.691",
+  "ArtifactType": "container_image",
+  "Metadata": {
+    "OS": {
+      "Family": "redhat",
+      "Name": "10.3"
+    }
+  },
+  "Results": [
+    {
+      "Target": "kge-portal:0.471.691 (redhat 10.3)",
+      "Class": "os-pkgs",
+      "Type": "redhat"
+    },
+    {
+      "Target": "Node.js",
+      "Class": "lang-pkgs",
+      "Type": "node-pkg"
+    }
+  ]
+}

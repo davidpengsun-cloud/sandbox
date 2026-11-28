@@ -1,0 +1,7 @@
+# The image's shell and Docker files keep LF line ends in every checkout, whatever core.autocrlf says, and in a copy of
+# this folder, which carries this file: sh cannot run a script with CRLF ends (issue #173). The image's build also
+# rewrites entrypoint.sh to LF, for a copy made without it.
+*.sh text eol=lf
+Dockerfile text eol=lf
+portal/Dockerfile text eol=lf
+kit/build.sh text eol=lf

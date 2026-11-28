@@ -1,0 +1,1778 @@
+{
+ "bomFormat": "CycloneDX",
+ "components": [
+  {
+   "bom-ref": "registry.access.redhat.com/ubi10/python-312-minimal:10.3@sha256:8ebb48643da2280b7897b0f618b425d9b5ae417a7b398bb529627d23f3849607",
+   "hashes": [
+    {
+     "alg": "SHA-256",
+     "content": "8ebb48643da2280b7897b0f618b425d9b5ae417a7b398bb529627d23f3849607"
+    }
+   ],
+   "name": "registry.access.redhat.com/ubi10/python-312-minimal",
+   "properties": [
+    {
+     "name": "kge:dockerfile:stage",
+     "value": "final"
+    }
+   ],
+   "purl": "pkg:docker/registry.access.redhat.com/ubi10/python-312-minimal@sha256%3A8ebb48643da2280b7897b0f618b425d9b5ae417a7b398bb529627d23f3849607",
+   "type": "container",
+   "version": "10.3"
+  },
+  {
+   "bom-ref": "pkg:pypi/annotated-doc@0.0.6",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "annotated-doc",
+   "purl": "pkg:pypi/annotated-doc@0.0.6",
+   "type": "library",
+   "version": "0.0.6"
+  },
+  {
+   "bom-ref": "pkg:pypi/annotated-types@0.8.0",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "annotated-types",
+   "purl": "pkg:pypi/annotated-types@0.8.0",
+   "type": "library",
+   "version": "0.8.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/anthropic@2.8.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache-2.0"
+     }
+    }
+   ],
+   "name": "anthropic",
+   "purl": "pkg:pypi/anthropic@2.8.0",
+   "type": "library",
+   "version": "2.8.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/anyio@4.16.0",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "anyio",
+   "purl": "pkg:pypi/anyio@4.16.0",
+   "type": "library",
+   "version": "4.16.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/attrs@26.1.0",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "attrs",
+   "purl": "pkg:pypi/attrs@26.1.0",
+   "type": "library",
+   "version": "26.1.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/certifi@2026.10.23",
+   "licenses": [
+    {
+     "license": {
+      "name": "MPL-2.0"
+     }
+    }
+   ],
+   "name": "certifi",
+   "purl": "pkg:pypi/certifi@2026.10.23",
+   "type": "library",
+   "version": "2026.10.23"
+  },
+  {
+   "bom-ref": "pkg:pypi/cffi@2.1.1",
+   "licenses": [
+    {
+     "expression": "MIT-0"
+    }
+   ],
+   "name": "cffi",
+   "purl": "pkg:pypi/cffi@2.1.1",
+   "type": "library",
+   "version": "2.1.1"
+  },
+  {
+   "bom-ref": "pkg:pypi/charset-normalizer@3.5.2",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ],
+   "name": "charset-normalizer",
+   "purl": "pkg:pypi/charset-normalizer@3.5.2",
+   "type": "library",
+   "version": "3.5.2"
+  },
+  {
+   "bom-ref": "pkg:pypi/click@8.5.1",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "click",
+   "purl": "pkg:pypi/click@8.5.1",
+   "type": "library",
+   "version": "8.5.1"
+  },
+  {
+   "bom-ref": "pkg:pypi/cryptography@50.0.2",
+   "licenses": [
+    {
+     "expression": "Apache-2.0 OR BSD-3-Clause"
+    }
+   ],
+   "name": "cryptography",
+   "purl": "pkg:pypi/cryptography@50.0.2",
+   "type": "library",
+   "version": "50.0.2"
+  },
+  {
+   "bom-ref": "pkg:pypi/distro@1.9.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache License, Version 2.0"
+     }
+    }
+   ],
+   "name": "distro",
+   "purl": "pkg:pypi/distro@1.9.0",
+   "type": "library",
+   "version": "1.9.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/docstring-parser@0.18.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ],
+   "name": "docstring-parser",
+   "purl": "pkg:pypi/docstring-parser@0.18.0",
+   "type": "library",
+   "version": "0.18.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/duckdb@2.0.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT License"
+     }
+    }
+   ],
+   "name": "duckdb",
+   "purl": "pkg:pypi/duckdb@2.0.0",
+   "type": "library",
+   "version": "2.0.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/fastapi@0.162.7",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "fastapi",
+   "purl": "pkg:pypi/fastapi@0.162.7",
+   "type": "library",
+   "version": "0.162.7"
+  },
+  {
+   "bom-ref": "pkg:pypi/google-auth@2.62.2",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache 2.0"
+     }
+    }
+   ],
+   "name": "google-auth",
+   "purl": "pkg:pypi/google-auth@2.62.2",
+   "type": "library",
+   "version": "2.62.2"
+  },
+  {
+   "bom-ref": "pkg:pypi/googleapis-common-protos@1.76.0",
+   "licenses": [
+    {
+     "expression": "Apache-2.0"
+    }
+   ],
+   "name": "googleapis-common-protos",
+   "purl": "pkg:pypi/googleapis-common-protos@1.76.0",
+   "type": "library",
+   "version": "1.76.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/h11@0.16.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ],
+   "name": "h11",
+   "purl": "pkg:pypi/h11@0.16.0",
+   "type": "library",
+   "version": "0.16.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/httpcore2@2.16.0",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "httpcore2",
+   "purl": "pkg:pypi/httpcore2@2.16.0",
+   "type": "library",
+   "version": "2.16.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/httpcore@1.0.9",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "httpcore",
+   "purl": "pkg:pypi/httpcore@1.0.9",
+   "type": "library",
+   "version": "1.0.9"
+  },
+  {
+   "bom-ref": "pkg:pypi/httpx-sse@0.4.3",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ],
+   "name": "httpx-sse",
+   "purl": "pkg:pypi/httpx-sse@0.4.3",
+   "type": "library",
+   "version": "0.4.3"
+  },
+  {
+   "bom-ref": "pkg:pypi/httpx2@2.16.0",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "httpx2",
+   "purl": "pkg:pypi/httpx2@2.16.0",
+   "type": "library",
+   "version": "2.16.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/httpx@0.28.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ],
+   "name": "httpx",
+   "purl": "pkg:pypi/httpx@0.28.1",
+   "type": "library",
+   "version": "0.28.1"
+  },
+  {
+   "bom-ref": "pkg:pypi/idna@3.20",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "idna",
+   "purl": "pkg:pypi/idna@3.20",
+   "type": "library",
+   "version": "3.20"
+  },
+  {
+   "bom-ref": "pkg:pypi/jiter@0.19.0",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "jiter",
+   "purl": "pkg:pypi/jiter@0.19.0",
+   "type": "library",
+   "version": "0.19.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/jsonpatch@1.47",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "jsonpatch",
+   "purl": "pkg:pypi/jsonpatch@1.47",
+   "type": "library",
+   "version": "1.47"
+  },
+  {
+   "bom-ref": "pkg:pypi/jsonpointer@3.12",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "jsonpointer",
+   "purl": "pkg:pypi/jsonpointer@3.12",
+   "type": "library",
+   "version": "3.12"
+  },
+  {
+   "bom-ref": "pkg:pypi/jsonschema-specifications@2025.9.1",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "jsonschema-specifications",
+   "purl": "pkg:pypi/jsonschema-specifications@2025.9.1",
+   "type": "library",
+   "version": "2025.9.1"
+  },
+  {
+   "bom-ref": "pkg:pypi/jsonschema@4.26.0",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "jsonschema",
+   "purl": "pkg:pypi/jsonschema@4.26.0",
+   "type": "library",
+   "version": "4.26.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/kge@0.0.0",
+   "name": "kge",
+   "purl": "pkg:pypi/kge@0.0.0",
+   "type": "library",
+   "version": "0.0.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/ladybug@0.21.2",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ],
+   "name": "ladybug",
+   "purl": "pkg:pypi/ladybug@0.21.2",
+   "type": "library",
+   "version": "0.21.2"
+  },
+  {
+   "bom-ref": "pkg:pypi/langchain-core@1.8.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ],
+   "name": "langchain-core",
+   "purl": "pkg:pypi/langchain-core@1.8.0",
+   "type": "library",
+   "version": "1.8.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/langchain-protocol@0.0.21",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ],
+   "name": "langchain-protocol",
+   "purl": "pkg:pypi/langchain-protocol@0.0.21",
+   "type": "library",
+   "version": "0.0.21"
+  },
+  {
+   "bom-ref": "pkg:pypi/langgraph-checkpoint@4.3.2",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "langgraph-checkpoint",
+   "purl": "pkg:pypi/langgraph-checkpoint@4.3.2",
+   "type": "library",
+   "version": "4.3.2"
+  },
+  {
+   "bom-ref": "pkg:pypi/langgraph-prebuilt@1.1.2",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "langgraph-prebuilt",
+   "purl": "pkg:pypi/langgraph-prebuilt@1.1.2",
+   "type": "library",
+   "version": "1.1.2"
+  },
+  {
+   "bom-ref": "pkg:pypi/langgraph-sdk@0.4.14",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "langgraph-sdk",
+   "purl": "pkg:pypi/langgraph-sdk@0.4.14",
+   "type": "library",
+   "version": "0.4.14"
+  },
+  {
+   "bom-ref": "pkg:pypi/langgraph@1.2.22",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "langgraph",
+   "purl": "pkg:pypi/langgraph@1.2.22",
+   "type": "library",
+   "version": "1.2.22"
+  },
+  {
+   "bom-ref": "pkg:pypi/langsmith@0.14.17",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ],
+   "name": "langsmith",
+   "purl": "pkg:pypi/langsmith@0.14.17",
+   "type": "library",
+   "version": "0.14.17"
+  },
+  {
+   "bom-ref": "pkg:pypi/mcp@1.30.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ],
+   "name": "mcp",
+   "purl": "pkg:pypi/mcp@1.30.0",
+   "type": "library",
+   "version": "1.30.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/numpy@2.5.4",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0"
+    }
+   ],
+   "name": "numpy",
+   "purl": "pkg:pypi/numpy@2.5.4",
+   "type": "library",
+   "version": "2.5.4"
+  },
+  {
+   "bom-ref": "pkg:pypi/opentelemetry-api@1.45.2",
+   "licenses": [
+    {
+     "expression": "Apache-2.0"
+    }
+   ],
+   "name": "opentelemetry-api",
+   "purl": "pkg:pypi/opentelemetry-api@1.45.2",
+   "type": "library",
+   "version": "1.45.2"
+  },
+  {
+   "bom-ref": "pkg:pypi/opentelemetry-exporter-http-transport@0.66b2",
+   "licenses": [
+    {
+     "expression": "Apache-2.0"
+    }
+   ],
+   "name": "opentelemetry-exporter-http-transport",
+   "purl": "pkg:pypi/opentelemetry-exporter-http-transport@0.66b2",
+   "type": "library",
+   "version": "0.66b2"
+  },
+  {
+   "bom-ref": "pkg:pypi/opentelemetry-exporter-otlp-common@0.66b2",
+   "licenses": [
+    {
+     "expression": "Apache-2.0"
+    }
+   ],
+   "name": "opentelemetry-exporter-otlp-common",
+   "purl": "pkg:pypi/opentelemetry-exporter-otlp-common@0.66b2",
+   "type": "library",
+   "version": "0.66b2"
+  },
+  {
+   "bom-ref": "pkg:pypi/opentelemetry-exporter-otlp-proto-common@1.45.2",
+   "licenses": [
+    {
+     "expression": "Apache-2.0"
+    }
+   ],
+   "name": "opentelemetry-exporter-otlp-proto-common",
+   "purl": "pkg:pypi/opentelemetry-exporter-otlp-proto-common@1.45.2",
+   "type": "library",
+   "version": "1.45.2"
+  },
+  {
+   "bom-ref": "pkg:pypi/opentelemetry-exporter-otlp-proto-http@1.45.2",
+   "licenses": [
+    {
+     "expression": "Apache-2.0"
+    }
+   ],
+   "name": "opentelemetry-exporter-otlp-proto-http",
+   "purl": "pkg:pypi/opentelemetry-exporter-otlp-proto-http@1.45.2",
+   "type": "library",
+   "version": "1.45.2"
+  },
+  {
+   "bom-ref": "pkg:pypi/opentelemetry-proto@1.45.2",
+   "licenses": [
+    {
+     "expression": "Apache-2.0"
+    }
+   ],
+   "name": "opentelemetry-proto",
+   "purl": "pkg:pypi/opentelemetry-proto@1.45.2",
+   "type": "library",
+   "version": "1.45.2"
+  },
+  {
+   "bom-ref": "pkg:pypi/opentelemetry-sdk@1.45.2",
+   "licenses": [
+    {
+     "expression": "Apache-2.0"
+    }
+   ],
+   "name": "opentelemetry-sdk",
+   "purl": "pkg:pypi/opentelemetry-sdk@1.45.2",
+   "type": "library",
+   "version": "1.45.2"
+  },
+  {
+   "bom-ref": "pkg:pypi/opentelemetry-semantic-conventions@0.66b2",
+   "licenses": [
+    {
+     "expression": "Apache-2.0"
+    }
+   ],
+   "name": "opentelemetry-semantic-conventions",
+   "purl": "pkg:pypi/opentelemetry-semantic-conventions@0.66b2",
+   "type": "library",
+   "version": "0.66b2"
+  },
+  {
+   "bom-ref": "pkg:pypi/orjson@3.13.0",
+   "licenses": [
+    {
+     "expression": "MPL-2.0 AND (Apache-2.0 OR MIT)"
+    }
+   ],
+   "name": "orjson",
+   "purl": "pkg:pypi/orjson@3.13.0",
+   "type": "library",
+   "version": "3.13.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/ormsgpack@1.13.1",
+   "licenses": [
+    {
+     "expression": "Apache-2.0 OR MIT"
+    }
+   ],
+   "name": "ormsgpack",
+   "purl": "pkg:pypi/ormsgpack@1.13.1",
+   "type": "library",
+   "version": "1.13.1"
+  },
+  {
+   "bom-ref": "pkg:pypi/packaging@26.3",
+   "licenses": [
+    {
+     "expression": "Apache-2.0 OR BSD-2-Clause"
+    }
+   ],
+   "name": "packaging",
+   "purl": "pkg:pypi/packaging@26.3",
+   "type": "library",
+   "version": "26.3"
+  },
+  {
+   "bom-ref": "pkg:pypi/pandas@3.1.1",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "pandas",
+   "purl": "pkg:pypi/pandas@3.1.1",
+   "type": "library",
+   "version": "3.1.1"
+  },
+  {
+   "bom-ref": "pkg:pypi/protobuf@7.36.2",
+   "licenses": [
+    {
+     "license": {
+      "name": "3-Clause BSD License"
+     }
+    }
+   ],
+   "name": "protobuf",
+   "purl": "pkg:pypi/protobuf@7.36.2",
+   "type": "library",
+   "version": "7.36.2"
+  },
+  {
+   "bom-ref": "pkg:pypi/pyasn1-modules@0.4.2",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD"
+     }
+    }
+   ],
+   "name": "pyasn1-modules",
+   "purl": "pkg:pypi/pyasn1-modules@0.4.2",
+   "type": "library",
+   "version": "0.4.2"
+  },
+  {
+   "bom-ref": "pkg:pypi/pyasn1@0.6.5",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-2-Clause"
+     }
+    }
+   ],
+   "name": "pyasn1",
+   "purl": "pkg:pypi/pyasn1@0.6.5",
+   "type": "library",
+   "version": "0.6.5"
+  },
+  {
+   "bom-ref": "pkg:pypi/pycparser@3.12",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "pycparser",
+   "purl": "pkg:pypi/pycparser@3.12",
+   "type": "library",
+   "version": "3.12"
+  },
+  {
+   "bom-ref": "pkg:pypi/pydantic-core@2.50.4",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "pydantic-core",
+   "purl": "pkg:pypi/pydantic-core@2.50.4",
+   "type": "library",
+   "version": "2.50.4"
+  },
+  {
+   "bom-ref": "pkg:pypi/pydantic-settings@2.16.3",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "pydantic-settings",
+   "purl": "pkg:pypi/pydantic-settings@2.16.3",
+   "type": "library",
+   "version": "2.16.3"
+  },
+  {
+   "bom-ref": "pkg:pypi/pydantic@2.14.3",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "pydantic",
+   "purl": "pkg:pypi/pydantic@2.14.3",
+   "type": "library",
+   "version": "2.14.3"
+  },
+  {
+   "bom-ref": "pkg:pypi/pyjwt@2.15.1",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "pyjwt",
+   "purl": "pkg:pypi/pyjwt@2.15.1",
+   "type": "library",
+   "version": "2.15.1"
+  },
+  {
+   "bom-ref": "pkg:pypi/python-dateutil@4.0.0",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "python-dateutil",
+   "purl": "pkg:pypi/python-dateutil@4.0.0",
+   "type": "library",
+   "version": "4.0.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/python-dotenv@1.2.4",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-3-Clause"
+     }
+    }
+   ],
+   "name": "python-dotenv",
+   "purl": "pkg:pypi/python-dotenv@1.2.4",
+   "type": "library",
+   "version": "1.2.4"
+  },
+  {
+   "bom-ref": "pkg:pypi/python-multipart@0.0.33",
+   "licenses": [
+    {
+     "expression": "Apache-2.0"
+    }
+   ],
+   "name": "python-multipart",
+   "purl": "pkg:pypi/python-multipart@0.0.33",
+   "type": "library",
+   "version": "0.0.33"
+  },
+  {
+   "bom-ref": "pkg:pypi/pyyaml@6.0.3",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT"
+     }
+    }
+   ],
+   "name": "pyyaml",
+   "purl": "pkg:pypi/pyyaml@6.0.3",
+   "type": "library",
+   "version": "6.0.3"
+  },
+  {
+   "bom-ref": "pkg:pypi/referencing@0.37.0",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "referencing",
+   "purl": "pkg:pypi/referencing@0.37.0",
+   "type": "library",
+   "version": "0.37.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/requests-toolbelt@1.0.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache 2.0"
+     }
+    }
+   ],
+   "name": "requests-toolbelt",
+   "purl": "pkg:pypi/requests-toolbelt@1.0.0",
+   "type": "library",
+   "version": "1.0.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/requests@2.34.2",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache-2.0"
+     }
+    }
+   ],
+   "name": "requests",
+   "purl": "pkg:pypi/requests@2.34.2",
+   "type": "library",
+   "version": "2.34.2"
+  },
+  {
+   "bom-ref": "pkg:pypi/rpds-py@2026.9.1",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "rpds-py",
+   "purl": "pkg:pypi/rpds-py@2026.9.1",
+   "type": "library",
+   "version": "2026.9.1"
+  },
+  {
+   "bom-ref": "pkg:pypi/sniffio@1.3.1",
+   "licenses": [
+    {
+     "license": {
+      "name": "MIT OR Apache-2.0"
+     }
+    }
+   ],
+   "name": "sniffio",
+   "purl": "pkg:pypi/sniffio@1.3.1",
+   "type": "library",
+   "version": "1.3.1"
+  },
+  {
+   "bom-ref": "pkg:pypi/sqlglot@30.31.0",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "sqlglot",
+   "purl": "pkg:pypi/sqlglot@30.31.0",
+   "type": "library",
+   "version": "30.31.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/sse-starlette@3.7.0",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "sse-starlette",
+   "purl": "pkg:pypi/sse-starlette@3.7.0",
+   "type": "library",
+   "version": "3.7.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/starlette@1.10.0",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "starlette",
+   "purl": "pkg:pypi/starlette@1.10.0",
+   "type": "library",
+   "version": "1.10.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/tenacity@9.2.1",
+   "licenses": [
+    {
+     "expression": "Apache-2.0"
+    }
+   ],
+   "name": "tenacity",
+   "purl": "pkg:pypi/tenacity@9.2.1",
+   "type": "library",
+   "version": "9.2.1"
+  },
+  {
+   "bom-ref": "pkg:pypi/truststore@0.10.5",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "truststore",
+   "purl": "pkg:pypi/truststore@0.10.5",
+   "type": "library",
+   "version": "0.10.5"
+  },
+  {
+   "bom-ref": "pkg:pypi/typing-extensions@4.16.0",
+   "licenses": [
+    {
+     "expression": "PSF-2.0"
+    }
+   ],
+   "name": "typing-extensions",
+   "purl": "pkg:pypi/typing-extensions@4.16.0",
+   "type": "library",
+   "version": "4.16.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/typing-inspection@0.4.5",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "typing-inspection",
+   "purl": "pkg:pypi/typing-inspection@0.4.5",
+   "type": "library",
+   "version": "0.4.5"
+  },
+  {
+   "bom-ref": "pkg:pypi/tzdata@2026.6",
+   "licenses": [
+    {
+     "license": {
+      "name": "Apache-2.0"
+     }
+    }
+   ],
+   "name": "tzdata",
+   "purl": "pkg:pypi/tzdata@2026.6",
+   "type": "library",
+   "version": "2026.6"
+  },
+  {
+   "bom-ref": "pkg:pypi/urllib3@2.8.0",
+   "licenses": [
+    {
+     "expression": "MIT"
+    }
+   ],
+   "name": "urllib3",
+   "purl": "pkg:pypi/urllib3@2.8.0",
+   "type": "library",
+   "version": "2.8.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/uuid-utils@0.19.0",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "uuid-utils",
+   "purl": "pkg:pypi/uuid-utils@0.19.0",
+   "type": "library",
+   "version": "0.19.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/uvicorn@0.54.0",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "uvicorn",
+   "purl": "pkg:pypi/uvicorn@0.54.0",
+   "type": "library",
+   "version": "0.54.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/websockets@17.4",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "websockets",
+   "purl": "pkg:pypi/websockets@17.4",
+   "type": "library",
+   "version": "17.4"
+  },
+  {
+   "bom-ref": "pkg:pypi/xxhash@4.1.0",
+   "licenses": [
+    {
+     "license": {
+      "name": "BSD-2-Clause"
+     }
+    }
+   ],
+   "name": "xxhash",
+   "purl": "pkg:pypi/xxhash@4.1.0",
+   "type": "library",
+   "version": "4.1.0"
+  },
+  {
+   "bom-ref": "pkg:pypi/zstandard@0.25.0",
+   "licenses": [
+    {
+     "expression": "BSD-3-Clause"
+    }
+   ],
+   "name": "zstandard",
+   "purl": "pkg:pypi/zstandard@0.25.0",
+   "type": "library",
+   "version": "0.25.0"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/alternatives@1.30-2.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "alternatives",
+   "purl": "pkg:rpm/rhel/alternatives@1.30-2.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.30-2.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/audit-libs@4.2.1-3.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "audit-libs",
+   "purl": "pkg:rpm/rhel/audit-libs@4.2.1-3.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "4.2.1-3.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/basesystem@11-22.el10?arch=noarch&distro=rhel-10.3",
+   "name": "basesystem",
+   "purl": "pkg:rpm/rhel/basesystem@11-22.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "11-22.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/bash@5.2.26-6.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "bash",
+   "purl": "pkg:rpm/rhel/bash@5.2.26-6.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "5.2.26-6.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/bzip2-libs@1.0.8-25.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "bzip2-libs",
+   "purl": "pkg:rpm/rhel/bzip2-libs@1.0.8-25.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.0.8-25.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/ca-certificates@2026.2.92_v9.0.319-100.3.el10_2?arch=noarch&distro=rhel-10.3",
+   "name": "ca-certificates",
+   "purl": "pkg:rpm/rhel/ca-certificates@2026.2.92_v9.0.319-100.3.el10_2?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "2026.2.92_v9.0.319-100.3.el10_2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/coreutils-single@9.5-14.el10_3?arch=x86_64&distro=rhel-10.3",
+   "name": "coreutils-single",
+   "purl": "pkg:rpm/rhel/coreutils-single@9.5-14.el10_3?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "9.5-14.el10_3"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/crypto-policies@20260811-1.git4dcd294.el10?arch=noarch&distro=rhel-10.3",
+   "name": "crypto-policies",
+   "purl": "pkg:rpm/rhel/crypto-policies@20260811-1.git4dcd294.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "20260811-1.git4dcd294.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/curl@8.12.1-9.el10_3?arch=x86_64&distro=rhel-10.3",
+   "name": "curl",
+   "purl": "pkg:rpm/rhel/curl@8.12.1-9.el10_3?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "8.12.1-9.el10_3"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/default-fonts-core-sans@4.1-3.el10?arch=noarch&distro=rhel-10.3",
+   "name": "default-fonts-core-sans",
+   "purl": "pkg:rpm/rhel/default-fonts-core-sans@4.1-3.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "4.1-3.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/dnf-data@4.20.0-28.el10?arch=noarch&distro=rhel-10.3",
+   "name": "dnf-data",
+   "purl": "pkg:rpm/rhel/dnf-data@4.20.0-28.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "4.20.0-28.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/expat@2.7.3-2.el10_3.8?arch=x86_64&distro=rhel-10.3",
+   "name": "expat",
+   "purl": "pkg:rpm/rhel/expat@2.7.3-2.el10_3.8?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.7.3-2.el10_3.8"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/filesystem@3.18-17.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "filesystem",
+   "purl": "pkg:rpm/rhel/filesystem@3.18-17.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "3.18-17.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/findutils@4.10.0-5.el10?arch=x86_64&epoch=1&distro=rhel-10.3",
+   "name": "findutils",
+   "purl": "pkg:rpm/rhel/findutils@4.10.0-5.el10?arch=x86_64&epoch=1&distro=rhel-10.3",
+   "type": "library",
+   "version": "1:4.10.0-5.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/fonts-filesystem@2.0.5-18.el10?arch=noarch&epoch=1&distro=rhel-10.3",
+   "name": "fonts-filesystem",
+   "purl": "pkg:rpm/rhel/fonts-filesystem@2.0.5-18.el10?arch=noarch&epoch=1&distro=rhel-10.3",
+   "type": "library",
+   "version": "1:2.0.5-18.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/gawk@5.3.0-7.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "gawk",
+   "purl": "pkg:rpm/rhel/gawk@5.3.0-7.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "5.3.0-7.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/gdbm-libs@1.23-12.el10_0?arch=x86_64&epoch=1&distro=rhel-10.3",
+   "name": "gdbm-libs",
+   "purl": "pkg:rpm/rhel/gdbm-libs@1.23-12.el10_0?arch=x86_64&epoch=1&distro=rhel-10.3",
+   "type": "library",
+   "version": "1:1.23-12.el10_0"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/glib2@2.80.4-22.el10_3.23?arch=x86_64&distro=rhel-10.3",
+   "name": "glib2",
+   "purl": "pkg:rpm/rhel/glib2@2.80.4-22.el10_3.23?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.80.4-22.el10_3.23"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/glibc-common@2.39-147.el10_3?arch=x86_64&distro=rhel-10.3",
+   "name": "glibc-common",
+   "purl": "pkg:rpm/rhel/glibc-common@2.39-147.el10_3?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.39-147.el10_3"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/glibc-langpack-en@2.39-147.el10_3?arch=x86_64&distro=rhel-10.3",
+   "name": "glibc-langpack-en",
+   "purl": "pkg:rpm/rhel/glibc-langpack-en@2.39-147.el10_3?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.39-147.el10_3"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/glibc-minimal-langpack@2.39-147.el10_3?arch=x86_64&distro=rhel-10.3",
+   "name": "glibc-minimal-langpack",
+   "purl": "pkg:rpm/rhel/glibc-minimal-langpack@2.39-147.el10_3?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.39-147.el10_3"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/glibc@2.39-147.el10_3?arch=x86_64&distro=rhel-10.3",
+   "name": "glibc",
+   "purl": "pkg:rpm/rhel/glibc@2.39-147.el10_3?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.39-147.el10_3"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/gmp@6.2.1-12.el10?arch=x86_64&epoch=1&distro=rhel-10.3",
+   "name": "gmp",
+   "purl": "pkg:rpm/rhel/gmp@6.2.1-12.el10?arch=x86_64&epoch=1&distro=rhel-10.3",
+   "type": "library",
+   "version": "1:6.2.1-12.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/gnutls@3.8.10-5.el10_2?arch=x86_64&distro=rhel-10.3",
+   "name": "gnutls",
+   "purl": "pkg:rpm/rhel/gnutls@3.8.10-5.el10_2?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "3.8.10-5.el10_2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/gobject-introspection@1.79.1-7.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "gobject-introspection",
+   "purl": "pkg:rpm/rhel/gobject-introspection@1.79.1-7.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.79.1-7.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/google-noto-fonts-common@20240401-5.el10?arch=noarch&distro=rhel-10.3",
+   "name": "google-noto-fonts-common",
+   "purl": "pkg:rpm/rhel/google-noto-fonts-common@20240401-5.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "20240401-5.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/google-noto-sans-mono-vf-fonts@20240401-5.el10?arch=noarch&distro=rhel-10.3",
+   "name": "google-noto-sans-mono-vf-fonts",
+   "purl": "pkg:rpm/rhel/google-noto-sans-mono-vf-fonts@20240401-5.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "20240401-5.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/google-noto-sans-vf-fonts@20240401-5.el10?arch=noarch&distro=rhel-10.3",
+   "name": "google-noto-sans-vf-fonts",
+   "purl": "pkg:rpm/rhel/google-noto-sans-vf-fonts@20240401-5.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "20240401-5.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/google-noto-serif-vf-fonts@20240401-5.el10?arch=noarch&distro=rhel-10.3",
+   "name": "google-noto-serif-vf-fonts",
+   "purl": "pkg:rpm/rhel/google-noto-serif-vf-fonts@20240401-5.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "20240401-5.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/grep@3.11-10.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "grep",
+   "purl": "pkg:rpm/rhel/grep@3.11-10.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "3.11-10.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/json-c@0.18-3.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "json-c",
+   "purl": "pkg:rpm/rhel/json-c@0.18-3.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "0.18-3.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/keyutils-libs@1.6.3-5.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "keyutils-libs",
+   "purl": "pkg:rpm/rhel/keyutils-libs@1.6.3-5.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.6.3-5.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/langpacks-core-en@4.1-3.el10?arch=noarch&distro=rhel-10.3",
+   "name": "langpacks-core-en",
+   "purl": "pkg:rpm/rhel/langpacks-core-en@4.1-3.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "4.1-3.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/langpacks-en@4.1-3.el10?arch=noarch&distro=rhel-10.3",
+   "name": "langpacks-en",
+   "purl": "pkg:rpm/rhel/langpacks-en@4.1-3.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "4.1-3.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/langpacks-fonts-en@4.1-3.el10?arch=noarch&distro=rhel-10.3",
+   "name": "langpacks-fonts-en",
+   "purl": "pkg:rpm/rhel/langpacks-fonts-en@4.1-3.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "4.1-3.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libacl@2.4.0-2.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libacl",
+   "purl": "pkg:rpm/rhel/libacl@2.4.0-2.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.4.0-2.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libarchive@3.7.7-11.el10_2?arch=x86_64&distro=rhel-10.3",
+   "name": "libarchive",
+   "purl": "pkg:rpm/rhel/libarchive@3.7.7-11.el10_2?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "3.7.7-11.el10_2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libattr@2.6.0-2.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libattr",
+   "purl": "pkg:rpm/rhel/libattr@2.6.0-2.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.6.0-2.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libblkid@2.40.2-24.el10_3.24?arch=x86_64&distro=rhel-10.3",
+   "name": "libblkid",
+   "purl": "pkg:rpm/rhel/libblkid@2.40.2-24.el10_3.24?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.40.2-24.el10_3.24"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libcap-ng@0.9.3-2.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libcap-ng",
+   "purl": "pkg:rpm/rhel/libcap-ng@0.9.3-2.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "0.9.3-2.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libcap@2.69-7.el10_2.1?arch=x86_64&distro=rhel-10.3",
+   "name": "libcap",
+   "purl": "pkg:rpm/rhel/libcap@2.69-7.el10_2.1?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.69-7.el10_2.1"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libcom_err@1.47.1-5.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libcom_err",
+   "purl": "pkg:rpm/rhel/libcom_err@1.47.1-5.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.47.1-5.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libeconf@0.6.2-4.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libeconf",
+   "purl": "pkg:rpm/rhel/libeconf@0.6.2-4.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "0.6.2-4.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libffi@3.4.4-10.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libffi",
+   "purl": "pkg:rpm/rhel/libffi@3.4.4-10.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "3.4.4-10.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libgcc@14.4.1-5.el10_3?arch=x86_64&distro=rhel-10.3",
+   "name": "libgcc",
+   "purl": "pkg:rpm/rhel/libgcc@14.4.1-5.el10_3?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "14.4.1-5.el10_3"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libidn2@2.3.7-3.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libidn2",
+   "purl": "pkg:rpm/rhel/libidn2@2.3.7-3.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.3.7-3.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libmodulemd@2.15.0-12.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libmodulemd",
+   "purl": "pkg:rpm/rhel/libmodulemd@2.15.0-12.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.15.0-12.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libmount@2.40.2-24.el10_3.24?arch=x86_64&distro=rhel-10.3",
+   "name": "libmount",
+   "purl": "pkg:rpm/rhel/libmount@2.40.2-24.el10_3.24?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.40.2-24.el10_3.24"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libnghttp2@1.68.0-6.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libnghttp2",
+   "purl": "pkg:rpm/rhel/libnghttp2@1.68.0-6.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.68.0-6.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libpeas1@1.36.0-8.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libpeas1",
+   "purl": "pkg:rpm/rhel/libpeas1@1.36.0-8.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.36.0-8.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/librhsm@0.0.3-16.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "librhsm",
+   "purl": "pkg:rpm/rhel/librhsm@0.0.3-16.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "0.0.3-16.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libselinux@3.11-2.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libselinux",
+   "purl": "pkg:rpm/rhel/libselinux@3.11-2.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "3.11-2.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libsepol@3.11-2.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libsepol",
+   "purl": "pkg:rpm/rhel/libsepol@3.11-2.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "3.11-2.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libsmartcols@2.40.2-24.el10_3.24?arch=x86_64&distro=rhel-10.3",
+   "name": "libsmartcols",
+   "purl": "pkg:rpm/rhel/libsmartcols@2.40.2-24.el10_3.24?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.40.2-24.el10_3.24"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libsolv@0.7.33-5.el10_2?arch=x86_64&distro=rhel-10.3",
+   "name": "libsolv",
+   "purl": "pkg:rpm/rhel/libsolv@0.7.33-5.el10_2?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "0.7.33-5.el10_2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libstdc++@14.4.1-5.el10_3?arch=x86_64&distro=rhel-10.3",
+   "name": "libstdc++",
+   "purl": "pkg:rpm/rhel/libstdc++@14.4.1-5.el10_3?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "14.4.1-5.el10_3"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libtasn1@4.20.0-5.el10_2?arch=x86_64&distro=rhel-10.3",
+   "name": "libtasn1",
+   "purl": "pkg:rpm/rhel/libtasn1@4.20.0-5.el10_2?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "4.20.0-5.el10_2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libunistring@1.1-10.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libunistring",
+   "purl": "pkg:rpm/rhel/libunistring@1.1-10.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.1-10.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libusb1@1.0.30-1.el10_2?arch=x86_64&distro=rhel-10.3",
+   "name": "libusb1",
+   "purl": "pkg:rpm/rhel/libusb1@1.0.30-1.el10_2?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.0.30-1.el10_2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libuuid@2.40.2-24.el10_3.24?arch=x86_64&distro=rhel-10.3",
+   "name": "libuuid",
+   "purl": "pkg:rpm/rhel/libuuid@2.40.2-24.el10_3.24?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.40.2-24.el10_3.24"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libverto@0.3.2-10.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libverto",
+   "purl": "pkg:rpm/rhel/libverto@0.3.2-10.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "0.3.2-10.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libxcrypt@4.4.36-10.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libxcrypt",
+   "purl": "pkg:rpm/rhel/libxcrypt@4.4.36-10.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "4.4.36-10.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libxml2@2.12.5-15.el10_3.2?arch=x86_64&distro=rhel-10.3",
+   "name": "libxml2",
+   "purl": "pkg:rpm/rhel/libxml2@2.12.5-15.el10_3.2?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.12.5-15.el10_3.2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libyaml@0.2.5-16.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libyaml",
+   "purl": "pkg:rpm/rhel/libyaml@0.2.5-16.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "0.2.5-16.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/libzstd@1.5.5-9.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "libzstd",
+   "purl": "pkg:rpm/rhel/libzstd@1.5.5-9.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.5.5-9.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/lua-libs@5.4.8-1.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "lua-libs",
+   "purl": "pkg:rpm/rhel/lua-libs@5.4.8-1.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "5.4.8-1.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/lz4-libs@1.9.4-8.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "lz4-libs",
+   "purl": "pkg:rpm/rhel/lz4-libs@1.9.4-8.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.9.4-8.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/mpdecimal@2.5.1-12.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "mpdecimal",
+   "purl": "pkg:rpm/rhel/mpdecimal@2.5.1-12.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.5.1-12.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/mpfr@4.2.1-8.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "mpfr",
+   "purl": "pkg:rpm/rhel/mpfr@4.2.1-8.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "4.2.1-8.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/ncurses-base@6.4-15.20240127.el10_1?arch=noarch&distro=rhel-10.3",
+   "name": "ncurses-base",
+   "purl": "pkg:rpm/rhel/ncurses-base@6.4-15.20240127.el10_1?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "6.4-15.20240127.el10_1"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/ncurses-libs@6.4-15.20240127.el10_1?arch=x86_64&distro=rhel-10.3",
+   "name": "ncurses-libs",
+   "purl": "pkg:rpm/rhel/ncurses-libs@6.4-15.20240127.el10_1?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "6.4-15.20240127.el10_1"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/nss_wrapper-libs@1.1.15-7.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "nss_wrapper-libs",
+   "purl": "pkg:rpm/rhel/nss_wrapper-libs@1.1.15-7.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.1.15-7.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/openssl-fips-provider-so@3.0.7-11.el10_2?arch=x86_64&distro=rhel-10.3",
+   "name": "openssl-fips-provider-so",
+   "purl": "pkg:rpm/rhel/openssl-fips-provider-so@3.0.7-11.el10_2?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "3.0.7-11.el10_2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/openssl-fips-provider@3.0.7-11.el10_2?arch=x86_64&distro=rhel-10.3",
+   "name": "openssl-fips-provider",
+   "purl": "pkg:rpm/rhel/openssl-fips-provider@3.0.7-11.el10_2?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "3.0.7-11.el10_2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/openssl-libs@3.5.9-1.el10_3?arch=x86_64&epoch=1&distro=rhel-10.3",
+   "name": "openssl-libs",
+   "purl": "pkg:rpm/rhel/openssl-libs@3.5.9-1.el10_3?arch=x86_64&epoch=1&distro=rhel-10.3",
+   "type": "library",
+   "version": "1:3.5.9-1.el10_3"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/p11-kit-trust@0.26.4-1.el10_2?arch=x86_64&distro=rhel-10.3",
+   "name": "p11-kit-trust",
+   "purl": "pkg:rpm/rhel/p11-kit-trust@0.26.4-1.el10_2?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "0.26.4-1.el10_2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/p11-kit@0.26.4-1.el10_2?arch=x86_64&distro=rhel-10.3",
+   "name": "p11-kit",
+   "purl": "pkg:rpm/rhel/p11-kit@0.26.4-1.el10_2?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "0.26.4-1.el10_2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/pam-libs@1.6.1-11.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "pam-libs",
+   "purl": "pkg:rpm/rhel/pam-libs@1.6.1-11.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.6.1-11.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/pcre2-syntax@10.44-1.5.el10_2?arch=noarch&distro=rhel-10.3",
+   "name": "pcre2-syntax",
+   "purl": "pkg:rpm/rhel/pcre2-syntax@10.44-1.5.el10_2?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "10.44-1.5.el10_2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/pcre2@10.44-1.5.el10_2?arch=x86_64&distro=rhel-10.3",
+   "name": "pcre2",
+   "purl": "pkg:rpm/rhel/pcre2@10.44-1.5.el10_2?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "10.44-1.5.el10_2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/popt@1.19-8.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "popt",
+   "purl": "pkg:rpm/rhel/popt@1.19-8.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.19-8.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/python3-libs@3.12.16-2.el10_3?arch=x86_64&distro=rhel-10.3",
+   "name": "python3-libs",
+   "purl": "pkg:rpm/rhel/python3-libs@3.12.16-2.el10_3?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "3.12.16-2.el10_3"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/python3-pip-wheel@23.3.2-11.el10_2?arch=noarch&distro=rhel-10.3",
+   "name": "python3-pip-wheel",
+   "purl": "pkg:rpm/rhel/python3-pip-wheel@23.3.2-11.el10_2?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "23.3.2-11.el10_2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/python3@3.12.16-2.el10_3?arch=x86_64&distro=rhel-10.3",
+   "name": "python3",
+   "purl": "pkg:rpm/rhel/python3@3.12.16-2.el10_3?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "3.12.16-2.el10_3"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/readline@8.2-11.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "readline",
+   "purl": "pkg:rpm/rhel/readline@8.2-11.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "8.2-11.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/redhat-mono-vf-fonts@4.1.0-1.el10?arch=noarch&distro=rhel-10.3",
+   "name": "redhat-mono-vf-fonts",
+   "purl": "pkg:rpm/rhel/redhat-mono-vf-fonts@4.1.0-1.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "4.1.0-1.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/redhat-release@10.3-15.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "redhat-release",
+   "purl": "pkg:rpm/rhel/redhat-release@10.3-15.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "10.3-15.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/redhat-text-vf-fonts@4.1.0-1.el10?arch=noarch&distro=rhel-10.3",
+   "name": "redhat-text-vf-fonts",
+   "purl": "pkg:rpm/rhel/redhat-text-vf-fonts@4.1.0-1.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "4.1.0-1.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/rootfiles@8.1-54.el10?arch=noarch&distro=rhel-10.3",
+   "name": "rootfiles",
+   "purl": "pkg:rpm/rhel/rootfiles@8.1-54.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "8.1-54.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/rpm-libs@4.19.1.1-29.el10_3?arch=x86_64&distro=rhel-10.3",
+   "name": "rpm-libs",
+   "purl": "pkg:rpm/rhel/rpm-libs@4.19.1.1-29.el10_3?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "4.19.1.1-29.el10_3"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/rpm-sequoia@1.10.2.3-1.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "rpm-sequoia",
+   "purl": "pkg:rpm/rhel/rpm-sequoia@1.10.2.3-1.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "1.10.2.3-1.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/rpm@4.19.1.1-29.el10_3?arch=x86_64&distro=rhel-10.3",
+   "name": "rpm",
+   "purl": "pkg:rpm/rhel/rpm@4.19.1.1-29.el10_3?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "4.19.1.1-29.el10_3"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/sed@4.9-5.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "sed",
+   "purl": "pkg:rpm/rhel/sed@4.9-5.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "4.9-5.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/setup@2.14.5-7.el10?arch=noarch&distro=rhel-10.3",
+   "name": "setup",
+   "purl": "pkg:rpm/rhel/setup@2.14.5-7.el10?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.14.5-7.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/sqlite-libs@3.46.1-6.el10_2?arch=x86_64&distro=rhel-10.3",
+   "name": "sqlite-libs",
+   "purl": "pkg:rpm/rhel/sqlite-libs@3.46.1-6.el10_2?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "3.46.1-6.el10_2"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/systemd-libs@257-33.el10?arch=x86_64&distro=rhel-10.3",
+   "name": "systemd-libs",
+   "purl": "pkg:rpm/rhel/systemd-libs@257-33.el10?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "257-33.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/tzdata@2026f-1.el10_3?arch=noarch&distro=rhel-10.3",
+   "name": "tzdata",
+   "purl": "pkg:rpm/rhel/tzdata@2026f-1.el10_3?arch=noarch&distro=rhel-10.3",
+   "type": "library",
+   "version": "2026f-1.el10_3"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/xz-libs@5.6.2-5.el10?arch=x86_64&epoch=1&distro=rhel-10.3",
+   "name": "xz-libs",
+   "purl": "pkg:rpm/rhel/xz-libs@5.6.2-5.el10?arch=x86_64&epoch=1&distro=rhel-10.3",
+   "type": "library",
+   "version": "1:5.6.2-5.el10"
+  },
+  {
+   "bom-ref": "pkg:rpm/rhel/zlib-ng-compat@2.2.3-3.el10_1?arch=x86_64&distro=rhel-10.3",
+   "name": "zlib-ng-compat",
+   "purl": "pkg:rpm/rhel/zlib-ng-compat@2.2.3-3.el10_1?arch=x86_64&distro=rhel-10.3",
+   "type": "library",
+   "version": "2.2.3-3.el10_1"
+  }
+ ],
+ "metadata": {
+  "component": {
+   "bom-ref": "kge:0.14.73",
+   "hashes": [
+    {
+     "alg": "SHA-256",
+     "content": "1009c295c20f7ca71a377421c0c8016c6f5ed9bd7f36161be1f1206f213a4fd1"
+    }
+   ],
+   "name": "kge",
+   "properties": [
+    {
+     "name": "kge:image:id",
+     "value": "sha256:1009c295c20f7ca71a377421c0c8016c6f5ed9bd7f36161be1f1206f213a4fd1"
+    }
+   ],
+   "type": "container",
+   "version": "0.14.73"
+  },
+  "tools": {
+   "components": [
+    {
+     "description": "importlib.metadata and rpm, read from the image",
+     "name": "kit/sbom.py",
+     "type": "application"
+    }
+   ]
+  }
+ },
+ "serialNumber": "urn:uuid:09599a72-8e82-5502-bdb3-97ff5010d833",
+ "specVersion": "1.5",
+ "version": 1
+}

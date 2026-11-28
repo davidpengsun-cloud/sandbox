@@ -1,0 +1,26 @@
+/* The use case detail dialog: Discover's homepage and an asset's Use cases
+   tab. Colours are the v3 tokens, so dark mode follows. */
+.uc-product-link:focus-visible,.uc-btn:focus-visible,.uc-dialog:focus-visible{outline:2px solid var(--v3-focus); outline-offset:2px}
+.uc-backdrop{position:fixed; inset:0; z-index:1500; display:flex; align-items:center; justify-content:center; padding:16px; background:rgba(15,27,42,.45)}
+.uc-dialog{width:min(720px,100%); max-height:calc(100vh - 32px); overflow:auto; display:flex; flex-direction:column; gap:18px; padding:24px; background:var(--v3-surface); color:var(--v3-ink); border:1px solid var(--v3-line); border-radius:var(--v3-r-md); box-shadow:var(--v3-shadow-3); font-family:var(--v3-body)}
+.uc-dialog-head h2{margin:0 0 4px; font-size:21px; font-weight:650; letter-spacing:-.02em; color:var(--v3-ink); overflow-wrap:anywhere}
+.uc-dialog-id{margin:0 0 10px; font-family:var(--v3-mono); font-size:11px; color:var(--v3-ink-3); overflow-wrap:anywhere}
+.uc-dialog-block h3{margin:0 0 8px; font-family:var(--v3-mono); font-size:10px; font-weight:500; letter-spacing:.14em; text-transform:uppercase; color:var(--v3-ink-4)}
+.uc-dialog-text{margin:0; font-size:14px; line-height:1.6; color:var(--v3-ink-2); white-space:pre-line; overflow-wrap:anywhere}
+.uc-dialog-block a{display:inline-block; max-width:100%; margin-top:6px; font-size:13px; color:var(--v3-link); overflow-wrap:anywhere}
+.uc-dialog-block a:hover{color:var(--v3-link-hover)}
+.uc-facts{display:grid; grid-template-columns:max-content minmax(0,1fr); gap:6px 16px; margin:0}
+.uc-fact{display:contents}
+.uc-fact dt{font-size:12px; color:var(--v3-ink-3)}
+.uc-fact dd{margin:0; font-size:13px; color:var(--v3-ink); overflow-wrap:anywhere}
+.uc-questions,.uc-products{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px}
+.uc-question{padding:8px 10px; border:1px solid var(--v3-line); border-radius:var(--v3-r-sm); background:var(--v3-surface-2); font-size:13px; color:var(--v3-ink); overflow-wrap:anywhere}
+.uc-products li{display:flex; align-items:baseline; justify-content:space-between; gap:12px; padding:6px 0; border-bottom:1px solid var(--v3-line)}
+.uc-product-name{min-width:0; font-size:13px; color:var(--v3-ink); overflow-wrap:anywhere}
+.uc-dialog-block .uc-product-link{flex:none; margin:0; font-family:var(--v3-mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase}
+.uc-dialog-foot{display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px; padding-top:6px; border-top:1px solid var(--v3-line)}
+.uc-btn{height:32px; padding:0 13px; border:1px solid var(--v3-line-2); border-radius:var(--v3-r-sm); background:var(--v3-surface); font:inherit; font-size:13px; font-weight:500; color:var(--v3-ink); cursor:pointer}
+.uc-btn:hover{border-color:var(--v3-structure); color:var(--v3-structure)}
+.uc-btn-primary{background:var(--v3-action); border-color:var(--v3-action); color:var(--v3-action-ink)}
+.uc-btn-primary:hover{background:var(--v3-action-hover); border-color:var(--v3-action-hover); color:var(--v3-action-ink)}
+.uc-dialog-foot .uc-btn{display:inline-flex; align-items:center; text-decoration:none}

@@ -1,0 +1,26 @@
+[
+  {
+    "key": "[\"assist-route-v1\",\"who owns customer?\"]",
+    "reply": {
+      "source": "catalogue"
+    }
+  },
+  {
+    "key": "[\"assist-route-v1\",\"how does this table join to other tables?\"]",
+    "reply": {
+      "source": "catalogue"
+    }
+  },
+  {
+    "key": "[\"assist-route-v1\",\"total retail revenue for june 2025\"]",
+    "reply": {
+      "source": "ask"
+    }
+  },
+  {
+    "key": "[\"assist-route-v1\",\"where can i find revenue data?\"]",
+    "reply": {
+      "source": "search"
+    }
+  }
+]

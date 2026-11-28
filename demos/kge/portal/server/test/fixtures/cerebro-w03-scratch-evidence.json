@@ -1,0 +1,252 @@
+{
+  "context": {
+    "arm": "treatment",
+    "block": "Terms:\n  Net New Assets: Money clients bring to the firm less money they take away, in USD, from current received transactions marked eligible for net new assets, over released months, test accounts included. The current transaction view includes corrections since the month closed. Steward: Wealth Data Steward.\n    resolves to the context nna, below: its figure is built as the context declares it",
+    "sources": [
+      {
+        "n": 1,
+        "doc": "MD-NET-NEW-ASSETS",
+        "citable": true,
+        "chunk": "MD-NET-NEW-ASSETS#0",
+        "excerpt": "Metric Definition: Net New Assets **Definition.** Money clients bring to the firm less money they take away, in USD, over released months: eligible flows only, test accounts included. A move between",
+        "terms": [
+          "Net New Assets"
+        ],
+        "title": "Metric Definition: Net New Assets",
+        "tier": "silver",
+        "cited_as": "attributed",
+        "owner": "Wealth Data Steward",
+        "version": "1.0",
+        "attribution": "Wealth Data Steward, version 1.0",
+        "in_force": "2025-01-01 to now",
+        "why": "certified definition of Net New Assets",
+        "cert_from": "2025-01-01",
+        "cert_to": "",
+        "unit": ""
+      },
+      {
+        "n": 2,
+        "doc": "DD-WEALTH",
+        "citable": true,
+        "chunk": "DD-WEALTH#14",
+        "excerpt": "| Column | Type | Description | |---|---|---| | flow_type_code | VARCHAR | Flow type code | | description | VARCHAR | What the flow type covers | | direction | VARCHAR | IN or OUT | | nna_counts | BOO",
+        "terms": [],
+        "title": "Wealth Management Data Dictionary",
+        "tier": "gold",
+        "cited_as": "authority",
+        "owner": "Wealth Management Data Office",
+        "version": "3.2",
+        "attribution": null,
+        "in_force": "2025-02-01 to now",
+        "why": "retrieved by the question",
+        "cert_from": "2025-02-01",
+        "cert_to": "",
+        "unit": "wealth"
+      },
+      {
+        "n": 3,
+        "doc": "MD-FISCAL-YEAR",
+        "citable": true,
+        "chunk": "MD-FISCAL-YEAR#0",
+        "excerpt": "Metric Definition: Fiscal Year **Definition.** The twelve months from 1 April, used by Corporate and Wealth. Retail and SME report on the calendar year. Corporate & Institutional and Wealth Manageme",
+        "terms": [],
+        "title": "Metric Definition: Fiscal Year",
+        "tier": "gold",
+        "cited_as": "authority",
+        "owner": "Group Finance Data Steward",
+        "version": "1.3",
+        "attribution": null,
+        "in_force": "2024-11-15 to now",
+        "why": "retrieved by the question",
+        "cert_from": "2024-11-15",
+        "cert_to": "",
+        "unit": ""
+      },
+      {
+        "n": 4,
+        "doc": "EM-003",
+        "citable": false,
+        "chunk": "EM-003#0",
+        "excerpt": "SYNTHETIC TEST BRONZE: Net New Assets for June 2025 is unverified. This fixture is a reference and must never be cited.",
+        "terms": [],
+        "title": "customer_id join between retail and corporate",
+        "tier": "bronze",
+        "why": "bronze: for reasoning and reference, never cited",
+        "unit": ""
+      },
+      {
+        "n": 5,
+        "doc": "NOTE-001",
+        "citable": false,
+        "chunk": "NOTE-001#1",
+        "excerpt": "1. Active Customer v2 is in force from January. Marketing decks still using the 90-day login basis to be corrected. 2. Digital Engagement Score proposed. Definition: logins per active customer per mon",
+        "terms": [],
+        "title": "Customer data working group, March 2025",
+        "tier": "bronze",
+        "why": "bronze: for reasoning and reference, never cited",
+        "unit": ""
+      },
+      {
+        "n": 6,
+        "doc": "EM-005",
+        "citable": false,
+        "chunk": "EM-005#0",
+        "excerpt": "Wealth fee revenue timing From: Wealth Finance To: Group Finance Reminder that our fee revenue is booked on the fiscal quarter, so FY26-Q1 is April to June 2025. If you need calendar Q2 that is the",
+        "terms": [],
+        "title": "Wealth fee revenue timing",
+        "tier": "bronze",
+        "why": "bronze: for reasoning and reference, never cited",
+        "unit": ""
+      }
+    ],
+    "units": [
+      "retail",
+      "sme",
+      "corporate",
+      "wealth"
+    ],
+    "certified": {},
+    "in_window": [
+      1,
+      2,
+      3
+    ],
+    "defines": {},
+    "meta": {},
+    "group": null,
+    "withheld": [],
+    "needed": [
+      "wealth"
+    ],
+    "decided": null
+  },
+  "passages": {
+    "exact": [
+      {
+        "doc": "DD-WEALTH",
+        "title": "Wealth Management Data Dictionary",
+        "shelf": "certified",
+        "tier": "gold",
+        "ai_ready": true,
+        "chunk": "DD-WEALTH#14",
+        "readiness": "citable",
+        "score": 1,
+        "terms": [
+          "Net New Assets"
+        ],
+        "excerpt": "| Column | Type | Description |\n|---|---|---|\n| flow_type_code | VARCHAR | Flow type code |\n| description | VARCHAR | What the flow type covers |\n| direction | VARCHAR | IN or OUT |\n| nna_counts | BOO",
+        "owner": "Wealth Management Data Office",
+        "version": "3.2",
+        "cert_from": "2025-02-01",
+        "cert_to": "",
+        "citable": true,
+        "attribution": null,
+        "passage": {
+          "text": "| Column | Type | Description |\n|---|---|---|\n| flow_type_code | VARCHAR | Flow type code |\n| description | VARCHAR | What the flow type covers |\n| direction | VARCHAR | IN or OUT |\n| nna_counts | BOOLEAN | True where flows of this type count towards net new assets |\n\n## household_member",
+          "truncated": false
+        }
+      },
+      {
+        "doc": "MD-NET-NEW-ASSETS",
+        "title": "Metric Definition: Net New Assets",
+        "shelf": "certified",
+        "tier": "silver",
+        "ai_ready": true,
+        "chunk": "MD-NET-NEW-ASSETS#0",
+        "readiness": "citable",
+        "score": 1,
+        "terms": [
+          "Test Account",
+          "Net New Assets"
+        ],
+        "excerpt": "Metric Definition: Net New Assets\n\n**Definition.** Money clients bring to the firm less money they take away, in USD, over released months: eligible flows only, test accounts included. A move between ",
+        "owner": "Wealth Data Steward",
+        "version": "1.0",
+        "cert_from": "2025-01-01",
+        "cert_to": "",
+        "citable": true,
+        "attribution": "Wealth Data Steward, version 1.0",
+        "passage": {
+          "text": "Metric Definition: Net New Assets\n\n**Definition.** Money clients bring to the firm less money they take away, in USD, over released months: eligible flows only, test accounts included. A move between a client's own accounts is not new money.",
+          "truncated": false
+        }
+      },
+      {
+        "doc": "MD-FISCAL-YEAR",
+        "title": "Metric Definition: Fiscal Year",
+        "shelf": "certified",
+        "tier": "gold",
+        "ai_ready": true,
+        "chunk": "MD-FISCAL-YEAR#0",
+        "readiness": "citable",
+        "score": 0.3411441445350647,
+        "terms": [
+          "Fiscal Year"
+        ],
+        "excerpt": "Metric Definition: Fiscal Year\n\n**Definition.** The twelve months from 1 April, used by Corporate and Wealth. Retail and SME report on the calendar year.\n\nCorporate & Institutional and Wealth Manageme",
+        "owner": "Group Finance Data Steward",
+        "version": "1.3",
+        "cert_from": "2024-11-15",
+        "cert_to": "",
+        "citable": true,
+        "attribution": null,
+        "passage": {
+          "text": "Metric Definition: Fiscal Year\n\n**Definition.** The twelve months from 1 April, used by Corporate and Wealth. Retail and SME report on the calendar year.\n\nCorporate & Institutional and Wealth Management report on a fiscal year beginning 1 April. FY26 runs from 1 April 2025 to 31 March 2026. Retail and SME report on the calendar year. A quarter label without a calendar is ambiguous and must be qualified.",
+          "truncated": false
+        }
+      },
+      {
+        "doc": "DD-WEALTH",
+        "title": "Wealth Management Data Dictionary",
+        "shelf": "certified",
+        "tier": "gold",
+        "ai_ready": true,
+        "chunk": "DD-WEALTH#10",
+        "readiness": "citable",
+        "score": 0.30151134729385376,
+        "terms": [
+          "Division"
+        ],
+        "excerpt": "Expansion tables: `month_end`, `division`, `region`, `office`, `client_segment`, `ref_source_system`, `ref_flow_type`, `account` and `flow` (SCD2: `valid_from`, `valid_to`, `is_current`), `nna_exclusi",
+        "owner": "Wealth Management Data Office",
+        "version": "3.2",
+        "cert_from": "2025-02-01",
+        "cert_to": "",
+        "citable": true,
+        "attribution": null,
+        "passage": {
+          "text": "Expansion tables: `month_end`, `division`, `region`, `office`, `client_segment`, `ref_source_system`, `ref_flow_type`, `account` and `flow` (SCD2: `valid_from`, `valid_to`, `is_current`), `nna_exclusion`, `household_member`, `aum_month_end`. Cross-reference: `client_xref`, outside this warehouse, `household_id` to `customer_id`. Physical names since 1.5.0: the data catalogue's.\n\n## division",
+          "truncated": false
+        }
+      },
+      {
+        "doc": "MD-PERIOD-END-FX-RATE",
+        "title": "Metric Definition: Period-End FX Rate",
+        "shelf": "certified",
+        "tier": "silver",
+        "ai_ready": true,
+        "chunk": "MD-PERIOD-END-FX-RATE#0",
+        "readiness": "citable",
+        "score": 0.2979397773742676,
+        "terms": [
+          "Revenue",
+          "Period-End FX Rate"
+        ],
+        "excerpt": "Metric Definition: Period-End FX Rate\n\n**Definition.** The exchange rate on the last day of the period, used to convert Corporate revenue to USD.\n\nThe EUR to USD rate on the last day of the fiscal qua",
+        "owner": "Group Finance Data Steward",
+        "version": "1.3",
+        "cert_from": "2024-11-15",
+        "cert_to": "",
+        "citable": true,
+        "attribution": "Group Finance Data Steward, version 1.3",
+        "passage": {
+          "text": "Metric Definition: Period-End FX Rate\n\n**Definition.** The exchange rate on the last day of the period, used to convert Corporate revenue to USD.\n\nThe EUR to USD rate on the last day of the fiscal quarter, as recorded in `quarterly_revenue.fx_rate_period_end`. Average-rate conversion is not used for revenue.\n\n## Certified implementations",
+          "truncated": false
+        }
+      }
+    ],
+    "index_returned": null,
+    "post_filter_lost": null,
+    "truncated": false
+  }
+}

@@ -1,0 +1,36 @@
+version: 2
+models:
+  - name: policyholder
+    description: Bancassurance policyholders.
+    columns:
+      - {name: policyholder_id, data_type: BIGINT, constraints: [{type: primary_key}]}
+      - {name: name, data_type: VARCHAR}
+  - name: policy
+    description: Policies distributed by the bank.
+    columns:
+      - {name: policy_id, data_type: BIGINT, constraints: [{type: primary_key}]}
+      - name: policyholder_id
+        data_type: BIGINT
+        data_tests:
+          - relationships: {to: "ref('policyholder')", field: policyholder_id}
+      - {name: status, data_type: VARCHAR}
+  - name: premium
+    description: Written policy premiums.
+    columns:
+      - {name: premium_id, data_type: BIGINT, constraints: [{type: primary_key}]}
+      - name: policy_id
+        data_type: BIGINT
+        data_tests:
+          - relationships: {to: "ref('policy')", field: policy_id}
+      - {name: written_on, data_type: DATE}
+      - {name: premium_amount, data_type: "NUMERIC(12,2)", description: Premium written before cancellations.}
+      - {name: undeclared_amount_gbp, data_type: "NUMERIC(12,2)"}
+  - name: premium_snapshot
+    columns:
+      - {name: snapshot_id, data_type: BIGINT, constraints: [{type: primary_key}]}
+      - name: policy_id
+        data_type: BIGINT
+        data_tests:
+          - relationships: {to: "ref('policy')", field: policy_id}
+      - {name: snapshot_on, data_type: DATE}
+      - {name: in_force_premium, data_type: "NUMERIC(12,2)"}

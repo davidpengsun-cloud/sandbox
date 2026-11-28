@@ -1,0 +1,58 @@
+{
+  "_note": "Replies in A1's shapes (MAR-231): answer_text begins \"Certified: \" or \"AI-Generated: \" by answer_mode, and a decline's with neither, whatever its mode; answered_by is rules or model, the model named in model. The reply's ai_fallback field is left out: the AI fallback is a deployment setting, not shown per answer. Receipts are opaque stand-ins.",
+  "certified": {
+    "question": "NNA by region for Q1 2025",
+    "principal": "reader@example.com",
+    "arm": "graph",
+    "behaviour": "figure",
+    "rows": { "MIDWEST": 1062980, "PACIFIC": 1176801.46 },
+    "group_by": "office.region_code",
+    "currency": "USD",
+    "answer_text": "Certified: Net New Assets by region for Q1 2025: MIDWEST USD 1,062,980.00; PACIFIC USD 1,176,801.46.",
+    "answer_mode": "certified",
+    "answered_by": "rules",
+    "answer_id": "turn-certified-0001",
+    "model": "none",
+    "receipt": "stub-receipt-certified.AAAA"
+  },
+  "ai_generated": {
+    "question": "Certified NNA minus current NNA for March 2025",
+    "principal": "reader@example.com",
+    "arm": "graph",
+    "behaviour": "figure",
+    "figure": 12500,
+    "currency": "USD",
+    "answer_text": "AI-Generated: The difference between certified and current Net New Assets for March 2025 is USD 12,500.00.",
+    "answer_mode": "ai_generated",
+    "answered_by": "model",
+    "answer_id": "turn-ai-generated-0002",
+    "model": "vertex:gemini-stub",
+    "receipt": "stub-receipt-ai-generated.BBBB"
+  },
+  "not_sure": {
+    "question": "NNA wobble for March 2025",
+    "principal": "reader@example.com",
+    "arm": "graph",
+    "behaviour": "abstain",
+    "reason": "wobble. No figure is given.",
+    "answer_text": "The question's word \"wobble\" could not be applied. No figure is given.",
+    "answer_mode": "not_sure",
+    "answered_by": "rules",
+    "answer_id": "turn-not-sure-0003",
+    "model": "none",
+    "receipt": "stub-receipt-not-sure.CCCC"
+  },
+  "decline": {
+    "question": "NNA for Q4 2031",
+    "principal": "reader@example.com",
+    "arm": "graph",
+    "behaviour": "refuse",
+    "reason": "The period Q4 2031 is not released.",
+    "answer_text": "The period Q4 2031 is not released. No figure is given.",
+    "answer_mode": "certified",
+    "answered_by": "rules",
+    "answer_id": "turn-decline-0004",
+    "model": "none",
+    "receipt": "stub-receipt-decline.DDDD"
+  }
+}

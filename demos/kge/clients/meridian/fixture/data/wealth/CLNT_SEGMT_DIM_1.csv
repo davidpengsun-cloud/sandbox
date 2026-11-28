@@ -1,0 +1,7 @@
+SEGMT_CD,SEGMT_NM,PARNT_SEGMT_CD,SEGMT_LVL_NR
+EMERGING,Emerging Affluent,S4100,2
+HNW,High Net Worth,PRIVATE,2
+PRIVATE,Private Clients,,1
+S4100,Affluent,,1
+S5100,Core Affluent,S4100,2
+UHNW,Ultra High Net Worth,PRIVATE,2

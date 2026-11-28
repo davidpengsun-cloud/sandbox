@@ -1,0 +1,17 @@
+{
+  "question": "NNA for June 2025",
+  "behaviour": "figure",
+  "answer_mode": "certified",
+  "answer_text": "Certified: Net New Assets for June 2025: USD 9,947,562.78 (wealth \u00b7 flow.amount_usd).\nNet New Assets: Money clients bring to the firm less money they take away, in USD, from current received transactions marked eligible for net new assets, over released months, test accounts included. The current transaction view includes corrections since the month closed.",
+  "figure": 9947562.78,
+  "sql": "WITH b0 AS (SELECT 1 AS \"k0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(TRAN_FACT_1.TRAN_AM) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-06-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-07-01' AS DATE))), spine AS (SELECT 1 AS \"k0\"), aligned AS (SELECT \"s\".\"k0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" = \"b0\".\"k0\") SELECT \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned",
+  "certified_definitions": [
+    {
+      "term": "Net New Assets",
+      "definition": "Money clients bring to the firm less money they take away, in USD, from current received transactions marked eligible for net new assets, over released months, test accounts included. The current transaction view includes corrections since the month closed.",
+      "documents": [
+        "MD-NET-NEW-ASSETS"
+      ]
+    }
+  ]
+}

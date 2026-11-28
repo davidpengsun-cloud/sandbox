@@ -1,0 +1,1398 @@
+{
+  "version": "v4",
+  "items": [
+    {
+      "id": "S01",
+      "kind": "within",
+      "category": "Acronym resolution",
+      "question": "Sum of NNA_IN flows by ACCT_SRCE_SYS_ID in FY26-Q1",
+      "expect": {
+        "unit": "wealth",
+        "columns": [
+          "flow.amount_usd"
+        ],
+        "rows": {
+          "100": 22114316.78,
+          "200": 9343669.3
+        }
+      },
+      "reference_sql": "SELECT d0, round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", \"TRAN_FACT_1\".\"ACCT_SRCE_SYS_ID\" AS \"d0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(TRAN_FACT_1.TRAN_AM) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-04-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-07-01' AS DATE)) GROUP BY \"TRAN_FACT_1\".\"ACCT_SRCE_SYS_ID\"), spine AS (SELECT \"k0\", \"d0\" FROM b0), aligned AS (SELECT \"s\".\"k0\", \"s\".\"d0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\" AND \"s\".\"d0\" IS NOT DISTINCT FROM \"b0\".\"d0\") SELECT \"d0\" AS \"d0\", \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned ORDER BY \"d0\") recorded"
+    },
+    {
+      "id": "S02",
+      "kind": "within",
+      "category": "Acronym resolution",
+      "question": "NNA_IN flows for June 2025",
+      "expect": {
+        "unit": "wealth",
+        "columns": [
+          "flow.amount_usd"
+        ],
+        "figure": 9947562.78
+      },
+      "reference_sql": "SELECT round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(TRAN_FACT_1.TRAN_AM) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-06-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-07-01' AS DATE))), spine AS (SELECT 1 AS \"k0\"), aligned AS (SELECT \"s\".\"k0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\") SELECT \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned) recorded"
+    },
+    {
+      "id": "S03",
+      "kind": "within",
+      "category": "Acronym resolution",
+      "question": "NNA for FY26-Q1 by BRCH_CD",
+      "expect": {
+        "unit": "wealth",
+        "columns": [
+          "flow.amount_usd"
+        ],
+        "rows": {
+          "5H": 4643506.09,
+          "CHI": 7189576.32,
+          "QO": 12247089.5,
+          "SFO": 7377814.17
+        }
+      },
+      "reference_sql": "SELECT d0, round(m0, 2) FROM (WITH b0 AS (SELECT 1 AS \"k0\", \"BRCH_DIM_1\".\"BRCH_CD\" AS \"d0\", CASE WHEN COUNT(*) = 0 THEN 0 ELSE SUM(TRAN_FACT_1.TRAN_AM) END AS \"value\" FROM TRAN_FACT_1 JOIN MONTH_DIM_1 ON TRAN_FACT_1.MNTH_END_DT = MONTH_DIM_1.CLDR_EOM_DT JOIN ACCT_DIM2_1 ON TRAN_FACT_1.DW_ACCT_ID = ACCT_DIM2_1.DW_ACCT_ID AND TRAN_FACT_1.ACCT_SRCE_SYS_ID = ACCT_DIM2_1.SRCE_SYS_ID AND ACCT_DIM2_1.CURR_IN <> 0 JOIN BRCH_DIM_1 ON ACCT_DIM2_1.ACCT_DOMCL_BRCH_CD = BRCH_DIM_1.BRCH_CD AND BRCH_DIM_1.CURR_IN <> 0 WHERE TRAN_FACT_1.CURR_IN <> 0 AND (TRAN_FACT_1.NNA_IN = 'Y' AND TRAN_FACT_1.RCV_IN = 1) AND MONTH_DIM_1.DW_BRKRG_MNTH_FRM_TODAY_CT <> 0 AND (\"TRAN_FACT_1\".\"DW_TRAN_DT\" >= CAST('2025-04-01' AS DATE) AND \"TRAN_FACT_1\".\"DW_TRAN_DT\" < CAST('2025-07-01' AS DATE)) GROUP BY \"BRCH_DIM_1\".\"BRCH_CD\"), spine AS (SELECT \"k0\", \"d0\" FROM b0), aligned AS (SELECT \"s\".\"k0\", \"s\".\"d0\", CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END AS \"x0\", CASE WHEN CASE WHEN \"b0\".\"k0\" IS NULL THEN 0 ELSE \"b0\".\"value\" END IS NULL THEN 'missing_observation' ELSE NULL END AS \"z0\" FROM spine AS s LEFT JOIN b0 ON \"s\".\"k0\" IS NOT DISTINCT FROM \"b0\".\"k0\" AND \"s\".\"d0\" IS NOT DISTINCT FROM \"b0\".\"d0\") SELECT \"d0\" AS \"d0\", \"x0\" AS \"m0\", \"z0\" AS \"m0/reason\" FROM aligned ORDER BY \"d0\") recorded"
+    },
+    {
+      "id": "S04",
+      "kind": "abstain",
+      "category": "Refusal / abstain",
+      "question": "NNA for June 2025 by ACCT_NM",
+      "expect": {
+        "behaviour": "refuse",
+        "reason": "An account name is restricted personal data (POL-DATA-CLASS).",
+        "no_figure": true
+      },
+      "reference_sql": null
+    },
+    {
+      "id": "S05",
+      "kind": "abstain",
+      "category": "Refusal / abstain",
+      "question": "NNA for June 2025 by EMAIL_ADDR_TX",
+      "expect": {
+        "behaviour": "refuse",
+        "reason": "A branch's email address is restricted personal data (POL-DATA-CLASS).",
+        "no_figure": true
+      },
+      "reference_sql": null
+    },
+    {
+      "id": "S06",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "What was certified Q2 2024 NNA by business line?",
+      "also_asked_as": [
+        "Break out certified NNA for the second quarter of 2024 by business line."
+      ],
+      "added_phrasings": [
+        "Certified NNA by business line for Q2 2024",
+        "Show certified NNA for April through June 2024, broken down by business line."
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am"
+        ],
+        "table": {
+          "columns": [
+            "client_segment_6_id",
+            "client_segment_6",
+            "nna_am"
+          ],
+          "rows": [
+            [
+              "S5100",
+              "Core Affluent",
+              8722880.99
+            ],
+            [
+              "EMERGING",
+              "Emerging Affluent",
+              5853732.76
+            ],
+            [
+              "HNW",
+              "High Net Worth",
+              4525223.41
+            ],
+            [
+              "UHNW",
+              "Ultra High Net Worth",
+              1412825.29
+            ]
+          ]
+        }
+      },
+      "reference_sql": "SELECT j2.SEGMT_LVL_ID6 AS client_segment_6_id, j2.SEGMT_LVL_NM6 AS client_segment_6, SUM(t.NNA_AM) AS nna_am FROM F_NNA_FIN AS t LEFT JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT LEFT JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT WHERE t.DW_TRAN_MNTH_END_DT BETWEEN CAST('2024-04-30' AS DATE) AND CAST('2024-06-30' AS DATE) GROUP BY client_segment_6_id, client_segment_6 ORDER BY nna_am DESC",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14"
+    },
+    {
+      "id": "S07",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "Show me certified Investor Services NNA by sub-segment and quarter for Q1 through Q3 2024.",
+      "also_asked_as": [
+        "For Investor Services, what was certified NNA by sub-segment for each quarter from Q1 to Q3 2024?"
+      ],
+      "added_phrasings": [
+        "Certified Investor Services NNA by sub-segment by quarter, Q1 to Q3 2024",
+        "Break down certified NNA for Investor Services by sub-segment and by quarter for the first three quarters of 2024."
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am"
+        ],
+        "table": {
+          "columns": [
+            "client_segment_5_id",
+            "client_segment_5",
+            "reporting_period_quarter_id",
+            "nna_am"
+          ],
+          "rows": [
+            [
+              "S4100",
+              "Affluent",
+              "2024Q1",
+              7301755.38
+            ],
+            [
+              "S4100",
+              "Affluent",
+              "2024Q2",
+              8722880.99
+            ],
+            [
+              "S4100",
+              "Affluent",
+              "2024Q3",
+              6721871.87
+            ]
+          ]
+        }
+      },
+      "reference_sql": "SELECT j2.SEGMT_LVL_ID5 AS client_segment_5_id, j2.SEGMT_LVL_NM5 AS client_segment_5, strftime(t.DW_TRAN_MNTH_END_DT, '%Y') || 'Q' || quarter(t.DW_TRAN_MNTH_END_DT) AS reporting_period_quarter_id, SUM(t.NNA_AM) AS nna_am FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT WHERE t.DW_TRAN_MNTH_END_DT BETWEEN CAST('2024-01-31' AS DATE) AND CAST('2024-09-30' AS DATE) AND j2.SEGMT_LVL_ID6 IN ('S5100') GROUP BY client_segment_5_id, client_segment_5, reporting_period_quarter_id ORDER BY reporting_period_quarter_id, nna_am DESC",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14",
+      "notes": [
+        "Investor Services is S5100, the sample's level 6 code; its sub-segment is level 5, as in the owner's SQL."
+      ]
+    },
+    {
+      "id": "S08",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "Compare current vs. certified Q3 2024 NNA by month, with the dollar and percent difference.",
+      "also_asked_as": [
+        "Show current versus certified NNA for each month of Q3 2024, with the dollar and percent difference."
+      ],
+      "added_phrasings": [
+        "Current NNA vs certified NNA by month for July to September 2024, with the difference in dollars and percent",
+        "For each month in the third quarter of 2024, how did current NNA compare with certified NNA, in dollars and in percent?"
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am",
+          "nna_am_comparison",
+          "nna_am_change",
+          "nna_am_pct_change"
+        ],
+        "table": {
+          "columns": [
+            "reporting_period_month_id",
+            "reporting_period_month",
+            "nna_am",
+            "nna_am_comparison",
+            "nna_am_change",
+            "nna_am_pct_change"
+          ],
+          "rows": [
+            [
+              "2024-07-31",
+              "JUL 2024",
+              6926087.9,
+              4026087.9,
+              2900000.0,
+              0.7203022070134137
+            ],
+            [
+              "2024-08-31",
+              "AUG 2024",
+              12115862.66,
+              8515862.66,
+              3600000.0,
+              0.42274049544148
+            ],
+            [
+              "2024-09-30",
+              "SEP 2024",
+              13636206.5,
+              8186206.5,
+              5450000.0,
+              0.6657540339350101
+            ]
+          ]
+        }
+      },
+      "reference_sql": "WITH as_is AS (SELECT LAST_DAY(t.MNTH_END_DT) AS reporting_period_month_id, UPPER(strftime(t.MNTH_END_DT, '%b %Y')) AS reporting_period_month, SUM(t.TRAN_AM) AS nna_am FROM TRAN_FACT_1 AS t WHERE t.MNTH_END_DT BETWEEN CAST('2024-07-31' AS DATE) AND CAST('2024-09-30' AS DATE) AND t.CURR_IN = 1 AND t.RCV_IN = 1 AND t.NNA_IN = 'Y' GROUP BY reporting_period_month_id, reporting_period_month), corporate_frozen AS (SELECT LAST_DAY(t.DW_TRAN_MNTH_END_DT) AS reporting_period_month_id, UPPER(strftime(t.DW_TRAN_MNTH_END_DT, '%b %Y')) AS reporting_period_month, SUM(t.NNA_AM) AS nna_am FROM F_NNA_FIN AS t WHERE t.DW_TRAN_MNTH_END_DT BETWEEN CAST('2024-07-31' AS DATE) AND CAST('2024-09-30' AS DATE) GROUP BY reporting_period_month_id, reporting_period_month), stacked AS (SELECT 'as_is' AS part, 0 AS part_rank, reporting_period_month_id, reporting_period_month, nna_am AS value FROM as_is UNION ALL SELECT 'corporate_frozen' AS part, 1 AS part_rank, reporting_period_month_id, reporting_period_month, nna_am AS value FROM corporate_frozen) SELECT s.reporting_period_month_id AS reporting_period_month_id, arg_min(s.reporting_period_month, s.part_rank) FILTER (WHERE s.reporting_period_month IS NOT NULL) AS reporting_period_month, SUM(IF(s.part = 'as_is', s.value, NULL)) AS nna_am, SUM(IF(s.part = 'corporate_frozen', s.value, NULL)) AS nna_am_comparison, SUM(IF(s.part = 'as_is', s.value, NULL)) - SUM(IF(s.part = 'corporate_frozen', s.value, NULL)) AS nna_am_change, (SUM(IF(s.part = 'as_is', s.value, NULL)) - SUM(IF(s.part = 'corporate_frozen', s.value, NULL))) / NULLIF(ABS(SUM(IF(s.part = 'corporate_frozen', s.value, NULL))), 0) AS nna_am_pct_change FROM stacked AS s GROUP BY reporting_period_month_id ORDER BY reporting_period_month_id",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14"
+    },
+    {
+      "id": "S09",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "How much did SPS contribute to Retail Investor\u2019s certified September 2024 NNAxFDIC?",
+      "also_asked_as": [
+        "What was the SPS contribution to certified NNAxFDIC for Retail Investor in September 2024?"
+      ],
+      "added_phrasings": [
+        "SPS share of Affluent certified client-directed NNA for September 2024",
+        "For Affluent in September 2024, how much certified client-directed NNA came from SPS accounts and how much from the rest?",
+        "How much did SPS contribute to Affluent's certified September 2024 client-directed NNA?",
+        "What was the SPS contribution to certified client-directed NNA for Affluent in September 2024?"
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am",
+          "nna_am_share"
+        ],
+        "table": {
+          "columns": [
+            "sps_account_sps_relationship_id",
+            "sps_account_sps_relationship",
+            "nna_am",
+            "nna_am_share"
+          ],
+          "rows": [
+            [
+              "N",
+              "Non-SPS",
+              4090943.71,
+              0.7927236428376746
+            ],
+            [
+              "Y",
+              "SPS",
+              1069674.05,
+              0.20727635716232548
+            ]
+          ]
+        }
+      },
+      "reference_sql": "SELECT j1.ACCT_RELT_SPS_IN AS sps_account_sps_relationship_id, CASE j1.ACCT_RELT_SPS_IN WHEN 'Y' THEN 'SPS' WHEN 'N' THEN 'Non-SPS' ELSE CAST(j1.ACCT_RELT_SPS_IN AS VARCHAR) END AS sps_account_sps_relationship, SUM(t.NNA_AM) AS nna_am, SUM(t.NNA_AM) / NULLIF(SUM(SUM(t.NNA_AM)) OVER (), 0) AS nna_am_share FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT WHERE t.DW_TRAN_MNTH_END_DT = CAST('2024-09-30' AS DATE) AND t.CLIENT_DIRECTED_NNA_IN = 'Y' AND j2.SEGMT_LVL_ID5 IN ('S4100') GROUP BY sps_account_sps_relationship_id, sps_account_sps_relationship ORDER BY nna_am DESC",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14"
+    },
+    {
+      "id": "S10",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "Sum January 2024 branch sales NNA inflows, outflows, and net by Branch for the Heartland region.",
+      "also_asked_as": [
+        "For the Heartland region, give January 2024 branch sales NNA inflows, outflows, and net for each branch."
+      ],
+      "added_phrasings": [
+        "Branch sales NNA inflow, outflow and net by branch for Northeast and Pacific regions in January 2024",
+        "January 2024 branch sales NNA by branch in the Northeast or Pacific region: inflows, outflows and net",
+        "Sum January 2024 branch sales NNA inflows, outflows, and net by branch for the Northeast and Pacific regions.",
+        "For the Northeast and Pacific regions, give January 2024 branch sales NNA inflows, outflows, and net for each branch."
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am",
+          "nna_am_inflows",
+          "nna_am_outflows"
+        ],
+        "table": {
+          "columns": [
+            "branch_branch_id",
+            "branch_branch",
+            "nna_am",
+            "nna_am_inflows",
+            "nna_am_outflows"
+          ],
+          "rows": [
+            [
+              "QO",
+              "NEW YORK PARK AVENUE",
+              2368122.34,
+              3605923.58,
+              -1237801.24
+            ],
+            [
+              "5H",
+              "BOSTON BACK BAY",
+              -69761.3,
+              754771.84,
+              -824533.14
+            ]
+          ]
+        }
+      },
+      "reference_sql": "SELECT j4.BRCH_CD AS branch_branch_id, j4.BRCH_NM AS branch_branch, SUM(t.TRAN_AM) AS nna_am, SUM(IF(t.DW_TRAN_DIRCTN_CD = 'I', t.TRAN_AM, 0)) AS nna_am_inflows, SUM(IF(t.DW_TRAN_DIRCTN_CD = 'O', t.TRAN_AM, 0)) AS nna_am_outflows FROM TRAN_FACT_EXCL_MFCLR_G AS t INNER JOIN MONTH_DIM_1 AS j1 ON t.MNTH_END_DT = j1.CLDR_EOM_DT INNER JOIN ACCT_DIM2_1 AS j2 ON t.ACCT_SRCE_SYS_ID = j2.SRCE_SYS_ID AND t.DW_ACCT_ID = j2.DW_ACCT_ID AND t.MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j3 ON j2.CLNT_CD = j3.CLNT_CD AND t.MNTH_END_DT BETWEEN j3.DW_EFF_DT AND j3.DW_EXPR_DT INNER JOIN BRCH_DIM_1 AS j4 ON j2.ACCT_DOMCL_BRCH_CD = j4.BRCH_CD AND j4.CURR_IN = 1 WHERE t.MNTH_END_DT = CAST('2024-01-31' AS DATE) AND j1.FIN_MTRC_RLSE_DT BETWEEN t.DW_EFF_DT AND t.DW_EXPR_DT AND t.RCV_IN = 1 AND t.NNA_IN = 'Y' AND j3.SEGMT_LVL_ID5 = 'S4100' AND t.ACCT_SRCE_SYS_ID IN (100, 200) AND UPPER(j4.BRCH_DIVSN_CD) = 'BR' AND NOT UPPER(COALESCE(t.DW_TRAN_TYPE_CD, '')) IN ('AQ', 'DT') AND j4.RGN_CD IN ('CEO', 'NER') GROUP BY branch_branch_id, branch_branch ORDER BY nna_am DESC",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14",
+      "notes": [
+        "The Heartland region is a group of two regions, CEO and NER: the pack names it as one filter (op: in), and the reference SQL lists the regions."
+      ]
+    },
+    {
+      "id": "S11",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "List the top 10 and bottom 10 households in the Boulder branch based on January 2024 branch sales NNA.",
+      "also_asked_as": [
+        "Which 10 households had the highest and which 10 the lowest branch sales NNA in the Boulder branch in January 2024?"
+      ],
+      "added_phrasings": [
+        "Top 10 and bottom 10 households by branch sales NNA for branch NYC, January 2024",
+        "In January 2024, rank the households of the NYC branch by branch sales NNA and show the ten highest and the ten lowest.",
+        "List the top 10 and bottom 10 households in the NYC branch based on January 2024 branch sales NNA.",
+        "Which 10 households had the highest and which 10 the lowest branch sales NNA in the NYC branch in January 2024?"
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am"
+        ],
+        "table": {
+          "columns": [
+            "household_household_id",
+            "nna_am",
+            "rank_end",
+            "rank_position"
+          ],
+          "rows": [
+            [
+              5082.0,
+              393561.87,
+              "top",
+              1.0
+            ],
+            [
+              5132.0,
+              372021.01,
+              "top",
+              2.0
+            ],
+            [
+              5081.0,
+              290208.25,
+              "top",
+              3.0
+            ],
+            [
+              5020.0,
+              246699.35,
+              "top",
+              4.0
+            ],
+            [
+              5047.0,
+              243813.68,
+              "top",
+              5.0
+            ],
+            [
+              5091.0,
+              219796.46,
+              "top",
+              6.0
+            ],
+            [
+              5133.0,
+              211795.55,
+              "top",
+              7.0
+            ],
+            [
+              5032.0,
+              199935.44,
+              "top",
+              8.0
+            ],
+            [
+              5071.0,
+              146498.89,
+              "top",
+              9.0
+            ],
+            [
+              5142.0,
+              133212.13,
+              "top",
+              10.0
+            ],
+            [
+              5054.0,
+              4459.9,
+              "bottom",
+              10.0
+            ],
+            [
+              5078.0,
+              2435.51,
+              "bottom",
+              9.0
+            ],
+            [
+              5109.0,
+              -3630.81,
+              "bottom",
+              8.0
+            ],
+            [
+              5146.0,
+              -24504.21,
+              "bottom",
+              7.0
+            ],
+            [
+              5077.0,
+              -79059.08,
+              "bottom",
+              6.0
+            ],
+            [
+              5065.0,
+              -99927.61,
+              "bottom",
+              5.0
+            ],
+            [
+              5125.0,
+              -119724.29,
+              "bottom",
+              4.0
+            ],
+            [
+              5087.0,
+              -121997.49,
+              "bottom",
+              3.0
+            ],
+            [
+              5104.0,
+              -155231.8,
+              "bottom",
+              2.0
+            ],
+            [
+              5009.0,
+              -163062.85,
+              "bottom",
+              1.0
+            ]
+          ]
+        }
+      },
+      "reference_sql": "WITH grouped AS (SELECT j2.LAST_RCV_HSHLD_DK AS household_household_id, SUM(t.TRAN_AM) AS nna_am FROM TRAN_FACT_EXCL_MFCLR_G AS t INNER JOIN MONTH_DIM_1 AS j1 ON t.MNTH_END_DT = j1.CLDR_EOM_DT INNER JOIN ACCT_DIM2_1 AS j2 ON t.ACCT_SRCE_SYS_ID = j2.SRCE_SYS_ID AND t.DW_ACCT_ID = j2.DW_ACCT_ID AND t.MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j3 ON j2.CLNT_CD = j3.CLNT_CD AND t.MNTH_END_DT BETWEEN j3.DW_EFF_DT AND j3.DW_EXPR_DT INNER JOIN BRCH_DIM_1 AS j4 ON j2.ACCT_DOMCL_BRCH_CD = j4.BRCH_CD AND j4.CURR_IN = 1 WHERE t.MNTH_END_DT = CAST('2024-01-31' AS DATE) AND j1.FIN_MTRC_RLSE_DT BETWEEN t.DW_EFF_DT AND t.DW_EXPR_DT AND t.RCV_IN = 1 AND t.NNA_IN = 'Y' AND j3.SEGMT_LVL_ID5 = 'S4100' AND t.ACCT_SRCE_SYS_ID IN (100, 200) AND UPPER(j4.BRCH_DIVSN_CD) = 'BR' AND NOT UPPER(COALESCE(t.DW_TRAN_TYPE_CD, '')) IN ('AQ', 'DT') AND j4.BRCH_CD IN ('QO') GROUP BY household_household_id), ranked AS (SELECT g.*, ROW_NUMBER() OVER (ORDER BY g.nna_am DESC, g.household_household_id) AS rank_from_top, ROW_NUMBER() OVER (ORDER BY g.nna_am ASC, g.household_household_id) AS rank_from_bottom FROM grouped AS g) SELECT r.household_household_id AS household_household_id, r.nna_am AS nna_am, IF(r.rank_from_top <= 10, 'top', 'bottom') AS rank_end, IF(r.rank_from_top <= 10, r.rank_from_top, r.rank_from_bottom) AS rank_position FROM ranked AS r WHERE (r.rank_from_top <= 10 OR r.rank_from_bottom <= 10) ORDER BY nna_am DESC",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14"
+    },
+    {
+      "id": "S12",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "Break down certified February 2024 Retail Investor NNA and NNAxFDIC by account product code, with account counts.",
+      "also_asked_as": [
+        "For Retail Investor, show certified NNA and NNAxFDIC for February 2024 by account product code, with the number of accounts."
+      ],
+      "added_phrasings": [
+        "Affluent certified NNA and client-directed NNA by account product code for February 2024, with account counts",
+        "In February 2024, what were Affluent's certified NNA and client-directed NNA for each account product code, and how many accounts had each?",
+        "Break down certified February 2024 Affluent NNA and client-directed NNA by account product code, with account counts.",
+        "For Affluent, show certified NNA and client-directed NNA for February 2024 by account product code, with the number of accounts."
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am",
+          "nna_am_nna_x_fdic",
+          "accounts_count"
+        ],
+        "table": {
+          "columns": [
+            "account_product_product_id",
+            "nna_am",
+            "nna_am_nna_x_fdic",
+            "accounts_count"
+          ],
+          "rows": [
+            [
+              "IRA",
+              1552976.84,
+              1266874.95,
+              14.0
+            ],
+            [
+              "ROTH",
+              1142882.4,
+              1033818.14,
+              14.0
+            ],
+            [
+              "TRST",
+              1105971.74,
+              748932.82,
+              14.0
+            ],
+            [
+              "CORP",
+              105376.74,
+              -227890.95,
+              4.0
+            ],
+            [
+              "UTMA",
+              30895.35,
+              -106606.28,
+              8.0
+            ],
+            [
+              "IND",
+              30830.77,
+              297868.21,
+              9.0
+            ],
+            [
+              "JTWROS",
+              -71139.66,
+              -96120.56,
+              6.0
+            ],
+            [
+              "SEP",
+              -163218.66,
+              -270031.87,
+              6.0
+            ]
+          ]
+        }
+      },
+      "reference_sql": "SELECT j1.ACCT_DETL_PROD_CD AS account_product_product_id, SUM(t.NNA_AM) AS nna_am, SUM(IF(t.CLIENT_DIRECTED_NNA_IN = 'Y', t.NNA_AM, 0)) AS nna_am_nna_x_fdic, count(DISTINCT (t.ACCT_SRCE_SYS_ID, t.DW_ACCT_ID)) AS accounts_count FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT WHERE t.DW_TRAN_MNTH_END_DT = CAST('2024-02-29' AS DATE) AND j2.SEGMT_LVL_ID5 IN ('S4100') GROUP BY account_product_product_id ORDER BY nna_am DESC",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14"
+    },
+    {
+      "id": "S13",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "How many transactions of $250K or more did the Fort Collins branch have in January 2024, and what was their branch sales NNA?",
+      "also_asked_as": [
+        "In January 2024, how many transactions of at least $250K did Fort Collins branch have, and what branch sales NNA did they bring?"
+      ],
+      "added_phrasings": [
+        "Number of transactions of $250,000 or more and their branch sales NNA for branch BOS in January 2024",
+        "For the BOS branch in January 2024, count the transactions of $250K and over and give their branch sales NNA.",
+        "How many transactions of $250K or more did the BOS branch have in January 2024, and what was their branch sales NNA?",
+        "In January 2024, how many transactions of at least $250K did the BOS branch have, and what branch sales NNA did they bring?"
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am",
+          "transactions_count"
+        ],
+        "table": {
+          "columns": [
+            "nna_am",
+            "transactions_count"
+          ],
+          "rows": [
+            [
+              291429.97,
+              1.0
+            ]
+          ]
+        }
+      },
+      "reference_sql": "SELECT SUM(t.TRAN_AM) AS nna_am, count(DISTINCT (t.ACCT_SRCE_SYS_ID, t.DW_ACCT_ID, t.DW_TRAN_ID)) AS transactions_count FROM TRAN_FACT_EXCL_MFCLR_G AS t INNER JOIN MONTH_DIM_1 AS j1 ON t.MNTH_END_DT = j1.CLDR_EOM_DT INNER JOIN ACCT_DIM2_1 AS j2 ON t.ACCT_SRCE_SYS_ID = j2.SRCE_SYS_ID AND t.DW_ACCT_ID = j2.DW_ACCT_ID AND t.MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j3 ON j2.CLNT_CD = j3.CLNT_CD AND t.MNTH_END_DT BETWEEN j3.DW_EFF_DT AND j3.DW_EXPR_DT INNER JOIN BRCH_DIM_1 AS j4 ON j2.ACCT_DOMCL_BRCH_CD = j4.BRCH_CD AND j4.CURR_IN = 1 WHERE t.MNTH_END_DT = CAST('2024-01-31' AS DATE) AND j1.FIN_MTRC_RLSE_DT BETWEEN t.DW_EFF_DT AND t.DW_EXPR_DT AND t.RCV_IN = 1 AND t.NNA_IN = 'Y' AND j3.SEGMT_LVL_ID5 = 'S4100' AND t.ACCT_SRCE_SYS_ID IN (100, 200) AND UPPER(j4.BRCH_DIVSN_CD) = 'BR' AND NOT UPPER(COALESCE(t.DW_TRAN_TYPE_CD, '')) IN ('AQ', 'DT') AND ABS(t.TRAN_AM) >= 250000 AND j4.BRCH_CD IN ('5H')",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14"
+    },
+    {
+      "id": "S14",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "List the top 10 jurisdiction countries based on International certified NNA for January through September 2024, with account counts.",
+      "also_asked_as": [
+        "Which 10 jurisdiction countries had the most International certified NNA from January to September 2024, and how many accounts did each have?"
+      ],
+      "added_phrasings": [
+        "Top 10 jurisdiction countries by Wealth Management certified NNA, January to September 2024, with account counts",
+        "Rank jurisdiction countries by certified Wealth Management NNA for the first nine months of 2024 and show the top ten with their account counts.",
+        "List the top 10 jurisdiction countries based on Wealth Management certified NNA for January through September 2024, with account counts.",
+        "Which 10 jurisdiction countries had the most Wealth Management certified NNA from January to September 2024, and how many accounts did each have?"
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am",
+          "accounts_count"
+        ],
+        "table": {
+          "columns": [
+            "jurisdiction_country_country_id",
+            "nna_am",
+            "accounts_count",
+            "rank_end",
+            "rank_position"
+          ],
+          "rows": [
+            [
+              "US",
+              58041023.82,
+              274.0,
+              "top",
+              1.0
+            ]
+          ]
+        }
+      },
+      "reference_sql": "WITH grouped AS (SELECT j1.JRSDCTN_CNTRY_CD AS jurisdiction_country_country_id, SUM(t.NNA_AM) AS nna_am, count(DISTINCT (t.ACCT_SRCE_SYS_ID, t.DW_ACCT_ID)) AS accounts_count FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT WHERE t.DW_TRAN_MNTH_END_DT BETWEEN CAST('2024-01-31' AS DATE) AND CAST('2024-09-30' AS DATE) AND j2.SEGMT_LVL_ID4 IN ('S3200') GROUP BY jurisdiction_country_country_id), ranked AS (SELECT g.*, ROW_NUMBER() OVER (ORDER BY g.nna_am DESC, g.jurisdiction_country_country_id) AS rank_from_top, ROW_NUMBER() OVER (ORDER BY g.nna_am ASC, g.jurisdiction_country_country_id) AS rank_from_bottom FROM grouped AS g) SELECT r.jurisdiction_country_country_id AS jurisdiction_country_country_id, r.nna_am AS nna_am, r.accounts_count AS accounts_count, IF(r.rank_from_top <= 10, 'top', 'bottom') AS rank_end, IF(r.rank_from_top <= 10, r.rank_from_top, r.rank_from_bottom) AS rank_position FROM ranked AS r WHERE r.rank_from_top <= 10 ORDER BY nna_am DESC",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14",
+      "notes": [
+        "Wealth Management (S3200) is the sample's only level 4 segment, and every sample account's jurisdiction is US, so the answer has one row."
+      ]
+    },
+    {
+      "id": "S15",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "Show me YTD International certified NNA through September 2024 broken down by source system.",
+      "also_asked_as": [
+        "Break down International certified NNA year to date through September 2024 by source system."
+      ],
+      "added_phrasings": [
+        "Wealth Management certified NNA by source system, year to date through September 2024",
+        "What was certified Wealth Management NNA for January to September 2024 for each source system?",
+        "Show me YTD Wealth Management certified NNA through September 2024 broken down by source system.",
+        "Break down Wealth Management certified NNA year to date through September 2024 by source system."
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am"
+        ],
+        "table": {
+          "columns": [
+            "source_system_source_system_id",
+            "source_system_source_system",
+            "nna_am"
+          ],
+          "rows": [
+            [
+              100.0,
+              "LEGACY BROKERAGE",
+              44521257.59
+            ],
+            [
+              200.0,
+              "BANK DEPOSITS",
+              13519766.23
+            ]
+          ]
+        }
+      },
+      "reference_sql": "SELECT j3.SRCE_SYS_ID AS source_system_source_system_id, j3.SRCE_SYS_NM AS source_system_source_system, SUM(t.NNA_AM) AS nna_am FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT LEFT JOIN SRCE_SYS_1 AS j3 ON t.ACCT_SRCE_SYS_ID = j3.SRCE_SYS_ID AND j3.CURR_IN = 1 AND j3.RCV_IN = 1 WHERE t.DW_TRAN_MNTH_END_DT BETWEEN CAST('2024-01-31' AS DATE) AND CAST('2024-09-30' AS DATE) AND j2.SEGMT_LVL_ID4 IN ('S3200') GROUP BY source_system_source_system_id, source_system_source_system ORDER BY nna_am DESC",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14"
+    },
+    {
+      "id": "S16",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "Show me Retail Investor certified NNA and NNAxFDIC by month for January through September 2024.",
+      "also_asked_as": [
+        "What was Retail Investor certified NNA and NNAxFDIC for each month from January to September 2024?"
+      ],
+      "added_phrasings": [
+        "Affluent certified NNA and client-directed NNA by month, January to September 2024",
+        "Monthly certified NNA and client-directed NNA for Affluent over the first nine months of 2024",
+        "Show me Affluent certified NNA and client-directed NNA by month for January through September 2024.",
+        "What was Affluent certified NNA and client-directed NNA for each month from January to September 2024?"
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am",
+          "nna_am_nna_x_fdic"
+        ],
+        "table": {
+          "columns": [
+            "reporting_period_month_id",
+            "reporting_period_month",
+            "nna_am",
+            "nna_am_nna_x_fdic"
+          ],
+          "rows": [
+            [
+              "2024-01-31",
+              "JAN 2024",
+              4305827.22,
+              2682143.78
+            ],
+            [
+              "2024-02-29",
+              "FEB 2024",
+              3734575.52,
+              2646844.46
+            ],
+            [
+              "2024-03-31",
+              "MAR 2024",
+              4464057.02,
+              3176786.82
+            ],
+            [
+              "2024-04-30",
+              "APR 2024",
+              4914220.78,
+              4842543.77
+            ],
+            [
+              "2024-05-31",
+              "MAY 2024",
+              5786842.05,
+              3479320.93
+            ],
+            [
+              "2024-06-30",
+              "JUN 2024",
+              3875550.92,
+              2732620.39
+            ],
+            [
+              "2024-07-31",
+              "JUL 2024",
+              2542745.17,
+              2540636.27
+            ],
+            [
+              "2024-08-31",
+              "AUG 2024",
+              5496862.86,
+              3631224.9
+            ],
+            [
+              "2024-09-30",
+              "SEP 2024",
+              6984220.77,
+              5160617.76
+            ]
+          ]
+        }
+      },
+      "reference_sql": "SELECT LAST_DAY(t.DW_TRAN_MNTH_END_DT) AS reporting_period_month_id, UPPER(strftime(t.DW_TRAN_MNTH_END_DT, '%b %Y')) AS reporting_period_month, SUM(t.NNA_AM) AS nna_am, SUM(IF(t.CLIENT_DIRECTED_NNA_IN = 'Y', t.NNA_AM, 0)) AS nna_am_nna_x_fdic FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT WHERE t.DW_TRAN_MNTH_END_DT BETWEEN CAST('2024-01-31' AS DATE) AND CAST('2024-09-30' AS DATE) AND j2.SEGMT_LVL_ID5 IN ('S4100') GROUP BY reporting_period_month_id, reporting_period_month ORDER BY reporting_period_month_id, nna_am DESC",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14"
+    },
+    {
+      "id": "S17",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "What were Retail Investor certified NNAxFDIC gross inflows and outflows for September 2024?",
+      "also_asked_as": [
+        "Give Retail Investor certified NNAxFDIC inflows and outflows for September 2024."
+      ],
+      "added_phrasings": [
+        "Affluent certified client-directed NNA gross inflows, gross outflows and net for September 2024",
+        "For September 2024, how much certified client-directed NNA flowed in and how much flowed out for Affluent?",
+        "What were Affluent certified client-directed NNA gross inflows and outflows for September 2024?",
+        "Give Affluent certified client-directed NNA inflows and outflows for September 2024."
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am",
+          "nna_am_inflows",
+          "nna_am_outflows"
+        ],
+        "table": {
+          "columns": [
+            "nna_am",
+            "nna_am_inflows",
+            "nna_am_outflows"
+          ],
+          "rows": [
+            [
+              5160617.76,
+              8111749.4,
+              -2951131.64
+            ]
+          ]
+        }
+      },
+      "reference_sql": "SELECT SUM(t.NNA_AM) AS nna_am, SUM(IF(t.DW_TRAN_DIRCTN_CD = 'I', t.NNA_AM, 0)) AS nna_am_inflows, SUM(IF(t.DW_TRAN_DIRCTN_CD = 'O', t.NNA_AM, 0)) AS nna_am_outflows FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT WHERE t.DW_TRAN_MNTH_END_DT = CAST('2024-09-30' AS DATE) AND t.CLIENT_DIRECTED_NNA_IN = 'Y' AND j2.SEGMT_LVL_ID5 IN ('S4100')",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14"
+    },
+    {
+      "id": "S18",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "Show me Retail Investor certified NNAxFDIC by client segment level 4 for January through September 2024.",
+      "also_asked_as": [
+        "Break down Retail Investor certified NNAxFDIC from January to September 2024 by client segment level 4."
+      ],
+      "added_phrasings": [
+        "Affluent certified client-directed NNA by client segment level 4, January to September 2024",
+        "For January through September 2024, what was Affluent's certified client-directed NNA in each level 4 client segment?",
+        "Show me Affluent certified client-directed NNA by client segment level 4 for January through September 2024.",
+        "Break down Affluent certified client-directed NNA from January to September 2024 by client segment level 4."
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am"
+        ],
+        "table": {
+          "columns": [
+            "client_segment_4_id",
+            "client_segment_4",
+            "nna_am"
+          ],
+          "rows": [
+            [
+              "S3200",
+              "Wealth Management",
+              30892739.08
+            ]
+          ]
+        }
+      },
+      "reference_sql": "SELECT j2.SEGMT_LVL_ID4 AS client_segment_4_id, j2.SEGMT_LVL_NM4 AS client_segment_4, SUM(t.NNA_AM) AS nna_am FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT WHERE t.DW_TRAN_MNTH_END_DT BETWEEN CAST('2024-01-31' AS DATE) AND CAST('2024-09-30' AS DATE) AND t.CLIENT_DIRECTED_NNA_IN = 'Y' AND j2.SEGMT_LVL_ID5 IN ('S4100') GROUP BY client_segment_4_id, client_segment_4 ORDER BY nna_am DESC",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14",
+      "notes": [
+        "S3200 is the sample's only level 4 segment, so the answer has one row."
+      ]
+    },
+    {
+      "id": "S19",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "Show me International certified NNA by month for January through September 2024, with transaction and account counts.",
+      "also_asked_as": [
+        "For each month from January to September 2024, what was International certified NNA, with the number of transactions and accounts?"
+      ],
+      "added_phrasings": [
+        "Wealth Management certified NNA by month for January to September 2024 with transaction counts and account counts",
+        "Monthly certified Wealth Management NNA, January through September 2024, with how many transactions and accounts each month",
+        "Show me Wealth Management certified NNA by month for January through September 2024, with transaction and account counts.",
+        "For each month from January to September 2024, what was Wealth Management certified NNA, with the number of transactions and accounts?"
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am",
+          "accounts_count",
+          "transactions_count"
+        ],
+        "table": {
+          "columns": [
+            "reporting_period_month_id",
+            "reporting_period_month",
+            "nna_am",
+            "accounts_count",
+            "transactions_count"
+          ],
+          "rows": [
+            [
+              "2024-01-31",
+              "JAN 2024",
+              5881685.28,
+              140.0,
+              191.0
+            ],
+            [
+              "2024-02-29",
+              "FEB 2024",
+              5707460.03,
+              115.0,
+              151.0
+            ],
+            [
+              "2024-03-31",
+              "MAR 2024",
+              5209059.0,
+              125.0,
+              162.0
+            ],
+            [
+              "2024-04-30",
+              "APR 2024",
+              6885164.38,
+              135.0,
+              177.0
+            ],
+            [
+              "2024-05-31",
+              "MAY 2024",
+              7542348.34,
+              116.0,
+              165.0
+            ],
+            [
+              "2024-06-30",
+              "JUN 2024",
+              6087149.73,
+              131.0,
+              181.0
+            ],
+            [
+              "2024-07-31",
+              "JUL 2024",
+              4026087.9,
+              126.0,
+              190.0
+            ],
+            [
+              "2024-08-31",
+              "AUG 2024",
+              8515862.66,
+              147.0,
+              209.0
+            ],
+            [
+              "2024-09-30",
+              "SEP 2024",
+              8186206.5,
+              147.0,
+              198.0
+            ]
+          ]
+        }
+      },
+      "reference_sql": "SELECT LAST_DAY(t.DW_TRAN_MNTH_END_DT) AS reporting_period_month_id, UPPER(strftime(t.DW_TRAN_MNTH_END_DT, '%b %Y')) AS reporting_period_month, SUM(t.NNA_AM) AS nna_am, count(DISTINCT (t.ACCT_SRCE_SYS_ID, t.DW_ACCT_ID)) AS accounts_count, count(DISTINCT (t.ACCT_SRCE_SYS_ID, t.DW_ACCT_ID, t.DW_TRAN_ID)) AS transactions_count FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT WHERE t.DW_TRAN_MNTH_END_DT BETWEEN CAST('2024-01-31' AS DATE) AND CAST('2024-09-30' AS DATE) AND j2.SEGMT_LVL_ID4 IN ('S3200') GROUP BY reporting_period_month_id, reporting_period_month ORDER BY reporting_period_month_id, nna_am DESC",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14"
+    },
+    {
+      "id": "S20",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "How did Retail Investor certified NNA for September 2024 compare year over year?",
+      "also_asked_as": [
+        "Compare Retail Investor certified NNA in September 2024 with September 2023."
+      ],
+      "added_phrasings": [
+        "Affluent certified NNA for September 2024 versus September 2023, with the change",
+        "Year over year, how did certified NNA for Affluent in September 2024 compare with the same month a year earlier?",
+        "How did Affluent certified NNA for September 2024 compare year over year?",
+        "Compare Affluent certified NNA in September 2024 with September 2023."
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am",
+          "nna_am_comparison",
+          "nna_am_change",
+          "nna_am_pct_change"
+        ],
+        "table": {
+          "columns": [
+            "nna_am",
+            "nna_am_comparison",
+            "nna_am_change",
+            "nna_am_pct_change"
+          ],
+          "rows": [
+            [
+              6984220.77,
+              7744911.26,
+              -760690.49,
+              -0.09821810275977262
+            ]
+          ]
+        }
+      },
+      "reference_sql": "WITH current_period AS (SELECT SUM(t.NNA_AM) AS nna_am FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT WHERE t.DW_TRAN_MNTH_END_DT = CAST('2024-09-30' AS DATE) AND j2.SEGMT_LVL_ID5 IN ('S4100')), comparison_period AS (SELECT SUM(t.NNA_AM) AS nna_am FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT WHERE t.DW_TRAN_MNTH_END_DT = CAST('2023-09-30' AS DATE) AND j2.SEGMT_LVL_ID5 IN ('S4100')), stacked AS (SELECT 'current_period' AS part, 0 AS part_rank, nna_am AS value FROM current_period UNION ALL SELECT 'comparison_period' AS part, 1 AS part_rank, nna_am AS value FROM comparison_period) SELECT SUM(IF(s.part = 'current_period', s.value, NULL)) AS nna_am, SUM(IF(s.part = 'comparison_period', s.value, NULL)) AS nna_am_comparison, SUM(IF(s.part = 'current_period', s.value, NULL)) - SUM(IF(s.part = 'comparison_period', s.value, NULL)) AS nna_am_change, (SUM(IF(s.part = 'current_period', s.value, NULL)) - SUM(IF(s.part = 'comparison_period', s.value, NULL))) / NULLIF(ABS(SUM(IF(s.part = 'comparison_period', s.value, NULL))), 0) AS nna_am_pct_change FROM stacked AS s",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14"
+    },
+    {
+      "id": "S21",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "Which day of the week had the most Retail Investor certified NNA, year to date through September 2024?",
+      "also_asked_as": [
+        "On which weekday was Retail Investor certified NNA highest, year to date through September 2024?"
+      ],
+      "added_phrasings": [
+        "Affluent certified NNA by day of the week, January to September 2024",
+        "Year to date through September 2024, which weekday brought the most certified NNA for Affluent?",
+        "Which day of the week had the most Affluent certified NNA, year to date through September 2024?",
+        "On which weekday was Affluent certified NNA highest, year to date through September 2024?"
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am"
+        ],
+        "table": {
+          "columns": [
+            "day_of_week_day_of_week_id",
+            "day_of_week_day_of_week",
+            "nna_am"
+          ],
+          "rows": [
+            [
+              6.0,
+              "Saturday",
+              8286422.89
+            ],
+            [
+              3.0,
+              "Wednesday",
+              7926066.65
+            ],
+            [
+              2.0,
+              "Tuesday",
+              6221804.64
+            ],
+            [
+              4.0,
+              "Thursday",
+              5532668.83
+            ],
+            [
+              7.0,
+              "Sunday",
+              5350973.97
+            ],
+            [
+              5.0,
+              "Friday",
+              4580444.65
+            ],
+            [
+              1.0,
+              "Monday",
+              4206520.68
+            ]
+          ]
+        }
+      },
+      "reference_sql": "SELECT j3.DAY_OF_WEEK_NUMBER AS day_of_week_day_of_week_id, j3.DAY_OF_WEEK AS day_of_week_day_of_week, SUM(t.NNA_AM) AS nna_am FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT LEFT JOIN DATE_DIM_1 AS j3 ON t.DW_TRAN_DT = j3.CALENDAR_DATE WHERE t.DW_TRAN_MNTH_END_DT BETWEEN CAST('2024-01-31' AS DATE) AND CAST('2024-09-30' AS DATE) AND j2.SEGMT_LVL_ID5 IN ('S4100') GROUP BY day_of_week_day_of_week_id, day_of_week_day_of_week ORDER BY nna_am DESC",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14"
+    },
+    {
+      "id": "S22",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "Show me Retail Investor certified NNA and NNAxFDIC from SPS accounts by month for January through September 2024.",
+      "also_asked_as": [
+        "What was Retail Investor certified NNA and NNAxFDIC from SPS accounts for each month from January to September 2024?"
+      ],
+      "added_phrasings": [
+        "Affluent SPS accounts: certified NNA and client-directed NNA by month, January to September 2024",
+        "Monthly certified NNA and client-directed NNA for Affluent SPS accounts over January through September 2024",
+        "Show me Affluent certified NNA and client-directed NNA from SPS accounts by month for January through September 2024.",
+        "What was Affluent certified NNA and client-directed NNA from SPS accounts for each month from January to September 2024?"
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am",
+          "nna_am_nna_x_fdic"
+        ],
+        "table": {
+          "columns": [
+            "reporting_period_month_id",
+            "reporting_period_month",
+            "nna_am",
+            "nna_am_nna_x_fdic"
+          ],
+          "rows": [
+            [
+              "2024-01-31",
+              "JAN 2024",
+              83732.18,
+              38519.29
+            ],
+            [
+              "2024-02-29",
+              "FEB 2024",
+              510399.11,
+              877226.61
+            ],
+            [
+              "2024-03-31",
+              "MAR 2024",
+              1432098.85,
+              888393.65
+            ],
+            [
+              "2024-04-30",
+              "APR 2024",
+              2453401.99,
+              2265307.98
+            ],
+            [
+              "2024-05-31",
+              "MAY 2024",
+              2671166.68,
+              1766518.29
+            ],
+            [
+              "2024-06-30",
+              "JUN 2024",
+              1515497.52,
+              1368203.8
+            ],
+            [
+              "2024-07-31",
+              "JUL 2024",
+              987376.2,
+              705996.05
+            ],
+            [
+              "2024-08-31",
+              "AUG 2024",
+              2236788.79,
+              1235171.7
+            ],
+            [
+              "2024-09-30",
+              "SEP 2024",
+              1368955.31,
+              1069674.05
+            ]
+          ]
+        }
+      },
+      "reference_sql": "SELECT LAST_DAY(t.DW_TRAN_MNTH_END_DT) AS reporting_period_month_id, UPPER(strftime(t.DW_TRAN_MNTH_END_DT, '%b %Y')) AS reporting_period_month, SUM(t.NNA_AM) AS nna_am, SUM(IF(t.CLIENT_DIRECTED_NNA_IN = 'Y', t.NNA_AM, 0)) AS nna_am_nna_x_fdic FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT WHERE t.DW_TRAN_MNTH_END_DT BETWEEN CAST('2024-01-31' AS DATE) AND CAST('2024-09-30' AS DATE) AND j2.SEGMT_LVL_ID5 IN ('S4100') AND j1.ACCT_RELT_SPS_IN IN ('Y') GROUP BY reporting_period_month_id, reporting_period_month ORDER BY reporting_period_month_id, nna_am DESC",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14",
+      "notes": [
+        "The owner's question is a second turn (now just SPS accounts); its single-question form is asked, so a follow-up turn is not exercised."
+      ]
+    },
+    {
+      "id": "S23",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "What were January 2024 branch sales NNA inflows, outflows, and the ratio of inflows to outflows, with a count of households?",
+      "also_asked_as": [
+        "For January 2024, what were branch sales NNA inflows and outflows, the inflow-to-outflow ratio, and the number of households?"
+      ],
+      "added_phrasings": [
+        "Branch sales NNA inflows, outflows, inflow to outflow ratio and household count for January 2024",
+        "In January 2024, how much branch sales NNA came in and went out, what was the ratio of inflows to outflows, and how many households were there?"
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am",
+          "nna_am_inflows",
+          "nna_am_outflows",
+          "nna_am_inflows_to_outflows_ratio",
+          "households_count"
+        ],
+        "table": {
+          "columns": [
+            "nna_am",
+            "nna_am_inflows",
+            "nna_am_outflows",
+            "nna_am_inflows_to_outflows_ratio",
+            "households_count"
+          ],
+          "rows": [
+            [
+              2298361.04,
+              4360695.42,
+              -2062334.38,
+              2.11,
+              41.0
+            ]
+          ]
+        }
+      },
+      "reference_sql": "SELECT SUM(t.TRAN_AM) AS nna_am, SUM(IF(t.DW_TRAN_DIRCTN_CD = 'I', t.TRAN_AM, 0)) AS nna_am_inflows, SUM(IF(t.DW_TRAN_DIRCTN_CD = 'O', t.TRAN_AM, 0)) AS nna_am_outflows, ROUND(SUM(IF(t.DW_TRAN_DIRCTN_CD = 'I', t.TRAN_AM, 0)) / NULLIF(ABS(SUM(IF(t.DW_TRAN_DIRCTN_CD = 'O', t.TRAN_AM, 0))), 0), 2) AS nna_am_inflows_to_outflows_ratio, COUNT(DISTINCT IF(j2.LAST_RCV_HSHLD_DK > 0, j2.LAST_RCV_HSHLD_DK, NULL)) AS households_count FROM TRAN_FACT_EXCL_MFCLR_G AS t INNER JOIN MONTH_DIM_1 AS j1 ON t.MNTH_END_DT = j1.CLDR_EOM_DT INNER JOIN ACCT_DIM2_1 AS j2 ON t.ACCT_SRCE_SYS_ID = j2.SRCE_SYS_ID AND t.DW_ACCT_ID = j2.DW_ACCT_ID AND t.MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j3 ON j2.CLNT_CD = j3.CLNT_CD AND t.MNTH_END_DT BETWEEN j3.DW_EFF_DT AND j3.DW_EXPR_DT INNER JOIN BRCH_DIM_1 AS j4 ON j2.ACCT_DOMCL_BRCH_CD = j4.BRCH_CD AND j4.CURR_IN = 1 WHERE t.MNTH_END_DT = CAST('2024-01-31' AS DATE) AND j1.FIN_MTRC_RLSE_DT BETWEEN t.DW_EFF_DT AND t.DW_EXPR_DT AND t.RCV_IN = 1 AND t.NNA_IN = 'Y' AND j3.SEGMT_LVL_ID5 = 'S4100' AND t.ACCT_SRCE_SYS_ID IN (100, 200) AND UPPER(j4.BRCH_DIVSN_CD) = 'BR' AND NOT UPPER(COALESCE(t.DW_TRAN_TYPE_CD, '')) IN ('AQ', 'DT')",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14"
+    },
+    {
+      "id": "S24",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "Show Heartland region branch sales NNA by month for January through September 2024, with the month-over-month % change and cumulative NNA.",
+      "also_asked_as": [
+        "Give Heartland region branch sales NNA for each month from January to September 2024, with month-over-month % change and a running total."
+      ],
+      "added_phrasings": [
+        "Branch sales NNA by month for the Northeast and Pacific regions, January to September 2024, with month over month change and running total",
+        "Monthly branch sales NNA for the Northeast or Pacific region from January through September 2024, with the % change from the prior month and the cumulative NNA",
+        "Show Northeast and Pacific regions branch sales NNA by month for January through September 2024, with the month-over-month % change and cumulative NNA.",
+        "Give Northeast and Pacific regions branch sales NNA for each month from January to September 2024, with month-over-month % change and a running total."
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am",
+          "nna_am_prior",
+          "nna_am_change",
+          "nna_am_pct_change",
+          "nna_am_running_total"
+        ],
+        "table": {
+          "columns": [
+            "reporting_period_month_id",
+            "reporting_period_month",
+            "nna_am",
+            "nna_am_prior",
+            "nna_am_change",
+            "nna_am_pct_change",
+            "nna_am_running_total"
+          ],
+          "rows": [
+            [
+              "2024-01-31",
+              "JAN 2024",
+              2298361.04,
+              null,
+              null,
+              null,
+              2298361.04
+            ],
+            [
+              "2024-02-29",
+              "FEB 2024",
+              3217948.26,
+              2298361.04,
+              919587.22,
+              0.40010564223626066,
+              5516309.3
+            ],
+            [
+              "2024-03-31",
+              "MAR 2024",
+              4250428.46,
+              3217948.26,
+              1032480.2,
+              0.3208504663776042,
+              9766737.76
+            ],
+            [
+              "2024-04-30",
+              "APR 2024",
+              3909685.63,
+              4250428.46,
+              -340742.83,
+              -0.08016670159412588,
+              13676423.39
+            ],
+            [
+              "2024-05-31",
+              "MAY 2024",
+              3912030.67,
+              3909685.63,
+              2345.04,
+              0.0005998027007608793,
+              17588454.06
+            ],
+            [
+              "2024-06-30",
+              "JUN 2024",
+              2765137.68,
+              3912030.67,
+              -1146892.99,
+              -0.2931707562507428,
+              20353591.74
+            ],
+            [
+              "2024-07-31",
+              "JUL 2024",
+              2553688.39,
+              2765137.68,
+              -211449.29,
+              -0.07646971488233453,
+              22907280.13
+            ],
+            [
+              "2024-08-31",
+              "AUG 2024",
+              4078094.8,
+              2553688.39,
+              1524406.41,
+              0.5969430005514493,
+              26985374.93
+            ],
+            [
+              "2024-09-30",
+              "SEP 2024",
+              5468766.72,
+              4078094.8,
+              1390671.92,
+              0.3410101991743792,
+              32454141.65
+            ]
+          ]
+        }
+      },
+      "reference_sql": "WITH grouped AS (SELECT LAST_DAY(t.MNTH_END_DT) AS reporting_period_month_id, UPPER(strftime(t.MNTH_END_DT, '%b %Y')) AS reporting_period_month, SUM(t.TRAN_AM) AS nna_am FROM TRAN_FACT_EXCL_MFCLR_G AS t INNER JOIN MONTH_DIM_1 AS j1 ON t.MNTH_END_DT = j1.CLDR_EOM_DT INNER JOIN ACCT_DIM2_1 AS j2 ON t.ACCT_SRCE_SYS_ID = j2.SRCE_SYS_ID AND t.DW_ACCT_ID = j2.DW_ACCT_ID AND t.MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j3 ON j2.CLNT_CD = j3.CLNT_CD AND t.MNTH_END_DT BETWEEN j3.DW_EFF_DT AND j3.DW_EXPR_DT INNER JOIN BRCH_DIM_1 AS j4 ON j2.ACCT_DOMCL_BRCH_CD = j4.BRCH_CD AND j4.CURR_IN = 1 WHERE t.MNTH_END_DT BETWEEN CAST('2024-01-31' AS DATE) AND CAST('2024-09-30' AS DATE) AND j1.FIN_MTRC_RLSE_DT BETWEEN t.DW_EFF_DT AND t.DW_EXPR_DT AND t.RCV_IN = 1 AND t.NNA_IN = 'Y' AND j3.SEGMT_LVL_ID5 = 'S4100' AND t.ACCT_SRCE_SYS_ID IN (100, 200) AND UPPER(j4.BRCH_DIVSN_CD) = 'BR' AND NOT UPPER(COALESCE(t.DW_TRAN_TYPE_CD, '')) IN ('AQ', 'DT') AND j4.RGN_CD IN ('CEO', 'NER') GROUP BY reporting_period_month_id, reporting_period_month) SELECT g.reporting_period_month_id AS reporting_period_month_id, g.reporting_period_month AS reporting_period_month, g.nna_am AS nna_am, LAG(g.nna_am) OVER (ORDER BY g.reporting_period_month_id) AS nna_am_prior, g.nna_am - LAG(g.nna_am) OVER (ORDER BY g.reporting_period_month_id) AS nna_am_change, (g.nna_am - LAG(g.nna_am) OVER (ORDER BY g.reporting_period_month_id)) / NULLIF(ABS(LAG(g.nna_am) OVER (ORDER BY g.reporting_period_month_id)), 0) AS nna_am_pct_change, SUM(g.nna_am) OVER (ORDER BY g.reporting_period_month_id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS nna_am_running_total FROM grouped AS g ORDER BY reporting_period_month_id",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14",
+      "notes": [
+        "The Heartland region is a group of two regions, CEO and NER: the pack names it as one filter (op: in), and the reference SQL lists the regions."
+      ]
+    },
+    {
+      "id": "S25",
+      "kind": "within",
+      "category": "Golden 20 (owner, 2026-11-14)",
+      "question": "How did Retail Investor certified NNAxFDIC for September 2024 compare year over year by client segment level 4?",
+      "also_asked_as": [
+        "Compare Retail Investor certified NNAxFDIC in September 2024 with September 2023 by client segment level 4."
+      ],
+      "added_phrasings": [
+        "Affluent certified client-directed NNA by client segment level 4, September 2024 versus September 2023",
+        "For each level 4 client segment, how did Affluent's certified client-directed NNA in September 2024 compare with September 2023?",
+        "How did Affluent certified client-directed NNA for September 2024 compare year over year by client segment level 4?",
+        "Compare Affluent certified client-directed NNA in September 2024 with September 2023 by client segment level 4."
+      ],
+      "expect": {
+        "unit": "wealth",
+        "measures": [
+          "nna_am",
+          "nna_am_comparison",
+          "nna_am_change",
+          "nna_am_pct_change"
+        ],
+        "table": {
+          "columns": [
+            "client_segment_4_id",
+            "client_segment_4",
+            "nna_am",
+            "nna_am_comparison",
+            "nna_am_change",
+            "nna_am_pct_change"
+          ],
+          "rows": [
+            [
+              "S3200",
+              "Wealth Management",
+              5160617.76,
+              5972216.35,
+              -811598.59,
+              -0.13589571148071353
+            ]
+          ]
+        }
+      },
+      "reference_sql": "WITH current_period AS (SELECT j2.SEGMT_LVL_ID4 AS client_segment_4_id, j2.SEGMT_LVL_NM4 AS client_segment_4, SUM(t.NNA_AM) AS nna_am FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT WHERE t.DW_TRAN_MNTH_END_DT = CAST('2024-09-30' AS DATE) AND t.CLIENT_DIRECTED_NNA_IN = 'Y' AND j2.SEGMT_LVL_ID5 IN ('S4100') GROUP BY client_segment_4_id, client_segment_4), comparison_period AS (SELECT j2.SEGMT_LVL_ID4 AS client_segment_4_id, j2.SEGMT_LVL_NM4 AS client_segment_4, SUM(t.NNA_AM) AS nna_am FROM F_NNA_FIN AS t INNER JOIN ACCT_DIM2_1 AS j1 ON t.ACCT_SRCE_SYS_ID = j1.SRCE_SYS_ID AND t.DW_ACCT_ID = j1.DW_ACCT_ID AND t.DW_TRAN_MNTH_END_DT BETWEEN j1.DW_EFF_DT AND j1.DW_EXPR_DT INNER JOIN CLIENT_CD_ROLLUP_1 AS j2 ON j1.CLNT_CD = j2.CLNT_CD AND t.DW_TRAN_MNTH_END_DT BETWEEN j2.DW_EFF_DT AND j2.DW_EXPR_DT WHERE t.DW_TRAN_MNTH_END_DT = CAST('2023-09-30' AS DATE) AND t.CLIENT_DIRECTED_NNA_IN = 'Y' AND j2.SEGMT_LVL_ID5 IN ('S4100') GROUP BY client_segment_4_id, client_segment_4), stacked AS (SELECT 'current_period' AS part, 0 AS part_rank, client_segment_4_id, client_segment_4, nna_am AS value FROM current_period UNION ALL SELECT 'comparison_period' AS part, 1 AS part_rank, client_segment_4_id, client_segment_4, nna_am AS value FROM comparison_period) SELECT s.client_segment_4_id AS client_segment_4_id, arg_min(s.client_segment_4, s.part_rank) FILTER (WHERE s.client_segment_4 IS NOT NULL) AS client_segment_4, SUM(IF(s.part = 'current_period', s.value, NULL)) AS nna_am, SUM(IF(s.part = 'comparison_period', s.value, NULL)) AS nna_am_comparison, SUM(IF(s.part = 'current_period', s.value, NULL)) - SUM(IF(s.part = 'comparison_period', s.value, NULL)) AS nna_am_change, (SUM(IF(s.part = 'current_period', s.value, NULL)) - SUM(IF(s.part = 'comparison_period', s.value, NULL))) / NULLIF(ABS(SUM(IF(s.part = 'comparison_period', s.value, NULL))), 0) AS nna_am_pct_change FROM stacked AS s GROUP BY s.client_segment_4_id ORDER BY nna_am DESC",
+      "reference_sql_approved_by": "owner",
+      "reference_sql_approved_on": "2026-11-14"
+    }
+  ]
+}

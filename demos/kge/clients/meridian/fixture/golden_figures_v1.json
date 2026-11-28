@@ -1,0 +1,46 @@
+[
+  {
+    "id": "F01",
+    "kind": "shelf",
+    "category": "Period-less figure routing",
+    "question": "What is the certified revenue for retail?",
+    "expect": {
+      "behaviour": "cite_certified",
+      "cite": [
+        "MD-REVENUE"
+      ]
+    }
+  },
+  {
+    "id": "F02",
+    "kind": "shelf",
+    "category": "Period-less figure routing",
+    "question": "What is the certified NNA for wealth?",
+    "expect": {
+      "behaviour": "glossary_definition",
+      "cite": []
+    }
+  },
+  {
+    "id": "F03",
+    "kind": "shelf",
+    "category": "Period-less figure routing",
+    "question": "What is the trusted revenue figure for retail?",
+    "expect": {
+      "behaviour": "cite_certified",
+      "cite": [
+        "MD-REVENUE"
+      ]
+    }
+  },
+  {
+    "id": "F04",
+    "kind": "abstain",
+    "category": "Period-less figure routing",
+    "question": "Which products have revenue above 1000?",
+    "expect": {
+      "behaviour": "abstain",
+      "no_figure": true
+    }
+  }
+]
